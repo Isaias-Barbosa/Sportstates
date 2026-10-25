@@ -1,5 +1,10 @@
-import React, { useState } from "react";
-import { Link, useParams, useSearchParams } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import {
+  Link,
+  useParams,
+  useSearchParams,
+  useLocation,
+} from "react-router-dom";
 import {
   ArrowDownUp,
   ArrowLeft,
@@ -29,13 +34,21 @@ import {
   Loading,
   matchLabel,
 } from "../components/shared";
+import WhereToWatch from "../components/WhereToWatch";
 export default function MatchPage() {
+  const { hash } = useLocation();
   const { sport, league, id } = useParams();
   const { data, error, loading, refresh } = useApi<Detail>(
     `/api/match?sport=${encodeURIComponent(sport || "")}&league=${encodeURIComponent(league || "")}&id=${encodeURIComponent(id || "")}`,
     30000,
   );
   const [tab, setTab] = useState("events");
+  useEffect(() => {
+    if (hash === "#onde-assistir" && data?.match.state === "live")
+      document
+        .getElementById("onde-assistir")
+        ?.scrollIntoView({ block: "start" });
+  }, [hash, data?.match.id, data?.match.state]);
   return (
     <>
       <Link className="back-link" to="/">
@@ -101,6 +114,7 @@ export default function MatchPage() {
                 Dados em cache: não foi possível atualizar esta partida.
               </Notice>
             )}
+            <WhereToWatch match={data.match} />
             <div className="detail-content">
               <div className="tabs detail-tabs">
                 {[

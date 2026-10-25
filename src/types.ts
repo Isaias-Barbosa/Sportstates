@@ -22,6 +22,7 @@ export type Match = {
   period: number;
   venue: string;
   broadcast: string;
+  watch?: WatchOptions | null;
 };
 export type Sport = {
   id: string;
@@ -109,4 +110,23 @@ export type PlayerPhoto = {
 export type PlayerPhotos = {
   photos: Record<string, PlayerPhoto | null>;
   warnings: string[];
+};
+
+export type WatchLink = {
+  id: string;
+  name: string;
+  url: string;
+  access: "subscription" | "free" | "check";
+  kind: "platform" | "guide";
+  note: string;
+  sourceUrl: string;
+};
+export type WatchOptions = {
+  country: string;
+  regionLabel: string;
+  scope: "competition";
+  confirmedForMatch: false;
+  reviewedAt: string;
+  links: WatchLink[];
+  message: string;
 };

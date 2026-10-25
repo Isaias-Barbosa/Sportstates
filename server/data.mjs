@@ -1,3 +1,4 @@
+import { getWatchOptions } from "./watch.mjs";
 export const ZONE = "America/Sao_Paulo";
 export function dayInBrazil(date) {
   return new Intl.DateTimeFormat("en-CA", {
@@ -31,7 +32,7 @@ export function normalizeEvent(e, sport, league, leagueName) {
   if (!c || !e.id || !e.date || !c.competitors?.length) return null;
   const status = c.status || e.status || {};
   const state = status.type?.state;
-  return {
+  const match = {
     id: String(e.id),
     sport,
     league,
@@ -53,6 +54,7 @@ export function normalizeEvent(e, sport, league, leagueName) {
     venue: c.venue?.fullName || "",
     broadcast: c.broadcasts?.flatMap((b) => b.names || []).join(", ") || "",
   };
+  return { ...match, watch: getWatchOptions(match) };
 }
 export function normalizeSummary(raw, sport, league, leagueName) {
   const event = raw.header;

@@ -18,6 +18,7 @@ import {
   Info,
   MapPin,
   Clock3,
+  Tv,
 } from "lucide-react";
 import type { Scores, Detail, Transfers } from "../types";
 import { useApi, useFavorites, today, time, dateLabel } from "../hooks";
@@ -29,6 +30,7 @@ import {
   Loading,
   matchLabel,
 } from "../components/shared";
+import WhereToWatch from "../components/WhereToWatch";
 export default function Dashboard({
   favoritesOnly = false,
 }: {
@@ -152,52 +154,55 @@ export default function Dashboard({
         {loading ? (
           <Loading />
         ) : featured ? (
-          <Link
-            to={"/partida/" + keyOf(featured)}
-            className={
-              "live-match-feature " +
-              (featured.state === "live" ? "is-live" : "")
-            }
-          >
-            <div className="live-match-top">
-              <span>{featured.leagueName}</span>
-              <strong>
-                {featured.state === "live" && <span className="live-dot" />}
-                {matchLabel(featured)}
-                {featured.period > 0 && featured.sport !== "soccer"
-                  ? ` · ${featured.period}º período`
-                  : ""}
-              </strong>
-            </div>
-            <div className="live-match-scoreboard">
-              <div className="live-match-team">
-                <Crest team={featured.home} large />
-                <h3>{featured.home.name}</h3>
-              </div>
-              <div className="live-match-score">
+          <>
+            <Link
+              to={"/partida/" + keyOf(featured)}
+              className={
+                "live-match-feature " +
+                (featured.state === "live" ? "is-live" : "")
+              }
+            >
+              <div className="live-match-top">
+                <span>{featured.leagueName}</span>
                 <strong>
-                  {featured.state === "scheduled"
-                    ? "×"
-                    : `${featured.home.score ?? "–"} : ${featured.away.score ?? "–"}`}
+                  {featured.state === "live" && <span className="live-dot" />}
+                  {matchLabel(featured)}
+                  {featured.period > 0 && featured.sport !== "soccer"
+                    ? ` · ${featured.period}º período`
+                    : ""}
                 </strong>
-                <span>
-                  {featured.state === "live"
-                    ? "EM ANDAMENTO"
-                    : time(featured.date) + " · Brasília"}
-                </span>
               </div>
-              <div className="live-match-team">
-                <Crest team={featured.away} large />
-                <h3>{featured.away.name}</h3>
+              <div className="live-match-scoreboard">
+                <div className="live-match-team">
+                  <Crest team={featured.home} large />
+                  <h3>{featured.home.name}</h3>
+                </div>
+                <div className="live-match-score">
+                  <strong>
+                    {featured.state === "scheduled"
+                      ? "×"
+                      : `${featured.home.score ?? "–"} : ${featured.away.score ?? "–"}`}
+                  </strong>
+                  <span>
+                    {featured.state === "live"
+                      ? "EM ANDAMENTO"
+                      : time(featured.date) + " · Brasília"}
+                  </span>
+                </div>
+                <div className="live-match-team">
+                  <Crest team={featured.away} large />
+                  <h3>{featured.away.name}</h3>
+                </div>
               </div>
-            </div>
-            <div className="live-match-footer">
-              <span>{featured.venue || "Detalhes da partida"}</span>
-              <strong>
-                Ver minuto a minuto <ArrowRight size={18} />
-              </strong>
-            </div>
-          </Link>
+              <div className="live-match-footer">
+                <span>{featured.venue || "Detalhes da partida"}</span>
+                <strong>
+                  Ver minuto a minuto <ArrowRight size={18} />
+                </strong>
+              </div>
+            </Link>
+            <WhereToWatch match={featured} compact />
+          </>
         ) : (
           <Empty
             title={
@@ -384,6 +389,22 @@ export default function Dashboard({
                         </div>
                         <ChevronRight className="row-chevron" size={16} />
                       </Link>
+                      {m.state === "live" && !!m.watch?.links.length && (
+                        <Link
+                          className="watch-row-link icon-button"
+                          to={"/partida/" + keyOf(m) + "#onde-assistir"}
+                          aria-label={
+                            "Onde assistir: " +
+                            m.home.name +
+                            " x " +
+                            m.away.name
+                          }
+                          title="Onde assistir · links oficiais"
+                        >
+                          <Tv size={18} />
+                          <span>Onde assistir</span>
+                        </Link>
+                      )}
                       <button
                         className={
                           "favorite icon-button " +

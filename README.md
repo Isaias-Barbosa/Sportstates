@@ -31,6 +31,7 @@ npm start      # serve dist + API, após o build
 - Agenda no fuso **America/Sao_Paulo**, data selecionável e busca por time/liga.
 - Filtros: todos, ao vivo, próximos e encerrados.
 - Detalhes com placar, minuto a minuto, estatísticas e escalações **quando disponíveis na fonte**.
+- **Onde assistir** nos jogos ao vivo: plataformas e guias oficiais, com indicação de assinatura e região Brasil. O catálogo é por competição; confirme o jogo na programação da plataforma.
 - Atualização da agenda a cada 60 segundos; detalhes a cada 30 segundos, somente com a aba visível.
 - Favoritos locais por partida, persistidos no navegador; não há conta nem sincronização.
 - Seção **Ao Vivo Agora** em destaque abaixo do banner, com escudos, nomes completos, placar e acesso aos lances.
@@ -137,3 +138,5 @@ Rotas rejeitam outros métodos. Validação de data, ID e catálogo evita constr
 ESPN usa feeds públicos **não oficiais**, sem SLA. O projeto comunitário documenta endpoints, mas não concede licença para redistribuir dados. Para ESPN, o projeto implementa um adaptador próprio; Transfermarkt usa o SDK Python como dependência. Para produto comercial, confirme termos de uso e direitos de dados e escudos e contrate uma fonte adequada.
 
 Comentários e algumas estatísticas podem chegar em inglês e são exibidos no idioma original; não há tradução automática. Algumas partidas não oferecem minuto a minuto ou escalações. Veja a comparação e os links em [docs/FONTES.md](docs/FONTES.md) e o [roteiro de estudo](docs/ROADMAP.md).
+
+Veja as fontes e os limites do recurso em [docs/ONDE_ASSISTIR.md](docs/ONDE_ASSISTIR.md).
