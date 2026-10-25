@@ -1,4 +1,4 @@
-export type Team = {
+﻿export type Team = {
   id: string;
   name: string;
   short: string;
@@ -65,6 +65,9 @@ export type Detail = {
 export type Transfers = {
   configured: boolean;
   message?: string;
+  source?: string;
+  clubLabel?: string;
+  clubId?: string;
   transfers: {
     player: string;
     playerId: number;
@@ -72,7 +75,8 @@ export type Transfers = {
     type: string;
     from: string;
     to: string;
+    fee?: string | null;
+    marketValue?: string | null;
   }[];
-  source?: string;
   fetchedAt?: string;
 };

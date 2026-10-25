@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+﻿import React, { useState } from "react";
 import { Link, useParams, useSearchParams } from "react-router-dom";
 import {
   ArrowDownUp,
@@ -130,12 +130,12 @@ export default function Dashboard({
           <div className="pitch-box" />
         </div>
         {featured && (
-          <Link to={"/partida/" + keyOf(featured)} className="featured">
+          <Link to={"/partida/" + keyOf(featured)} className={"featured" + (featured.state === "live" ? " featured--live" : "")}>
             <div className="featured-head">
               <span>
                 {featured.state === "live" ? (
                   <>
-                    <span className="live-dot" /> EM ANDAMENTO
+                    <span className="live-dot" /> AO VIVO AGORA
                   </>
                 ) : (
                   "PRÓXIMO CONFRONTO"
@@ -298,7 +298,7 @@ export default function Dashboard({
                     <small>{items.length} jogos</small>
                   </div>
                   {items.map((m) => (
-                    <div className="match-row" key={keyOf(m)}>
+                    <div className={"match-row" + (m.state === "live" ? " is-live" : "")} key={keyOf(m)}>
                       <div
                         className={
                           "match-time " + (m.state === "live" ? "is-live" : "")

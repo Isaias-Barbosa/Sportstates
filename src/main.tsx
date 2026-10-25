@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+﻿import React, { useState } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Link, NavLink, Route, Routes } from "react-router-dom";
 import {
@@ -72,7 +72,6 @@ function App() {
                 {s.name}
               </Link>
             ))}
-            <div className="nav-label">O PROJETO</div>
             <NavLink to="/sobre">
               <Globe2 size={18} />
               Fontes e cobertura
@@ -81,13 +80,6 @@ function App() {
           <div className="sidebar-bottom">
             <span className="tiny-dot" /> Feito para acompanhar.
             <p>Seu esporte. Seu momento.</p>
-            <a
-              href="https://github.com/Isaias-Barbosa/Sportstates"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Projeto aberto ↗
-            </a>
           </div>
         </aside>
         {menu && (

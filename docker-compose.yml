@@ -1,0 +1,21 @@
+# docker-compose.yml — Transfermarkt API (self-hosted)
+# Usado pela página de Transferências do Sportstates
+#
+# Uso:
+#   docker compose up -d
+#   # API disponível em http://localhost:8000
+#   # Docs em http://localhost:8000/docs
+#
+# Depois adicione ao .env:
+#   TRANSFERMARKT_API_URL=http://localhost:8000
+
+services:
+  transfermarkt-api:
+    image: ghcr.io/felipeall/transfermarkt-api:latest
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+    environment:
+      # Limita memória do cache interno da API
+      - TM_API_CACHE_TTL=3600
+
