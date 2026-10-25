@@ -200,6 +200,9 @@ async def market_route(query, adapter=None):
 async def handle_market(query):
     try:
         async with asyncio.timeout(90):
+            if query.get("operation") == "photos":
+                from server.photos import photos_route
+                return await photos_route(query)
             return 200, await market_route(query)
     except MarketError as error:
         return error.status, {"error": str(error)}

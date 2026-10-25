@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import {
   ArrowDownUp,
-  ArrowRight,
   RefreshCw,
   Search,
-  Calendar,
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
 import type { Transfers, ClubSearch } from "../types";
 import { useApi, time } from "../hooks";
 import { Notice, Empty, Loading } from "../components/shared";
+import TransferPlayers from "../components/TransferPlayers";
+import { groupTransfers } from "../transfer-groups";
 const CLUBS = [
   { name: "Manchester United", id: "985", af: "33" },
   { name: "Manchester City", id: "281", af: "50" },
@@ -23,16 +23,6 @@ const CLUBS = [
   { name: "Palmeiras", id: "1023", af: "121" },
   { name: "Newcastle", id: "762", af: "34" },
 ];
-export function money(value: number | string | null | undefined) {
-  if (value == null) return "Não informado";
-  return typeof value === "number"
-    ? new Intl.NumberFormat("pt-BR", {
-        style: "currency",
-        currency: "EUR",
-        maximumFractionDigits: 0,
-      }).format(value)
-    : value;
-}
 export default function TransfersPage() {
   const [provider, setProvider] = useState("tm");
   const [club, setClub] = useState(CLUBS[0]);
@@ -47,8 +37,8 @@ export default function TransfersPage() {
       ? `/api/market?operation=transfers&tmid=${encodeURIComponent(club.id)}&label=${encodeURIComponent(club.name)}&page=${page}`
       : `/api/transfers?team=${encodeURIComponent(club.af)}`;
   const { data, error, loading, refresh } = useApi<Transfers>(url, 0);
-  const list = (data?.transfers || []).filter((t) =>
-    `${t.player} ${t.from} ${t.to}`
+  const list = groupTransfers(data?.transfers || []).filter((g) =>
+    `${g.name} ${g.history.map((t) => t.from + " " + t.to).join(" ")}`
       .toLowerCase()
       .includes(filter.toLowerCase()),
   );
@@ -208,38 +198,7 @@ export default function TransfersPage() {
           <>
             {data?.warnings?.map((w) => <Notice key={w}>{w}</Notice>)}
             {list.length ? (
-              <div className="transfer-list">
-                {list.map((t, i) => (
-                  <article key={t.id || `${t.playerId}-${t.date}-${i}`}>
-                    <div className="player-avatar">
-                      {t.player
-                        .split(" ")
-                        .map((s) => s[0])
-                        .slice(0, 2)
-                        .join("")}
-                    </div>
-                    <div className="transfer-info">
-                      <h3>{t.player}</h3>
-                      <small className="transfer-meta">
-                        <Calendar size={12} />
-                        {t.date || "Data não informada"} · {t.type}
-                        {t.upcoming ? " · Prevista" : ""}
-                      </small>
-                    </div>
-                    <div className="transfer-clubs">
-                      <span>{t.from}</span>
-                      <ArrowRight size={18} className="transfer-arrow" />
-                      <strong>{t.to}</strong>
-                    </div>
-                    <div className="transfer-values">
-                      <span className="transfer-fee">Taxa: {money(t.fee)}</span>
-                      <span className="transfer-mktval">
-                        Valor de mercado: {money(t.marketValue)}
-                      </span>
-                    </div>
-                  </article>
-                ))}
-              </div>
+              <TransferPlayers key={url} groups={list} provider={provider} />
             ) : (
               <Empty title="Nenhum registro nesta página">
                 Altere o filtro ou consulte a próxima página do elenco. Isso não

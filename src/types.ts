@@ -95,3 +95,18 @@ export type ClubSearch = {
   page: number;
   lastPage: number;
 };
+
+export type PlayerPhoto = {
+  url: string;
+  sourceUrl: string;
+  license: string;
+  licenseUrl: string;
+  author: string;
+  title: string;
+  source: string;
+  modified: boolean;
+};
+export type PlayerPhotos = {
+  photos: Record<string, PlayerPhoto | null>;
+  warnings: string[];
+};

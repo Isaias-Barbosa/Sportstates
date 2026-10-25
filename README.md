@@ -68,6 +68,18 @@ O pacote `transfermarkt-api==5.0.0` do repositório [felipeall/transfermarkt-api
 
 API-Football permanece no seletor **Fonte**, usando `API_FOOTBALL_KEY` no servidor. Os IDs não são intercambiáveis; não fazemos fallback silencioso que possa misturar clubes. Nunca prefixe a chave com `VITE_`.
 
+## Jogadores agrupados e fotos
+
+A interface agrupa o histórico pelo ID de jogador do provedor: um card por jogador, registro mais recente no resumo e movimentações antigas em **Ver histórico**. Registros repetidos do mesmo evento são removidos; jogadores homônimos com IDs diferentes permanecem separados. O contrato `/api/market?operation=transfers` mantém a lista de movimentações: nomes repetidos nessa lista representam eventos distintos, não jogadores duplicados.
+
+As fotos são carregadas separadamente, para não atrasar os dados de transferências. `/api/market?operation=photos&ids=...` aceita até 6 IDs Transfermarkt. O servidor consulta a propriedade P2446 no Wikidata, obtém a imagem P18 e consulta a licença/autor do arquivo no Wikimedia Commons. Não seleciona por semelhança de nome e não usa os retratos do CDN do Transfermarkt como se fossem livres.
+
+Só são aceitas licenças CC BY/CC BY-SA (1.0, 2.0, 2.5, 3.0 e 4.0), CC0 e domínio público, conforme metadados do Commons. CC BY/CC BY-SA exigem autor e URL de licença. A interface mostra autor, licença e link para a página original; imagem sem dados suficientes, licença incompatível ou erro mantém as iniciais. Links de miniatura ficam restritos a `upload.wikimedia.org`, metadados HTML são convertidos em texto e não são inseridos como HTML no navegador. Há cache de 24h por jogador (incluindo ausência confirmada), com limite de 512 entradas; erros temporários não são armazenados nesse cache nem recebem cache HTTP.
+
+API-Football usa IDs diferentes e por isso mantém iniciais nesta versão. Não há correspondência por nome para tentar adivinhar fotos.
+
+Referências: https://www.wikidata.org/wiki/Property:P2446 e https://commons.wikimedia.org/wiki/Commons:Reusing_content_outside_Wikimedia.
+
 ## Deploy na Vercel
 
 Projeto publicado em https://sportstates.vercel.app/.
