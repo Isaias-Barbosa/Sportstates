@@ -1,0 +1,100 @@
+import { useEffect, useState, useCallback } from "react";
+export function useApi<T>(url: string, interval = 60000) {
+  const [state, setState] = useState<{
+    data?: T;
+    error?: string;
+    loading: boolean;
+  }>({ loading: true });
+  const [revision, setRevision] = useState(0);
+  const refresh = useCallback(() => setRevision((r) => r + 1), []);
+  useEffect(() => {
+    let active = true;
+    let controller: AbortController | undefined;
+    let inFlight = false;
+    setState({ loading: true });
+    async function load() {
+      if (inFlight) return;
+      inFlight = true;
+      controller = new AbortController();
+      try {
+        const res = await fetch(url, { signal: controller.signal });
+        const body = await res.json();
+        if (!res.ok) throw new Error(body.error || "Falha na consulta.");
+        if (active) setState({ data: body, loading: false });
+      } catch (e) {
+        if (active && !(e instanceof DOMException && e.name === "AbortError"))
+          setState((old) => ({
+            ...old,
+            loading: false,
+            error:
+              e instanceof Error ? e.message : "Não foi possível atualizar.",
+          }));
+      } finally {
+        inFlight = false;
+      }
+    }
+    void load();
+    const timer = interval
+      ? setInterval(() => {
+          if (document.visibilityState === "visible") void load();
+        }, interval)
+      : undefined;
+    const wake = () => {
+      if (document.visibilityState === "visible") void load();
+    };
+    document.addEventListener("visibilitychange", wake);
+    return () => {
+      active = false;
+      controller?.abort();
+      clearInterval(timer);
+      document.removeEventListener("visibilitychange", wake);
+    };
+  }, [url, interval, revision]);
+  return { ...state, refresh };
+}
+export const today = () =>
+  new Intl.DateTimeFormat("en-CA", {
+    timeZone: "America/Sao_Paulo",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).format(new Date());
+export const time = (d: string) =>
+  new Intl.DateTimeFormat("pt-BR", {
+    timeZone: "America/Sao_Paulo",
+    hour: "2-digit",
+    minute: "2-digit",
+  }).format(new Date(d));
+export const dateLabel = (d: string) =>
+  new Intl.DateTimeFormat("pt-BR", {
+    timeZone: "America/Sao_Paulo",
+    day: "numeric",
+    month: "long",
+  }).format(new Date(d + "T12:00:00Z"));
+
+export function useFavorites() {
+  const [ids, setIds] = useState<string[]>(() => {
+    try {
+      const x = JSON.parse(
+        localStorage.getItem("sportstates:favorites") || "[]",
+      );
+      return Array.isArray(x) ? x.filter((v) => typeof v === "string") : [];
+    } catch {
+      return [];
+    }
+  });
+  function toggle(id: string) {
+    setIds((old) => {
+      const next = old.includes(id)
+        ? old.filter((i) => i !== id)
+        : [...old, id];
+      try {
+        localStorage.setItem("sportstates:favorites", JSON.stringify(next));
+      } catch {
+        /* Storage may be unavailable in private browsing. */
+      }
+      return next;
+    });
+  }
+  return { ids, toggle };
+}

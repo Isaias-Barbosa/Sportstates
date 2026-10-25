@@ -1,0 +1,30 @@
+{
+  "name": "sportstates",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "node --env-file-if-exists=.env server/index.mjs",
+    "build": "tsc -b && vite build",
+    "start": "node --env-file-if-exists=.env server/index.mjs --production",
+    "test": "node --test tests/*.test.mjs",
+    "check": "npm test && npm run build",
+    "format": "prettier --write src server api tests README.md docs package.json tsconfig.json vercel.json"
+  },
+  "dependencies": {
+    "lucide-react": "^0.468.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-router-dom": "^7.6.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
+    "prettier": "^3.5.3",
+    "typescript": "^5.8.3",
+    "vite": "^6.3.5"
+  }
+}
