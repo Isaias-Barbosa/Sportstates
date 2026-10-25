@@ -6,4 +6,4 @@ Fotos usam Wikimedia Commons via identidade exata P2446 (ID Transfermarkt) e P18
 
 Não presumimos que imagens publicamente acessíveis do Transfermarkt tenham licença livre. Não usamos scraping de páginas de fotos, seleção por nome parecido nem imagens aleatórias como substituto do atleta.
 
-Verificações: 14 testes Node (incluindo agrupamento, homônimos e deduplicação de evento), 14 testes Python (incluindo identidade, licenças aceitas/rejeitadas, autor, URLs e validação), build TypeScript/Vite e inspeção da versão publicada.
+Verificações: 14 testes Node (incluindo agrupamento, homônimos e deduplicação de evento), 15 testes Python (incluindo identidade, licenças aceitas/rejeitadas, autor, URLs e validação), build TypeScript/Vite e inspeção da versão publicada.

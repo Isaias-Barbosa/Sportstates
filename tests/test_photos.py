@@ -8,6 +8,9 @@ class PhotoTests(unittest.IsolatedAsyncioTestCase):
  def test_free_license_with_author_and_source(self):
   photo=licensed_photo(page())
   self.assertEqual(photo['author'],'Jane Doe');self.assertEqual(photo['license'],'CC BY-SA 4.0');self.assertIn('commons.wikimedia.org',photo['sourceUrl'])
+ def test_current_commons_thumbnail_host_allowed(self):
+  p=page();p['imageinfo'][0]['thumburl']='https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ab/Player.jpg/250px-Player.jpg'
+  self.assertIsNotNone(licensed_photo(p))
  def test_nonfree_unknown_and_missing_attribution_rejected(self):
   for name in ['Fair use','CC BY-NC 4.0','CC BY-ND 4.0','All rights reserved','']:
    self.assertIsNone(licensed_photo(page(name)))

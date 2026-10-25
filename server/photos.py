@@ -48,7 +48,7 @@ def licensed_photo(page):
     author=field('Artist')
     if attribution_license and not author:
         return None
-    image=safe_url(info.get('thumburl'), {'upload.wikimedia.org'})
+    image=safe_url(info.get('thumburl'), {'upload.wikimedia.org', 'thumb.wikimedia.org'})
     source=safe_url(info.get('descriptionurl'), {'commons.wikimedia.org'})
     license_url=safe_url(meta.get('LicenseUrl',{}).get('value'), {'creativecommons.org','commons.wikimedia.org'})
     if not image or not source or (attribution_license and not license_url):
