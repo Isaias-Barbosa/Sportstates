@@ -105,67 +105,6 @@ async function football(path) {
   return raw.response;
 }
 
-// ─── Transfermarkt API helpers ────────────────────────────────────────────────
-function tmBase() {
-  const base = process.env.TRANSFERMARKT_API_URL || "";
-  return base.replace(/\/$/, "");
-}
-
-async function tmJson(path) {
-  const base = tmBase();
-  if (!base) throw new Error("TRANSFERMARKT_API_URL não configurada.");
-  const url = `${base}${path}`;
-  const res = await fetch(url, {
-    headers: {
-      Accept: "application/json",
-      "User-Agent": "sportstates/1.0",
-    },
-    signal: AbortSignal.timeout(15000),
-  });
-  if (!res.ok) throw new Error(`Transfermarkt API: HTTP ${res.status}`);
-  return res.json();
-}
-
-async function tmSearchClub(name) {
-  const data = await tmJson(`/clubs/search/${encodeURIComponent(name)}`);
-  // returns { results: [{ id, name, ... }] }
-  return data.results || data || [];
-}
-
-async function tmClubTransfers(clubId) {
-  // Get club players first, then batch their transfers
-  // The API has /clubs/{id}/players returning squad
-  const squad = await tmJson(`/clubs/${clubId}/players`);
-  const players = squad.players || squad || [];
-
-  // Fetch transfers for each player (up to 30 to avoid rate limits)
-  const sample = players.slice(0, 30);
-  const results = await Promise.allSettled(
-    sample.map(async (p) => {
-      const data = await tmJson(`/players/${p.id}/transfers`);
-      const transfers = data.transfers || data || [];
-      return { player: p.name || p.displayName || "Jogador", playerId: p.id, transfers };
-    }),
-  );
-
-  return results
-    .filter((r) => r.status === "fulfilled")
-    .flatMap((r) => {
-      const { player, playerId, transfers } = r.value;
-      return transfers.map((t) => ({
-        player,
-        playerId,
-        date: t.date || t.season || "",
-        type: t.type || t.transferType || "",
-        from: t.from?.clubName || t.from?.name || t.oldClub || "Não informado",
-        to: t.to?.clubName || t.to?.name || t.newClub || "Não informado",
-        fee: t.fee || t.transferFee || null,
-        marketValue: t.marketValue || null,
-      }));
-    })
-    .sort((a, b) => (b.date || "").localeCompare(a.date || ""));
-}
-
 // ─── Route handler ────────────────────────────────────────────────────────────
 export async function route(url) {
   const q = url.searchParams;
@@ -207,68 +146,25 @@ export async function route(url) {
 
   // ── /api/transfers ──────────────────────────────────────────────────────────
   if (url.pathname === "/api/transfers") {
-    const hasTM = !!tmBase();
-    const hasFootball = !!process.env.API_FOOTBALL_KEY;
-
-    // ── Transfermarkt: search by club name ──────────────────────────────────
-    if (hasTM) {
-      const clubName = q.get("club");
-      const tmId = q.get("tmid");
-
-      if (!clubName && !tmId)
-        return [400, { error: "Informe ?club=NomeDoClube ou ?tmid=ID." }];
-
-      try {
-        let clubId = tmId;
-        let clubLabel = clubName || `Clube #${tmId}`;
-
-        if (!clubId) {
-          const results = await tmSearchClub(clubName);
-          if (!results.length)
-            return [200, {
-              configured: true,
-              source: "Transfermarkt",
-              clubLabel,
-              transfers: [],
-              message: "Clube não encontrado no Transfermarkt.",
-            }];
-          clubId = results[0].id;
-          clubLabel = results[0].name || clubName;
-        }
-
-        const cacheKey = `tm:transfers:${clubId}`;
-        const result = await cached(cacheKey, 21600000, () =>
-          tmClubTransfers(clubId),
-        );
-
-        return [200, {
-          configured: true,
-          source: "Transfermarkt",
-          clubLabel,
-          clubId,
-          transfers: result.value,
-          fetchedAt: new Date(result.at).toISOString(),
-        }];
-      } catch (err) {
-        // TM API failed — fall through to API-Football if available
-        if (!hasFootball)
-          return [502, { error: err.message || "Falha ao consultar Transfermarkt." }];
-        // else fall through below
-      }
-    }
-
-    // ── API-Football fallback (team ID) ─────────────────────────────────────
-    if (!hasFootball)
-      return [200, {
-        configured: false,
-        transfers: [],
-        message:
-          "Configure TRANSFERMARKT_API_URL ou API_FOOTBALL_KEY no servidor para consultar transferências reais.",
-      }];
-
+    if (!process.env.API_FOOTBALL_KEY)
+      return [
+        200,
+        {
+          configured: false,
+          transfers: [],
+          message:
+            "API-Football não configurada. Use a página Transfermarkt integrada em /api/market.",
+        },
+      ];
     const team = q.get("team");
     if (!/^\d{1,7}$/.test(team || ""))
-      return [400, { error: "Informe o ID do clube na API-Football (?team=ID) ou use ?club=Nome com Transfermarkt." }];
+      return [
+        400,
+        {
+          error:
+            "Informe o ID do clube na API-Football (?team=ID) ou use ?club=Nome com Transfermarkt.",
+        },
+      ];
     const result = await cached(`transfers:${team}`, 21600000, () =>
       football(`transfers?team=${team}`),
     );
@@ -286,27 +182,15 @@ export async function route(url) {
         })),
       )
       .sort((a, b) => (b.date || "").localeCompare(a.date || ""));
-    return [200, {
-      configured: true,
-      transfers,
-      source: "API-Football",
-      fetchedAt: new Date(result.at).toISOString(),
-    }];
-  }
-
-  // ── /api/transfers/search — search clubs by name on Transfermarkt ─────────
-  if (url.pathname === "/api/transfers/search") {
-    if (!tmBase())
-      return [200, { results: [] }];
-    const name = q.get("q") || "";
-    if (name.length < 2)
-      return [400, { error: "Informe ao menos 2 caracteres." }];
-    const results = await cached(
-      `tm:search:${name.toLowerCase()}`,
-      3600000,
-      () => tmSearchClub(name),
-    );
-    return [200, { results: results.value }];
+    return [
+      200,
+      {
+        configured: true,
+        transfers,
+        source: "API-Football",
+        fetchedAt: new Date(result.at).toISOString(),
+      },
+    ];
   }
 
   return [404, { error: "Rota não encontrada." }];

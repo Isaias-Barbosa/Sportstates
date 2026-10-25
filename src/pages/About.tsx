@@ -66,16 +66,17 @@ export default function About() {
           <ArrowDownUp />
           <h2>Transferências</h2>
           <p>
-            API-Football, com chave apenas no servidor. Consultas por ID do
-            clube, com cache de 6 horas. IDs de equipes da ESPN e da
-            API-Football são diferentes.
+            Transfermarkt integrado ao servidor com o SDK Python. A lista é
+            paginada e reúne o histórico relacionado ao clube dos jogadores do
+            elenco atual; não representa todas as saídas. API-Football continua
+            disponível como alternativa, com chave no servidor e IDs próprios.
           </p>
           <a
-            href="https://www.api-football.com/pricing"
+            href="https://github.com/felipeall/transfermarkt-api"
             target="_blank"
             rel="noreferrer"
           >
-            Planos e limites ↗
+            Conhecer a fonte ↗
           </a>
         </section>
         <section>

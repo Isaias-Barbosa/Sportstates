@@ -1,4 +1,4 @@
-﻿import React, { useState } from "react";
+import React, { useState } from "react";
 import { Link, useParams, useSearchParams } from "react-router-dom";
 import {
   ArrowDownUp,
@@ -129,41 +129,87 @@ export default function Dashboard({
           <div className="pitch-line" />
           <div className="pitch-box" />
         </div>
-        {featured && (
-          <Link to={"/partida/" + keyOf(featured)} className={"featured" + (featured.state === "live" ? " featured--live" : "")}>
-            <div className="featured-head">
-              <span>
-                {featured.state === "live" ? (
-                  <>
-                    <span className="live-dot" /> AO VIVO AGORA
-                  </>
-                ) : (
-                  "PRÓXIMO CONFRONTO"
-                )}
-              </span>
-              <ChevronRight size={16} />
-            </div>
-            <small>{featured.leagueName}</small>
-            <div className="featured-teams">
-              <div>
-                <Crest team={featured.home} />
-                <span>{featured.home.short || featured.home.name}</span>
-              </div>
+      </section>
+      <section
+        className="live-spotlight"
+        aria-labelledby="live-spotlight-title"
+      >
+        <div className="live-spotlight-heading">
+          <div>
+            <div className="eyebrow">NO CENTRO DO JOGO</div>
+            <h2 id="live-spotlight-title">
+              {featured?.state === "live"
+                ? "Ao Vivo Agora"
+                : "Próximo confronto"}
+            </h2>
+          </div>
+          <span>
+            {data?.stale || error
+              ? "Última consulta disponível"
+              : "Acompanhe cada lance"}
+          </span>
+        </div>
+        {loading ? (
+          <Loading />
+        ) : featured ? (
+          <Link
+            to={"/partida/" + keyOf(featured)}
+            className={
+              "live-match-feature " +
+              (featured.state === "live" ? "is-live" : "")
+            }
+          >
+            <div className="live-match-top">
+              <span>{featured.leagueName}</span>
               <strong>
-                {featured.state === "scheduled"
-                  ? "×"
-                  : `${featured.home.score ?? "–"} : ${featured.away.score ?? "–"}`}
+                {featured.state === "live" && <span className="live-dot" />}
+                {matchLabel(featured)}
+                {featured.period > 0 && featured.sport !== "soccer"
+                  ? ` · ${featured.period}º período`
+                  : ""}
               </strong>
-              <div>
-                <Crest team={featured.away} />
-                <span>{featured.away.short || featured.away.name}</span>
+            </div>
+            <div className="live-match-scoreboard">
+              <div className="live-match-team">
+                <Crest team={featured.home} large />
+                <h3>{featured.home.name}</h3>
+              </div>
+              <div className="live-match-score">
+                <strong>
+                  {featured.state === "scheduled"
+                    ? "×"
+                    : `${featured.home.score ?? "–"} : ${featured.away.score ?? "–"}`}
+                </strong>
+                <span>
+                  {featured.state === "live"
+                    ? "EM ANDAMENTO"
+                    : time(featured.date) + " · Brasília"}
+                </span>
+              </div>
+              <div className="live-match-team">
+                <Crest team={featured.away} large />
+                <h3>{featured.away.name}</h3>
               </div>
             </div>
-            <div className="featured-bottom">
-              {matchLabel(featured)}
-              <span>Ver partida →</span>
+            <div className="live-match-footer">
+              <span>{featured.venue || "Detalhes da partida"}</span>
+              <strong>
+                Ver minuto a minuto <ArrowRight size={18} />
+              </strong>
             </div>
           </Link>
+        ) : (
+          <Empty
+            title={
+              error
+                ? "Não foi possível atualizar o destaque"
+                : "Sem partidas para destacar"
+            }
+          >
+            {error
+              ? "Tente atualizar os jogos. A fonte pode estar temporariamente indisponível."
+              : "Nenhum jogo ao vivo ou próximo confronto foi encontrado para o esporte e a data selecionados."}
+          </Empty>
         )}
       </section>
       <div className="section-heading">
@@ -298,7 +344,12 @@ export default function Dashboard({
                     <small>{items.length} jogos</small>
                   </div>
                   {items.map((m) => (
-                    <div className={"match-row" + (m.state === "live" ? " is-live" : "")} key={keyOf(m)}>
+                    <div
+                      className={
+                        "match-row" + (m.state === "live" ? " is-live" : "")
+                      }
+                      key={keyOf(m)}
+                    >
                       <div
                         className={
                           "match-time " + (m.state === "live" ? "is-live" : "")

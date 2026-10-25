@@ -1,21 +1,13 @@
-# docker-compose.yml — Transfermarkt API (self-hosted)
-# Usado pela página de Transferências do Sportstates
-#
-# Uso:
-#   docker compose up -d
-#   # API disponível em http://localhost:8000
-#   # Docs em http://localhost:8000/docs
-#
-# Depois adicione ao .env:
-#   TRANSFERMARKT_API_URL=http://localhost:8000
-
+# Opcional: desenvolvimento com uma REST API Transfermarkt independente.
+# A implantação padrão da Vercel usa o SDK Python e não precisa de Docker.
+# Depois de iniciar: TRANSFERMARKT_API_URL=http://localhost:8000
 services:
   transfermarkt-api:
-    image: ghcr.io/felipeall/transfermarkt-api:latest
+    build:
+      context: https://github.com/felipeall/transfermarkt-api.git#main
     ports:
-      - "8000:8000"
+      - "127.0.0.1:8000:8000"
     restart: unless-stopped
     environment:
-      # Limita memória do cache interno da API
-      - TM_API_CACHE_TTL=3600
-
+      CACHE_TTL_SECONDS: "3600"
+      TFMKT_MAX_CONCURRENCY: "3"

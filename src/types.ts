@@ -1,4 +1,4 @@
-﻿export type Team = {
+export type Team = {
   id: string;
   name: string;
   short: string;
@@ -68,15 +68,30 @@ export type Transfers = {
   source?: string;
   clubLabel?: string;
   clubId?: string;
+  page?: number;
+  lastPage?: number;
+  totalPlayers?: number;
+  queriedPlayers?: number;
+  failedPlayers?: number;
+  warnings?: string[];
+  coverage?: string;
   transfers: {
+    id?: string;
+    upcoming?: boolean;
     player: string;
-    playerId: number;
-    date: string;
+    playerId: string | number;
+    date: string | null;
     type: string;
     from: string;
     to: string;
-    fee?: string | null;
-    marketValue?: string | null;
+    fee?: number | string | null;
+    marketValue?: number | string | null;
   }[];
   fetchedAt?: string;
+};
+
+export type ClubSearch = {
+  results: { id: string; name: string; country?: string }[];
+  page: number;
+  lastPage: number;
 };

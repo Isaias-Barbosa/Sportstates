@@ -1,18 +1,23 @@
 # Sportstates
 
-Central esportiva **somente leitura**, em português, com React + TypeScript + Vite e backend Node.js. Projeto de estudo criado para acompanhar jogos do dia, placares, lances e transferências sem expor credenciais ao navegador.
+Central esportiva **somente leitura**, em português, com React + TypeScript + Vite e backend Node.js e Python. Projeto de estudo criado para acompanhar jogos do dia, placares, lances e transferências sem expor credenciais ao navegador.
 
 ## Rodar localmente
 
-Requer Node.js 22.9+ (recomendado: Node 24).
+Requer Node.js 22.9+ (recomendado: Node 24) e Python 3.12 ou 3.13.
 
 ```bash
 npm install
+python3.12 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
 cp .env.example .env
 npm run dev
 ```
 
-Abra http://localhost:3000. A aplicação e a API rodam no mesmo servidor. Não é necessário banco de dados nem chave para os placares ESPN.
+No Windows, ative o ambiente com `.venv\Scripts\activate`. Se o executável Python for diferente, defina `PYTHON` no `.env`.
+
+Abra http://localhost:3000. O servidor Node inicia o serviço Python local e encaminha `/api/market` para ele; o navegador usa sempre a mesma origem. Não é necessário banco de dados nem chave para os placares ESPN.
 
 ```bash
 npm test        # testes de normalização, datas, cache e validação
@@ -28,7 +33,8 @@ npm start      # serve dist + API, após o build
 - Detalhes com placar, minuto a minuto, estatísticas e escalações **quando disponíveis na fonte**.
 - Atualização da agenda a cada 60 segundos; detalhes a cada 30 segundos, somente com a aba visível.
 - Favoritos locais por partida, persistidos no navegador; não há conta nem sincronização.
-- Menu Futebol → Transferências, usando API-Football por clube.
+- Seção **Ao Vivo Agora** em destaque abaixo do banner, com escudos, nomes completos, placar e acesso aos lances.
+- Menu Futebol → Transferências, com Transfermarkt integrado ao servidor e API-Football selecionável.
 - Estados explícitos para carregamento, ausência de dados, falhas parciais, cache antigo e chave ausente.
 - Interface responsiva, navegação por teclado, foco visível e respeito a movimento reduzido.
 
@@ -44,23 +50,38 @@ npm start      # serve dist + API, após o build
 
 Não é uma lista de todos os jogos de todos os esportes. A fonte pode omitir jogos e detalhes, e a disponibilidade pode mudar. Adicione competições em `server/catalog.mjs`; use IDs da ESPN. Não há dados mockados substituindo falhas.
 
-## Transferências
+## Transfermarkt integrado ao servidor
 
-1. Crie sua chave em https://dashboard.api-football.com/.
-2. Defina `API_FOOTBALL_KEY` no `.env` (local) ou nas variáveis de ambiente do servidor.
-3. Reinicie o servidor ou faça um novo deploy.
-4. Abra **Transferências**, escolha um clube ou informe o ID **da API-Football**.
+O pacote `transfermarkt-api==5.0.0` do repositório [felipeall/transfermarkt-api](https://github.com/felipeall/transfermarkt-api) roda numa **Python Function da própria Vercel** (`api/transfermarkt.py`). Não depende de Docker nem de `localhost:8000` em produção e não usa o servidor público de demonstração do autor.
 
-IDs de equipes da ESPN não são intercambiáveis com os da API-Football. A página retorna registros de transferências, não rumores. O plano gratuito consultado em 25/10/2026 oferece 100 consultas/dia; confira condições atuais. Consultas por clube ficam em cache por 6 horas no processo. A chave nunca deve usar prefixo `VITE_`, ser commitada ou enviada ao frontend. O erro da API não expõe a chave.
+- Abra **Transferências**, escolha um clube popular ou busque por nome e selecione um dos resultados.
+- Cada página consulta o histórico de até 6 jogadores do elenco atual, com no máximo 3 consultas de jogadores simultâneas por requisição e limite de concorrência do SDK.
+- Usamos o leitor de elenco de baixo nível do mesmo pacote porque `club_players()` v5 consulta o histórico de todo o elenco internamente. Nosso adaptador pagina antes de buscar os históricos.
+- Apenas transferências que envolvem o ID do clube selecionado entram no resultado. Não mostramos o histórico de outros clubes como se fosse mercado deste clube.
+- **Cobertura parcial por definição:** jogadores que já saíram do elenco atual podem ficar de fora. A página não é um levantamento completo de todas as entradas/saídas ou rumores. A ordenação por data é por página, não global.
+- `clubFrom`, `clubTo`, `transferType`, `fee` e `marketValue` seguem o contrato v5. Valores monetários são exibidos em EUR. Zero é preservado; `null` significa não informado. Uma transferência sem custo pode ter taxa numérica ausente na fonte.
+- Cache em memória limitado a 512 entradas: busca por 1 hora; elenco e históricos por 6 horas. Cache HTTP de 1 hora somente para respostas bem-sucedidas sem avisos. Falhas parciais são sinalizadas e não recebem cache HTTP.
+- Timeout por acesso à origem: 12 segundos; orçamento total da requisição: 90 segundos; limite da função: 120 segundos. Bloqueio da fonte retorna 503; timeout retorna 504.
+- Os dados vêm de uma API interna do Transfermarkt por meio do SDK, sem SLA. A disponibilidade pode variar e os termos dos dados precisam ser respeitados.
+
+`TRANSFERMARKT_API_URL` é **opcional**. Deixe vazia para usar o SDK integrado. Para uma REST API v5 própria, informe sua URL acessível pelo servidor. O `docker-compose.yml` é apenas uma alternativa local. Não coloque uma URL localhost na Vercel.
+
+API-Football permanece no seletor **Fonte**, usando `API_FOOTBALL_KEY` no servidor. Os IDs não são intercambiáveis; não fazemos fallback silencioso que possa misturar clubes. Nunca prefixe a chave com `VITE_`.
 
 ## Deploy na Vercel
 
-1. Importe `Isaias-Barbosa/Sportstates` na Vercel, usando a raiz do repositório.
-2. Build: `npm run build`; saída: `dist`; runtime Node 24 (ou compatível).
-3. Adicione `API_FOOTBALL_KEY` se quiser habilitar transferências.
-4. Faça deploy. `vercel.json` direciona `/api/*` à função Node e as páginas React ao `index.html`.
+Projeto publicado em https://sportstates.vercel.app/.
 
-Não houve deploy automático em uma conta Vercel: o repositório está preparado para importação. Não publique a chave em Issues, logs ou commits.
+1. Use a raiz do repositório, framework Vite, Node 24, build `npm run build`, saída `dist` e instalação `npm ci`.
+2. A Vercel instala `requirements.txt` para a Python Function; `.python-version` seleciona Python 3.12.
+3. `/api/market` é direcionado para a função Python; as demais rotas de dados continuam na função Node. As páginas React usam `index.html`.
+4. Transfermarkt funciona sem chave de API. Para a alternativa API-Football, configure `API_FOOTBALL_KEY` e faça um novo deploy.
+
+Validação adicional do backend Python:
+
+```bash
+python -m unittest discover -s tests -p 'test_*.py' -v
+```
 
 ## Estrutura
 
@@ -71,18 +92,22 @@ server/data.mjs      normalização dos dados externos
 server/cache.mjs     cache limitado + deduplicação + stale sinalizado
 server/api.mjs       rotas de leitura e integrações
 server/index.mjs     servidor local e produção Node
-api/index.mjs        função serverless Vercel
+api/index.mjs        função Node Vercel
+api/transfermarkt.py função Python Vercel
+server/market.py      adaptador do SDK Transfermarkt, cache, paginação e contrato
+server/market_server.py serviço Python local iniciado por npm run dev/start
 tests/              testes automatizados (node:test)
 docs/                pesquisa de fontes e plano de evolução
 ```
 
 ## Contrato da API
 
-| GET              | Parâmetros                                     | Retorno                                              |
-| ---------------- | ---------------------------------------------- | ---------------------------------------------------- |
-| `/api/scores`    | `date=AAAA-MM-DD` (opcional, hoje em Brasília) | matches, sports, warnings, stale, fetchedAt          |
-| `/api/match`     | sport, league, id                              | match, events, statistics, lineups, stale, fetchedAt |
-| `/api/transfers` | team (ID API-Football)                         | configured, transfers, fetchedAt                     |
+| GET              | Parâmetros                                                               | Retorno                                              |
+| ---------------- | ------------------------------------------------------------------------ | ---------------------------------------------------- |
+| `/api/scores`    | `date=AAAA-MM-DD` (opcional, hoje em Brasília)                           | matches, sports, warnings, stale, fetchedAt          |
+| `/api/match`     | sport, league, id                                                        | match, events, statistics, lineups, stale, fetchedAt |
+| `/api/market`    | `operation=search&q=nome&page=1` ou `operation=transfers&tmid=ID&page=1` | busca de clubes ou histórico paginado do elenco      |
+| `/api/transfers` | team (ID API-Football)                                                   | configured, transfers, fetchedAt                     |
 
 Rotas rejeitam outros métodos. Validação de data, ID e catálogo evita construção de URLs externas arbitrárias. O backend consulta duas datas UTC separadas e filtra por dia em Brasília, para incluir partidas da noite sem perder jogos após 00:00 UTC.
 
@@ -97,6 +122,6 @@ Rotas rejeitam outros métodos. Validação de data, ID e catálogo evita constr
 
 ## Fontes e limites
 
-ESPN usa feeds públicos **não oficiais**, sem SLA. O projeto comunitário documenta endpoints, mas não concede licença para redistribuir dados. Este projeto não copia código desses repositórios: implementa um adaptador próprio. Para produto comercial, confirme termos de uso e direitos de dados e escudos e contrate uma fonte adequada.
+ESPN usa feeds públicos **não oficiais**, sem SLA. O projeto comunitário documenta endpoints, mas não concede licença para redistribuir dados. Para ESPN, o projeto implementa um adaptador próprio; Transfermarkt usa o SDK Python como dependência. Para produto comercial, confirme termos de uso e direitos de dados e escudos e contrate uma fonte adequada.
 
 Comentários e algumas estatísticas podem chegar em inglês e são exibidos no idioma original; não há tradução automática. Algumas partidas não oferecem minuto a minuto ou escalações. Veja a comparação e os links em [docs/FONTES.md](docs/FONTES.md) e o [roteiro de estudo](docs/ROADMAP.md).

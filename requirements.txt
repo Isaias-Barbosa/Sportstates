@@ -1,0 +1,4 @@
+# SDK do repositório felipeall/transfermarkt-api; fixado para o contrato v5.
+transfermarkt-api==5.0.0
+# Suporte a proxy quando fornecido pelo ambiente de desenvolvimento.
+httpx[socks]==0.28.1
