@@ -1,3 +1,4 @@
+import { normalizeEspnVideos } from "./match-media.mjs";
 import { formationRows } from "./formation.mjs";
 import { getWatchOptions } from "./watch.mjs";
 export const ZONE = "America/Sao_Paulo";
@@ -131,6 +132,7 @@ export function normalizeSummary(raw, sport, league, leagueName) {
   return {
     match: { ...match, venue: raw.gameInfo?.venue?.fullName || match.venue },
     events,
+    associatedVideos: normalizeEspnVideos(raw.videos),
     statistics,
     lineups: lineups.map(squad => ({ ...squad, formationRows: sport === "soccer" ? formationRows(squad) : null })),
   };

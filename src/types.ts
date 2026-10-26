@@ -148,5 +148,5 @@ export type WatchOptions = {
   message: string;
 };
 
-export type MatchVideo = { id:string; title:string; channel:string; url:string; eventId?:string; minute?:string };
-export type MatchMedia = { searchLinks?:{name:string;url:string}[]; highlights:MatchVideo[]; replays:MatchVideo[]; partial:boolean; message:string; source:string };
+export type MatchVideo = { provider?:"youtube"|"espn"; mediaUrl?:string; id:string; title:string; channel:string; url:string; eventId?:string; minute?:string };
+export type MatchMedia = { related?:MatchVideo[]; searchLinks?:{name:string;url:string}[]; highlights:MatchVideo[]; replays:MatchVideo[]; partial:boolean; message:string; source:string };

@@ -135,7 +135,7 @@ export async function route(url) {
         ),
       300000,
     );
-    if (url.pathname === "/api/media") return [200, await matchMedia(result.value.match, result.value.events)];
+    if (url.pathname === "/api/media") return [200, await matchMedia(result.value.match, result.value.events, result.value.associatedVideos)];
     return [
       200,
       {

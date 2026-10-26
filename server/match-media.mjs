@@ -5,10 +5,39 @@ export const OFFICIAL_VIDEO_CHANNELS = [
  {id:'UCw5-xj3AKqEizC7MvHaIPqA',name:'ESPN Brasil'},
  {id:'UC_oToDrJ6uca7d1dFVBmLtg',name:'Canal GOAT'},
  {id:'UCs-6sCz2LJm1PrWQN4ErsPw',name:'TNT Sports Brasil'},
+ {id:'UCgCKagVhzGnZcuP9bSMgMCg',name:'ge tv'},
+ {id:'UC9LQwHZoucFT94I2h6JOcjw',name:'Liverpool FC',leagues:['eng.1'],teams:['364']},
+ {id:'UCeOCuVSSweaEj6oVtJZEKQw',name:'AFC Bournemouth',leagues:['eng.1'],teams:['349']},
+ {id:'UC6yW44UGJJBvYTlfC7CRg2Q',name:'Manchester United',leagues:['eng.1'],teams:['360']},
+ {id:'UC6UL29enLNe4mqwTfAyeNuw',name:'Bundesliga',leagues:['ger.1']},
+ {id:'UCBJeMCIeLQos7wacox4hmLQ',name:'Serie A',leagues:['ita.1']},
+ {id:'UCQsH5XtIc9hONE1BQjucM0g',name:'Ligue 1',leagues:['fra.1']},
+ {id:'UCWJ2lWNubArHWmf3FIHbfcQ',name:'NBA',leagues:['nba']},
+ {id:'UCsiCOcr5SZAWlJMfcw9P__w',name:'NBA Brasil',leagues:['nba']},
+ {id:'UCDVYQ4Zhbm3S2dlz7P1GBDg',name:'NFL',leagues:['nfl']},
+ {id:'UCqFMzb-4AUf6WAIbl132QKA',name:'NHL',leagues:['nhl']},
 ];
 const clean = text => String(text).normalize('NFD').replace(/\p{Diacritic}/gu,'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();
 const aliases = {'paris saint germain':['psg'], 'manchester united':['man united'],'afc bournemouth':['bournemouth'],'sevilla fc':['sevilla'],'internazionale':['inter de milao'],'bayern munich':['bayern de munique']};
-const teamInTitle = (title,name) => [name,...(aliases[clean(name)] || [])].some(n => ` ${title} `.includes(` ${clean(n)} `));
+Object.assign(aliases, {
+ 'manchester united':['man united','man utd'], 'afc bournemouth':['bournemouth','cherries'],
+ 'brighton hove albion':['brighton','brighton and hove albion'],
+ 'bayern munich':['bayern de munique','bayern munchen','fc bayern'],
+ 'bayer leverkusen':['bayer 04 leverkusen','leverkusen'],
+ 'borussia monchengladbach':["borussia m gladbach",'gladbach'],
+ 'internazionale':['inter de milao','inter milan'],
+});
+export function channelsForMatch(match) {
+ return OFFICIAL_VIDEO_CHANNELS.filter(c=>(!c.leagues||c.leagues.includes(match.league))&&(!c.teams||c.teams.some(id=>[String(match.home.id),String(match.away.id)].includes(id))));
+}
+const teamInTitle = (title,name,sport) => {
+ const names=[name,...(aliases[clean(name)]||[])];
+ if(['basketball','football','hockey','baseball'].includes(sport)) {
+  const words=clean(name).split(' ');
+  if(words.length>1) names.push(words.at(-1),words.slice(-2).join(' '));
+ }
+ return names.some(n=>` ${title} `.includes(` ${clean(n)} `));
+};
 const decode = value => value.replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g,'$1').replace(/&#(x[0-9a-f]+|\d+);/gi,(_,n)=>{const code=n[0].toLowerCase()==='x'?parseInt(n.slice(1),16):Number(n);return code>0&&code<=0x10ffff?String.fromCodePoint(code):'';}).replace(/&quot;/g,'"').replace(/&apos;/g,"'").replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&amp;/g,'&');
 const field = (xml,tag) => decode(xml.match(new RegExp(`<${tag}>([\\s\\S]*?)</${tag}>`))?.[1] || '');
 export function parseVideoFeed(xml, channel) {
@@ -23,7 +52,7 @@ export function parseVideoFeed(xml, channel) {
 }
 export function selectMatchMedia(match,events,videos) {
  const kickoff=Date.parse(match.date);
- const candidates=videos.filter(v=>OFFICIAL_VIDEO_CHANNELS.some(c=>c.id===v.channelId) && teamInTitle(clean(v.title),match.home.name) && teamInTitle(clean(v.title),match.away.name) && Date.parse(v.published)>=kickoff && Date.parse(v.published)<=kickoff+72*3600000);
+ const candidates=videos.filter(v=>channelsForMatch(match).some(c=>c.id===v.channelId) && !(match.sport==='soccer' && /\bwomen\b|\bwomens\b|\bfeminino\b|\bfeminina\b|\bsub ?\d+\b|\bu ?(?:17|18|19|20|21|23)\b/.test(clean(v.title))) && teamInTitle(clean(v.title),match.home.name,match.sport) && teamInTitle(clean(v.title),match.away.name,match.sport) && Date.parse(v.published)>=kickoff && Date.parse(v.published)<=kickoff+72*3600000);
  const unique=[...new Map(candidates.map(v=>[v.id,v])).values()];
  const highlights=match.state==='finished'?unique.filter(v=>/melhores momentos|highlights|compacto/.test(clean(v.title))&&!/pre jogo|preview|simulacao|efootball|fc 2\d/.test(clean(v.title)) && Date.parse(v.published)>=kickoff+70*60000).slice(0,4):[];
  const replays=unique.flatMap(v=>{
@@ -43,12 +72,26 @@ export function selectMatchMedia(match,events,videos) {
  }).slice(0,8);
  return {highlights,replays};
 }
-export async function matchMedia(match,events) {
- const settled=await Promise.allSettled(OFFICIAL_VIDEO_CHANNELS.map(channel=>cached(`videos:${channel.id}`,600000,async()=>{
+export function normalizeEspnVideos(videos=[]) {
+ return (Array.isArray(videos)?videos:[]).slice(0,12).flatMap(v=>{
+  const url=v.links?.web?.href;
+  const mediaUrl=v.links?.source?.href;
+  try {
+   const page=new URL(url), media=new URL(mediaUrl);
+   if(page.protocol!=='https:'||!['www.espn.com.br','www.espn.com'].includes(page.hostname)||page.username||page.password||page.port)return [];
+   if(media.protocol!=='https:'||!['espnmedia-cdn.akamaized.net','media.video-cdn.espn.com','a.espncdn.com'].includes(media.hostname)||media.username||media.password||media.port||!media.pathname.endsWith('.mp4'))return [];
+   if(!/^\d{1,15}$/.test(String(v.id)))return [];
+   return [{id:`espn-${v.id}`,title:v.headline||'Vídeo oficial da partida',channel:'ESPN',provider:'espn',url,mediaUrl}];
+  }catch{return [];}
+ });
+}
+export async function matchMedia(match,events,associatedVideos=[]) {
+ const channels=channelsForMatch(match);
+ const settled=await Promise.allSettled(channels.map(channel=>cached(`videos:${channel.id}`,600000,async()=>{
   const response=await fetch(`https://www.youtube.com/feeds/videos.xml?channel_id=${channel.id}`,{signal:AbortSignal.timeout(6000)});
   if(!response.ok) throw new Error('Feed indisponível');
   return parseVideoFeed(await response.text(),channel);
  })));
  const videos=settled.filter(r=>r.status==='fulfilled').flatMap(r=>r.value.value);
- return {...selectMatchMedia(match,events,videos),searchLinks:OFFICIAL_VIDEO_CHANNELS.map(c=>({name:c.name,url:`https://www.youtube.com/channel/${c.id}/search?query=${encodeURIComponent(`${match.home.name} ${match.away.name} melhores momentos`)}`})),partial:settled.some(r=>r.status==='rejected'),message:'Vídeos recentes dos canais oficiais consultados. A publicação e a reprodução incorporada dependem do canal; pode haver restrição por região.',source:'YouTube · feeds públicos de canais oficiais'};
+ return {...selectMatchMedia(match,events,videos),related:associatedVideos,searchLinks:channels.map(c=>({name:c.name,url:`https://www.youtube.com/channel/${c.id}/search?query=${encodeURIComponent(`${match.home.name} ${match.away.name} melhores momentos`)}`})),partial:settled.some(r=>r.status==='rejected'),message:'Vídeos de emissoras, clubes e ligas oficiais, além dos vídeos associados à partida na ESPN. A publicação e a reprodução incorporada dependem do canal; pode haver restrição por região.',source:'YouTube · feeds públicos de canais oficiais'};
 }

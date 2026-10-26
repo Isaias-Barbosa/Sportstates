@@ -51,6 +51,10 @@ export default function MatchPage() {
   );
   const [tab, setTab] = useState("events");
   useEffect(() => {
+    if (hash === "#videos" && data?.match) {
+      setTab("videos");
+      document.getElementById("match-tabs")?.scrollIntoView({block:"start"});
+    }
     if (hash === "#onde-assistir" && data?.match) {
       const panel = document.getElementById("onde-assistir");
       if (panel instanceof HTMLDetailsElement) panel.open = true;
@@ -124,14 +128,14 @@ export default function MatchPage() {
             )}
             {matchLabel(data.match).startsWith("Intervalo") && <div className="interval-banner" role="status"><Clock3 size={22} /><div><strong>{matchLabel(data.match)}</strong><p>A partida está em pausa. O placar e os lances serão atualizados automaticamente.</p></div></div>}
             <WhereToWatch key={data.match.id} match={data.match} />
-            {(!!media?.highlights.length || !!media?.replays.length) && <button className="match-video-shortcut" onClick={() => { setTab("videos"); document.getElementById("match-tabs")?.scrollIntoView({block:"start"}); }}>▶ Vídeos oficiais disponíveis · Ver melhores momentos e gols</button>}
+            {(!!media?.highlights.length || !!media?.replays.length || !!media?.related?.length) && <button className="match-video-shortcut" onClick={() => { setTab("videos"); document.getElementById("match-tabs")?.scrollIntoView({block:"start"}); }}>▶ Vídeos oficiais disponíveis · Ver melhores momentos e gols</button>}
             <div className="detail-content" id="match-tabs">
               <div className="tabs detail-tabs">
                 {[
                   ["events", "Minuto a minuto"],
                   ["stats", "Estatísticas"],
                   ["lineups", "Escalações"],
-                  ["videos", `Vídeos${media && media.highlights.length + media.replays.length ? ` (${media.highlights.length + media.replays.length})` : ""}`],
+                  ["videos", `Vídeos${media && (media.highlights.length + media.replays.length + (media.related?.length || 0)) ? ` (${(media.highlights.length + media.replays.length + (media.related?.length || 0))})` : ""}`],
                 ].map(([v, l]) => (
                   <button
                     key={v}

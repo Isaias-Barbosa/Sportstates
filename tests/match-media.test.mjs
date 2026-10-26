@@ -44,3 +44,34 @@ test('official Clasico clips without minute are discoverable and Raphinha can be
  const compact={...video,title:'COMPACTO: BARCELONA 1 X 2 REAL MADRID'};
  assert.equal(selectMatchMedia(clasico,goals,[compact]).highlights.length,1);
 });
+
+test('club and league channels are consulted only for their competitions and teams',async()=>{
+ const {channelsForMatch}=await import('../server/match-media.mjs');
+ const united={...match,league:'eng.1',home:{...match.home,id:'360'},away:{...match.away,id:'349'}};
+ const channels=channelsForMatch(united);
+ assert.ok(channels.some(c=>c.name==='Manchester United'));
+ assert.ok(channels.some(c=>c.name==='AFC Bournemouth'));
+ assert.ok(!channels.some(c=>c.name==='Liverpool FC'));
+ assert.ok(!channels.some(c=>c.name==='NBA'));
+ const nba=channelsForMatch({...match,league:'nba',sport:'basketball'});
+ assert.ok(nba.some(c=>c.name==='NBA Brasil'));
+ assert.ok(!nba.some(c=>c.name==='Bundesliga'));
+});
+test('club nicknames and league naming variations match while youth and women matches are excluded',async()=>{
+ const united={...match,league:'eng.1',home:{...match.home,id:'360'},away:{...match.away,id:'349'}};
+ const v={...video,channelId:'UC6yW44UGJJBvYTlfC7CRg2Q',title:'Man Utd 0-3 Bournemouth | Highlights'};
+ assert.equal(selectMatchMedia(united,[],[v]).highlights.length,1);
+ for(const title of ['Man Utd 0-3 Bournemouth Women | Highlights','Man Utd U21 0-3 Bournemouth | Highlights']) assert.equal(selectMatchMedia(united,[],[{...v,title}]).highlights.length,0);
+ const reds={...match,league:'eng.1',home:{name:'Liverpool',id:'364'},away:{name:'Brighton & Hove Albion'}};
+ assert.equal(selectMatchMedia(reds,[],[{...v,channelId:'UC9LQwHZoucFT94I2h6JOcjw',title:'Highlights: Liverpool 2-0 Brighton'}]).highlights.length,1);
+ const nba={...match,league:'nba',sport:'basketball',home:{name:'Boston Celtics'},away:{name:'Chicago Bulls'}};
+ assert.equal(selectMatchMedia(nba,[],[{...video,channelId:'UCWJ2lWNubArHWmf3FIHbfcQ',title:'BULLS at CELTICS | FULL GAME HIGHLIGHTS'}]).highlights.length,1);
+});
+test('associated ESPN video URLs are restricted to official pages and public media, never arbitrary hosts',async()=>{
+ const {normalizeEspnVideos}=await import('../server/match-media.mjs');
+ const raw={id:123,headline:'Resumo da partida',links:{web:{href:'https://www.espn.com.br/video/clip/_/id/123'},source:{href:'https://espnmedia-cdn.akamaized.net/espn/media/test.mp4'}}};
+ assert.equal(normalizeEspnVideos([raw])[0].provider,'espn');
+ assert.deepEqual(normalizeEspnVideos([{...raw,links:{...raw.links,source:{href:'https://evil.example/video.mp4'}}}]),[]);
+ assert.deepEqual(normalizeEspnVideos([{...raw,links:{...raw.links,source:{href:'https://watch.auth.api.espn.com/auth/asset'}}}]),[]);
+ assert.deepEqual(normalizeEspnVideos([{...raw,links:{...raw.links,web:{href:'https://www.espn.com.br.evil.example/'}}}]),[]);
+});

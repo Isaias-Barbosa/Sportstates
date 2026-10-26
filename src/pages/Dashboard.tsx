@@ -19,6 +19,7 @@ import {
   MapPin,
   Clock3,
   Tv,
+  Play,
 } from "lucide-react";
 import type { Scores, Detail, Transfers } from "../types";
 import { useApi, useFavorites, today, time, dateLabel } from "../hooks";
@@ -407,6 +408,7 @@ export default function Dashboard({
                           <span>Onde assistir</span>
                         </Link>
                       )}
+                      {m.state === "finished" && <Link className="watch-row-link icon-button" to={"/partida/" + keyOf(m) + "#videos"} aria-label={"Consultar vídeos oficiais: " + m.home.name + " x " + m.away.name} title="Consultar melhores momentos e vídeos oficiais"><Play size={18}/><span>Vídeos</span></Link>}
                       <button
                         className={
                           "favorite icon-button " +
