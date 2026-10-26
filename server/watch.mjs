@@ -188,6 +188,7 @@ export function safeWatchUrl(value) {
   }
 }
 export const BRAZIL_CHANNEL_GUIDES = [
+  { ...WATCH_DIRECTORY["soccer/uefa.champions"][0], badge: "HBO" },
   ...[1, 2, 3, 4, 5, 6].map(n => ({ id: n === 1 ? 'espn' : `espn${n}`, name: n === 1 ? 'ESPN' : `ESPN ${n}`, url: 'https://www.espn.com.br/watch/', badge: n === 1 ? 'ESPN' : `E${n}` })),
   ...[1, 2, 3].map(n => ({ id: `sportv${n}`, name: n === 1 ? 'sportv' : `sportv ${n}`, url: 'https://ge.globo.com/sportv/', badge: `S${n}` })),
   { id: 'cazetv', name: 'CazéTV · YouTube', url: 'https://www.youtube.com/@CazeTV/streams', badge: 'CAZÉ', access: 'free' },

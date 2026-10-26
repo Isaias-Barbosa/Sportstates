@@ -30,7 +30,7 @@ test('international feeds preserve country without claiming Brazilian absence', 
  assert.equal(watch.confirmedForMatch,false);
 });
 test('Brazil directory includes ESPN family, sportv and official YouTube, with safe links',()=>{
- for(const id of ['espn','espn6','sportv3','cazetv','goat','espnyt','tntyt','globo','sbt','record','band']) assert.ok(BRAZIL_CHANNEL_GUIDES.some(c=>c.id===id));
+ for(const id of ['hbomax','espn','espn6','sportv3','cazetv','goat','espnyt','tntyt','globo','sbt','record','band']) assert.ok(BRAZIL_CHANNEL_GUIDES.some(c=>c.id===id));
  for(const c of BRAZIL_CHANNEL_GUIDES) assert.ok(safeWatchUrl(c.url),c.url);
  assert.equal(safeWatchUrl('https://www.youtube.com/@pirate/streams'),false);
  assert.equal(safeWatchUrl('https://www.youtube.com/redirect?q=evil'),false);
