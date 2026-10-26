@@ -33,7 +33,7 @@ export async function scoreboard(date) {
             60000,
             async () => {
               const raw = await json(
-                `${ESPN}/${s.id}/${league}/scoreboard?dates=${d.replaceAll("-", "")}&limit=1000`,
+                `${ESPN}/${s.id}/${league}/scoreboard?dates=${d.replaceAll("-", "")}&limit=1000&lang=pt&region=br`,
               );
               if (!Array.isArray(raw.events))
                 throw new Error("Resposta de placares inválida.");
@@ -125,7 +125,7 @@ export async function route(url) {
       async () =>
         normalizeSummary(
           await json(
-            `${ESPN}/${config.sport}/${config.league}/summary?event=${id}`,
+            `${ESPN}/${config.sport}/${config.league}/summary?event=${id}&lang=pt&region=br`,
           ),
           config.sport,
           config.league,

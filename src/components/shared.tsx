@@ -68,6 +68,9 @@ export function Loading() {
 export function matchLabel(m: Match) {
   if (m.statusName === "STATUS_POSTPONED") return "Adiado";
   if (m.statusName === "STATUS_CANCELED") return "Cancelado";
+  if (["STATUS_HALFTIME", "STATUS_HALFTIME_ET"].includes(m.statusName)) return "Intervalo";
+  if (["STATUS_END_PERIOD", "STATUS_INTERMISSION"].includes(m.statusName)) return "Intervalo entre períodos";
+  if (["STATUS_DELAYED", "STATUS_SUSPENDED", "STATUS_INTERRUPTED"].includes(m.statusName)) return "Partida interrompida";
   if (m.state === "live") return m.clock || "Ao vivo";
   if (m.state === "finished") return "Encerrado";
   return time(m.date);

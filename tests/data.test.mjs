@@ -146,3 +146,34 @@ test("API rejects writes", async () => {
   assert.equal(res.statusCode, 405);
   assert.match(output.error, /GET/);
 });
+
+test('Portuguese commentary preserves nested event period and lineup structure', () => {
+  const d = normalizeSummary({
+    header: { id: '1', competitions: [{ ...event.competitions[0], date: event.date }] },
+    commentary: [{ sequence: 3, time: { displayValue: "22'" }, text: 'Falta cometida por Diogo Dalot.', play: { period: { number: 1 }, type: { text: 'Falta' } } }],
+    rosters: [{ team: { displayName: 'Mandante' }, homeAway: 'home', formation: '4-2-3-1', roster: [{ athlete: { id: '10', displayName: 'Jogador', shortName: 'J. Nome' }, position: { displayName: 'Goleiro', abbreviation: 'G' }, starter: true, formationPlace: '1', subbedOut: true }] }],
+  }, 'soccer', 'eng.1', 'Premier');
+  assert.equal(d.events[0].period, 1);
+  assert.equal(d.events[0].type, 'Falta');
+  assert.equal(d.lineups[0].formation, '4-2-3-1');
+  assert.equal(d.lineups[0].players[0].formationPlace, 1);
+  assert.equal(d.lineups[0].players[0].positionName, 'Goleiro');
+  assert.equal(d.lineups[0].players[0].subbedOut, true);
+});
+
+test('match provider receives Portuguese locale for details and preserves halftime', async () => {
+  const original = globalThis.fetch;
+  let requested;
+  globalThis.fetch = async (url) => {
+    requested = new URL(url);
+    return { ok: true, json: async () => ({ header: { id: '998877', competitions: [{ ...event.competitions[0], date: event.date, status: { type: { state: 'in', name: 'STATUS_HALFTIME', description: 'Intervalo' }, displayClock: "45'" } }] } }) };
+  };
+  try {
+    const [status, data] = await route(new URL('http://localhost/api/match?sport=soccer&league=eng.1&id=998877'));
+    assert.equal(status, 200);
+    assert.equal(requested.searchParams.get('lang'), 'pt');
+    assert.equal(requested.searchParams.get('region'), 'br');
+    assert.equal(data.match.statusName, 'STATUS_HALFTIME');
+    assert.equal(data.match.state, 'live');
+  } finally { globalThis.fetch = original; }
+});

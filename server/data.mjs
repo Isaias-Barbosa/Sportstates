@@ -78,7 +78,7 @@ export function normalizeSummary(raw, sport, league, leagueName) {
     .map((p, i) => ({
       id: String(p.id || p.sequenceNumber || i),
       minute: p.time?.displayValue || p.clock?.displayValue || "",
-      period: p.period?.displayValue || p.period?.number || "",
+      period: p.period?.number || p.play?.period?.number || "",
       text: p.text || p.shortText || p.type?.text || "Evento",
       type: p.type?.text || p.play?.type?.text || "",
       sequence: Number(p.sequenceNumber ?? p.sequence ?? i),
@@ -98,8 +98,16 @@ export function normalizeSummary(raw, sport, league, leagueName) {
     .filter((t) => t.stats.length);
   const lineups = (raw.rosters || []).map((t) => ({
     team: t.team?.displayName || "",
+    formation: t.formation || "",
+    homeAway: t.homeAway || "",
     players: (t.roster || []).map((p) => ({
+      id: String(p.athlete?.id || ""),
       name: p.athlete?.displayName || "",
+      shortName: p.athlete?.shortName || p.athlete?.displayName || "",
+      positionName: p.position?.displayName || p.athlete?.position?.displayName || "",
+      formationPlace: Number(p.formationPlace) || null,
+      subbedIn: !!p.subbedIn,
+      subbedOut: !!p.subbedOut,
       jersey: p.jersey || p.athlete?.jersey || "",
       position:
         p.position?.abbreviation || p.athlete?.position?.abbreviation || "",

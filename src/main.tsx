@@ -1,8 +1,10 @@
-﻿import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Link, NavLink, Route, Routes } from "react-router-dom";
 import {
   Activity,
+  Sun,
+  Moon,
   ArrowDownUp,
   ChevronDown,
   Globe2,
@@ -21,6 +23,14 @@ import MatchPage from "./pages/MatchPage";
 import TransfersPage from "./pages/TransfersPage";
 import About from "./pages/About";
 function App() {
+  const [theme, setTheme] = useState<"light" | "dark">(() => {
+    try { return localStorage.getItem("sportstates:theme") === "dark" ? "dark" : "light"; }
+    catch { return "light"; }
+  });
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme;
+    try { localStorage.setItem("sportstates:theme", theme); } catch { /* Storage is optional. */ }
+  }, [theme]);
   const [menu, setMenu] = useState(false);
   return (
     <BrowserRouter>
@@ -103,6 +113,10 @@ function App() {
               <span>O jogo acontece aqui.</span>
             </div>
             <div className="top-right">
+              <button className="theme-toggle" onClick={() => setTheme(t => t === "light" ? "dark" : "light")} aria-label={theme === "light" ? "Ativar tema escuro" : "Ativar tema claro"}>
+                {theme === "light" ? <Moon size={17} /> : <Sun size={17} />}
+                <span>{theme === "light" ? "Modo escuro" : "Modo claro"}</span>
+              </button>
               <Globe2 size={15} />
               <span>PT-BR</span>
               <span className="divider" />

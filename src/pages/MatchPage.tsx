@@ -34,6 +34,7 @@ import {
   Loading,
   matchLabel,
 } from "../components/shared";
+import Lineups from "../components/Lineups";
 import WhereToWatch from "../components/WhereToWatch";
 export default function MatchPage() {
   const { hash } = useLocation();
@@ -114,6 +115,7 @@ export default function MatchPage() {
                 Dados em cache: não foi possível atualizar esta partida.
               </Notice>
             )}
+            {matchLabel(data.match).startsWith("Intervalo") && <div className="interval-banner" role="status"><Clock3 size={22} /><div><strong>{matchLabel(data.match)}</strong><p>A partida está em pausa. O placar e os lances serão atualizados automaticamente.</p></div></div>}
             <WhereToWatch match={data.match} />
             <div className="detail-content">
               <div className="tabs detail-tabs">
@@ -136,7 +138,7 @@ export default function MatchPage() {
                   <div className="timeline-heading">
                     <h2>Dentro da partida</h2>
                     <span>
-                      Mais recentes primeiro · Texto original da fonte
+                      Mais recentes primeiro · Português quando disponível na fonte
                     </span>
                   </div>
                   {data.events.length ? (
@@ -188,23 +190,7 @@ export default function MatchPage() {
                 ))}
               {tab === "lineups" &&
                 (data.lineups.length ? (
-                  <div className="stat-grid">
-                    {data.lineups.map((t) => (
-                      <section key={t.team}>
-                        <h3>{t.team}</h3>
-                        {t.players.map((p, i) => (
-                          <div key={p.name + i}>
-                            <span>
-                              <b className="jersey">{p.jersey || "—"}</b>
-                              {p.name}
-                              <small>{p.starter ? "Titular" : "Reserva"}</small>
-                            </span>
-                            <b>{p.position}</b>
-                          </div>
-                        ))}
-                      </section>
-                    ))}
-                  </div>
+                  <Lineups lineups={data.lineups} soccer={data.match.sport === "soccer"} />
                 ) : (
                   <Empty title="Escalações indisponíveis">
                     As escalações aparecem quando publicadas pela fonte.

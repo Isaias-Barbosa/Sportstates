@@ -52,8 +52,16 @@ export type Detail = {
   statistics: { team: string; stats: { name: string; value: string }[] }[];
   lineups: {
     team: string;
+    formation: string;
+    homeAway: string;
     players: {
+      id: string;
       name: string;
+      shortName: string;
+      positionName: string;
+      formationPlace: number | null;
+      subbedIn: boolean;
+      subbedOut: boolean;
       jersey: string;
       position: string;
       starter: boolean;
