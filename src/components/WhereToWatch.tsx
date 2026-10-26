@@ -32,6 +32,8 @@ export default function WhereToWatch({
         {watch?.message ||
           "Ainda não temos uma opção oficial verificada para esta competição no Brasil."}
       </p>
+      {!watch?.confirmedForMatch && <p className="broadcast-availability" role="status">{watch?.brazilStatus === 'unavailable' ? 'Este jogo não está sendo televisionado para o Brasil, conforme a programação consultada.' : 'Ainda não identificamos uma transmissão confirmada deste jogo para o Brasil. Isso não significa que não exista transmissão.'}</p>}
+      {!watch?.confirmedForMatch && !!watch?.international?.length && <section className="international-section"><h3>Transmissões no exterior</h3><p>Países informados no feed desta partida. O acesso pode exigir assinatura e estar restrito ao território indicado.</p><div className="broadcast-chips">{watch.international.map(c => c.url ? <a className="broadcast-chip" key={c.country + c.name} href={c.url} target="_blank" rel="noopener noreferrer">{c.name} · {c.country}<ExternalLink size={12} /></a> : <span className="foreign-badge" key={c.country + c.name}>{c.name} · {c.country}</span>)}</div></section>}
       {!!watch?.links.length && (
         <div className="watch-links">
           {watch.links.map((l) => (
@@ -63,6 +65,7 @@ export default function WhereToWatch({
           ))}
         </div>
       )}
+      {!compact && !!watch?.brazilGuides?.length && <details className="brazil-channel-directory"><summary>Consultar outros canais brasileiros e YouTube</summary><p>Diretório de emissoras e canais oficiais. Consulte a programação: estes links não confirmam a transmissão desta partida.</p><div className="broadcast-chips">{watch.brazilGuides.map(c => <a className="broadcast-chip" key={c.id} href={c.url} target="_blank" rel="noopener noreferrer"><strong>{c.badge}</strong>{c.name}<ExternalLink size={12} /></a>)}</div></details>}
       {!compact && watch?.links.length ? (
         <details className="watch-sources">
           <summary>

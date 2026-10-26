@@ -2,7 +2,7 @@
  * This is a competition directory, NOT a per-event TV schedule.
  * Never infer Brazilian rights from the ESPN feed's US broadcast strings.
  */
-export const WATCH_REVIEWED_AT = "2026-10-25";
+export const WATCH_REVIEWED_AT = "2026-10-26";
 const disney = {
   id: "disney",
   name: "Disney+ · ESPN",
@@ -157,7 +157,7 @@ export const WATCH_DIRECTORY = {
 };
 
 const HOSTS = new Set([
-  "www.espn.com.br",
+  "www.xsports.com.br", "www.espn.com.br", "www.espn.com", "www.youtube.com", "ge.globo.com", "globoplay.globo.com", "www.band.uol.com.br", "www.sbt.com.br", "record.r7.com", "tntsports.com.br", "qazsporttv.kz", "www.peacocktv.com", "www.cbssports.com",
   "www.disneyplus.com",
   "www.primevideo.com",
   "premiere.globo.com",
@@ -180,13 +180,29 @@ export function safeWatchUrl(value) {
       HOSTS.has(u.hostname) &&
       !u.username &&
       !u.password &&
-      !u.port
+      !u.port &&
+      (u.hostname !== "www.youtube.com" || /^\/@(?:CazeTV|canalgoatbr|espnbrasil|tntsportsbr)(?:\/streams)?\/?$/i.test(u.pathname) || (u.pathname === "/watch" && /^[\w-]{11}$/.test(u.searchParams.get("v") || "") && [...u.searchParams.keys()].every(k => k === "v")))
     );
   } catch {
     return false;
   }
 }
+export const BRAZIL_CHANNEL_GUIDES = [
+  ...[1, 2, 3, 4, 5, 6].map(n => ({ id: n === 1 ? 'espn' : `espn${n}`, name: n === 1 ? 'ESPN' : `ESPN ${n}`, url: 'https://www.espn.com.br/watch/', badge: n === 1 ? 'ESPN' : `E${n}` })),
+  ...[1, 2, 3].map(n => ({ id: `sportv${n}`, name: n === 1 ? 'sportv' : `sportv ${n}`, url: 'https://ge.globo.com/sportv/', badge: `S${n}` })),
+  { id: 'cazetv', name: 'CazéTV · YouTube', url: 'https://www.youtube.com/@CazeTV/streams', badge: 'CAZÉ', access: 'free' },
+  { id: 'goat', name: 'Canal GOAT · YouTube', url: 'https://www.youtube.com/@canalgoatbr/streams', badge: 'GOAT', access: 'free' },
+  { id: 'espnyt', name: 'ESPN Brasil · YouTube', url: 'https://www.youtube.com/@espnbrasil/streams', badge: 'ESPN', access: 'free' },
+  { id: 'tntyt', name: 'TNT Sports · YouTube', url: 'https://www.youtube.com/@tntsportsbr/streams', badge: 'TNT', access: 'free' },
+  { id: 'globo', name: 'TV Globo', url: 'https://globoplay.globo.com/', badge: 'G', access: 'check' },
+  { id: 'record', name: 'Record', url: 'https://record.r7.com/', badge: 'R', access: 'check' },
+  { id: 'sbt', name: 'SBT', url: 'https://www.sbt.com.br/', badge: 'SBT', access: 'check' },
+  { id: 'band', name: 'Band / BandSports', url: 'https://www.band.uol.com.br/', badge: 'B', access: 'check' },
+  { id: 'xsports', name: 'Xsports', url: 'https://www.xsports.com.br/', badge: 'X', access: 'check' },
+  { id: 'tnt', name: 'TNT Sports', url: 'https://tntsports.com.br/', badge: 'TNT' },
+].map(l => ({ access: 'subscription', ...l, country: 'BR', kind: 'guide', note: 'Consulte a programação oficial. A presença neste guia não confirma a transmissão deste jogo.', sourceUrl: l.url }));
 const CHANNELS = [
+  ...BRAZIL_CHANNEL_GUIDES.filter(l => !/^espn\d?$/.test(l.id)).map(l => ({ ...l, pattern: new RegExp(`^${l.name.split(' · ')[0].replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}$`, 'i') })),
   { pattern: /^ESPN(?:\s*1)?(?:\s*Brasil)?$/i, id: "espn", name: "ESPN", url: "https://www.espn.com.br/watch/", badge: "ESPN" },
   ...[2, 3, 4, 5, 6].map(n => ({ pattern: new RegExp(`^ESPN\\s*${n}$`, "i"), id: `espn${n}`, name: `ESPN ${n}`, url: "https://www.espn.com.br/watch/", badge: `ESPN ${n}` })),
   { pattern: /^Disney\s*\+$/, ...disney, name: "Disney+", badge: "D+" },
@@ -205,11 +221,30 @@ export function matchChannels(competition = {}) {
     return [[data.id, { access: "subscription", kind: "platform", note: "Canal informado no feed da partida para o Brasil. Confira a programação da emissora.", ...data, sourceUrl: data.url }]];
   })).values()];
 }
+export function internationalChannels(competition = {}) {
+  const entries = [...(competition.geoBroadcasts || []), ...(competition.broadcasts || [])];
+  const channels = entries.flatMap(b => {
+    const country = String(b.region || b.geo?.country || b.country || '').toUpperCase();
+    if (!/^[A-Z]{2}$/.test(country) || country === 'BR') return [];
+    const names = [b.media?.shortName, b.media?.name, ...(b.names || [])].filter(Boolean);
+    return names.map(name => {
+      let url = null;
+      if (country === 'US' && /^ESPN(?:[2-9]|U|\+)?$/i.test(name)) url = 'https://www.espn.com/watch/';
+      if (country === 'US' && /^Peacock$/i.test(name)) url = 'https://www.peacocktv.com/sports';
+      if (country === 'US' && /^CBS$/i.test(name)) url = 'https://www.cbssports.com/';
+      if (country === 'KZ' && /^Qazsport$/i.test(name)) url = 'https://qazsporttv.kz/ru/live';
+      return { name: String(name).slice(0, 100), country, url };
+    });
+  });
+  return [...new Map(channels.map(c => [`${c.country}:${c.name}`, c])).values()];
+}
 export function getWatchOptions(match, competition = {}) {
   if (match.state === "finished") return null;
   const channels = matchChannels(competition);
+  const international = internationalChannels(competition);
+  const common = { international, brazilStatus: channels.length ? 'listed' : 'unknown', brazilGuides: BRAZIL_CHANNEL_GUIDES };
   if (channels.length) return {
-    country: "BR", regionLabel: "Brasil", scope: "match", confirmedForMatch: true,
+    ...common, country: "BR", regionLabel: "Brasil", scope: "match", confirmedForMatch: true,
     reviewedAt: WATCH_REVIEWED_AT, links: channels,
     message: "Canais informados pela fonte para esta partida no Brasil. A programação pode mudar e exigir assinatura.",
   };
@@ -217,6 +252,7 @@ export function getWatchOptions(match, competition = {}) {
     .filter((l) => safeWatchUrl(l.url))
     .map((l) => ({ ...l }));
   return {
+    ...common,
     country: "BR",
     regionLabel: "Brasil",
     scope: "competition",

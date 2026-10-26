@@ -1,3 +1,4 @@
+import { enrichBroadcasts } from "./broadcast-schedule.mjs";
 import { SPORTS, leagueFor } from "./catalog.mjs";
 import {
   dayInBrazil,
@@ -72,7 +73,7 @@ export async function scoreboard(date) {
     ).values(),
   ].sort((a, b) => a.date.localeCompare(b.date));
   return {
-    matches,
+    matches: await enrichBroadcasts(matches),
     sports: SPORTS.map(({ leagues, ...s }) => ({
       ...s,
       competitions: leagues.map((l) => l[1]),
@@ -137,6 +138,7 @@ export async function route(url) {
       200,
       {
         ...result.value,
+        match: (await enrichBroadcasts([result.value.match]))[0],
         stale: result.stale,
         fetchedAt: new Date(result.at).toISOString(),
         source: "ESPN · feed público não oficial",

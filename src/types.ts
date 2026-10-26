@@ -130,7 +130,11 @@ export type WatchLink = {
   note: string;
   sourceUrl: string;
 };
+export type InternationalBroadcast = { name: string; country: string; url: string | null };
 export type WatchOptions = {
+  international?: InternationalBroadcast[];
+  brazilStatus?: "listed" | "unknown" | "unavailable";
+  brazilGuides?: WatchLink[];
   country: string;
   regionLabel: string;
   scope: "competition" | "match";

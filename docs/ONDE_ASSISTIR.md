@@ -39,3 +39,14 @@ A normalização admite canais específicos apenas se o registro de transmissão
 Sem evidência por partida, exibe-se “Guia da competição · confirmar jogo”. Essa alternativa não garante a transmissão do confronto. Nos testes reais, o feed ESPN apresentou transmissões dos EUA ou nenhuma transmissão brasileira, mesmo com `region=br`; portanto não há cobertura garantida de canais exatos para cada jogo.
 
 SofaScore não foi usado como confirmação oficial: a própria [FAQ de programação](https://sofascore.helpscoutdocs.com/article/175-tv-schedule-information?lng=en) explica que os dados combinam contribuições da comunidade e outras fontes. Para cobertura completa será necessário um fornecedor de grade brasileira por evento ou integração com programação das emissoras.
+
+## Agenda da CazéTV e exterior (26/10/2026)
+
+- `server/broadcast-schedule.mjs` consulta a agenda pública https://www.agendacazetv.com.br/ uma vez por instância a cada 5 minutos, com limite de 8 segundos e sem fan-out por partida. Lê metadados de vídeos como dados, sem executar scripts. Uma falha mantém as opções gerais e não declara ausência de transmissão no Brasil.
+- Só aceita vídeos do canal CazéTV de ID `UCZiYbVptd3PVPf4f6eR6UaQ`, título AO VIVO, descrição com imagens, dois adversários e data válida. Reprises, melhores momentos e pós-jogo são rejeitados. Equipes (aliases explícitos), mando e horário de pré-jogo até 90 minutos precisam coincidir sem ambiguidade.
+- Confrontos verificados na agenda de 26/10: PSG x Lyon (`WHYTOnqWFgE`) e Sevilla x Osasuna (`Q1ccB92YYFA`). A exibição depende do estado e horário recebidos da ESPN; partidas encerradas não exibem opções ao vivo.
+- Diretório adicional: ESPN e ESPN 2–6, sportv 1–3, CazéTV, GOAT, ESPN Brasil e TNT Sports no YouTube, Globo, Record, SBT, Band/BandSports, TNT Sports e Xsports. Esses links são para consultar canais oficiais, **não confirmação por jogo**. GOAT e os demais canais não possuem integração automática de agenda nesta versão.
+- Transmissões estrangeiras vêm do feed da partida com país explícito diferente de BR. Nomes desconhecidos são informativos, sem inventar URL; os conhecidos têm destinos oficiais. Qazsport/KZ só aparece se recebido na fonte, nunca por suposição a partir do exemplo “Kazan”.
+- Opções do exterior são mostradas quando não há transmissão brasileira confirmada. Podem ter assinatura e bloqueio territorial. Nenhum mecanismo de contorno é fornecido.
+- `brazilStatus=unknown`: “Ainda não identificamos uma transmissão confirmada deste jogo para o Brasil”. Ausência no feed não significa ausência na televisão. `unavailable` é reservado a uma futura fonte que confirme explicitamente essa condição.
+- Teste direto da API SofaScore retornou HTTP 403 com `reason: challenge`; nenhuma tentativa de contornar o bloqueio foi feita e nenhuma integração SofaScore foi ativada.

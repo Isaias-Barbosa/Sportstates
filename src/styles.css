@@ -2530,3 +2530,11 @@ nav a.active { background:var(--green-glow); color:var(--green); }
 .channel-espn,.channel-espn2,.channel-espn3,.channel-espn4,.channel-espn5,.channel-espn6 { color:#d92a35; font-style:italic; }
 .live-spotlight > .match-broadcasts { margin-top:10px; border:1px solid var(--border); border-radius:10px; }
 @media(max-width:650px) { .match-broadcasts { padding:10px 12px; gap:8px; } .broadcast-label { width:100%; } }
+.broadcast-international { display:flex; align-items:center; gap:6px; flex-wrap:wrap; width:100%; color:var(--muted); font-size:10px; }
+.foreign-badge { display:inline-flex; border:1px solid var(--border); background:var(--surface); border-radius:6px; padding:6px 9px; font-size:11px; color:var(--text); }
+.broadcast-availability { padding:14px; margin:12px 0; border:1px solid var(--border); border-radius:9px; background:var(--surface); color:var(--muted); font-size:12px; }
+.international-section { padding:16px 0; border-top:1px solid var(--border); }
+.international-section p,.brazil-channel-directory p { color:var(--muted); font-size:12px; margin:10px 0; }
+.brazil-channel-directory { margin-top:18px; padding-top:16px; border-top:1px solid var(--border); }
+.brazil-channel-directory summary { cursor:pointer; color:var(--green); font-weight:600; }
+.channel-cazetv { color:#7753d7; }
