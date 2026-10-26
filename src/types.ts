@@ -121,6 +121,7 @@ export type PlayerPhotos = {
 };
 
 export type WatchLink = {
+  badge?: string;
   id: string;
   name: string;
   url: string;
@@ -132,8 +133,8 @@ export type WatchLink = {
 export type WatchOptions = {
   country: string;
   regionLabel: string;
-  scope: "competition";
-  confirmedForMatch: false;
+  scope: "competition" | "match";
+  confirmedForMatch: boolean;
   reviewedAt: string;
   links: WatchLink[];
   message: string;

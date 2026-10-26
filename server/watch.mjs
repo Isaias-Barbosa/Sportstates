@@ -157,6 +157,7 @@ export const WATCH_DIRECTORY = {
 };
 
 const HOSTS = new Set([
+  "www.espn.com.br",
   "www.disneyplus.com",
   "www.primevideo.com",
   "premiere.globo.com",
@@ -185,8 +186,33 @@ export function safeWatchUrl(value) {
     return false;
   }
 }
-export function getWatchOptions(match) {
-  if (match.state !== "live") return null;
+const CHANNELS = [
+  { pattern: /^ESPN(?:\s*1)?(?:\s*Brasil)?$/i, id: "espn", name: "ESPN", url: "https://www.espn.com.br/watch/", badge: "ESPN" },
+  ...[2, 3, 4, 5, 6].map(n => ({ pattern: new RegExp(`^ESPN\\s*${n}$`, "i"), id: `espn${n}`, name: `ESPN ${n}`, url: "https://www.espn.com.br/watch/", badge: `ESPN ${n}` })),
+  { pattern: /^Disney\s*\+$/, ...disney, name: "Disney+", badge: "D+" },
+  { pattern: /^Premiere$/i, ...WATCH_DIRECTORY["soccer/bra.1"][0], badge: "P" },
+  { pattern: /^(Amazon\s+)?Prime Video$/i, ...prime, badge: "prime" },
+];
+export function matchChannels(competition = {}) {
+  // Only explicit Brazilian geography is eligible. A Portuguese request is not proof.
+  const entries = [...(competition.geoBroadcasts || []), ...(competition.broadcasts || [])];
+  const names = entries.filter(b => String(b.region || b.geo?.country || b.country || "").toLowerCase() === "br")
+    .flatMap(b => [b.media?.shortName, b.media?.name, ...(b.names || [])].filter(Boolean));
+  return [...new Map(names.flatMap(name => {
+    const channel = CHANNELS.find(c => c.pattern.test(name));
+    if (!channel) return [];
+    const { pattern, ...data } = channel;
+    return [[data.id, { access: "subscription", kind: "platform", note: "Canal informado no feed da partida para o Brasil. Confira a programação da emissora.", ...data, sourceUrl: data.url }]];
+  })).values()];
+}
+export function getWatchOptions(match, competition = {}) {
+  if (match.state === "finished") return null;
+  const channels = matchChannels(competition);
+  if (channels.length) return {
+    country: "BR", regionLabel: "Brasil", scope: "match", confirmedForMatch: true,
+    reviewedAt: WATCH_REVIEWED_AT, links: channels,
+    message: "Canais informados pela fonte para esta partida no Brasil. A programação pode mudar e exigir assinatura.",
+  };
   const links = (WATCH_DIRECTORY[`${match.sport}/${match.league}`] || [])
     .filter((l) => safeWatchUrl(l.url))
     .map((l) => ({ ...l }));

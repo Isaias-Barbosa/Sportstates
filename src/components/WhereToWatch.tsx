@@ -7,7 +7,7 @@ export default function WhereToWatch({
   match: Match;
   compact?: boolean;
 }) {
-  if (match.state !== "live") return null;
+  if (match.state === "finished") return null;
   const watch = match.watch;
   return (
     <section
@@ -25,7 +25,7 @@ export default function WhereToWatch({
         </div>
         <span className="watch-live-badge">
           <i className="live-dot" />
-          Jogo em andamento
+          {match.state === "live" ? "Jogo em andamento" : "Próximo jogo"}
         </span>
       </div>
       <p className="watch-note">
@@ -73,7 +73,7 @@ export default function WhereToWatch({
             {new Intl.DateTimeFormat("pt-BR", { timeZone: "UTC" }).format(
               new Date(watch.reviewedAt + "T12:00:00Z"),
             )}
-            . A transmissão específica desta partida não foi confirmada.
+            . {watch.confirmedForMatch ? "Canais informados no feed desta partida para o Brasil." : "A transmissão específica desta partida não foi confirmada."}
           </p>
           <ul>
             {watch.links.map((l) => (

@@ -30,6 +30,7 @@ import {
   Loading,
   matchLabel,
 } from "../components/shared";
+import MatchBroadcasts from "../components/MatchBroadcasts";
 import WhereToWatch from "../components/WhereToWatch";
 export default function Dashboard({
   favoritesOnly = false,
@@ -231,7 +232,7 @@ export default function Dashboard({
                 </strong>
               </div>
             </Link>
-            <WhereToWatch match={featured} compact />
+            <MatchBroadcasts match={featured} />
           </>
         ) : (
           <Empty
@@ -349,7 +350,7 @@ export default function Dashboard({
                     <small>{items.length} jogos</small>
                   </div>
                   {items.map((m) => (
-                    <div
+                    <div className="match-card" key={keyOf(m)}><div
                       className={
                         "match-row" + (m.state === "live" ? " is-live" : "")
                       }
@@ -423,7 +424,7 @@ export default function Dashboard({
                       >
                         <Star size={17} />
                       </button>
-                    </div>
+                    </div><MatchBroadcasts match={m} /></div>
                   ))}
                 </div>
               );

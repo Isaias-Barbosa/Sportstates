@@ -4,6 +4,7 @@ import {
   getWatchOptions,
   safeWatchUrl,
   WATCH_DIRECTORY,
+  matchChannels,
 } from "../server/watch.mjs";
 import { SPORTS } from "../server/catalog.mjs";
 import { normalizeEvent, normalizeSummary } from "../server/data.mjs";
@@ -13,8 +14,8 @@ const match = {
   league: "nfl",
   broadcast: "CBS, FOX, Peacock",
 };
-test("watch section appears only on live games", () => {
-  assert.equal(getWatchOptions({ ...match, state: "scheduled" }), null);
+test("watch options appear on live and upcoming games, never finished", () => {
+  assert.ok(getWatchOptions({ ...match, state: "scheduled" }).links.length);
   assert.equal(getWatchOptions({ ...match, state: "finished" }), null);
   assert.ok(getWatchOptions(match).links.length);
 });
@@ -88,3 +89,14 @@ test("scoreboard and summary normalize identical watch options", () => {
   assert.deepEqual(a.watch, b.match.watch);
   assert.ok(a.watch.links.some((l) => l.id === "disney"));
 });
+
+ test("channel numbers require explicit Brazilian geography and exact known names", () => {
+   assert.deepEqual(matchChannels({ geoBroadcasts: [{ region: "us", media: { shortName: "ESPN 2" } }] }), []);
+   assert.deepEqual(matchChannels({ broadcasts: [{ names: ["ESPN 2"] }] }), []);
+   const geoBroadcasts = [{ region: "br", media: { shortName: "ESPN 2" } }, { region: "br", media: { shortName: "ESPN 2" } }, { region: "br", media: { shortName: "ESPN Fake" } }];
+   const watch = getWatchOptions(match, { geoBroadcasts });
+   assert.equal(watch.links.length, 1);
+   assert.equal(watch.links[0].name, "ESPN 2");
+   assert.equal(watch.confirmedForMatch, true);
+   assert.equal(watch.scope, "match");
+ });

@@ -54,7 +54,7 @@ export function normalizeEvent(e, sport, league, leagueName) {
     venue: c.venue?.fullName || "",
     broadcast: c.broadcasts?.flatMap((b) => b.names || []).join(", ") || "",
   };
-  return { ...match, watch: getWatchOptions(match) };
+  return { ...match, watch: getWatchOptions(match, c) };
 }
 export function normalizeSummary(raw, sport, league, leagueName) {
   const event = raw.header;

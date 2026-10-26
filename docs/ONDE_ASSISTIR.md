@@ -29,3 +29,13 @@ A interface informa que as plataformas são opções da competição e que é ne
 Atualize catálogo, fontes e `WATCH_REVIEWED_AT` quando houver alteração de direitos ou revisão de temporada. O campo de atualização é exibido nos detalhes. O catálogo é estático; não se trata de confirmação automática da transmissão da partida. Não usa chaves adicionais nem chamadas externas por jogo.
 
 Destinos de navegação são HTTPS e limitados a hosts oficiais exatos. Não há embeds, proxies de vídeo, URLs M3U8/DRM ou extração de streams. A autenticação e eventual assinatura acontecem diretamente no serviço escolhido.
+
+## Canais nos cards (26/10/2026)
+
+Cards de jogos ao vivo e próximos exibem selos de texto e links oficiais. Selos são identificadores visuais, não logos de marcas copiados.
+
+A normalização admite canais específicos apenas se o registro de transmissão da partida declarar explicitamente região `br`, com nome reconhecido. ESPN numerada não é deduzida por competição ou idioma da consulta. A lista conhecida inclui ESPN e ESPN 2–6, Disney+, Premiere e Prime Video. Registros estrangeiros, sem país ou desconhecidos são ignorados.
+
+Sem evidência por partida, exibe-se “Guia da competição · confirmar jogo”. Essa alternativa não garante a transmissão do confronto. Nos testes reais, o feed ESPN apresentou transmissões dos EUA ou nenhuma transmissão brasileira, mesmo com `region=br`; portanto não há cobertura garantida de canais exatos para cada jogo.
+
+SofaScore não foi usado como confirmação oficial: a própria [FAQ de programação](https://sofascore.helpscoutdocs.com/article/175-tv-schedule-information?lng=en) explica que os dados combinam contribuições da comunidade e outras fontes. Para cobertura completa será necessário um fornecedor de grade brasileira por evento ou integração com programação das emissoras.
