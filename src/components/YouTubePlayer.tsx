@@ -34,24 +34,32 @@ function errorMessage(code:number) {
 export default function YouTubePlayer({video}:{video:MatchVideo}) {
  const container=useRef<HTMLDivElement>(null);
  const [error,setError]=useState('');
+ const [mode,setMode]=useState<'standard'|'privacy'>('standard');
  useEffect(()=>{
   let active=true;
   let player:Player|undefined;
   setError('');
   loadPlayerApi().then(api=>{
    if(!active||!container.current)return;
-   const mount=document.createElement('div');
-   container.current.appendChild(mount);
-   player=new api.Player(mount,{
-    host:'https://www.youtube-nocookie.com',videoId:video.id,
-    playerVars:{origin:window.location.origin,hl:'pt-BR',playsinline:1,rel:0},
+   // Configure the iframe before its first request, then attach the official API.
+   const iframe=document.createElement('iframe');
+   const host=mode==='standard'?'https://www.youtube.com':'https://www.youtube-nocookie.com';
+   const url=new URL(`${host}/embed/${video.id}`);
+   url.search=new URLSearchParams({enablejsapi:'1',origin:window.location.origin,hl:'pt-BR',playsinline:'1',rel:'0'}).toString();
+   iframe.title=video.title;
+   iframe.referrerPolicy='strict-origin-when-cross-origin';
+   iframe.allow='accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen';
+   iframe.allowFullscreen=true;
+   iframe.src=url.toString();
+   container.current.appendChild(iframe);
+   player=new api.Player(iframe,{
     events:{
      onReady:()=>{ if(active&&player){const iframe=player.getIframe();iframe.title=video.title;iframe.referrerPolicy='strict-origin-when-cross-origin';}},
-     onError:(event:{data:number})=>{if(active)setError(errorMessage(event.data));},
+     onError:(event:{data:number})=>{if(active)setError(`${errorMessage(event.data)} (Código ${event.data})`);},
     },
    });
   }).catch(()=>{if(active)setError('Não foi possível carregar o player do YouTube. Abra o vídeo oficial pelo link abaixo.');});
   return ()=>{active=false;player?.destroy();};
- },[video.id,video.title]);
- return <><div className="youtube-player" ref={container}/>{error&&<div className="video-playback-error" role="status"><strong>Reprodução indisponível aqui</strong><p>{error}</p><a href={video.url} target="_blank" rel="noopener noreferrer">Assistir no canal oficial do YouTube ↗</a></div>}</>;
+ },[video.id,video.title,mode]);
+ return <><div className="player-modes" aria-label="Modo de reprodução YouTube"><button aria-pressed={mode==='standard'} onClick={()=>setMode('standard')}>Player padrão</button><button aria-pressed={mode==='privacy'} onClick={()=>setMode('privacy')}>Modo de privacidade</button></div><div className="youtube-player" ref={container}/>{error&&<div className="video-playback-error" role="status"><strong>Reprodução indisponível aqui</strong><p>{error}</p><small>A reprodução usa a conexão deste navegador. Trocar o modo não altera o país nem as permissões do vídeo.</small><a href={video.url} target="_blank" rel="noopener noreferrer">Assistir no canal oficial do YouTube ↗</a></div>}</>;
 }

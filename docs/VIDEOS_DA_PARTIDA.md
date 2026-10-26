@@ -30,3 +30,7 @@ Referências: https://developers.google.com/youtube/iframe_api_reference e https
 - Os cards de jogos encerrados têm atalho para #videos. Trata-se de consulta de disponibilidade, não garantia de vídeo para todo confronto.
 - Verificação real de 26/10/2026: Manchester United x Bournemouth (401879252) retornou 2 resumos oficiais dos clubes; Liverpool x Brighton (401878765), 2 resumos do Liverpool e 6 vídeos associados ESPN; Freiburg x Bayern (401884759), 2 resumos e 1 clipe da Bundesliga.
 - Não existe cobertura completa de todo o arquivo histórico nem garantia de replay individual para cada gol. A ausência de vídeo continua explícita.
+
+## Compatibilidade de incorporação
+
+O player padrão usa youtube.com/embed; a opção “Modo de privacidade” usa youtube-nocookie.com/embed, ambos documentados pelo YouTube. O iframe é configurado com origem real, enablejsapi, política de referência e permissões antes da primeira requisição, e depois conectado à API oficial. O código de erro aparece no aviso. A alternância é manual, sem repetição automática de requisições ou alteração de localização. Nenhum desses modos garante remover restrição territorial, etária ou de incorporação do canal.
