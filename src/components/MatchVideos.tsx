@@ -1,11 +1,12 @@
 import { useState } from 'react';
+import YouTubePlayer from './YouTubePlayer';
 import { Play, ExternalLink } from 'lucide-react';
 import type { MatchVideo, MatchMedia } from '../types';
 export function OfficialVideo({ video, replay = false }: { video: MatchVideo; replay?: boolean }) {
  const [opened,setOpened]=useState(false);
  if(!/^[\w-]{11}$/.test(video.id)) return null;
  return <div className="official-video">
-  {opened ? <iframe src={`https://www.youtube-nocookie.com/embed/${video.id}?hl=pt-BR`} title={video.title} loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowFullScreen referrerPolicy="strict-origin-when-cross-origin" /> : <button className="video-launch" onClick={()=>setOpened(true)}><Play size={24}/><span>{replay?'Ver replay do gol':'Assistir aos melhores momentos'}<small>{video.channel} · YouTube</small></span></button>}
+  {opened ? <YouTubePlayer video={video} /> : <button className="video-launch" onClick={()=>setOpened(true)}><Play size={24}/><span>{replay?'Ver replay do gol':'Assistir aos melhores momentos'}<small>{video.channel} · YouTube</small></span></button>}
   <div className="video-caption"><span>{video.title}</span><a href={video.url} target="_blank" rel="noopener noreferrer">Abrir no YouTube <ExternalLink size={13}/></a></div>
   {opened && <p className="video-help">Se o canal não permitir a reprodução aqui, abra o vídeo no YouTube.</p>}
  </div>;

@@ -2575,3 +2575,9 @@ nav a.active { background:var(--green-glow); color:var(--green); }
 .detail-content .match-videos { border:0; margin-top:0; }
 .detail-tabs { overflow-x:auto; }
 .formation-row { gap:6px; }
+.youtube-player { min-height:200px; aspect-ratio:16/9; background:#111; }
+.youtube-player iframe { width:100%; height:100%; }
+.video-playback-error { margin:12px; padding:16px; border:1px solid var(--border); border-radius:10px; background:var(--surface); }
+.video-playback-error strong { display:block; }
+.video-playback-error p { color:var(--muted); font-size:12px; margin:8px 0; }
+.video-playback-error a { display:inline-block; padding:10px 14px; border-radius:7px; background:var(--green); color:var(--canvas); font-size:12px; font-weight:650; }

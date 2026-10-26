@@ -14,3 +14,11 @@ Atualização de 26/10/2026.
 ## Localização e caso Barcelona x Real Madrid
 
 A aba Vídeos e o atalho abaixo do placar dão acesso aos vídeos sem percorrer toda a timeline. A fonte CazéTV confirmou no feed os vídeos de 25/10/2026: melhores momentos `kzIDaLa6sks`, compacto `FT4D91jNSCo`, gols `GeZ9xi_QPaE`, `frcNwNpltBM`, `dlqDqTFNuH8`. O caso usa a mesma descoberta automática dos outros jogos, sem inclusão manual de IDs no catálogo. Raphinha foi associado unicamente ao gol de 61 minutos; os dois gols de Mbappé ficam na galeria sem minuto atribuído.
+
+## Diagnóstico de bloqueio e player oficial
+
+Em 26/10/2026, o iframe de `kzIDaLa6sks` exibiu neste navegador de teste: “O vídeo não foi disponibilizado em seu país pelo usuário que fez o envio”. Esse resultado é territorial no ambiente de teste e não comprova a localização ou o erro do navegador do usuário.
+
+O player agora usa a API oficial IFrame do YouTube para receber onError, informa a origem real da página e mantém Referrer-Policy strict-origin-when-cross-origin. Erro 153 informa falha de identificação; 101/150 informa restrição do player ou região; 100 informa indisponibilidade do vídeo. O botão de abrir no canal oficial fica destacado quando há erro. Não há proxy de mídia nem promessa de desbloqueio.
+
+Referências: https://developers.google.com/youtube/iframe_api_reference e https://developers.google.com/youtube/terms/required-minimum-functionality
