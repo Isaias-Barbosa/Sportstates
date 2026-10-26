@@ -56,6 +56,16 @@ export function normalizeEvent(e, sport, league, leagueName) {
   };
   return { ...match, watch: getWatchOptions(match, c) };
 }
+export function eventKind(p, sport) {
+  const code = String(p.type?.type || p.play?.type?.type || "").toLowerCase();
+  const label = String(p.type?.text || p.play?.type?.text || "").toLowerCase();
+  const text = String(p.text || p.shortText || "").toLowerCase();
+  if (/second-yellow|yellow-red/.test(code) || /segundo cart[aã]o amarelo|second yellow/.test(label + " " + text)) return "second-yellow";
+  if (/red-card/.test(code) || /cart[aã]o vermelho|red card/.test(label + " " + text)) return "red-card";
+  if (/yellow-card/.test(code) || /cart[aã]o amarelo|yellow card/.test(label + " " + text)) return "yellow-card";
+  if (sport === "soccer" && !/anulado|disallowed|cancelled|canceled/.test(label + " " + text) && (p.scoringPlay || p.play?.scoringPlay || /^(goal|own-goal|penalty-scored)$/.test(code) || /^(gol|goal)[!.]/.test(text))) return "goal";
+  return "other";
+}
 export function normalizeSummary(raw, sport, league, leagueName) {
   const event = raw.header;
   const competition = event?.competitions?.[0];
@@ -81,8 +91,9 @@ export function normalizeSummary(raw, sport, league, leagueName) {
       period: p.period?.number || p.play?.period?.number || "",
       text: p.text || p.shortText || p.type?.text || "Evento",
       type: p.type?.text || p.play?.type?.text || "",
+      kind: eventKind(p, sport),
       sequence: Number(p.sequenceNumber ?? p.sequence ?? i),
-      scoring: !!(p.scoringPlay || p.play?.scoringPlay),
+      scoring: sport === "soccer" ? eventKind(p, sport) === "goal" : !!(p.scoringPlay || p.play?.scoringPlay),
     }))
     .sort((a, b) => b.sequence - a.sequence);
   const statistics = (raw.boxscore?.teams || raw.boxscore?.players || [])

@@ -48,6 +48,7 @@ export type Detail = {
     type: string;
     text: string;
     scoring: boolean;
+    kind: "goal" | "yellow-card" | "red-card" | "second-yellow" | "other";
   }[];
   statistics: { team: string; stats: { name: string; value: string }[] }[];
   lineups: {
@@ -143,3 +144,6 @@ export type WatchOptions = {
   links: WatchLink[];
   message: string;
 };
+
+export type MatchVideo = { id:string; title:string; channel:string; url:string; eventId?:string; minute?:string };
+export type MatchMedia = { searchLinks?:{name:string;url:string}[]; highlights:MatchVideo[]; replays:MatchVideo[]; partial:boolean; message:string; source:string };

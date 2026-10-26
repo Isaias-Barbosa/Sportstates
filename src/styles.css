@@ -2552,3 +2552,21 @@ nav a.active { background:var(--green-glow); color:var(--green); }
 .watch-chevron { margin-left:auto; flex-shrink:0; transition:transform .2s; }
 .where-to-watch[open] > summary .watch-chevron { transform:rotate(180deg); }
 .watch-expanded { padding-top:16px; }
+.event-symbol { position:relative; z-index:1; flex-shrink:0; width:28px; height:28px; display:inline-grid; place-items:center; margin-left:-9px; background:var(--panel); border-radius:50%; }
+.event-goal { font-size:20px; line-height:1; }
+.event-card i { display:block; width:12px; height:18px; border-radius:2px; background:#f6c535; border:1px solid #a78316; transform:rotate(-10deg); }
+.event-card.red-card i { background:#e83b4b; border-color:#b12432; }
+.event-card.second-yellow i:first-child { position:absolute; left:4px; top:3px; }
+.event-card.second-yellow i:last-child { position:absolute; left:11px; top:8px; background:#e83b4b; border-color:#b12432; }
+.match-videos { margin-top:24px; border:1px solid var(--border); border-radius:14px; padding:24px; background:var(--panel); }
+.match-videos > p { color:var(--muted); font-size:13px; }
+.highlights-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,350px),1fr)); gap:18px; }
+.official-video { margin-top:12px; border:1px solid var(--border); border-radius:12px; overflow:hidden; background:var(--panel); max-width:850px; }
+.official-video iframe { width:100%; min-height:200px; aspect-ratio:16/9; border:0; display:block; }
+.video-launch { display:flex; align-items:center; gap:14px; width:100%; text-align:left; padding:24px; color:var(--green); background:var(--green-glow); }
+.video-launch:hover { background:var(--surface); }
+.video-launch span { font-weight:700; }
+.video-launch small { display:block; margin-top:5px; font-weight:400; }
+.video-caption { display:flex; flex-wrap:wrap; gap:10px; align-items:center; justify-content:space-between; padding:12px 16px; font-size:11px; }
+.video-caption a { color:var(--green); display:inline-flex; gap:6px; align-items:center; }
+.video-help { font-size:11px!important; color:var(--muted); padding:10px 16px; }

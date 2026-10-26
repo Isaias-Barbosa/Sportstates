@@ -1,3 +1,4 @@
+import { matchMedia } from "./match-media.mjs";
 import { enrichBroadcasts } from "./broadcast-schedule.mjs";
 import { SPORTS, leagueFor } from "./catalog.mjs";
 import {
@@ -115,7 +116,7 @@ export async function route(url) {
       return [400, { error: "Data inválida. Use AAAA-MM-DD." }];
     return [200, await scoreboard(date)];
   }
-  if (url.pathname === "/api/match") {
+  if (["/api/match", "/api/media"].includes(url.pathname)) {
     const config = leagueFor(q.get("sport"), q.get("league"));
     const id = q.get("id");
     if (!config || !/^\d{1,15}$/.test(id || ""))
@@ -134,6 +135,7 @@ export async function route(url) {
         ),
       300000,
     );
+    if (url.pathname === "/api/media") return [200, await matchMedia(result.value.match, result.value.events)];
     return [
       200,
       {

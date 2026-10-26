@@ -24,7 +24,7 @@ import {
   MapPin,
   Clock3,
 } from "lucide-react";
-import type { Scores, Detail, Transfers } from "../types";
+import type { Scores, Detail, Transfers, MatchMedia } from "../types";
 import { useApi, useFavorites, today, time, dateLabel } from "../hooks";
 import { sports, keyOf } from "../catalog";
 import {
@@ -34,6 +34,8 @@ import {
   Loading,
   matchLabel,
 } from "../components/shared";
+import EventIcon from "../components/EventIcon";
+import MatchVideos, { OfficialVideo } from "../components/MatchVideos";
 import Lineups from "../components/Lineups";
 import WhereToWatch from "../components/WhereToWatch";
 export default function MatchPage() {
@@ -42,6 +44,10 @@ export default function MatchPage() {
   const { data, error, loading, refresh } = useApi<Detail>(
     `/api/match?sport=${encodeURIComponent(sport || "")}&league=${encodeURIComponent(league || "")}&id=${encodeURIComponent(id || "")}`,
     30000,
+  );
+  const { data: media, loading: mediaLoading, error: mediaError } = useApi<MatchMedia>(
+    `/api/media?sport=${encodeURIComponent(sport || "")}&league=${encodeURIComponent(league || "")}&id=${encodeURIComponent(id || "")}`,
+    120000,
   );
   const [tab, setTab] = useState("events");
   useEffect(() => {
@@ -153,10 +159,11 @@ export default function MatchPage() {
                             {e.minute || "•"}
                             {e.period && <small>{e.period}º período</small>}
                           </div>
-                          <div className="event-dot" />
+                          <EventIcon kind={e.kind} />
                           <div>
                             {e.type && <strong>{e.type}</strong>}
                             <p>{e.text}</p>
+                            {e.kind === "goal" && media?.replays.filter(v => v.eventId === e.id).map(video => <OfficialVideo key={video.id} video={video} replay />)}
                           </div>
                         </article>
                       ))}
@@ -198,6 +205,7 @@ export default function MatchPage() {
                   </Empty>
                 ))}
             </div>
+            {data.match.state === "finished" && <MatchVideos media={media} loading={mediaLoading} error={mediaError} />}
             <div className="updated">
               {data.source} · Consultado às {time(data.fetchedAt)} · Atualiza a
               cada 30 segundos
