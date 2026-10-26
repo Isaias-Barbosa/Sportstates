@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Link, NavLink, Route, Routes } from "react-router-dom";
 import {
@@ -32,10 +32,30 @@ function App() {
     try { localStorage.setItem("sportstates:theme", theme); } catch { /* Storage is optional. */ }
   }, [theme]);
   const [menu, setMenu] = useState(false);
+  const menuButton = useRef<HTMLButtonElement>(null);
+  const drawer = useRef<HTMLElement>(null);
+  useEffect(() => {
+    if (!menu) return;
+    const before = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    drawer.current?.querySelector<HTMLButtonElement>("button")?.focus();
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setMenu(false);
+      if (event.key === "Tab") {
+        const items = drawer.current?.querySelectorAll<HTMLElement>('a[href], button:not([disabled])');
+        if (!items?.length) return;
+        const first = items[0], last = items[items.length - 1];
+        if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+        else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+      }
+    };
+    document.addEventListener("keydown", onKey);
+    return () => { document.body.style.overflow = before; document.removeEventListener("keydown", onKey); menuButton.current?.focus(); };
+  }, [menu]);
   return (
     <BrowserRouter>
       <div className="app">
-        <aside className={menu ? "sidebar open" : "sidebar"}>
+        <aside ref={drawer} id="main-menu" className={menu ? "sidebar open" : "sidebar"} inert={!menu} role="dialog" aria-modal={menu || undefined} aria-label="Menu principal">
           <Link to="/" className="brand" onClick={() => setMenu(false)}>
             <span className="brandmark">
               <Activity size={24} />
@@ -99,10 +119,13 @@ function App() {
             onClick={() => setMenu(false)}
           />
         )}
-        <div className="workspace">
+        <div className="workspace" inert={menu}>
           <header className="topbar">
             <div className="top-left">
               <button
+                ref={menuButton}
+                aria-expanded={menu}
+                aria-controls="main-menu"
                 className="mobile-menu icon-button"
                 onClick={() => setMenu(true)}
                 aria-label="Abrir menu"

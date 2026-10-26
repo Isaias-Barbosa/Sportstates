@@ -75,6 +75,7 @@ export default function Dashboard({
   const groups = [...new Set(visible.map((m) => m.league))];
   const featured =
     live.find((m) => sport === "all" || m.sport === sport) ||
+    live[0] ||
     matches.find(
       (m) => (sport === "all" || m.sport === sport) && m.state === "scheduled",
     );
@@ -133,36 +134,6 @@ export default function Dashboard({
           <div className="pitch-box" />
         </div>
       </section>
-      <div className="section-heading">
-        <h2>Escolha seu esporte</h2>
-        <span>Competições com jogos na data</span>
-      </div>
-      <div className="sport-cards">
-        <button
-          className={sport === "all" ? "sport-card selected" : "sport-card"}
-          onClick={() => set("sport", "all")}
-        >
-          <LayoutGrid size={24} />
-          <strong>Todos os esportes</strong>
-          <small>{matches.length} jogos</small>
-        </button>
-        {available.map((s) => (
-          <button
-            key={s.id}
-            className={sport === s.id ? "sport-card selected" : "sport-card"}
-            onClick={() => set("sport", s.id)}
-          >
-            <span className="sport-icon">{s.icon}</span>
-            <strong>{s.name}</strong>
-            <small>
-              {matches.filter((m) => m.sport === s.id).length} jogos{" "}
-              {matches.some((m) => m.sport === s.id && m.state === "live") && (
-                <i className="tiny-dot" />
-              )}
-            </small>
-          </button>
-        ))}
-      </div>
       <section
         className="live-spotlight"
         aria-labelledby="live-spotlight-title"
@@ -248,6 +219,36 @@ export default function Dashboard({
           </Empty>
         )}
       </section>
+      <div className="section-heading">
+        <h2>Escolha seu esporte</h2>
+        <span>Competições com jogos na data</span>
+      </div>
+      <div className="sport-cards">
+        <button
+          className={sport === "all" ? "sport-card selected" : "sport-card"}
+          onClick={() => set("sport", "all")}
+        >
+          <LayoutGrid size={24} />
+          <strong>Todos os esportes</strong>
+          <small>{matches.length} jogos</small>
+        </button>
+        {available.map((s) => (
+          <button
+            key={s.id}
+            className={sport === s.id ? "sport-card selected" : "sport-card"}
+            onClick={() => set("sport", s.id)}
+          >
+            <span className="sport-icon">{s.icon}</span>
+            <strong>{s.name}</strong>
+            <small>
+              {matches.filter((m) => m.sport === s.id).length} jogos{" "}
+              {matches.some((m) => m.sport === s.id && m.state === "live") && (
+                <i className="tiny-dot" />
+              )}
+            </small>
+          </button>
+        ))}
+      </div>
       <div className="score-layout">
         <section className="scores">
           <div className="score-toolbar">

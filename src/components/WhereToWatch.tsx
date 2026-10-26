@@ -1,4 +1,4 @@
-import { ExternalLink, Tv, ArrowUpRight } from "lucide-react";
+import { ExternalLink, Tv, ArrowUpRight, ChevronDown } from "lucide-react";
 import type { Match } from "../types";
 export default function WhereToWatch({
   match,
@@ -10,24 +10,26 @@ export default function WhereToWatch({
   if (match.state === "finished") return null;
   const watch = match.watch;
   return (
-    <section
+    <details
       className={"where-to-watch " + (compact ? "watch-compact" : "")}
       id={compact ? undefined : "onde-assistir"}
       aria-label={`Onde assistir: ${match.home.name} x ${match.away.name}`}
     >
-      <div className="watch-heading">
+      <summary className="watch-heading">
         <span className="watch-icon">
           <Tv size={21} />
         </span>
         <div>
-          <h2>Onde assistir</h2>
+          <strong className="watch-title">Onde assistir</strong>
           <span>Links oficiais · {watch?.regionLabel || "Brasil"}</span>
         </div>
         <span className="watch-live-badge">
           <i className="live-dot" />
           {match.state === "live" ? "Jogo em andamento" : "Próximo jogo"}
         </span>
-      </div>
+        <ChevronDown className="watch-chevron" size={20} />
+      </summary>
+      <div className="watch-expanded">
       <p className="watch-note">
         {watch?.message ||
           "Ainda não temos uma opção oficial verificada para esta competição no Brasil."}
@@ -89,6 +91,7 @@ export default function WhereToWatch({
           </ul>
         </details>
       ) : null}
-    </section>
+      </div>
+    </details>
   );
 }

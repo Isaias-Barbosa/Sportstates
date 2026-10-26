@@ -50,3 +50,11 @@ SofaScore não foi usado como confirmação oficial: a própria [FAQ de programa
 - Opções do exterior são mostradas quando não há transmissão brasileira confirmada. Podem ter assinatura e bloqueio territorial. Nenhum mecanismo de contorno é fornecido.
 - `brazilStatus=unknown`: “Ainda não identificamos uma transmissão confirmada deste jogo para o Brasil”. Ausência no feed não significa ausência na televisão. `unavailable` é reservado a uma futura fonte que confirme explicitamente essa condição.
 - Teste direto da API SofaScore retornou HTTP 403 com `reason: challenge`; nenhuma tentativa de contornar o bloqueio foi feita e nenhuma integração SofaScore foi ativada.
+
+## Ajustes da home e PSG (26/10/2026)
+
+O menu lateral passa a ser uma gaveta fechada inicialmente em todas as larguras, aberta pelo botão do cabeçalho; fecha por botão, clique externo, seleção de página ou Escape. O foco fica na gaveta enquanto aberta.
+
+O destaque prioriza jogos ao vivo, inclusive quando um filtro de esporte não tem jogo em andamento; filtros permanecem aplicados à lista. “Escolha seu esporte” vem depois do destaque. Na partida, Onde assistir usa details/summary fechado por padrão; links diretos #onde-assistir abrem a seção.
+
+A lista principal da agenda da CazéTV deixou de incluir PSG x Lyon, embora a página https://www.agendacazetv.com.br/watch/WHYTOnqWFgE continue anunciando o jogo. Foi acrescentada essa referência verificada, limitada ao evento ESPN 401876422 e data 26/10/2026. A página é consultada e validada novamente, em paralelo à agenda, com cache de 5 minutos; não é uma confirmação fixa nem aplicada a outras rodadas. Vídeos encontrados em ambas as fontes são deduplicados por ID.

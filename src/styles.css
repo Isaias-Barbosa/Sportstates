@@ -2538,3 +2538,17 @@ nav a.active { background:var(--green-glow); color:var(--green); }
 .brazil-channel-directory { margin-top:18px; padding-top:16px; border-top:1px solid var(--border); }
 .brazil-channel-directory summary { cursor:pointer; color:var(--green); font-weight:600; }
 .channel-cazetv { color:#7753d7; }
+/* Navigation drawer uses the same menu button on every screen size. */
+.sidebar { width:280px; max-width:90vw; transform:translateX(-100%); visibility:hidden; transition:transform .2s,visibility .2s; overflow-y:auto; }
+.sidebar.open { transform:translateX(0); visibility:visible; }
+.workspace { width:100%; margin-left:0; }
+.mobile-menu,.close-menu { display:flex; }
+.close-menu { position:absolute; top:28px; right:12px; }
+.sidebar .brand { font-size:19px; margin-right:24px; }
+.scrim { position:fixed; inset:0; background:#0008; z-index:25; }
+.where-to-watch > summary { cursor:pointer; list-style:none; margin-bottom:0; }
+.where-to-watch > summary::-webkit-details-marker { display:none; }
+.watch-title { display:block; font-size:19px; }
+.watch-chevron { margin-left:auto; flex-shrink:0; transition:transform .2s; }
+.where-to-watch[open] > summary .watch-chevron { transform:rotate(180deg); }
+.watch-expanded { padding-top:16px; }

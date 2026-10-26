@@ -35,3 +35,17 @@ test('Brazil directory includes ESPN family, sportv and official YouTube, with s
  assert.equal(safeWatchUrl('https://www.youtube.com/@pirate/streams'),false);
  assert.equal(safeWatchUrl('https://www.youtube.com/redirect?q=evil'),false);
 });
+
+test('PSG alias and verified watch page retain a match after homepage rotation', async () => {
+ const { enrichBroadcasts } = await import('../server/broadcast-schedule.mjs');
+ const original = globalThis.fetch;
+ const psg = { ...match, id:'401876422', league:'fra.1', home:{name:'Paris Saint-Germain'}, away:{name:'Lyon'}, date:'2026-10-26T19:30:00Z' };
+ psg.watch = getWatchOptions(psg);
+ globalThis.fetch = async url => ({ok:true,text:async()=>String(url).includes('/watch/') ? video({title:'AO VIVO: PSG X LYON | LIGUE 1',date:'2026-10-26T18:30:00Z'}).replaceAll('Q1ccB92YYFA','WHYTOnqWFgE') : video()});
+ try {
+   const [result] = await enrichBroadcasts([psg]);
+   assert.equal(result.watch.confirmedForMatch,true);
+   assert.equal(result.watch.links[0].url,'https://www.youtube.com/watch?v=WHYTOnqWFgE');
+   assert.equal(result.watch.links[0].sourceUrl,'https://www.agendacazetv.com.br/watch/WHYTOnqWFgE');
+ } finally {globalThis.fetch=original;}
+});

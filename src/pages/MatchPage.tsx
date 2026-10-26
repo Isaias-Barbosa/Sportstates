@@ -45,10 +45,11 @@ export default function MatchPage() {
   );
   const [tab, setTab] = useState("events");
   useEffect(() => {
-    if (hash === "#onde-assistir" && data?.match.state === "live")
-      document
-        .getElementById("onde-assistir")
-        ?.scrollIntoView({ block: "start" });
+    if (hash === "#onde-assistir" && data?.match) {
+      const panel = document.getElementById("onde-assistir");
+      if (panel instanceof HTMLDetailsElement) panel.open = true;
+      panel?.scrollIntoView({ block: "start" });
+    }
   }, [hash, data?.match.id, data?.match.state]);
   return (
     <>
@@ -116,7 +117,7 @@ export default function MatchPage() {
               </Notice>
             )}
             {matchLabel(data.match).startsWith("Intervalo") && <div className="interval-banner" role="status"><Clock3 size={22} /><div><strong>{matchLabel(data.match)}</strong><p>A partida está em pausa. O placar e os lances serão atualizados automaticamente.</p></div></div>}
-            <WhereToWatch match={data.match} />
+            <WhereToWatch key={data.match.id} match={data.match} />
             <div className="detail-content">
               <div className="tabs detail-tabs">
                 {[
