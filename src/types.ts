@@ -48,18 +48,21 @@ export type Detail = {
     type: string;
     text: string;
     scoring: boolean;
+    scorer?: string;
     kind: "goal" | "yellow-card" | "red-card" | "second-yellow" | "other";
   }[];
   statistics: { team: string; stats: { name: string; value: string }[] }[];
   lineups: {
     team: string;
     formation: string;
+    formationRows?: string[][] | null;
     homeAway: string;
     players: {
       id: string;
       name: string;
       shortName: string;
       positionName: string;
+      role?: string;
       formationPlace: number | null;
       subbedIn: boolean;
       subbedOut: boolean;

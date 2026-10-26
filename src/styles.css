@@ -2570,3 +2570,8 @@ nav a.active { background:var(--green-glow); color:var(--green); }
 .video-caption { display:flex; flex-wrap:wrap; gap:10px; align-items:center; justify-content:space-between; padding:12px 16px; font-size:11px; }
 .video-caption a { color:var(--green); display:inline-flex; gap:6px; align-items:center; }
 .video-help { font-size:11px!important; color:var(--muted); padding:10px 16px; }
+.replays-heading { margin:24px 0 12px; }
+.match-video-shortcut { display:block; width:100%; text-align:left; border:1px solid var(--green-border); background:var(--green-glow); color:var(--green); border-radius:12px; margin:18px 0; padding:16px 20px; font-weight:650; }
+.detail-content .match-videos { border:0; margin-top:0; }
+.detail-tabs { overflow-x:auto; }
+.formation-row { gap:6px; }

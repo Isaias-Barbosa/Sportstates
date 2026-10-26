@@ -124,12 +124,14 @@ export default function MatchPage() {
             )}
             {matchLabel(data.match).startsWith("Intervalo") && <div className="interval-banner" role="status"><Clock3 size={22} /><div><strong>{matchLabel(data.match)}</strong><p>A partida está em pausa. O placar e os lances serão atualizados automaticamente.</p></div></div>}
             <WhereToWatch key={data.match.id} match={data.match} />
-            <div className="detail-content">
+            {(!!media?.highlights.length || !!media?.replays.length) && <button className="match-video-shortcut" onClick={() => { setTab("videos"); document.getElementById("match-tabs")?.scrollIntoView({block:"start"}); }}>▶ Vídeos oficiais disponíveis · Ver melhores momentos e gols</button>}
+            <div className="detail-content" id="match-tabs">
               <div className="tabs detail-tabs">
                 {[
                   ["events", "Minuto a minuto"],
                   ["stats", "Estatísticas"],
                   ["lineups", "Escalações"],
+                  ["videos", `Vídeos${media && media.highlights.length + media.replays.length ? ` (${media.highlights.length + media.replays.length})` : ""}`],
                 ].map(([v, l]) => (
                   <button
                     key={v}
@@ -140,6 +142,7 @@ export default function MatchPage() {
                   </button>
                 ))}
               </div>
+              {tab === "videos" && <MatchVideos media={media} loading={mediaLoading} error={mediaError} finished={data.match.state === "finished"} />}
               {tab === "events" && (
                 <>
                   <div className="timeline-heading">
@@ -205,7 +208,6 @@ export default function MatchPage() {
                   </Empty>
                 ))}
             </div>
-            {data.match.state === "finished" && <MatchVideos media={media} loading={mediaLoading} error={mediaError} />}
             <div className="updated">
               {data.source} · Consultado às {time(data.fetchedAt)} · Atualiza a
               cada 30 segundos

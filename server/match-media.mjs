@@ -25,14 +25,21 @@ export function selectMatchMedia(match,events,videos) {
  const kickoff=Date.parse(match.date);
  const candidates=videos.filter(v=>OFFICIAL_VIDEO_CHANNELS.some(c=>c.id===v.channelId) && teamInTitle(clean(v.title),match.home.name) && teamInTitle(clean(v.title),match.away.name) && Date.parse(v.published)>=kickoff && Date.parse(v.published)<=kickoff+72*3600000);
  const unique=[...new Map(candidates.map(v=>[v.id,v])).values()];
- const highlights=match.state==='finished'?unique.filter(v=>/melhores momentos|highlights/.test(clean(v.title))&&!/pre jogo|preview|simulacao|efootball|fc 2\d/.test(clean(v.title)) && Date.parse(v.published)>=kickoff+70*60000).slice(0,4):[];
+ const highlights=match.state==='finished'?unique.filter(v=>/melhores momentos|highlights|compacto/.test(clean(v.title))&&!/pre jogo|preview|simulacao|efootball|fc 2\d/.test(clean(v.title)) && Date.parse(v.published)>=kickoff+70*60000).slice(0,4):[];
  const replays=unique.flatMap(v=>{
   const title=clean(v.title);
-  if(!/\bgol\b|\bgoal\b/.test(title)||/anulado|disallowed|melhores momentos|highlights/.test(title)) return [];
+  if(!/\bgo+l\b|\bgoal\b/.test(title)||/anulado|disallowed|melhores momentos|highlights|compacto|pre jogo|preview|simulacao|efootball/.test(title)) return [];
   const minute=v.title.match(/\b(\d{1,3}(?:\+\d{1,2})?)\s*(?:['’′]|min(?:utos?)?\b)/i)?.[1];
-  if(!minute) return [];
-  const goals=events.filter(e=>e.kind==='goal'&&String(e.minute).replace(/[’'′\s]/g,'')===minute);
-  return goals.length===1?[{...v,eventId:goals[0].id,minute}]:[];
+  let goals=[];
+  if(minute) goals=events.filter(e=>e.kind==='goal'&&String(e.minute).replace(/[’'′\s]/g,'')===minute);
+  else goals=events.filter(e=>{
+   if(e.kind!=='goal'||!e.scorer)return false;
+   const tokens=clean(e.scorer).split(' ');
+   const surname=tokens.at(-1);
+   return surname.length>=4&&` ${title} `.includes(` ${surname} `);
+  });
+  // Clips without an unambiguous minute/scorer remain in the match videos gallery.
+  return [{...v,...(goals.length===1?{eventId:goals[0].id,minute:goals[0].minute}:{})}];
  }).slice(0,8);
  return {highlights,replays};
 }

@@ -3,12 +3,10 @@ import type { Detail } from '../types';
 type Squad = Detail['lineups'][number];
 function Formation({ squad }: { squad: Squad }) {
   const starters = squad.players.filter(p => p.starter);
-  // Verified ESPN places for this shape. Other shapes retain the structured list.
-  const places = squad.formation === '4-2-3-1' ? [[1], [3, 6, 5, 2], [4, 8], [11, 10, 7], [9]] : null;
-  if (!places || starters.length !== 11 || new Set(starters.map(p => p.formationPlace)).size !== 11) return null;
-  const byPlace = new Map(starters.map(p => [p.formationPlace, p]));
-  if (places.flat().some(place => !byPlace.has(place))) return null;
-  const rows = places.map(row => row.map(place => byPlace.get(place)!));
+  const byId = new Map(starters.map(p => [p.id, p]));
+  const places = squad.formationRows;
+  if (!places || places.flat().length !== 11 || new Set(places.flat()).size !== 11 || places.flat().some(id => !byId.has(id))) return null;
+  const rows = places.map(row => row.map(id => byId.get(id)!));
   return <div className="formation-pitch" aria-label={`Formação inicial ${squad.formation} de ${squad.team}`}>
     <div className="field-center" aria-hidden="true" />
     {rows.map((row, i) => <div className="formation-row" key={i}>{row.map(p => <div className="field-player" key={p.id || p.name}><b>{p.jersey || '–'}</b><span>{p.shortName}</span></div>)}</div>)}

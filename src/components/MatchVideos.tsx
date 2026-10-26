@@ -10,10 +10,11 @@ export function OfficialVideo({ video, replay = false }: { video: MatchVideo; re
   {opened && <p className="video-help">Se o canal não permitir a reprodução aqui, abra o vídeo no YouTube.</p>}
  </div>;
 }
-export default function MatchVideos({media,loading,error}:{media?:MatchMedia;loading:boolean;error?:string}) {
+export default function MatchVideos({media,loading,error,finished=true}:{media?:MatchMedia;loading:boolean;error?:string;finished?:boolean}) {
  return <section className="match-videos"><div className="section-heading"><h2>Melhores momentos</h2><span>Publicações de canais oficiais</span></div>
- {loading ? <p>Procurando vídeos do confronto…</p> : media?.highlights.length ? <div className="highlights-grid">{media.highlights.map(video=><OfficialVideo key={video.id} video={video}/>)}</div> : <p>{error?'Não foi possível consultar os vídeos agora.':'Ainda não encontramos melhores momentos desta partida nos vídeos recentes dos canais consultados.'}</p>}
+ {loading ? <p>Procurando vídeos do confronto…</p> : media?.highlights.length ? <div className="highlights-grid">{media.highlights.map(video=><OfficialVideo key={video.id} video={video}/>)}</div> : <p>{error?'Não foi possível consultar os vídeos agora.':finished ? 'Ainda não encontramos melhores momentos desta partida nos vídeos recentes dos canais consultados.' : 'Os melhores momentos serão procurados após o encerramento. Os clipes de gols publicados podem aparecer abaixo.'}</p>}
  {!loading && !media?.highlights.length && !!media?.searchLinks?.length && <div className="broadcast-chips">{media.searchLinks.map(link=><a className="broadcast-chip" key={link.name} href={link.url} target="_blank" rel="noopener noreferrer">Buscar no canal {link.name}<ExternalLink size={12}/></a>)}</div>}
+ {!!media?.replays.length && <><h3 className="replays-heading">Gols e replays oficiais</h3><div className="highlights-grid">{media.replays.map(video=><OfficialVideo key={video.id} video={video} replay />)}</div></>}
  <p className="video-help">{media?.message || 'Os canais podem publicar os vídeos depois do fim da partida. A disponibilidade varia por competição e região.'}{media?.partial?' Alguns canais não puderam ser consultados.':''}</p>
  </section>;
 }

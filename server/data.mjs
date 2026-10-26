@@ -1,3 +1,4 @@
+import { formationRows } from "./formation.mjs";
 import { getWatchOptions } from "./watch.mjs";
 export const ZONE = "America/Sao_Paulo";
 export function dayInBrazil(date) {
@@ -91,6 +92,7 @@ export function normalizeSummary(raw, sport, league, leagueName) {
       period: p.period?.number || p.play?.period?.number || "",
       text: p.text || p.shortText || p.type?.text || "Evento",
       type: p.type?.text || p.play?.type?.text || "",
+      scorer: eventKind(p, sport) === "goal" ? (p.play?.participants?.[0]?.athlete?.displayName || p.participants?.[0]?.athlete?.displayName || "") : "",
       kind: eventKind(p, sport),
       sequence: Number(p.sequenceNumber ?? p.sequence ?? i),
       scoring: sport === "soccer" ? eventKind(p, sport) === "goal" : !!(p.scoringPlay || p.play?.scoringPlay),
@@ -115,6 +117,7 @@ export function normalizeSummary(raw, sport, league, leagueName) {
       id: String(p.athlete?.id || ""),
       name: p.athlete?.displayName || "",
       shortName: p.athlete?.shortName || p.athlete?.displayName || "",
+      role: p.position?.name || p.athlete?.position?.name || "",
       positionName: p.position?.displayName || p.athlete?.position?.displayName || "",
       formationPlace: Number(p.formationPlace) || null,
       subbedIn: !!p.subbedIn,
@@ -129,6 +132,6 @@ export function normalizeSummary(raw, sport, league, leagueName) {
     match: { ...match, venue: raw.gameInfo?.venue?.fullName || match.venue },
     events,
     statistics,
-    lineups,
+    lineups: lineups.map(squad => ({ ...squad, formationRows: sport === "soccer" ? formationRows(squad) : null })),
   };
 }
