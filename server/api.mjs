@@ -244,7 +244,7 @@ export async function handler(req, res) {
       if(typeof body==='string'){if(body.length>12000)throw new Error("Dados muito grandes.");body=JSON.parse(body);}
       if(!body||typeof body!=='object'||Array.isArray(body))throw new Error('Dados inválidos.');
       await saveTeam(body);res.statusCode=200;return res.end(JSON.stringify({ok:true}));
-    } catch(error){res.statusCode=error.message==='Banco Neon não configurado.'?503:400;return res.end(JSON.stringify({error:process.env.DATABASE_URL?'Não foi possível salvar ou consultar os times. Confira os dados e a configuração do banco.':error.message}));}
+    } catch(error){res.statusCode=error.message==='Banco Neon não configurado.'?503:400;return res.end(JSON.stringify({error:!process.env.DATABASE_URL ? 'Banco Neon não configurado.' : error.message==='Este ID já pertence a um time de outro esporte.' ? error.message : 'Não foi possível salvar ou consultar os times. Confira os dados e a configuração do banco.'}));}
   }
   if (requestUrl.pathname === "/api/admin/featured") {
     res.setHeader("Cache-Control", "no-store");
