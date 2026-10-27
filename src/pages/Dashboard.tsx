@@ -75,8 +75,11 @@ export default function Dashboard({
     (s) => matches.some((m) => m.sport === s.id) || s.id === sport,
   );
   const groups = [...new Set(visible.map((m) => m.league))];
+  const selectedMatch = sport === "all" && selection?.key
+    ? matches.find((m) => keyOf(m) === selection.key)
+    : undefined;
   const featured =
-    (sport === "all" && selection?.key ? matches.find(m => keyOf(m) === selection.key) : undefined) ||
+    (selectedMatch?.state === "finished" && live.length ? undefined : selectedMatch) ||
     live.find((m) => sport === "all" || m.sport === sport) ||
     live[0] ||
     matches.find(
