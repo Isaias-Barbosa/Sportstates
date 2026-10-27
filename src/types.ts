@@ -158,4 +158,4 @@ export type ClubDetails = {team:ClubProfile;athletes:{id:string;name:string;numb
 
 export type TeamLeader = {value:number;players:{id:string;name:string;image:string|null}[]};
 export type ClubCompetition = {id:string;name:string;icon:string;leagues:{id:string;name:string}[]};
-export type TeamSearchResult = {id:string;name:string;sport:string;league:string;logo:string;city:string;stadium:string;colors:string[]};
+export type TeamSearchResult = {id:string;name:string;sport:string;league:string;logo:string;city:string;stadium:string;colors:string[];source?:string;sourceId?:string;sourceLeague?:string;stadium_image?:string;website?:string;description?:string};

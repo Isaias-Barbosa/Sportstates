@@ -3,7 +3,7 @@ import { matchMedia } from "./match-media.mjs";
 import { enrichBroadcasts } from "./broadcast-schedule.mjs";
 import { SPORTS, SOCCER_REGIONS, leagueFor } from "./catalog.mjs";
 import { listTeams, teamDetails, saveTeam } from "./teams.mjs";
-import { fetchTeamCatalog, normalizeTeamSearch } from "./team-search.mjs";
+import { fetchTeamCatalog, normalizeTeamSearch, fetchSportsDBSearch, normalizeSportsDBSearch } from "./team-search.mjs";
 import { authBaseUrl, adminAuthorized } from "./admin-auth.mjs";
 import { normalizeStandings } from "./standings.mjs";
 import {
@@ -240,8 +240,18 @@ export async function handler(req, res) {
     if (!await adminAuthorized(req.headers?.authorization)) {res.statusCode=401;return res.end(JSON.stringify({error:"Acesso administrativo necessário."}));}
     const sport=requestUrl.searchParams.get('sport'),league=requestUrl.searchParams.get('league'),q=(requestUrl.searchParams.get('q')||'').trim();
     if(!leagueFor(sport,league)||q.length<2||q.length>80){res.statusCode=400;return res.end(JSON.stringify({error:"Selecione a liga e digite entre 2 e 80 caracteres."}));}
-    try {const result=await cached(`team-catalog:${sport}:${league}`, 3600000,()=>fetchTeamCatalog(sport,league), 3600000);res.statusCode=200;return res.end(JSON.stringify({teams:normalizeTeamSearch(result.value,{sport,league,query:q}),source:"ESPN · feed público não oficial",stale:result.stale}));}
-    catch {res.statusCode=502;return res.end(JSON.stringify({error:"Não foi possível buscar os times nesta liga. Tente novamente."}));}
+    const failures=[];
+    try {
+      const result=await cached(`team-catalog:${sport}:${league}`,3600000,()=>fetchTeamCatalog(sport,league),3600000);
+      const teams=normalizeTeamSearch(result.value,{sport,league,query:q}).map(team=>({...team,source:'ESPN'}));
+      if(teams.length){res.statusCode=200;return res.end(JSON.stringify({teams,source:'ESPN',stale:result.stale}));}
+    } catch {failures.push('ESPN');}
+    try {
+      const result=await cached(`sportsdb-search:${sport}:${q.toLowerCase()}`,3600000,()=>fetchSportsDBSearch(q),3600000);
+      const teams=normalizeSportsDBSearch(result.value,{sport,league,query:q});
+      res.statusCode=200;return res.end(JSON.stringify({teams,source:'TheSportsDB',stale:result.stale,unavailable:failures}));
+    } catch {failures.push('TheSportsDB');}
+    res.statusCode=502;return res.end(JSON.stringify({error:'Não foi possível consultar ESPN e TheSportsDB. Tente novamente.'}));
   }
   if (requestUrl.pathname === "/api/admin/teams") {
     res.setHeader("Cache-Control", "no-store");

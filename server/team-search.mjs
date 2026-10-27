@@ -19,3 +19,32 @@ export async function fetchTeamCatalog(sport,league){
  if(!r.ok)throw new Error('Não foi possível consultar a fonte de times.');
  const body=await r.json();if(!Array.isArray(body.sports))throw new Error('Resposta de times indisponível.');return body;
 }
+
+const SPORTSDB_SPORTS = {soccer:'soccer', basketball:'basketball', football:'american football', baseball:'baseball', hockey:'ice hockey'};
+function safeHttps(value, host) {
+ try { const u = new URL(String(value || '')); return u.protocol === 'https:' && !u.username && !u.password && (!host || u.hostname === host || u.hostname.endsWith('.'+host)) ? u.href : ''; } catch { return ''; }
+}
+function clean(value, max) { return typeof value === 'string' ? value.trim().slice(0, max) : ''; }
+export function normalizeSportsDBSearch(raw, {sport, league, query}) {
+ if (!leagueFor(sport,league) || !SPORTSDB_SPORTS[sport] || !Array.isArray(raw?.teams)) return [];
+ const term=textKey(query);
+ if(!term) return [];
+ return raw.teams.filter(t => textKey(t.strSport)===SPORTSDB_SPORTS[sport] && [t.strTeam,t.strTeamShort,t.strAlternate,t.strKeywords].some(v=>textKey(v).includes(term)))
+  .slice(0,30).map(t=>({
+   id:'', sourceId:clean(String(t.idTeam || ''),30), source:'TheSportsDB',
+   name:clean(t.strTeam,120), sport, league, sourceLeague:clean(t.strLeague,120),
+   logo:safeHttps(t.strBadge || t.strTeamBadge,'thesportsdb.com'),
+   city:clean(t.strLocation,120), stadium:clean(t.strStadium,120),
+   stadium_image:safeHttps(t.strStadiumThumb,'thesportsdb.com'),
+   website:safeHttps(t.strWebsite?.startsWith('https://') ? t.strWebsite : t.strWebsite ? 'https://'+t.strWebsite : ''),
+   description:clean(t.strDescriptionPT,2000), colors:[]
+  })).filter(t=>t.name);
+}
+export async function fetchSportsDBSearch(query) {
+ const params=new URLSearchParams({t:query});
+ const r=await fetch(`https://www.thesportsdb.com/api/v1/json/123/searchteams.php?${params}`,{headers:{Accept:'application/json'},signal:AbortSignal.timeout(8000)});
+ if(!r.ok)throw new Error('TheSportsDB indisponível.');
+ const body=await r.json();
+ if(body?.teams !== null && !Array.isArray(body?.teams))throw new Error('Resposta de times indisponível.');
+ return body;
+}
