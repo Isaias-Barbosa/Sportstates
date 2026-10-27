@@ -5,16 +5,20 @@ import { parseTeamLeaders } from './team-leaders.mjs';
 const ESPN_BASE='https://site.api.espn.com/apis/site/v2/sports';
 const getSql=()=>{ if(!process.env.DATABASE_URL) throw new Error('Banco Neon não configurado.'); return neon(process.env.DATABASE_URL); };
 const validId=id=>/^\d{1,12}$/.test(String(id||''));
-export async function listTeams(){const sql=getSql();return sql`SELECT id, name, logo, description, city, stadium, website, sport, league, colors, honours FROM sport_teams ORDER BY name`;}
-export async function getTeam(id){if(!validId(id)) return null; const sql=getSql(); const rows=await sql`SELECT id, name, logo, description, city, stadium, website, sport, league, colors, honours FROM sport_teams WHERE id=${id}`;return rows[0]||null;}
+export function validateHonours(honours){
+ if(!Array.isArray(honours)||honours.length>50||honours.some(h=>typeof h!=='string'||!h.trim()||h.length>3000)||honours.reduce((n,h)=>n+h.length,0)>20000)throw new Error('Confira os títulos: até 50 linhas, com até 3.000 caracteres por linha e 20.000 no total.');
+ return honours.map(h=>h.trim());
+}
+export async function listTeams(){const sql=getSql();return sql`SELECT id, name, logo, description, city, stadium, stadium_image, website, sport, league, colors, honours FROM sport_teams ORDER BY name`;}
+export async function getTeam(id){if(!validId(id)) return null; const sql=getSql(); const rows=await sql`SELECT id, name, logo, description, city, stadium, stadium_image, website, sport, league, colors, honours FROM sport_teams WHERE id=${id}`;return rows[0]||null;}
 export async function saveTeam(p){
  const sport=String(p.sport||'soccer'), league=String(p.league||'');
- const colors=Array.isArray(p.colors)?p.colors:[], honours=Array.isArray(p.honours)?p.honours:[];
- if(!leagueFor(sport,league) || colors.length>5 || colors.some(c=>typeof c!=='string'||!/^#[0-9a-f]{6}$/i.test(c)) || honours.length>50 || honours.some(h=>typeof h!=='string'||!h.trim()||h.length>160))throw new Error('Liga, cores ou títulos inválidos.');
- const id=String(p.id||'');const name=String(p.name||'').trim(), city=String(p.city||'').trim(),stadium=String(p.stadium||'').trim(),description=String(p.description||'').trim(),website=String(p.website||'').trim(),logo=String(p.logo||'').trim();
- if(!validId(id)||!name||name.length>120||city.length>120||stadium.length>120||description.length>2000||website.length>500||logo.length>500) throw new Error('Confira os campos do time.');
- for(const url of [website,logo]) {if(url){let u;try{u=new URL(url)}catch{throw new Error('Informe URLs válidas.')} if(u.protocol!=='https:'||u.username||u.password)throw new Error('Os links devem usar HTTPS.');}}
- const sql=getSql();const saved=await sql`INSERT INTO sport_teams (id,name,logo,description,city,stadium,website,sport,league,colors,honours) VALUES (${id},${name},${logo},${description},${city},${stadium},${website},${sport},${league},${JSON.stringify(colors)}::jsonb,${JSON.stringify(honours.map(h=>h.trim()))}::jsonb) ON CONFLICT (id) DO UPDATE SET name=EXCLUDED.name,logo=EXCLUDED.logo,description=EXCLUDED.description,city=EXCLUDED.city,stadium=EXCLUDED.stadium,website=EXCLUDED.website,sport=EXCLUDED.sport,league=EXCLUDED.league,colors=EXCLUDED.colors,honours=EXCLUDED.honours,updated_at=now() WHERE sport_teams.sport=EXCLUDED.sport RETURNING id`;
+ const colors=Array.isArray(p.colors)?p.colors:[], honours=validateHonours(Array.isArray(p.honours)?p.honours:[]);
+ if(!leagueFor(sport,league) || colors.length>5 || colors.some(c=>typeof c!=='string'||!/^#[0-9a-f]{6}$/i.test(c)))throw new Error('Liga, cores ou títulos inválidos.');
+ const id=String(p.id||'');const name=String(p.name||'').trim(), city=String(p.city||'').trim(),stadium=String(p.stadium||'').trim(),description=String(p.description||'').trim(),website=String(p.website||'').trim(),stadiumImage=String(p.stadium_image||'').trim(),logo=String(p.logo||'').trim();
+ if(!validId(id)||!name||name.length>120||city.length>120||stadium.length>120||description.length>2000||website.length>500||logo.length>500||stadiumImage.length>500) throw new Error('Confira os campos do time.');
+ for(const url of [website,logo,stadiumImage]) {if(url){let u;try{u=new URL(url)}catch{throw new Error('Informe URLs válidas.')} if(u.protocol!=='https:'||u.username||u.password)throw new Error('Os links devem usar HTTPS.');}}
+ const sql=getSql();const saved=await sql`INSERT INTO sport_teams (id,name,logo,description,city,stadium,stadium_image,website,sport,league,colors,honours) VALUES (${id},${name},${logo},${description},${city},${stadium},${stadiumImage},${website},${sport},${league},${JSON.stringify(colors)}::jsonb,${JSON.stringify(honours.map(h=>h.trim()))}::jsonb) ON CONFLICT (id) DO UPDATE SET name=EXCLUDED.name,logo=EXCLUDED.logo,description=EXCLUDED.description,city=EXCLUDED.city,stadium=EXCLUDED.stadium,stadium_image=EXCLUDED.stadium_image,website=EXCLUDED.website,sport=EXCLUDED.sport,league=EXCLUDED.league,colors=EXCLUDED.colors,honours=EXCLUDED.honours,updated_at=now() WHERE sport_teams.sport=EXCLUDED.sport RETURNING id`;
  if(!saved.length)throw new Error('Este ID já pertence a um time de outro esporte.');
 }
 async function getJSON(url){const response=await fetch(url,{signal:AbortSignal.timeout(10000),headers:{Accept:'application/json'}});if(!response.ok)throw new Error('Fonte esportiva indisponível.');return response.json();}

@@ -250,11 +250,12 @@ export async function handler(req, res) {
     try {
       if(req.method === "GET") {const teams=await listTeams();res.statusCode=200;return res.end(JSON.stringify({teams}));}
       if(req.method !== "PUT") {res.statusCode=405;res.setHeader("Allow","GET, PUT");return res.end(JSON.stringify({error:"Método não permitido."}));}
-      let body=req.body;if(body==null){let str='';for await(const chunk of req){str+=chunk;if(str.length>12000)throw new Error("Dados muito grandes.");}body=str;}
-      if(typeof body==='string'){if(body.length>12000)throw new Error("Dados muito grandes.");body=JSON.parse(body);}
+      let body=req.body;if(body==null){let str='';for await(const chunk of req){str+=chunk;if(str.length>32000)throw new Error("Dados muito grandes.");}body=str;}
+      if(typeof body==='string'){if(body.length>32000)throw new Error("Dados muito grandes.");body=JSON.parse(body);}
       if(!body||typeof body!=='object'||Array.isArray(body))throw new Error('Dados inválidos.');
+      if(JSON.stringify(body).length>32000)throw new Error('Dados muito grandes.');
       await saveTeam(body);res.statusCode=200;return res.end(JSON.stringify({ok:true}));
-    } catch(error){res.statusCode=error.message==='Banco Neon não configurado.'?503:400;return res.end(JSON.stringify({error:!process.env.DATABASE_URL ? 'Banco Neon não configurado.' : error.message==='Este ID já pertence a um time de outro esporte.' ? error.message : 'Não foi possível salvar ou consultar os times. Confira os dados e a configuração do banco.'}));}
+    } catch(error){res.statusCode=error.message==='Banco Neon não configurado.'?503:400;return res.end(JSON.stringify({error:!process.env.DATABASE_URL ? 'Banco Neon não configurado.' : (error.message==='Este ID já pertence a um time de outro esporte.' || error.message.startsWith('Confira os títulos:') || error.message==='Os links devem usar HTTPS.' || error.message==='Informe URLs válidas.' || error.message==='Dados muito grandes.') ? error.message : 'Não foi possível salvar ou consultar os times. Confira os dados e a configuração do banco.'}));}
   }
   if (requestUrl.pathname === "/api/admin/featured") {
     res.setHeader("Cache-Control", "no-store");
