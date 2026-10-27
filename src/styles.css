@@ -2612,7 +2612,8 @@ nav a.active { background:var(--green-glow); color:var(--green); }
 
 /* A soft pulse makes the live clock easier to spot. */
 .match-time.is-live .live-dot,
-.live-match-feature.is-live .live-match-top .live-dot {
+.live-match-feature.is-live .live-match-top .live-dot,
+.detail-status .live-dot {
   width: 8px;
   height: 8px;
   background: #e92b48;
@@ -2626,5 +2627,6 @@ nav a.active { background:var(--green-glow); color:var(--green); }
 }
 @media (prefers-reduced-motion: reduce) {
   .match-time.is-live .live-dot,
-  .live-match-feature.is-live .live-match-top .live-dot { animation: none; }
+  .live-match-feature.is-live .live-match-top .live-dot,
+  .detail-status .live-dot { animation: none; }
 }
