@@ -14,6 +14,7 @@ import {
   Star,
   X,
   Clock3,
+  Settings,
 } from "lucide-react";
 import { sports } from "./catalog";
 import { Empty } from "./components/shared";
@@ -22,6 +23,7 @@ import Dashboard from "./pages/Dashboard";
 import MatchPage from "./pages/MatchPage";
 import TransfersPage from "./pages/TransfersPage";
 import About from "./pages/About";
+import AdminGames from "./pages/AdminGames";
 function App() {
   const [theme, setTheme] = useState<"light" | "dark">(() => {
     try { return localStorage.getItem("sportstates:theme") === "dark" ? "dark" : "light"; }
@@ -102,6 +104,7 @@ function App() {
                 {s.name}
               </Link>
             ))}
+            <NavLink to="/admin/jogos"><Settings size={18} />Administração</NavLink>
             <NavLink to="/sobre">
               <Globe2 size={18} />
               Fontes e cobertura
@@ -156,6 +159,7 @@ function App() {
                 element={<MatchPage />}
               />
               <Route path="/transferencias" element={<TransfersPage />} />
+              <Route path="/admin/jogos" element={<AdminGames />} />
               <Route path="/sobre" element={<About />} />
               <Route
                 path="*"

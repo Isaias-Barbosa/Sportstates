@@ -1,3 +1,4 @@
+import { readFeatured, saveFeatured, validKey, authorized } from "./featured.mjs";
 import { matchMedia } from "./match-media.mjs";
 import { enrichBroadcasts } from "./broadcast-schedule.mjs";
 import { SPORTS, leagueFor } from "./catalog.mjs";
@@ -110,6 +111,11 @@ async function football(path) {
 // ─── Route handler ────────────────────────────────────────────────────────────
 export async function route(url) {
   const q = url.searchParams;
+  if (url.pathname === "/api/featured") {
+    const date=q.get("date") || dayInBrazil(new Date());
+    if (!validDate(date)) return [400,{error:"Data inválida."}];
+    return [200,await readFeatured(date)];
+  }
   if (url.pathname === "/api/scores") {
     const date = q.get("date") || dayInBrazil(new Date());
     if (!validDate(date))
@@ -203,6 +209,24 @@ export async function route(url) {
 export async function handler(req, res) {
   res.setHeader("Content-Type", "application/json; charset=utf-8");
   res.setHeader("X-Content-Type-Options", "nosniff");
+  const requestUrl = new URL(req.url, "http://localhost");
+  if (requestUrl.pathname === "/api/index" && requestUrl.searchParams.has("path")) requestUrl.pathname = "/api/" + requestUrl.searchParams.get("path");
+  if (requestUrl.pathname === "/api/admin/featured") {
+    res.setHeader("Cache-Control", "no-store");
+    if (!process.env.ADMIN_ACCESS_KEY || process.env.ADMIN_ACCESS_KEY.length < 32) { res.statusCode=503; return res.end(JSON.stringify({error:"Acesso administrativo ainda não configurado."})); }
+    if (!authorized(req.headers?.authorization)) { res.statusCode=401; return res.end(JSON.stringify({error:"Chave de acesso inválida."})); }
+    try {
+      if (req.method === "GET") { res.statusCode=200; return res.end(JSON.stringify({ok:true})); }
+      if (req.method !== "PUT") { res.statusCode=405; res.setHeader("Allow","GET, PUT"); return res.end(JSON.stringify({error:"Método não permitido."})); }
+      let payload = req.body;
+      if (payload == null) { let body=''; for await (const chunk of req) { body+=chunk; if(body.length>4096) throw new Error("Dados muito grandes."); } payload=body; }
+      if (typeof payload === "string") { if(payload.length>4096) throw new Error("Dados muito grandes."); payload=JSON.parse(payload); }
+      const {date,key}=payload;
+      if(!validDate(date) || (key!==null && !validKey(key))) {res.statusCode=400;return res.end(JSON.stringify({error:"Data ou partida inválida."}));}
+      if(key!==null) {const results=await scoreboard(date); if(!results.matches.some(m=>`${m.sport}/${m.league}/${m.id}`===key)){res.statusCode=400;return res.end(JSON.stringify({error:"A partida não consta nesta data."}));}}
+      await saveFeatured(date,key); res.statusCode=200; return res.end(JSON.stringify({date,key}));
+    } catch(error) {res.statusCode=502; return res.end(JSON.stringify({error:"Não foi possível salvar o destaque."}));}
+  }
   if (req.method !== "GET") {
     res.setHeader("Allow", "GET");
     res.statusCode = 405;
@@ -218,6 +242,7 @@ export async function handler(req, res) {
     res.setHeader(
       "Cache-Control",
       status === 200 &&
+        url.pathname !== "/api/featured" &&
         !body.stale &&
         !body.warnings?.length &&
         body.configured !== false

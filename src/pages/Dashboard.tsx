@@ -48,6 +48,7 @@ export default function Dashboard({
     "/api/scores?date=" + encodeURIComponent(date),
   );
   const matches = data?.matches || [];
+  const { data: selection } = useApi<{key:string|null}>("/api/featured?date=" + encodeURIComponent(date), 30000);
   const set = (key: string, value: string) => {
     const p = new URLSearchParams(params);
     if (value === "all") p.delete(key);
@@ -75,6 +76,7 @@ export default function Dashboard({
   );
   const groups = [...new Set(visible.map((m) => m.league))];
   const featured =
+    (sport === "all" && selection?.key ? matches.find(m => keyOf(m) === selection.key) : undefined) ||
     live.find((m) => sport === "all" || m.sport === sport) ||
     live[0] ||
     matches.find(
@@ -143,9 +145,7 @@ export default function Dashboard({
           <div>
             <div className="eyebrow">NO CENTRO DO JOGO</div>
             <h2 id="live-spotlight-title">
-              {featured?.state === "live"
-                ? "Ao Vivo Agora"
-                : "Próximo confronto"}
+              {sport === "all" && selection?.key && featured && keyOf(featured) === selection.key ? "Jogo do Dia" : featured?.state === "live" ? "Ao Vivo Agora" : featured?.state === "finished" ? "Partida em destaque" : "Próximo confronto"}
             </h2>
           </div>
           <span>
