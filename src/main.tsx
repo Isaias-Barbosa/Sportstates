@@ -126,18 +126,10 @@ function App() {
         <div className="workspace" inert={menu}>
           <header className="topbar">
             <div className="top-left">
-              <button
-                ref={menuButton}
-                aria-expanded={menu}
-                aria-controls="main-menu"
-                className="mobile-menu icon-button"
-                onClick={() => setMenu(true)}
-                aria-label="Abrir menu"
-              >
-                <Menu />
-              </button>
-              <span className="live-dot" />
-              <span>O jogo acontece aqui.</span>
+              <Link to="/" className="brand topbar-brand" aria-label="Sportstates — início">
+                <span className="brandmark"><Activity size={20} /></span>
+                sportstates<span className="brand-dot">.</span>
+              </Link>
             </div>
             <div className="top-right">
               <button className="theme-toggle" onClick={() => setTheme(t => t === "light" ? "dark" : "light")} aria-label={theme === "light" ? "Ativar tema escuro" : "Ativar tema claro"}>
@@ -149,6 +141,17 @@ function App() {
               <span className="divider" />
               <Clock3 size={15} />
               <span>Horário de Brasília</span>
+              <button
+                ref={menuButton}
+                aria-expanded={menu}
+                aria-controls="main-menu"
+                className="mobile-menu menu-trigger"
+                onClick={() => setMenu(true)}
+                aria-label="Abrir menu"
+              >
+                <span>Menu</span>
+                <Menu size={20} aria-hidden="true" />
+              </button>
             </div>
           </header>
           <main>

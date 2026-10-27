@@ -2650,3 +2650,16 @@ nav a.active { background:var(--green-glow); color:var(--green); }
 .standings-team-highlight { background:var(--green-glow); }
 .standings-note { color:var(--muted); font-size:12px; }
 .standings-link { color:var(--green); font-weight:600; font-size:12px; }
+
+/* Brand and right-hand navigation */
+.sidebar { inset: 0 0 0 auto; border-right: 0; border-left: 1px solid var(--border); transform: translateX(100%); }
+.sidebar.open { transform: translateX(0); }
+.topbar-brand { margin: 0; font-size: 21px; white-space: nowrap; }
+.topbar-brand .brandmark { width: 34px; height: 34px; }
+.menu-trigger { align-items: center; gap: 8px; padding: 9px 12px; border: 1px solid var(--border); border-radius: 9px; color: var(--text); font-size: 12px; font-weight: 700; }
+.menu-trigger:hover { background: var(--surface); }
+@media (max-width: 600px) {
+  .topbar-brand { font-size: 18px; }
+  .top-right > svg, .top-right > span:not(.divider) { display: none; }
+  .menu-trigger { gap: 6px; padding: 8px; }
+}
