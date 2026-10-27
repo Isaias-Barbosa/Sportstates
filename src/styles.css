@@ -2609,3 +2609,17 @@ nav a.active { background:var(--green-glow); color:var(--green); }
 .admin-check small { display:block; margin-top:5px; }
 .modal-actions { display:flex; justify-content:flex-end; gap:15px; margin-top:20px; }
 @media(max-width:650px) { .admin-table-head,.admin-game { grid-template-columns:minmax(0,1fr) 75px 50px; padding:12px; gap:6px; font-size:11px; } .edit-game span { display:none; } .admin-game-name .crest:last-child { display:none; } }
+
+/* A soft pulse makes the live clock easier to spot. */
+.match-time.is-live .live-dot,
+.live-match-feature.is-live .live-match-top .live-dot {
+  animation: live-clock-pulse 1.8s ease-in-out infinite;
+}
+@keyframes live-clock-pulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 var(--live-border); }
+  50% { opacity: .75; box-shadow: 0 0 0 6px transparent; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .match-time.is-live .live-dot,
+  .live-match-feature.is-live .live-match-top .live-dot { animation: none; }
+}
