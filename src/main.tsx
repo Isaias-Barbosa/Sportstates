@@ -25,6 +25,8 @@ import TransfersPage from "./pages/TransfersPage";
 import About from "./pages/About";
 import AdminGames from "./pages/AdminGames";
 import StandingsPage from "./pages/StandingsPage";
+import TeamsPage from "./pages/TeamsPage";
+import TeamPage from "./pages/TeamPage";
 function App() {
   const [theme, setTheme] = useState<"light" | "dark">(() => {
     try { return localStorage.getItem("sportstates:theme") === "dark" ? "dark" : "light"; }
@@ -95,6 +97,7 @@ function App() {
               <span>⚽</span>Futebol
               <ChevronDown size={14} className="push" />
             </Link>
+            <NavLink to="/times" className="subnav"><span>◉</span>Times</NavLink>
             <NavLink to="/transferencias" className="subnav">
               <ArrowDownUp size={15} />
               Transferências
@@ -163,6 +166,8 @@ function App() {
                 path="/partida/:sport/:league/:id"
                 element={<MatchPage />}
               />
+              <Route path="/times" element={<TeamsPage />} />
+              <Route path="/times/:id" element={<TeamPage />} />
               <Route path="/transferencias" element={<TransfersPage />} />
               <Route path="/admin/jogos" element={<AdminGames />} />
               <Route path="/sobre" element={<About />} />

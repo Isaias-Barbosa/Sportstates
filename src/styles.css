@@ -2663,3 +2663,19 @@ nav a.active { background:var(--green-glow); color:var(--green); }
   .top-right > svg, .top-right > span:not(.divider) { display: none; }
   .menu-trigger { gap: 6px; padding: 8px; }
 }
+
+/* Cores vivas e áreas de clubes */
+:root { --green:#155de8; --green-dim:#0a3fb3; --green-glow:#155de81a; --green-border:#155de84d; --live:#ed264c; --live-dim:#ed264c12; --live-border:#ed264c45; }
+:root[data-theme="dark"] { --green:#79a9ff; --green-dim:#9ebdff; --green-glow:#79a9ff24; --green-border:#79a9ff66; --live:#ff637c; --live-dim:#ff637c19; --live-border:#ff637c50; }
+.club-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:12px; }
+.club-card { display:flex; align-items:center; gap:14px; width:100%; text-align:left; border:1px solid var(--border); border-radius:14px; padding:17px; background:var(--panel); }
+.club-card:hover { border-color:var(--green); background:var(--green-glow); }
+.club-card img { width:44px; height:44px; object-fit:contain; }
+.club-card div { flex:1; min-width:0; }.club-card small,.roster-player small { display:block; color:var(--muted); margin-top:5px; }
+.club-card > span { color:var(--green); }
+.club-hero { display:flex; align-items:center; gap:25px; padding:32px; border:1px solid var(--green-border); border-radius:16px; background:linear-gradient(125deg,var(--green-glow),var(--panel)); }
+.club-hero img { width:100px; height:100px; object-fit:contain; }.club-hero p { margin:8px 0; color:var(--muted); }.club-hero a { color:var(--green); font-weight:700; }
+.roster-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:10px; }.roster-player { display:flex; gap:12px; align-items:center; padding:14px; border:1px solid var(--border); border-radius:10px; background:var(--panel); }.roster-number { display:grid; place-items:center; width:38px; height:38px; border-radius:9px; background:var(--green-glow); color:var(--green); font-weight:700; }
+.team-games,.team-news { display:grid; gap:10px; }.team-games > div,.team-news a { padding:17px; border:1px solid var(--border); border-radius:10px; background:var(--panel); }.team-games span,.team-news strong,.team-news span { display:block; margin-top:8px; }.team-games span,.team-news small,.team-news p { color:var(--muted); }.team-news span { color:var(--green); font-size:12px; }
+.club-form { display:grid; gap:14px; max-width:650px; padding:20px; background:var(--panel); border:1px solid var(--border); border-radius:12px; }.club-form label { display:grid; gap:6px; font-weight:600; }.club-form textarea { font:inherit; min-height:110px; padding:11px; color:var(--text); background:var(--surface); border:1px solid var(--border); border-radius:8px; resize:vertical; }
+@media(max-width:600px){.club-hero { padding:20px; gap:16px; }.club-hero img { width:70px; height:70px; }.club-hero h1 { font-size:28px; }}

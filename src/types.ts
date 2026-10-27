@@ -153,3 +153,5 @@ export type MatchMedia = { related?:MatchVideo[]; searchLinks?:{name:string;url:
 
 export type CompetitionCatalog = { sports: { id: string; name: string; icon: string; leagues: { id: string; name: string }[] }[] };
 export type Standings = { sport: string; league: string; name: string; groups: { name: string; rows: { id: string; name: string; logo: string | null; rank: string; stats: Record<string, string> }[] }[]; stale: boolean; fetchedAt: string; source: string };
+export type ClubProfile = {id:string;name:string;logo:string;description:string;city:string;stadium:string;website:string};
+export type ClubDetails = {team:ClubProfile;athletes:{id:string;name:string;number:string;position:string;image:string|null}[];upcoming:Match[];lineup:(Detail['lineups'][number] & {match:string;date:string})|null;articles:{title:string;description:string;url:string;date:string;source:string}[];coverage:{roster:boolean;schedule:boolean;news:boolean};source:string;stale:boolean};
