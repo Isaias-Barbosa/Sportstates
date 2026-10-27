@@ -1,0 +1,6 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { authBaseUrl, adminAuthorized } from '../server/admin-auth.mjs';
+
+test('Neon Auth rejects non-HTTPS and unrelated hosts',()=>{const old=process.env.DATABASE_NEON_AUTH_BASE_URL;try{process.env.DATABASE_NEON_AUTH_BASE_URL='http://fake.neon.tech/auth';assert.equal(authBaseUrl(),null);process.env.DATABASE_NEON_AUTH_BASE_URL='https://neon.tech.attacker.test/auth';assert.equal(authBaseUrl(),null);process.env.DATABASE_NEON_AUTH_BASE_URL='https://example.neonauth.us-east-1.aws.neon.tech/neondb/auth/';assert.equal(authBaseUrl(),'https://example.neonauth.us-east-1.aws.neon.tech/neondb/auth');}finally{if(old===undefined)delete process.env.DATABASE_NEON_AUTH_BASE_URL;else process.env.DATABASE_NEON_AUTH_BASE_URL=old;}});
+test('admin access denies arbitrary bearer strings and allows existing key during migration',async()=>{const old=process.env.ADMIN_ACCESS_KEY;process.env.ADMIN_ACCESS_KEY='a'.repeat(32);try{assert.equal(await adminAuthorized('Bearer bad'),false);assert.equal(await adminAuthorized('Bearer '+process.env.ADMIN_ACCESS_KEY),true);assert.equal(await adminAuthorized(undefined),false);}finally{if(old===undefined)delete process.env.ADMIN_ACCESS_KEY;else process.env.ADMIN_ACCESS_KEY=old;}});

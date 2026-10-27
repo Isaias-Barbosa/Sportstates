@@ -3,6 +3,7 @@ import { matchMedia } from "./match-media.mjs";
 import { enrichBroadcasts } from "./broadcast-schedule.mjs";
 import { SPORTS, leagueFor } from "./catalog.mjs";
 import { listTeams, teamDetails, saveTeam } from "./teams.mjs";
+import { authBaseUrl, adminAuthorized } from "./admin-auth.mjs";
 import { normalizeStandings } from "./standings.mjs";
 import {
   dayInBrazil,
@@ -118,6 +119,7 @@ export async function route(url) {
     if (!validDate(date)) return [400,{error:"Data inválida."}];
     return [200,await readFeatured(date)];
   }
+  if (url.pathname === "/api/admin-auth-config") { const url=authBaseUrl(); return url ? [200, { url }] : [503, {error:"Neon Auth não configurado."}]; }
   if (url.pathname === "/api/teams") return [200, { teams: await listTeams() }];
   if (url.pathname === "/api/team") {
     const id=q.get("id"); if (!/^\d{1,12}$/.test(id || "")) return [400, {error:"Time inválido."}];
@@ -234,7 +236,7 @@ export async function handler(req, res) {
   if (requestUrl.pathname === "/api/admin/teams") {
     res.setHeader("Cache-Control", "no-store");
     if (!process.env.ADMIN_ACCESS_KEY || process.env.ADMIN_ACCESS_KEY.length < 32) { res.statusCode=503; return res.end(JSON.stringify({error:"Acesso administrativo ainda não configurado."})); }
-    if (!authorized(req.headers?.authorization)) { res.statusCode=401; return res.end(JSON.stringify({error:"Chave de acesso inválida."})); }
+    if (!await adminAuthorized(req.headers?.authorization)) { res.statusCode=401; return res.end(JSON.stringify({error:"Chave de acesso inválida."})); }
     try {
       if(req.method === "GET") {const teams=await listTeams();res.statusCode=200;return res.end(JSON.stringify({teams}));}
       if(req.method !== "PUT") {res.statusCode=405;res.setHeader("Allow","GET, PUT");return res.end(JSON.stringify({error:"Método não permitido."}));}
@@ -247,7 +249,7 @@ export async function handler(req, res) {
   if (requestUrl.pathname === "/api/admin/featured") {
     res.setHeader("Cache-Control", "no-store");
     if (!process.env.ADMIN_ACCESS_KEY || process.env.ADMIN_ACCESS_KEY.length < 32) { res.statusCode=503; return res.end(JSON.stringify({error:"Acesso administrativo ainda não configurado."})); }
-    if (!authorized(req.headers?.authorization)) { res.statusCode=401; return res.end(JSON.stringify({error:"Chave de acesso inválida."})); }
+    if (!await adminAuthorized(req.headers?.authorization)) { res.statusCode=401; return res.end(JSON.stringify({error:"Chave de acesso inválida."})); }
     try {
       if (req.method === "GET") { res.statusCode=200; return res.end(JSON.stringify({ok:true})); }
       if (req.method !== "PUT") { res.statusCode=405; res.setHeader("Allow","GET, PUT"); return res.end(JSON.stringify({error:"Método não permitido."})); }

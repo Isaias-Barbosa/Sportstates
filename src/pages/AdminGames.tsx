@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import AdminTeams from '../components/AdminTeams';
+import AdminNeonLogin from '../components/AdminNeonLogin';
 import { CalendarDays, Check, Pencil, X } from 'lucide-react';
 import { useApi, today, time } from '../hooks';
 import { keyOf, sports } from '../catalog';
@@ -23,7 +24,7 @@ export default function AdminGames() {
  useEffect(()=>{if(!selected)return;closeButton.current?.focus();const escape=(e:KeyboardEvent)=>{if(e.key==='Escape'&&!saving)setSelected(null)};document.addEventListener('keydown',escape);return()=>document.removeEventListener('keydown',escape)},[selected,saving]);
  async function login(e:React.FormEvent) {e.preventDefault();setError('');try{const r=await fetch('/api/admin/featured',{headers:{Authorization:`Bearer ${draftSecret}`},cache:'no-store'});const j=await r.json();if(!r.ok)throw new Error(j.error);setSecret(draftSecret);setDraftSecret('');}catch(e){setError(e instanceof Error?e.message:'Não foi possível acessar.')}}
  async function save(){if(!selected)return;setSaving(true);setError('');try{const key=keyOf(selected);const r=await fetch('/api/admin/featured',{method:'PUT',headers:{'Content-Type':'application/json',Authorization:`Bearer ${secret}`},body:JSON.stringify({date,key:checked?key:(feature?.key===key?null:feature?.key||null)})});const j=await r.json();if(!r.ok)throw new Error(j.error);setSelected(null);setNotice(checked?'Jogo do Dia atualizado.':'Destaque removido.');refresh();}catch(e){setError(e instanceof Error?e.message:'Não foi possível salvar.')}finally{setSaving(false)}}
- if(!secret)return <section className="admin-login"><div className="eyebrow">ÁREA ADMINISTRATIVA</div><h1>Entrar no painel</h1><p>Informe a chave administrativa para editar o destaque.</p><form onSubmit={login}><label>Chave de acesso<input type="password" autoComplete="current-password" value={draftSecret} onChange={e=>setDraftSecret(e.target.value)} required /></label><button className="admin-primary">Acessar painel</button></form>{error&&<Notice error>{error}</Notice>}</section>;
+ if(!secret)return <section className="admin-login"><div className="eyebrow">ÁREA ADMINISTRATIVA</div><h1>Entrar no painel</h1><p>Entre com a conta administradora do Neon.</p><AdminNeonLogin onLogin={setSecret}/><details><summary>Usar chave administrativa</summary><form onSubmit={login}><label>Chave de acesso<input type="password" autoComplete="current-password" value={draftSecret} onChange={e=>setDraftSecret(e.target.value)} required /></label><button className="admin-primary">Acessar painel</button></form>{error&&<Notice error>{error}</Notice>}</details></section>;
  const matches=data?.matches||[];
  const available=sports.filter(s=>matches.some(m=>m.sport===s.id));
  const visible=matches.filter(m=>sport==='all'||m.sport===sport);
