@@ -32,6 +32,8 @@ import {
   matchLabel,
 } from "../components/shared";
 import MatchBroadcasts from "../components/MatchBroadcasts";
+import TeamCrest from "../components/TeamCrest";
+import type { ClubProfile } from "../types";
 import WhereToWatch from "../components/WhereToWatch";
 export default function Dashboard({
   favoritesOnly = false,
@@ -48,6 +50,8 @@ export default function Dashboard({
     "/api/scores?date=" + encodeURIComponent(date),
   );
   const matches = data?.matches || [];
+  const {data: clubs} = useApi<{teams:ClubProfile[]}>('/api/teams', 300000);
+  const hasProfile = (m: typeof matches[number], id:string) => m.sport === "soccer" && !!clubs?.teams.some(t => t.id === id);
   const { data: selection } = useApi<{key:string|null}>("/api/featured?date=" + encodeURIComponent(date), 30000);
   const set = (key: string, value: string) => {
     const p = new URLSearchParams(params);
@@ -161,8 +165,7 @@ export default function Dashboard({
           <Loading />
         ) : featured ? (
           <>
-            <Link
-              to={"/partida/" + keyOf(featured)}
+            <div
               className={
                 "live-match-feature " +
                 (featured.state === "live" ? "is-live" : "")
@@ -180,10 +183,10 @@ export default function Dashboard({
               </div>
               <div className="live-match-scoreboard">
                 <div className="live-match-team">
-                  <Crest team={featured.home} large />
+                  <TeamCrest team={featured.home} large available={hasProfile(featured, featured.home.id)} />
                   <h3>{featured.home.name}</h3>
                 </div>
-                <div className="live-match-score">
+                <Link className="live-match-score" to={"/partida/" + keyOf(featured)} aria-label={"Ver partida " + featured.home.name + " x " + featured.away.name}>
                   <strong>
                     {featured.state === "scheduled"
                       ? "×"
@@ -194,19 +197,19 @@ export default function Dashboard({
                       ? matchLabel(featured) === "Intervalo" ? "INTERVALO" : "EM ANDAMENTO"
                       : time(featured.date) + " · Brasília"}
                   </span>
-                </div>
+                </Link>
                 <div className="live-match-team">
-                  <Crest team={featured.away} large />
+                  <TeamCrest team={featured.away} large available={hasProfile(featured, featured.away.id)} />
                   <h3>{featured.away.name}</h3>
                 </div>
               </div>
               <div className="live-match-footer">
                 <span>{featured.venue || "Detalhes da partida"}</span>
-                <strong>
+                <Link to={"/partida/" + keyOf(featured)} className="featured-match-link">
                   Ver minuto a minuto <ArrowRight size={18} />
-                </strong>
+                </Link>
               </div>
-            </Link>
+            </div>
             <MatchBroadcasts match={featured} />
           </>
         ) : (
@@ -369,15 +372,13 @@ export default function Dashboard({
                         {m.state === "live" && <span className="live-dot" />}
                         {matchLabel(m)}
                       </div>
-                      <Link className="match-link" to={"/partida/" + keyOf(m)}>
+                      <div className="match-link">
                         <div className="match-team home">
-                          <span>{m.home.name}</span>
-                          <Crest team={m.home} />
+                          <Link to={"/partida/" + keyOf(m)}>{m.home.name}</Link>
+                          <TeamCrest team={m.home} available={hasProfile(m,m.home.id)} />
                         </div>
-                        <div
-                          className={
-                            "score " + (m.state === "live" ? "score-live" : "")
-                          }
+                        <Link to={"/partida/" + keyOf(m)} aria-label={"Ver partida " + m.home.name + " x " + m.away.name}
+                          className={"score " + (m.state === "live" ? "score-live" : "")}
                         >
                           {m.state === "scheduled" ? (
                             <span className="versus">vs</span>
@@ -388,13 +389,13 @@ export default function Dashboard({
                               <b>{m.away.score ?? "–"}</b>
                             </>
                           )}
-                        </div>
+                        </Link>
                         <div className="match-team away">
-                          <Crest team={m.away} />
-                          <span>{m.away.name}</span>
+                          <TeamCrest team={m.away} available={hasProfile(m,m.away.id)} />
+                          <Link to={"/partida/" + keyOf(m)}>{m.away.name}</Link>
                         </div>
-                        <ChevronRight className="row-chevron" size={16} />
-                      </Link>
+                        <Link to={"/partida/" + keyOf(m)} aria-label={"Ver partida " + m.home.name + " x " + m.away.name}><ChevronRight className="row-chevron" size={16} /></Link>
+                      </div>
                       {m.state === "live" && !!m.watch?.links.length && (
                         <Link
                           className="watch-row-link icon-button"

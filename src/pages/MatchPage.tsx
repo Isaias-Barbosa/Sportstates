@@ -39,6 +39,8 @@ import MatchVideos, { OfficialVideo } from "../components/MatchVideos";
 import Lineups from "../components/Lineups";
 import WhereToWatch from "../components/WhereToWatch";
 import StandingsTable from "../components/StandingsTable";
+import TeamCrest from "../components/TeamCrest";
+import type { ClubProfile } from "../types";
 export default function MatchPage() {
   const { hash } = useLocation();
   const { sport, league, id } = useParams();
@@ -50,6 +52,7 @@ export default function MatchPage() {
     `/api/media?sport=${encodeURIComponent(sport || "")}&league=${encodeURIComponent(league || "")}&id=${encodeURIComponent(id || "")}`,
     120000,
   );
+  const {data: clubs} = useApi<{teams:ClubProfile[]}>("/api/teams", 300000);
   const [tab, setTab] = useState("events");
   useEffect(() => {
     if (hash === "#videos" && data?.match) {
@@ -90,7 +93,7 @@ export default function MatchPage() {
               </div>
               <div className="detail-score">
                 <div>
-                  <Crest team={data.match.home} large />
+                  <TeamCrest team={data.match.home} large available={data.match.sport === "soccer" && !!clubs?.teams.some(t => t.id === data.match.home.id)} />
                   <h2>{data.match.home.name}</h2>
                 </div>
                 <strong>
@@ -99,7 +102,7 @@ export default function MatchPage() {
                     : `${data.match.home.score ?? "–"} : ${data.match.away.score ?? "–"}`}
                 </strong>
                 <div>
-                  <Crest team={data.match.away} large />
+                  <TeamCrest team={data.match.away} large available={data.match.sport === "soccer" && !!clubs?.teams.some(t => t.id === data.match.away.id)} />
                   <h2>{data.match.away.name}</h2>
                 </div>
               </div>
