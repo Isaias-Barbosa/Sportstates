@@ -2690,3 +2690,10 @@ nav a.active { background:var(--green-glow); color:var(--green); }
 .team-games .team-game-meta { display:block; margin-top:10px; }
 
 .team-game-team .crest { margin:0; }
+.match-main { display:flex; flex:1; align-items:center; align-self:stretch; min-width:0; gap:8px; cursor:pointer; }
+.match-main:hover .row-chevron { color:var(--green); }
+.match-main:hover .match-team { color:var(--green); }
+.live-match-feature { cursor:pointer; }
+.match-row { position:relative; }
+.match-main::after { content:''; position:absolute; inset:0; }
+.match-row .watch-row-link, .match-row .favorite { position:relative; z-index:1; }
