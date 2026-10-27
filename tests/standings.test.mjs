@@ -1,0 +1,30 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { normalizeStandings } from '../server/standings.mjs';
+import { route } from '../server/api.mjs';
+
+test('normalizes nested groups, provider order and zero statistics', () => {
+  const groups = normalizeStandings({children:[{name:'Grupo A',standings:{entries:[{team:{id:'2',displayName:'Time B',logos:[{href:'https://example.com/b.png'}]},stats:[{name:'points',value:0},{name:'rank',displayValue:'1'}]},{team:{id:'1',displayName:'Time A'},stats:[{name:'points',displayValue:'3'}]}]}}]});
+  assert.equal(groups[0].name, 'Grupo A');
+  assert.deepEqual(groups[0].rows.map(x=>x.id), ['2','1']);
+  assert.equal(groups[0].rows[0].stats.points, '0');
+  assert.equal(groups[0].rows[0].logo, 'https://example.com/b.png');
+});
+test('catalog includes both Brazilian divisions and rejects invalid standings', async () => {
+  const [, catalog] = await route(new URL('http://localhost/api/competitions'));
+  const soccer = catalog.sports.find(s=>s.id==='soccer');
+  assert.ok(soccer.leagues.some(l=>l.id==='bra.1'));
+  assert.ok(soccer.leagues.some(l=>l.id==='bra.2'));
+  assert.equal((await route(new URL('http://localhost/api/standings?sport=../../&league=foo')))[0],400);
+});
+test('standings route requests the selected competition and normalizes its response', async () => {
+  const original = globalThis.fetch;
+  let requested;
+  globalThis.fetch = async url => { requested = new URL(url); return {ok:true,json:async()=>({children:[{name:'Tabela',standings:{entries:[{team:{id:'1',displayName:'Equipe'},stats:[{name:'points',displayValue:'10'}]}]}}]})}; };
+  try {
+    const [status, result] = await route(new URL('http://localhost/api/standings?sport=soccer&league=bra.2'));
+    assert.equal(status,200);
+    assert.match(requested.pathname,/soccer\/bra\.2\/standings$/);
+    assert.equal(result.groups[0].rows[0].stats.points,'10');
+  } finally {globalThis.fetch=original;}
+});

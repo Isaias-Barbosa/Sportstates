@@ -38,6 +38,7 @@ import EventIcon from "../components/EventIcon";
 import MatchVideos, { OfficialVideo } from "../components/MatchVideos";
 import Lineups from "../components/Lineups";
 import WhereToWatch from "../components/WhereToWatch";
+import StandingsTable from "../components/StandingsTable";
 export default function MatchPage() {
   const { hash } = useLocation();
   const { sport, league, id } = useParams();
@@ -135,6 +136,7 @@ export default function MatchPage() {
                   ["events", "Minuto a minuto"],
                   ["stats", "Estatísticas"],
                   ["lineups", "Escalações"],
+                  ["standings", "Classificação"],
                   ["videos", `Vídeos${media && (media.highlights.length + media.replays.length + (media.related?.length || 0)) ? ` (${(media.highlights.length + media.replays.length + (media.related?.length || 0))})` : ""}`],
                 ].map(([v, l]) => (
                   <button
@@ -146,6 +148,7 @@ export default function MatchPage() {
                   </button>
                 ))}
               </div>
+              {tab === "standings" && <StandingsTable sport={data.match.sport} league={data.match.league} match={data.match} />}
               {tab === "videos" && <MatchVideos media={media} loading={mediaLoading} error={mediaError} finished={data.match.state === "finished"} />}
               {tab === "events" && (
                 <>

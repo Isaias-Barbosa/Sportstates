@@ -11,7 +11,7 @@ import {
   LayoutGrid,
   Menu,
   Radio,
-  Star,
+  ListOrdered,
   X,
   Clock3,
   Settings,
@@ -24,6 +24,7 @@ import MatchPage from "./pages/MatchPage";
 import TransfersPage from "./pages/TransfersPage";
 import About from "./pages/About";
 import AdminGames from "./pages/AdminGames";
+import StandingsPage from "./pages/StandingsPage";
 function App() {
   const [theme, setTheme] = useState<"light" | "dark">(() => {
     try { return localStorage.getItem("sportstates:theme") === "dark" ? "dark" : "light"; }
@@ -85,9 +86,9 @@ function App() {
               Ao vivo
               <span className="nav-live" />
             </NavLink>
-            <NavLink to="/favoritos">
-              <Star size={18} />
-              Favoritos
+            <NavLink to="/classificacoes">
+              <ListOrdered size={18} />
+              Classificações
             </NavLink>
             <div className="nav-label">ESPORTES</div>
             <Link to="/?sport=soccer">
@@ -154,6 +155,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Dashboard />} />
               <Route path="/favoritos" element={<Dashboard favoritesOnly />} />
+              <Route path="/classificacoes" element={<StandingsPage />} />
               <Route
                 path="/partida/:sport/:league/:id"
                 element={<MatchPage />}

@@ -2,6 +2,7 @@ import { readFeatured, saveFeatured, validKey, authorized } from "./featured.mjs
 import { matchMedia } from "./match-media.mjs";
 import { enrichBroadcasts } from "./broadcast-schedule.mjs";
 import { SPORTS, leagueFor } from "./catalog.mjs";
+import { normalizeStandings } from "./standings.mjs";
 import {
   dayInBrazil,
   validDate,
@@ -115,6 +116,18 @@ export async function route(url) {
     const date=q.get("date") || dayInBrazil(new Date());
     if (!validDate(date)) return [400,{error:"Data inválida."}];
     return [200,await readFeatured(date)];
+  }
+  if (url.pathname === "/api/competitions") {
+    return [200, { sports: SPORTS.map(s => ({ ...s, leagues: s.leagues.map(([id, name]) => ({ id, name })) })) }];
+  }
+  if (url.pathname === "/api/standings") {
+    const config = leagueFor(q.get("sport"), q.get("league"));
+    if (!config) return [400, { error: "Competição inválida." }];
+    const result = await cached(`standings:${config.sport}:${config.league}`, 60000, async () => {
+      const raw = await json(`https://site.api.espn.com/apis/v2/sports/${config.sport}/${config.league}/standings?lang=pt&region=br`);
+      return normalizeStandings(raw);
+    }, 300000);
+    return [200, { ...config, groups: result.value, fetchedAt: new Date(result.at).toISOString(), stale: result.stale, source: "ESPN · feed público não oficial" }];
   }
   if (url.pathname === "/api/scores") {
     const date = q.get("date") || dayInBrazil(new Date());

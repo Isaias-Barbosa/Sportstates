@@ -150,3 +150,6 @@ export type WatchOptions = {
 
 export type MatchVideo = { sourceRegion?:"BR"|"international"; provider?:"youtube"|"espn"; mediaUrl?:string; id:string; title:string; channel:string; url:string; eventId?:string; minute?:string };
 export type MatchMedia = { related?:MatchVideo[]; searchLinks?:{name:string;url:string}[]; highlights:MatchVideo[]; replays:MatchVideo[]; partial:boolean; message:string; source:string };
+
+export type CompetitionCatalog = { sports: { id: string; name: string; icon: string; leagues: { id: string; name: string }[] }[] };
+export type Standings = { sport: string; league: string; name: string; groups: { name: string; rows: { id: string; name: string; logo: string | null; rank: string; stats: Record<string, string> }[] }[]; stale: boolean; fetchedAt: string; source: string };

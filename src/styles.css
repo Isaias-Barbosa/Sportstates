@@ -2630,3 +2630,23 @@ nav a.active { background:var(--green-glow); color:var(--green); }
   .live-match-feature.is-live .live-match-top .live-dot,
   .detail-status .live-dot { animation: none; }
 }
+
+.standings-sports { margin-top:16px; }
+.standings-leagues { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:12px; }
+.standings-league { display:flex; flex-direction:column; align-items:flex-start; gap:10px; padding:18px; text-align:left; background:var(--panel); border:1px solid var(--border); border-radius:14px; }
+.standings-league > span { font-size:22px; }
+.standings-league small { color:var(--muted); }
+.standings-league:hover, .standings-league.selected { border-color:var(--green); background:var(--green-glow); }
+.standings-result { display:grid; gap:16px; }
+.standings-group { overflow:hidden; background:var(--panel); border:1px solid var(--border); border-radius:12px; }
+.standings-group h3 { padding:16px 18px; background:var(--surface); }
+.standings-scroll { overflow-x:auto; }
+.standings-group table { width:100%; border-collapse:collapse; font-size:12px; }
+.standings-group th, .standings-group td { padding:12px 10px; border-top:1px solid var(--border); text-align:center; white-space:nowrap; }
+.standings-group thead { color:var(--muted); }
+.standings-group th:nth-child(2) { text-align:left; width:100%; }
+.standings-team { display:flex; gap:10px; align-items:center; }
+.standings-team img { width:24px; height:24px; object-fit:contain; }
+.standings-team-highlight { background:var(--green-glow); }
+.standings-note { color:var(--muted); font-size:12px; }
+.standings-link { color:var(--green); font-weight:600; font-size:12px; }
