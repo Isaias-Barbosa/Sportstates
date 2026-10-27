@@ -1,7 +1,7 @@
 import { readFeatured, saveFeatured, validKey, authorized } from "./featured.mjs";
 import { matchMedia } from "./match-media.mjs";
 import { enrichBroadcasts } from "./broadcast-schedule.mjs";
-import { SPORTS, leagueFor } from "./catalog.mjs";
+import { SPORTS, SOCCER_REGIONS, leagueFor } from "./catalog.mjs";
 import { listTeams, teamDetails, saveTeam } from "./teams.mjs";
 import { fetchTeamCatalog, normalizeTeamSearch } from "./team-search.mjs";
 import { authBaseUrl, adminAuthorized } from "./admin-auth.mjs";
@@ -128,7 +128,7 @@ export async function route(url) {
     return result.value ? [200, { ...result.value, stale: result.stale }] : [404, {error:"Time não encontrado."}];
   }
   if (url.pathname === "/api/competitions") {
-    return [200, { sports: SPORTS.map(s => ({ ...s, leagues: s.leagues.map(([id, name]) => ({ id, name })) })) }];
+    return [200, { sports: SPORTS.map(s => ({ ...s, leagues: s.leagues.map(([id, name]) => ({ id, name })) })), soccerRegions: SOCCER_REGIONS }];
   }
   if (url.pathname === "/api/standings") {
     const config = leagueFor(q.get("sport"), q.get("league"));

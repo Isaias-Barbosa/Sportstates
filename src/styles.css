@@ -2730,3 +2730,8 @@ body.club-page-active { background:var(--club-page-bg, var(--canvas)); backgroun
 .club-honours > li { padding:14px; border:1px solid var(--border); border-radius:10px; background:var(--surface); overflow-wrap:anywhere; }
 .club-honour-years { display:flex; flex-wrap:wrap; gap:6px; margin-top:10px; }
 .club-honour-years span { padding:4px 7px; border-radius:6px; background:var(--green-glow); color:var(--green); font-size:11px; font-weight:600; }
+
+.standings-filter { display: grid; gap: 8px; max-width: 360px; margin-top: 24px; }
+.standings-filter label { font-weight: 700; font-size: 14px; }
+.standings-filter select { width: 100%; padding: 12px; border: 1px solid var(--border); border-radius: 10px; background: var(--panel); color: var(--text); font: inherit; }
+.standings-filter small { color: var(--muted); line-height: 1.5; }

@@ -15,7 +15,7 @@ export default function StandingsTable({ sport, league, match }: {sport:string; 
   const {data, error, loading, refresh} = useApi<Standings>(`/api/standings?sport=${encodeURIComponent(sport)}&league=${encodeURIComponent(league)}`, 60000);
   if (loading) return <Loading />;
   if (error && !data) return <Notice error>{error} <button onClick={refresh}>Tentar novamente</button></Notice>;
-  if (!data?.groups.length) return <Empty title="Classificação indisponível">A fonte não disponibilizou uma tabela para esta competição ou fase.</Empty>;
+  if (!data?.groups.length) return <Empty title="Classificação indisponível">A fonte não disponibilizou uma tabela para esta competição ou fase. Copas eliminatórias podem não ter classificação por pontos.</Empty>;
   const selected = columns[sport] || [];
   return <div className="standings-result">
     {error && <Notice error>{error} Exibindo a última consulta bem-sucedida. <button onClick={refresh}>Tentar novamente</button></Notice>}

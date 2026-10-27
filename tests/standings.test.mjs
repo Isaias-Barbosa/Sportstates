@@ -28,3 +28,15 @@ test('standings route requests the selected competition and normalizes its respo
     assert.equal(result.groups[0].rows[0].stats.points,'10');
   } finally {globalThis.fetch=original;}
 });
+test('regiões apresentam competições nacionais e continentais sem duplicar o catálogo', async () => {
+  const [, catalog] = await route(new URL('http://localhost/api/competitions'));
+  const leagues = catalog.sports.find(s => s.id === 'soccer').leagues;
+  const ids = leagues.map(l => l.id);
+  assert.equal(new Set(ids).size, ids.length);
+  const brasil = catalog.soccerRegions.find(r => r.id === 'brasil');
+  const england = catalog.soccerRegions.find(r => r.id === 'inglaterra');
+  assert.ok(['bra.copa_do_brazil','conmebol.libertadores','conmebol.sudamericana'].every(id => brasil.competitions.includes(id)));
+  assert.ok(['eng.fa','eng.league_cup','uefa.champions'].every(id => england.competitions.includes(id)));
+  assert.ok(ids.includes('usa.1') && ids.includes('ksa.1'));
+  for (const region of catalog.soccerRegions) for (const id of region.competitions) assert.ok(ids.includes(id), id);
+});
