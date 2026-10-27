@@ -2684,3 +2684,9 @@ nav a.active { background:var(--green-glow); color:var(--green); }
 .featured-match-link { display:flex; align-items:center; gap:6px; font-weight:700; color:var(--green); }
 .team-games > a { display:block; padding:17px; border:1px solid var(--border); border-radius:10px; background:var(--panel); }
 .team-games > a:hover { border-color:var(--green); }
+.team-game-teams { display:flex; flex-wrap:wrap; align-items:center; gap:10px; }
+.team-games .team-game-team { display:inline-flex; align-items:center; gap:8px; margin:0; color:var(--text); }
+.team-game-score { color:var(--green); }
+.team-games .team-game-meta { display:block; margin-top:10px; }
+
+.team-game-team .crest { margin:0; }
