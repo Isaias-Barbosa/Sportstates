@@ -9,7 +9,7 @@ import {
   ChevronDown,
 } from "lucide-react";
 import { useApi } from "../hooks";
-import { Empty, Loading, Notice } from "../components/shared";
+import { Empty, Notice } from "../components/shared";
 
 type Article = {
   id: string;
@@ -138,7 +138,10 @@ export default function NewsPage() {
         </Notice>
       )}
       {loading && !data ? (
-        <Loading />
+        <div className="news-loading" role="status">
+          <Newspaper size={24} aria-hidden="true" />
+          <span>Buscando as últimas publicações nas fontes…</span>
+        </div>
       ) : (
         data && (
           <>
