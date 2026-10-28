@@ -1,3 +1,4 @@
+import SportsNavigation from "./components/SportsNavigation";
 import React, { useState, useEffect, useRef } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Link, NavLink, Route, Routes } from "react-router-dom";
@@ -6,8 +7,6 @@ import {
   Newspaper,
   Sun,
   Moon,
-  ArrowDownUp,
-  ChevronDown,
   Globe2,
   LayoutGrid,
   Menu,
@@ -17,7 +16,6 @@ import {
   Clock3,
   Settings,
 } from "lucide-react";
-import { sports } from "./catalog";
 import { Empty } from "./components/shared";
 import "./styles.css";
 import "./home-viva.css";
@@ -109,7 +107,15 @@ function App() {
             <X />
           </button>
           <div className="nav-label">ACOMPANHE O JOGO</div>
-          <nav onClick={() => setMenu(false)}>
+          <nav
+            aria-label="Páginas e esportes"
+            onClick={(event) => {
+              if ((event.target as Element).closest("a")) {
+                setMenu(false);
+                window.scrollTo(0, 0);
+              }
+            }}
+          >
             <NavLink to="/" end>
               <LayoutGrid size={18} />
               Visão geral
@@ -131,23 +137,7 @@ function App() {
               Notícias
             </NavLink>
             <div className="nav-label">ESPORTES</div>
-            <Link to="/?sport=soccer">
-              <span>⚽</span>Futebol
-              <ChevronDown size={14} className="push" />
-            </Link>
-            <NavLink to="/times" className="subnav">
-              <span>◉</span>Times
-            </NavLink>
-            <NavLink to="/transferencias" className="subnav">
-              <ArrowDownUp size={15} />
-              Transferências
-            </NavLink>
-            {sports.slice(1).map((s) => (
-              <Link to={"/?sport=" + s.id} key={s.id}>
-                <span>{s.icon}</span>
-                {s.name}
-              </Link>
-            ))}
+            <SportsNavigation />
             <NavLink to="/admin/jogos">
               <Settings size={18} />
               Administração

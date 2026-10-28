@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { leagueSelection } from "../league-navigation";
+import { Link, useSearchParams } from "react-router-dom";
 import { useApi } from "../hooks";
 import { Empty, Loading, Notice } from "../components/shared";
 import type { ClubProfile, CompetitionCatalog } from "../types";
@@ -18,14 +18,29 @@ export default function TeamsPage() {
     loading: catalogLoading,
     refresh: refreshCatalog,
   } = useApi<CompetitionCatalog>("/api/competitions", 0);
-  const [sport, setSport] = useState("soccer");
-  const [league, setLeague] = useState("all");
+  const [params, setParams] = useSearchParams();
+  const { sport, league: resolvedLeague } = leagueSelection(params, catalog);
+  const league =
+    params.get("league") === "unassigned" ? "unassigned" : resolvedLeague;
+  function setLeague(id: string) {
+    const next = new URLSearchParams(params);
+    next.set("sport", sport);
+    if (id === "all") next.delete("league");
+    else next.set("league", id);
+    setParams(next);
+  }
+  function setSport(id: string) {
+    setParams({ sport: id });
+  }
   const sportTeams = (data?.teams || []).filter(
     (t) => (t.sport || "soccer") === sport,
   );
   const selected = catalog?.sports.find((s) => s.id === sport);
   const leagues = (selected?.leagues || []).filter(
-    (l) => l.teamLeague || sportTeams.some((t) => t.league === l.id),
+    (l) =>
+      l.teamLeague ||
+      league === l.id ||
+      sportTeams.some((t) => t.league === l.id),
   );
   const unassigned = sportTeams.filter(
     (t) => !selected?.leagues.some((l) => l.id === t.league),
@@ -77,7 +92,6 @@ export default function TeamsPage() {
                 aria-pressed={sport === s.id}
                 onClick={() => {
                   setSport(s.id);
-                  setLeague("all");
                 }}
               >
                 <span className="sport-icon">{s.icon}</span>

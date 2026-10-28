@@ -17,7 +17,7 @@ import {
   Star,
   Tv,
 } from "lucide-react";
-import type { Match, Scores } from "../types";
+import type { Match, Scores, CompetitionCatalog } from "../types";
 import { useApi, useFavorites, today, time, dateLabel } from "../hooks";
 import { sports, keyOf } from "../catalog";
 import {
@@ -38,6 +38,14 @@ export default function Dashboard({
   const date = params.get("date") || today();
   const sport = params.get("sport") || "all";
   const status = params.get("status") || "all";
+  const { data: catalog } = useApi<CompetitionCatalog>("/api/competitions", 0);
+  const selectedSport = catalog?.sports.find((s) => s.id === sport);
+  const requestedLeague = params.get("league") || "all";
+  const league =
+    catalog && !selectedSport?.leagues.some((l) => l.id === requestedLeague)
+      ? "all"
+      : requestedLeague;
+  const leagueName = selectedSport?.leagues.find((l) => l.id === league)?.name;
   const [search, setSearch] = useState("");
   const { ids, toggle } = useFavorites();
   const { data, error, loading, refresh } = useApi<Scores>(
@@ -51,6 +59,7 @@ export default function Dashboard({
   const scoped = matches.filter(
     (m) =>
       (sport === "all" || m.sport === sport) &&
+      (league === "all" || m.league === league) &&
       (!favoritesOnly || ids.includes(keyOf(m))),
   );
   const live = scoped.filter((m) => m.state === "live");
@@ -89,6 +98,7 @@ export default function Dashboard({
   const groups = [...new Set(visible.map((m) => `${m.sport}/${m.league}`))];
   function set(key: string, value: string) {
     const next = new URLSearchParams(params);
+    if (key === "sport") next.delete("league");
     if (value === "all") next.delete(key);
     else next.set(key, value);
     setParams(next);
@@ -336,6 +346,35 @@ export default function Dashboard({
             ))}
           </div>
         </section>
+        {sport !== "all" && (
+          <section
+            className="hv-league-selection"
+            aria-label="Filtrar jogos por competição"
+          >
+            <label htmlFor="games-league">
+              Competição de {sports.find((s) => s.id === sport)?.name}
+              <select
+                id="games-league"
+                value={league}
+                onChange={(e) => set("league", e.target.value)}
+                disabled={!catalog}
+              >
+                <option value="all">Todas as competições</option>
+                {selectedSport?.leagues.map((l) => (
+                  <option key={l.id} value={l.id}>
+                    {l.name}
+                  </option>
+                ))}
+              </select>
+            </label>
+            {leagueName && (
+              <p>
+                Jogos de <strong>{leagueName}</strong> · escolha a data abaixo
+                para consultar a agenda.
+              </p>
+            )}
+          </section>
+        )}
         <div className="hv-content-grid" id="jogos">
           <section aria-labelledby="hv-games-title">
             <div className="hv-games-heading">

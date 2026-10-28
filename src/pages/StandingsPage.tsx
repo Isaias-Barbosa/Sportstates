@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useSearchParams } from "react-router-dom";
+import { standingsSelection } from "../league-navigation";
 import { ChevronDown, Trophy } from "lucide-react";
 import { useApi, today } from "../hooks";
 import type { CompetitionCatalog } from "../types";
@@ -10,15 +11,17 @@ export default function StandingsPage() {
     "/api/competitions",
     0,
   );
-  const [sport, setSport] = useState("soccer");
-  const [region, setRegion] = useState("brasil");
-  const [scope, setScope] = useState("local");
-  const [league, setLeague] = useState("bra.1");
-  const selected = data?.sports.find((s) => s.id === sport);
-  const group =
-    scope === "local"
-      ? data?.soccerRegions?.find((r) => r.id === region)
-      : data?.soccerInternationalGroups?.find((g) => g.id === scope);
+  const [params, setParams] = useSearchParams();
+  const { sport, league, selected, scope, region, group } = standingsSelection(
+    params,
+    data,
+  );
+  function setLeague(id: string) {
+    const next = new URLSearchParams(params);
+    next.set("sport", sport);
+    next.set("league", id);
+    setParams(next);
+  }
   const visible =
     sport === "soccer" && group
       ? selected?.leagues.filter((l) => group.competitions.includes(l.id))
@@ -35,15 +38,8 @@ export default function StandingsPage() {
     selected?.leagues.find((l) => l.id === league)?.name || "Classificação";
 
   function changeSport(id: string) {
-    setSport(id);
-    setScope("local");
     const first = data?.sports.find((s) => s.id === id)?.leagues[0]?.id || "";
-    setLeague(
-      id === "soccer"
-        ? data?.soccerRegions?.find((r) => r.id === region)?.competitions[0] ||
-            first
-        : first,
-    );
+    setParams({ sport: id, league: first });
   }
   return (
     <>
@@ -92,12 +88,14 @@ export default function StandingsPage() {
                   value={scope === "local" ? region : ""}
                   onChange={(e) => {
                     const next = e.target.value;
-                    setRegion(next);
-                    setScope("local");
-                    setLeague(
-                      data.soccerRegions?.find((r) => r.id === next)
-                        ?.competitions[0] || "",
-                    );
+                    setParams({
+                      sport: "soccer",
+                      region: next,
+                      scope: "local",
+                      league:
+                        data.soccerRegions?.find((r) => r.id === next)
+                          ?.competitions[0] || "",
+                    });
                   }}
                 >
                   <option value="" disabled>
@@ -118,8 +116,11 @@ export default function StandingsPage() {
                     id={`standings-${g.id}`}
                     value={scope === g.id ? league : ""}
                     onChange={(e) => {
-                      setScope(g.id);
-                      setLeague(e.target.value);
+                      setParams({
+                        sport: "soccer",
+                        scope: g.id,
+                        league: e.target.value,
+                      });
                     }}
                   >
                     <option value="" disabled>
@@ -171,7 +172,10 @@ export default function StandingsPage() {
             ))}
           </div>
           {!!stateIds.length && (
-            <details className="state-championships">
+            <details
+              className="state-championships"
+              open={isState || undefined}
+            >
               <summary>
                 <Trophy size={22} />
                 <span>
