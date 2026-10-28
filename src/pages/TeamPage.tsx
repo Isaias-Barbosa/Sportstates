@@ -213,30 +213,36 @@ export default function TeamPage() {
         )}
         {tab === "players" && (
           <>
-            <div className="leaders-heading">
-              <div>
-                <h2>Destaques do time</h2>
-                <p className="standings-note">
-                  {leagueName}
-                  {data.leaders?.season ? ` · ${data.leaders.season}` : ""} ·
-                  Dados da ESPN
-                </p>
-              </div>
-            </div>
-            <div className="team-leaders">
-              <LeaderCard
-                title="Artilharia"
-                label="gols"
-                icon="⚽"
-                leader={data.leaders?.goals}
-              />
-              <LeaderCard
-                title="Assistências"
-                label="assistências"
-                icon="✦"
-                leader={data.leaders?.assists}
-              />
-            </div>
+            {team.sport === "soccer" && (
+              <>
+                <div className="leaders-heading">
+                  <div>
+                    <h2>Destaques do time</h2>
+                    <p className="standings-note">
+                      {leagueName}
+                      {data.leaders?.season
+                        ? ` · ${data.leaders.season}`
+                        : ""}{" "}
+                      · Dados da ESPN
+                    </p>
+                  </div>
+                </div>
+                <div className="team-leaders">
+                  <LeaderCard
+                    title="Artilharia"
+                    label="gols"
+                    icon="⚽"
+                    leader={data.leaders?.goals}
+                  />
+                  <LeaderCard
+                    title="Assistências"
+                    label="assistências"
+                    icon="✦"
+                    leader={data.leaders?.assists}
+                  />
+                </div>
+              </>
+            )}
             <div className="section-heading">
               <h2>Elenco</h2>
               <span>{data.athletes.length} jogadores</span>

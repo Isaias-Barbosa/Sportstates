@@ -1183,3 +1183,10 @@ summary:focus-visible {
     font-size: 0.75rem;
   }
 }
+
+.detail-hero.basketball-hero {
+  background:
+    radial-gradient(ellipse at 90% 5%, #f9731630, transparent 60%),
+    radial-gradient(ellipse at 10% 100%, #2862ff35, transparent 65%), #0b1730;
+  border-bottom-color: #ff944d;
+}

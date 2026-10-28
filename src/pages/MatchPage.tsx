@@ -96,7 +96,12 @@ export default function MatchPage() {
       ) : (
         data && (
           <>
-            <div className="detail-hero">
+            <div
+              className={
+                "detail-hero" +
+                (data.match.sport === "basketball" ? " basketball-hero" : "")
+              }
+            >
               <div className="eyebrow">{data.match.leagueName}</div>
               <div className="detail-status">
                 <span
