@@ -31,6 +31,7 @@ export const SPORTS = [
       ["ger.dfb_pokal", "Copa da Alemanha"],
       ["fra.1", "Ligue 1"],
       ["fra.coupe_de_france", "Copa da França"],
+      ["por.1", "Liga Portugal"],
       ["usa.1", "MLS"],
       ["usa.open", "US Open Cup"],
       ["concacaf.leagues.cup", "Leagues Cup"],
@@ -86,6 +87,7 @@ export const SOCCER_REGIONS = [
     competitions: ["esp.1", "esp.copa_del_rey"],
   },
   { id: "italia", name: "Itália", competitions: ["ita.1", "ita.coppa_italia"] },
+  { id: "portugal", name: "Portugal", competitions: ["por.1"] },
   {
     id: "alemanha",
     name: "Alemanha",
@@ -137,6 +139,7 @@ export const SOCCER_TEAM_LEAGUES = new Set([
   "ita.1",
   "ger.1",
   "fra.1",
+  "por.1",
   "usa.1",
   "ksa.1",
 ]);

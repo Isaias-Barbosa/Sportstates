@@ -1,3 +1,4 @@
+import { leagueProfileReferences } from './league-profiles.mjs';
 import { premierLeagueReferences } from './premier-league-profiles.mjs';
 import { neon } from '@neondatabase/serverless';
 import { normalizeEvent, normalizeSummary } from './data.mjs';
@@ -52,5 +53,5 @@ export async function teamDetails(id){
  const last=recent[0];
  let lineup=null;if(last && config.sport==='soccer' && leagueFor('soccer', last.league)){try{const raw=await getJSON(`https://site.api.espn.com/apis/site/v2/sports/soccer/${last.league}/summary?event=${last.id}&lang=pt&region=br`);const detail=normalizeSummary(raw,'soccer',last.league,last.leagueName);lineup=detail.lineups.find(l=>l.team===team.name)||null;if(lineup)lineup={...lineup,match: last.name,date:last.date};}catch{}}
  const articles=news.status==='fulfilled'?(news.value.articles||[]).filter(a => (a.categories||[]).some(c => String(c.teamId || c.team?.id || '') === id) || (a.headline||'').toLocaleLowerCase('pt-BR').includes(team.name.toLocaleLowerCase('pt-BR'))).map(a=>({title:a.headline||'',description:a.description||'',url:a.links?.web?.href||'',date:a.published||'',source:'ESPN'})).filter(a=>a.title&&/^https:\/\/(www\.)?espn\.com(\.br)?\//i.test(a.url)).slice(0,8):[];
- return {team,profileReferences:team.league==='eng.1'?premierLeagueReferences(team.id):[],athletes,leaders,upcoming,recent,lineup,articles,coverage:{next:next.status==='fulfilled',roster:roster.status==='fulfilled',schedule:schedule.status==='fulfilled',news:news.status==='fulfilled'},source:'ESPN · feed público não oficial'};
+ return {team,profileReferences:team.league==='eng.1'?premierLeagueReferences(team.id):leagueProfileReferences(team.id,team.league),athletes,leaders,upcoming,recent,lineup,articles,coverage:{next:next.status==='fulfilled',roster:roster.status==='fulfilled',schedule:schedule.status==='fulfilled',news:news.status==='fulfilled'},source:'ESPN · feed público não oficial'};
 }

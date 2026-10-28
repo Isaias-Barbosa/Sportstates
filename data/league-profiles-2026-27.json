@@ -1,0 +1,3700 @@
+{
+  "revision": "club-profiles-six-leagues-20261028-v1",
+  "reviewedAt": "2026-10-28",
+  "seasons": {
+    "bra.2": "2026",
+    "ita.1": "2026/27",
+    "esp.1": "2026/27",
+    "por.1": "2026/27",
+    "fra.1": "2026/27",
+    "ger.1": "2026/27"
+  },
+  "expectedCounts": {
+    "bra.2": 20,
+    "ita.1": 20,
+    "esp.1": 20,
+    "por.1": 18,
+    "fra.1": 18,
+    "ger.1": 18
+  },
+  "clubs": [
+    {
+      "id": "6154",
+      "name": "América Mineiro",
+      "sport": "soccer",
+      "league": "bra.2",
+      "city": "Belo Horizonte",
+      "stadium": "Independência",
+      "website": "https://americamineiro.com.br/",
+      "description": "O América Mineiro representa Belo Horizonte no futebol brasileiro e utiliza o estádio Independência. Disputa a Brasileirão Série B na temporada 2026. Sua trajetória inclui a conquista de Campeonato Brasileiro (Série B) em 1997.",
+      "honours": [
+        "Campeonato Brasileiro (Série B) - 1997, 2017",
+        "Campeonato Brasileiro (Série C) - 2009",
+        "Copa Sul-Minas - 2000",
+        "Campeonato Mineiro (Módulo I) - 1916, 1917, 1918, 1919, 1920, 1921, 1922, 1923, 1924, 1925, 1948, 1957, 1971, 1993, 2001, 2016",
+        "Campeonato Mineiro (Módulo II) - 2008",
+        "Taça Minas Gerais - 2005"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/6154.png",
+      "colors": ["#417505", "#fafafc"],
+      "sources": [
+        {
+          "label": "Participantes e estádios da Série B 2026",
+          "url": "https://pt.wikipedia.org/wiki/Campeonato_Brasileiro_de_Futebol_de_2026_-_Série_B"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/América_Futebol_Clube_(Belo_Horizonte)"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://americamineiro.com.br/"
+        }
+      ]
+    },
+    {
+      "id": "20851",
+      "name": "Athletic",
+      "sport": "soccer",
+      "league": "bra.2",
+      "city": "São João del-Rei",
+      "stadium": "Arena Sicredi",
+      "website": "https://athleticclub.com.br/",
+      "description": "O Athletic representa São João del-Rei no futebol brasileiro e utiliza o estádio Arena Sicredi. Disputa a Brasileirão Série B na temporada 2026. Sua trajetória inclui a conquista de Recopa Mineira em 2023.",
+      "honours": [
+        "Recopa Mineira - 2023",
+        "Campeonato Mineiro do Interior - 2022, 2023",
+        "Taça Inconfidência - 2024, 2025"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/20851.png",
+      "colors": ["#000000", "#ffffff"],
+      "sources": [
+        {
+          "label": "Participantes e estádios da Série B 2026",
+          "url": "https://pt.wikipedia.org/wiki/Campeonato_Brasileiro_de_Futebol_de_2026_-_Série_B"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Athletic_Club_(Minas_Gerais)"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://athleticclub.com.br/"
+        }
+      ]
+    },
+    {
+      "id": "10357",
+      "name": "Atlético Goianiense",
+      "sport": "soccer",
+      "league": "bra.2",
+      "city": "Goiânia",
+      "stadium": "Antônio Accioly",
+      "website": "https://atleticogoianiense.com.br/",
+      "description": "O Atlético Goianiense representa Goiânia no futebol brasileiro e utiliza o estádio Antônio Accioly. Disputa a Brasileirão Série B na temporada 2026. Sua trajetória inclui a conquista de Campeonato Brasileiro (Série B) em 2016.",
+      "honours": [
+        "Campeonato Brasileiro (Série B) - 2016",
+        "Campeonato Brasileiro (Série C) - 1990, 2008",
+        "Campeonato Goiano - 1944, 1947, 1949, 1955, 1957, 1964, 1970, 1985, 1988, 2007, 2010, 2011, 2014, 2019, 2020, 2022, 2023, 2024",
+        "Copa Goiás - 1968",
+        "Campeonato Goiano (2ª Divisão) - 2005"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/10357.png",
+      "colors": ["#ff0000", "#c60000"],
+      "sources": [
+        {
+          "label": "Participantes e estádios da Série B 2026",
+          "url": "https://pt.wikipedia.org/wiki/Campeonato_Brasileiro_de_Futebol_de_2026_-_Série_B"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Atlético_Clube_Goianiense"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://atleticogoianiense.com.br/"
+        }
+      ]
+    },
+    {
+      "id": "9966",
+      "name": "Avaí",
+      "sport": "soccer",
+      "league": "bra.2",
+      "city": "Florianópolis",
+      "stadium": "Ressacada",
+      "website": "https://avai.com.br/",
+      "description": "O Avaí representa Florianópolis no futebol brasileiro e utiliza o estádio Ressacada. Disputa a Brasileirão Série B na temporada 2026. Sua trajetória inclui a conquista de Campeonato Brasileiro (Série C) em 1998.",
+      "honours": [
+        "Campeonato Brasileiro (Série C) - 1998",
+        "Copa Sul-Sudeste - 2026",
+        "Campeonato Catarinense (1.ª Divisão) - 1924, 1926, 1927, 1928, 1930, 1942, 1943, 1944, 1945, 1973, 1975, 1988, 1997, 2009, 2010, 2012, 2019, 2021, 2025",
+        "Copa Santa Catarina - 1995",
+        "Recopa Catarinense - 2026",
+        "Campeonato Catarinense (2.ª Divisão) - 1994"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/9966.png",
+      "colors": ["#0093ec", "#fafafc"],
+      "sources": [
+        {
+          "label": "Participantes e estádios da Série B 2026",
+          "url": "https://pt.wikipedia.org/wiki/Campeonato_Brasileiro_de_Futebol_de_2026_-_Série_B"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Avaí_Futebol_Clube"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://avai.com.br/"
+        }
+      ]
+    },
+    {
+      "id": "10281",
+      "name": "Botafogo-SP",
+      "sport": "soccer",
+      "league": "bra.2",
+      "city": "Ribeirão Preto",
+      "stadium": "Santa Cruz",
+      "website": "https://botafogofutebolsa.com.br/",
+      "description": "O Botafogo-SP representa Ribeirão Preto no futebol brasileiro e utiliza o estádio Santa Cruz. Disputa a Brasileirão Série B na temporada 2026. Sua trajetória inclui a conquista de Taça dos Invictos em 1956.",
+      "honours": [
+        "Taça dos Invictos - 1956",
+        "Campeonato Brasileiro (Série D) - 2015",
+        "Campeonato Paulista (Série A2) - 1927, 1956",
+        "Campeonato Paulista (Série A3) - 2006"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/10281.png",
+      "colors": ["#000000", "#c60000"],
+      "sources": [
+        {
+          "label": "Participantes e estádios da Série B 2026",
+          "url": "https://pt.wikipedia.org/wiki/Campeonato_Brasileiro_de_Futebol_de_2026_-_Série_B"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Botafogo_Futebol_Clube_(Ribeirão_Preto)"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://botafogofutebolsa.com.br/"
+        }
+      ]
+    },
+    {
+      "id": "9970",
+      "name": "CRB",
+      "sport": "soccer",
+      "league": "bra.2",
+      "city": "Maceió",
+      "stadium": "Rei Pelé",
+      "website": "https://crb.esp.br/",
+      "description": "O CRB representa Maceió no futebol brasileiro e utiliza o estádio Rei Pelé. Disputa a Brasileirão Série B na temporada 2026. Sua trajetória inclui a conquista de Campeonato Alagoano em 1918.",
+      "honours": [
+        "Campeonato Alagoano - 1918, 1919, 1920, 1921, 1922, 1923, 1924, 1925, 1926, 1927, 1930, 1937, 1938, 1939, 1940, 1950, 1951, 1961, 1964, 1969, 1970, 1972, 1973, 1976, 1977, 1978, 1979, 1983, 1986, 1987, 1992, 1993, 1995, 2002, 2012, 2013, 2015, 2016, 2017, 2020, 2022, 2023, 2024, 2025, 2026"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/9970.png",
+      "colors": ["#c60000", "#fafafc"],
+      "sources": [
+        {
+          "label": "Participantes e estádios da Série B 2026",
+          "url": "https://pt.wikipedia.org/wiki/Campeonato_Brasileiro_de_Futebol_de_2026_-_Série_B"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Clube_de_Regatas_Brasil"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://crb.esp.br/"
+        }
+      ]
+    },
+    {
+      "id": "9969",
+      "name": "Ceará",
+      "sport": "soccer",
+      "league": "bra.2",
+      "city": "Fortaleza",
+      "stadium": "Arena Castelão",
+      "website": "https://cearasc.com/",
+      "description": "O Ceará representa Fortaleza no futebol brasileiro e utiliza o estádio Arena Castelão. Disputa a Brasileirão Série B na temporada 2026. Sua trajetória inclui a conquista de Copa do Nordeste em 2015.",
+      "honours": [
+        "Copa do Nordeste - 2015, 2020, 2023",
+        "Campeonato Cearense - 1915, 1916, 1917, 1918, 1919, 1922, 1925, 1931, 1932, 1939, 1941, 1942, 1948, 1951, 1957, 1958, 1961, 1962, 1963, 1971, 1972, 1975, 1976, 1977, 1978, 1980, 1981, 1984, 1986, 1989, 1990, 1992, 1993, 1996, 1997, 1998, 1999, 2002, 2006, 2011, 2012, 2013, 2014, 2017, 2018, 2024, 2025"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/9969.png",
+      "colors": ["#010101", "#fafafc"],
+      "sources": [
+        {
+          "label": "Participantes e estádios da Série B 2026",
+          "url": "https://pt.wikipedia.org/wiki/Campeonato_Brasileiro_de_Futebol_de_2026_-_Série_B"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Ceará_Sporting_Club"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://cearasc.com/"
+        }
+      ]
+    },
+    {
+      "id": "9971",
+      "name": "Criciúma",
+      "sport": "soccer",
+      "league": "bra.2",
+      "city": "Criciúma",
+      "stadium": "Heriberto Hülse",
+      "website": "https://criciuma.com.br/",
+      "description": "O Criciúma representa Criciúma no futebol brasileiro e utiliza o estádio Heriberto Hülse. Disputa a Brasileirão Série B na temporada 2026. Sua trajetória inclui a conquista de Copa do Brasil em 1991.",
+      "honours": [
+        "Copa do Brasil - 1991",
+        "Campeonato Brasileiro (Série B) - 2002",
+        "Campeonato Brasileiro (Série C) - 2006",
+        "Campeonato Catarinense - 1968, 1986, 1989, 1990, 1991, 1993, 1995, 1998, 2005, 2013, 2023, 2024",
+        "Copa Santa Catarina - 1993",
+        "Taça Governador do Estado - 1986, 1987, 1990, 1991, 1992, 1993, 1994, 1995",
+        "Recopa Catarinense - 2024, 2025",
+        "Campeonato Catarinense (2.ª Divisão) - 2022"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/9971.png",
+      "colors": ["#f8e71c", "#000000"],
+      "sources": [
+        {
+          "label": "Participantes e estádios da Série B 2026",
+          "url": "https://pt.wikipedia.org/wiki/Campeonato_Brasileiro_de_Futebol_de_2026_-_Série_B"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Criciúma_Esporte_Clube"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://criciuma.com.br/"
+        }
+      ]
+    },
+    {
+      "id": "17313",
+      "name": "Cuiabá",
+      "sport": "soccer",
+      "league": "bra.2",
+      "city": "Cuiabá",
+      "stadium": "Arena Pantanal",
+      "website": "https://cuiabaesporteclube.com.br/",
+      "description": "O Cuiabá representa Cuiabá no futebol brasileiro e utiliza o estádio Arena Pantanal. Disputa a Brasileirão Série B na temporada 2026. Sua trajetória inclui a conquista de Copa Verde em 2015.",
+      "honours": [
+        "Copa Verde - 2015, 2019",
+        "Campeonato Mato-Grossense - 2003, 2004, 2011, 2013, 2014, 2015, 2017, 2018, 2019, 2021, 2022, 2023, 2024",
+        "Copa FMF - 2010, 2016"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/17313.png",
+      "colors": ["#004526", "#ffd65a"],
+      "sources": [
+        {
+          "label": "Participantes e estádios da Série B 2026",
+          "url": "https://pt.wikipedia.org/wiki/Campeonato_Brasileiro_de_Futebol_de_2026_-_Série_B"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Cuiabá_Esporte_Clube"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://cuiabaesporteclube.com.br/"
+        }
+      ]
+    },
+    {
+      "id": "6272",
+      "name": "Fortaleza",
+      "sport": "soccer",
+      "league": "bra.2",
+      "city": "Fortaleza",
+      "stadium": "Arena Castelão",
+      "website": "https://fortaleza1918.com.br/",
+      "description": "O Fortaleza representa Fortaleza no futebol brasileiro e utiliza o estádio Arena Castelão. Disputa a Brasileirão Série B na temporada 2026. Sua trajetória inclui a conquista de Campeonato Brasileiro (Série B) em 2018.",
+      "honours": [
+        "Campeonato Brasileiro (Série B) - 2018",
+        "Taça Norte - 1960, 1968",
+        "Copa do Nordeste - 2019, 2022, 2024",
+        "Campeonato Cearense (Série A) - 1920, 1921, 1923, 1924, 1926, 1927, 1928, 1933, 1934, 1937, 1938, 1946, 1947, 1949, 1953, 1954, 1959, 1960, 1964, 1965, 1967, 1969, 1973, 1974, 1982, 1983, 1985, 1987, 1991, 1992, 2000, 2001, 2003, 2004, 2005, 2007, 2008, 2009, 2010, 2015, 2016, 2019, 2020, 2021, 2022, 2023, 2026",
+        "Taça dos Campeões Cearenses - 2016, 2017"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/6272.png",
+      "colors": [],
+      "sources": [
+        {
+          "label": "Participantes e estádios da Série B 2026",
+          "url": "https://pt.wikipedia.org/wiki/Campeonato_Brasileiro_de_Futebol_de_2026_-_Série_B"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Fortaleza_Esporte_Clube"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://fortaleza1918.com.br/"
+        }
+      ]
+    },
+    {
+      "id": "3395",
+      "name": "Goiás",
+      "sport": "soccer",
+      "league": "bra.2",
+      "city": "Goiânia",
+      "stadium": "Hailé Pinheiro (Serrinha)",
+      "website": "https://goiasec.com.br/",
+      "description": "O Goiás representa Goiânia no futebol brasileiro e utiliza o estádio Hailé Pinheiro (Serrinha). Disputa a Brasileirão Série B na temporada 2026. Sua trajetória inclui a conquista de Campeonato Brasileiro (Série B) em 1999.",
+      "honours": [
+        "Campeonato Brasileiro (Série B) - 1999, 2012",
+        "Copa Verde - 2023",
+        "Copa Centro-Oeste - 2000, 2001, 2002",
+        "Campeonato Goiano - 1966, 1971, 1972, 1975, 1976, 1981, 1983, 1986, 1987, 1989, 1990, 1991, 1994, 1996, 1997, 1998, 1999, 2000, 2002, 2003, 2006, 2009, 2012, 2013, 2015, 2016, 2017, 2018, 2026"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/3395.png",
+      "colors": ["#417505", "#fafafc"],
+      "sources": [
+        {
+          "label": "Participantes e estádios da Série B 2026",
+          "url": "https://pt.wikipedia.org/wiki/Campeonato_Brasileiro_de_Futebol_de_2026_-_Série_B"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Goiás_Esporte_Clube"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://goiasec.com.br/"
+        }
+      ]
+    },
+    {
+      "id": "6270",
+      "name": "Juventude",
+      "sport": "soccer",
+      "league": "bra.2",
+      "city": "Caxias do Sul",
+      "stadium": "Alfredo Jaconi",
+      "website": "https://juventude.com.br/",
+      "description": "O Juventude representa Caxias do Sul no futebol brasileiro e utiliza o estádio Alfredo Jaconi. Disputa a Brasileirão Série B na temporada 2026. Sua trajetória inclui a conquista de Copa do Brasil em 1999.",
+      "honours": [
+        "Copa do Brasil - 1999",
+        "Campeonato Brasileiro (Série B) - 1994",
+        "Campeonato Gaúcho - 1998",
+        "Copa FGF - 2011, 2012",
+        "Copa Governador do Estado - 1975, 1976",
+        "Campeonato da Região Serrana - 2014"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/6270.png",
+      "colors": ["#417505", "#fafafc"],
+      "sources": [
+        {
+          "label": "Participantes e estádios da Série B 2026",
+          "url": "https://pt.wikipedia.org/wiki/Campeonato_Brasileiro_de_Futebol_de_2026_-_Série_B"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Esporte_Clube_Juventude"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://juventude.com.br/"
+        }
+      ]
+    },
+    {
+      "id": "17333",
+      "name": "Londrina",
+      "sport": "soccer",
+      "league": "bra.2",
+      "city": "Londrina",
+      "stadium": "Vitorino Gonçalves Dias (VGD)",
+      "website": "https://londrinaesporteclube.com.br/",
+      "description": "O Londrina representa Londrina no futebol brasileiro e utiliza o estádio Vitorino Gonçalves Dias (VGD). Disputa a Brasileirão Série B na temporada 2026. Sua trajetória inclui a conquista de Campeonato Brasileiro (Série B) em 1980.",
+      "honours": [
+        "Campeonato Brasileiro (Série B) - 1980",
+        "Primeira Liga - 2017",
+        "Campeonato Paranaense - 1962, 1981, 1992, 2014, 2021",
+        "Copa Paraná - 2008",
+        "Campeonato Paranaense (2ª Divisão) - 1999, 2011",
+        "Campeonato Paranaense do Interior - 1974, 2013, 2015, 2016, 2017"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/17333.png",
+      "colors": ["#0093ec", "#fafafc"],
+      "sources": [
+        {
+          "label": "Participantes e estádios da Série B 2026",
+          "url": "https://pt.wikipedia.org/wiki/Campeonato_Brasileiro_de_Futebol_de_2026_-_Série_B"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Londrina_Esporte_Clube"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://londrinaesporteclube.com.br/"
+        }
+      ]
+    },
+    {
+      "id": "18127",
+      "name": "Novorizontino",
+      "sport": "soccer",
+      "league": "bra.2",
+      "city": "Novo Horizonte",
+      "stadium": "Jorge Ismael de Biasi",
+      "website": "https://gremionovorizontino.com.br/",
+      "description": "O Novorizontino representa Novo Horizonte no futebol brasileiro e utiliza o estádio Jorge Ismael de Biasi. Disputa a Brasileirão Série B na temporada 2026. Sua trajetória inclui a conquista de Campeonato Paulista (Série A3) em 2014.",
+      "honours": [
+        "Campeonato Paulista (Série A3) - 2014",
+        "Troféu do Interior Paulista - 2021"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/18127.png",
+      "colors": ["#000000", "#ffd704"],
+      "sources": [
+        {
+          "label": "Participantes e estádios da Série B 2026",
+          "url": "https://pt.wikipedia.org/wiki/Campeonato_Brasileiro_de_Futebol_de_2026_-_Série_B"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Grêmio_Novorizontino"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://gremionovorizontino.com.br/"
+        }
+      ]
+    },
+    {
+      "id": "7633",
+      "name": "Náutico",
+      "sport": "soccer",
+      "league": "bra.2",
+      "city": "Recife",
+      "stadium": "Aflitos",
+      "website": "https://nautico-pe.com.br/",
+      "description": "O Náutico representa Recife no futebol brasileiro e utiliza o estádio Aflitos. Disputa a Brasileirão Série B na temporada 2026. Sua trajetória inclui a conquista de Campeonato Brasileiro (Série C) em 2019.",
+      "honours": [
+        "Campeonato Brasileiro (Série C) - 2019",
+        "Taça Norte - 1965, 1966, 1967",
+        "Copa dos Campeões do Norte - 1966",
+        "Campeonato Pernambucano (Série A1) - 1934, 1939, 1945, 1950, 1951, 1952, 1954, 1960, 1963, 1964, 1965, 1966, 1967, 1968, 1974, 1984, 1985, 1989, 2001, 2002, 2004, 2018, 2021, 2022",
+        "Copa Pernambuco - 2011"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/7633.png",
+      "colors": ["#c60000", "#fafafc"],
+      "sources": [
+        {
+          "label": "Participantes e estádios da Série B 2026",
+          "url": "https://pt.wikipedia.org/wiki/Campeonato_Brasileiro_de_Futebol_de_2026_-_Série_B"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Clube_Náutico_Capibaribe"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://nautico-pe.com.br/"
+        }
+      ]
+    },
+    {
+      "id": "18187",
+      "name": "Operário-PR",
+      "sport": "soccer",
+      "league": "bra.2",
+      "city": "Ponta Grossa",
+      "stadium": "Germano Krüger",
+      "website": "https://operarioferroviario.com.br/",
+      "description": "O Operário-PR representa Ponta Grossa no futebol brasileiro e utiliza o estádio Germano Krüger. Disputa a Brasileirão Série B na temporada 2026. Sua trajetória inclui a conquista de Campeonato Brasileiro (Série C) em 2018.",
+      "honours": [
+        "Campeonato Brasileiro (Série C) - 2018",
+        "Campeonato Brasileiro (Série D) - 2017",
+        "Campeonato Paranaense (1ª Divisão) - 2015, 2025, 2026",
+        "Campeonato Paranaense (2ª Divisão) - 1916, 1969, 2018",
+        "Copa Paraná - 2016"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/18187.png",
+      "colors": ["#000000", "#c60000"],
+      "sources": [
+        {
+          "label": "Participantes e estádios da Série B 2026",
+          "url": "https://pt.wikipedia.org/wiki/Campeonato_Brasileiro_de_Futebol_de_2026_-_Série_B"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Operário_Ferroviário_Esporte_Clube"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://operarioferroviario.com.br/"
+        }
+      ]
+    },
+    {
+      "id": "3459",
+      "name": "Ponte Preta",
+      "sport": "soccer",
+      "league": "bra.2",
+      "city": "Campinas",
+      "stadium": "Moisés Lucarelli",
+      "website": "https://pontepreta.com.br/",
+      "description": "O Ponte Preta representa Campinas no futebol brasileiro e utiliza o estádio Moisés Lucarelli. Disputa a Brasileirão Série B na temporada 2026. Sua trajetória inclui a conquista de Campeonato Brasileiro (Série C) em 2025.",
+      "honours": [
+        "Campeonato Brasileiro (Série C) - 2025",
+        "Campeonato Paulista (Série A2) - 1927, 1933, 1969, 2023"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/3459.png",
+      "colors": ["#000000", "#fafafc"],
+      "sources": [
+        {
+          "label": "Participantes e estádios da Série B 2026",
+          "url": "https://pt.wikipedia.org/wiki/Campeonato_Brasileiro_de_Futebol_de_2026_-_Série_B"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Associação_Atlética_Ponte_Preta"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://pontepreta.com.br/"
+        }
+      ]
+    },
+    {
+      "id": "7635",
+      "name": "Sport",
+      "sport": "soccer",
+      "league": "bra.2",
+      "city": "Recife",
+      "stadium": "Ilha do Retiro",
+      "website": "https://sportrecife.com.br/",
+      "description": "O Sport representa Recife no futebol brasileiro e utiliza o estádio Ilha do Retiro. Disputa a Brasileirão Série B na temporada 2026. Sua trajetória inclui a conquista de Campeonato Brasileiro (Série A) em 1987.",
+      "honours": [
+        "Campeonato Brasileiro (Série A) - 1987",
+        "Copa do Brasil - 2008",
+        "Campeonato Brasileiro (Série B) - 1990",
+        "Taça Norte - 1962",
+        "Copa do Nordeste - 1994, 2000, 2014",
+        "Campeonato Pernambucano (Série A1) - 1916, 1917, 1920, 1923, 1924, 1925, 1928, 1938, 1941, 1942, 1943, 1948, 1949, 1953, 1955, 1956, 1958, 1961, 1962, 1975, 1977, 1980, 1981, 1982, 1988, 1991, 1992, 1994, 1996, 1997, 1998, 1999, 2000, 2003, 2006, 2007, 2008, 2009, 2010, 2014, 2017, 2019, 2023, 2024, 2025, 2026",
+        "Copa Pernambuco - 1998, 2003, 2007"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/7635.png",
+      "colors": ["#c60000", "#000000"],
+      "sources": [
+        {
+          "label": "Participantes e estádios da Série B 2026",
+          "url": "https://pt.wikipedia.org/wiki/Campeonato_Brasileiro_de_Futebol_de_2026_-_Série_B"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Sport_Club_do_Recife"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://sportrecife.com.br/"
+        }
+      ]
+    },
+    {
+      "id": "11268",
+      "name": "São Bernardo",
+      "sport": "soccer",
+      "league": "bra.2",
+      "city": "São Bernardo do Campo",
+      "stadium": "Primeiro de Maio",
+      "website": "https://saobernardofc.com.br/",
+      "description": "O São Bernardo representa São Bernardo do Campo no futebol brasileiro e utiliza o estádio Primeiro de Maio. Disputa a Brasileirão Série B na temporada 2026. Sua trajetória inclui a conquista de Copa Paulista em 2013.",
+      "honours": [
+        "Copa Paulista - 2013, 2021",
+        "Taça Independência - 2023",
+        "Campeonato Paulista (Série A2) - 2012, 2021"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/11268.png",
+      "colors": ["#000000", "#c60000"],
+      "sources": [
+        {
+          "label": "Participantes e estádios da Série B 2026",
+          "url": "https://pt.wikipedia.org/wiki/Campeonato_Brasileiro_de_Futebol_de_2026_-_Série_B"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/São_Bernardo_Futebol_Clube"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://saobernardofc.com.br/"
+        }
+      ]
+    },
+    {
+      "id": "9973",
+      "name": "Vila Nova",
+      "sport": "soccer",
+      "league": "bra.2",
+      "city": "Goiânia",
+      "stadium": "Onésio Brasileiro Alvarenga",
+      "website": "https://vilanovafc.com.br/",
+      "description": "O Vila Nova representa Goiânia no futebol brasileiro e utiliza o estádio Onésio Brasileiro Alvarenga. Disputa a Brasileirão Série B na temporada 2026. Sua trajetória inclui a conquista de Campeonato Brasileiro (Série C) em 1996.",
+      "honours": [
+        "Campeonato Brasileiro (Série C) - 1996, 2015, 2020",
+        "Campeonato Goiano - 1961, 1962, 1963, 1969, 1973, 1977, 1978, 1979, 1980, 1982, 1984, 1993, 1995, 2001, 2005, 2025",
+        "Copa Goiás - 1969, 1971, 1976"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/9973.png",
+      "colors": ["#c60000", "#fafafc"],
+      "sources": [
+        {
+          "label": "Participantes e estádios da Série B 2026",
+          "url": "https://pt.wikipedia.org/wiki/Campeonato_Brasileiro_de_Futebol_de_2026_-_Série_B"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Vila_Nova_Futebol_Clube"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://vilanovafc.com.br/"
+        }
+      ]
+    },
+    {
+      "id": "103",
+      "name": "Milan",
+      "sport": "soccer",
+      "league": "ita.1",
+      "city": "Milão",
+      "stadium": "Giuseppe Meazza (San Siro)",
+      "website": "https://acmilan.com/",
+      "description": "O Milan representa Milão no futebol italiano e utiliza o estádio Giuseppe Meazza (San Siro). Disputa a Serie A na temporada 2026/27. Sua trajetória inclui a conquista de Copa do Mundo de Clubes da FIFA em 2007.",
+      "honours": [
+        "Copa do Mundo de Clubes da FIFA - 2007",
+        "Copa Intercontinental - 1969, 1989, 1990",
+        "Liga dos Campeões da UEFA - 1962-63, 1968-69, 1988-89, 1989-90, 1993-94, 2002-03, 2006-07",
+        "Recopa Europeia - 1967-68, 1972-73",
+        "Supercopa da UEFA - 1989, 1990, 1994, 2003, 2007",
+        "Copa Latina - 1951, 1956",
+        "Copa Mitropa - 1982",
+        "Campeonato Italiano - 1901, 1906, 1907, 1950-51, 1954-55, 1956-57, 1958-59, 1961-62, 1967-68, 1978-79, 1987-88, 1991-92, 1992-93, 1993-94, 1995-96, 1998-99, 2003-04, 2010-11, 2021-22",
+        "Copa da Itália - 1966-67, 1971-72, 1972-73, 1976-77, 2002-03",
+        "Supercopa da Itália - 1988, 1992, 1993, 1994, 2004, 2011, 2016, 2024"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/103.png",
+      "colors": ["#e4002b", "#ffffff"],
+      "sources": [
+        {
+          "label": "Clubes e estádios da Lega Serie A",
+          "url": "https://en.legaseriea.it/team"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Associazione_Calcio_Milan"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://acmilan.com/"
+        }
+      ]
+    },
+    {
+      "id": "104",
+      "name": "Roma",
+      "sport": "soccer",
+      "league": "ita.1",
+      "city": "Roma",
+      "stadium": "Olimpico",
+      "website": "https://asroma.com/",
+      "description": "O Roma representa Roma no futebol italiano e utiliza o estádio Olimpico. Disputa a Serie A na temporada 2026/27. Sua trajetória inclui a conquista de Liga Conferência da UEFA em 2021-22.",
+      "honours": [
+        "Liga Conferência da UEFA - 2021-22",
+        "Taça das Cidades com Feiras - 1960-61",
+        "Campeonato Italiano - 1941-42, 1982-83, 2000-01",
+        "Copa da Itália - 1963-64, 1968-69, 1979-80, 1980-81, 1983-84, 1985-86, 1990-91, 2006-07, 2007-08",
+        "Supercopa da Itália - 2001, 2007",
+        "Campeonato Italiano (Série B) - 1951-52"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/104.png",
+      "colors": ["#990a2c", "#f5f3e5"],
+      "sources": [
+        {
+          "label": "Clubes e estádios da Lega Serie A",
+          "url": "https://en.legaseriea.it/team"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Associazione_Sportiva_Roma"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://asroma.com/"
+        }
+      ]
+    },
+    {
+      "id": "105",
+      "name": "Atalanta",
+      "sport": "soccer",
+      "league": "ita.1",
+      "city": "Bérgamo",
+      "stadium": "New Balance Arena",
+      "website": "https://atalanta.it/",
+      "description": "O Atalanta representa Bérgamo no futebol italiano e utiliza o estádio New Balance Arena. Disputa a Serie A na temporada 2026/27. Sua trajetória inclui a conquista de Liga Europa da UEFA em 2023-24.",
+      "honours": [
+        "Liga Europa da UEFA - 2023-24",
+        "Copa da Itália - 1962-63",
+        "Campeonato Italiano (Serie B) - 1939-40, 1958-59, 1983-84, 2005-06, 2010-11",
+        "Campeonato Italiano (Serie C) - 1981-82"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/105.png",
+      "colors": ["#1157bf", "#ffffff"],
+      "sources": [
+        {
+          "label": "Clubes e estádios da Lega Serie A",
+          "url": "https://en.legaseriea.it/team"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Atalanta_Bergamasca_Calcio"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://atalanta.it/"
+        }
+      ]
+    },
+    {
+      "id": "107",
+      "name": "Bologna",
+      "sport": "soccer",
+      "league": "ita.1",
+      "city": "Bolonha",
+      "stadium": "Renato Dall'Ara",
+      "website": "https://bolognafc.it/",
+      "description": "O Bologna representa Bolonha no futebol italiano e utiliza o estádio Renato Dall'Ara. Disputa a Serie A na temporada 2026/27. Sua trajetória inclui a conquista de Copa Intertoto da UEFA em 1998.",
+      "honours": [
+        "Copa Intertoto da UEFA - 1998",
+        "Copa Mitropa - 1932, 1934, 1961",
+        "Campeonato Italiano - 1924-25, 1928-29, 1935-36, 1936-37, 1938-39, 1940-41, 1963-64",
+        "Copa da Itália - 1969-70, 1973-74, 2024-25",
+        "Campeonato Italiano (Série B) - 1987-88, 1995-96",
+        "Campeonato Italiano (Série C) - 1994-95",
+        "Copa da Liga Anglo-Italiana - 1970"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/107.png",
+      "colors": ["#04043d", "#ffffff"],
+      "sources": [
+        {
+          "label": "Clubes e estádios da Lega Serie A",
+          "url": "https://en.legaseriea.it/team"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Bologna_Football_Club_1909"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://bolognafc.it/"
+        }
+      ]
+    },
+    {
+      "id": "2925",
+      "name": "Cagliari",
+      "sport": "soccer",
+      "league": "ita.1",
+      "city": "Cagliari",
+      "stadium": "Unipol Domus",
+      "website": "https://cagliaricalcio.com/",
+      "description": "O Cagliari representa Cagliari no futebol italiano e utiliza o estádio Unipol Domus. Disputa a Serie A na temporada 2026/27. Sua trajetória inclui a conquista de Campeonato Italiano em 1969-70.",
+      "honours": [
+        "Campeonato Italiano - 1969-70",
+        "Campeonato Italiano (Série B) - 2015-16"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/2925.png",
+      "colors": ["#282846", "#ffffff"],
+      "sources": [
+        {
+          "label": "Clubes e estádios da Lega Serie A",
+          "url": "https://en.legaseriea.it/team"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Cagliari_Calcio"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://cagliaricalcio.com/"
+        }
+      ]
+    },
+    {
+      "id": "2572",
+      "name": "Como",
+      "sport": "soccer",
+      "league": "ita.1",
+      "city": "Como",
+      "stadium": "Giuseppe Sinigaglia",
+      "website": "https://comofootball.com/",
+      "description": "O Como representa Como no futebol italiano e utiliza o estádio Giuseppe Sinigaglia. Disputa a Serie A na temporada 2026/27. Sua trajetória inclui a conquista de Campeonato Italiano (Série B) em 1948-49.",
+      "honours": [
+        "Campeonato Italiano (Série B) - 1948-49, 1979-80, 2001-02",
+        "Campeonato Italiano (Série C) - 1967-68, 2020-21"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/2572.png",
+      "colors": ["#4169e1", "#ffffff"],
+      "sources": [
+        {
+          "label": "Clubes e estádios da Lega Serie A",
+          "url": "https://en.legaseriea.it/team"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Como_1907"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://comofootball.com/"
+        }
+      ]
+    },
+    {
+      "id": "109",
+      "name": "Fiorentina",
+      "sport": "soccer",
+      "league": "ita.1",
+      "city": "Florença",
+      "stadium": "Artemio Franchi",
+      "website": "https://acffiorentina.com/",
+      "description": "O Fiorentina representa Florença no futebol italiano e utiliza o estádio Artemio Franchi. Disputa a Serie A na temporada 2026/27. Sua trajetória inclui a conquista de Recopa Europeia da UEFA em 1960-61.",
+      "honours": [
+        "Recopa Europeia da UEFA - 1960-61",
+        "Copa Mitropa - 1966",
+        "Campeonato Italiano - 1955-56, 1968-69",
+        "Copa da Itália - 1939-40, 1960-61, 1965-66, 1974-75, 1995-96, 2000-01",
+        "Supercopa da Itália - 1996",
+        "Campeonato Italiano (Série B) - 1930-31, 1938-39, 1993-94"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/109.png",
+      "colors": ["#4c1d84", "#ffffff"],
+      "sources": [
+        {
+          "label": "Clubes e estádios da Lega Serie A",
+          "url": "https://en.legaseriea.it/team"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Associazione_Calcio_Firenze_Fiorentina"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://acffiorentina.com/"
+        }
+      ]
+    },
+    {
+      "id": "4057",
+      "name": "Frosinone",
+      "sport": "soccer",
+      "league": "ita.1",
+      "city": "Frosinone",
+      "stadium": "Benito Stirpe",
+      "website": "https://frosinonecalcio.com/",
+      "description": "O Frosinone representa Frosinone no futebol italiano e utiliza o estádio Benito Stirpe. Disputa a Serie A na temporada 2026/27. Sua trajetória inclui a conquista de Campeonato Italiano (Série B) em 2022-23.",
+      "honours": ["Campeonato Italiano (Série B) - 2022-23"],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/4057.png",
+      "colors": ["#facf08", "#ffffff"],
+      "sources": [
+        {
+          "label": "Clubes e estádios da Lega Serie A",
+          "url": "https://en.legaseriea.it/team"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Frosinone_Calcio"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://frosinonecalcio.com/"
+        }
+      ]
+    },
+    {
+      "id": "3263",
+      "name": "Genoa",
+      "sport": "soccer",
+      "league": "ita.1",
+      "city": "Gênova",
+      "stadium": "Luigi Ferraris",
+      "website": "https://genoacfc.it/",
+      "description": "O Genoa representa Gênova no futebol italiano e utiliza o estádio Luigi Ferraris. Disputa a Serie A na temporada 2026/27. Sua trajetória inclui a conquista de Campeonato Italiano em 1898.",
+      "honours": [
+        "Campeonato Italiano - 1898, 1899, 1900, 1902, 1903, 1904, 1914-15, 1922-23, 1923-24",
+        "Copa da Itália - 1936-37",
+        "Campeonato Italiano (Série B) - 1934-35, 1952-53, 1961-62, 1972-73, 1975-76, 1988-89",
+        "Campeonato Italiano (Série C) - 1970-71"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/3263.png",
+      "colors": ["#08305d", "#ffffff"],
+      "sources": [
+        {
+          "label": "Clubes e estádios da Lega Serie A",
+          "url": "https://en.legaseriea.it/team"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Genoa_Cricket_and_Football_Club"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://genoacfc.it/"
+        }
+      ]
+    },
+    {
+      "id": "110",
+      "name": "Internazionale",
+      "sport": "soccer",
+      "league": "ita.1",
+      "city": "Milão",
+      "stadium": "Giuseppe Meazza (San Siro)",
+      "website": "https://inter.it/",
+      "description": "O Internazionale representa Milão no futebol italiano e utiliza o estádio Giuseppe Meazza (San Siro). Disputa a Serie A na temporada 2026/27. Sua trajetória inclui a conquista de Copa do Mundo de Clubes da FIFA em 2010.",
+      "honours": [
+        "Copa do Mundo de Clubes da FIFA - 2010",
+        "Copa Intercontinental - 1964, 1965",
+        "Liga dos Campeões da UEFA - 1963-64, 1964-65, 2009-10",
+        "Taça da UEFA - 1990-91, 1993-94, 1997-98",
+        "Campeonato Italiano - 1909-10, 1919-20, 1929-30, 1937-38, 1939-40, 1952-53, 1953-54, 1962-63, 1964-65, 1965-66, 1970-71, 1979-80, 1988-89, 2005-06, 2006-07, 2007-08, 2008-09, 2009-10, 2020-21, 2023-24, 2025-26",
+        "Copa da Itália - 1938-39, 1977-78, 1981-82, 2004-05, 2005-06, 2009-10, 2010-11, 2021-22, 2022-23, 2025-26",
+        "Supercopa da Itália - 1989, 2005, 2006, 2008, 2010, 2021, 2022, 2023"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/110.png",
+      "colors": ["#00239c", "#ffffff"],
+      "sources": [
+        {
+          "label": "Clubes e estádios da Lega Serie A",
+          "url": "https://en.legaseriea.it/team"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Football_Club_Internazionale_Milano"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://inter.it/"
+        }
+      ]
+    },
+    {
+      "id": "111",
+      "name": "Juventus",
+      "sport": "soccer",
+      "league": "ita.1",
+      "city": "Turim",
+      "stadium": "Allianz Stadium",
+      "website": "https://juventus.com/",
+      "description": "O Juventus representa Turim no futebol italiano e utiliza o estádio Allianz Stadium. Disputa a Serie A na temporada 2026/27. Sua trajetória inclui a conquista de Copa Intercontinental em 1985.",
+      "honours": [
+        "Copa Intercontinental - 1985, 1996",
+        "Liga dos Campeões da UEFA - 1984-85, 1995-96",
+        "Liga Europa da UEFA - 1976-77, 1989-90, 1992-93",
+        "Recopa Europeia da UEFA - 1983-84",
+        "Supercopa da UEFA - 1984, 1996",
+        "Copa Intertoto da UEFA - 1999",
+        "Campeonato Italiano - 1905, 1925-26, 1930-31, 1931-32, 1932-33, 1933-34, 1934-35, 1949-50, 1951-52, 1957-58, 1959-60, 1960-61, 1966-67, 1971-72, 1972-73, 1974-75, 1976-77, 1977-78, 1980-81, 1981-82, 1983-84, 1985-86, 1994-95, 1996-97, 1997-98, 2001-02, 2002-03, 2011-12, 2012-13, 2013-14, 2014-15, 2015-16, 2016-17, 2017-18, 2018-19, 2019-20",
+        "Copa da Itália - 1937-38, 1941-42, 1958-59, 1959-60, 1964-65, 1978-79, 1982-83, 1989-90, 1994-95, 2014-15, 2015-16, 2016-17, 2017-18, 2020-21, 2023-24",
+        "Supercopa da Itália - 1995, 1997, 2002, 2003, 2012, 2013, 2015, 2018, 2020",
+        "Campeonato Italiano (Serie B) - 2006-07"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/111.png",
+      "colors": ["#000000", "#e8a2b0"],
+      "sources": [
+        {
+          "label": "Clubes e estádios da Lega Serie A",
+          "url": "https://en.legaseriea.it/team"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Juventus_Football_Club"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://juventus.com/"
+        }
+      ]
+    },
+    {
+      "id": "113",
+      "name": "Lecce",
+      "sport": "soccer",
+      "league": "ita.1",
+      "city": "Lecce",
+      "stadium": "Ettore Giardiniero - Via del Mare",
+      "website": "https://uslecce.it/",
+      "description": "O Lecce representa Lecce no futebol italiano e utiliza o estádio Ettore Giardiniero - Via del Mare. Disputa a Serie A na temporada 2026/27. Sua trajetória inclui a conquista de Campeonato Italiano (Série B) em 2009-10.",
+      "honours": [
+        "Campeonato Italiano (Série B) - 2009-10, 2021-22",
+        "Campeonato italiano (Serie C) - 1945-46, 1975-76, 2017-18",
+        "Campeonato italiano (Serie C1) - 1995-96"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/113.png",
+      "colors": ["#fced0b", "#08305d"],
+      "sources": [
+        {
+          "label": "Clubes e estádios da Lega Serie A",
+          "url": "https://en.legaseriea.it/team"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Unione_Sportiva_Lecce"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://uslecce.it/"
+        }
+      ]
+    },
+    {
+      "id": "112",
+      "name": "Lazio",
+      "sport": "soccer",
+      "league": "ita.1",
+      "city": "Roma",
+      "stadium": "Olimpico",
+      "website": "https://sslazio.it/",
+      "description": "O Lazio representa Roma no futebol italiano e utiliza o estádio Olimpico. Disputa a Serie A na temporada 2026/27. Sua trajetória inclui a conquista de Taça dos Clubes Vencedores de Taças em 1998-99.",
+      "honours": [
+        "Taça dos Clubes Vencedores de Taças - 1998-99",
+        "Supercopa da UEFA - 1999",
+        "Campeonato Italiano - 1973-74, 1999-00",
+        "Copa da Itália - 1957-58, 1997-98, 1999-00, 2003-04, 2008-09, 2012-13, 2018-19",
+        "Supercopa da Itália - 1998, 2000, 2009, 2017, 2019",
+        "Campeonato Italiano (Serie B) - 1968-69"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/112.png",
+      "colors": ["#74bde7", "#ffffff"],
+      "sources": [
+        {
+          "label": "Clubes e estádios da Lega Serie A",
+          "url": "https://en.legaseriea.it/team"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Società_Sportiva_Lazio"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://sslazio.it/"
+        }
+      ]
+    },
+    {
+      "id": "4007",
+      "name": "Monza",
+      "sport": "soccer",
+      "league": "ita.1",
+      "city": "Monza",
+      "stadium": "Brianteo",
+      "website": "https://acmonza.com/",
+      "description": "O Monza representa Monza no futebol italiano e utiliza o estádio Brianteo. Disputa a Serie A na temporada 2026/27. Sua trajetória inclui a conquista de Campeonato Italiano (Série C, grupo A) em 1950-51.",
+      "honours": [
+        "Campeonato Italiano (Série C, grupo A) - 1950-51, 1966-67, 1975-76, 2019-20",
+        "Copa da Itália (Série C) - 1973-74, 1974-75, 1987-88, 1990-91",
+        "Campeonato Italiano (Série D, grupo B) - 2016-17"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/4007.png",
+      "colors": ["#c8142f", "#ffffff"],
+      "sources": [
+        {
+          "label": "Clubes e estádios da Lega Serie A",
+          "url": "https://en.legaseriea.it/team"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Associazione_Calcio_Monza"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://acmonza.com/"
+        },
+        {
+          "label": "Conferência do histórico e das conquistas",
+          "url": "https://en.wikipedia.org/wiki/A.C._Monza"
+        }
+      ]
+    },
+    {
+      "id": "114",
+      "name": "Napoli",
+      "sport": "soccer",
+      "league": "ita.1",
+      "city": "Nápoles",
+      "stadium": "Diego Armando Maradona",
+      "website": "https://sscnapoli.it/",
+      "description": "O Napoli representa Nápoles no futebol italiano e utiliza o estádio Diego Armando Maradona. Disputa a Serie A na temporada 2026/27. Sua trajetória inclui a conquista de Liga Europa da UEFA em 1988-89.",
+      "honours": [
+        "Liga Europa da UEFA - 1988-89",
+        "Campeonato Italiano - 1986-87, 1989-90, 2022-23, 2024-25",
+        "Copa da Itália - 1961-62, 1975-76, 1986-87, 2011-12, 2013-14, 2019-20",
+        "Supercopa da Itália - 1990, 2014, 2025",
+        "Campeonato Italiano (2ª Divisão) - 1945-46, 1949-50",
+        "Campeonato Italiano (3ª Divisão) - 2005-06",
+        "Copa dos Alpes - 1966",
+        "Copa da Liga Anglo-Italiana - 1976"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/114.png",
+      "colors": ["#0677d2", "#ffffff"],
+      "sources": [
+        {
+          "label": "Clubes e estádios da Lega Serie A",
+          "url": "https://en.legaseriea.it/team"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Società_Sportiva_Calcio_Napoli"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://sscnapoli.it/"
+        }
+      ]
+    },
+    {
+      "id": "115",
+      "name": "Parma",
+      "sport": "soccer",
+      "league": "ita.1",
+      "city": "Parma",
+      "stadium": "Ennio Tardini",
+      "website": "https://parmacalcio1913.com/",
+      "description": "O Parma representa Parma no futebol italiano e utiliza o estádio Ennio Tardini. Disputa a Serie A na temporada 2026/27. Sua trajetória inclui a conquista de Copa da UEFA em 1994-95.",
+      "honours": [
+        "Copa da UEFA - 1994-95, 1998-99",
+        "Recopa Europeia da UEFA - 1992-93",
+        "Supercopa da UEFA - 1993",
+        "Copa da Itália - 1991-92, 1998-99, 2001-02",
+        "Supercopa da Itália - 1999",
+        "Campeonato Italiano (Série B) - 2023-24",
+        "Campeonato Italiano (Série C) - 1953-54, 1972-73, 1983-84, 1985-86",
+        "Campeonato Italiano (Série D) - 1969-70, 2015-16"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/115.png",
+      "colors": ["#19161d", "#ffdd30"],
+      "sources": [
+        {
+          "label": "Clubes e estádios da Lega Serie A",
+          "url": "https://en.legaseriea.it/team"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Parma_Calcio_1913"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://parmacalcio1913.com/"
+        }
+      ]
+    },
+    {
+      "id": "3997",
+      "name": "Sassuolo",
+      "sport": "soccer",
+      "league": "ita.1",
+      "city": "Sassuolo",
+      "stadium": "Mapei Stadium (Reggio Emilia)",
+      "website": "https://sassuolocalcio.it/",
+      "description": "O Sassuolo representa Sassuolo no futebol italiano e utiliza o estádio Mapei Stadium (Reggio Emilia). Disputa a Serie A na temporada 2026/27. Sua trajetória inclui a conquista de Campeonato Italiano (Série B) em 2012-13.",
+      "honours": ["Campeonato Italiano (Série B) - 2012-13, 2024-25"],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/3997.png",
+      "colors": ["#0fa653", "#adaeb0"],
+      "sources": [
+        {
+          "label": "Clubes e estádios da Lega Serie A",
+          "url": "https://en.legaseriea.it/team"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Unione_Sportiva_Sassuolo_Calcio"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://sassuolocalcio.it/"
+        }
+      ]
+    },
+    {
+      "id": "239",
+      "name": "Torino",
+      "sport": "soccer",
+      "league": "ita.1",
+      "city": "Turim",
+      "stadium": "Olimpico Grande Torino",
+      "website": "https://torinofc.it/",
+      "description": "O Torino representa Turim no futebol italiano e utiliza o estádio Olimpico Grande Torino. Disputa a Serie A na temporada 2026/27. Sua trajetória inclui a conquista de Copa Mitropa em 1991.",
+      "honours": [
+        "Copa Mitropa - 1991",
+        "Campeonato Italiano - 1927-28, 1942-43, 1945-46, 1946-47, 1947-48, 1948-49, 1975-76",
+        "Copa da Itália - 1935-36, 1942-43, 1967-68, 1970-71, 1992-93",
+        "Campeonato Italiano (Série B) - 1959-60, 1989-90, 2000-01"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/239.png",
+      "colors": ["#9f0000", "#ffffff"],
+      "sources": [
+        {
+          "label": "Clubes e estádios da Lega Serie A",
+          "url": "https://en.legaseriea.it/team"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Torino_Football_Club"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://torinofc.it/"
+        }
+      ]
+    },
+    {
+      "id": "118",
+      "name": "Udinese",
+      "sport": "soccer",
+      "league": "ita.1",
+      "city": "Udine",
+      "stadium": "Bluenergy Stadium (Friuli)",
+      "website": "https://udinese.it/",
+      "description": "O Udinese representa Udine no futebol italiano e utiliza o estádio Bluenergy Stadium (Friuli). Disputa a Serie A na temporada 2026/27. Sua trajetória inclui a conquista de Copa Intertoto da UEFA em 2000.",
+      "honours": [
+        "Copa Intertoto da UEFA - 2000",
+        "Copa Mitropa - 1980",
+        "Campeonato Italiano (Série B) - 1955-56, 1978-79",
+        "Campeonato Italiano (Série C) - 1929-30, 1948-49, 1977-78"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/118.png",
+      "colors": ["#19161d", "#0f1c3f"],
+      "sources": [
+        {
+          "label": "Clubes e estádios da Lega Serie A",
+          "url": "https://en.legaseriea.it/team"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Udinese_Calcio"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://udinese.it/"
+        }
+      ]
+    },
+    {
+      "id": "17530",
+      "name": "Venezia",
+      "sport": "soccer",
+      "league": "ita.1",
+      "city": "Veneza",
+      "stadium": "Pier Luigi Penzo",
+      "website": "https://veneziafc.it/",
+      "description": "O Venezia representa Veneza no futebol italiano e utiliza o estádio Pier Luigi Penzo. Disputa a Serie A na temporada 2026/27. Sua trajetória inclui a conquista de Copa da Itália em 1940-41.",
+      "honours": [
+        "Copa da Itália - 1940-41",
+        "Campeonato Italiano (Série B) - 1960-61, 1965-66, 2025-26"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/17530.png",
+      "colors": ["#000000", "#ffffff"],
+      "sources": [
+        {
+          "label": "Clubes e estádios da Lega Serie A",
+          "url": "https://en.legaseriea.it/team"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Venezia_Football_Club"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://veneziafc.it/"
+        }
+      ]
+    },
+    {
+      "id": "96",
+      "name": "Alavés",
+      "sport": "soccer",
+      "league": "esp.1",
+      "city": "Vitoria-Gasteiz",
+      "stadium": "Mendizorrotza",
+      "website": "https://deportivoalaves.com/",
+      "description": "O Alavés representa Vitoria-Gasteiz no futebol espanhol e utiliza o estádio Mendizorrotza. Disputa a LaLiga na temporada 2026/27. Sua trajetória inclui a conquista de Copa da Federação Espanhola em 1945-46.",
+      "honours": [
+        "Copa da Federação Espanhola - 1945-46",
+        "Copa da Federação - 1946-47, 1949-50, 1950-51",
+        "Campeonato Espanhol (2ª Divisão) - 1929-30, 1953-54, 1997-98, 2015-16",
+        "Campeonato Espanhol (3ª Divisão) - 1992-93, 1993-94, 1994-95, 2012-13"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/96.png",
+      "colors": ["#0000ff", "#ffc0cb"],
+      "sources": [
+        {
+          "label": "Participantes e estádios da LaLiga 2026/27",
+          "url": "https://pt.wikipedia.org/wiki/La_Liga_de_2026–27"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Deportivo_Alavés"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://deportivoalaves.com/"
+        }
+      ]
+    },
+    {
+      "id": "93",
+      "name": "Athletic Club",
+      "sport": "soccer",
+      "league": "esp.1",
+      "city": "Bilbau",
+      "stadium": "San Mamés",
+      "website": "https://athletic-club.eus/",
+      "description": "O Athletic Club representa Bilbau no futebol espanhol e utiliza o estádio San Mamés. Disputa a LaLiga na temporada 2026/27. Sua trajetória inclui a conquista de Campeonato Espanhol em 1929-30.",
+      "honours": [
+        "Campeonato Espanhol - 1929-30, 1930-31, 1933-34, 1935-36, 1942-43, 1955-56, 1982-83, 1983-84",
+        "Copa do Rei - 1903, 1904, 1910, 1911, 1914, 1915, 1916, 1921, 1923, 1930, 1931, 1932, 1933, 1942-43, 1943-44, 1944-45, 1949-50, 1954-55, 1955-56, 1957-58, 1968-69, 1972-73, 1983-84, 2023-24",
+        "Supercopa da Espanha - 1984, 2015, 2020-21",
+        "Copa Eva Duarte - 1949-50"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/93.png",
+      "colors": ["#c8142f", "#000000"],
+      "sources": [
+        {
+          "label": "Participantes e estádios da LaLiga 2026/27",
+          "url": "https://pt.wikipedia.org/wiki/La_Liga_de_2026–27"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Athletic_Club"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://athletic-club.eus/"
+        }
+      ]
+    },
+    {
+      "id": "1068",
+      "name": "Atlético de Madrid",
+      "sport": "soccer",
+      "league": "esp.1",
+      "city": "Madri",
+      "stadium": "Riyadh Air Metropolitano",
+      "website": "https://atleticodemadrid.com/",
+      "description": "O Atlético de Madrid representa Madri no futebol espanhol e utiliza o estádio Riyadh Air Metropolitano. Disputa a LaLiga na temporada 2026/27. Sua trajetória inclui a conquista de Campeonato Espanhol em 1939-40.",
+      "honours": [
+        "Campeonato Espanhol - 1939-40, 1940-41, 1949-50, 1950-51, 1965-66, 1969-70, 1972-73, 1976-77, 1995-96, 2013-14, 2020-21",
+        "Copa Intercontinental - 1974",
+        "Liga Europa da UEFA - 2009-10, 2011-12, 2017-18",
+        "Supercopa da UEFA - 2010, 2012, 2018",
+        "Recopa Europeia da UEFA - 1961-62",
+        "Copa do Rei - 1959-60, 1960-61, 1964-65, 1971-72, 1975-76, 1984-85, 1990-91, 1991-92, 1995-96, 2012-13",
+        "Supercopa da Espanha - 1985, 2014",
+        "Copa Eva Duarte - 1950-51",
+        "Copa Presidente FEF - 1941-42",
+        "Campeonato Espanhol (2ª Divisão) - 2001-02",
+        "Campeonato de Madrid - 1920-21, 1924-25, 1927-28, 1939-40"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/1068.png",
+      "colors": ["#ca3624", "#000000"],
+      "sources": [
+        {
+          "label": "Participantes e estádios da LaLiga 2026/27",
+          "url": "https://pt.wikipedia.org/wiki/La_Liga_de_2026–27"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Club_Atlético_de_Madrid"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://atleticodemadrid.com/"
+        }
+      ]
+    },
+    {
+      "id": "83",
+      "name": "Barcelona",
+      "sport": "soccer",
+      "league": "esp.1",
+      "city": "Barcelona",
+      "stadium": "Spotify Camp Nou",
+      "website": "https://fcbarcelona.com/",
+      "description": "O Barcelona representa Barcelona no futebol espanhol e utiliza o estádio Spotify Camp Nou. Disputa a LaLiga na temporada 2026/27. Sua trajetória inclui a conquista de Campeonato Espanhol em 1928-29.",
+      "honours": [
+        "Campeonato Espanhol - 1928-29, 1944-45, 1947-48, 1948-49, 1951-52, 1952-53, 1958-59, 1959-60, 1973-74, 1984-85, 1990-91, 1991-92, 1992-93, 1993-94, 1997-98, 1998-99, 2004-05, 2005-06, 2008-09, 2009-10, 2010-11, 2012-13, 2014-15, 2015-16, 2017-18, 2018-19, 2022-23, 2024-25, 2025-26",
+        "Copa do Mundo de Clubes da FIFA - 2009, 2011, 2015",
+        "Liga dos Campeões da UEFA - 1991-92, 2005-06, 2008-09, 2010-11, 2014-15",
+        "Recopa Europeia da UEFA - 1978-79, 1981-82, 1988-89, 1996-97",
+        "Supercopa da UEFA - 1992, 1997, 2009, 2011, 2015",
+        "Taça das Cidades com Feiras - 1955-58, 1958-60, 1965-66",
+        "Taça Latina - 1949, 1952",
+        "Copa do Rei - 1910, 1912, 1913, 1920, 1922, 1925, 1926, 1928, 1942, 1951, 1952, 1952-53, 1957, 1958-59, 1962-63, 1967-68, 1970-71, 1977-78, 1980-81, 1982-83, 1987-88, 1989-90, 1996-97, 1997-98, 2008-09, 2011-12, 2014-15, 2015-16, 2016-17, 2017-18, 2020-21, 2024-25",
+        "Supercopa da Espanha - 1983, 1991, 1992, 1994, 1996, 2005, 2006, 2009, 2010, 2011, 2013, 2016, 2018, 2022-23, 2024-25, 2025-26",
+        "Copa da Liga Espanhola - 1982-83, 1985-86",
+        "Copa Eva Duarte - 1949, 1952, 1953"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/83.png",
+      "colors": ["#990000", "#fce38a"],
+      "sources": [
+        {
+          "label": "Participantes e estádios da LaLiga 2026/27",
+          "url": "https://pt.wikipedia.org/wiki/La_Liga_de_2026–27"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Futbol_Club_Barcelona"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://fcbarcelona.com/"
+        }
+      ]
+    },
+    {
+      "id": "85",
+      "name": "Celta de Vigo",
+      "sport": "soccer",
+      "league": "esp.1",
+      "city": "Vigo",
+      "stadium": "ABANCA Balaídos",
+      "website": "https://rccelta.es/",
+      "description": "O Celta de Vigo representa Vigo no futebol espanhol e utiliza o estádio ABANCA Balaídos. Disputa a LaLiga na temporada 2026/27. Sua trajetória inclui a conquista de Copa Intertoto da UEFA em 2000.",
+      "honours": [
+        "Copa Intertoto da UEFA - 2000",
+        "Campeonato Espanhol (2ª Divisão) - 1935-36, 1981-82, 1991-92",
+        "Campeonato Espanhol (3ª Divisão) - 1980-81",
+        "Campeonato Espanhol (4ª Divisão) - 1930-31"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/85.png",
+      "colors": ["#6cace4", "#004996"],
+      "sources": [
+        {
+          "label": "Participantes e estádios da LaLiga 2026/27",
+          "url": "https://pt.wikipedia.org/wiki/La_Liga_de_2026–27"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Real_Club_Celta_de_Vigo"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://rccelta.es/"
+        }
+      ]
+    },
+    {
+      "id": "90",
+      "name": "Deportivo La Coruña",
+      "sport": "soccer",
+      "league": "esp.1",
+      "city": "A Coruña",
+      "stadium": "ABANCA Riazor",
+      "website": "https://rcdeportivo.es/",
+      "description": "O Deportivo La Coruña representa A Coruña no futebol espanhol e utiliza o estádio ABANCA Riazor. Disputa a LaLiga na temporada 2026/27. Sua trajetória inclui a conquista de Campeonato Espanhol em 1999-00.",
+      "honours": [
+        "Campeonato Espanhol - 1999-00",
+        "Copa do Rei - 1994-95, 2001-02",
+        "Supercopa da Espanha - 1995, 2000, 2002",
+        "Campeonato Espanhol (2ª Divisão) - 1961-62, 1963-64, 1965-66, 1966-67, 2011-12",
+        "Campeonato Espanhol (3ª Divisão) - 1974-75"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/90.png",
+      "colors": ["#3366cc", "#000000"],
+      "sources": [
+        {
+          "label": "Participantes e estádios da LaLiga 2026/27",
+          "url": "https://pt.wikipedia.org/wiki/La_Liga_de_2026–27"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Real_Club_Deportivo_de_La_Coruña"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://rcdeportivo.es/"
+        }
+      ]
+    },
+    {
+      "id": "3751",
+      "name": "Elche",
+      "sport": "soccer",
+      "league": "esp.1",
+      "city": "Elche",
+      "stadium": "Manuel Martínez Valero",
+      "website": "https://elchecf.es/",
+      "description": "O Elche representa Elche no futebol espanhol e utiliza o estádio Manuel Martínez Valero. Disputa a LaLiga na temporada 2026/27. Sua trajetória inclui a conquista de Campeonato Espanhol (2ª Divisão) em 1958-59.",
+      "honours": ["Campeonato Espanhol (2ª Divisão) - 1958-59, 2012-13"],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/3751.png",
+      "colors": ["#288a00", "#4b2b67"],
+      "sources": [
+        {
+          "label": "Participantes e estádios da LaLiga 2026/27",
+          "url": "https://pt.wikipedia.org/wiki/La_Liga_de_2026–27"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Elche_Club_de_Fútbol"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://elchecf.es/"
+        }
+      ]
+    },
+    {
+      "id": "88",
+      "name": "Espanyol",
+      "sport": "soccer",
+      "league": "esp.1",
+      "city": "Barcelona",
+      "stadium": "RCDE Stadium (Cornellà de Llobregat)",
+      "website": "https://rcdespanyol.com/",
+      "description": "O Espanyol representa Barcelona no futebol espanhol e utiliza o estádio RCDE Stadium (Cornellà de Llobregat). Disputa a LaLiga na temporada 2026/27. Sua trajetória inclui a conquista de Copa do Rei em 1928-29.",
+      "honours": [
+        "Copa do Rei - 1928-29, 1940, 1999-00, 2005-06",
+        "Campeonato Espanhol (2ª Divisão) - 1993-94, 2020-21",
+        "Campeonato Catalão - 1903-04, 1911-12, 1914-15, 1917-18, 1928-29, 1932-33, 1936-37, 1939-40",
+        "Copa da Catalunha - 1994-95, 1995-96, 1998-99, 2005-06, 2009-10, 2010-11",
+        "Copa Macaya - 1902-03",
+        "Supercopa da Catalunha - 2016",
+        "Copa Duward - 1953, 1954"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/88.png",
+      "colors": ["#3366cc", "#c8142f"],
+      "sources": [
+        {
+          "label": "Participantes e estádios da LaLiga 2026/27",
+          "url": "https://pt.wikipedia.org/wiki/La_Liga_de_2026–27"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Reial_Club_Deportiu_Espanyol_de_Barcelona"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://rcdespanyol.com/"
+        }
+      ]
+    },
+    {
+      "id": "2922",
+      "name": "Getafe",
+      "sport": "soccer",
+      "league": "esp.1",
+      "city": "Getafe",
+      "stadium": "Coliseum",
+      "website": "https://getafecf.com/",
+      "description": "O Getafe representa Getafe no futebol espanhol e utiliza o estádio Coliseum. Disputa a LaLiga na temporada 2026/27. Sua trajetória inclui a conquista de Campeonato Espanhol (Segunda División B, grupo I) em 1998-99.",
+      "honours": [
+        "Campeonato Espanhol (Segunda División B, grupo I) - 1998-99"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/2922.png",
+      "colors": ["#0000ff", "#7f1734"],
+      "sources": [
+        {
+          "label": "Participantes e estádios da LaLiga 2026/27",
+          "url": "https://pt.wikipedia.org/wiki/La_Liga_de_2026–27"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Getafe_Club_de_Fútbol"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://getafecf.com/"
+        },
+        {
+          "label": "Conferência do histórico e das conquistas",
+          "url": "https://en.wikipedia.org/wiki/Getafe_CF"
+        }
+      ]
+    },
+    {
+      "id": "1538",
+      "name": "Levante",
+      "sport": "soccer",
+      "league": "esp.1",
+      "city": "Valência",
+      "stadium": "Ciutat de València",
+      "website": "https://levanteud.com/",
+      "description": "O Levante representa Valência no futebol espanhol e utiliza o estádio Ciutat de València. Disputa a LaLiga na temporada 2026/27. Sua trajetória inclui a conquista de Campeonato Espanhol (2ª Divisão) em 2003-04.",
+      "honours": [
+        "Campeonato Espanhol (2ª Divisão) - 2003-04, 2016-17, 2024-25"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/1538.png",
+      "colors": ["#c8142f", "#000000"],
+      "sources": [
+        {
+          "label": "Participantes e estádios da LaLiga 2026/27",
+          "url": "https://pt.wikipedia.org/wiki/La_Liga_de_2026–27"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Levante_Unión_Deportiva"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://levanteud.com/"
+        }
+      ]
+    },
+    {
+      "id": "99",
+      "name": "Málaga",
+      "sport": "soccer",
+      "league": "esp.1",
+      "city": "Málaga",
+      "stadium": "La Rosaleda",
+      "website": "https://malagacf.com/",
+      "description": "O Málaga representa Málaga no futebol espanhol e utiliza o estádio La Rosaleda. Disputa a LaLiga na temporada 2026/27. Sua trajetória inclui a conquista de Copa Intertoto da UEFA em 2002.",
+      "honours": [
+        "Copa Intertoto da UEFA - 2002",
+        "Campeonato Espanhol (2ª Divisão) - 1998-99"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/99.png",
+      "colors": ["#b9e8f0", "#d19ca4"],
+      "sources": [
+        {
+          "label": "Participantes e estádios da LaLiga 2026/27",
+          "url": "https://pt.wikipedia.org/wiki/La_Liga_de_2026–27"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Málaga_Club_de_Fútbol"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://malagacf.com/"
+        }
+      ]
+    },
+    {
+      "id": "97",
+      "name": "Osasuna",
+      "sport": "soccer",
+      "league": "esp.1",
+      "city": "Pamplona",
+      "stadium": "El Sadar",
+      "website": "https://osasuna.es/",
+      "description": "O Osasuna representa Pamplona no futebol espanhol e utiliza o estádio El Sadar. Disputa a LaLiga na temporada 2026/27. Sua trajetória inclui a conquista de Campeonato Espanhol (2ª Divisão) em 1952-53.",
+      "honours": [
+        "Campeonato Espanhol (2ª Divisão) - 1952-53, 1955-56, 1960-61, 2018-19",
+        "Campeonato Espanhol (3ª Divisão) - 1931-32, 1947-48, 1948-49, 1968-69, 1971-72, 1974-75, 1976-77"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/97.png",
+      "colors": ["#cd0000", "#ffffff"],
+      "sources": [
+        {
+          "label": "Participantes e estádios da LaLiga 2026/27",
+          "url": "https://pt.wikipedia.org/wiki/La_Liga_de_2026–27"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Club_Atlético_Osasuna"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://osasuna.es/"
+        }
+      ]
+    },
+    {
+      "id": "87",
+      "name": "Racing Santander",
+      "sport": "soccer",
+      "league": "esp.1",
+      "city": "Santander",
+      "stadium": "El Sardinero",
+      "website": "https://realracingclub.es/",
+      "description": "O Racing Santander representa Santander no futebol espanhol e utiliza o estádio El Sardinero. Disputa a LaLiga na temporada 2026/27. Sua trajetória inclui a conquista de Campeonato Espanhol (2ª Divisão) em 1949-50.",
+      "honours": [
+        "Campeonato Espanhol (2ª Divisão) - 1949-50, 1959-60, 2025-26",
+        "Campeonato Espanhol (3ª Divisão) - 1990-91, 2013-14, 2015-16, 2018-19, 2021-22"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/87.png",
+      "colors": ["#ffffff", "#3b6c1a"],
+      "sources": [
+        {
+          "label": "Participantes e estádios da LaLiga 2026/27",
+          "url": "https://pt.wikipedia.org/wiki/La_Liga_de_2026–27"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Real_Racing_Club_de_Santander"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://realracingclub.es/"
+        }
+      ]
+    },
+    {
+      "id": "101",
+      "name": "Rayo Vallecano",
+      "sport": "soccer",
+      "league": "esp.1",
+      "city": "Madri",
+      "stadium": "Vallecas",
+      "website": "https://rayovallecano.es/",
+      "description": "O Rayo Vallecano representa Madri no futebol espanhol e utiliza o estádio Vallecas. Disputa a LaLiga na temporada 2026/27. Sua trajetória inclui a conquista de Campeonato Espanhol (2ª Divisão) em 2017-18.",
+      "honours": ["Campeonato Espanhol (2ª Divisão) - 2017-18"],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/101.png",
+      "colors": ["#ffffff", "#cd0000"],
+      "sources": [
+        {
+          "label": "Participantes e estádios da LaLiga 2026/27",
+          "url": "https://pt.wikipedia.org/wiki/La_Liga_de_2026–27"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Rayo_Vallecano_de_Madrid"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://rayovallecano.es/"
+        },
+        {
+          "label": "Conferência do histórico e das conquistas",
+          "url": "https://en.wikipedia.org/wiki/Rayo_Vallecano"
+        }
+      ]
+    },
+    {
+      "id": "244",
+      "name": "Real Betis",
+      "sport": "soccer",
+      "league": "esp.1",
+      "city": "Sevilha",
+      "stadium": "Olímpico de La Cartuja",
+      "website": "https://realbetisbalompie.es/",
+      "description": "O Real Betis representa Sevilha no futebol espanhol e utiliza o estádio Olímpico de La Cartuja. Disputa a LaLiga na temporada 2026/27. Sua trajetória inclui a conquista de Campeonato Espanhol em 1934-35.",
+      "honours": [
+        "Campeonato Espanhol - 1934-35",
+        "Copa do Rei - 1976-77, 2004-05, 2021-22",
+        "Campeonato Espanhol (2ª Divisão) - 1931-32, 1941-42, 1957-58, 1970-71, 1973-74, 2010-11, 2014-15",
+        "Campeonato Espanhol (3ª Divisão) - 1953-54"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/244.png",
+      "colors": ["#288a00", "#0a422d"],
+      "sources": [
+        {
+          "label": "Participantes e estádios da LaLiga 2026/27",
+          "url": "https://pt.wikipedia.org/wiki/La_Liga_de_2026–27"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Real_Betis_Balompié"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://realbetisbalompie.es/"
+        }
+      ]
+    },
+    {
+      "id": "86",
+      "name": "Real Madrid",
+      "sport": "soccer",
+      "league": "esp.1",
+      "city": "Madri",
+      "stadium": "Santiago Bernabéu",
+      "website": "https://realmadrid.com/",
+      "description": "O Real Madrid representa Madri no futebol espanhol e utiliza o estádio Santiago Bernabéu. Disputa a LaLiga na temporada 2026/27. Sua trajetória inclui a conquista de Campeonato Espanhol em 1931-32.",
+      "honours": [
+        "Campeonato Espanhol - 1931-32, 1932-33, 1953-54, 1954-55, 1956-57, 1957-58, 1960-61, 1961-62, 1962-63, 1963-64, 1964-65, 1966-67, 1967-68, 1968-69, 1971-72, 1974-75, 1975-76, 1977-78, 1978-79, 1979-80, 1985-86, 1986-87, 1987-88, 1988-89, 1989-90, 1994-95, 1996-97, 2000-01, 2002-03, 2006-07, 2007-08, 2011-12, 2016-17, 2019-20, 2021-22, 2023-24",
+        "Copa Intercontinental da FIFA - 2024",
+        "Copa do Mundo de Clubes da FIFA - 2014, 2016, 2017, 2018, 2022",
+        "Copa Intercontinental - 1960, 1998, 2002",
+        "Liga dos Campeões da UEFA - 1955-56, 1956-57, 1957-58, 1958-59, 1959-60, 1965-66, 1997-98, 1999-00, 2001-02, 2013-14, 2015-16, 2016-17, 2017-18, 2021-22, 2023-24",
+        "Liga Europa da UEFA - 1984-85, 1985-86",
+        "Supercopa da UEFA - 2002, 2014, 2016, 2017, 2022, 2024",
+        "Taça Latina - 1955, 1957",
+        "Copa do Rei - 1905-06, 1906-07, 1907-08, 1908-09, 1917-18, 1934-35, 1936-37, 1946-47, 1947-48, 1961-62, 1969-70, 1973-74, 1974-75, 1979-80, 1981-82, 1988-89, 1992-93, 2010-11, 2013-14, 2022-23",
+        "Supercopa da Espanha - 1988, 1989, 1990, 1993, 1997, 2001, 2003, 2008, 2012, 2017, 2020, 2022, 2024",
+        "Copa da Liga Espanhola - 1984-85"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/86.png",
+      "colors": ["#ffffff", "#1b4d3e"],
+      "sources": [
+        {
+          "label": "Participantes e estádios da LaLiga 2026/27",
+          "url": "https://pt.wikipedia.org/wiki/La_Liga_de_2026–27"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Real_Madrid_Club_de_Fútbol"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://realmadrid.com/"
+        }
+      ]
+    },
+    {
+      "id": "89",
+      "name": "Real Sociedad",
+      "sport": "soccer",
+      "league": "esp.1",
+      "city": "San Sebastián",
+      "stadium": "Reale Arena (Anoeta)",
+      "website": "https://realsociedad.eus/",
+      "description": "O Real Sociedad representa San Sebastián no futebol espanhol e utiliza o estádio Reale Arena (Anoeta). Disputa a LaLiga na temporada 2026/27. Sua trajetória inclui a conquista de Campeonato Espanhol em 1980-81.",
+      "honours": [
+        "Campeonato Espanhol - 1980-81, 1981-82",
+        "Copa do Rei - 1909, 1986-87, 2019-20, 2025-26",
+        "Supercopa da Espanha - 1982",
+        "Campeonato Espanhol (2ª Divisão) - 1948-49, 1966-67, 2009-10",
+        "Campeonato Regional de Guipúzcoa - 1918-19, 1922-23, 1924-25, 1926-27, 1928-29",
+        "Campeonato Regional Mancomunado de Guipúzcoa - 1931-32, 1932-33"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/89.png",
+      "colors": ["#3366cc", "#000000"],
+      "sources": [
+        {
+          "label": "Participantes e estádios da LaLiga 2026/27",
+          "url": "https://pt.wikipedia.org/wiki/La_Liga_de_2026–27"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Real_Sociedad_de_Fútbol"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://realsociedad.eus/"
+        }
+      ]
+    },
+    {
+      "id": "243",
+      "name": "Sevilla",
+      "sport": "soccer",
+      "league": "esp.1",
+      "city": "Sevilha",
+      "stadium": "Ramón Sánchez-Pizjuán",
+      "website": "https://sevillafc.es/",
+      "description": "O Sevilla representa Sevilha no futebol espanhol e utiliza o estádio Ramón Sánchez-Pizjuán. Disputa a LaLiga na temporada 2026/27. Sua trajetória inclui a conquista de Liga Europa da UEFA em 2005-06.",
+      "honours": [
+        "Liga Europa da UEFA - 2005-06, 2006-07, 2013-14, 2014-15, 2015-16, 2019-20, 2022-23",
+        "Supercopa da UEFA - 2006",
+        "Campeonato Espanhol - 1945-46",
+        "Copa do Rei - 1934-35, 1938-39, 1947-48, 2006-07, 2009-10",
+        "Supercopa da Espanha - 2007",
+        "Campeonato Espanhol (2ª Divisão) - 1928-29, 1933-34, 1968-69, 2000-01",
+        "Copa da Andaluzia - 1916-17, 1918-19, 1919-20, 1920-21, 1921-22, 1922-23, 1923-24, 1924-25, 1925-26, 1926-27, 1928-29, 1929-30, 1930-31, 1931-32, 1932-33, 1935-36, 1938-39, 1939-40"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/243.png",
+      "colors": ["#ffffff", "#d81022"],
+      "sources": [
+        {
+          "label": "Participantes e estádios da LaLiga 2026/27",
+          "url": "https://pt.wikipedia.org/wiki/La_Liga_de_2026–27"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Sevilla_Fútbol_Club"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://sevillafc.es/"
+        }
+      ]
+    },
+    {
+      "id": "94",
+      "name": "Valencia",
+      "sport": "soccer",
+      "league": "esp.1",
+      "city": "Valência",
+      "stadium": "Mestalla",
+      "website": "https://valenciacf.com/",
+      "description": "O Valencia representa Valência no futebol espanhol e utiliza o estádio Mestalla. Disputa a LaLiga na temporada 2026/27. Sua trajetória inclui a conquista de Liga Europa da UEFA em 2003-04.",
+      "honours": [
+        "Liga Europa da UEFA - 2003-04",
+        "Recopa Europeia da UEFA - 1979-80",
+        "Supercopa da UEFA - 1980, 2004",
+        "Copa Intertoto da UEFA - 1998",
+        "Taça das Cidades com Feiras - 1961-62, 1962-63",
+        "Campeonato Espanhol - 1941-42, 1943-44, 1946-47, 1970-71, 2001-02, 2003-04",
+        "Copa do Rei - 1940-41, 1948-49, 1953-54, 1966-67, 1978-79, 1998-99, 2007-08, 2018-19",
+        "Supercopa da Espanha - 1999",
+        "Campeonato Espanhol (2ª Divisão) - 1930-31, 1986-87",
+        "Copa Eva Duarte - 1948-49"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/94.png",
+      "colors": ["#ffffff", "#ff6f00"],
+      "sources": [
+        {
+          "label": "Participantes e estádios da LaLiga 2026/27",
+          "url": "https://pt.wikipedia.org/wiki/La_Liga_de_2026–27"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Valencia_Club_de_Fútbol"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://valenciacf.com/"
+        }
+      ]
+    },
+    {
+      "id": "102",
+      "name": "Villarreal",
+      "sport": "soccer",
+      "league": "esp.1",
+      "city": "Vila-real",
+      "stadium": "Estadio de la Cerámica",
+      "website": "https://villarrealcf.es/",
+      "description": "O Villarreal representa Vila-real no futebol espanhol e utiliza o estádio Estadio de la Cerámica. Disputa a LaLiga na temporada 2026/27. Sua trajetória inclui a conquista de Liga Europa da UEFA em 2020-21.",
+      "honours": [
+        "Liga Europa da UEFA - 2020-21",
+        "Copa Intertoto da UEFA - 2003, 2004",
+        "Campeonato Espanhol (4ª Divisão) - 1969-70"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/102.png",
+      "colors": ["#ffff00", "#6cace4"],
+      "sources": [
+        {
+          "label": "Participantes e estádios da LaLiga 2026/27",
+          "url": "https://pt.wikipedia.org/wiki/La_Liga_de_2026–27"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Villarreal_Club_de_Fútbol"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://villarrealcf.es/"
+        }
+      ]
+    },
+    {
+      "id": "21607",
+      "name": "Académico de Viseu",
+      "sport": "soccer",
+      "league": "por.1",
+      "city": "Viseu",
+      "stadium": "Municipal do Fontelo",
+      "website": "https://academicodeviseu.pt/",
+      "description": "O Académico de Viseu representa Viseu no futebol português e utiliza o estádio Municipal do Fontelo. Disputa a Liga Portugal na temporada 2026/27. Sua trajetória inclui a conquista de Liga de Honra da AF Viseu em 1947-48.",
+      "honours": [
+        "Liga de Honra da AF Viseu - 1947-48, 1950-51, 1951-52, 1952-53, 1956-57, 1957-58, 1958-59, 1960-61, 1963-64, 1964-65, 2006-07"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/21607.png",
+      "colors": ["#000000", "#c60000"],
+      "sources": [
+        {
+          "label": "Clubes e estádios da Liga Portugal 2026/27",
+          "url": "https://pt.wikipedia.org/wiki/Primeira_Liga#Temporada_2026–27"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Académico_de_Viseu_Futebol_Clube"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://academicodeviseu.pt/"
+        },
+        {
+          "label": "Conferência do histórico e das conquistas",
+          "url": "https://en.wikipedia.org/wiki/Académico_de_Viseu_F.C."
+        }
+      ]
+    },
+    {
+      "id": "21613",
+      "name": "Alverca",
+      "sport": "soccer",
+      "league": "por.1",
+      "city": "Alverca do Ribatejo",
+      "stadium": "Estádio do FC Alverca",
+      "website": "https://fcalvercafutebolsad.pt/",
+      "description": "O Alverca representa Alverca do Ribatejo no futebol português e utiliza o estádio Estádio do FC Alverca. Disputa a Liga Portugal na temporada 2026/27. Sua trajetória inclui a conquista de Liga 3 em 2023-24.",
+      "honours": ["Liga 3 - 2023-24"],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/21613.png",
+      "colors": ["#0047ab", "#c60000"],
+      "sources": [
+        {
+          "label": "Clubes e estádios da Liga Portugal 2026/27",
+          "url": "https://pt.wikipedia.org/wiki/Primeira_Liga#Temporada_2026–27"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Futebol_Clube_de_Alverca"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://fcalvercafutebolsad.pt/"
+        }
+      ]
+    },
+    {
+      "id": "15784",
+      "name": "Arouca",
+      "sport": "soccer",
+      "league": "por.1",
+      "city": "Arouca",
+      "stadium": "Municipal de Arouca",
+      "website": "https://fcarouca.eu/",
+      "description": "O Arouca representa Arouca no futebol português e utiliza o estádio Municipal de Arouca. Disputa a Liga Portugal na temporada 2026/27. Sua trajetória inclui a conquista de II Divisão (3 Nível) em 2009-10.",
+      "honours": [
+        "II Divisão (3 Nível) - 2009-10",
+        "III Divisão (4 Nível) - 2007-08"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/15784.png",
+      "colors": ["#ffea01", "#293dc2"],
+      "sources": [
+        {
+          "label": "Clubes e estádios da Liga Portugal 2026/27",
+          "url": "https://pt.wikipedia.org/wiki/Primeira_Liga#Temporada_2026–27"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Futebol_Clube_de_Arouca"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://fcarouca.eu/"
+        }
+      ]
+    },
+    {
+      "id": "1929",
+      "name": "Benfica",
+      "sport": "soccer",
+      "league": "por.1",
+      "city": "Lisboa",
+      "stadium": "Estádio da Luz",
+      "website": "https://slbenfica.pt/",
+      "description": "O Benfica representa Lisboa no futebol português e utiliza o estádio Estádio da Luz. Disputa a Liga Portugal na temporada 2026/27. Sua trajetória inclui a conquista de Liga dos Campeões da UEFA em 1960-61.",
+      "honours": [
+        "Liga dos Campeões da UEFA - 1960-61, 1961-62",
+        "Taça Latina - 1950",
+        "Primeira Liga - 1935-36, 1936-37, 1937-38, 1941-42, 1942-43, 1944-45, 1949-50, 1954-55, 1956-57, 1959-60, 1960-61, 1962-63, 1963-64, 1964-65, 1966-67, 1967-68, 1968-69, 1970-71, 1971-72, 1972-73, 1974-75, 1975-76, 1976-77, 1980-81, 1982-83, 1983-84, 1986-87, 1988-89, 1990-91, 1993-94, 2004-05, 2009-10, 2013-14, 2014-15, 2015-16, 2016-17, 2018-19, 2022-23",
+        "Taça de Portugal - 1939-40, 1942-43, 1943-44, 1948-49, 1950-51, 1951-52, 1952-53, 1954-55, 1956-57, 1958-59, 1961-62, 1963-64, 1968-69, 1969-70, 1971-72, 1979-80, 1980-81, 1982-83, 1984-85, 1985-86, 1986-87, 1992-93, 1995-96, 2003-04, 2013-14, 2016-17"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/1929.png",
+      "colors": ["#ca281d", "#1a1a1a"],
+      "sources": [
+        {
+          "label": "Clubes e estádios da Liga Portugal 2026/27",
+          "url": "https://pt.wikipedia.org/wiki/Primeira_Liga#Temporada_2026–27"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Sport_Lisboa_e_Benfica"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://slbenfica.pt/"
+        }
+      ]
+    },
+    {
+      "id": "2994",
+      "name": "Braga",
+      "sport": "soccer",
+      "league": "por.1",
+      "city": "Braga",
+      "stadium": "Municipal de Braga",
+      "website": "https://scbraga.pt/",
+      "description": "O Braga representa Braga no futebol português e utiliza o estádio Municipal de Braga. Disputa a Liga Portugal na temporada 2026/27. Sua trajetória inclui a conquista de Taça Intertoto da UEFA em 2008.",
+      "honours": [
+        "Taça Intertoto da UEFA - 2008",
+        "Taça de Portugal - 1965-66, 2015-16, 2020-21",
+        "Taça da Liga - 2012-13, 2019-20, 2023-24"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/2994.png",
+      "colors": ["#de1f26", "#2b6a36"],
+      "sources": [
+        {
+          "label": "Clubes e estádios da Liga Portugal 2026/27",
+          "url": "https://pt.wikipedia.org/wiki/Primeira_Liga#Temporada_2026–27"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Sporting_Clube_de_Braga"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://scbraga.pt/"
+        }
+      ]
+    },
+    {
+      "id": "3472",
+      "name": "Nacional",
+      "sport": "soccer",
+      "league": "por.1",
+      "city": "Funchal",
+      "stadium": "Estádio da Madeira",
+      "website": "https://cdnacional.pt/",
+      "description": "O Nacional representa Funchal no futebol português e utiliza o estádio Estádio da Madeira. Disputa a Liga Portugal na temporada 2026/27. Sua trajetória inclui a conquista de Segunda Liga em 2017-18.",
+      "honours": ["Segunda Liga - 2017-18"],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/3472.png",
+      "colors": ["#000000", "#000099"],
+      "sources": [
+        {
+          "label": "Clubes e estádios da Liga Portugal 2026/27",
+          "url": "https://pt.wikipedia.org/wiki/Primeira_Liga#Temporada_2026–27"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Clube_Desportivo_Nacional"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://cdnacional.pt/"
+        }
+      ]
+    },
+    {
+      "id": "21581",
+      "name": "Casa Pia",
+      "sport": "soccer",
+      "league": "por.1",
+      "city": "Lisboa",
+      "stadium": "Municipal de Rio Maior",
+      "website": "https://casapiaac.pt/",
+      "description": "O Casa Pia representa Lisboa no futebol português e utiliza o estádio Municipal de Rio Maior. Disputa a Liga Portugal na temporada 2026/27. Sua trajetória inclui a conquista de Campeonato de Portugal em 2018-19.",
+      "honours": [
+        "Campeonato de Portugal - 2018-19",
+        "III Divisão Série E - 2003-04, 2009-10"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/21581.png",
+      "colors": ["#000000", "#c60000"],
+      "sources": [
+        {
+          "label": "Clubes e estádios da Liga Portugal 2026/27",
+          "url": "https://pt.wikipedia.org/wiki/Primeira_Liga#Temporada_2026–27"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Casa_Pia_Atlético_Clube"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://casapiaac.pt/"
+        }
+      ]
+    },
+    {
+      "id": "12216",
+      "name": "Estoril",
+      "sport": "soccer",
+      "league": "por.1",
+      "city": "Estoril",
+      "stadium": "António Coimbra da Mota",
+      "website": "https://estorilpraia.pt/",
+      "description": "O Estoril representa Estoril no futebol português e utiliza o estádio António Coimbra da Mota. Disputa a Liga Portugal na temporada 2026/27. Sua trajetória inclui a conquista de Segunda Liga em 2003-04.",
+      "honours": [
+        "Segunda Liga - 2003-04, 2011-12, 2020-21",
+        "II Divisão B - 2002-03"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/12216.png",
+      "colors": ["#ffea01", "#293dc2"],
+      "sources": [
+        {
+          "label": "Clubes e estádios da Liga Portugal 2026/27",
+          "url": "https://pt.wikipedia.org/wiki/Primeira_Liga#Temporada_2026–27"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Grupo_Desportivo_Estoril_Praia"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://estorilpraia.pt/"
+        }
+      ]
+    },
+    {
+      "id": "21610",
+      "name": "Estrela da Amadora",
+      "sport": "soccer",
+      "league": "por.1",
+      "city": "Amadora",
+      "stadium": "José Gomes",
+      "website": "https://cfeamadora.pt/",
+      "description": "O Estrela da Amadora representa a cidade de Amadora, em Portugal, e joga no estádio José Gomes. O atual projeto nasceu em 2020 da união do Clube Desportivo Estrela com o Club Sintra Football. Sua trajetória e seus títulos são tratados separadamente dos do antigo Clube de Futebol Estrela da Amadora.",
+      "honours": [],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/21610.png",
+      "colors": ["#3b8132", "#de0a26"],
+      "sources": [
+        {
+          "label": "Clubes e estádios da Liga Portugal 2026/27",
+          "url": "https://pt.wikipedia.org/wiki/Primeira_Liga#Temporada_2026–27"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Club_Football_Estrela_da_Amadora"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://cfeamadora.pt/"
+        }
+      ]
+    },
+    {
+      "id": "12698",
+      "name": "Famalicão",
+      "sport": "soccer",
+      "league": "por.1",
+      "city": "Vila Nova de Famalicão",
+      "stadium": "Municipal 22 de Junho",
+      "website": "https://fcfamalicao.pt/",
+      "description": "O Famalicão representa Vila Nova de Famalicão no futebol português e utiliza o estádio Municipal 22 de Junho. Disputa a Liga Portugal na temporada 2026/27. Sua trajetória inclui a conquista de Segunda Divisão em 1977-78.",
+      "honours": ["Segunda Divisão - 1977-78, 1987-88"],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/12698.png",
+      "colors": ["#ffffff", "#183760"],
+      "sources": [
+        {
+          "label": "Clubes e estádios da Liga Portugal 2026/27",
+          "url": "https://pt.wikipedia.org/wiki/Primeira_Liga#Temporada_2026–27"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Futebol_Clube_de_Famalicão"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://fcfamalicao.pt/"
+        }
+      ]
+    },
+    {
+      "id": "437",
+      "name": "Porto",
+      "sport": "soccer",
+      "league": "por.1",
+      "city": "Porto",
+      "stadium": "Estádio do Dragão",
+      "website": "https://fcporto.pt/",
+      "description": "O Porto representa Porto no futebol português e utiliza o estádio Estádio do Dragão. Disputa a Liga Portugal na temporada 2026/27. Sua trajetória inclui a conquista de Taça Intercontinental em 1987.",
+      "honours": [
+        "Taça Intercontinental - 1987, 2004",
+        "Liga dos Campeões da UEFA - 1986-87, 2003-04",
+        "Liga Europa da UEFA - 2002-03, 2010-11",
+        "Supertaça da UEFA - 1987",
+        "Campeonato Português - 1934-35, 1938-39, 1939-40, 1955-56, 1958-59, 1977-78, 1978-79, 1984-85, 1985-86, 1987-88, 1989-90, 1991-92, 1992-93, 1994-95, 1995-96, 1996-97, 1997-98, 1998-99, 2002-03, 2003-04, 2005-06, 2006-07, 2007-08, 2008-09, 2010-11, 2011-12, 2012-13, 2017-18, 2019-20, 2021-22, 2025-26",
+        "Taça de Portugal - 1955-56, 1957-58, 1967-68, 1976-77, 1983-84, 1987-88, 1990-91, 1993-94, 1997-98, 1999-00, 2000-01, 2002-03, 2005-06, 2008-09, 2009-10, 2010-11, 2019-20, 2021-22, 2022-23, 2023-24",
+        "Taça da Liga - 2022-23",
+        "Supertaça Cândido de Oliveira - 1981, 1983, 1984, 1986, 1990, 1991, 1993, 1994, 1996, 1998, 1999, 2001, 2003, 2004, 2006, 2009, 2010, 2011, 2012, 2013, 2018, 2020, 2022, 2024, 2026",
+        "Campeonato de Portugal (formato histórico de copa) - 1921-22, 1924-25, 1931-32, 1936-37"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/437.png",
+      "colors": ["#0000dd", "#ffa000"],
+      "sources": [
+        {
+          "label": "Clubes e estádios da Liga Portugal 2026/27",
+          "url": "https://pt.wikipedia.org/wiki/Primeira_Liga#Temporada_2026–27"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Futebol_Clube_do_Porto"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://fcporto.pt/"
+        }
+      ]
+    },
+    {
+      "id": "3699",
+      "name": "Gil Vicente",
+      "sport": "soccer",
+      "league": "por.1",
+      "city": "Barcelos",
+      "stadium": "Cidade de Barcelos",
+      "website": "https://gilvicentefc.pt/",
+      "description": "O Gil Vicente representa Barcelos no futebol português e utiliza o estádio Cidade de Barcelos. Disputa a Liga Portugal na temporada 2026/27. Sua trajetória inclui a conquista de Segunda Liga em 1998-99.",
+      "honours": ["Segunda Liga - 1998-99, 2010-11"],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/3699.png",
+      "colors": ["#de1f26", "#ffffff"],
+      "sources": [
+        {
+          "label": "Clubes e estádios da Liga Portugal 2026/27",
+          "url": "https://pt.wikipedia.org/wiki/Primeira_Liga#Temporada_2026–27"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Gil_Vicente_Futebol_Clube"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://gilvicentefc.pt/"
+        }
+      ]
+    },
+    {
+      "id": "552",
+      "name": "Marítimo",
+      "sport": "soccer",
+      "league": "por.1",
+      "city": "Funchal",
+      "stadium": "Estádio do Marítimo",
+      "website": "https://csmaritimo.org.pt/",
+      "description": "O Marítimo representa Funchal no futebol português e utiliza o estádio Estádio do Marítimo. Disputa a Liga Portugal na temporada 2026/27. Sua trajetória inclui a conquista de Campeonato de Portugal em 1925-26.",
+      "honours": [
+        "Campeonato de Portugal - 1925-26",
+        "Segunda Divisão - 1976-77, 1981-82",
+        "Segunda Liga - 2025-26"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/552.png",
+      "colors": ["#008222", "#01e5db"],
+      "sources": [
+        {
+          "label": "Clubes e estádios da Liga Portugal 2026/27",
+          "url": "https://pt.wikipedia.org/wiki/Primeira_Liga#Temporada_2026–27"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Club_Sport_Marítimo"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://csmaritimo.org.pt/"
+        }
+      ]
+    },
+    {
+      "id": "3696",
+      "name": "Moreirense",
+      "sport": "soccer",
+      "league": "por.1",
+      "city": "Moreira de Cónegos (Guimarães)",
+      "stadium": "Comendador Joaquim de Almeida Freitas",
+      "website": "https://moreirensefc.pt/",
+      "description": "O Moreirense representa Moreira de Cónegos (Guimarães) no futebol português e utiliza o estádio Comendador Joaquim de Almeida Freitas. Disputa a Liga Portugal na temporada 2026/27. Sua trajetória inclui a conquista de Taça da Liga em 2016-17.",
+      "honours": [
+        "Taça da Liga - 2016-17",
+        "Segunda Liga - 2001-02, 2013-14, 2022-23",
+        "II Divisão (3 Nível) - 1994-95, 2000-01"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/3696.png",
+      "colors": ["#288a00", "#000000"],
+      "sources": [
+        {
+          "label": "Clubes e estádios da Liga Portugal 2026/27",
+          "url": "https://pt.wikipedia.org/wiki/Primeira_Liga#Temporada_2026–27"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Moreirense_Futebol_Clube"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://moreirensefc.pt/"
+        }
+      ]
+    },
+    {
+      "id": "3822",
+      "name": "Rio Ave",
+      "sport": "soccer",
+      "league": "por.1",
+      "city": "Vila do Conde",
+      "stadium": "Estádio dos Arcos",
+      "website": "https://rioavefc.pt/",
+      "description": "O Rio Ave representa Vila do Conde no futebol português e utiliza o estádio Estádio dos Arcos. Disputa a Liga Portugal na temporada 2026/27. Sua trajetória inclui a conquista de Segunda Liga em 1995-96.",
+      "honours": [
+        "Segunda Liga - 1995-96, 2002-03, 2021-22",
+        "Segunda Divisão - 1985-86"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/3822.png",
+      "colors": ["#3b8649", "#ff621a"],
+      "sources": [
+        {
+          "label": "Clubes e estádios da Liga Portugal 2026/27",
+          "url": "https://pt.wikipedia.org/wiki/Primeira_Liga#Temporada_2026–27"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Rio_Ave_Futebol_Clube"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://rioavefc.pt/"
+        }
+      ]
+    },
+    {
+      "id": "12215",
+      "name": "Santa Clara",
+      "sport": "soccer",
+      "league": "por.1",
+      "city": "Ponta Delgada",
+      "stadium": "Estádio de São Miguel",
+      "website": "https://cdsantaclara.com/",
+      "description": "O Santa Clara representa Ponta Delgada no futebol português e utiliza o estádio Estádio de São Miguel. Disputa a Liga Portugal na temporada 2026/27. Sua trajetória inclui a conquista de Segunda Liga em 2000-01.",
+      "honours": ["Segunda Liga - 2000-01, 2023-24"],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/12215.png",
+      "colors": ["#c60000", "#ddbf64"],
+      "sources": [
+        {
+          "label": "Clubes e estádios da Liga Portugal 2026/27",
+          "url": "https://pt.wikipedia.org/wiki/Primeira_Liga#Temporada_2026–27"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Clube_Desportivo_Santa_Clara"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://cdsantaclara.com/"
+        }
+      ]
+    },
+    {
+      "id": "2250",
+      "name": "Sporting CP",
+      "sport": "soccer",
+      "league": "por.1",
+      "city": "Lisboa",
+      "stadium": "José Alvalade",
+      "website": "https://sporting.pt/",
+      "description": "O Sporting CP representa Lisboa no futebol português e utiliza o estádio José Alvalade. Disputa a Liga Portugal na temporada 2026/27. Sua trajetória inclui a conquista de Taça das Taças da UEFA em 1963-64.",
+      "honours": [
+        "Taça das Taças da UEFA - 1963-64",
+        "Taça Intertoto - 1968",
+        "Campeonato Português - 1940-41, 1943-44, 1946-47, 1947-48, 1948-49, 1950-51, 1951-52, 1952-53, 1953-54, 1957-58, 1961-62, 1965-66, 1969-70, 1973-74, 1979-80, 1981-82, 1999-00, 2001-02, 2020-21, 2023-24, 2024-25",
+        "Taça de Portugal - 1940-41, 1944-45, 1945-46, 1947-48, 1953-54, 1962-63, 1970-71, 1972-73, 1973-74, 1977-78, 1981-82, 1994-95, 2001-02, 2006-07, 2007-08, 2014-15, 2018-19, 2024-25",
+        "Taça da Liga - 2017-18, 2018-19, 2020-21, 2021-22",
+        "Supertaça Cândido de Oliveira - 1982, 1987, 1995, 2000, 2002, 2007, 2008, 2015, 2021"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/2250.png",
+      "colors": ["#008127", "#ffffff"],
+      "sources": [
+        {
+          "label": "Clubes e estádios da Liga Portugal 2026/27",
+          "url": "https://pt.wikipedia.org/wiki/Primeira_Liga#Temporada_2026–27"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Sporting_Clube_de_Portugal"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://sporting.pt/"
+        }
+      ]
+    },
+    {
+      "id": "5309",
+      "name": "Vitória de Guimarães",
+      "sport": "soccer",
+      "league": "por.1",
+      "city": "Guimarães",
+      "stadium": "D. Afonso Henriques",
+      "website": "https://vitoriasc.pt/",
+      "description": "O Vitória de Guimarães representa Guimarães no futebol português e utiliza o estádio D. Afonso Henriques. Disputa a Liga Portugal na temporada 2026/27. Sua trajetória inclui a conquista de Taça de Portugal em 2012-13.",
+      "honours": [
+        "Taça de Portugal - 2012-13",
+        "Taça da Liga - 2025-26",
+        "Supertaça Cândido de Oliveira - 1988"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/5309.png",
+      "colors": ["#ffffff", "#000000"],
+      "sources": [
+        {
+          "label": "Clubes e estádios da Liga Portugal 2026/27",
+          "url": "https://pt.wikipedia.org/wiki/Primeira_Liga#Temporada_2026–27"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Vitória_Sport_Clube"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://vitoriasc.pt/"
+        }
+      ]
+    },
+    {
+      "id": "172",
+      "name": "Auxerre",
+      "sport": "soccer",
+      "league": "fra.1",
+      "city": "Auxerre",
+      "stadium": "Abbé Deschamps",
+      "website": "https://aja.fr/",
+      "description": "O Auxerre representa Auxerre no futebol francês e utiliza o estádio Abbé Deschamps. Disputa a Ligue 1 na temporada 2026/27. Sua trajetória inclui a conquista de Copa Intertoto da UEFA em 1997.",
+      "honours": [
+        "Copa Intertoto da UEFA - 1997",
+        "Campeonato Francês - 1995-96",
+        "Copa da França - 1993-94, 1995-96, 2002-03, 2004-05",
+        "Campeonato Francês (2ª Divisão) - 1979-80, 2023-24",
+        "Copa dos Alpes - 1985, 1987"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/172.png",
+      "colors": ["#ffffff", "#1a1a1a"],
+      "sources": [
+        {
+          "label": "Participantes e estádios da Ligue 1 2026/27",
+          "url": "https://en.wikipedia.org/wiki/2026–27_Ligue_1"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Association_de_la_Jeunesse_Auxerroise"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://aja.fr/"
+        }
+      ]
+    },
+    {
+      "id": "174",
+      "name": "Monaco",
+      "sport": "soccer",
+      "league": "fra.1",
+      "city": "Mônaco",
+      "stadium": "Louis II",
+      "website": "https://asmonaco.com/",
+      "description": "O Monaco representa o Principado de Mônaco e participa do sistema de competições do futebol francês. O clube manda seus jogos no estádio Louis II e integra a Ligue 1. Sua história inclui títulos do Campeonato Francês e da Copa da França, além da presença em competições europeias.",
+      "honours": [
+        "Campeonato Francês - 1960-61, 1962-63, 1977-78, 1981-82, 1987-88, 1996-97, 1999-00, 2016-17",
+        "Copa da França - 1959-60, 1962-63, 1979-80, 1984-85, 1990-91",
+        "Copa da Liga Francesa - 2002-03",
+        "Supercopa da França - 1961, 1985, 1997, 2000",
+        "Copa Charles Drago - 1961",
+        "Campeonato Francês (2ª divisão) - 1970-71, 2012-13"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/174.png",
+      "colors": ["#e91514", "#004c37"],
+      "sources": [
+        {
+          "label": "Participantes e estádios da Ligue 1 2026/27",
+          "url": "https://en.wikipedia.org/wiki/2026–27_Ligue_1"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Association_Sportive_de_Monaco_Football_Club"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://asmonaco.com/"
+        }
+      ]
+    },
+    {
+      "id": "7868",
+      "name": "Angers",
+      "sport": "soccer",
+      "league": "fra.1",
+      "city": "Angers",
+      "stadium": "Raymond Kopa",
+      "website": "https://angers-sco.fr/",
+      "description": "O Angers representa Angers no futebol francês e utiliza o estádio Raymond Kopa. Disputa a Ligue 1 na temporada 2026/27. Sua trajetória inclui a conquista de Campeonato Francês (Ligue 2) em 1968-69.",
+      "honours": ["Campeonato Francês (Ligue 2) - 1968-69, 1975-76"],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/7868.png",
+      "colors": ["#1a1a1a", "#ffffff"],
+      "sources": [
+        {
+          "label": "Participantes e estádios da Ligue 1 2026/27",
+          "url": "https://en.wikipedia.org/wiki/2026–27_Ligue_1"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Angers_Sporting_Club_de_l'Ouest"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://angers-sco.fr/"
+        }
+      ]
+    },
+    {
+      "id": "6997",
+      "name": "Brest",
+      "sport": "soccer",
+      "league": "fra.1",
+      "city": "Brest",
+      "stadium": "Francis-Le Blé",
+      "website": "https://sb29.bzh/",
+      "description": "O Brest representa Brest no futebol francês e utiliza o estádio Francis-Le Blé. Disputa a Ligue 1 na temporada 2026/27. Sua trajetória inclui a conquista de Campeonato Francês (Ligue 2) em 1980-81.",
+      "honours": ["Campeonato Francês (Ligue 2) - 1980-81"],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/6997.png",
+      "colors": ["#ef2f24", "#ffffff"],
+      "sources": [
+        {
+          "label": "Participantes e estádios da Ligue 1 2026/27",
+          "url": "https://en.wikipedia.org/wiki/2026–27_Ligue_1"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Stade_Brestois_29"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://sb29.bzh/"
+        }
+      ]
+    },
+    {
+      "id": "3236",
+      "name": "Le Havre",
+      "sport": "soccer",
+      "league": "fra.1",
+      "city": "Le Havre",
+      "stadium": "Stade Océane",
+      "website": "https://hac-foot.com/",
+      "description": "O Le Havre representa Le Havre no futebol francês e utiliza o estádio Stade Océane. Disputa a Ligue 1 na temporada 2026/27. Sua trajetória inclui a conquista de Copa da França em 1958-59.",
+      "honours": [
+        "Copa da França - 1958-59",
+        "Supercopa da França - 1959",
+        "Campeonato Francês (Ligue 2) - 1937-38, 1958-59, 1984-85, 1990-91, 2007-08, 2022-23"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/3236.png",
+      "colors": ["#011f68", "#ededed"],
+      "sources": [
+        {
+          "label": "Participantes e estádios da Ligue 1 2026/27",
+          "url": "https://en.wikipedia.org/wiki/2026–27_Ligue_1"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Le_Havre_Athletic_Club"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://hac-foot.com/"
+        }
+      ]
+    },
+    {
+      "id": "2697",
+      "name": "Le Mans",
+      "sport": "soccer",
+      "league": "fra.1",
+      "city": "Le Mans",
+      "stadium": "Marie-Marvingt",
+      "website": "https://lemansfc.fr/",
+      "description": "O Le Mans representa Le Mans no futebol francês e utiliza o estádio Marie-Marvingt. Disputa a Ligue 1 na temporada 2026/27. Sua trajetória inclui a conquista de Division d'Honneur Maine em 2014.",
+      "honours": ["Division d'Honneur Maine - 2014"],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/2697.png",
+      "colors": ["#d62b11"],
+      "sources": [
+        {
+          "label": "Participantes e estádios da Ligue 1 2026/27",
+          "url": "https://en.wikipedia.org/wiki/2026–27_Ligue_1"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Le_Mans_Football_Club"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://lemansfc.fr/"
+        },
+        {
+          "label": "Conferência do histórico e das conquistas",
+          "url": "https://en.wikipedia.org/wiki/Le_Mans_FC"
+        }
+      ]
+    },
+    {
+      "id": "175",
+      "name": "Lens",
+      "sport": "soccer",
+      "league": "fra.1",
+      "city": "Lens",
+      "stadium": "Bollaert-Delelis",
+      "website": "https://rclens.fr/",
+      "description": "O Lens representa Lens no futebol francês e utiliza o estádio Bollaert-Delelis. Disputa a Ligue 1 na temporada 2026/27. Sua trajetória inclui a conquista de Copa Intertoto da UEFA em 2005.",
+      "honours": [
+        "Copa Intertoto da UEFA - 2005",
+        "Campeonato Francês - 1997-98",
+        "Copa da França - 2025-26",
+        "Supercopa da França - 2026",
+        "Copa da Liga Francesa - 1993-94, 1998-99",
+        "Copa Charles Drago - 1959, 1960, 1965",
+        "Campeonato Francês (Ligue 2) - 1936-37, 1948-49, 1972-73, 2008-09"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/175.png",
+      "colors": ["#e91514", "#004c37"],
+      "sources": [
+        {
+          "label": "Participantes e estádios da Ligue 1 2026/27",
+          "url": "https://en.wikipedia.org/wiki/2026–27_Ligue_1"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Racing_Club_de_Lens"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://rclens.fr/"
+        }
+      ]
+    },
+    {
+      "id": "166",
+      "name": "Lille",
+      "sport": "soccer",
+      "league": "fra.1",
+      "city": "Lille",
+      "stadium": "Pierre-Mauroy (Villeneuve-d'Ascq)",
+      "website": "https://losc.fr/",
+      "description": "O Lille representa Lille no futebol francês e utiliza o estádio Pierre-Mauroy (Villeneuve-d'Ascq). Disputa a Ligue 1 na temporada 2026/27. Sua trajetória inclui a conquista de Copa Intertoto da UEFA em 2004.",
+      "honours": [
+        "Copa Intertoto da UEFA - 2004",
+        "Campeonato Francês - 1945-46, 1953-54, 2010-11, 2020-21",
+        "Copa da França - 1945-46, 1946-47, 1947-48, 1952-53, 1954-55, 2010-11",
+        "Supercopa da França - 2021",
+        "Campeonato Francês (Ligue 2) - 1963-64, 1973-74, 1977-78, 1999-00"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/166.png",
+      "colors": ["#c2051b", "#e2d3d7"],
+      "sources": [
+        {
+          "label": "Participantes e estádios da Ligue 1 2026/27",
+          "url": "https://en.wikipedia.org/wiki/2026–27_Ligue_1"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Lille_Olympique_Sporting_Club"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://losc.fr/"
+        }
+      ]
+    },
+    {
+      "id": "273",
+      "name": "Lorient",
+      "sport": "soccer",
+      "league": "fra.1",
+      "city": "Lorient",
+      "stadium": "Stade du Moustoir",
+      "website": "https://fclorient.bzh/",
+      "description": "O Lorient representa Lorient no futebol francês e utiliza o estádio Stade du Moustoir. Disputa a Ligue 1 na temporada 2026/27. Sua trajetória inclui a conquista de Copa da França em 2001-02.",
+      "honours": [
+        "Copa da França - 2001-02",
+        "Campeonato Francês (Ligue 2) - 2019-20, 2024-25",
+        "Campeonato Francês (National) - 1994-95"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/273.png",
+      "colors": ["#f46100", "#1a1a1a"],
+      "sources": [
+        {
+          "label": "Participantes e estádios da Ligue 1 2026/27",
+          "url": "https://en.wikipedia.org/wiki/2026–27_Ligue_1"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Football_Club_de_Lorient"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://fclorient.bzh/"
+        },
+        {
+          "label": "Conferência do histórico e das conquistas",
+          "url": "https://en.wikipedia.org/wiki/FC_Lorient"
+        }
+      ]
+    },
+    {
+      "id": "167",
+      "name": "Lyon",
+      "sport": "soccer",
+      "league": "fra.1",
+      "city": "Lyon",
+      "stadium": "Groupama Stadium (Décines-Charpieu)",
+      "website": "https://ol.fr/",
+      "description": "O Lyon representa Lyon no futebol francês e utiliza o estádio Groupama Stadium (Décines-Charpieu). Disputa a Ligue 1 na temporada 2026/27. Sua trajetória inclui a conquista de Copa Intertoto da UEFA em 1997.",
+      "honours": [
+        "Copa Intertoto da UEFA - 1997",
+        "Campeonato Francês - 2001-02, 2002-03, 2003-04, 2004-05, 2005-06, 2006-07, 2007-08",
+        "Copa da França - 1963-64, 1966-67, 1972-73, 2007-08, 2011-12",
+        "Supercopa da França - 1973, 2002, 2003, 2004, 2005, 2006, 2007, 2012",
+        "Copa da Liga Francesa - 2000-01",
+        "Campeonato Francês (Ligue 2) - 1950-51, 1953-54, 1988-89"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/167.png",
+      "colors": ["#ffffff", "#1a1a1a"],
+      "sources": [
+        {
+          "label": "Participantes e estádios da Ligue 1 2026/27",
+          "url": "https://en.wikipedia.org/wiki/2026–27_Ligue_1"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Olympique_Lyonnais"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://ol.fr/"
+        }
+      ]
+    },
+    {
+      "id": "176",
+      "name": "Marseille",
+      "sport": "soccer",
+      "league": "fra.1",
+      "city": "Marselha",
+      "stadium": "Orange Vélodrome",
+      "website": "https://om.fr/",
+      "description": "O Marseille representa Marselha no futebol francês e utiliza o estádio Orange Vélodrome. Disputa a Ligue 1 na temporada 2026/27. Sua trajetória inclui a conquista de Liga dos Campeões da UEFA em 1992-93.",
+      "honours": [
+        "Liga dos Campeões da UEFA - 1992-93",
+        "Copa Intertoto da UEFA - 2005",
+        "Campeonato Francês - 1936-37, 1947-48, 1970-71, 1971-72, 1988-89, 1989-90, 1990-91, 1991-92, 2009-10",
+        "Copa da França - 1923-24, 1925-26, 1926-27, 1934-35, 1937-38, 1942-43, 1968-69, 1971-72, 1975-76, 1988-89",
+        "Supercopa da França - 1971, 2010, 2011",
+        "Copa da Liga Francesa - 2009-10, 2010-11, 2011-12",
+        "Copa Charles Drago - 1957",
+        "Campeonato Francês (Ligue 2) - 1994-95"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/176.png",
+      "colors": ["#ffffff", "#011f68"],
+      "sources": [
+        {
+          "label": "Participantes e estádios da Ligue 1 2026/27",
+          "url": "https://en.wikipedia.org/wiki/2026–27_Ligue_1"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Olympique_de_Marseille"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://om.fr/"
+        }
+      ]
+    },
+    {
+      "id": "2502",
+      "name": "Nice",
+      "sport": "soccer",
+      "league": "fra.1",
+      "city": "Nice",
+      "stadium": "Allianz Riviera",
+      "website": "https://ogcnice.com/",
+      "description": "O Nice representa Nice no futebol francês e utiliza o estádio Allianz Riviera. Disputa a Ligue 1 na temporada 2026/27. Sua trajetória inclui a conquista de Campeonato Francês em 1950-51.",
+      "honours": [
+        "Campeonato Francês - 1950-51, 1951-52, 1955-56, 1958-59",
+        "Copa da França - 1951-52, 1953-54, 1996-97",
+        "Campeonato Francês (Ligue 2) - 1947-48, 1964-65, 1969-70, 1993-94"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/2502.png",
+      "colors": ["#ef2f24", "#e2d3d7"],
+      "sources": [
+        {
+          "label": "Participantes e estádios da Ligue 1 2026/27",
+          "url": "https://en.wikipedia.org/wiki/2026–27_Ligue_1"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Olympique_Gymnaste_Club_Nice_Côte_d’Azur"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://ogcnice.com/"
+        },
+        {
+          "label": "Conferência do histórico e das conquistas",
+          "url": "https://en.wikipedia.org/wiki/OGC_Nice"
+        }
+      ]
+    },
+    {
+      "id": "6851",
+      "name": "Paris FC",
+      "sport": "soccer",
+      "league": "fra.1",
+      "city": "Paris",
+      "stadium": "Jean-Bouin",
+      "website": "https://parisfc.fr/",
+      "description": "O Paris FC representa Paris no futebol francês e utiliza o estádio Jean-Bouin. Disputa a Ligue 1 na temporada 2026/27. Sua trajetória inclui a conquista de Campeonato Francês (Division 4, grupo F) em 1987-88.",
+      "honours": [
+        "Campeonato Francês (Division 4, grupo F) - 1987-88",
+        "Campeonato Francês (CFA, grupo D) - 2005-06"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/6851.png",
+      "colors": ["#000000"],
+      "sources": [
+        {
+          "label": "Participantes e estádios da Ligue 1 2026/27",
+          "url": "https://en.wikipedia.org/wiki/2026–27_Ligue_1"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Paris_Football_Club"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://parisfc.fr/"
+        },
+        {
+          "label": "Conferência do histórico e das conquistas",
+          "url": "https://en.wikipedia.org/wiki/Paris_FC"
+        }
+      ]
+    },
+    {
+      "id": "160",
+      "name": "Paris Saint-Germain",
+      "sport": "soccer",
+      "league": "fra.1",
+      "city": "Paris",
+      "stadium": "Parc des Princes",
+      "website": "https://psg.fr/",
+      "description": "O Paris Saint-Germain representa Paris no futebol francês e utiliza o estádio Parc des Princes. Disputa a Ligue 1 na temporada 2026/27. Sua trajetória inclui a conquista de Copa Intercontinental da FIFA em 2025.",
+      "honours": [
+        "Copa Intercontinental da FIFA - 2025",
+        "Liga dos Campeões da UEFA - 2024-25, 2025-26",
+        "Supercopa da UEFA - 2025, 2026",
+        "Recopa Europeia da UEFA - 1995-96",
+        "Copa Intertoto da UEFA - 2001",
+        "Campeonato Francês - 1985-86, 1993-94, 2012-13, 2013-14, 2014-15, 2015-16, 2017-18, 2018-19, 2019-20, 2021-22, 2022-23, 2023-24, 2024-25, 2025-26",
+        "Copa da França - 1981-82, 1982-83, 1992-93, 1994-95, 1997-98, 2003-04, 2005-06, 2009-10, 2014-15, 2015-16, 2016-17, 2017-18, 2019-20, 2020-21, 2023-24, 2024-25",
+        "Supercopa da França - 1995, 1998, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2022, 2023, 2024, 2025",
+        "Copa da Liga Francesa - 1994-95, 1997-98, 2007-08, 2013-14, 2014-15, 2015-16, 2016-17, 2017-18, 2019-20",
+        "Campeonato Francês (2.ª Divisão) - 1970-71"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/160.png",
+      "colors": ["#011f68", "#ffffff"],
+      "sources": [
+        {
+          "label": "Participantes e estádios da Ligue 1 2026/27",
+          "url": "https://en.wikipedia.org/wiki/2026–27_Ligue_1"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Paris_Saint-Germain_Football_Club"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://psg.fr/"
+        }
+      ]
+    },
+    {
+      "id": "169",
+      "name": "Rennes",
+      "sport": "soccer",
+      "league": "fra.1",
+      "city": "Rennes",
+      "stadium": "Roazhon Park",
+      "website": "https://staderennais.com/",
+      "description": "O Rennes representa Rennes no futebol francês e utiliza o estádio Roazhon Park. Disputa a Ligue 1 na temporada 2026/27. Sua trajetória inclui a conquista de Copa da França em 1964-65.",
+      "honours": [
+        "Copa da França - 1964-65, 1970-71, 2018-19",
+        "Supercopa da França - 1971",
+        "Campeonato Francês (Ligue 2) - 1955-56, 1983-84"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/169.png",
+      "colors": ["#ef2f24", "#ffffff"],
+      "sources": [
+        {
+          "label": "Participantes e estádios da Ligue 1 2026/27",
+          "url": "https://en.wikipedia.org/wiki/2026–27_Ligue_1"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Stade_Rennais_Football_Club"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://staderennais.com/"
+        }
+      ]
+    },
+    {
+      "id": "180",
+      "name": "Strasbourg",
+      "sport": "soccer",
+      "league": "fra.1",
+      "city": "Estrasburgo",
+      "stadium": "Stade de la Meinau",
+      "website": "https://rcstrasbourgalsace.fr/",
+      "description": "O Strasbourg representa Estrasburgo no futebol francês e utiliza o estádio Stade de la Meinau. Disputa a Ligue 1 na temporada 2026/27. Sua trajetória inclui a conquista de Copa Intertoto da UEFA em 1995.",
+      "honours": [
+        "Copa Intertoto da UEFA - 1995",
+        "Campeonato Francês - 1978-79",
+        "Copa da França - 1950-51, 1965-66, 2000-01",
+        "Copa da Liga Francesa - 1963-64, 1996-97, 2004-05, 2018-19"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/180.png",
+      "colors": ["#0000bf", "#ffffff"],
+      "sources": [
+        {
+          "label": "Participantes e estádios da Ligue 1 2026/27",
+          "url": "https://en.wikipedia.org/wiki/2026–27_Ligue_1"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Racing_Club_de_Strasbourg_Alsace"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://rcstrasbourgalsace.fr/"
+        }
+      ]
+    },
+    {
+      "id": "179",
+      "name": "Toulouse",
+      "sport": "soccer",
+      "league": "fra.1",
+      "city": "Toulouse",
+      "stadium": "Stadium de Toulouse",
+      "website": "https://toulousefc.com/",
+      "description": "O Toulouse representa Toulouse no futebol francês e utiliza o estádio Stadium de Toulouse. Disputa a Ligue 1 na temporada 2026/27. Sua trajetória inclui a conquista de Copa da França em 2022-23.",
+      "honours": [
+        "Copa da França - 2022-23",
+        "Campeonato Francês (2.ª Divisão) - 1981-82, 2002-03, 2021-22"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/179.png",
+      "colors": ["#560080", "#ffff00"],
+      "sources": [
+        {
+          "label": "Participantes e estádios da Ligue 1 2026/27",
+          "url": "https://en.wikipedia.org/wiki/2026–27_Ligue_1"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Toulouse_Football_Club"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://toulousefc.com/"
+        }
+      ]
+    },
+    {
+      "id": "170",
+      "name": "Troyes",
+      "sport": "soccer",
+      "league": "fra.1",
+      "city": "Troyes",
+      "stadium": "Stade de l'Aube",
+      "website": "https://estac.fr/",
+      "description": "O Troyes representa Troyes no futebol francês e utiliza o estádio Stade de l'Aube. Disputa a Ligue 1 na temporada 2026/27. Sua trajetória inclui a conquista de Copa Intertoto da UEFA em 2001.",
+      "honours": [
+        "Copa Intertoto da UEFA - 2001",
+        "Campeonato Francês (Ligue 2) - 2020-21, 2025-26"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/170.png",
+      "colors": ["#0000bf", "#fafafc"],
+      "sources": [
+        {
+          "label": "Participantes e estádios da Ligue 1 2026/27",
+          "url": "https://en.wikipedia.org/wiki/2026–27_Ligue_1"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Espérance_Sportive_Troyes_Aube_Champagne"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://estac.fr/"
+        }
+      ]
+    },
+    {
+      "id": "3841",
+      "name": "Augsburg",
+      "sport": "soccer",
+      "league": "ger.1",
+      "city": "Augsburgo",
+      "stadium": "WWK ARENA",
+      "website": "https://fcaugsburg.de/",
+      "description": "O Augsburg representa Augsburgo no futebol alemão e utiliza o estádio WWK ARENA. Disputa a Bundesliga na temporada 2026/27. Sua trajetória inclui a conquista de Regionalliga Süd em 1973-74.",
+      "honours": ["Regionalliga Süd - 1973-74, 2005-06"],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/3841.png",
+      "colors": ["#ffffff", "#03915c"],
+      "sources": [
+        {
+          "label": "Clubes e estádios da Bundesliga",
+          "url": "https://www.bundesliga.com/pt/bundesliga/clubes"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/FC_Augsburg"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://fcaugsburg.de/"
+        },
+        {
+          "label": "Conferência do histórico e das conquistas",
+          "url": "https://en.wikipedia.org/wiki/FC_Augsburg"
+        }
+      ]
+    },
+    {
+      "id": "131",
+      "name": "Bayer Leverkusen",
+      "sport": "soccer",
+      "league": "ger.1",
+      "city": "Leverkusen",
+      "stadium": "BayArena",
+      "website": "https://bayer04.de/",
+      "description": "O Bayer Leverkusen representa Leverkusen no futebol alemão e utiliza o estádio BayArena. Disputa a Bundesliga na temporada 2026/27. Sua trajetória inclui a conquista de Copa da UEFA em 1987-88.",
+      "honours": [
+        "Copa da UEFA - 1987-88",
+        "Campeonato Alemão - 2023-24",
+        "Copa da Alemanha - 1992-93, 2023-24",
+        "Supercopa da Alemanha - 2024",
+        "2. Bundesliga - 1978-79"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/131.png",
+      "colors": ["#da0308", "#f9fbfc"],
+      "sources": [
+        {
+          "label": "Clubes e estádios da Bundesliga",
+          "url": "https://www.bundesliga.com/pt/bundesliga/clubes"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Bayer_04_Leverkusen"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://bayer04.de/"
+        }
+      ]
+    },
+    {
+      "id": "132",
+      "name": "Bayern de Munique",
+      "sport": "soccer",
+      "league": "ger.1",
+      "city": "Munique",
+      "stadium": "Allianz Arena",
+      "website": "https://fcbayern.com/",
+      "description": "O Bayern de Munique representa Munique no futebol alemão e utiliza o estádio Allianz Arena. Disputa a Bundesliga na temporada 2026/27. Sua trajetória inclui a conquista de Copa do Mundo de Clubes da FIFA em 2013.",
+      "honours": [
+        "Copa do Mundo de Clubes da FIFA - 2013, 2020",
+        "Copa Intercontinental - 1976, 2001",
+        "Liga dos Campeões da UEFA - 1973-74, 1974-75, 1975-76, 2000-01, 2012-13, 2019-20",
+        "Liga Europa da UEFA - 1995-96",
+        "Recopa Europeia da UEFA - 1966-67",
+        "Supercopa da UEFA - 2013, 2020",
+        "Campeonato Alemão - 1932, 1968-69, 1971-72, 1972-73, 1973-74, 1979-80, 1980-81, 1984-85, 1985-86, 1986-87, 1988-89, 1989-90, 1993-94, 1996-97, 1998-99, 1999-00, 2000-01, 2002-03, 2004-05, 2005-06, 2007-08, 2009-10, 2012-13, 2013-14, 2014-15, 2015-16, 2016-17, 2017-18, 2018-19, 2019-20, 2020-21, 2021-22, 2022-23, 2024-25, 2025-26",
+        "Copa da Alemanha - 1956-57, 1965-66, 1966-67, 1968-69, 1970-71, 1981-82, 1983-84, 1985-86, 1997-98, 1999-00, 2002-03, 2004-05, 2005-06, 2007-08, 2009-10, 2012-13, 2013-14, 2015-16, 2018-19, 2019-20, 2025-26",
+        "Copa da Liga Alemã - 1997, 1998, 1999, 2000, 2004, 2007",
+        "Supercopa da Alemanha - 1987, 1990, 2010, 2012, 2016, 2017, 2018, 2020, 2021, 2022, 2025, 2026"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/132.png",
+      "colors": ["#dc052d", "#1a1a1a"],
+      "sources": [
+        {
+          "label": "Clubes e estádios da Bundesliga",
+          "url": "https://www.bundesliga.com/pt/bundesliga/clubes"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Fußball-Club_Bayern_München"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://fcbayern.com/"
+        }
+      ]
+    },
+    {
+      "id": "124",
+      "name": "Borussia Dortmund",
+      "sport": "soccer",
+      "league": "ger.1",
+      "city": "Dortmund",
+      "stadium": "SIGNAL IDUNA PARK",
+      "website": "https://bvb.de/",
+      "description": "O Borussia Dortmund representa Dortmund no futebol alemão e utiliza o estádio SIGNAL IDUNA PARK. Disputa a Bundesliga na temporada 2026/27. Sua trajetória inclui a conquista de Copa Intercontinental em 1997.",
+      "honours": [
+        "Copa Intercontinental - 1997",
+        "Liga dos Campeões da UEFA - 1996-97",
+        "Recopa Europeia da UEFA - 1965-66",
+        "Campeonato Alemão - 1956, 1957, 1963, 1994-95, 1995-96, 2001-02, 2010-11, 2011-12",
+        "Copa da Alemanha - 1964-65, 1988-89, 2011-12, 2016-17, 2020-21",
+        "Supercopa da Alemanha - 1989, 1995, 1996, 2013, 2014, 2019"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/124.png",
+      "colors": ["#ffee00", "#272726"],
+      "sources": [
+        {
+          "label": "Clubes e estádios da Bundesliga",
+          "url": "https://www.bundesliga.com/pt/bundesliga/clubes"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Borussia_Dortmund"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://bvb.de/"
+        }
+      ]
+    },
+    {
+      "id": "268",
+      "name": "Borussia Mönchengladbach",
+      "sport": "soccer",
+      "league": "ger.1",
+      "city": "Mönchengladbach",
+      "stadium": "ista-Borussia-Park",
+      "website": "https://borussia.de/",
+      "description": "O Borussia Mönchengladbach representa Mönchengladbach no futebol alemão e utiliza o estádio ista-Borussia-Park. Disputa a Bundesliga na temporada 2026/27. Sua trajetória inclui a conquista de Copa da UEFA em 1974-75.",
+      "honours": [
+        "Copa da UEFA - 1974-75, 1978-79",
+        "Campeonato Alemão - 1969-70, 1970-71, 1974-75, 1975-76, 1976-77",
+        "Copa da Alemanha - 1959-60, 1972-73, 1994-95",
+        "2. Bundesliga - 2007-08"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/268.png",
+      "colors": ["#ffffff", "#03915c"],
+      "sources": [
+        {
+          "label": "Clubes e estádios da Bundesliga",
+          "url": "https://www.bundesliga.com/pt/bundesliga/clubes"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Borussia_Verein_für_Leibesübungen_1900_Mönchengladbach"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://borussia.de/"
+        }
+      ]
+    },
+    {
+      "id": "122",
+      "name": "Colônia",
+      "sport": "soccer",
+      "league": "ger.1",
+      "city": "Colônia",
+      "stadium": "RheinEnergieSTADION",
+      "website": "https://fc.de/",
+      "description": "O Colônia representa Colônia no futebol alemão e utiliza o estádio RheinEnergieSTADION. Disputa a Bundesliga na temporada 2026/27. Sua trajetória inclui a conquista de Campeonato Alemão em 1961-62.",
+      "honours": [
+        "Campeonato Alemão - 1961-62, 1963-64, 1977-78",
+        "Copa da Alemanha - 1967-68, 1976-77, 1977-78, 1982-83"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/122.png",
+      "colors": ["#ffffff", "#da0308"],
+      "sources": [
+        {
+          "label": "Clubes e estádios da Bundesliga",
+          "url": "https://www.bundesliga.com/pt/bundesliga/clubes"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/1._Fußball-Club_Köln_01/07"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://fc.de/"
+        }
+      ]
+    },
+    {
+      "id": "125",
+      "name": "Eintracht Frankfurt",
+      "sport": "soccer",
+      "league": "ger.1",
+      "city": "Frankfurt",
+      "stadium": "Deutsche Bank Park",
+      "website": "https://eintracht.de/",
+      "description": "O Eintracht Frankfurt representa Frankfurt no futebol alemão e utiliza o estádio Deutsche Bank Park. Disputa a Bundesliga na temporada 2026/27. Sua trajetória inclui a conquista de Liga Europa da UEFA em 1979-80.",
+      "honours": [
+        "Liga Europa da UEFA - 1979-80, 2021-22",
+        "Copa Intertoto da UEFA - 1966-67",
+        "Campeonato Alemão - 1959",
+        "Copa da Alemanha - 1973-74, 1974-75, 1980-81, 1987-88, 2017-18",
+        "2. Bundesliga - 1997-98"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/125.png",
+      "colors": ["#ffffff", "#272726"],
+      "sources": [
+        {
+          "label": "Clubes e estádios da Bundesliga",
+          "url": "https://www.bundesliga.com/pt/bundesliga/clubes"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Eintracht_Frankfurt"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://eintracht.de/"
+        }
+      ]
+    },
+    {
+      "id": "126",
+      "name": "Freiburg",
+      "sport": "soccer",
+      "league": "ger.1",
+      "city": "Freiburg im Breisgau",
+      "stadium": "Europa-Park Stadion",
+      "website": "https://scfreiburg.com/",
+      "description": "O Freiburg representa Freiburg im Breisgau no futebol alemão e utiliza o estádio Europa-Park Stadion. Disputa a Bundesliga na temporada 2026/27. Sua trajetória inclui a conquista de Campeonato Alemão (2ª Divisão) em 1992-93.",
+      "honours": [
+        "Campeonato Alemão (2ª Divisão) - 1992-93, 2002-03, 2008-09, 2015-16"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/126.png",
+      "colors": ["#da0308", "#ffffff"],
+      "sources": [
+        {
+          "label": "Clubes e estádios da Bundesliga",
+          "url": "https://www.bundesliga.com/pt/bundesliga/clubes"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Sport-Club_Freiburg"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://scfreiburg.com/"
+        }
+      ]
+    },
+    {
+      "id": "127",
+      "name": "Hamburgo",
+      "sport": "soccer",
+      "league": "ger.1",
+      "city": "Hamburgo",
+      "stadium": "Volksparkstadion",
+      "website": "https://hsv.de/",
+      "description": "O Hamburgo representa Hamburgo no futebol alemão e utiliza o estádio Volksparkstadion. Disputa a Bundesliga na temporada 2026/27. Sua trajetória inclui a conquista de Liga dos Campeões da UEFA em 1982-83.",
+      "honours": [
+        "Liga dos Campeões da UEFA - 1982-83",
+        "Recopa Europeia da UEFA - 1976-77",
+        "Copa Intertoto da UEFA - 2005, 2007",
+        "Campeonato Alemão - 1923, 1928, 1960, 1978-79, 1981-82, 1982-83",
+        "Copa da Alemanha - 1962-63, 1975-76, 1986-87",
+        "Copa da Liga Alemã - 1972-73, 2002-03"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/127.png",
+      "colors": ["#1a26af", "#1a1a1a"],
+      "sources": [
+        {
+          "label": "Clubes e estádios da Bundesliga",
+          "url": "https://www.bundesliga.com/pt/bundesliga/clubes"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Hamburger_Sport-Verein"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://hsv.de/"
+        }
+      ]
+    },
+    {
+      "id": "7911",
+      "name": "Hoffenheim",
+      "sport": "soccer",
+      "league": "ger.1",
+      "city": "Sinsheim",
+      "stadium": "SNP Arena",
+      "website": "https://tsg-hoffenheim.de/",
+      "description": "O Hoffenheim representa Sinsheim no futebol alemão e utiliza o estádio SNP Arena. Disputa a Bundesliga na temporada 2026/27. Sua trajetória inclui a conquista de Oberliga Baden-Württemberg em 2000-01.",
+      "honours": [
+        "Oberliga Baden-Württemberg - 2000-01",
+        "Verbandsliga Nordbaden - 1999-2000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/7911.png",
+      "colors": ["#003399", "#000055"],
+      "sources": [
+        {
+          "label": "Clubes e estádios da Bundesliga",
+          "url": "https://www.bundesliga.com/pt/bundesliga/clubes"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Turn-_und_Sportgemeinschaft_1899_Hoffenheim"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://tsg-hoffenheim.de/"
+        }
+      ]
+    },
+    {
+      "id": "2950",
+      "name": "Mainz",
+      "sport": "soccer",
+      "league": "ger.1",
+      "city": "Mainz",
+      "stadium": "MEWA ARENA",
+      "website": "https://mainz05.de/",
+      "description": "O Mainz representa Mainz no futebol alemão e utiliza o estádio MEWA ARENA. Disputa a Bundesliga na temporada 2026/27. Sua trajetória inclui a conquista de Campeonato Alemão Amador em 1982.",
+      "honours": ["Campeonato Alemão Amador - 1982", "Oberliga Südwest - 1988"],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/2950.png",
+      "colors": ["#da0308", "#000055"],
+      "sources": [
+        {
+          "label": "Clubes e estádios da Bundesliga",
+          "url": "https://www.bundesliga.com/pt/bundesliga/clubes"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/1._Fußball-_und_Sportverein_Mainz_05"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://mainz05.de/"
+        }
+      ]
+    },
+    {
+      "id": "3307",
+      "name": "Paderborn",
+      "sport": "soccer",
+      "league": "ger.1",
+      "city": "Paderborn",
+      "stadium": "Home Deluxe Arena",
+      "website": "https://scp07.de/",
+      "description": "O Paderborn representa Paderborn no futebol alemão e utiliza o estádio Home Deluxe Arena. Disputa a Bundesliga na temporada 2026/27. Sua trajetória inclui a conquista de Copa da Vestfália (inclui antecessor TuS Paderborn-Neuhaus) em 1985.",
+      "honours": [
+        "Copa da Vestfália (inclui antecessor TuS Paderborn-Neuhaus) - 1985, 1994, 1996, 2000, 2001, 2002, 2004, 2017, 2018"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/3307.png",
+      "colors": ["#0000dd", "#ffffff"],
+      "sources": [
+        {
+          "label": "Clubes e estádios da Bundesliga",
+          "url": "https://www.bundesliga.com/pt/bundesliga/clubes"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Sport-Club_Paderborn_07"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://scp07.de/"
+        },
+        {
+          "label": "Conferência do histórico e das conquistas",
+          "url": "https://en.wikipedia.org/wiki/SC_Paderborn_07"
+        },
+        {
+          "label": "Vencedores oficiais da Copa da Vestfália (FLVW)",
+          "url": "https://archiv.flvw.de/fileadmin/content/medienarchiv/3_Amateurfussball/Dokumente/Alle_Westfalenpokal-Sieger_seit_1982__Stand_2019_.pdf"
+        }
+      ]
+    },
+    {
+      "id": "11420",
+      "name": "RB Leipzig",
+      "sport": "soccer",
+      "league": "ger.1",
+      "city": "Leipzig",
+      "stadium": "Red Bull Arena",
+      "website": "https://rbleipzig.com/",
+      "description": "O RB Leipzig representa Leipzig no futebol alemão e utiliza o estádio Red Bull Arena. Disputa a Bundesliga na temporada 2026/27. Sua trajetória inclui a conquista de Copa da Alemanha em 2021-22.",
+      "honours": [
+        "Copa da Alemanha - 2021-22, 2022-23",
+        "Supercopa da Alemanha - 2023"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/11420.png",
+      "colors": ["#ffffff", "#740c14"],
+      "sources": [
+        {
+          "label": "Clubes e estádios da Bundesliga",
+          "url": "https://www.bundesliga.com/pt/bundesliga/clubes"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/RasenBallsport_Leipzig"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://rbleipzig.com/"
+        }
+      ]
+    },
+    {
+      "id": "10388",
+      "name": "Elversberg",
+      "sport": "soccer",
+      "league": "ger.1",
+      "city": "Spiesen-Elversberg",
+      "stadium": "URSAPHARM-Arena",
+      "website": "https://sv07elversberg.de/",
+      "description": "O Elversberg representa Spiesen-Elversberg no futebol alemão e utiliza o estádio URSAPHARM-Arena. Disputa a Bundesliga na temporada 2026/27. Sua trajetória inclui a conquista de Campeonato Alemão (3ª Divisão) em 2022-23.",
+      "honours": [
+        "Campeonato Alemão (3ª Divisão) - 2022-23",
+        "Regionalliga Südwest - 2016-17, 2021-22"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/10388.png",
+      "colors": ["#000000", "#ffffff"],
+      "sources": [
+        {
+          "label": "Clubes e estádios da Bundesliga",
+          "url": "https://www.bundesliga.com/pt/bundesliga/clubes"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Sportvereinigung_07_Elversberg"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://sv07elversberg.de/"
+        },
+        {
+          "label": "Conferência do histórico e das conquistas",
+          "url": "https://en.wikipedia.org/wiki/SV_Elversberg"
+        }
+      ]
+    },
+    {
+      "id": "133",
+      "name": "Schalke 04",
+      "sport": "soccer",
+      "league": "ger.1",
+      "city": "Gelsenkirchen",
+      "stadium": "VELTINS-Arena",
+      "website": "https://schalke04.de/",
+      "description": "O Schalke 04 representa Gelsenkirchen no futebol alemão e utiliza o estádio VELTINS-Arena. Disputa a Bundesliga na temporada 2026/27. Sua trajetória inclui a conquista de Copa da UEFA em 1996-97.",
+      "honours": [
+        "Copa da UEFA - 1996-97",
+        "Campeonato Alemão - 1934, 1935, 1937, 1939, 1940, 1942, 1958",
+        "Copa da Alemanha - 1937, 1971-72, 2000-01, 2001-02, 2010-11",
+        "Supercopa da Alemanha - 2011"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/133.png",
+      "colors": ["#0000dd", "#ffffff"],
+      "sources": [
+        {
+          "label": "Clubes e estádios da Bundesliga",
+          "url": "https://www.bundesliga.com/pt/bundesliga/clubes"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Fußball-Club_Gelsenkirchen-Schalke_04"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://schalke04.de/"
+        }
+      ]
+    },
+    {
+      "id": "598",
+      "name": "Union Berlin",
+      "sport": "soccer",
+      "league": "ger.1",
+      "city": "Berlim",
+      "stadium": "An der Alten Försterei",
+      "website": "https://fc-union-berlin.de/",
+      "description": "O Union Berlin representa Berlim no futebol alemão e utiliza o estádio An der Alten Försterei. Disputa a Bundesliga na temporada 2026/27. Sua trajetória inclui a conquista de Campeonato Alemão (3ª Divisão) em 2008-09.",
+      "honours": [
+        "Campeonato Alemão (3ª Divisão) - 2008-09",
+        "Copa da Alemanha Oriental - 1967-68",
+        "Copa Berlim - 1946-47, 1947-48, 1993-94, 2006-07, 2008-09"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/598.png",
+      "colors": ["#da0308", "#d4d4d4"],
+      "sources": [
+        {
+          "label": "Clubes e estádios da Bundesliga",
+          "url": "https://www.bundesliga.com/pt/bundesliga/clubes"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/1._Fußballclub_Union_Berlin"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://fc-union-berlin.de/"
+        }
+      ]
+    },
+    {
+      "id": "134",
+      "name": "Stuttgart",
+      "sport": "soccer",
+      "league": "ger.1",
+      "city": "Stuttgart",
+      "stadium": "MHPArena",
+      "website": "https://vfb.de/",
+      "description": "O Stuttgart representa Stuttgart no futebol alemão e utiliza o estádio MHPArena. Disputa a Bundesliga na temporada 2026/27. Sua trajetória inclui a conquista de Campeonato Alemão em 1950.",
+      "honours": [
+        "Campeonato Alemão - 1950, 1952, 1983-84, 1991-92, 2006-07",
+        "Copa da Alemanha - 1953-54, 1957-58, 1996-97, 2024-25",
+        "Supercopa da Alemanha - 1992"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/134.png",
+      "colors": ["#ffffff", "#da0308"],
+      "sources": [
+        {
+          "label": "Clubes e estádios da Bundesliga",
+          "url": "https://www.bundesliga.com/pt/bundesliga/clubes"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Verein_für_Bewegungsspiele_Stuttgart_1893"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://vfb.de/"
+        },
+        {
+          "label": "Quarta Copa da Alemanha (VfB Stuttgart)",
+          "url": "https://www.vfb.de/de/vfb/aktuell/neues/profis/2425/pokalsieg-nummer4/"
+        }
+      ]
+    },
+    {
+      "id": "137",
+      "name": "Werder Bremen",
+      "sport": "soccer",
+      "league": "ger.1",
+      "city": "Bremen",
+      "stadium": "Weserstadion",
+      "website": "https://werder.de/",
+      "description": "O Werder Bremen representa Bremen no futebol alemão e utiliza o estádio Weserstadion. Disputa a Bundesliga na temporada 2026/27. Sua trajetória inclui a conquista de Recopa Europeia da UEFA em 1991-92.",
+      "honours": [
+        "Recopa Europeia da UEFA - 1991-92",
+        "Copa Intertoto da UEFA - 1998",
+        "Campeonato Alemão - 1964-65, 1987-88, 1992-93, 2003-04",
+        "Copa da Alemanha - 1960-61, 1990-91, 1993-94, 1998-99, 2003-04, 2008-09",
+        "Supercopa da Alemanha - 1988, 1993, 1994",
+        "Copa da Liga Alemã - 2004, 2006",
+        "2. Bundesliga - 1980-81"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/137.png",
+      "colors": ["#03915c", "#ffffff"],
+      "sources": [
+        {
+          "label": "Clubes e estádios da Bundesliga",
+          "url": "https://www.bundesliga.com/pt/bundesliga/clubes"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Sportverein_Werder_Bremen"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://werder.de/"
+        }
+      ]
+    }
+  ]
+}

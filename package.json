@@ -8,13 +8,14 @@
   },
   "scripts": {
     "dev": "node --env-file-if-exists=.env server/index.mjs",
-    "build": "tsc -b && vite build && node scripts/sync-premier-league.mjs",
+    "build": "tsc -b && vite build && node scripts/sync-premier-league.mjs && node scripts/sync-league-profiles.mjs",
     "start": "node --env-file-if-exists=.env server/index.mjs --production",
     "test": "node --test tests/*.test.mjs",
     "check": "npm test && npm run build",
     "format": "prettier --write src server api tests README.md docs package.json tsconfig.json vercel.json",
     "db:setup": "node --env-file-if-exists=.env.local scripts/setup-teams.mjs",
-    "db:premier-league": "node --env-file-if-exists=.env.local scripts/sync-premier-league.mjs --apply"
+    "db:premier-league": "node --env-file-if-exists=.env.local scripts/sync-premier-league.mjs --apply",
+    "db:league-profiles": "node --env-file-if-exists=.env.local scripts/sync-league-profiles.mjs --apply"
   },
   "dependencies": {
     "@neondatabase/neon-js": "^0.9.0-beta",
