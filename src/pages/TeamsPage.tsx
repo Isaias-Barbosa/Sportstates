@@ -4,6 +4,9 @@ import { useApi } from "../hooks";
 import { Empty, Loading, Notice } from "../components/shared";
 import type { ClubProfile, CompetitionCatalog } from "../types";
 
+const teamCount = (count: number) =>
+  `${count} ${count === 1 ? "time" : "times"}`;
+
 export default function TeamsPage() {
   const { data, error, loading, refresh } = useApi<{ teams: ClubProfile[] }>(
     "/api/teams",
@@ -80,12 +83,11 @@ export default function TeamsPage() {
                 <span className="sport-icon">{s.icon}</span>
                 <strong>{s.name}</strong>
                 <small>
-                  {
+                  {teamCount(
                     (data?.teams || []).filter(
                       (t) => (t.sport || "soccer") === s.id,
-                    ).length
-                  }{" "}
-                  times
+                    ).length,
+                  )}
                 </small>
               </button>
             ))}
@@ -107,7 +109,7 @@ export default function TeamsPage() {
             >
               <span>{selected?.icon}</span>
               <strong>Todas as ligas</strong>
-              <small>{sportTeams.length} times</small>
+              <small>{teamCount(sportTeams.length)}</small>
             </button>
             {leagues.map((l) => (
               <button
@@ -122,7 +124,9 @@ export default function TeamsPage() {
                 <span>{selected?.icon}</span>
                 <strong>{l.name}</strong>
                 <small>
-                  {sportTeams.filter((t) => t.league === l.id).length} times
+                  {teamCount(
+                    sportTeams.filter((t) => t.league === l.id).length,
+                  )}
                 </small>
               </button>
             ))}
@@ -138,7 +142,7 @@ export default function TeamsPage() {
               >
                 <span>{selected?.icon}</span>
                 <strong>Liga não informada</strong>
-                <small>{unassigned.length} times</small>
+                <small>{teamCount(unassigned.length)}</small>
               </button>
             )}
           </div>
@@ -148,7 +152,7 @@ export default function TeamsPage() {
               <section key={group.id}>
                 <div className="section-heading">
                   <h2>{group.name}</h2>
-                  <span>{group.teams.length} times</span>
+                  <span>{teamCount(group.teams.length)}</span>
                 </div>
                 <div className="club-grid">
                   {group.teams.map((t) => (
