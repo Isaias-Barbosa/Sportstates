@@ -1,3 +1,4 @@
+import { validProfileId } from './team-identity.mjs';
 import { fetchTeamCompetitions } from './team-competitions.mjs';
 import { fetchNews } from "./news.mjs";
 import { readFeatured, saveFeatured, validKey, authorized } from "./featured.mjs";
@@ -127,7 +128,7 @@ export async function route(url) {
   if (url.pathname === "/api/teams") return [200, { teams: await listTeams() }];
   if (url.pathname === "/api/team-competitions") {
     const id = q.get("id");
-    if (!/^\d{1,12}$/.test(id || "")) return [400, {error:"Time inválido."}];
+    if (!validProfileId(id)) return [400, {error:"Time inválido."}];
     const team = await getTeam(id);
     if (!team) return [404, {error:"Time não encontrado."}];
     if (!leagueFor(team.sport, team.league)) return [200, {teamId:id,competitions:[],partial:true,fetchedAt:new Date().toISOString(),source:"ESPN"}];
@@ -135,7 +136,7 @@ export async function route(url) {
     return [200, {...result.value,stale:result.stale}];
   }
   if (url.pathname === "/api/team") {
-    const id=q.get("id"); if (!/^\d{1,12}$/.test(id || "")) return [400, {error:"Time inválido."}];
+    const id=q.get("id"); if (!validProfileId(id)) return [400, {error:"Time inválido."}];
     const result=await cached(`team:${id}`, 60000, () => teamDetails(id), 300000);
     return result.value ? [200, { ...result.value, stale: result.stale }] : [404, {error:"Time não encontrado."}];
   }

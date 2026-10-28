@@ -39,7 +39,39 @@ export type Scores = {
   stale: boolean;
   warnings: string[];
 };
+export type BasketballData = {
+  periods: { number: number; label: string }[];
+  scores: (Team & { periods: (string | null)[] })[];
+  teams: {
+    id: string;
+    name: string;
+    logo: string | null;
+    columns: { key: string; label: string; description: string }[];
+    players: {
+      id: string;
+      name: string;
+      number: string;
+      position: string;
+      image: string | null;
+      starter: boolean;
+      didNotPlay: boolean;
+      reason: string | null;
+      stats: Record<string, string | null>;
+    }[];
+  }[];
+  leaders: {
+    key: string;
+    label: string;
+    teams: {
+      id: string;
+      name: string;
+      value: number | null;
+      players: { id: string; name: string; image: string | null }[];
+    }[];
+  }[];
+};
 export type Detail = {
+  basketball?: BasketballData;
   match: Match;
   events: {
     id: string;
@@ -49,6 +81,7 @@ export type Detail = {
     text: string;
     scoring: boolean;
     scorer?: string;
+    score?: string;
     kind: "goal" | "yellow-card" | "red-card" | "second-yellow" | "other";
   }[];
   statistics: { team: string; stats: { name: string; value: string }[] }[];

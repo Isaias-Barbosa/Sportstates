@@ -967,3 +967,219 @@ summary:focus-visible {
 .club-competitions-source {
   margin-top: 24px;
 }
+
+/* Basketball scorecards keep numeric columns readable on mobile. */
+.basket-periods,
+.basket-overview,
+.basket-boxscore {
+  margin: 24px 0;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 22px;
+  min-width: 0;
+}
+.basket-section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+}
+.basket-section-heading h2 {
+  font-size: 1.15rem;
+  margin: 0;
+}
+.basket-section-heading > span,
+.basket-caption {
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+.basket-caption {
+  line-height: 1.7;
+  margin: 14px 0 0;
+}
+.basket-scroll {
+  overflow-x: auto;
+  max-width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+.basket-scroll:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 3px;
+}
+.basket-scroll table {
+  width: 100%;
+  border-collapse: collapse;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.basket-scroll th,
+.basket-scroll td {
+  padding: 14px 16px;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.85rem;
+}
+.basket-scroll th:first-child {
+  text-align: left;
+}
+.basket-scroll thead {
+  color: var(--muted);
+  background: color-mix(in srgb, var(--text) 4%, var(--panel));
+}
+.basket-scroll tbody tr:last-child > * {
+  border-bottom: 0;
+}
+.basket-periods tbody th img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  vertical-align: middle;
+  margin-right: 12px;
+}
+.basket-total,
+.basket-current-period,
+.basket-points {
+  font-weight: 800;
+  color: var(--green);
+  background: color-mix(in srgb, var(--green) 7%, transparent);
+}
+.basket-leaders {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+.basket-leaders article {
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 18px;
+  background: color-mix(in srgb, var(--green) 3%, var(--panel));
+}
+.basket-leaders h3 {
+  font-size: 0.9rem;
+  margin: 0 0 16px;
+  color: var(--green);
+}
+.basket-leader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 0;
+}
+.basket-leader + .basket-leader {
+  border-top: 1px solid var(--border);
+}
+.basket-leader > b {
+  font-size: 1.8rem;
+  font-variant-numeric: tabular-nums;
+}
+.basket-leader-names {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  min-width: 0;
+}
+.basket-leader-names img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--text) 5%, transparent);
+}
+.basket-leader-names strong,
+.basket-leader-names small {
+  display: block;
+  white-space: normal;
+}
+.basket-leader-names strong {
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+.basket-leader-names small {
+  font-size: 0.7rem;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+.basket-boxscore .tabs {
+  margin-bottom: 18px;
+}
+.basket-tab-logo {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+.basket-player {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 190px;
+}
+.basket-player img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+.basket-player strong,
+.basket-player small {
+  display: block;
+}
+.basket-player small {
+  font-weight: 400;
+  color: var(--muted);
+  font-size: 0.7rem;
+  margin-top: 4px;
+}
+.basket-boxscore tbody th {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  background: var(--panel);
+}
+.basket-dnp {
+  color: var(--muted);
+}
+.basket-dnp td {
+  text-align: left;
+}
+.basket-scroll abbr {
+  text-decoration: none;
+  cursor: help;
+}
+@media (max-width: 1000px) {
+  .basket-leaders {
+    grid-template-columns: 1fr;
+  }
+  .basket-leader-names img {
+    width: 56px;
+    height: 56px;
+  }
+}
+@media (max-width: 600px) {
+  .basket-periods,
+  .basket-overview,
+  .basket-boxscore {
+    padding: 14px;
+    border-radius: 14px;
+  }
+  .basket-scroll th,
+  .basket-scroll td {
+    padding: 12px 10px;
+  }
+  .basket-player {
+    min-width: 150px;
+    gap: 7px;
+  }
+  .basket-player img {
+    width: 30px;
+    height: 30px;
+  }
+  .basket-player strong {
+    font-size: 0.75rem;
+  }
+}

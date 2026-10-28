@@ -1,0 +1,1446 @@
+{
+  "revision": "basketball-profiles-2026-v1",
+  "reviewedAt": "2026-10-28",
+  "clubs": [
+    {
+      "id": "basketball-nba-1",
+      "espnId": "1",
+      "name": "Atlanta Hawks",
+      "sport": "basketball",
+      "league": "nba",
+      "logo": "https://a.espncdn.com/i/teamlogos/nba/500/atl.png",
+      "city": "Atlanta",
+      "stadium": "State Farm Arena",
+      "stadium_image": "",
+      "website": "https://www.nba.com/hawks/",
+      "colors": [
+        "#c8102e",
+        "#fdb927"
+      ],
+      "honours": [],
+      "description": "Atlanta Hawks é uma equipe de basquete da NBA. Sua principal arena na temporada é State Farm Arena, em Atlanta.",
+      "references": [
+        {
+          "label": "Site oficial",
+          "url": "https://www.nba.com/hawks/"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nba/time/_/id/1"
+        },
+        {
+          "label": "ESPN · calendário da temporada e arena",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/1/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "basketball-nba-2",
+      "espnId": "2",
+      "name": "Boston Celtics",
+      "sport": "basketball",
+      "league": "nba",
+      "logo": "https://a.espncdn.com/i/teamlogos/nba/500/bos.png",
+      "city": "Boston",
+      "stadium": "TD Garden",
+      "stadium_image": "",
+      "website": "https://www.nba.com/celtics/",
+      "colors": [
+        "#008348",
+        "#ffffff"
+      ],
+      "honours": [],
+      "description": "Boston Celtics é uma equipe de basquete da NBA. Sua principal arena na temporada é TD Garden, em Boston.",
+      "references": [
+        {
+          "label": "Site oficial",
+          "url": "https://www.nba.com/celtics/"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nba/time/_/id/2"
+        },
+        {
+          "label": "ESPN · calendário da temporada e arena",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/2/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "basketball-nba-17",
+      "espnId": "17",
+      "name": "Brooklyn Nets",
+      "sport": "basketball",
+      "league": "nba",
+      "logo": "https://a.espncdn.com/i/teamlogos/nba/500/bkn.png",
+      "city": "Brooklyn",
+      "stadium": "Barclays Center",
+      "stadium_image": "",
+      "website": "https://www.nba.com/nets/",
+      "colors": [
+        "#000000",
+        "#ffffff"
+      ],
+      "honours": [],
+      "description": "Brooklyn Nets é uma equipe de basquete da NBA. Sua principal arena na temporada é Barclays Center, em Brooklyn.",
+      "references": [
+        {
+          "label": "Site oficial",
+          "url": "https://www.nba.com/nets/"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nba/time/_/id/17"
+        },
+        {
+          "label": "ESPN · calendário da temporada e arena",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/17/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "basketball-nba-30",
+      "espnId": "30",
+      "name": "Charlotte Hornets",
+      "sport": "basketball",
+      "league": "nba",
+      "logo": "https://a.espncdn.com/i/teamlogos/nba/500/cha.png",
+      "city": "Charlotte",
+      "stadium": "Spectrum Center",
+      "stadium_image": "",
+      "website": "https://www.nba.com/hornets/",
+      "colors": [
+        "#008ca8",
+        "#1d1060"
+      ],
+      "honours": [],
+      "description": "Charlotte Hornets é uma equipe de basquete da NBA. Sua principal arena na temporada é Spectrum Center, em Charlotte.",
+      "references": [
+        {
+          "label": "Site oficial",
+          "url": "https://www.nba.com/hornets/"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nba/time/_/id/30"
+        },
+        {
+          "label": "ESPN · calendário da temporada e arena",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/30/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "basketball-nba-4",
+      "espnId": "4",
+      "name": "Chicago Bulls",
+      "sport": "basketball",
+      "league": "nba",
+      "logo": "https://a.espncdn.com/i/teamlogos/nba/500/chi.png",
+      "city": "Chicago",
+      "stadium": "United Center",
+      "stadium_image": "",
+      "website": "https://www.nba.com/bulls/",
+      "colors": [
+        "#ce1141",
+        "#000000"
+      ],
+      "honours": [],
+      "description": "Chicago Bulls é uma equipe de basquete da NBA. Sua principal arena na temporada é United Center, em Chicago.",
+      "references": [
+        {
+          "label": "Site oficial",
+          "url": "https://www.nba.com/bulls/"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nba/time/_/id/4"
+        },
+        {
+          "label": "ESPN · calendário da temporada e arena",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/4/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "basketball-nba-5",
+      "espnId": "5",
+      "name": "Cleveland Cavaliers",
+      "sport": "basketball",
+      "league": "nba",
+      "logo": "https://a.espncdn.com/i/teamlogos/nba/500/cle.png",
+      "city": "Cleveland",
+      "stadium": "Rocket Arena",
+      "stadium_image": "",
+      "website": "https://www.nba.com/cavaliers/",
+      "colors": [
+        "#860038",
+        "#bc945c"
+      ],
+      "honours": [],
+      "description": "Cleveland Cavaliers é uma equipe de basquete da NBA. Sua principal arena na temporada é Rocket Arena, em Cleveland.",
+      "references": [
+        {
+          "label": "Site oficial",
+          "url": "https://www.nba.com/cavaliers/"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nba/time/_/id/5"
+        },
+        {
+          "label": "ESPN · calendário da temporada e arena",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/5/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "basketball-nba-6",
+      "espnId": "6",
+      "name": "Dallas Mavericks",
+      "sport": "basketball",
+      "league": "nba",
+      "logo": "https://a.espncdn.com/i/teamlogos/nba/500/dal.png",
+      "city": "Dallas",
+      "stadium": "American Airlines Center",
+      "stadium_image": "",
+      "website": "https://www.nba.com/mavericks/",
+      "colors": [
+        "#0064b1",
+        "#bbc4ca"
+      ],
+      "honours": [],
+      "description": "Dallas Mavericks é uma equipe de basquete da NBA. Sua principal arena na temporada é American Airlines Center, em Dallas.",
+      "references": [
+        {
+          "label": "Site oficial",
+          "url": "https://www.nba.com/mavericks/"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nba/time/_/id/6"
+        },
+        {
+          "label": "ESPN · calendário da temporada e arena",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/6/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "basketball-nba-7",
+      "espnId": "7",
+      "name": "Denver Nuggets",
+      "sport": "basketball",
+      "league": "nba",
+      "logo": "https://a.espncdn.com/i/teamlogos/nba/500/den.png",
+      "city": "Denver",
+      "stadium": "Ball Arena",
+      "stadium_image": "",
+      "website": "https://www.nba.com/nuggets/",
+      "colors": [
+        "#0e2240",
+        "#fec524"
+      ],
+      "honours": [],
+      "description": "Denver Nuggets é uma equipe de basquete da NBA. Sua principal arena na temporada é Ball Arena, em Denver.",
+      "references": [
+        {
+          "label": "Site oficial",
+          "url": "https://www.nba.com/nuggets/"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nba/time/_/id/7"
+        },
+        {
+          "label": "ESPN · calendário da temporada e arena",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/7/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "basketball-nba-8",
+      "espnId": "8",
+      "name": "Detroit Pistons",
+      "sport": "basketball",
+      "league": "nba",
+      "logo": "https://a.espncdn.com/i/teamlogos/nba/500/det.png",
+      "city": "Detroit",
+      "stadium": "Little Caesars Arena",
+      "stadium_image": "",
+      "website": "https://www.nba.com/pistons/",
+      "colors": [
+        "#1d428a",
+        "#c8102e"
+      ],
+      "honours": [],
+      "description": "Detroit Pistons é uma equipe de basquete da NBA. Sua principal arena na temporada é Little Caesars Arena, em Detroit.",
+      "references": [
+        {
+          "label": "Site oficial",
+          "url": "https://www.nba.com/pistons/"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nba/time/_/id/8"
+        },
+        {
+          "label": "ESPN · calendário da temporada e arena",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/8/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "basketball-nba-9",
+      "espnId": "9",
+      "name": "Golden State Warriors",
+      "sport": "basketball",
+      "league": "nba",
+      "logo": "https://a.espncdn.com/i/teamlogos/nba/500/gs.png",
+      "city": "San Francisco",
+      "stadium": "Chase Center",
+      "stadium_image": "",
+      "website": "https://www.nba.com/warriors/",
+      "colors": [
+        "#fdb927",
+        "#1d428a"
+      ],
+      "honours": [],
+      "description": "Golden State Warriors é uma equipe de basquete da NBA. Sua principal arena na temporada é Chase Center, em San Francisco.",
+      "references": [
+        {
+          "label": "Site oficial",
+          "url": "https://www.nba.com/warriors/"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nba/time/_/id/9"
+        },
+        {
+          "label": "ESPN · calendário da temporada e arena",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/9/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "basketball-nba-10",
+      "espnId": "10",
+      "name": "Houston Rockets",
+      "sport": "basketball",
+      "league": "nba",
+      "logo": "https://a.espncdn.com/i/teamlogos/nba/500/hou.png",
+      "city": "Houston",
+      "stadium": "Toyota Center (Houston)",
+      "stadium_image": "",
+      "website": "https://www.nba.com/rockets/",
+      "colors": [
+        "#ce0e2d",
+        "#000000"
+      ],
+      "honours": [],
+      "description": "Houston Rockets é uma equipe de basquete da NBA. Sua principal arena na temporada é Toyota Center (Houston), em Houston.",
+      "references": [
+        {
+          "label": "Site oficial",
+          "url": "https://www.nba.com/rockets/"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nba/time/_/id/10"
+        },
+        {
+          "label": "ESPN · calendário da temporada e arena",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/10/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "basketball-nba-11",
+      "espnId": "11",
+      "name": "Indiana Pacers",
+      "sport": "basketball",
+      "league": "nba",
+      "logo": "https://a.espncdn.com/i/teamlogos/nba/500/ind.png",
+      "city": "Indianápolis",
+      "stadium": "Gainbridge Fieldhouse",
+      "stadium_image": "",
+      "website": "https://www.nba.com/pacers/",
+      "colors": [
+        "#0c2340",
+        "#ffd520"
+      ],
+      "honours": [],
+      "description": "Indiana Pacers é uma equipe de basquete da NBA. Sua principal arena na temporada é Gainbridge Fieldhouse, em Indianápolis.",
+      "references": [
+        {
+          "label": "Site oficial",
+          "url": "https://www.nba.com/pacers/"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nba/time/_/id/11"
+        },
+        {
+          "label": "ESPN · calendário da temporada e arena",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/11/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "basketball-nba-12",
+      "espnId": "12",
+      "name": "LA Clippers",
+      "sport": "basketball",
+      "league": "nba",
+      "logo": "https://a.espncdn.com/i/teamlogos/nba/500/lac.png",
+      "city": "Inglewood",
+      "stadium": "Intuit Dome",
+      "stadium_image": "",
+      "website": "https://www.nba.com/clippers/",
+      "colors": [
+        "#12173f",
+        "#c8102e"
+      ],
+      "honours": [],
+      "description": "LA Clippers é uma equipe de basquete da NBA. Sua principal arena na temporada é Intuit Dome, em Inglewood.",
+      "references": [
+        {
+          "label": "Site oficial",
+          "url": "https://www.nba.com/clippers/"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nba/time/_/id/12"
+        },
+        {
+          "label": "ESPN · calendário da temporada e arena",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/12/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "basketball-nba-13",
+      "espnId": "13",
+      "name": "Los Angeles Lakers",
+      "sport": "basketball",
+      "league": "nba",
+      "logo": "https://a.espncdn.com/i/teamlogos/nba/500/lal.png",
+      "city": "Los Angeles",
+      "stadium": "crypto.com Arena",
+      "stadium_image": "",
+      "website": "https://www.nba.com/lakers/",
+      "colors": [
+        "#552583",
+        "#fdb927"
+      ],
+      "honours": [],
+      "description": "Los Angeles Lakers é uma equipe de basquete da NBA. Sua principal arena na temporada é crypto.com Arena, em Los Angeles.",
+      "references": [
+        {
+          "label": "Site oficial",
+          "url": "https://www.nba.com/lakers/"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nba/time/_/id/13"
+        },
+        {
+          "label": "ESPN · calendário da temporada e arena",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/13/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "basketball-nba-29",
+      "espnId": "29",
+      "name": "Memphis Grizzlies",
+      "sport": "basketball",
+      "league": "nba",
+      "logo": "https://a.espncdn.com/i/teamlogos/nba/500/mem.png",
+      "city": "Memphis",
+      "stadium": "FedExForum",
+      "stadium_image": "",
+      "website": "https://www.nba.com/grizzlies/",
+      "colors": [
+        "#5d76a9",
+        "#12173f"
+      ],
+      "honours": [],
+      "description": "Memphis Grizzlies é uma equipe de basquete da NBA. Sua principal arena na temporada é FedExForum, em Memphis.",
+      "references": [
+        {
+          "label": "Site oficial",
+          "url": "https://www.nba.com/grizzlies/"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nba/time/_/id/29"
+        },
+        {
+          "label": "ESPN · calendário da temporada e arena",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/29/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "basketball-nba-14",
+      "espnId": "14",
+      "name": "Miami Heat",
+      "sport": "basketball",
+      "league": "nba",
+      "logo": "https://a.espncdn.com/i/teamlogos/nba/500/mia.png",
+      "city": "Miami",
+      "stadium": "Kaseya Center",
+      "stadium_image": "",
+      "website": "https://www.nba.com/heat/",
+      "colors": [
+        "#98002e",
+        "#000000"
+      ],
+      "honours": [],
+      "description": "Miami Heat é uma equipe de basquete da NBA. Sua principal arena na temporada é Kaseya Center, em Miami.",
+      "references": [
+        {
+          "label": "Site oficial",
+          "url": "https://www.nba.com/heat/"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nba/time/_/id/14"
+        },
+        {
+          "label": "ESPN · calendário da temporada e arena",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/14/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "basketball-nba-15",
+      "espnId": "15",
+      "name": "Milwaukee Bucks",
+      "sport": "basketball",
+      "league": "nba",
+      "logo": "https://a.espncdn.com/i/teamlogos/nba/500/mil.png",
+      "city": "Milwaukee",
+      "stadium": "Fiserv Forum",
+      "stadium_image": "",
+      "website": "https://www.nba.com/bucks/",
+      "colors": [
+        "#00471b",
+        "#eee1c6"
+      ],
+      "honours": [],
+      "description": "Milwaukee Bucks é uma equipe de basquete da NBA. Sua principal arena na temporada é Fiserv Forum, em Milwaukee.",
+      "references": [
+        {
+          "label": "Site oficial",
+          "url": "https://www.nba.com/bucks/"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nba/time/_/id/15"
+        },
+        {
+          "label": "ESPN · calendário da temporada e arena",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/15/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "basketball-nba-16",
+      "espnId": "16",
+      "name": "Minnesota Timberwolves",
+      "sport": "basketball",
+      "league": "nba",
+      "logo": "https://a.espncdn.com/i/teamlogos/nba/500/min.png",
+      "city": "Minneapolis",
+      "stadium": "Target Center",
+      "stadium_image": "",
+      "website": "https://www.nba.com/timberwolves/",
+      "colors": [
+        "#266092",
+        "#79bc43"
+      ],
+      "honours": [],
+      "description": "Minnesota Timberwolves é uma equipe de basquete da NBA. Sua principal arena na temporada é Target Center, em Minneapolis.",
+      "references": [
+        {
+          "label": "Site oficial",
+          "url": "https://www.nba.com/timberwolves/"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nba/time/_/id/16"
+        },
+        {
+          "label": "ESPN · calendário da temporada e arena",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/16/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "basketball-nba-3",
+      "espnId": "3",
+      "name": "New Orleans Pelicans",
+      "sport": "basketball",
+      "league": "nba",
+      "logo": "https://a.espncdn.com/i/teamlogos/nba/500/no.png",
+      "city": "New Orleans",
+      "stadium": "Smoothie King Center",
+      "stadium_image": "",
+      "website": "https://www.nba.com/pelicans/",
+      "colors": [
+        "#0a2240",
+        "#b4975a"
+      ],
+      "honours": [],
+      "description": "New Orleans Pelicans é uma equipe de basquete da NBA. Sua principal arena na temporada é Smoothie King Center, em New Orleans.",
+      "references": [
+        {
+          "label": "Site oficial",
+          "url": "https://www.nba.com/pelicans/"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nba/time/_/id/3"
+        },
+        {
+          "label": "ESPN · calendário da temporada e arena",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/3/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "basketball-nba-18",
+      "espnId": "18",
+      "name": "New York Knicks",
+      "sport": "basketball",
+      "league": "nba",
+      "logo": "https://a.espncdn.com/i/teamlogos/nba/500/ny.png",
+      "city": "Nova York",
+      "stadium": "Madison Square Garden",
+      "stadium_image": "",
+      "website": "https://www.nba.com/knicks/",
+      "colors": [
+        "#1d428a",
+        "#f58426"
+      ],
+      "honours": [],
+      "description": "New York Knicks é uma equipe de basquete da NBA. Sua principal arena na temporada é Madison Square Garden, em Nova York.",
+      "references": [
+        {
+          "label": "Site oficial",
+          "url": "https://www.nba.com/knicks/"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nba/time/_/id/18"
+        },
+        {
+          "label": "ESPN · calendário da temporada e arena",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/18/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "basketball-nba-25",
+      "espnId": "25",
+      "name": "Oklahoma City Thunder",
+      "sport": "basketball",
+      "league": "nba",
+      "logo": "https://a.espncdn.com/i/teamlogos/nba/500/okc.png",
+      "city": "Oklahoma City",
+      "stadium": "Paycom Center",
+      "stadium_image": "",
+      "website": "https://www.nba.com/thunder/",
+      "colors": [
+        "#007ac1",
+        "#ef3b24"
+      ],
+      "honours": [],
+      "description": "Oklahoma City Thunder é uma equipe de basquete da NBA. Sua principal arena na temporada é Paycom Center, em Oklahoma City.",
+      "references": [
+        {
+          "label": "Site oficial",
+          "url": "https://www.nba.com/thunder/"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nba/time/_/id/25"
+        },
+        {
+          "label": "ESPN · calendário da temporada e arena",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/25/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "basketball-nba-19",
+      "espnId": "19",
+      "name": "Orlando Magic",
+      "sport": "basketball",
+      "league": "nba",
+      "logo": "https://a.espncdn.com/i/teamlogos/nba/500/orl.png",
+      "city": "Orlando",
+      "stadium": "Kia Center",
+      "stadium_image": "",
+      "website": "https://www.nba.com/magic/",
+      "colors": [
+        "#0150b5",
+        "#9ca0a3"
+      ],
+      "honours": [],
+      "description": "Orlando Magic é uma equipe de basquete da NBA. Sua principal arena na temporada é Kia Center, em Orlando.",
+      "references": [
+        {
+          "label": "Site oficial",
+          "url": "https://www.nba.com/magic/"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nba/time/_/id/19"
+        },
+        {
+          "label": "ESPN · calendário da temporada e arena",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/19/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "basketball-nba-20",
+      "espnId": "20",
+      "name": "Philadelphia 76ers",
+      "sport": "basketball",
+      "league": "nba",
+      "logo": "https://a.espncdn.com/i/teamlogos/nba/500/phi.png",
+      "city": "Filadélfia",
+      "stadium": "Xfinity Mobile Arena",
+      "stadium_image": "",
+      "website": "https://www.nba.com/sixers/",
+      "colors": [
+        "#1d428a",
+        "#e01234"
+      ],
+      "honours": [],
+      "description": "Philadelphia 76ers é uma equipe de basquete da NBA. Sua principal arena na temporada é Xfinity Mobile Arena, em Filadélfia.",
+      "references": [
+        {
+          "label": "Site oficial",
+          "url": "https://www.nba.com/sixers/"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nba/time/_/id/20"
+        },
+        {
+          "label": "ESPN · calendário da temporada e arena",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/20/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "basketball-nba-21",
+      "espnId": "21",
+      "name": "Phoenix Suns",
+      "sport": "basketball",
+      "league": "nba",
+      "logo": "https://a.espncdn.com/i/teamlogos/nba/500/phx.png",
+      "city": "Phoenix",
+      "stadium": "Mortgage Matchup Center",
+      "stadium_image": "",
+      "website": "https://www.nba.com/suns/",
+      "colors": [
+        "#29127a",
+        "#e56020"
+      ],
+      "honours": [],
+      "description": "Phoenix Suns é uma equipe de basquete da NBA. Sua principal arena na temporada é Mortgage Matchup Center, em Phoenix.",
+      "references": [
+        {
+          "label": "Site oficial",
+          "url": "https://www.nba.com/suns/"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nba/time/_/id/21"
+        },
+        {
+          "label": "ESPN · calendário da temporada e arena",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/21/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "basketball-nba-22",
+      "espnId": "22",
+      "name": "Portland Trail Blazers",
+      "sport": "basketball",
+      "league": "nba",
+      "logo": "https://a.espncdn.com/i/teamlogos/nba/500/por.png",
+      "city": "Portland",
+      "stadium": "Moda Center",
+      "stadium_image": "",
+      "website": "https://www.nba.com/blazers/",
+      "colors": [
+        "#e03a3e",
+        "#000000"
+      ],
+      "honours": [],
+      "description": "Portland Trail Blazers é uma equipe de basquete da NBA. Sua principal arena na temporada é Moda Center, em Portland.",
+      "references": [
+        {
+          "label": "Site oficial",
+          "url": "https://www.nba.com/blazers/"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nba/time/_/id/22"
+        },
+        {
+          "label": "ESPN · calendário da temporada e arena",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/22/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "basketball-nba-23",
+      "espnId": "23",
+      "name": "Sacramento Kings",
+      "sport": "basketball",
+      "league": "nba",
+      "logo": "https://a.espncdn.com/i/teamlogos/nba/500/sac.png",
+      "city": "Sacramento",
+      "stadium": "Golden 1 Center",
+      "stadium_image": "",
+      "website": "https://www.nba.com/kings/",
+      "colors": [
+        "#5a2d81",
+        "#6a7a82"
+      ],
+      "honours": [],
+      "description": "Sacramento Kings é uma equipe de basquete da NBA. Sua principal arena na temporada é Golden 1 Center, em Sacramento.",
+      "references": [
+        {
+          "label": "Site oficial",
+          "url": "https://www.nba.com/kings/"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nba/time/_/id/23"
+        },
+        {
+          "label": "ESPN · calendário da temporada e arena",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/23/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "basketball-nba-24",
+      "espnId": "24",
+      "name": "San Antonio Spurs",
+      "sport": "basketball",
+      "league": "nba",
+      "logo": "https://a.espncdn.com/i/teamlogos/nba/500/sa.png",
+      "city": "San Antonio",
+      "stadium": "Frost Bank Center",
+      "stadium_image": "",
+      "website": "https://www.nba.com/spurs/",
+      "colors": [
+        "#000000",
+        "#c4ced4"
+      ],
+      "honours": [],
+      "description": "San Antonio Spurs é uma equipe de basquete da NBA. Sua principal arena na temporada é Frost Bank Center, em San Antonio.",
+      "references": [
+        {
+          "label": "Site oficial",
+          "url": "https://www.nba.com/spurs/"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nba/time/_/id/24"
+        },
+        {
+          "label": "ESPN · calendário da temporada e arena",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/24/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "basketball-nba-28",
+      "espnId": "28",
+      "name": "Toronto Raptors",
+      "sport": "basketball",
+      "league": "nba",
+      "logo": "https://a.espncdn.com/i/teamlogos/nba/500/tor.png",
+      "city": "Toronto",
+      "stadium": "Scotiabank Arena",
+      "stadium_image": "",
+      "website": "https://www.nba.com/raptors/",
+      "colors": [
+        "#d91244",
+        "#000000"
+      ],
+      "honours": [],
+      "description": "Toronto Raptors é uma equipe de basquete da NBA. Sua principal arena na temporada é Scotiabank Arena, em Toronto.",
+      "references": [
+        {
+          "label": "Site oficial",
+          "url": "https://www.nba.com/raptors/"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nba/time/_/id/28"
+        },
+        {
+          "label": "ESPN · calendário da temporada e arena",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/28/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "basketball-nba-26",
+      "espnId": "26",
+      "name": "Utah Jazz",
+      "sport": "basketball",
+      "league": "nba",
+      "logo": "https://a.espncdn.com/i/teamlogos/nba/500/utah.png",
+      "city": "Salt Lake City",
+      "stadium": "Delta Center",
+      "stadium_image": "",
+      "website": "https://www.nba.com/jazz/",
+      "colors": [
+        "#4e008e",
+        "#79a3dc"
+      ],
+      "honours": [],
+      "description": "Utah Jazz é uma equipe de basquete da NBA. Sua principal arena na temporada é Delta Center, em Salt Lake City.",
+      "references": [
+        {
+          "label": "Site oficial",
+          "url": "https://www.nba.com/jazz/"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nba/time/_/id/26"
+        },
+        {
+          "label": "ESPN · calendário da temporada e arena",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/26/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "basketball-nba-27",
+      "espnId": "27",
+      "name": "Washington Wizards",
+      "sport": "basketball",
+      "league": "nba",
+      "logo": "https://a.espncdn.com/i/teamlogos/nba/500/wsh.png",
+      "city": "Washington",
+      "stadium": "Capital One Arena",
+      "stadium_image": "",
+      "website": "https://www.nba.com/wizards/",
+      "colors": [
+        "#e31837",
+        "#002b5c"
+      ],
+      "honours": [],
+      "description": "Washington Wizards é uma equipe de basquete da NBA. Sua principal arena na temporada é Capital One Arena, em Washington.",
+      "references": [
+        {
+          "label": "Site oficial",
+          "url": "https://www.nba.com/wizards/"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nba/time/_/id/27"
+        },
+        {
+          "label": "ESPN · calendário da temporada e arena",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/27/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "basketball-wnba-20",
+      "espnId": "20",
+      "name": "Atlanta Dream",
+      "sport": "basketball",
+      "league": "wnba",
+      "logo": "https://a.espncdn.com/i/teamlogos/wnba/500/atl.png",
+      "city": "College Park",
+      "stadium": "Gateway Center",
+      "stadium_image": "",
+      "website": "https://dream.wnba.com/",
+      "colors": [
+        "#e31837",
+        "#5091cc"
+      ],
+      "honours": [],
+      "description": "Atlanta Dream é uma equipe de basquete da WNBA. Sua principal arena na temporada é Gateway Center, em College Park.",
+      "references": [
+        {
+          "label": "Site oficial",
+          "url": "https://dream.wnba.com/"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/wnba/time/_/id/20"
+        },
+        {
+          "label": "ESPN · calendário da temporada e arena",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/teams/20/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "basketball-wnba-19",
+      "espnId": "19",
+      "name": "Chicago Sky",
+      "sport": "basketball",
+      "league": "wnba",
+      "logo": "https://a.espncdn.com/i/teamlogos/wnba/500/chi.png",
+      "city": "Chicago",
+      "stadium": "Wintrust Arena",
+      "stadium_image": "",
+      "website": "https://sky.wnba.com/",
+      "colors": [
+        "#5091cd",
+        "#ffd520"
+      ],
+      "honours": [],
+      "description": "Chicago Sky é uma equipe de basquete da WNBA. Sua principal arena na temporada é Wintrust Arena, em Chicago.",
+      "references": [
+        {
+          "label": "Site oficial",
+          "url": "https://sky.wnba.com/"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/wnba/time/_/id/19"
+        },
+        {
+          "label": "ESPN · calendário da temporada e arena",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/teams/19/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "basketball-wnba-18",
+      "espnId": "18",
+      "name": "Connecticut Sun",
+      "sport": "basketball",
+      "league": "wnba",
+      "logo": "https://a.espncdn.com/i/teamlogos/wnba/500/con.png",
+      "city": "Uncasville",
+      "stadium": "Mohegan Sun Arena",
+      "stadium_image": "",
+      "website": "https://sun.wnba.com/",
+      "colors": [
+        "#f05023",
+        "#0a2240"
+      ],
+      "honours": [],
+      "description": "Connecticut Sun é uma equipe de basquete da WNBA. Sua principal arena na temporada é Mohegan Sun Arena, em Uncasville.",
+      "references": [
+        {
+          "label": "Site oficial",
+          "url": "https://sun.wnba.com/"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/wnba/time/_/id/18"
+        },
+        {
+          "label": "ESPN · calendário da temporada e arena",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/teams/18/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "basketball-wnba-3",
+      "espnId": "3",
+      "name": "Dallas Wings",
+      "sport": "basketball",
+      "league": "wnba",
+      "logo": "https://a.espncdn.com/i/teamlogos/wnba/500/dal.png",
+      "city": "Arlington",
+      "stadium": "College Park Center",
+      "stadium_image": "",
+      "website": "https://wings.wnba.com/",
+      "colors": [
+        "#002b5c",
+        "#c4d600"
+      ],
+      "honours": [],
+      "description": "Dallas Wings é uma equipe de basquete da WNBA. Sua principal arena na temporada é College Park Center, em Arlington.",
+      "references": [
+        {
+          "label": "Site oficial",
+          "url": "https://wings.wnba.com/"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/wnba/time/_/id/3"
+        },
+        {
+          "label": "ESPN · calendário da temporada e arena",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/teams/3/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "basketball-wnba-129689",
+      "espnId": "129689",
+      "name": "Golden State Valkyries",
+      "sport": "basketball",
+      "league": "wnba",
+      "logo": "https://a.espncdn.com/i/teamlogos/wnba/500/gs.png",
+      "city": "San Francisco",
+      "stadium": "Chase Center",
+      "stadium_image": "",
+      "website": "https://valkyries.wnba.com/",
+      "colors": [
+        "#b38fcf",
+        "#000000"
+      ],
+      "honours": [],
+      "description": "Golden State Valkyries é uma equipe de basquete da WNBA. Sua principal arena na temporada é Chase Center, em San Francisco.",
+      "references": [
+        {
+          "label": "Site oficial",
+          "url": "https://valkyries.wnba.com/"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/wnba/time/_/id/129689"
+        },
+        {
+          "label": "ESPN · calendário da temporada e arena",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/teams/129689/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "basketball-wnba-5",
+      "espnId": "5",
+      "name": "Indiana Fever",
+      "sport": "basketball",
+      "league": "wnba",
+      "logo": "https://a.espncdn.com/i/teamlogos/wnba/500/ind.png",
+      "city": "Indianápolis",
+      "stadium": "Gainbridge Fieldhouse",
+      "stadium_image": "",
+      "website": "https://fever.wnba.com/",
+      "colors": [
+        "#002d62",
+        "#e03a3e"
+      ],
+      "honours": [],
+      "description": "Indiana Fever é uma equipe de basquete da WNBA. Sua principal arena na temporada é Gainbridge Fieldhouse, em Indianápolis.",
+      "references": [
+        {
+          "label": "Site oficial",
+          "url": "https://fever.wnba.com/"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/wnba/time/_/id/5"
+        },
+        {
+          "label": "ESPN · calendário da temporada e arena",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/teams/5/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "basketball-wnba-17",
+      "espnId": "17",
+      "name": "Las Vegas Aces",
+      "sport": "basketball",
+      "league": "wnba",
+      "logo": "https://a.espncdn.com/i/teamlogos/wnba/500/lv.png",
+      "city": "Las Vegas",
+      "stadium": "Michelob ULTRA Arena",
+      "stadium_image": "",
+      "website": "https://aces.wnba.com/",
+      "colors": [
+        "#a7a8aa",
+        "#000000"
+      ],
+      "honours": [],
+      "description": "Las Vegas Aces é uma equipe de basquete da WNBA. Sua principal arena na temporada é Michelob ULTRA Arena, em Las Vegas.",
+      "references": [
+        {
+          "label": "Site oficial",
+          "url": "https://aces.wnba.com/"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/wnba/time/_/id/17"
+        },
+        {
+          "label": "ESPN · calendário da temporada e arena",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/teams/17/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "basketball-wnba-6",
+      "espnId": "6",
+      "name": "Los Angeles Sparks",
+      "sport": "basketball",
+      "league": "wnba",
+      "logo": "https://a.espncdn.com/i/teamlogos/wnba/500/la.png",
+      "city": "Los Angeles",
+      "stadium": "crypto.com Arena",
+      "stadium_image": "",
+      "website": "https://sparks.wnba.com/",
+      "colors": [
+        "#552583",
+        "#fdb927"
+      ],
+      "honours": [],
+      "description": "Los Angeles Sparks é uma equipe de basquete da WNBA. Sua principal arena na temporada é crypto.com Arena, em Los Angeles.",
+      "references": [
+        {
+          "label": "Site oficial",
+          "url": "https://sparks.wnba.com/"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/wnba/time/_/id/6"
+        },
+        {
+          "label": "ESPN · calendário da temporada e arena",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/teams/6/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "basketball-wnba-8",
+      "espnId": "8",
+      "name": "Minnesota Lynx",
+      "sport": "basketball",
+      "league": "wnba",
+      "logo": "https://a.espncdn.com/i/teamlogos/wnba/500/min.png",
+      "city": "Minneapolis",
+      "stadium": "Target Center",
+      "stadium_image": "",
+      "website": "https://lynx.wnba.com/",
+      "colors": [
+        "#266092",
+        "#79bc43"
+      ],
+      "honours": [],
+      "description": "Minnesota Lynx é uma equipe de basquete da WNBA. Sua principal arena na temporada é Target Center, em Minneapolis.",
+      "references": [
+        {
+          "label": "Site oficial",
+          "url": "https://lynx.wnba.com/"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/wnba/time/_/id/8"
+        },
+        {
+          "label": "ESPN · calendário da temporada e arena",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/teams/8/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "basketball-wnba-9",
+      "espnId": "9",
+      "name": "New York Liberty",
+      "sport": "basketball",
+      "league": "wnba",
+      "logo": "https://a.espncdn.com/i/teamlogos/wnba/500/ny.png",
+      "city": "Brooklyn",
+      "stadium": "Barclays Center",
+      "stadium_image": "",
+      "website": "https://liberty.wnba.com/",
+      "colors": [
+        "#86cebc",
+        "#000000"
+      ],
+      "honours": [],
+      "description": "New York Liberty é uma equipe de basquete da WNBA. Sua principal arena na temporada é Barclays Center, em Brooklyn.",
+      "references": [
+        {
+          "label": "Site oficial",
+          "url": "https://liberty.wnba.com/"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/wnba/time/_/id/9"
+        },
+        {
+          "label": "ESPN · calendário da temporada e arena",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/teams/9/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "basketball-wnba-11",
+      "espnId": "11",
+      "name": "Phoenix Mercury",
+      "sport": "basketball",
+      "league": "wnba",
+      "logo": "https://a.espncdn.com/i/teamlogos/wnba/500/phx.png",
+      "city": "Phoenix",
+      "stadium": "Mortgage Matchup Center",
+      "stadium_image": "",
+      "website": "https://mercury.wnba.com/",
+      "colors": [
+        "#3c286e",
+        "#fa4b0a"
+      ],
+      "honours": [],
+      "description": "Phoenix Mercury é uma equipe de basquete da WNBA. Sua principal arena na temporada é Mortgage Matchup Center, em Phoenix.",
+      "references": [
+        {
+          "label": "Site oficial",
+          "url": "https://mercury.wnba.com/"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/wnba/time/_/id/11"
+        },
+        {
+          "label": "ESPN · calendário da temporada e arena",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/teams/11/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "basketball-wnba-132052",
+      "espnId": "132052",
+      "name": "Portland Fire",
+      "sport": "basketball",
+      "league": "wnba",
+      "logo": "https://a.espncdn.com/i/teamlogos/wnba/500/por.png",
+      "city": "Portland",
+      "stadium": "Moda Center",
+      "stadium_image": "",
+      "website": "https://fire.wnba.com/",
+      "colors": [
+        "#cee5eb",
+        "#000000"
+      ],
+      "honours": [],
+      "description": "Portland Fire é uma equipe de basquete da WNBA. Sua principal arena na temporada é Moda Center, em Portland.",
+      "references": [
+        {
+          "label": "Site oficial",
+          "url": "https://fire.wnba.com/"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/wnba/time/_/id/132052"
+        },
+        {
+          "label": "ESPN · calendário da temporada e arena",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/teams/132052/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "basketball-wnba-14",
+      "espnId": "14",
+      "name": "Seattle Storm",
+      "sport": "basketball",
+      "league": "wnba",
+      "logo": "https://a.espncdn.com/i/teamlogos/wnba/500/sea.png",
+      "city": "Seattle",
+      "stadium": "Climate Pledge Arena",
+      "stadium_image": "",
+      "website": "https://storm.wnba.com/",
+      "colors": [
+        "#2c5235",
+        "#fee11a"
+      ],
+      "honours": [],
+      "description": "Seattle Storm é uma equipe de basquete da WNBA. Sua principal arena na temporada é Climate Pledge Arena, em Seattle.",
+      "references": [
+        {
+          "label": "Site oficial",
+          "url": "https://storm.wnba.com/"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/wnba/time/_/id/14"
+        },
+        {
+          "label": "ESPN · calendário da temporada e arena",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/teams/14/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "basketball-wnba-131935",
+      "espnId": "131935",
+      "name": "Toronto Tempo",
+      "sport": "basketball",
+      "league": "wnba",
+      "logo": "https://a.espncdn.com/i/teamlogos/wnba/500/tor.png",
+      "city": "Toronto",
+      "stadium": "Coca-Cola Coliseum",
+      "stadium_image": "",
+      "website": "https://tempo.wnba.com/",
+      "colors": [
+        "#33476d",
+        "#7b1b38"
+      ],
+      "honours": [],
+      "description": "Toronto Tempo é uma equipe de basquete da WNBA. Sua principal arena na temporada é Coca-Cola Coliseum, em Toronto.",
+      "references": [
+        {
+          "label": "Site oficial",
+          "url": "https://tempo.wnba.com/"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/wnba/time/_/id/131935"
+        },
+        {
+          "label": "ESPN · calendário da temporada e arena",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/teams/131935/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "basketball-wnba-16",
+      "espnId": "16",
+      "name": "Washington Mystics",
+      "sport": "basketball",
+      "league": "wnba",
+      "logo": "https://a.espncdn.com/i/teamlogos/wnba/500/wsh.png",
+      "city": "Washington",
+      "stadium": "CareFirst Arena",
+      "stadium_image": "",
+      "website": "https://mystics.wnba.com/",
+      "colors": [
+        "#e03a3e",
+        "#002b5c"
+      ],
+      "honours": [],
+      "description": "Washington Mystics é uma equipe de basquete da WNBA. Sua principal arena na temporada é CareFirst Arena, em Washington.",
+      "references": [
+        {
+          "label": "Site oficial",
+          "url": "https://mystics.wnba.com/"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/wnba/time/_/id/16"
+        },
+        {
+          "label": "ESPN · calendário da temporada e arena",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/teams/16/schedule?lang=pt&region=br"
+        }
+      ]
+    }
+  ]
+}

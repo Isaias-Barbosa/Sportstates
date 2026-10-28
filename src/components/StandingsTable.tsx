@@ -1,3 +1,4 @@
+import { profileFor } from "../team-profile";
 import { useState } from "react";
 import KnockoutRounds from "./KnockoutRounds";
 import { Link } from "react-router-dom";
@@ -171,14 +172,20 @@ export default function StandingsTable({
                         <td>{row.rank}</td>
                         <th scope="row">
                           <span className="standings-team">
-                            {clubs?.teams.some(
-                              (t) =>
-                                t.id === row.id &&
-                                (t.sport || "soccer") === sport,
-                            ) ? (
+                            {profileFor(clubs?.teams, row.id, sport, league) ? (
                               <Link
                                 className="standings-team-link"
-                                to={"/times/" + encodeURIComponent(row.id)}
+                                to={
+                                  "/times/" +
+                                  encodeURIComponent(
+                                    profileFor(
+                                      clubs?.teams,
+                                      row.id,
+                                      sport,
+                                      league,
+                                    )!.id,
+                                  )
+                                }
                                 aria-label={"Ver perfil de " + row.name}
                               >
                                 {row.logo && (

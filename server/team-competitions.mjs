@@ -1,3 +1,4 @@
+import { validProfileId, providerTeamId } from "./team-identity.mjs";
 import { leagueFor, SOCCER_TEAM_LEAGUES } from "./catalog.mjs";
 import { knockoutPhase, stateKnockoutPhase } from "./tournaments.mjs";
 import { normalizeStandings } from "./standings.mjs";
@@ -345,12 +346,10 @@ export async function fetchTeamCompetitions(
   team,
   { loadJson = loadJSON, now = Date.now() } = {},
 ) {
-  if (
-    !team ||
-    !/^\d{1,12}$/.test(String(team.id)) ||
-    !leagueFor(team.sport, team.league)
-  )
+  if (!team || !validProfileId(team.id) || !leagueFor(team.sport, team.league))
     throw new Error("Time ou liga inválida.");
+  const profileId = String(team.id);
+  team = { ...team, id: providerTeamId(team.id) };
   const scheduleLeague = team.sport === "soccer" ? "all" : team.league;
   const scheduleUrl = `${BASE}/apis/site/v2/sports/${team.sport}/${scheduleLeague}/teams/${team.id}/schedule?lang=pt&region=br`;
   const results = await Promise.allSettled([
@@ -410,7 +409,7 @@ export async function fetchTeamCompetitions(
       a.name.localeCompare(b.name, "pt-BR"),
   );
   return {
-    teamId: String(team.id),
+    teamId: profileId,
     competitions: cards,
     partial,
     fetchedAt: new Date(now).toISOString(),

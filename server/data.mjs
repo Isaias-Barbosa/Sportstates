@@ -1,3 +1,4 @@
+import { normalizeBasketball, basketballStatName } from "./basketball.mjs";
 import { normalizeEspnVideos } from "./match-media.mjs";
 import { formationRows } from "./formation.mjs";
 import { getWatchOptions } from "./watch.mjs";
@@ -62,10 +63,30 @@ export function eventKind(p, sport) {
   const code = String(p.type?.type || p.play?.type?.type || "").toLowerCase();
   const label = String(p.type?.text || p.play?.type?.text || "").toLowerCase();
   const text = String(p.text || p.shortText || "").toLowerCase();
-  if (/second-yellow|yellow-red/.test(code) || /segundo cart[aã]o amarelo|second yellow/.test(label + " " + text)) return "second-yellow";
-  if (/red-card/.test(code) || /cart[aã]o vermelho|red card/.test(label + " " + text)) return "red-card";
-  if (/yellow-card/.test(code) || /cart[aã]o amarelo|yellow card/.test(label + " " + text)) return "yellow-card";
-  if (sport === "soccer" && !/anulado|disallowed|cancelled|canceled/.test(label + " " + text) && (p.scoringPlay || p.play?.scoringPlay || /^(goal|own-goal|penalty-scored)$/.test(code) || /^(gol|goal)[!.]/.test(text))) return "goal";
+  if (
+    /second-yellow|yellow-red/.test(code) ||
+    /segundo cart[aã]o amarelo|second yellow/.test(label + " " + text)
+  )
+    return "second-yellow";
+  if (
+    /red-card/.test(code) ||
+    /cart[aã]o vermelho|red card/.test(label + " " + text)
+  )
+    return "red-card";
+  if (
+    /yellow-card/.test(code) ||
+    /cart[aã]o amarelo|yellow card/.test(label + " " + text)
+  )
+    return "yellow-card";
+  if (
+    sport === "soccer" &&
+    !/anulado|disallowed|cancelled|canceled/.test(label + " " + text) &&
+    (p.scoringPlay ||
+      p.play?.scoringPlay ||
+      /^(goal|own-goal|penalty-scored)$/.test(code) ||
+      /^(gol|goal)[!.]/.test(text))
+  )
+    return "goal";
   return "other";
 }
 export function normalizeSummary(raw, sport, league, leagueName) {
@@ -92,11 +113,26 @@ export function normalizeSummary(raw, sport, league, leagueName) {
       minute: p.time?.displayValue || p.clock?.displayValue || "",
       period: p.period?.number || p.play?.period?.number || "",
       text: p.text || p.shortText || p.type?.text || "Evento",
-      type: p.type?.text || p.play?.type?.text || "",
-      scorer: eventKind(p, sport) === "goal" ? (p.play?.participants?.[0]?.athlete?.displayName || p.participants?.[0]?.athlete?.displayName || "") : "",
+      type:
+        (sport === "basketball" ? p.shortDescription : null) ||
+        p.type?.text ||
+        p.play?.type?.text ||
+        "",
+      ...(sport === "basketball" && p.homeScore != null && p.awayScore != null
+        ? { score: `${p.homeScore}–${p.awayScore}` }
+        : {}),
+      scorer:
+        eventKind(p, sport) === "goal"
+          ? p.play?.participants?.[0]?.athlete?.displayName ||
+            p.participants?.[0]?.athlete?.displayName ||
+            ""
+          : "",
       kind: eventKind(p, sport),
       sequence: Number(p.sequenceNumber ?? p.sequence ?? i),
-      scoring: sport === "soccer" ? eventKind(p, sport) === "goal" : !!(p.scoringPlay || p.play?.scoringPlay),
+      scoring:
+        sport === "soccer"
+          ? eventKind(p, sport) === "goal"
+          : !!(p.scoringPlay || p.play?.scoringPlay),
     }))
     .sort((a, b) => b.sequence - a.sequence);
   const statistics = (raw.boxscore?.teams || raw.boxscore?.players || [])
@@ -105,11 +141,16 @@ export function normalizeSummary(raw, sport, league, leagueName) {
       stats: (t.statistics || [])
         .filter((s) => s.displayValue != null)
         .map((s) => ({
-          name: s.label || s.displayName || s.name,
+          name:
+            sport === "basketball"
+              ? basketballStatName(s.name, s.label || s.displayName)
+              : s.label || s.displayName || s.name,
           value: s.displayValue,
         })),
     }))
     .filter((t) => t.stats.length);
+  const basketball =
+    sport === "basketball" ? normalizeBasketball(raw, match) : null;
   const lineups = (raw.rosters || []).map((t) => ({
     team: t.team?.displayName || "",
     formation: t.formation || "",
@@ -119,7 +160,8 @@ export function normalizeSummary(raw, sport, league, leagueName) {
       name: p.athlete?.displayName || "",
       shortName: p.athlete?.shortName || p.athlete?.displayName || "",
       role: p.position?.name || p.athlete?.position?.name || "",
-      positionName: p.position?.displayName || p.athlete?.position?.displayName || "",
+      positionName:
+        p.position?.displayName || p.athlete?.position?.displayName || "",
       formationPlace: Number(p.formationPlace) || null,
       subbedIn: !!p.subbedIn,
       subbedOut: !!p.subbedOut,
@@ -129,11 +171,39 @@ export function normalizeSummary(raw, sport, league, leagueName) {
       starter: !!p.starter,
     })),
   }));
+  if (basketball && !lineups.length) {
+    lineups.push(
+      ...basketball.teams.map((t) => ({
+        team: t.name,
+        formation: "",
+        homeAway: t.id === match.home.id ? "home" : "away",
+        players: t.players
+          .filter((p) => !p.didNotPlay)
+          .map((p) => ({
+            id: p.id,
+            name: p.name,
+            shortName: p.name,
+            role: p.position,
+            positionName: p.position,
+            formationPlace: null,
+            subbedIn: false,
+            subbedOut: false,
+            jersey: p.number,
+            position: p.position,
+            starter: p.starter,
+          })),
+      })),
+    );
+  }
   return {
     match: { ...match, venue: raw.gameInfo?.venue?.fullName || match.venue },
     events,
+    ...(sport === "basketball" ? { basketball } : {}),
     associatedVideos: normalizeEspnVideos(raw.videos),
     statistics,
-    lineups: lineups.map(squad => ({ ...squad, formationRows: sport === "soccer" ? formationRows(squad) : null })),
+    lineups: lineups.map((squad) => ({
+      ...squad,
+      formationRows: sport === "soccer" ? formationRows(squad) : null,
+    })),
   };
 }

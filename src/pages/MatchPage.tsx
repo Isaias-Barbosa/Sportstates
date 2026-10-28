@@ -1,3 +1,5 @@
+import { profileFor } from "../team-profile";
+import BasketballMatch from "../components/BasketballMatch";
 import React, { useState, useEffect } from "react";
 import {
   Link,
@@ -48,16 +50,28 @@ export default function MatchPage() {
     `/api/match?sport=${encodeURIComponent(sport || "")}&league=${encodeURIComponent(league || "")}&id=${encodeURIComponent(id || "")}`,
     30000,
   );
-  const { data: media, loading: mediaLoading, error: mediaError } = useApi<MatchMedia>(
+  const {
+    data: media,
+    loading: mediaLoading,
+    error: mediaError,
+  } = useApi<MatchMedia>(
     `/api/media?sport=${encodeURIComponent(sport || "")}&league=${encodeURIComponent(league || "")}&id=${encodeURIComponent(id || "")}`,
     120000,
   );
-  const {data: clubs} = useApi<{teams:ClubProfile[]}>("/api/teams", 300000);
-  const [tab, setTab] = useState("events");
+  const { data: clubs } = useApi<{ teams: ClubProfile[] }>(
+    "/api/teams",
+    300000,
+  );
+  const [tab, setTab] = useState(
+    sport === "basketball" ? "overview" : "events",
+  );
+  useEffect(() => {
+    setTab(sport === "basketball" ? "overview" : "events");
+  }, [sport, league, id]);
   useEffect(() => {
     if (hash === "#videos" && data?.match) {
       setTab("videos");
-      document.getElementById("match-tabs")?.scrollIntoView({block:"start"});
+      document.getElementById("match-tabs")?.scrollIntoView({ block: "start" });
     }
     if (hash === "#onde-assistir" && data?.match) {
       const panel = document.getElementById("onde-assistir");
@@ -93,7 +107,26 @@ export default function MatchPage() {
               </div>
               <div className="detail-score">
                 <div>
-                  <TeamCrest team={data.match.home} large available={data.match.sport === "soccer" && !!clubs?.teams.some(t => t.id === data.match.home.id)} />
+                  <TeamCrest
+                    team={data.match.home}
+                    large
+                    available={
+                      !!profileFor(
+                        clubs?.teams,
+                        data.match.home.id,
+                        data.match.sport,
+                        data.match.league,
+                      )
+                    }
+                    profileId={
+                      profileFor(
+                        clubs?.teams,
+                        data.match.home.id,
+                        data.match.sport,
+                        data.match.league,
+                      )?.id
+                    }
+                  />
                   <h2>{data.match.home.name}</h2>
                 </div>
                 <strong>
@@ -102,7 +135,26 @@ export default function MatchPage() {
                     : `${data.match.home.score ?? "–"} : ${data.match.away.score ?? "–"}`}
                 </strong>
                 <div>
-                  <TeamCrest team={data.match.away} large available={data.match.sport === "soccer" && !!clubs?.teams.some(t => t.id === data.match.away.id)} />
+                  <TeamCrest
+                    team={data.match.away}
+                    large
+                    available={
+                      !!profileFor(
+                        clubs?.teams,
+                        data.match.away.id,
+                        data.match.sport,
+                        data.match.league,
+                      )
+                    }
+                    profileId={
+                      profileFor(
+                        clubs?.teams,
+                        data.match.away.id,
+                        data.match.sport,
+                        data.match.league,
+                      )?.id
+                    }
+                  />
                   <h2>{data.match.away.name}</h2>
                 </div>
               </div>
@@ -130,35 +182,107 @@ export default function MatchPage() {
                 Dados em cache: não foi possível atualizar esta partida.
               </Notice>
             )}
-            {matchLabel(data.match).startsWith("Intervalo") && <div className="interval-banner" role="status"><Clock3 size={22} /><div><strong>{matchLabel(data.match)}</strong><p>A partida está em pausa. O placar e os lances serão atualizados automaticamente.</p></div></div>}
+            {matchLabel(data.match).startsWith("Intervalo") && (
+              <div className="interval-banner" role="status">
+                <Clock3 size={22} />
+                <div>
+                  <strong>{matchLabel(data.match)}</strong>
+                  <p>
+                    A partida está em pausa. O placar e os lances serão
+                    atualizados automaticamente.
+                  </p>
+                </div>
+              </div>
+            )}
+            {data.match.sport === "basketball" && data.basketball && (
+              <BasketballMatch
+                data={data.basketball}
+                match={data.match}
+                view="periods"
+              />
+            )}
             <WhereToWatch key={data.match.id} match={data.match} />
-            {(!!media?.highlights.length || !!media?.replays.length || !!media?.related?.length) && <button className="match-video-shortcut" onClick={() => { setTab("videos"); document.getElementById("match-tabs")?.scrollIntoView({block:"start"}); }}>▶ Vídeos oficiais disponíveis · Ver melhores momentos e gols</button>}
+            {(!!media?.highlights.length ||
+              !!media?.replays.length ||
+              !!media?.related?.length) && (
+              <button
+                className="match-video-shortcut"
+                onClick={() => {
+                  setTab("videos");
+                  document
+                    .getElementById("match-tabs")
+                    ?.scrollIntoView({ block: "start" });
+                }}
+              >
+                ▶ Vídeos oficiais disponíveis · Ver melhores momentos
+              </button>
+            )}
             <div className="detail-content" id="match-tabs">
               <div className="tabs detail-tabs">
                 {[
-                  ["events", "Minuto a minuto"],
+                  ...(data.match.sport === "basketball"
+                    ? [
+                        ["overview", "Resumo"],
+                        ["players", "Jogadores"],
+                      ]
+                    : []),
+                  [
+                    "events",
+                    data.match.sport === "basketball"
+                      ? "Lance a lance"
+                      : "Minuto a minuto",
+                  ],
                   ["stats", "Estatísticas"],
-                  ["lineups", "Escalações"],
+                  ...(data.match.sport === "basketball"
+                    ? []
+                    : [["lineups", "Escalações"]]),
                   ["standings", "Classificação"],
-                  ["videos", `Vídeos${media && (media.highlights.length + media.replays.length + (media.related?.length || 0)) ? ` (${(media.highlights.length + media.replays.length + (media.related?.length || 0))})` : ""}`],
+                  [
+                    "videos",
+                    `Vídeos${media && media.highlights.length + media.replays.length + (media.related?.length || 0) ? ` (${media.highlights.length + media.replays.length + (media.related?.length || 0)})` : ""}`,
+                  ],
                 ].map(([v, l]) => (
                   <button
                     key={v}
                     className={tab === v ? "active" : ""}
+                    aria-pressed={tab === v}
                     onClick={() => setTab(v)}
                   >
                     {l}
                   </button>
                 ))}
               </div>
-              {tab === "standings" && <StandingsTable sport={data.match.sport} league={data.match.league} match={data.match} />}
-              {tab === "videos" && <MatchVideos media={media} loading={mediaLoading} error={mediaError} finished={data.match.state === "finished"} />}
+              {data.match.sport === "basketball" &&
+                data.basketball &&
+                (tab === "overview" || tab === "players") && (
+                  <BasketballMatch
+                    data={data.basketball}
+                    match={data.match}
+                    view={tab}
+                  />
+                )}
+              {tab === "standings" && (
+                <StandingsTable
+                  sport={data.match.sport}
+                  league={data.match.league}
+                  match={data.match}
+                />
+              )}
+              {tab === "videos" && (
+                <MatchVideos
+                  media={media}
+                  loading={mediaLoading}
+                  error={mediaError}
+                  finished={data.match.state === "finished"}
+                />
+              )}
               {tab === "events" && (
                 <>
                   <div className="timeline-heading">
                     <h2>Dentro da partida</h2>
                     <span>
-                      Mais recentes primeiro · Português quando disponível na fonte
+                      Mais recentes primeiro · Português quando disponível na
+                      fonte
                     </span>
                   </div>
                   {data.events.length ? (
@@ -170,13 +294,44 @@ export default function MatchPage() {
                         >
                           <div className="event-minute">
                             {e.minute || "•"}
-                            {e.period && <small>{e.period}º período</small>}
+                            {e.period && (
+                              <small>
+                                {Number(e.period) > 4 &&
+                                data.match.sport === "basketball"
+                                  ? `${Number(e.period) - 4}ª PR`
+                                  : `${e.period}º período`}
+                              </small>
+                            )}
                           </div>
-                          <EventIcon kind={e.kind} />
+                          {data.match.sport === "basketball" && e.scoring ? (
+                            <span
+                              className="event-icon"
+                              role="img"
+                              aria-label="Cesta"
+                            >
+                              🏀
+                            </span>
+                          ) : (
+                            <EventIcon kind={e.kind} />
+                          )}
                           <div>
                             {e.type && <strong>{e.type}</strong>}
                             <p>{e.text}</p>
-                            {e.kind === "goal" && media?.replays.filter(v => v.eventId === e.id).map(video => <OfficialVideo key={video.id} video={video} replay />)}
+                            {e.score && (
+                              <small>
+                                Placar: {e.score} · mandante–visitante
+                              </small>
+                            )}
+                            {e.kind === "goal" &&
+                              media?.replays
+                                .filter((v) => v.eventId === e.id)
+                                .map((video) => (
+                                  <OfficialVideo
+                                    key={video.id}
+                                    video={video}
+                                    replay
+                                  />
+                                ))}
                           </div>
                         </article>
                       ))}
@@ -211,7 +366,10 @@ export default function MatchPage() {
                 ))}
               {tab === "lineups" &&
                 (data.lineups.length ? (
-                  <Lineups lineups={data.lineups} soccer={data.match.sport === "soccer"} />
+                  <Lineups
+                    lineups={data.lineups}
+                    soccer={data.match.sport === "soccer"}
+                  />
                 ) : (
                   <Empty title="Escalações indisponíveis">
                     As escalações aparecem quando publicadas pela fonte.

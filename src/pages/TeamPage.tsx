@@ -94,7 +94,9 @@ export default function TeamPage() {
           <h1>{team.name}</h1>
           <p>
             {[team.city, team.stadium].filter(Boolean).join(" · ") ||
-              "Clube de futebol"}
+              (team.sport === "basketball"
+                ? "Equipe de basquete"
+                : "Clube de futebol")}
           </p>
           {team.description && <p>{descriptionPreview(team.description)}</p>}
           {team.website && (
@@ -112,7 +114,12 @@ export default function TeamPage() {
             ["players", "Elenco"],
             ["games", "Jogos"],
             ["competitions", "Competições"],
-            ["lineup", "Última escalação"],
+            [
+              "lineup",
+              team.sport === "basketball"
+                ? "Último quinteto"
+                : "Última escalação",
+            ],
             ["news", "Notícias"],
           ].map(([id, label]) => (
             <button
@@ -146,7 +153,7 @@ export default function TeamPage() {
                   <dd>{team.city || "Não informada"}</dd>
                 </div>
                 <div>
-                  <dt>Estádio</dt>
+                  <dt>{team.sport === "basketball" ? "Arena" : "Estádio"}</dt>
                   <dd>{team.stadium || "Não informado"}</dd>
                 </div>
               </dl>

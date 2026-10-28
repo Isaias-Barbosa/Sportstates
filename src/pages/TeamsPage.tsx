@@ -44,11 +44,11 @@ export default function TeamsPage() {
     <>
       <div className="page-title">
         <div>
-          <div className="eyebrow">OS CLUBES EM CAMPO</div>
+          <div className="eyebrow">CONHEÇA AS EQUIPES</div>
           <h1>
             Times<span className="green">.</span>
           </h1>
-          <p>Escolha um esporte e uma liga para conhecer os clubes.</p>
+          <p>Escolha um esporte e uma liga para conhecer os times.</p>
         </div>
       </div>
       {loading || catalogLoading ? (
