@@ -1,3 +1,4 @@
+import { nflProfileReferences } from "./nfl-profiles.mjs";
 import { basketballProfileReferences } from "./basketball-profiles.mjs";
 import {
   validProfileId,
@@ -205,7 +206,11 @@ export async function teamDetails(id) {
     .slice(0, 8);
   const last = recent[0];
   let lineup = null;
-  if (last && leagueFor(config.sport, last.league)) {
+  if (
+    last &&
+    config.sport !== "football" &&
+    leagueFor(config.sport, last.league)
+  ) {
     try {
       const raw = await getJSON(
         `https://site.api.espn.com/apis/site/v2/sports/${config.sport}/${last.league}/summary?event=${last.id}&lang=pt&region=br`,
@@ -253,14 +258,16 @@ export async function teamDetails(id) {
   return {
     team,
     profileReferences:
-      team.sport === "basketball"
-        ? basketballProfileReferences(team.id)
-        : team.league === "eng.1"
-          ? premierLeagueReferences(team.id)
-          : [
-              ...leagueProfileReferences(team.id, team.league),
-              ...mlsProfileReferences(team.id, team.league),
-            ],
+      team.sport === "football"
+        ? nflProfileReferences(team.id)
+        : team.sport === "basketball"
+          ? basketballProfileReferences(team.id)
+          : team.league === "eng.1"
+            ? premierLeagueReferences(team.id)
+            : [
+                ...leagueProfileReferences(team.id, team.league),
+                ...mlsProfileReferences(team.id, team.league),
+              ],
     athletes,
     leaders,
     upcoming,

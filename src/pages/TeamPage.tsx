@@ -96,7 +96,9 @@ export default function TeamPage() {
             {[team.city, team.stadium].filter(Boolean).join(" · ") ||
               (team.sport === "basketball"
                 ? "Equipe de basquete"
-                : "Clube de futebol")}
+                : team.sport === "football"
+                  ? "Equipe de futebol americano"
+                  : "Clube de futebol")}
           </p>
           {team.description && <p>{descriptionPreview(team.description)}</p>}
           {team.website && (
@@ -114,12 +116,16 @@ export default function TeamPage() {
             ["players", "Elenco"],
             ["games", "Jogos"],
             ["competitions", "Competições"],
-            [
-              "lineup",
-              team.sport === "basketball"
-                ? "Último quinteto"
-                : "Última escalação",
-            ],
+            ...(team.sport === "football"
+              ? []
+              : [
+                  [
+                    "lineup",
+                    team.sport === "basketball"
+                      ? "Último quinteto"
+                      : "Última escalação",
+                  ],
+                ]),
             ["news", "Notícias"],
           ].map(([id, label]) => (
             <button

@@ -1,3 +1,9 @@
+import {
+  normalizeAmericanFootball,
+  footballPlays,
+  footballPlayLabel,
+  footballStatName,
+} from "./american-football.mjs";
 import { normalizeBasketball, basketballStatName } from "./basketball.mjs";
 import { normalizeEspnVideos } from "./match-media.mjs";
 import { formationRows } from "./formation.mjs";
@@ -106,7 +112,9 @@ export function normalizeSummary(raw, sport, league, leagueName) {
     ? raw.commentary
     : raw.plays?.length
       ? raw.plays
-      : raw.keyEvents || [];
+      : sport === "football"
+        ? footballPlays(raw)
+        : raw.keyEvents || [];
   const events = source
     .map((p, i) => ({
       id: String(p.id || p.sequenceNumber || i),
@@ -114,11 +122,17 @@ export function normalizeSummary(raw, sport, league, leagueName) {
       period: p.period?.number || p.play?.period?.number || "",
       text: p.text || p.shortText || p.type?.text || "Evento",
       type:
-        (sport === "basketball" ? p.shortDescription : null) ||
+        (sport === "football"
+          ? footballPlayLabel(p)
+          : sport === "basketball"
+            ? p.shortDescription
+            : null) ||
         p.type?.text ||
         p.play?.type?.text ||
         "",
-      ...(sport === "basketball" && p.homeScore != null && p.awayScore != null
+      ...(["basketball", "football"].includes(sport) &&
+      p.homeScore != null &&
+      p.awayScore != null
         ? { score: `${p.homeScore}–${p.awayScore}` }
         : {}),
       scorer:
@@ -144,7 +158,9 @@ export function normalizeSummary(raw, sport, league, leagueName) {
           name:
             sport === "basketball"
               ? basketballStatName(s.name, s.label || s.displayName)
-              : s.label || s.displayName || s.name,
+              : sport === "football"
+                ? footballStatName(s.name, s.label || s.displayName)
+                : s.label || s.displayName || s.name,
           value: s.displayValue,
         })),
     }))
@@ -199,6 +215,9 @@ export function normalizeSummary(raw, sport, league, leagueName) {
     match: { ...match, venue: raw.gameInfo?.venue?.fullName || match.venue },
     events,
     ...(sport === "basketball" ? { basketball } : {}),
+    ...(sport === "football"
+      ? { americanFootball: normalizeAmericanFootball(raw, match) }
+      : {}),
     associatedVideos: normalizeEspnVideos(raw.videos),
     statistics,
     lineups: lineups.map((squad) => ({

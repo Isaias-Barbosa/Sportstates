@@ -1190,3 +1190,162 @@ summary:focus-visible {
     radial-gradient(ellipse at 10% 100%, #2862ff35, transparent 65%), #0b1730;
   border-bottom-color: #ff944d;
 }
+
+/* NFL game detail shares the period scoreboard and numeric table styles. */
+.detail-hero.football-hero {
+  background:
+    radial-gradient(ellipse at 90% 0, #2ec18b28, transparent 65%),
+    radial-gradient(ellipse at 5% 100%, #2862ff35, transparent 65%), #0b1730;
+  border-bottom-color: #40d69a;
+}
+.football-overview,
+.football-boxscore,
+.football-drives {
+  margin: 24px 0;
+  padding: 22px;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: var(--panel);
+  min-width: 0;
+}
+.football-scoring-heading {
+  margin-top: 30px;
+}
+.football-scoring-list,
+.football-drive-list {
+  display: grid;
+  gap: 12px;
+}
+.football-scoring-list article {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  padding: 18px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+.football-score-time {
+  min-width: 52px;
+  display: grid;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+.football-scoring-main {
+  flex: 1;
+  min-width: 0;
+}
+.football-scoring-main > strong {
+  display: block;
+  font-size: 0.9rem;
+  margin: 9px 0;
+}
+.football-scoring-main p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.7;
+  font-size: 0.85rem;
+}
+.football-play-tag {
+  display: inline-block;
+  padding: 5px 9px;
+  border-radius: 6px;
+  background: var(--green-glow);
+  color: var(--green);
+  font-size: 0.73rem;
+  font-weight: 800;
+}
+.football-play-score {
+  font-size: 1.25rem;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.football-drive-list {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+}
+.football-drive-list article {
+  padding: 18px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+.football-drive-list article > div {
+  display: grid;
+  gap: 12px;
+  justify-items: start;
+}
+.football-drive-list p {
+  font-size: 0.85rem;
+  line-height: 1.7;
+}
+.football-drive-list small {
+  color: var(--muted);
+}
+.football-current-drive {
+  border-color: var(--green) !important;
+  background: var(--green-glow);
+}
+.football-situation {
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 18px;
+  margin-bottom: 24px;
+  border: 1px solid var(--green-border);
+  background: var(--green-glow);
+  border-radius: 12px;
+}
+.football-category {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+.football-category select {
+  background: var(--panel);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px;
+}
+.football-boxscore .tabs {
+  margin-bottom: 20px;
+}
+.football-boxscore h3 {
+  font-size: 1rem;
+}
+.football-boxscore tfoot {
+  background: var(--green-glow);
+  font-weight: 800;
+}
+.football-boxscore tbody th {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  background: var(--panel);
+}
+@media (max-width: 600px) {
+  .football-overview,
+  .football-boxscore,
+  .football-drives {
+    padding: 14px;
+  }
+  .football-scoring-list article {
+    padding: 12px;
+    gap: 10px;
+  }
+  .football-play-score {
+    font-size: 1rem;
+  }
+  .football-score-time {
+    min-width: 40px;
+  }
+  .football-category {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .football-category select {
+    max-width: 65%;
+  }
+}

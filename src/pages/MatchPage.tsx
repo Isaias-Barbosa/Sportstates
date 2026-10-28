@@ -1,3 +1,5 @@
+import AmericanFootballMatch from "../components/AmericanFootballMatch";
+import PeriodScoreboard from "../components/PeriodScoreboard";
 import { profileFor } from "../team-profile";
 import BasketballMatch from "../components/BasketballMatch";
 import React, { useState, useEffect } from "react";
@@ -63,10 +65,12 @@ export default function MatchPage() {
     300000,
   );
   const [tab, setTab] = useState(
-    sport === "basketball" ? "overview" : "events",
+    ["basketball", "football"].includes(sport || "") ? "overview" : "events",
   );
   useEffect(() => {
-    setTab(sport === "basketball" ? "overview" : "events");
+    setTab(
+      ["basketball", "football"].includes(sport || "") ? "overview" : "events",
+    );
   }, [sport, league, id]);
   useEffect(() => {
     if (hash === "#videos" && data?.match) {
@@ -99,7 +103,11 @@ export default function MatchPage() {
             <div
               className={
                 "detail-hero" +
-                (data.match.sport === "basketball" ? " basketball-hero" : "")
+                (data.match.sport === "basketball"
+                  ? " basketball-hero"
+                  : data.match.sport === "football"
+                    ? " football-hero"
+                    : "")
               }
             >
               <div className="eyebrow">{data.match.leagueName}</div>
@@ -206,6 +214,12 @@ export default function MatchPage() {
                 view="periods"
               />
             )}
+            {data.match.sport === "football" && data.americanFootball && (
+              <PeriodScoreboard
+                data={data.americanFootball}
+                match={data.match}
+              />
+            )}
             <WhereToWatch key={data.match.id} match={data.match} />
             {(!!media?.highlights.length ||
               !!media?.replays.length ||
@@ -225,7 +239,7 @@ export default function MatchPage() {
             <div className="detail-content" id="match-tabs">
               <div className="tabs detail-tabs">
                 {[
-                  ...(data.match.sport === "basketball"
+                  ...(["basketball", "football"].includes(data.match.sport)
                     ? [
                         ["overview", "Resumo"],
                         ["players", "Jogadores"],
@@ -233,14 +247,17 @@ export default function MatchPage() {
                     : []),
                   [
                     "events",
-                    data.match.sport === "basketball"
+                    ["basketball", "football"].includes(data.match.sport)
                       ? "Lance a lance"
                       : "Minuto a minuto",
                   ],
                   ["stats", "Estatísticas"],
-                  ...(data.match.sport === "basketball"
+                  ...(["basketball", "football"].includes(data.match.sport)
                     ? []
                     : [["lineups", "Escalações"]]),
+                  ...(data.match.sport === "football"
+                    ? [["drives", "Campanhas"]]
+                    : []),
                   ["standings", "Classificação"],
                   [
                     "videos",
@@ -262,6 +279,17 @@ export default function MatchPage() {
                 (tab === "overview" || tab === "players") && (
                   <BasketballMatch
                     data={data.basketball}
+                    match={data.match}
+                    view={tab}
+                  />
+                )}
+              {data.match.sport === "football" &&
+                data.americanFootball &&
+                (tab === "overview" ||
+                  tab === "players" ||
+                  tab === "drives") && (
+                  <AmericanFootballMatch
+                    data={data.americanFootball}
                     match={data.match}
                     view={tab}
                   />
@@ -302,19 +330,27 @@ export default function MatchPage() {
                             {e.period && (
                               <small>
                                 {Number(e.period) > 4 &&
-                                data.match.sport === "basketball"
+                                ["basketball", "football"].includes(
+                                  data.match.sport,
+                                )
                                   ? `${Number(e.period) - 4}ª PR`
                                   : `${e.period}º período`}
                               </small>
                             )}
                           </div>
-                          {data.match.sport === "basketball" && e.scoring ? (
+                          {["basketball", "football"].includes(
+                            data.match.sport,
+                          ) && e.scoring ? (
                             <span
                               className="event-icon"
                               role="img"
-                              aria-label="Cesta"
+                              aria-label={
+                                data.match.sport === "football"
+                                  ? "Pontuação"
+                                  : "Cesta"
+                              }
                             >
-                              🏀
+                              {data.match.sport === "football" ? "🏈" : "🏀"}
                             </span>
                           ) : (
                             <EventIcon kind={e.kind} />

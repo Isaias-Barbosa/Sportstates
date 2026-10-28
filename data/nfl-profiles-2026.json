@@ -1,0 +1,1166 @@
+{
+  "revision": "nfl-profiles-2026-v1",
+  "reviewedAt": "2026-10-28",
+  "clubs": [
+    {
+      "id": "football-nfl-22",
+      "espnId": "22",
+      "name": "Arizona Cardinals",
+      "sport": "football",
+      "league": "nfl",
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ari.png",
+      "city": "Glendale",
+      "stadium": "State Farm Stadium",
+      "stadium_image": "",
+      "website": "https://www.azcardinals.com/",
+      "colors": [
+        "#a40227",
+        "#ffffff"
+      ],
+      "honours": [],
+      "description": "Arizona Cardinals é uma equipe de futebol americano da NFL. Seu principal estádio na temporada é State Farm Stadium, em Glendale.",
+      "references": [
+        {
+          "label": "Site oficial",
+          "url": "https://www.azcardinals.com/"
+        },
+        {
+          "label": "NFL · diretório oficial de equipes",
+          "url": "https://www.nfl.com/teams/"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nfl/time/_/id/22"
+        },
+        {
+          "label": "ESPN · calendário e estádio",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams/22/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "football-nfl-1",
+      "espnId": "1",
+      "name": "Atlanta Falcons",
+      "sport": "football",
+      "league": "nfl",
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/atl.png",
+      "city": "Atlanta",
+      "stadium": "Mercedes-Benz Stadium",
+      "stadium_image": "",
+      "website": "https://www.atlantafalcons.com/",
+      "colors": [
+        "#a71930",
+        "#000000"
+      ],
+      "honours": [],
+      "description": "Atlanta Falcons é uma equipe de futebol americano da NFL. Seu principal estádio na temporada é Mercedes-Benz Stadium, em Atlanta.",
+      "references": [
+        {
+          "label": "Site oficial",
+          "url": "https://www.atlantafalcons.com/"
+        },
+        {
+          "label": "NFL · diretório oficial de equipes",
+          "url": "https://www.nfl.com/teams/"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nfl/time/_/id/1"
+        },
+        {
+          "label": "ESPN · calendário e estádio",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams/1/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "football-nfl-33",
+      "espnId": "33",
+      "name": "Baltimore Ravens",
+      "sport": "football",
+      "league": "nfl",
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/bal.png",
+      "city": "Baltimore",
+      "stadium": "M&T Bank Stadium",
+      "stadium_image": "",
+      "website": "https://www.baltimoreravens.com/",
+      "colors": [
+        "#29126f",
+        "#000000"
+      ],
+      "honours": [],
+      "description": "Baltimore Ravens é uma equipe de futebol americano da NFL. Seu principal estádio na temporada é M&T Bank Stadium, em Baltimore.",
+      "references": [
+        {
+          "label": "Site oficial",
+          "url": "https://www.baltimoreravens.com/"
+        },
+        {
+          "label": "NFL · diretório oficial de equipes",
+          "url": "https://www.nfl.com/teams/"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nfl/time/_/id/33"
+        },
+        {
+          "label": "ESPN · calendário e estádio",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams/33/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "football-nfl-2",
+      "espnId": "2",
+      "name": "Buffalo Bills",
+      "sport": "football",
+      "league": "nfl",
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/buf.png",
+      "city": "Orchard Park",
+      "stadium": "Highmark Stadium",
+      "stadium_image": "",
+      "website": "https://www.buffalobills.com/",
+      "colors": [
+        "#00338d",
+        "#d50a0a"
+      ],
+      "honours": [],
+      "description": "Buffalo Bills é uma equipe de futebol americano da NFL. Seu principal estádio na temporada é Highmark Stadium, em Orchard Park.",
+      "references": [
+        {
+          "label": "Site oficial",
+          "url": "https://www.buffalobills.com/"
+        },
+        {
+          "label": "NFL · diretório oficial de equipes",
+          "url": "https://www.nfl.com/teams/"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nfl/time/_/id/2"
+        },
+        {
+          "label": "ESPN · calendário e estádio",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams/2/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "football-nfl-29",
+      "espnId": "29",
+      "name": "Carolina Panthers",
+      "sport": "football",
+      "league": "nfl",
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/car.png",
+      "city": "Charlotte",
+      "stadium": "Bank of America Stadium",
+      "stadium_image": "",
+      "website": "https://www.panthers.com/",
+      "colors": [
+        "#0085ca",
+        "#000000"
+      ],
+      "honours": [],
+      "description": "Carolina Panthers é uma equipe de futebol americano da NFL. Seu principal estádio na temporada é Bank of America Stadium, em Charlotte.",
+      "references": [
+        {
+          "label": "Site oficial",
+          "url": "https://www.panthers.com/"
+        },
+        {
+          "label": "NFL · diretório oficial de equipes",
+          "url": "https://www.nfl.com/teams/"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nfl/time/_/id/29"
+        },
+        {
+          "label": "ESPN · calendário e estádio",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams/29/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "football-nfl-3",
+      "espnId": "3",
+      "name": "Chicago Bears",
+      "sport": "football",
+      "league": "nfl",
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/chi.png",
+      "city": "Chicago",
+      "stadium": "Soldier Field",
+      "stadium_image": "",
+      "website": "https://www.chicagobears.com/",
+      "colors": [
+        "#0b1c3a",
+        "#e64100"
+      ],
+      "honours": [],
+      "description": "Chicago Bears é uma equipe de futebol americano da NFL. Seu principal estádio na temporada é Soldier Field, em Chicago.",
+      "references": [
+        {
+          "label": "Site oficial",
+          "url": "https://www.chicagobears.com/"
+        },
+        {
+          "label": "NFL · diretório oficial de equipes",
+          "url": "https://www.nfl.com/teams/"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nfl/time/_/id/3"
+        },
+        {
+          "label": "ESPN · calendário e estádio",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams/3/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "football-nfl-4",
+      "espnId": "4",
+      "name": "Cincinnati Bengals",
+      "sport": "football",
+      "league": "nfl",
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/cin.png",
+      "city": "Cincinnati",
+      "stadium": "Paycor Stadium",
+      "stadium_image": "",
+      "website": "https://www.bengals.com/",
+      "colors": [
+        "#fb4f14",
+        "#000000"
+      ],
+      "honours": [],
+      "description": "Cincinnati Bengals é uma equipe de futebol americano da NFL. Seu principal estádio na temporada é Paycor Stadium, em Cincinnati.",
+      "references": [
+        {
+          "label": "Site oficial",
+          "url": "https://www.bengals.com/"
+        },
+        {
+          "label": "NFL · diretório oficial de equipes",
+          "url": "https://www.nfl.com/teams/"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nfl/time/_/id/4"
+        },
+        {
+          "label": "ESPN · calendário e estádio",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams/4/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "football-nfl-5",
+      "espnId": "5",
+      "name": "Cleveland Browns",
+      "sport": "football",
+      "league": "nfl",
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/cle.png",
+      "city": "Cleveland",
+      "stadium": "Huntington Bank Field",
+      "stadium_image": "",
+      "website": "https://www.clevelandbrowns.com/",
+      "colors": [
+        "#472a08",
+        "#ff3c00"
+      ],
+      "honours": [],
+      "description": "Cleveland Browns é uma equipe de futebol americano da NFL. Seu principal estádio na temporada é Huntington Bank Field, em Cleveland.",
+      "references": [
+        {
+          "label": "Site oficial",
+          "url": "https://www.clevelandbrowns.com/"
+        },
+        {
+          "label": "NFL · diretório oficial de equipes",
+          "url": "https://www.nfl.com/teams/"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nfl/time/_/id/5"
+        },
+        {
+          "label": "ESPN · calendário e estádio",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams/5/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "football-nfl-6",
+      "espnId": "6",
+      "name": "Dallas Cowboys",
+      "sport": "football",
+      "league": "nfl",
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/dal.png",
+      "city": "Arlington",
+      "stadium": "AT&T Stadium",
+      "stadium_image": "",
+      "website": "https://www.dallascowboys.com/",
+      "colors": [
+        "#002a5c",
+        "#b0b7bc"
+      ],
+      "honours": [],
+      "description": "Dallas Cowboys é uma equipe de futebol americano da NFL. Seu principal estádio na temporada é AT&T Stadium, em Arlington.",
+      "references": [
+        {
+          "label": "Site oficial",
+          "url": "https://www.dallascowboys.com/"
+        },
+        {
+          "label": "NFL · diretório oficial de equipes",
+          "url": "https://www.nfl.com/teams/"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nfl/time/_/id/6"
+        },
+        {
+          "label": "ESPN · calendário e estádio",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams/6/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "football-nfl-7",
+      "espnId": "7",
+      "name": "Denver Broncos",
+      "sport": "football",
+      "league": "nfl",
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/den.png",
+      "city": "Denver",
+      "stadium": "Empower Field at Mile High",
+      "stadium_image": "",
+      "website": "https://www.denverbroncos.com/",
+      "colors": [
+        "#0a2343",
+        "#fc4c02"
+      ],
+      "honours": [],
+      "description": "Denver Broncos é uma equipe de futebol americano da NFL. Seu principal estádio na temporada é Empower Field at Mile High, em Denver.",
+      "references": [
+        {
+          "label": "Site oficial",
+          "url": "https://www.denverbroncos.com/"
+        },
+        {
+          "label": "NFL · diretório oficial de equipes",
+          "url": "https://www.nfl.com/teams/"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nfl/time/_/id/7"
+        },
+        {
+          "label": "ESPN · calendário e estádio",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams/7/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "football-nfl-8",
+      "espnId": "8",
+      "name": "Detroit Lions",
+      "sport": "football",
+      "league": "nfl",
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/det.png",
+      "city": "Detroit",
+      "stadium": "Ford Field",
+      "stadium_image": "",
+      "website": "https://www.detroitlions.com/",
+      "colors": [
+        "#0076b6",
+        "#bbbbbb"
+      ],
+      "honours": [],
+      "description": "Detroit Lions é uma equipe de futebol americano da NFL. Seu principal estádio na temporada é Ford Field, em Detroit.",
+      "references": [
+        {
+          "label": "Site oficial",
+          "url": "https://www.detroitlions.com/"
+        },
+        {
+          "label": "NFL · diretório oficial de equipes",
+          "url": "https://www.nfl.com/teams/"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nfl/time/_/id/8"
+        },
+        {
+          "label": "ESPN · calendário e estádio",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams/8/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "football-nfl-9",
+      "espnId": "9",
+      "name": "Green Bay Packers",
+      "sport": "football",
+      "league": "nfl",
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/gb.png",
+      "city": "Green Bay",
+      "stadium": "Lambeau Field",
+      "stadium_image": "",
+      "website": "https://www.packers.com/",
+      "colors": [
+        "#204e32",
+        "#ffb612"
+      ],
+      "honours": [],
+      "description": "Green Bay Packers é uma equipe de futebol americano da NFL. Seu principal estádio na temporada é Lambeau Field, em Green Bay.",
+      "references": [
+        {
+          "label": "Site oficial",
+          "url": "https://www.packers.com/"
+        },
+        {
+          "label": "NFL · diretório oficial de equipes",
+          "url": "https://www.nfl.com/teams/"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nfl/time/_/id/9"
+        },
+        {
+          "label": "ESPN · calendário e estádio",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams/9/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "football-nfl-34",
+      "espnId": "34",
+      "name": "Houston Texans",
+      "sport": "football",
+      "league": "nfl",
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/hou.png",
+      "city": "Houston",
+      "stadium": "Reliant Stadium",
+      "stadium_image": "",
+      "website": "https://www.houstontexans.com/",
+      "colors": [
+        "#021018",
+        "#eb0028"
+      ],
+      "honours": [],
+      "description": "Houston Texans é uma equipe de futebol americano da NFL. Seu principal estádio na temporada é Reliant Stadium, em Houston.",
+      "references": [
+        {
+          "label": "Site oficial",
+          "url": "https://www.houstontexans.com/"
+        },
+        {
+          "label": "NFL · diretório oficial de equipes",
+          "url": "https://www.nfl.com/teams/"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nfl/time/_/id/34"
+        },
+        {
+          "label": "ESPN · calendário e estádio",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams/34/schedule?lang=pt&region=br"
+        },
+        {
+          "label": "Estádio · confirmação oficial de 2026",
+          "url": "https://www.houstontexans.com/stadium/"
+        }
+      ]
+    },
+    {
+      "id": "football-nfl-11",
+      "espnId": "11",
+      "name": "Indianapolis Colts",
+      "sport": "football",
+      "league": "nfl",
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ind.png",
+      "city": "Indianápolis",
+      "stadium": "Lucas Oil Stadium",
+      "stadium_image": "",
+      "website": "https://www.colts.com/",
+      "colors": [
+        "#003b75",
+        "#ffffff"
+      ],
+      "honours": [],
+      "description": "Indianapolis Colts é uma equipe de futebol americano da NFL. Seu principal estádio na temporada é Lucas Oil Stadium, em Indianápolis.",
+      "references": [
+        {
+          "label": "Site oficial",
+          "url": "https://www.colts.com/"
+        },
+        {
+          "label": "NFL · diretório oficial de equipes",
+          "url": "https://www.nfl.com/teams/"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nfl/time/_/id/11"
+        },
+        {
+          "label": "ESPN · calendário e estádio",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams/11/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "football-nfl-30",
+      "espnId": "30",
+      "name": "Jacksonville Jaguars",
+      "sport": "football",
+      "league": "nfl",
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/jax.png",
+      "city": "Jacksonville",
+      "stadium": "EverBank Stadium",
+      "stadium_image": "",
+      "website": "https://www.jaguars.com/",
+      "colors": [
+        "#007487",
+        "#d7a22a"
+      ],
+      "honours": [],
+      "description": "Jacksonville Jaguars é uma equipe de futebol americano da NFL. Seu principal estádio na temporada é EverBank Stadium, em Jacksonville.",
+      "references": [
+        {
+          "label": "Site oficial",
+          "url": "https://www.jaguars.com/"
+        },
+        {
+          "label": "NFL · diretório oficial de equipes",
+          "url": "https://www.nfl.com/teams/"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nfl/time/_/id/30"
+        },
+        {
+          "label": "ESPN · calendário e estádio",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams/30/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "football-nfl-12",
+      "espnId": "12",
+      "name": "Kansas City Chiefs",
+      "sport": "football",
+      "league": "nfl",
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/kc.png",
+      "city": "Kansas City",
+      "stadium": "Arrowhead Stadium",
+      "stadium_image": "",
+      "website": "https://www.chiefs.com/",
+      "colors": [
+        "#e31837",
+        "#ffb612"
+      ],
+      "honours": [],
+      "description": "Kansas City Chiefs é uma equipe de futebol americano da NFL. Seu principal estádio na temporada é Arrowhead Stadium, em Kansas City.",
+      "references": [
+        {
+          "label": "Site oficial",
+          "url": "https://www.chiefs.com/"
+        },
+        {
+          "label": "NFL · diretório oficial de equipes",
+          "url": "https://www.nfl.com/teams/"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nfl/time/_/id/12"
+        },
+        {
+          "label": "ESPN · calendário e estádio",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams/12/schedule?lang=pt&region=br"
+        },
+        {
+          "label": "Estádio · confirmação oficial de 2026",
+          "url": "https://www.chiefs.com/news/chiefs-and-g-e-h-a-announce-return-of-arrowhead-stadium-branding-beginning-with-2026-season"
+        }
+      ]
+    },
+    {
+      "id": "football-nfl-13",
+      "espnId": "13",
+      "name": "Las Vegas Raiders",
+      "sport": "football",
+      "league": "nfl",
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/lv.png",
+      "city": "Las Vegas",
+      "stadium": "Allegiant Stadium",
+      "stadium_image": "",
+      "website": "https://www.raiders.com/",
+      "colors": [
+        "#000000",
+        "#a5acaf"
+      ],
+      "honours": [],
+      "description": "Las Vegas Raiders é uma equipe de futebol americano da NFL. Seu principal estádio na temporada é Allegiant Stadium, em Las Vegas.",
+      "references": [
+        {
+          "label": "Site oficial",
+          "url": "https://www.raiders.com/"
+        },
+        {
+          "label": "NFL · diretório oficial de equipes",
+          "url": "https://www.nfl.com/teams/"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nfl/time/_/id/13"
+        },
+        {
+          "label": "ESPN · calendário e estádio",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams/13/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "football-nfl-24",
+      "espnId": "24",
+      "name": "Los Angeles Chargers",
+      "sport": "football",
+      "league": "nfl",
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/lac.png",
+      "city": "Inglewood",
+      "stadium": "SoFi Stadium",
+      "stadium_image": "",
+      "website": "https://www.chargers.com/",
+      "colors": [
+        "#0080c6",
+        "#ffc20e"
+      ],
+      "honours": [],
+      "description": "Los Angeles Chargers é uma equipe de futebol americano da NFL. Seu principal estádio na temporada é SoFi Stadium, em Inglewood.",
+      "references": [
+        {
+          "label": "Site oficial",
+          "url": "https://www.chargers.com/"
+        },
+        {
+          "label": "NFL · diretório oficial de equipes",
+          "url": "https://www.nfl.com/teams/"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nfl/time/_/id/24"
+        },
+        {
+          "label": "ESPN · calendário e estádio",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams/24/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "football-nfl-14",
+      "espnId": "14",
+      "name": "Los Angeles Rams",
+      "sport": "football",
+      "league": "nfl",
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/lar.png",
+      "city": "Inglewood",
+      "stadium": "SoFi Stadium",
+      "stadium_image": "",
+      "website": "https://www.therams.com/",
+      "colors": [
+        "#003594",
+        "#ffd100"
+      ],
+      "honours": [],
+      "description": "Los Angeles Rams é uma equipe de futebol americano da NFL. Seu principal estádio na temporada é SoFi Stadium, em Inglewood.",
+      "references": [
+        {
+          "label": "Site oficial",
+          "url": "https://www.therams.com/"
+        },
+        {
+          "label": "NFL · diretório oficial de equipes",
+          "url": "https://www.nfl.com/teams/"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nfl/time/_/id/14"
+        },
+        {
+          "label": "ESPN · calendário e estádio",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams/14/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "football-nfl-15",
+      "espnId": "15",
+      "name": "Miami Dolphins",
+      "sport": "football",
+      "league": "nfl",
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/mia.png",
+      "city": "Miami Gardens",
+      "stadium": "Hard Rock Stadium",
+      "stadium_image": "",
+      "website": "https://www.miamidolphins.com/",
+      "colors": [
+        "#008e97",
+        "#fc4c02"
+      ],
+      "honours": [],
+      "description": "Miami Dolphins é uma equipe de futebol americano da NFL. Seu principal estádio na temporada é Hard Rock Stadium, em Miami Gardens.",
+      "references": [
+        {
+          "label": "Site oficial",
+          "url": "https://www.miamidolphins.com/"
+        },
+        {
+          "label": "NFL · diretório oficial de equipes",
+          "url": "https://www.nfl.com/teams/"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nfl/time/_/id/15"
+        },
+        {
+          "label": "ESPN · calendário e estádio",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams/15/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "football-nfl-16",
+      "espnId": "16",
+      "name": "Minnesota Vikings",
+      "sport": "football",
+      "league": "nfl",
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/min.png",
+      "city": "Minneapolis",
+      "stadium": "U.S. Bank Stadium",
+      "stadium_image": "",
+      "website": "https://www.vikings.com/",
+      "colors": [
+        "#4f2683",
+        "#ffc62f"
+      ],
+      "honours": [],
+      "description": "Minnesota Vikings é uma equipe de futebol americano da NFL. Seu principal estádio na temporada é U.S. Bank Stadium, em Minneapolis.",
+      "references": [
+        {
+          "label": "Site oficial",
+          "url": "https://www.vikings.com/"
+        },
+        {
+          "label": "NFL · diretório oficial de equipes",
+          "url": "https://www.nfl.com/teams/"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nfl/time/_/id/16"
+        },
+        {
+          "label": "ESPN · calendário e estádio",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams/16/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "football-nfl-17",
+      "espnId": "17",
+      "name": "New England Patriots",
+      "sport": "football",
+      "league": "nfl",
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ne.png",
+      "city": "Foxborough",
+      "stadium": "Gillette Stadium",
+      "stadium_image": "",
+      "website": "https://www.patriots.com/",
+      "colors": [
+        "#002a5c",
+        "#c60c30"
+      ],
+      "honours": [],
+      "description": "New England Patriots é uma equipe de futebol americano da NFL. Seu principal estádio na temporada é Gillette Stadium, em Foxborough.",
+      "references": [
+        {
+          "label": "Site oficial",
+          "url": "https://www.patriots.com/"
+        },
+        {
+          "label": "NFL · diretório oficial de equipes",
+          "url": "https://www.nfl.com/teams/"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nfl/time/_/id/17"
+        },
+        {
+          "label": "ESPN · calendário e estádio",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams/17/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "football-nfl-18",
+      "espnId": "18",
+      "name": "New Orleans Saints",
+      "sport": "football",
+      "league": "nfl",
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/no.png",
+      "city": "New Orleans",
+      "stadium": "Caesars Superdome",
+      "stadium_image": "",
+      "website": "https://www.neworleanssaints.com/",
+      "colors": [
+        "#d3bc8d",
+        "#000000"
+      ],
+      "honours": [],
+      "description": "New Orleans Saints é uma equipe de futebol americano da NFL. Seu principal estádio na temporada é Caesars Superdome, em New Orleans.",
+      "references": [
+        {
+          "label": "Site oficial",
+          "url": "https://www.neworleanssaints.com/"
+        },
+        {
+          "label": "NFL · diretório oficial de equipes",
+          "url": "https://www.nfl.com/teams/"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nfl/time/_/id/18"
+        },
+        {
+          "label": "ESPN · calendário e estádio",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams/18/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "football-nfl-19",
+      "espnId": "19",
+      "name": "New York Giants",
+      "sport": "football",
+      "league": "nfl",
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/nyg.png",
+      "city": "Duke University",
+      "stadium": "MetLife Stadium",
+      "stadium_image": "",
+      "website": "https://www.giants.com/",
+      "colors": [
+        "#003c7f",
+        "#c9243f"
+      ],
+      "honours": [],
+      "description": "New York Giants é uma equipe de futebol americano da NFL. Seu principal estádio na temporada é MetLife Stadium, em Duke University.",
+      "references": [
+        {
+          "label": "Site oficial",
+          "url": "https://www.giants.com/"
+        },
+        {
+          "label": "NFL · diretório oficial de equipes",
+          "url": "https://www.nfl.com/teams/"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nfl/time/_/id/19"
+        },
+        {
+          "label": "ESPN · calendário e estádio",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams/19/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "football-nfl-20",
+      "espnId": "20",
+      "name": "New York Jets",
+      "sport": "football",
+      "league": "nfl",
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/nyj.png",
+      "city": "Duke University",
+      "stadium": "MetLife Stadium",
+      "stadium_image": "",
+      "website": "https://www.newyorkjets.com/",
+      "colors": [
+        "#115740",
+        "#ffffff"
+      ],
+      "honours": [],
+      "description": "New York Jets é uma equipe de futebol americano da NFL. Seu principal estádio na temporada é MetLife Stadium, em Duke University.",
+      "references": [
+        {
+          "label": "Site oficial",
+          "url": "https://www.newyorkjets.com/"
+        },
+        {
+          "label": "NFL · diretório oficial de equipes",
+          "url": "https://www.nfl.com/teams/"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nfl/time/_/id/20"
+        },
+        {
+          "label": "ESPN · calendário e estádio",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams/20/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "football-nfl-21",
+      "espnId": "21",
+      "name": "Philadelphia Eagles",
+      "sport": "football",
+      "league": "nfl",
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/phi.png",
+      "city": "Filadélfia",
+      "stadium": "Lincoln Financial Field",
+      "stadium_image": "",
+      "website": "https://www.philadelphiaeagles.com/",
+      "colors": [
+        "#06424d",
+        "#000000"
+      ],
+      "honours": [],
+      "description": "Philadelphia Eagles é uma equipe de futebol americano da NFL. Seu principal estádio na temporada é Lincoln Financial Field, em Filadélfia.",
+      "references": [
+        {
+          "label": "Site oficial",
+          "url": "https://www.philadelphiaeagles.com/"
+        },
+        {
+          "label": "NFL · diretório oficial de equipes",
+          "url": "https://www.nfl.com/teams/"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nfl/time/_/id/21"
+        },
+        {
+          "label": "ESPN · calendário e estádio",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams/21/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "football-nfl-23",
+      "espnId": "23",
+      "name": "Pittsburgh Steelers",
+      "sport": "football",
+      "league": "nfl",
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/pit.png",
+      "city": "Pittsburgh",
+      "stadium": "Acrisure Stadium",
+      "stadium_image": "",
+      "website": "https://www.steelers.com/",
+      "colors": [
+        "#000000",
+        "#ffb612"
+      ],
+      "honours": [],
+      "description": "Pittsburgh Steelers é uma equipe de futebol americano da NFL. Seu principal estádio na temporada é Acrisure Stadium, em Pittsburgh.",
+      "references": [
+        {
+          "label": "Site oficial",
+          "url": "https://www.steelers.com/"
+        },
+        {
+          "label": "NFL · diretório oficial de equipes",
+          "url": "https://www.nfl.com/teams/"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nfl/time/_/id/23"
+        },
+        {
+          "label": "ESPN · calendário e estádio",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams/23/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "football-nfl-25",
+      "espnId": "25",
+      "name": "San Francisco 49ers",
+      "sport": "football",
+      "league": "nfl",
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/sf.png",
+      "city": "Santa Clara",
+      "stadium": "Levi's Stadium",
+      "stadium_image": "",
+      "website": "https://www.49ers.com/",
+      "colors": [
+        "#aa0000",
+        "#b3995d"
+      ],
+      "honours": [],
+      "description": "San Francisco 49ers é uma equipe de futebol americano da NFL. Seu principal estádio na temporada é Levi's Stadium, em Santa Clara.",
+      "references": [
+        {
+          "label": "Site oficial",
+          "url": "https://www.49ers.com/"
+        },
+        {
+          "label": "NFL · diretório oficial de equipes",
+          "url": "https://www.nfl.com/teams/"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nfl/time/_/id/25"
+        },
+        {
+          "label": "ESPN · calendário e estádio",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams/25/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "football-nfl-26",
+      "espnId": "26",
+      "name": "Seattle Seahawks",
+      "sport": "football",
+      "league": "nfl",
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/sea.png",
+      "city": "Seattle",
+      "stadium": "Lumen Field",
+      "stadium_image": "",
+      "website": "https://www.seahawks.com/",
+      "colors": [
+        "#002a5c",
+        "#69be28"
+      ],
+      "honours": [],
+      "description": "Seattle Seahawks é uma equipe de futebol americano da NFL. Seu principal estádio na temporada é Lumen Field, em Seattle.",
+      "references": [
+        {
+          "label": "Site oficial",
+          "url": "https://www.seahawks.com/"
+        },
+        {
+          "label": "NFL · diretório oficial de equipes",
+          "url": "https://www.nfl.com/teams/"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nfl/time/_/id/26"
+        },
+        {
+          "label": "ESPN · calendário e estádio",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams/26/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "football-nfl-27",
+      "espnId": "27",
+      "name": "Tampa Bay Buccaneers",
+      "sport": "football",
+      "league": "nfl",
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/tb.png",
+      "city": "Tampa",
+      "stadium": "Raymond James Stadium",
+      "stadium_image": "",
+      "website": "https://www.buccaneers.com/",
+      "colors": [
+        "#bd1c36",
+        "#3e3a35"
+      ],
+      "honours": [],
+      "description": "Tampa Bay Buccaneers é uma equipe de futebol americano da NFL. Seu principal estádio na temporada é Raymond James Stadium, em Tampa.",
+      "references": [
+        {
+          "label": "Site oficial",
+          "url": "https://www.buccaneers.com/"
+        },
+        {
+          "label": "NFL · diretório oficial de equipes",
+          "url": "https://www.nfl.com/teams/"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nfl/time/_/id/27"
+        },
+        {
+          "label": "ESPN · calendário e estádio",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams/27/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "football-nfl-10",
+      "espnId": "10",
+      "name": "Tennessee Titans",
+      "sport": "football",
+      "league": "nfl",
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ten.png",
+      "city": "Nashville",
+      "stadium": "Nissan Stadium",
+      "stadium_image": "",
+      "website": "https://www.tennesseetitans.com/",
+      "colors": [
+        "#4495d2",
+        "#001532"
+      ],
+      "honours": [],
+      "description": "Tennessee Titans é uma equipe de futebol americano da NFL. Seu principal estádio na temporada é Nissan Stadium, em Nashville.",
+      "references": [
+        {
+          "label": "Site oficial",
+          "url": "https://www.tennesseetitans.com/"
+        },
+        {
+          "label": "NFL · diretório oficial de equipes",
+          "url": "https://www.nfl.com/teams/"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nfl/time/_/id/10"
+        },
+        {
+          "label": "ESPN · calendário e estádio",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams/10/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "football-nfl-28",
+      "espnId": "28",
+      "name": "Washington Commanders",
+      "sport": "football",
+      "league": "nfl",
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/wsh.png",
+      "city": "Landover",
+      "stadium": "Northwest Stadium",
+      "stadium_image": "",
+      "website": "https://www.commanders.com/",
+      "colors": [
+        "#5a1414",
+        "#ffb612"
+      ],
+      "honours": [],
+      "description": "Washington Commanders é uma equipe de futebol americano da NFL. Seu principal estádio na temporada é Northwest Stadium, em Landover.",
+      "references": [
+        {
+          "label": "Site oficial",
+          "url": "https://www.commanders.com/"
+        },
+        {
+          "label": "NFL · diretório oficial de equipes",
+          "url": "https://www.nfl.com/teams/"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nfl/time/_/id/28"
+        },
+        {
+          "label": "ESPN · calendário e estádio",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams/28/schedule?lang=pt&region=br"
+        }
+      ]
+    }
+  ]
+}

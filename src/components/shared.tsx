@@ -79,7 +79,7 @@ export function matchLabel(m: Match) {
   )
     return "Partida interrompida";
   if (m.state === "live")
-    return m.sport === "basketball"
+    return ["basketball", "football"].includes(m.sport)
       ? `${m.period > 4 ? `${m.period - 4}ª PR` : m.period ? `${m.period}º quarto` : "Ao vivo"}${m.clock ? ` · ${m.clock}` : ""}`
       : m.clock || "Ao vivo";
   if (m.state === "finished") return "Encerrado";

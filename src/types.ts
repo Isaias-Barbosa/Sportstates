@@ -70,8 +70,63 @@ export type BasketballData = {
     }[];
   }[];
 };
+export type AmericanFootballData = Pick<
+  BasketballData,
+  "periods" | "scores" | "leaders"
+> & {
+  teams: {
+    id: string;
+    name: string;
+    logo: string | null;
+    categories: {
+      id: string;
+      name: string;
+      columns: { key: string; label: string; description: string }[];
+      players: {
+        id: string;
+        name: string;
+        number: string;
+        position: string;
+        image: string | null;
+        didNotPlay: boolean;
+        stats: Record<string, string | null>;
+      }[];
+      totals: Record<string, string | null>;
+    }[];
+  }[];
+  scoring: {
+    id: string;
+    teamId: string;
+    label: string;
+    text: string;
+    period: number | null;
+    clock: string;
+    homeScore: string | null;
+    awayScore: string | null;
+    order: number;
+  }[];
+  drives: {
+    id: string;
+    teamId: string;
+    team: string;
+    result: string;
+    plays: number | null;
+    yards: number | null;
+    time: string;
+    period: number | null;
+    clock: string;
+    current: boolean;
+  }[];
+  situation: {
+    possession: string;
+    downDistance: string;
+    field: string;
+    redZone: boolean;
+  } | null;
+};
 export type Detail = {
   basketball?: BasketballData;
+  americanFootball?: AmericanFootballData;
   match: Match;
   events: {
     id: string;
