@@ -1,5 +1,5 @@
 {
-  "revision": "nfl-profiles-2026-v1",
+  "revision": "nfl-profiles-2026-v2",
   "reviewedAt": "2026-10-28",
   "clubs": [
     {
@@ -845,7 +845,7 @@
       "sport": "football",
       "league": "nfl",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/nyg.png",
-      "city": "Duke University",
+      "city": "East Rutherford",
       "stadium": "MetLife Stadium",
       "stadium_image": "",
       "website": "https://www.giants.com/",
@@ -854,7 +854,7 @@
         "#c9243f"
       ],
       "honours": [],
-      "description": "New York Giants é uma equipe de futebol americano da NFL. Seu principal estádio na temporada é MetLife Stadium, em Duke University.",
+      "description": "New York Giants é uma equipe de futebol americano da NFL. Seu principal estádio na temporada é MetLife Stadium, em East Rutherford.",
       "references": [
         {
           "label": "Site oficial",
@@ -871,6 +871,10 @@
         {
           "label": "ESPN · calendário e estádio",
           "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams/19/schedule?lang=pt&region=br"
+        },
+        {
+          "label": "MetLife Stadium · endereço oficial",
+          "url": "https://www.metlifestadium.com/stadium/contact-us"
         }
       ]
     },
@@ -881,7 +885,7 @@
       "sport": "football",
       "league": "nfl",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/nyj.png",
-      "city": "Duke University",
+      "city": "East Rutherford",
       "stadium": "MetLife Stadium",
       "stadium_image": "",
       "website": "https://www.newyorkjets.com/",
@@ -890,7 +894,7 @@
         "#ffffff"
       ],
       "honours": [],
-      "description": "New York Jets é uma equipe de futebol americano da NFL. Seu principal estádio na temporada é MetLife Stadium, em Duke University.",
+      "description": "New York Jets é uma equipe de futebol americano da NFL. Seu principal estádio na temporada é MetLife Stadium, em East Rutherford.",
       "references": [
         {
           "label": "Site oficial",
@@ -907,6 +911,10 @@
         {
           "label": "ESPN · calendário e estádio",
           "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams/20/schedule?lang=pt&region=br"
+        },
+        {
+          "label": "MetLife Stadium · endereço oficial",
+          "url": "https://www.metlifestadium.com/stadium/contact-us"
         }
       ]
     },

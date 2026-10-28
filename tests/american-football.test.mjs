@@ -4,6 +4,8 @@ import { normalizeSummary } from "../server/data.mjs";
 import {
   normalizeAmericanFootball,
   footballPlays,
+  footballRosterPosition,
+  footballRosterGroup,
   footballPlayLabel,
 } from "../server/american-football.mjs";
 import {
@@ -308,4 +310,32 @@ test("NFL competition lookup uses the numeric ESPN ID, keeping the profile key i
   assert.equal(b.teamId, "football-nfl-23");
   assert.ok(urls.some((u) => u.includes("/football/nfl/teams/23/schedule")));
   assert.ok(urls.every((u) => !u.includes("football-nfl-")));
+});
+
+test("NFL roster uses football positions and preserves source roster units", () => {
+  assert.equal(
+    footballRosterPosition({
+      position: { abbreviation: "C", displayName: "Pivô" },
+    }),
+    "Center",
+  );
+  assert.equal(
+    footballRosterPosition({
+      position: { abbreviation: "G", displayName: "Guarda" },
+    }),
+    "Guard",
+  );
+  assert.equal(
+    footballRosterGroup("injuredReserveOrOut"),
+    "Reserva / indisponíveis",
+  );
+  assert.equal(footballRosterGroup("practiceSquad"), "Equipe de treino");
+  assert.equal(
+    nflProfiles.clubs.find((c) => c.espnId === "19").city,
+    "East Rutherford",
+  );
+  assert.equal(
+    nflProfiles.clubs.find((c) => c.espnId === "20").city,
+    "East Rutherford",
+  );
 });

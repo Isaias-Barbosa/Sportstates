@@ -260,7 +260,10 @@ export default function TeamPage() {
                     <span className="roster-number">{p.number || "—"}</span>
                     <div>
                       <strong>{p.name}</strong>
-                      <small>{p.position || "Posição não informada"}</small>
+                      <small>
+                        {p.position || "Posição não informada"}
+                        {p.group ? ` · ${p.group}` : ""}
+                      </small>
                     </div>
                   </div>
                 ))}

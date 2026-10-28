@@ -1,3 +1,7 @@
+import {
+  footballRosterPosition,
+  footballRosterGroup,
+} from "./american-football.mjs";
 import { nflProfileReferences } from "./nfl-profiles.mjs";
 import { basketballProfileReferences } from "./basketball-profiles.mjs";
 import {
@@ -154,12 +158,22 @@ export async function teamDetails(id) {
   const rawRoster =
     roster.status === "fulfilled" ? roster.value.athletes || [] : [];
   const athletes = rawRoster
-    .flatMap((a) => (Array.isArray(a.items) ? a.items : [a]))
+    .flatMap((a) =>
+      Array.isArray(a.items)
+        ? a.items.map((p) => ({ ...p, rosterUnit: a.position }))
+        : [a],
+    )
     .map((a) => ({
       id: String(a.id || ""),
       name: a.displayName || a.fullName || "Jogador",
       number: a.jersey || "",
-      position: a.position?.displayName || a.position?.name || "",
+      position:
+        config.sport === "football"
+          ? footballRosterPosition(a)
+          : a.position?.displayName || a.position?.name || "",
+      ...(config.sport === "football"
+        ? { group: footballRosterGroup(a.rosterUnit) }
+        : {}),
       image: a.headshot?.href || null,
     }))
     .filter((a) => a.id);

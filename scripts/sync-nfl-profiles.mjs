@@ -33,6 +33,19 @@ if (
    SELECT ${c.id},${c.name},${c.logo},${c.description},${c.city},${c.stadium},${c.stadium_image},${c.website},${c.sport},${c.league},${JSON.stringify(c.colors)}::jsonb,${JSON.stringify(c.honours)}::jsonb
    WHERE NOT EXISTS (SELECT 1 FROM sport_profile_imports WHERE revision=${revision}) ON CONFLICT (id) DO NOTHING`,
     );
+    // Correct only the erroneous city imported by revision v1. Keep every
+    // manually edited field, including any description that differs from v1.
+    for (const c of clubs.filter((c) =>
+      ["football-nfl-19", "football-nfl-20"].includes(c.id),
+    )) {
+      const originalDescription = c.description.replace(
+        "East Rutherford",
+        "Duke University",
+      );
+      queries.push(
+        sql`UPDATE sport_teams SET city=${c.city},description=CASE WHEN description=${originalDescription} THEN ${c.description} ELSE description END,updated_at=now() WHERE id=${c.id} AND sport='football' AND league='nfl' AND city='Duke University'`,
+      );
+    }
     queries.push(
       sql`INSERT INTO sport_profile_imports (revision) VALUES (${revision}) ON CONFLICT DO NOTHING`,
     );

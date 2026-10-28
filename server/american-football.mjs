@@ -336,3 +336,57 @@ export function normalizeAmericanFootball(raw, match) {
       : null;
   return { periods, scores, teams, leaders, scoring, drives, situation };
 }
+
+const POSITIONS = {
+  QB: "Quarterback",
+  RB: "Running back",
+  FB: "Fullback",
+  WR: "Wide receiver",
+  TE: "Tight end",
+  C: "Center",
+  G: "Guard",
+  OG: "Guard",
+  OT: "Tackle ofensivo",
+  T: "Tackle ofensivo",
+  LT: "Tackle esquerdo",
+  RT: "Tackle direito",
+  LG: "Guard esquerdo",
+  RG: "Guard direito",
+  DE: "Defensive end",
+  DT: "Defensive tackle",
+  NT: "Nose tackle",
+  DL: "Linha defensiva",
+  LB: "Linebacker",
+  ILB: "Linebacker interno",
+  OLB: "Linebacker externo",
+  MLB: "Linebacker central",
+  CB: "Cornerback",
+  S: "Safety",
+  FS: "Free safety",
+  SS: "Strong safety",
+  DB: "Defensor secundário",
+  K: "Kicker",
+  PK: "Kicker",
+  P: "Punter",
+  LS: "Long snapper",
+};
+export function footballRosterPosition(athlete) {
+  const code = athlete.position?.abbreviation || "";
+  return (
+    POSITIONS[code] ||
+    athlete.position?.name ||
+    athlete.position?.displayName ||
+    ""
+  );
+}
+export function footballRosterGroup(unit) {
+  return (
+    {
+      offense: "Ataque",
+      defense: "Defesa",
+      specialTeam: "Especialistas",
+      injuredReserveOrOut: "Reserva / indisponíveis",
+      practiceSquad: "Equipe de treino",
+    }[unit] || ""
+  );
+}

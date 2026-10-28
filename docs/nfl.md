@@ -19,7 +19,7 @@ Nomes que poderiam parecer antigos foram conferidos em fontes atuais: [Reliant S
 
 Chaves internas `football-nfl-{id}` isolam a NFL de NBA, WNBA e futebol. Consultas ESPN recebem somente o ID numérico original. Busca administrativa, links nos escudos, classificação, calendário, notícias e aba Competições seguem essa identidade. As URLs existentes dos outros esportes ficam preservadas.
 
-`sync-nfl-profiles.mjs` aplica uma revisão única em transação, apenas em produção ou com `npm run db:nfl`. Insere cadastros ausentes com `ON CONFLICT DO NOTHING`; não substitui perfis ou edições anteriores.
+`sync-nfl-profiles.mjs` aplica uma revisão única em transação, apenas em produção ou com `npm run db:nfl`. Insere cadastros ausentes com `ON CONFLICT DO NOTHING`. A revisão v2 corrige apenas o valor incorreto `Duke University` importado como cidade de Giants/Jets pela v1; a descrição só é corrigida se ainda for exatamente o texto da v1. Todas as demais edições são preservadas. East Rutherford foi conferida no [endereço oficial do MetLife Stadium](https://www.metlifestadium.com/stadium/contact-us).
 
 ## Página da partida
 
@@ -30,7 +30,7 @@ Chaves internas `football-nfl-{id}` isolam a NFL de NBA, WNBA e futebol. Consult
 - Campanhas: equipe, resultado, jogadas, jardas e tempo. A posse atual só recebe destaque se a partida estiver ao vivo e a fonte identificar a campanha corrente.
 - Lance a lance: usa `drives.previous/current.plays` quando `/summary` não tem `plays` no topo. Há deduplicação por ID e ordenação por sequência, sem inverter o relógio regressivo.
 - Situação de descida e posse só aparece ao vivo se vier explicitamente no payload; não é deduzida de um jogo encerrado.
-- Elencos da NFL ficam no perfil do time. O boxscore não informa uma escalação equivalente ao quinteto de basquete; não rotulamos jogadores como titulares por terem estatísticas.
+- Elencos da NFL ficam no perfil do time, com posições próprias da modalidade (Center/Guard, sem usar a tradução de basquete) e os grupos retornados pela fonte: ataque, defesa, especialistas, reserva/indisponíveis e equipe de treino. A lista completa não é rotulada como os 53 atletas ativos. O boxscore não informa uma escalação equivalente ao quinteto de basquete; não rotulamos jogadores como titulares por terem estatísticas.
 
 Rótulos principais são em pt-BR, e o relato preserva o português disponibilizado pela ESPN. O cache, as mensagens de cobertura parcial e a atualização a cada 30 segundos existentes continuam aplicados.
 

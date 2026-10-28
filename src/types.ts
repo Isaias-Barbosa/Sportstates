@@ -387,6 +387,7 @@ export type ClubDetails = {
     id: string;
     name: string;
     number: string;
+    group?: string;
     position: string;
     image: string | null;
   }[];
