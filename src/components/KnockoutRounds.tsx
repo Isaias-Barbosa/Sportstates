@@ -50,7 +50,8 @@ export default function KnockoutRounds({
         live ||
         current ||
         rounds.find((r) => r.fixtures.some((f) => f.state === "scheduled")) ||
-        rounds.at(-1)
+        rounds.filter((r) => r.fixtures.length).at(-1) ||
+        rounds[0]
       )?.id || ""
     );
   });
