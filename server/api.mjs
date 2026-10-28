@@ -6,6 +6,7 @@ import { listTeams, teamDetails, saveTeam } from "./teams.mjs";
 import { fetchTeamCatalog, normalizeTeamSearch, fetchSportsDBSearch, normalizeSportsDBSearch } from "./team-search.mjs";
 import { authBaseUrl, adminAuthorized } from "./admin-auth.mjs";
 import { normalizeStandings } from "./standings.mjs";
+import { KNOCKOUT_LEAGUES, fetchTournament } from "./tournaments.mjs";
 import {
   dayInBrazil,
   validDate,
@@ -128,16 +129,28 @@ export async function route(url) {
     return result.value ? [200, { ...result.value, stale: result.stale }] : [404, {error:"Time não encontrado."}];
   }
   if (url.pathname === "/api/competitions") {
-    return [200, { sports: SPORTS.map(s => ({ ...s, leagues: s.leagues.map(([id, name]) => ({ id, name })) })), soccerRegions: SOCCER_REGIONS }];
+    return [200, { sports: SPORTS.map(s => ({ ...s, leagues: s.leagues.map(([id, name]) => ({ id, name, hasKnockout: s.id === 'soccer' && KNOCKOUT_LEAGUES.has(id) })) })), soccerRegions: SOCCER_REGIONS }];
   }
   if (url.pathname === "/api/standings") {
     const config = leagueFor(q.get("sport"), q.get("league"));
     if (!config) return [400, { error: "Competição inválida." }];
-    const result = await cached(`standings:${config.sport}:${config.league}`, 60000, async () => {
-      const raw = await json(`https://site.api.espn.com/apis/v2/sports/${config.sport}/${config.league}/standings?lang=pt&region=br`);
-      return normalizeStandings(raw);
-    }, 300000);
-    return [200, { ...config, groups: result.value, fetchedAt: new Date(result.at).toISOString(), stale: result.stale, source: "ESPN · feed público não oficial" }];
+    const hasKnockout = config.sport === 'soccer' && KNOCKOUT_LEAGUES.has(config.league);
+    const [table, tournament] = await Promise.allSettled([
+      cached(`standings:${config.sport}:${config.league}`, 60000, async () => {
+        const raw = await json(`https://site.api.espn.com/apis/v2/sports/${config.sport}/${config.league}/standings?lang=pt&region=br`);
+        return normalizeStandings(raw);
+      }, 300000),
+      hasKnockout ? cached(`tournament:${config.league}`, 60000, () => fetchTournament(config.league, json), 300000) : Promise.resolve(null),
+    ]);
+    const tableData = table.status === 'fulfilled' ? table.value : null;
+    const cupData = tournament.status === 'fulfilled' ? tournament.value : null;
+    if (!tableData && !cupData) throw new Error('Não foi possível consultar a competição. Tente novamente.');
+    const warnings = [];
+    if (hasKnockout && !cupData) warnings.push('Não foi possível atualizar as fases eliminatórias.');
+    if (cupData?.value.partial) warnings.push('A fonte retornou uma lista parcial de jogos desta temporada.');
+    if (!tableData && cupData) warnings.push('A tabela de pontos está indisponível; exibindo as fases eliminatórias disponíveis.');
+    return [200, { ...config, groups: tableData?.value || [], rounds: cupData?.value.rounds || [], season: cupData?.value.season || null, currentRound: cupData?.value.currentRound || null, warnings,
+      fetchedAt: new Date(Math.min(...[tableData,cupData].filter(Boolean).map(r=>r.at))).toISOString(), stale: !!(tableData?.stale || cupData?.stale), source: "ESPN · feed público não oficial" }];
   }
   if (url.pathname === "/api/scores") {
     const date = q.get("date") || dayInBrazil(new Date());

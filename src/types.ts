@@ -151,8 +151,11 @@ export type WatchOptions = {
 export type MatchVideo = { sourceRegion?:"BR"|"international"; provider?:"youtube"|"espn"; mediaUrl?:string; id:string; title:string; channel:string; url:string; eventId?:string; minute?:string };
 export type MatchMedia = { related?:MatchVideo[]; searchLinks?:{name:string;url:string}[]; highlights:MatchVideo[]; replays:MatchVideo[]; partial:boolean; message:string; source:string };
 
-export type CompetitionCatalog = { sports: { id: string; name: string; icon: string; leagues: { id: string; name: string }[] }[]; soccerRegions?: { id: string; name: string; competitions: string[] }[] };
-export type Standings = { sport: string; league: string; name: string; groups: { name: string; rows: { id: string; name: string; logo: string | null; rank: string; stats: Record<string, string> }[] }[]; stale: boolean; fetchedAt: string; source: string };
+export type CompetitionCatalog = { sports: { id: string; name: string; icon: string; leagues: { id: string; name: string; hasKnockout?: boolean }[] }[]; soccerRegions?: { id: string; name: string; competitions: string[] }[] };
+export type KnockoutTeam = {id:string;name:string;logo:string|null;score:string|null;penalties:string|null};
+export type KnockoutFixture = {id:string;date:string|null;timeConfirmed:boolean;home:KnockoutTeam;away:KnockoutTeam;state:'live'|'scheduled'|'finished';statusName:string;clock:string;leg:string|null};
+export type KnockoutRound = {id:string;name:string;fixtures:KnockoutFixture[]};
+export type Standings = { rounds?:KnockoutRound[];season?:{year:number;name:string}|null;currentRound?:string|null;warnings?:string[]; sport: string; league: string; name: string; groups: { name: string; rows: { id: string; name: string; logo: string | null; rank: string; stats: Record<string, string> }[] }[]; stale: boolean; fetchedAt: string; source: string };
 export type ClubProfile = {id:string;name:string;logo:string;description:string;city:string;stadium:string;stadium_image:string;website:string;sport:string;league:string|null;colors:string[];honours:string[]};
 export type ClubDetails = {team:ClubProfile;athletes:{id:string;name:string;number:string;position:string;image:string|null}[];leaders:{season:number;goals:TeamLeader|null;assists:TeamLeader|null}|null;upcoming:Match[];recent:Match[];lineup:(Detail['lineups'][number] & {match:string;date:string})|null;articles:{title:string;description:string;url:string;date:string;source:string}[];coverage:{roster:boolean;schedule:boolean;news:boolean};source:string;stale:boolean};
 

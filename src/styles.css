@@ -2735,3 +2735,23 @@ body.club-page-active { background:var(--club-page-bg, var(--canvas)); backgroun
 .standings-filter label { font-weight: 700; font-size: 14px; }
 .standings-filter select { width: 100%; padding: 12px; border: 1px solid var(--border); border-radius: 10px; background: var(--panel); color: var(--text); font: inherit; }
 .standings-filter small { color: var(--muted); line-height: 1.5; }
+
+.knockout { display:grid; gap:18px; min-width:0; }
+.knockout-heading, .knockout-round-title { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; }
+.knockout-heading h3 { font-size:20px; }.knockout-heading p { margin-top:6px; color:var(--muted); font-size:13px; }
+.knockout-heading > span, .knockout-round-title > span { font-size:12px; color:var(--muted); }
+.knockout-phases { display:flex; gap:8px; overflow-x:auto; padding:3px 2px 10px; }
+.knockout-phases button { flex:0 0 auto; display:grid; gap:6px; text-align:left; padding:12px 16px; border-radius:12px; border:1px solid var(--border); background:var(--panel); color:var(--text); }
+.knockout-phases button strong { font-size:13px; }.knockout-phases button small { font-size:11px; color:var(--muted); }
+.knockout-phases button.selected, .knockout-phases button:hover { border-color:var(--green); background:var(--green-glow); }
+.knockout-fixtures { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,290px),1fr)); gap:12px; }
+.knockout-fixture { display:grid; gap:12px; padding:16px; border:1px solid var(--border); border-radius:14px; background:var(--panel); transition:border-color .15s; }
+.knockout-fixture:hover { border-color:var(--green); }.knockout-fixture.is-live { border-color:var(--green); }
+.knockout-fixture-meta, .knockout-fixture-footer { display:flex; align-items:center; justify-content:space-between; gap:8px; flex-wrap:wrap; font-size:11px; color:var(--muted); }
+.knockout-fixture-meta strong { color:var(--text); background:var(--surface); padding:4px 8px; border-radius:6px; }
+.knockout-team { display:grid; grid-template-columns:28px minmax(0,1fr) auto; align-items:center; gap:10px; font-size:13px; }
+.knockout-team img { width:28px; height:28px; object-fit:contain; }.knockout-team b { font-size:18px; font-variant-numeric:tabular-nums; }
+.knockout-crest-placeholder { text-align:center; color:var(--muted); }.knockout-fixture-footer { border-top:1px solid var(--border); padding-top:10px; }
+.knockout-fixture-footer > span { display:inline-flex; align-items:center; gap:6px; }
+.knockout-phase-select { display:none; }
+@media(max-width:640px) { .knockout-phases { display:none; }.knockout-phase-select { display:grid; gap:8px; font-size:13px; font-weight:600; }.knockout-phase-select select { width:100%; border:1px solid var(--border); border-radius:10px; padding:12px; font:inherit; color:var(--text); background:var(--panel); } }
