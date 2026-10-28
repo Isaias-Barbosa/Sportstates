@@ -1,3 +1,4 @@
+import { fetchNews } from "./news.mjs";
 import { readFeatured, saveFeatured, validKey, authorized } from "./featured.mjs";
 import { matchMedia } from "./match-media.mjs";
 import { enrichBroadcasts } from "./broadcast-schedule.mjs";
@@ -158,6 +159,7 @@ export async function route(url) {
     return [200, { ...config, groups: tableData?.value || [], rounds: cupData?.value.rounds || [], season: cupData?.value.season || (requestedYear ? {year:requestedYear,name:`${requestedYear} ${config.name}`} : null), currentRound: cupData?.value.currentRound || null, warnings,
       fetchedAt: new Date(Math.min(...[tableData,cupData].filter(Boolean).map(r=>r.at))).toISOString(), stale: !!(tableData?.stale || cupData?.stale), source: "ESPN · feed público não oficial" }];
   }
+  if (url.pathname === "/api/news") return [200, await fetchNews()];
   if (url.pathname === "/api/league-games") {
     const config = leagueFor(q.get("sport"), q.get("league"));
     const month = q.get("month") || dayInBrazil(new Date()).slice(0, 7);

@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import { BrowserRouter, Link, NavLink, Route, Routes } from "react-router-dom";
 import {
   Activity,
+  Newspaper,
   Sun,
   Moon,
   ArrowDownUp,
@@ -29,6 +30,8 @@ import AdminGames from "./pages/AdminGames";
 import StandingsPage from "./pages/StandingsPage";
 import TeamsPage from "./pages/TeamsPage";
 import TeamPage from "./pages/TeamPage";
+import NewsPage from "./pages/NewsPage";
+import "./news.css";
 function App() {
   const [theme, setTheme] = useState<"light" | "dark">(() => {
     try {
@@ -123,6 +126,10 @@ function App() {
               <ListOrdered size={18} />
               Classificações
             </NavLink>
+            <NavLink to="/noticias">
+              <Newspaper size={18} />
+              Notícias
+            </NavLink>
             <div className="nav-label">ESPORTES</div>
             <Link to="/?sport=soccer">
               <span>⚽</span>Futebol
@@ -181,6 +188,7 @@ function App() {
                 </NavLink>
                 <NavLink to="/classificacoes">Classificações</NavLink>
                 <NavLink to="/times">Times</NavLink>
+                <NavLink to="/noticias">Notícias</NavLink>
               </nav>
             </div>
             <div className="top-right">
@@ -226,6 +234,7 @@ function App() {
                 path="/partida/:sport/:league/:id"
                 element={<MatchPage />}
               />
+              <Route path="/noticias" element={<NewsPage />} />
               <Route path="/times" element={<TeamsPage />} />
               <Route path="/times/:id" element={<TeamPage />} />
               <Route path="/transferencias" element={<TransfersPage />} />
