@@ -146,3 +146,21 @@ test("unavailable aggregation and sport categories remain explicit", async () =>
   assert.equal(inferNewsSport("NBB basquete"), "basketball");
   assert.equal(inferNewsSport("Sem categoria informada"), "other");
 });
+
+test("ESPN media clips are videos, not written articles", () => {
+  const [item] = parseEspnNews(
+    {
+      articles: [
+        {
+          headline: "Melhores momentos",
+          type: "Media",
+          published: "2026-10-28T09:00:00Z",
+          links: { web: { href: "https://www.espn.com.br/video/clip/_/id/3" } },
+        },
+      ],
+    },
+    espn,
+    "soccer",
+  );
+  assert.equal(item.kind, "video");
+});

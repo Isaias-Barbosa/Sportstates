@@ -178,7 +178,7 @@ export default function NewsPage() {
                   <small>
                     {s.status === "unavailable"
                       ? "Sem conexão agora"
-                      : `${s.count} ${s.format === "YouTube RSS" ? "vídeos" : "matérias"}`}
+                      : `${s.count} ${s.format === "YouTube RSS" ? "vídeos" : "publicações"}`}
                   </small>
                 </button>
               ))}
@@ -337,8 +337,9 @@ export default function NewsPage() {
                 <p>
                   Matérias e vídeos abrem no site ou canal de origem. CazéTV e
                   TNT Sports aparecem com vídeos dos canais oficiais; ESPN, ge e
-                  UOL Esporte trazem matérias. As categorias são identificadas
-                  pelos dados e pelo assunto de cada publicação.
+                  UOL Esporte trazem matérias e a ESPN também disponibiliza
+                  vídeos. As categorias são identificadas pelos dados e pelo
+                  assunto de cada publicação.
                 </p>
                 <div className="news-sources-status">
                   {data.sources.map((s) => (

@@ -211,6 +211,10 @@ export function parseEspnNews(raw, source, sport) {
         published: a.published,
         description: a.description,
         sport,
+        kind:
+          a.type === "Media" || /\/video\//i.test(a.links?.web?.href || "")
+            ? "video"
+            : "article",
         image: array(a.images).find((i) =>
           /\.(?:jpg|jpeg|png|webp)(?:\?|$)/i.test(i.url || ""),
         )?.url,
