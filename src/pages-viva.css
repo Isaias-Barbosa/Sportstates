@@ -581,7 +581,219 @@ summary:focus-visible {
     flex-wrap: wrap;
   }
 }
+.league-overview {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(310px, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+.league-table-panel,
+.league-games-panel {
+  min-width: 0;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--panel);
+  overflow: hidden;
+}
+.league-panel-heading {
+  padding: 20px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+.league-panel-heading .eyebrow {
+  color: var(--green);
+  font-size: 9px;
+}
+.league-panel-heading h3 {
+  font-size: 20px;
+  margin-top: 8px;
+  letter-spacing: -0.6px;
+}
+.league-panel-heading p {
+  color: var(--muted);
+  font-size: 11px;
+  margin-top: 7px;
+}
+.league-table-panel > .standings-result {
+  margin: 0;
+  padding: 14px;
+}
+.league-table-panel .standings-group {
+  border: 0;
+  border-radius: 8px;
+}
+.league-table-panel .standings-group :is(th, td) {
+  padding: 12px 6px;
+  font-size: 11px;
+}
+.league-table-panel .standings-team-link {
+  gap: 7px;
+}
+.league-table-panel .standings-team img {
+  width: 22px;
+  height: 22px;
+}
+.league-table-panel .knockout-phases button {
+  padding: 10px;
+}
+.league-table-panel > :is(.notice, .empty) {
+  margin: 14px;
+}
+.league-game-filters {
+  display: flex;
+  gap: 6px;
+  margin: 18px 18px 12px;
+  padding: 4px;
+  background: var(--surface);
+  border-radius: 10px;
+}
+.league-game-filters button {
+  flex: 1;
+  padding: 10px 6px;
+  border-radius: 7px;
+  font-size: 11px;
+  font-weight: 800;
+}
+.league-game-filters button[aria-pressed="true"] {
+  background: var(--selection-bg);
+  color: var(--selection-text);
+}
+.league-month {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 18px 18px;
+  gap: 8px;
+}
+.league-month > button {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+.league-month label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+.league-month input {
+  width: 100%;
+  max-width: 220px;
+  font-size: 12px;
+  padding: 9px;
+}
+.league-games-panel > :is(.empty, .notice) {
+  margin: 18px;
+}
+.league-games-list {
+  max-height: 850px;
+  overflow: auto;
+  scrollbar-width: thin;
+}
+.league-games-list h4 {
+  margin: 0;
+  padding: 12px 18px;
+  font-size: 11px;
+  color: var(--muted);
+  background: var(--surface);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.league-game {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 17px 16px;
+  border-bottom: 1px solid var(--border);
+}
+.league-game:hover {
+  background: var(--green-glow);
+}
+.league-game.is-live {
+  border-left: 3px solid var(--sport-coral);
+  background: var(--live-dim);
+}
+.league-game-status {
+  flex: 0 0 63px;
+  font-size: 10px;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  flex-wrap: wrap;
+}
+.league-game.is-live .league-game-status {
+  color: var(--live);
+  font-weight: 800;
+}
+.league-game .live-dot {
+  background: var(--sport-coral);
+  animation: pulse-live 1.5s infinite;
+}
+.league-game-teams {
+  flex: 1;
+  display: grid;
+  gap: 10px;
+  min-width: 0;
+}
+.league-game-teams > span {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.league-game-teams .crest {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+}
+.league-game-teams strong {
+  font-size: 11px;
+  font-weight: 650;
+  overflow-wrap: anywhere;
+}
+.league-game-teams b {
+  margin-left: auto;
+  padding-left: 6px;
+  font-size: 15px;
+}
+.league-game > svg {
+  flex-shrink: 0;
+  color: var(--green);
+}
+.league-games-note {
+  padding: 16px 18px;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.7;
+}
+@media (max-width: 1000px) {
+  .league-overview {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .league-games-list {
+    max-height: 650px;
+  }
+}
+@media (max-width: 480px) {
+  .league-table-panel > .standings-result {
+    padding: 8px;
+  }
+  .league-game {
+    gap: 8px;
+    padding: 14px 12px;
+  }
+  .league-month {
+    margin-inline: 12px;
+  }
+}
 @media (prefers-reduced-motion: reduce) {
+  .league-game .live-dot {
+    animation: none;
+  }
   .club-card,
   .standings-league {
     transition: none;

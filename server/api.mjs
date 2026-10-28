@@ -158,6 +158,31 @@ export async function route(url) {
     return [200, { ...config, groups: tableData?.value || [], rounds: cupData?.value.rounds || [], season: cupData?.value.season || (requestedYear ? {year:requestedYear,name:`${requestedYear} ${config.name}`} : null), currentRound: cupData?.value.currentRound || null, warnings,
       fetchedAt: new Date(Math.min(...[tableData,cupData].filter(Boolean).map(r=>r.at))).toISOString(), stale: !!(tableData?.stale || cupData?.stale), source: "ESPN · feed público não oficial" }];
   }
+  if (url.pathname === "/api/league-games") {
+    const config = leagueFor(q.get("sport"), q.get("league"));
+    const month = q.get("month") || dayInBrazil(new Date()).slice(0, 7);
+    if (!config || !/^(20\d{2})-(0[1-9]|1[0-2])$/.test(month))
+      return [400, { error: "Competição ou mês inválido. Use AAAA-MM." }];
+    const first = `${month}-01`;
+    const next = new Date(`${first}T12:00:00Z`);
+    next.setUTCMonth(next.getUTCMonth() + 1);
+    const end = next.toISOString().slice(0, 10);
+    const result = await cached(`league-games:${config.sport}:${config.league}:${month}`, 60000, async () => {
+      // ESPN accepts YYYYMM; date ranges fail for some leagues. The first UTC
+      // day of next month also contains the final evening in Brasília.
+      const parts = await Promise.allSettled([month.replaceAll("-", ""), end.replaceAll("-", "")].map(async dates => {
+        const raw = await json(`${ESPN}/${config.sport}/${config.league}/scoreboard?dates=${dates}&limit=1000&lang=pt&region=br`);
+        if (!Array.isArray(raw.events)) throw new Error("Resposta de jogos inválida.");
+        return raw.events;
+      }));
+      const good = parts.filter(p => p.status === "fulfilled").map(p => p.value);
+      if (!good.length) throw new Error("Não foi possível consultar os jogos desta competição.");
+      const matches = good.flat().map(e => normalizeEvent(e, config.sport, config.league, config.name))
+        .filter(m => m && Number.isFinite(Date.parse(m.date)) && dayInBrazil(m.date).startsWith(month));
+      return { matches: [...new Map(matches.map(m => [m.id, m])).values()].sort((a,b) => a.date.localeCompare(b.date)), partial: parts.some(p => p.status === "rejected") || good.some(events => events.length >= 1000) };
+    }, 300000);
+    return [200, { ...config, ...result.value, month, stale: result.stale, fetchedAt: new Date(result.at).toISOString(), source: "ESPN · feed público não oficial" }];
+  }
   if (url.pathname === "/api/scores") {
     const date = q.get("date") || dayInBrazil(new Date());
     if (!validDate(date))

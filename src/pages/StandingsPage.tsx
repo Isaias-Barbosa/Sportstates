@@ -3,7 +3,7 @@ import { ChevronDown, Trophy } from "lucide-react";
 import { useApi, today } from "../hooks";
 import type { CompetitionCatalog } from "../types";
 import { Empty, Loading, Notice } from "../components/shared";
-import StandingsTable from "../components/StandingsTable";
+import LeagueOverview from "../components/LeagueOverview";
 
 export default function StandingsPage() {
   const { data, loading, error, refresh } = useApi<CompetitionCatalog>(
@@ -212,8 +212,9 @@ export default function StandingsPage() {
                         {selectedName} · {currentYear}
                       </h2>
                     </div>
-                    <StandingsTable
+                    <LeagueOverview
                       key={`${sport}/${league}/${currentYear}`}
+                      name={selectedName}
                       sport={sport}
                       league={league}
                       season={currentYear}
@@ -229,8 +230,9 @@ export default function StandingsPage() {
                 <h2>{selectedName}</h2>
               </div>
               {league ? (
-                <StandingsTable
+                <LeagueOverview
                   key={`${sport}/${league}`}
+                  name={selectedName}
                   sport={sport}
                   league={league}
                 />
