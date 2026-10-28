@@ -49,10 +49,12 @@ export default function StandingsTable({
   sport,
   league,
   match,
+  season,
 }: {
   sport: string;
   league: string;
   match?: Match;
+  season?: number;
 }) {
   const [view, setView] = useState<"table" | "knockout" | null>(null);
   const { data: clubs } = useApi<{ teams: ClubProfile[] }>(
@@ -60,7 +62,7 @@ export default function StandingsTable({
     300000,
   );
   const { data, error, loading, refresh } = useApi<Standings>(
-    `/api/standings?sport=${encodeURIComponent(sport)}&league=${encodeURIComponent(league)}`,
+    `/api/standings?sport=${encodeURIComponent(sport)}&league=${encodeURIComponent(league)}${season ? `&season=${season}` : ""}`,
     60000,
   );
   if (loading) return <Loading />;

@@ -29,12 +29,21 @@ import TeamsPage from "./pages/TeamsPage";
 import TeamPage from "./pages/TeamPage";
 function App() {
   const [theme, setTheme] = useState<"light" | "dark">(() => {
-    try { return localStorage.getItem("sportstates:theme") === "dark" ? "dark" : "light"; }
-    catch { return "light"; }
+    try {
+      return localStorage.getItem("sportstates:theme") === "light"
+        ? "light"
+        : "dark";
+    } catch {
+      return "dark";
+    }
   });
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
-    try { localStorage.setItem("sportstates:theme", theme); } catch { /* Storage is optional. */ }
+    try {
+      localStorage.setItem("sportstates:theme", theme);
+    } catch {
+      /* Storage is optional. */
+    }
   }, [theme]);
   const [menu, setMenu] = useState(false);
   const menuButton = useRef<HTMLButtonElement>(null);
@@ -47,20 +56,40 @@ function App() {
     const onKey = (event: KeyboardEvent) => {
       if (event.key === "Escape") setMenu(false);
       if (event.key === "Tab") {
-        const items = drawer.current?.querySelectorAll<HTMLElement>('a[href], button:not([disabled])');
+        const items = drawer.current?.querySelectorAll<HTMLElement>(
+          "a[href], button:not([disabled])",
+        );
         if (!items?.length) return;
-        const first = items[0], last = items[items.length - 1];
-        if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
-        else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+        const first = items[0],
+          last = items[items.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
       }
     };
     document.addEventListener("keydown", onKey);
-    return () => { document.body.style.overflow = before; document.removeEventListener("keydown", onKey); menuButton.current?.focus(); };
+    return () => {
+      document.body.style.overflow = before;
+      document.removeEventListener("keydown", onKey);
+      menuButton.current?.focus();
+    };
   }, [menu]);
   return (
     <BrowserRouter>
       <div className="app">
-        <aside ref={drawer} id="main-menu" className={menu ? "sidebar open" : "sidebar"} inert={!menu} role="dialog" aria-modal={menu || undefined} aria-label="Menu principal">
+        <aside
+          ref={drawer}
+          id="main-menu"
+          className={menu ? "sidebar open" : "sidebar"}
+          inert={!menu}
+          role="dialog"
+          aria-modal={menu || undefined}
+          aria-label="Menu principal"
+        >
           <Link to="/" className="brand" onClick={() => setMenu(false)}>
             <span className="brandmark">
               <Activity size={24} />
@@ -97,7 +126,9 @@ function App() {
               <span>⚽</span>Futebol
               <ChevronDown size={14} className="push" />
             </Link>
-            <NavLink to="/times" className="subnav"><span>◉</span>Times</NavLink>
+            <NavLink to="/times" className="subnav">
+              <span>◉</span>Times
+            </NavLink>
             <NavLink to="/transferencias" className="subnav">
               <ArrowDownUp size={15} />
               Transferências
@@ -108,7 +139,10 @@ function App() {
                 {s.name}
               </Link>
             ))}
-            <NavLink to="/admin/jogos"><Settings size={18} />Administração</NavLink>
+            <NavLink to="/admin/jogos">
+              <Settings size={18} />
+              Administração
+            </NavLink>
             <NavLink to="/sobre">
               <Globe2 size={18} />
               Fontes e cobertura
@@ -129,21 +163,45 @@ function App() {
         <div className="workspace" inert={menu}>
           <header className="topbar">
             <div className="top-left">
-              <Link to="/" className="brand topbar-brand" aria-label="Sportstates — início">
-                <span className="brandmark"><Activity size={20} /></span>
+              <Link
+                to="/"
+                className="brand topbar-brand"
+                aria-label="Sportstates — início"
+              >
+                <span className="brandmark">
+                  <Activity size={20} />
+                </span>
                 sportstates<span className="brand-dot">.</span>
               </Link>
+              <nav className="topbar-nav" aria-label="Navegação principal">
+                <NavLink to="/" end>
+                  Jogos
+                </NavLink>
+                <NavLink to="/classificacoes">Classificações</NavLink>
+                <NavLink to="/times">Times</NavLink>
+              </nav>
             </div>
             <div className="top-right">
-              <button className="theme-toggle" onClick={() => setTheme(t => t === "light" ? "dark" : "light")} aria-label={theme === "light" ? "Ativar tema escuro" : "Ativar tema claro"}>
+              <button
+                className="theme-toggle"
+                onClick={() =>
+                  setTheme((t) => (t === "light" ? "dark" : "light"))
+                }
+                aria-label={
+                  theme === "light" ? "Ativar tema escuro" : "Ativar tema claro"
+                }
+              >
                 {theme === "light" ? <Moon size={17} /> : <Sun size={17} />}
                 <span>{theme === "light" ? "Modo escuro" : "Modo claro"}</span>
               </button>
-              <Globe2 size={15} />
-              <span>PT-BR</span>
-              <span className="divider" />
-              <Clock3 size={15} />
-              <span>Horário de Brasília</span>
+              <span className="topbar-locale">
+                <Globe2 size={15} />
+                PT-BR
+              </span>
+              <span className="topbar-time">
+                <Clock3 size={15} />
+                Horário de Brasília
+              </span>
               <button
                 ref={menuButton}
                 aria-expanded={menu}

@@ -59,3 +59,33 @@ test('API mantém as fases mesmo quando a tabela de pontos da copa falha',async(
   assert.equal(status,200);assert.deepEqual(data.groups,[]);assert.ok(data.rounds.some(r=>r.id==='semifinals'));assert.equal(data.season.year,2026);
  }finally{globalThis.fetch=original;}
 });
+
+test('estaduais preservam troféus paralelos e excluem fases de pontos corridos dos mata-matas',async()=>{
+ const {stateKnockoutPhase}=await import('../server/tournaments.mjs');
+ assert.equal(stateKnockoutPhase('first-round'),null);
+ assert.equal(stateKnockoutPhase('regular-season'),null);
+ assert.equal(stateKnockoutPhase('taca-guanabara'),null);
+ assert.equal(stateKnockoutPhase('relegation-stage'),null);
+ assert.deepEqual(stateKnockoutPhase('taca-rio---final'),{id:'taca-rio-final',name:'Taça Rio · Final'});
+ assert.notEqual(stateKnockoutPhase('taca-rio---final').id,stateKnockoutPhase('taca-guanabara---final').id);
+ const states=JSON.parse(await readFile(new URL('./fixtures/state-stages.json',import.meta.url),'utf8'));
+ for (const s of states) {
+  const x=normalizeTournament(s.metadata,s.events,{stateCompetition:true});
+  assert.equal(x.season.year,2026);
+  assert.ok(x.rounds.length>=3,s.metadata.slug);
+  assert.ok(x.rounds.every(r=>/final|Oitavas|Quartas|Semifinais/i.test(r.name)),s.metadata.slug);
+ }
+});
+test('estadual solicitado por ano consulta a edição exata e recusa temporada diferente',async()=>{
+ const states=JSON.parse(await readFile(new URL('./fixtures/state-stages.json',import.meta.url),'utf8'));
+ const carioca=states[0];let calls=0;
+ const x=await fetchTournament('bra.camp.carioca',async url=>{calls++;assert.equal(new URL(url).searchParams.get('dates'),'2026');return {leagues:[carioca.metadata],events:carioca.events}},2026);
+ assert.equal(calls,1);assert.equal(x.season.year,2026);assert.ok(x.rounds.some(r=>r.id==='taca-rio-final'));
+ await assert.rejects(()=>fetchTournament('bra.camp.carioca',async()=>({leagues:[carioca.metadata],events:carioca.events}),2025),/temporada/);
+});
+test('API de estaduais pede tabela e eliminatórias no mesmo ano e valida a entrada antes da rede',async()=>{
+ const states=JSON.parse(await readFile(new URL('./fixtures/state-stages.json',import.meta.url),'utf8'));
+ const paulista=states.find(s=>s.metadata.slug==='bra.camp.paulista');const original=globalThis.fetch;const urls=[];
+ globalThis.fetch=async url=>{urls.push(String(url));const u=new URL(url);if(u.pathname.endsWith('/standings')){assert.equal(u.searchParams.get('season'),'2026');return {ok:true,json:async()=>({season:{year:2026},children:[{name:'Classificação',standings:{entries:[{team:{id:'1',displayName:'Time'},stats:[{name:'points',value:3}]}]}}]})}}assert.equal(u.searchParams.get('dates'),'2026');return {ok:true,json:async()=>({leagues:[paulista.metadata],events:paulista.events})}};
+ try{const [status,data]=await route(new URL('http://localhost/api/standings?sport=soccer&league=bra.camp.paulista&season=2026'));assert.equal(status,200);assert.equal(data.groups.length,1);assert.equal(data.rounds.length,3);const calls=urls.length;assert.equal((await route(new URL('http://localhost/api/standings?sport=soccer&league=bra.camp.paulista&season=2026x')))[0],400);assert.equal(urls.length,calls);}finally{globalThis.fetch=original;}
+});

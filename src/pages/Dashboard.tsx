@@ -1,27 +1,23 @@
-import React, { useState } from "react";
-import { Link, useParams, useSearchParams } from "react-router-dom";
+import { useState } from "react";
+import { Link, useSearchParams } from "react-router-dom";
 import {
   ArrowDownUp,
-  ArrowLeft,
   ArrowRight,
   CalendarDays,
   ChevronLeft,
   ChevronRight,
-  Globe2,
+  Clock3,
+  Info,
   LayoutGrid,
+  MapPin,
+  Play,
   Radio,
   RefreshCw,
   Search,
-  Shield,
   Star,
-  TrendingUp,
-  Info,
-  MapPin,
-  Clock3,
   Tv,
-  Play,
 } from "lucide-react";
-import type { Scores, Detail, Transfers } from "../types";
+import type { Match, Scores } from "../types";
 import { useApi, useFavorites, today, time, dateLabel } from "../hooks";
 import { sports, keyOf } from "../catalog";
 import {
@@ -32,7 +28,8 @@ import {
   matchLabel,
 } from "../components/shared";
 import MatchBroadcasts from "../components/MatchBroadcasts";
-import WhereToWatch from "../components/WhereToWatch";
+import "../home-viva.css";
+
 export default function Dashboard({
   favoritesOnly = false,
 }: {
@@ -47,458 +44,602 @@ export default function Dashboard({
   const { data, error, loading, refresh } = useApi<Scores>(
     "/api/scores?date=" + encodeURIComponent(date),
   );
+  const { data: selection } = useApi<{ key: string | null }>(
+    "/api/featured?date=" + encodeURIComponent(date),
+    30000,
+  );
   const matches = data?.matches || [];
-  const { data: selection } = useApi<{key:string|null}>("/api/featured?date=" + encodeURIComponent(date), 30000);
-  const set = (key: string, value: string) => {
-    const p = new URLSearchParams(params);
-    if (value === "all") p.delete(key);
-    else p.set(key, value);
-    setParams(p);
-  };
-  function moveDate(delta: number) {
-    const d = new Date(date + "T12:00:00Z");
-    if (Number.isNaN(d.getTime())) return;
-    d.setUTCDate(d.getUTCDate() + delta);
-    set("date", d.toISOString().slice(0, 10));
-  }
-  const visible = matches.filter(
+  const scoped = matches.filter(
     (m) =>
       (sport === "all" || m.sport === sport) &&
-      (status === "all" || m.state === status) &&
-      (!favoritesOnly || ids.includes(keyOf(m))) &&
-      `${m.home.name} ${m.away.name} ${m.leagueName}`
-        .toLowerCase()
-        .includes(search.toLowerCase()),
+      (!favoritesOnly || ids.includes(keyOf(m))),
   );
-  const live = matches.filter((m) => m.state === "live");
+  const live = scoped.filter((m) => m.state === "live");
+  const upcoming = scoped
+    .filter((m) => m.state === "scheduled")
+    .sort((a, b) => a.date.localeCompare(b.date));
+  const selectedMatch =
+    sport === "all" && selection?.key
+      ? scoped.find((m) => keyOf(m) === selection.key)
+      : undefined;
+  const featured =
+    (selectedMatch?.state !== "finished" ? selectedMatch : undefined) ||
+    live[0] ||
+    upcoming[0] ||
+    selectedMatch ||
+    scoped.filter((m) => m.state === "finished").at(-1);
+  const radar = live
+    .filter((m) => keyOf(m) !== (featured && keyOf(featured)))
+    .slice(0, 2);
   const available = sports.filter(
     (s) => matches.some((m) => m.sport === s.id) || s.id === sport,
   );
-  const groups = [...new Set(visible.map((m) => m.league))];
-  const selectedMatch = sport === "all" && selection?.key
-    ? matches.find((m) => keyOf(m) === selection.key)
-    : undefined;
-  const featured =
-    (selectedMatch?.state === "finished" && live.length ? undefined : selectedMatch) ||
-    live.find((m) => sport === "all" || m.sport === sport) ||
-    live[0] ||
-    matches.find(
-      (m) => (sport === "all" || m.sport === sport) && m.state === "scheduled",
-    );
+  const normalizedSearch = search
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase();
+  const visible = scoped.filter(
+    (m) =>
+      (status === "all" || m.state === status) &&
+      `${m.home.name} ${m.away.name} ${m.leagueName}`
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase()
+        .includes(normalizedSearch),
+  );
+  const groups = [...new Set(visible.map((m) => `${m.sport}/${m.league}`))];
+  function set(key: string, value: string) {
+    const next = new URLSearchParams(params);
+    if (value === "all") next.delete(key);
+    else next.set(key, value);
+    setParams(next);
+  }
+  function moveDate(delta: number) {
+    const next = new Date(date + "T12:00:00Z");
+    if (Number.isNaN(next.getTime())) return;
+    next.setUTCDate(next.getUTCDate() + delta);
+    set("date", next.toISOString().slice(0, 10));
+  }
+  const featuredTitle =
+    selectedMatch &&
+    featured &&
+    keyOf(featured) === selection?.key &&
+    featured.state !== "finished"
+      ? "Jogo do Dia"
+      : featured?.state === "live"
+        ? "Ao vivo agora"
+        : featured?.state === "finished"
+          ? "Último destaque"
+          : "Próximo confronto";
   return (
-    <>
-      <div className="page-title">
-        <div>
-          <div className="eyebrow">SEU RADAR ESPORTIVO</div>
-          <h1>
-            {favoritesOnly ? "Seus favoritos" : "Seu dia de esporte"}
-            <span className="green">.</span>
-          </h1>
-          <p>
-            {favoritesOnly
-              ? "As partidas que você salvou, reunidas aqui."
-              : "Do primeiro apito ao último ponto. Acompanhe tudo em um só lugar."}
-          </p>
-        </div>
-        <button className="quiet-button" onClick={refresh} disabled={loading}>
-          <RefreshCw size={16} />
-          Atualizar
-        </button>
-      </div>
-      <section className="hero">
-        <div className="hero-copy">
-          <div className="pill">
-            <span className="live-dot" />
-            {live.length
-              ? `${live.length} PARTIDAS EM ANDAMENTO`
-              : "A AGENDA DO ESPORTE"}
-          </div>
-          <h2>
-            O jogo está acontecendo.
-            <br />
-            <span>Entre no ritmo.</span>
-          </h2>
-          <p>
-            Placares, próximos confrontos e cada lance
-            <br className="desktop" /> das competições que você acompanha.
-          </p>
-          <div className="hero-stats">
-            <span>
-              <b>{matches.length || "—"}</b> jogos no dia
-            </span>
-            <span>
-              <b>{available.length || "—"}</b> esportes
-            </span>
-            <span>
-              <b>60s</b> atualização
-            </span>
-          </div>
-        </div>
-        <div className="pitch-art" aria-hidden="true">
-          <div className="pitch-circle" />
-          <div className="pitch-line" />
-          <div className="pitch-box" />
-        </div>
-      </section>
-      <section
-        className="live-spotlight"
-        aria-labelledby="live-spotlight-title"
-      >
-        <div className="live-spotlight-heading">
-          <div>
-            <div className="eyebrow">NO CENTRO DO JOGO</div>
-            <h2 id="live-spotlight-title">
-              {sport === "all" && selection?.key && featured && keyOf(featured) === selection.key ? "Jogo do Dia" : featured?.state === "live" ? "Ao Vivo Agora" : featured?.state === "finished" ? "Partida em destaque" : "Próximo confronto"}
-            </h2>
-          </div>
-          <span>
-            {data?.stale || error
-              ? "Última consulta disponível"
-              : "Acompanhe cada lance"}
-          </span>
-        </div>
-        {loading ? (
-          <Loading />
-        ) : featured ? (
-          <>
-            <Link
-              to={"/partida/" + keyOf(featured)}
-              className={
-                "live-match-feature " +
-                (featured.state === "live" ? "is-live" : "")
-              }
-            >
-              <div className="live-match-top">
-                <span>{featured.leagueName}</span>
-                <strong>
-                  {featured.state === "live" && <span className="live-dot" />}
-                  {matchLabel(featured)}
-                  {featured.period > 0 && featured.sport !== "soccer"
-                    ? ` · ${featured.period}º período`
-                    : ""}
-                </strong>
-              </div>
-              <div className="live-match-scoreboard">
-                <div className="live-match-team">
-                  <Crest team={featured.home} large />
-                  <h3>{featured.home.name}</h3>
-                </div>
-                <div className="live-match-score">
-                  <strong>
-                    {featured.state === "scheduled"
-                      ? "×"
-                      : `${featured.home.score ?? "–"} : ${featured.away.score ?? "–"}`}
-                  </strong>
-                  <span>
-                    {featured.state === "live"
-                      ? matchLabel(featured) === "Intervalo" ? "INTERVALO" : "EM ANDAMENTO"
-                      : time(featured.date) + " · Brasília"}
-                  </span>
-                </div>
-                <div className="live-match-team">
-                  <Crest team={featured.away} large />
-                  <h3>{featured.away.name}</h3>
-                </div>
-              </div>
-              <div className="live-match-footer">
-                <span>{featured.venue || "Detalhes da partida"}</span>
-                <strong className="featured-match-link">
-                  Ver minuto a minuto <ArrowRight size={18} />
-                </strong>
-              </div>
-            </Link>
-            <MatchBroadcasts match={featured} />
-          </>
-        ) : (
-          <Empty
-            title={
-              error
-                ? "Não foi possível atualizar o destaque"
-                : "Sem partidas para destacar"
-            }
-          >
-            {error
-              ? "Tente atualizar os jogos. A fonte pode estar temporariamente indisponível."
-              : "Nenhum jogo ao vivo ou próximo confronto foi encontrado para o esporte e a data selecionados."}
-          </Empty>
-        )}
-      </section>
-      <div className="section-heading">
-        <h2>Escolha seu esporte</h2>
-        <span>Competições com jogos na data</span>
-      </div>
-      <div className="sport-cards">
-        <button
-          className={sport === "all" ? "sport-card selected" : "sport-card"}
-          onClick={() => set("sport", "all")}
-        >
-          <LayoutGrid size={24} />
-          <strong>Todos os esportes</strong>
-          <small>{matches.length} jogos</small>
-        </button>
-        {available.map((s) => (
-          <button
-            key={s.id}
-            className={sport === s.id ? "sport-card selected" : "sport-card"}
-            onClick={() => set("sport", s.id)}
-          >
-            <span className="sport-icon">{s.icon}</span>
-            <strong>{s.name}</strong>
-            <small>
-              {matches.filter((m) => m.sport === s.id).length} jogos{" "}
-              {matches.some((m) => m.sport === s.id && m.state === "live") && (
-                <i className="tiny-dot" />
+    <div className="home-viva">
+      <section className="hv-hero" aria-labelledby="hv-title">
+        <img
+          className="hv-hero-image"
+          src="/brand/stadium-viva.webp"
+          alt=""
+          aria-hidden="true"
+          fetchPriority="high"
+        />
+        <div className="hv-hero-glow" aria-hidden="true" />
+        <div className="hv-wrap hv-hero-inner">
+          <div className="hv-hero-copy">
+            <p className="hv-eyebrow">Viva cada segundo</p>
+            <h1 id="hv-title">
+              {favoritesOnly ? (
+                <>
+                  Seu time.<span>Seu momento.</span>
+                </>
+              ) : (
+                <>
+                  O esporte<span>não para.</span>
+                </>
               )}
-            </small>
-          </button>
-        ))}
-      </div>
-      <div className="score-layout">
-        <section className="scores">
-          <div className="score-toolbar">
-            <h2>{favoritesOnly ? "Partidas salvas" : "Central de jogos"}</h2>
-            <div className="date-control">
-              <button aria-label="Dia anterior" onClick={() => moveDate(-1)}>
-                <ChevronLeft size={17} />
-              </button>
-              <label>
-                <CalendarDays size={16} />
-                <input
-                  aria-label="Data dos jogos"
-                  type="date"
-                  value={date}
-                  onChange={(e) => {
-                    if (e.target.value) set("date", e.target.value);
-                  }}
-                />
-              </label>
-              <button aria-label="Próximo dia" onClick={() => moveDate(1)}>
-                <ChevronRight size={17} />
-              </button>
+            </h1>
+            <p>
+              Do primeiro apito ao último ponto.
+              <br />
+              Seu próximo grande momento começa aqui.
+            </p>
+            <div className="hv-hero-actions">
+              <a href="#jogos" className="hv-primary">
+                Explorar os jogos
+                <ArrowRight size={16} />
+              </a>
+              <span className="hv-hero-live">
+                {live.length > 0 && (
+                  <i className="live-dot" aria-hidden="true" />
+                )}
+                {loading
+                  ? "Consultando a agenda…"
+                  : live.length
+                    ? `${live.length} ${live.length === 1 ? "partida ao vivo" : "partidas ao vivo"}`
+                    : "Confira a agenda do dia"}
+              </span>
             </div>
           </div>
-          <div className="filters">
-            <div className="tabs">
+          <p className="hv-hero-caption">
+            Na arquibancada.<span>Na palma da mão.</span>
+          </p>
+        </div>
+      </section>
+      <div className="hv-energy-strip" aria-hidden="true">
+        <span>O jogo acontece aqui</span>
+        <i>✦</i>
+        <span>Futebol</span>
+        <i>✦</i>
+        <span>Basquete</span>
+        <i>✦</i>
+        <span>Mais esporte. Mais emoção.</span>
+        <i>✦</i>
+        <span>Futebol americano</span>
+        <i>✦</i>
+        <span>O jogo acontece aqui</span>
+      </div>
+      <div className="hv-wrap hv-main">
+        <section aria-labelledby="hv-spotlight-title">
+          <div className="hv-section-head">
+            <div>
+              <p className="hv-eyebrow">No centro da emoção</p>
+              <h2 id="hv-spotlight-title">
+                {featured?.state === "live" ? (
+                  <>
+                    Agora é <em>jogo.</em>
+                  </>
+                ) : featured?.state === "finished" ? (
+                  <>
+                    Destaques do <em>dia.</em>
+                  </>
+                ) : (
+                  <>
+                    O próximo <em>capítulo.</em>
+                  </>
+                )}
+              </h2>
+            </div>
+            <a className="hv-text-link" href="#jogos">
+              Ver todas as partidas
+              <ArrowRight size={15} />
+            </a>
+          </div>
+          {loading ? (
+            <Loading />
+          ) : featured ? (
+            <div
+              className={"hv-spotlight " + (!radar.length ? "hv-no-radar" : "")}
+            >
+              <div>
+                <Link
+                  className={
+                    "hv-feature " + (featured.state === "live" ? "is-live" : "")
+                  }
+                  to={"/partida/" + keyOf(featured)}
+                  aria-label={`Acompanhar partida: ${featured.home.name} x ${featured.away.name}`}
+                >
+                  <div className="hv-feature-top">
+                    <span>
+                      {sports.find((s) => s.id === featured.sport)?.icon}{" "}
+                      {featured.leagueName}
+                    </span>
+                    <strong>
+                      {featured.state === "live" && (
+                        <i className="live-dot" aria-hidden="true" />
+                      )}
+                      {featuredTitle}
+                    </strong>
+                  </div>
+                  <div className="hv-feature-teams">
+                    <div className="hv-feature-team">
+                      <Crest team={featured.home} large />
+                      <h3>{featured.home.name}</h3>
+                    </div>
+                    <div
+                      className={
+                        "hv-feature-score " +
+                        (featured.state === "scheduled" ? "is-scheduled" : "")
+                      }
+                    >
+                      <b>
+                        {featured.state === "scheduled"
+                          ? time(featured.date)
+                          : `${featured.home.score ?? "–"} : ${featured.away.score ?? "–"}`}
+                      </b>
+                      <small>
+                        {featured.state === "live"
+                          ? matchLabel(featured)
+                          : featured.state === "finished"
+                            ? "Encerrado"
+                            : "Horário de Brasília"}
+                      </small>
+                    </div>
+                    <div className="hv-feature-team">
+                      <Crest team={featured.away} large />
+                      <h3>{featured.away.name}</h3>
+                    </div>
+                  </div>
+                  <div className="hv-feature-footer">
+                    <span>
+                      <MapPin size={13} />
+                      {featured.venue || "Detalhes da partida"}
+                    </span>
+                    <strong>
+                      {featured.state === "live"
+                        ? "Acompanhar partida"
+                        : "Ver detalhes"}
+                      <ArrowRight size={15} />
+                    </strong>
+                  </div>
+                </Link>
+                <MatchBroadcasts match={featured} />
+              </div>
+              {!!radar.length && (
+                <aside className="hv-radar" aria-label="Outros jogos ao vivo">
+                  <div className="hv-radar-heading">
+                    <h3>Também está rolando</h3>
+                    <Radio size={17} />
+                  </div>
+                  {radar.map((m) => (
+                    <Link
+                      className="hv-radar-game"
+                      key={keyOf(m)}
+                      to={"/partida/" + keyOf(m)}
+                    >
+                      <span>{m.leagueName}</span>
+                      <small>{matchLabel(m)}</small>
+                      <strong>
+                        {m.home.name} × {m.away.name}
+                      </strong>
+                      <b>
+                        {m.home.score ?? "–"} : {m.away.score ?? "–"}
+                      </b>
+                    </Link>
+                  ))}
+                </aside>
+              )}
+            </div>
+          ) : (
+            <Empty
+              title={
+                error
+                  ? "Não foi possível atualizar o destaque"
+                  : "Nenhuma partida nesta data"
+              }
+            >
+              {error
+                ? "Tente atualizar a agenda abaixo."
+                : "Escolha outro esporte ou dia para acompanhar os jogos disponíveis."}
+            </Empty>
+          )}
+        </section>
+        <section className="hv-sports" aria-labelledby="hv-sports-title">
+          <h2 id="hv-sports-title">Qual é o seu jogo?</h2>
+          <div className="hv-sport-filters">
+            <button
+              type="button"
+              aria-pressed={sport === "all"}
+              onClick={() => set("sport", "all")}
+            >
+              <LayoutGrid size={19} />
+              <strong>Todos os esportes</strong>
+              <small>{matches.length}</small>
+            </button>
+            {available.map((s) => (
+              <button
+                type="button"
+                key={s.id}
+                aria-pressed={sport === s.id}
+                onClick={() => set("sport", s.id)}
+              >
+                <span aria-hidden="true">{s.icon}</span>
+                <strong>{s.name}</strong>
+                <small>{matches.filter((m) => m.sport === s.id).length}</small>
+              </button>
+            ))}
+          </div>
+        </section>
+        <div className="hv-content-grid" id="jogos">
+          <section aria-labelledby="hv-games-title">
+            <div className="hv-games-heading">
+              <h2 id="hv-games-title">
+                {favoritesOnly ? "Partidas salvas" : "Seu dia de esporte"}
+                <em>.</em>
+              </h2>
+              <button
+                className="hv-refresh"
+                onClick={refresh}
+                disabled={loading}
+              >
+                <RefreshCw size={14} />
+                <span>Atualizar</span>
+              </button>
+            </div>
+            <div className="hv-agenda-toolbar">
+              <div className="date-control">
+                <button
+                  type="button"
+                  aria-label="Dia anterior"
+                  onClick={() => moveDate(-1)}
+                >
+                  <ChevronLeft size={17} />
+                </button>
+                <label>
+                  <CalendarDays size={15} />
+                  <input
+                    aria-label="Data dos jogos"
+                    type="date"
+                    value={date}
+                    onChange={(e) =>
+                      e.target.value && set("date", e.target.value)
+                    }
+                  />
+                </label>
+                <button
+                  type="button"
+                  aria-label="Próximo dia"
+                  onClick={() => moveDate(1)}
+                >
+                  <ChevronRight size={17} />
+                </button>
+              </div>
+              <label className="hv-search">
+                <Search size={15} />
+                <input
+                  type="search"
+                  placeholder="Buscar time ou competição"
+                  aria-label="Buscar time ou competição"
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                />
+              </label>
+            </div>
+            <div className="hv-status-filters" aria-label="Situação da partida">
               {[
                 ["all", "Todos"],
                 ["live", "Ao vivo"],
                 ["scheduled", "Próximos"],
                 ["finished", "Encerrados"],
-              ].map(([v, label]) => (
+              ].map(([value, label]) => (
                 <button
-                  key={v}
-                  className={status === v ? "active" : ""}
-                  onClick={() => set("status", v)}
+                  type="button"
+                  key={value}
+                  aria-pressed={status === value}
+                  onClick={() => set("status", value)}
                 >
-                  {v === "live" && <span className="live-dot" />}
                   {label}
+                  <span>
+                    {
+                      scoped.filter((m) => value === "all" || m.state === value)
+                        .length
+                    }
+                  </span>
                 </button>
               ))}
             </div>
-            <label className="search">
-              <Search size={16} />
-              <input
-                placeholder="Buscar time ou liga"
-                aria-label="Buscar time ou liga"
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-              />
-            </label>
-          </div>
-          {error && (
-            <Notice error>
-              {error} <button onClick={refresh}>Tentar novamente</button>
-              {data &&
-                " Os resultados abaixo são da última consulta bem-sucedida."}
-            </Notice>
-          )}
-          {data?.stale && (
-            <Notice>
-              Exibindo dados em cache. A fonte está temporariamente
-              indisponível.
-            </Notice>
-          )}
-          {!!data?.warnings.length && (
-            <details className="coverage-warning">
-              <summary>
-                Cobertura parcial: {data.warnings.length} competições com avisos
-              </summary>
-              {data.warnings.map((w) => (
-                <p key={w}>{w}</p>
-              ))}
-            </details>
-          )}
-          {loading ? (
-            <Loading />
-          ) : visible.length === 0 ? (
-            <Empty
-              title={
-                favoritesOnly
-                  ? "Nenhum favorito nesta data"
-                  : "Nenhuma partida encontrada"
+            {error && (
+              <Notice error>
+                {error} <button onClick={refresh}>Tentar novamente</button>
+                {data && " Exibindo a última consulta disponível."}
+              </Notice>
+            )}
+            {data?.stale && (
+              <Notice>
+                Exibindo dados em cache; a fonte está temporariamente
+                indisponível.
+              </Notice>
+            )}
+            {!!data?.warnings.length && (
+              <details className="coverage-warning">
+                <summary>
+                  Cobertura parcial: {data.warnings.length} competições com
+                  avisos
+                </summary>
+                {data.warnings.map((w) => (
+                  <p key={w}>{w}</p>
+                ))}
+              </details>
+            )}
+            {loading ? (
+              <Loading />
+            ) : !visible.length ? (
+              <Empty
+                title={
+                  favoritesOnly
+                    ? "Nenhum favorito nesta data"
+                    : "Nenhuma partida encontrada"
+                }
+              >
+                {favoritesOnly
+                  ? "Marque a estrela de uma partida para salvá-la."
+                  : "Altere o esporte, a data ou a busca. A cobertura varia por competição."}
+              </Empty>
+            ) : (
+              groups.map((group) => {
+                const items = visible.filter(
+                  (m) => `${m.sport}/${m.league}` === group,
+                );
+                return (
+                  <section className="hv-league" key={group}>
+                    <div className="hv-league-heading">
+                      <span aria-hidden="true">
+                        {sports.find((s) => s.id === items[0].sport)?.icon}
+                      </span>
+                      <h3>{items[0].leagueName}</h3>
+                      <small>
+                        {items.length} {items.length === 1 ? "jogo" : "jogos"}
+                      </small>
+                    </div>
+                    {items.map((m) => (
+                      <GameRow
+                        key={keyOf(m)}
+                        match={m}
+                        saved={ids.includes(keyOf(m))}
+                        onFavorite={() => toggle(keyOf(m))}
+                      />
+                    ))}
+                  </section>
+                );
+              })
+            )}
+            {data && (
+              <p className="hv-data-note">
+                <Info size={13} />
+                <span>
+                  {data.source} · Consultado às {time(data.fetchedAt)} ·
+                  Brasília
+                </span>
+              </p>
+            )}
+          </section>
+          <aside className="hv-content-aside">
+            <section className="hv-schedule">
+              <h3>A bola vai rolar</h3>
+              <p>
+                {/^\d{4}-\d{2}-\d{2}$/.test(date) &&
+                !Number.isNaN(Date.parse(date))
+                  ? dateLabel(date)
+                  : "Agenda do dia"}{" "}
+                · Horário de Brasília
+              </p>
+              {upcoming.length ? (
+                upcoming.slice(0, 4).map((m) => (
+                  <Link
+                    key={keyOf(m)}
+                    className="hv-upcoming"
+                    to={"/partida/" + keyOf(m)}
+                  >
+                    <time dateTime={m.date}>{time(m.date)}</time>
+                    <div>
+                      <small>{m.leagueName}</small>
+                      <span>
+                        <Crest team={m.home} />
+                        <strong>{m.home.name}</strong>
+                        <b>×</b>
+                        <Crest team={m.away} />
+                        <strong>{m.away.name}</strong>
+                      </span>
+                    </div>
+                  </Link>
+                ))
+              ) : (
+                <p className="hv-schedule-empty">
+                  {loading
+                    ? "Consultando os próximos jogos…"
+                    : "Nenhum próximo confronto disponível neste filtro."}
+                </p>
+              )}
+            </section>
+            <section className="hv-explore">
+              <p className="hv-eyebrow">Muito além do placar</p>
+              <h3>
+                Conheça o jogo.
+                <br />
+                <span>Por inteiro.</span>
+              </h3>
+              <Link to="/classificacoes">
+                Explore as classificações
+                <ArrowRight size={16} />
+              </Link>
+              <Link to="/times">
+                Encontre seu time
+                <ArrowRight size={16} />
+              </Link>
+              <Link to="/transferencias">
+                <span>
+                  <ArrowDownUp size={14} />
+                  Mercado da bola
+                </span>
+                <ArrowRight size={16} />
+              </Link>
+            </section>
+            <p className="hv-rail-note">
+              <Info size={15} />
+              Horários de Brasília. A disponibilidade de dados e lances varia
+              por partida.
+            </p>
+          </aside>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function GameRow({
+  match: m,
+  saved,
+  onFavorite,
+}: {
+  match: Match;
+  saved: boolean;
+  onFavorite: () => void;
+}) {
+  return (
+    <article className="hv-match-card">
+      <div className={"hv-match-row " + (m.state === "live" ? "is-live" : "")}>
+        <Link
+          className="hv-match-main"
+          to={"/partida/" + keyOf(m)}
+          aria-label={`Ver partida ${m.home.name} x ${m.away.name}`}
+        >
+          <span className="hv-minute">
+            {m.state === "live" && (
+              <i className="live-dot" aria-hidden="true" />
+            )}
+            {matchLabel(m)}
+          </span>
+          <div className="hv-row-teams">
+            <span className="hv-row-team home">
+              <span>{m.home.name}</span>
+              <Crest team={m.home} />
+            </span>
+            <b
+              className={
+                "hv-row-score " + (m.state === "scheduled" ? "scheduled" : "")
               }
             >
-              {favoritesOnly
-                ? "Marque a estrela ao lado de uma partida para salvá-la."
-                : "Altere a data ou os filtros. A lista inclui apenas as competições cobertas pela fonte."}
-            </Empty>
-          ) : (
-            groups.map((league) => {
-              const items = visible.filter((m) => m.league === league);
-              return (
-                <div className="league-group" key={league}>
-                  <div className="league-heading">
-                    <span>
-                      {sports.find((s) => s.id === items[0].sport)?.icon}
-                    </span>
-                    <h3>{items[0].leagueName}</h3>
-                    <small>{items.length} jogos</small>
-                  </div>
-                  {items.map((m) => (
-                    <div className="match-card" key={keyOf(m)}><div
-                      className={
-                        "match-row" + (m.state === "live" ? " is-live" : "")
-                      }
-                      key={keyOf(m)}
-                    >
-                      <Link className="match-main" to={"/partida/" + keyOf(m)} aria-label={"Ver partida " + m.home.name + " x " + m.away.name}>
-                      <div
-                        className={
-                          "match-time " + (m.state === "live" ? "is-live" : "")
-                        }
-                      >
-                        {m.state === "live" && <span className="live-dot" />}
-                        {matchLabel(m)}
-                      </div>
-                      <div className="match-link">
-                        <div className="match-team home">
-                          <span>{m.home.name}</span>
-                          <Crest team={m.home} />
-                        </div>
-                        <div className={"score " + (m.state === "live" ? "score-live" : "")}>
-                          {m.state === "scheduled" ? (
-                            <span className="versus">vs</span>
-                          ) : (
-                            <>
-                              <b>{m.home.score ?? "–"}</b>
-                              <span>:</span>
-                              <b>{m.away.score ?? "–"}</b>
-                            </>
-                          )}
-                        </div>
-                        <div className="match-team away">
-                          <Crest team={m.away} />
-                          <span>{m.away.name}</span>
-                        </div>
-                        <ChevronRight className="row-chevron" size={16} />
-                      </div>
-                      </Link>
-                      {m.state === "live" && !!m.watch?.links.length && (
-                        <Link
-                          className="watch-row-link icon-button"
-                          to={"/partida/" + keyOf(m) + "#onde-assistir"}
-                          aria-label={
-                            "Onde assistir: " +
-                            m.home.name +
-                            " x " +
-                            m.away.name
-                          }
-                          title="Onde assistir · links oficiais"
-                        >
-                          <Tv size={18} />
-                          <span>Onde assistir</span>
-                        </Link>
-                      )}
-                      {m.state === "finished" && <Link className="watch-row-link icon-button" to={"/partida/" + keyOf(m) + "#videos"} aria-label={"Consultar vídeos oficiais: " + m.home.name + " x " + m.away.name} title="Consultar melhores momentos e vídeos oficiais"><Play size={18}/><span>Vídeos</span></Link>}
-                      <button
-                        className={
-                          "favorite icon-button " +
-                          (ids.includes(keyOf(m)) ? "saved" : "")
-                        }
-                        aria-label={
-                          (ids.includes(keyOf(m))
-                            ? "Remover dos favoritos: "
-                            : "Salvar favorito: ") +
-                          m.home.name +
-                          " x " +
-                          m.away.name
-                        }
-                        aria-pressed={ids.includes(keyOf(m))}
-                        onClick={() => toggle(keyOf(m))}
-                      >
-                        <Star size={17} />
-                      </button>
-                    </div><MatchBroadcasts match={m} /></div>
-                  ))}
-                </div>
-              );
-            })
-          )}
-          {data && (
-            <div className="updated">
-              <span className="tiny-dot" />
-              {data.source} · Consultado às {time(data.fetchedAt)} · Brasília
-            </div>
-          )}
-        </section>
-        <aside className="right-rail">
-          <div className="day-card">
-            <div className="eyebrow">O DIA EM NÚMEROS</div>
-            <h3>
-              {/^\d{4}-\d{2}-\d{2}$/.test(date) &&
-              !Number.isNaN(Date.parse(date))
-                ? dateLabel(date)
-                : "Data inválida"}
-            </h3>
-            <div>
-              <span>
-                <Radio size={17} />
-                Ao vivo
-              </span>
-              <strong className="green">{live.length}</strong>
-            </div>
-            <div>
-              <span>
-                <Clock3 size={17} />A começar
-              </span>
-              <strong>
-                {matches.filter((m) => m.state === "scheduled").length}
-              </strong>
-            </div>
-            <div>
-              <span>
-                <Shield size={17} />
-                Encerrados
-              </span>
-              <strong>
-                {matches.filter((m) => m.state === "finished").length}
-              </strong>
-            </div>
-          </div>
-          <Link to="/transferencias" className="transfer-promo">
-            <span className="promo-icon">
-              <ArrowDownUp />
+              {m.state === "scheduled"
+                ? "×"
+                : `${m.home.score ?? "–"} : ${m.away.score ?? "–"}`}
+            </b>
+            <span className="hv-row-team">
+              <Crest team={m.away} />
+              <span>{m.away.name}</span>
             </span>
-            <span className="eyebrow">ALÉM DAS QUATRO LINHAS</span>
-            <h3>
-              O mercado
-              <br />
-              também joga.
-            </h3>
-            <p>Acompanhe as movimentações dos clubes no futebol.</p>
-            <strong>
-              Ver transferências <ArrowRight size={16} />
-            </strong>
-          </Link>
-          <div className="rail-note">
-            <Info size={17} />
-            <p>
-              Os jogos são exibidos no horário de Brasília. A disponibilidade de
-              lances varia por partida.
-            </p>
+            <ChevronRight size={14} />
           </div>
-        </aside>
+        </Link>
+        <div className="hv-row-actions">
+          {m.state === "live" && !!m.watch?.links.length && (
+            <Link
+              className="icon-button"
+              to={"/partida/" + keyOf(m) + "#onde-assistir"}
+              aria-label={`Onde assistir: ${m.home.name} x ${m.away.name}`}
+              title="Onde assistir"
+            >
+              <Tv size={16} />
+            </Link>
+          )}
+          {m.state === "finished" && (
+            <Link
+              className="icon-button"
+              to={"/partida/" + keyOf(m) + "#videos"}
+              aria-label={`Consultar vídeos oficiais: ${m.home.name} x ${m.away.name}`}
+              title="Vídeos oficiais"
+            >
+              <Play size={16} />
+            </Link>
+          )}
+          <button
+            type="button"
+            className={"icon-button " + (saved ? "saved" : "")}
+            aria-label={`${saved ? "Remover dos favoritos" : "Salvar favorito"}: ${m.home.name} x ${m.away.name}`}
+            aria-pressed={saved}
+            onClick={onFavorite}
+          >
+            <Star size={16} />
+          </button>
+        </div>
       </div>
-    </>
+      <MatchBroadcasts match={m} />
+    </article>
   );
 }

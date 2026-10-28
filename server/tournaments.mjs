@@ -1,5 +1,7 @@
+import { BRAZIL_STATE_LEAGUES } from "./catalog.mjs";
 // Only configured football cups with knockout stages; never infer cup rules from IDs.
 export const KNOCKOUT_LEAGUES = new Set([
+  ...BRAZIL_STATE_LEAGUES,
   "bra.copa_do_brazil",
   "conmebol.libertadores",
   "conmebol.sudamericana",
@@ -120,6 +122,43 @@ export function knockoutPhase(value) {
   // A calendar entry is still usable if the source supplies a less common stage.
   return { id: label.replaceAll(" ", "-"), name: String(value).slice(0, 100) };
 }
+// State championships can run multiple parallel trophies. Keep each bracket separate.
+export function stateKnockoutPhase(value) {
+  const label = key(value);
+  for (const [id, name, aliases] of PHASES) {
+    if (
+      ![
+        "round-of-64",
+        "round-of-32",
+        "round-of-16",
+        "quarterfinals",
+        "semifinals",
+        "third-place",
+        "final",
+      ].includes(id)
+    )
+      continue;
+    const alias = aliases.find(
+      (alias) => label === alias || label.endsWith(" " + alias),
+    );
+    if (!alias) continue;
+    const prefix = label.slice(0, label.length - alias.length).trim();
+    if (!prefix || prefix === "playoffs") return { id, name };
+    const trophies = {
+      "taca guanabara": "Taça Guanabara",
+      "taca rio": "Taça Rio",
+      "trofeu inconfidencia": "Troféu Inconfidência",
+      farroupilha: "Taça Farroupilha",
+    };
+    const trophy = trophies[prefix];
+    if (trophy)
+      return {
+        id: prefix.replaceAll(" ", "-") + "-" + id,
+        name: trophy + " · " + name,
+      };
+  }
+  return null;
+}
 const validDate = (value) =>
   typeof value === "string" && Number.isFinite(Date.parse(value));
 function competitor(raw, hasScore) {
@@ -138,7 +177,12 @@ function competitor(raw, hasScore) {
       hasScore && raw?.shootoutScore != null ? String(raw.shootoutScore) : null,
   };
 }
-export function normalizeTournament(metadata, events) {
+export function normalizeTournament(
+  metadata,
+  events,
+  { stateCompetition = false } = {},
+) {
+  const phaseFor = stateCompetition ? stateKnockoutPhase : knockoutPhase;
   const season = metadata?.season;
   if (!Number.isInteger(season?.year))
     throw new Error("Temporada da copa indisponível.");
@@ -149,8 +193,8 @@ export function normalizeTournament(metadata, events) {
     return stages.get(phase.id);
   }
   for (const group of metadata.calendar || [])
-    for (const entry of group.entries || []) add(knockoutPhase(entry.label));
-  const currentRound = knockoutPhase(season.type?.name)?.id || null;
+    for (const entry of group.entries || []) add(phaseFor(entry.label));
+  const currentRound = phaseFor(season.type?.name)?.id || null;
   const seen = new Set();
   const sorted = [
     ...new Map(events.map((event) => [String(event.id), event])).values(),
@@ -167,7 +211,7 @@ export function normalizeTournament(metadata, events) {
       continue;
     seen.add(String(event.id));
     // Event season.slug is the provider's stage, NOT the status (e.g. STATUS_FINAL).
-    const phase = knockoutPhase(event.season?.slug || c.series?.title);
+    const phase = phaseFor(event.season?.slug || c.series?.title);
     if (!phase) continue;
     const stage = add(phase);
     const status = c.status || event.status || {};
@@ -205,15 +249,28 @@ export function normalizeTournament(metadata, events) {
   };
 }
 
-export async function fetchTournament(league, loadJson) {
+export async function fetchTournament(league, loadJson, requestedYear) {
   if (!KNOCKOUT_LEAGUES.has(league)) throw new Error("Copa inválida.");
   const base = `https://site.api.espn.com/apis/site/v2/sports/soccer/${league}/scoreboard`;
-  const current = await loadJson(`${base}?limit=1000&lang=pt&region=br`);
+  const current = await loadJson(
+    `${base}?${requestedYear ? `dates=${requestedYear}&` : ""}limit=1000&lang=pt&region=br`,
+  );
   const metadata =
     current.leagues?.find((l) => l.slug === league) || current.leagues?.[0];
   const year = metadata?.season?.year;
   if (!Number.isInteger(year) || year < 2000 || year > 2100)
     throw new Error("Temporada da copa indisponível.");
+  if (requestedYear && year !== requestedYear)
+    throw new Error("A fonte não disponibilizou esta temporada.");
+  const options = { stateCompetition: BRAZIL_STATE_LEAGUES.has(league) };
+  if (requestedYear) {
+    if (!Array.isArray(current.events))
+      throw new Error("Jogos da temporada indisponíveis.");
+    return {
+      ...normalizeTournament(metadata, current.events, options),
+      partial: current.events.length >= 1000,
+    };
+  }
   // Soccer's YYYY query includes a full calendar year. A European season spans two.
   // Subtract one day so midnight on Jan 1 doesn't add an irrelevant third year.
   const end = Date.parse(metadata.season.endDate);
@@ -229,10 +286,11 @@ export async function fetchTournament(league, loadJson) {
   const feeds = responses
     .filter((r) => r.status === "fulfilled" && Array.isArray(r.value.events))
     .map((r) => r.value);
-  const result = normalizeTournament(metadata, [
-    ...feeds.flatMap((r) => r.events),
-    ...(current.events || []),
-  ]);
+  const result = normalizeTournament(
+    metadata,
+    [...feeds.flatMap((r) => r.events), ...(current.events || [])],
+    options,
+  );
   return {
     ...result,
     partial:

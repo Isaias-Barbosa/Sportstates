@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { useApi } from "../hooks";
+import { ChevronDown, Trophy } from "lucide-react";
+import { useApi, today } from "../hooks";
 import type { CompetitionCatalog } from "../types";
 import { Empty, Loading, Notice } from "../components/shared";
 import StandingsTable from "../components/StandingsTable";
@@ -22,6 +23,16 @@ export default function StandingsPage() {
     sport === "soccer" && group
       ? selected?.leagues.filter((l) => group.competitions.includes(l.id))
       : selected?.leagues;
+
+  const stateIds =
+    sport === "soccer" && scope === "local" && region === "brasil"
+      ? data?.soccerRegions?.find((r) => r.id === "brasil")
+          ?.stateCompetitions || []
+      : [];
+  const isState = stateIds.includes(league);
+  const currentYear = Number(today().slice(0, 4));
+  const selectedName =
+    selected?.leagues.find((l) => l.id === league)?.name || "Classificação";
 
   function changeSport(id: string) {
     setSport(id);
@@ -159,22 +170,76 @@ export default function StandingsPage() {
               </button>
             ))}
           </div>
-          <div className="section-heading">
-            <h2>
-              {selected?.leagues.find((l) => l.id === league)?.name ||
-                "Classificação"}
-            </h2>
-          </div>
-          {league ? (
-            <StandingsTable
-              key={`${sport}/${league}`}
-              sport={sport}
-              league={league}
-            />
-          ) : (
-            <Empty title="Sem competições disponíveis">
-              Escolha outra região ou esporte.
-            </Empty>
+          {!!stateIds.length && (
+            <details className="state-championships">
+              <summary>
+                <Trophy size={22} />
+                <span>
+                  <strong>Estaduais</strong>
+                  <small>
+                    Temporada {currentYear} · Escolha seu campeonato
+                  </small>
+                </span>
+                <ChevronDown size={20} />
+              </summary>
+              <div className="state-championship-options">
+                <p>
+                  Classificação e fases eliminatórias dos campeonatos estaduais
+                  cobertos pela fonte.
+                </p>
+                <div className="standings-leagues">
+                  {stateIds
+                    .map((id) => selected?.leagues.find((l) => l.id === id))
+                    .filter((l) => l !== undefined)
+                    .map((l) => (
+                      <button
+                        type="button"
+                        key={l.id}
+                        className={`standings-league ${league === l.id ? "selected" : ""}`}
+                        aria-pressed={league === l.id}
+                        onClick={() => setLeague(l.id)}
+                      >
+                        <Trophy size={21} />
+                        <strong>{l.name}</strong>
+                        <small>{currentYear} · Classificação e fases →</small>
+                      </button>
+                    ))}
+                </div>
+                {isState && (
+                  <div className="state-championship-results">
+                    <div className="section-heading">
+                      <h2>
+                        {selectedName} · {currentYear}
+                      </h2>
+                    </div>
+                    <StandingsTable
+                      key={`${sport}/${league}/${currentYear}`}
+                      sport={sport}
+                      league={league}
+                      season={currentYear}
+                    />
+                  </div>
+                )}
+              </div>
+            </details>
+          )}
+          {!isState && (
+            <>
+              <div className="section-heading">
+                <h2>{selectedName}</h2>
+              </div>
+              {league ? (
+                <StandingsTable
+                  key={`${sport}/${league}`}
+                  sport={sport}
+                  league={league}
+                />
+              ) : (
+                <Empty title="Sem competições disponíveis">
+                  Escolha outra região ou esporte.
+                </Empty>
+              )}
+            </>
           )}
         </>
       )}

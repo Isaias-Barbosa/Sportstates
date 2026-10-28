@@ -35,7 +35,8 @@ test('regiões locais e torneios internacionais ficam separados, sem perder comp
   assert.equal(new Set(ids).size, ids.length);
   const brasil = catalog.soccerRegions.find(r => r.id === 'brasil');
   const england = catalog.soccerRegions.find(r => r.id === 'inglaterra');
-  assert.ok(['bra.1','bra.2','bra.copa_do_brazil','bra.camp.carioca','bra.camp.paulista','bra.camp.gaucho','bra.camp.mineiro'].every(id => brasil.competitions.includes(id)));
+  assert.deepEqual(brasil.competitions,['bra.1','bra.2','bra.copa_do_brazil']);
+  assert.ok(['bra.camp.carioca','bra.camp.paulista','bra.camp.gaucho','bra.camp.mineiro'].every(id => brasil.stateCompetitions.includes(id)));
   assert.ok(!brasil.competitions.includes('conmebol.libertadores'));
   assert.deepEqual(england.competitions,['eng.1','eng.fa','eng.league_cup']);
   const americas=catalog.soccerInternationalGroups.find(g=>g.id==='americas');
@@ -43,7 +44,7 @@ test('regiões locais e torneios internacionais ficam separados, sem perder comp
   assert.ok(['conmebol.libertadores','conmebol.sudamericana','concacaf.champions','concacaf.leagues.cup'].every(id=>americas.competitions.includes(id)));
   assert.ok(['uefa.champions','uefa.europa','uefa.europa.conf'].every(id=>internationals.competitions.includes(id)));
   assert.ok(ids.includes('usa.1') && ids.includes('ksa.1'));
-  const grouped=[...catalog.soccerRegions,...catalog.soccerInternationalGroups].flatMap(g=>g.competitions);
+  const grouped=[...catalog.soccerRegions,...catalog.soccerInternationalGroups].flatMap(g=>[...g.competitions,...(g.stateCompetitions||[])]);
   assert.equal(new Set(grouped).size,grouped.length);
   assert.deepEqual([...grouped].sort(),[...ids].sort());
   assert.ok(leagues.find(l=>l.id==='usa.1').teamLeague);

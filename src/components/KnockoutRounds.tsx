@@ -45,12 +45,26 @@ export default function KnockoutRounds({
   const [selected, setSelected] = useState(() => {
     const live = rounds.find((r) => r.fixtures.some((f) => f.state === "live"));
     const current = rounds.find((r) => r.id === currentRound);
+    const lastPlayed = rounds
+      .filter((r) => r.fixtures.length)
+      .sort(
+        (a, b) =>
+          Math.max(
+            0,
+            ...a.fixtures.map((f) => (f.date ? Date.parse(f.date) : 0)),
+          ) -
+          Math.max(
+            0,
+            ...b.fixtures.map((f) => (f.date ? Date.parse(f.date) : 0)),
+          ),
+      )
+      .at(-1);
     return (
       (
         live ||
-        current ||
         rounds.find((r) => r.fixtures.some((f) => f.state === "scheduled")) ||
-        rounds.filter((r) => r.fixtures.length).at(-1) ||
+        lastPlayed ||
+        current ||
         rounds[0]
       )?.id || ""
     );

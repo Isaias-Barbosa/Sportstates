@@ -1,3 +1,10 @@
+export const BRAZIL_STATE_LEAGUES = new Set([
+  "bra.camp.carioca",
+  "bra.camp.paulista",
+  "bra.camp.gaucho",
+  "bra.camp.mineiro",
+]);
+
 export const SPORTS = [
   {
     id: "soccer",
@@ -65,15 +72,8 @@ export const SOCCER_REGIONS = [
   {
     id: "brasil",
     name: "Brasil",
-    competitions: [
-      "bra.1",
-      "bra.2",
-      "bra.copa_do_brazil",
-      "bra.camp.carioca",
-      "bra.camp.paulista",
-      "bra.camp.gaucho",
-      "bra.camp.mineiro",
-    ],
+    competitions: ["bra.1", "bra.2", "bra.copa_do_brazil"],
+    stateCompetitions: [...BRAZIL_STATE_LEAGUES],
   },
   {
     id: "inglaterra",
