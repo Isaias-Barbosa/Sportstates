@@ -32,14 +32,18 @@ import {
 export default function About() {
   return (
     <>
-      <div className="eyebrow">TRANSPARÊNCIA EM CAMPO</div>
-      <h1>
-        De onde vem o jogo<span className="green">?</span>
-      </h1>
-      <p className="lead">
-        Um projeto de estudo, somente leitura, preparado para evoluir com novos
-        provedores.
-      </p>
+      <header className="page-title about-title">
+        <div>
+          <div className="eyebrow">TRANSPARÊNCIA EM CAMPO</div>
+          <h1>
+            De onde vem o jogo<span className="green">?</span>
+          </h1>
+          <p className="lead">
+            Um projeto de estudo, somente leitura, preparado para evoluir com
+            novos provedores.
+          </p>
+        </div>
+      </header>
       <div className="about-grid">
         <section>
           <Radio />

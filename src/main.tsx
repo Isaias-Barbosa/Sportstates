@@ -19,6 +19,8 @@ import {
 import { sports } from "./catalog";
 import { Empty } from "./components/shared";
 import "./styles.css";
+import "./home-viva.css";
+import "./pages-viva.css";
 import Dashboard from "./pages/Dashboard";
 import MatchPage from "./pages/MatchPage";
 import TransfersPage from "./pages/TransfersPage";

@@ -28,7 +28,6 @@ import {
   matchLabel,
 } from "../components/shared";
 import MatchBroadcasts from "../components/MatchBroadcasts";
-import "../home-viva.css";
 
 export default function Dashboard({
   favoritesOnly = false,
