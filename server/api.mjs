@@ -1,9 +1,10 @@
+import { fetchTeamCompetitions } from './team-competitions.mjs';
 import { fetchNews } from "./news.mjs";
 import { readFeatured, saveFeatured, validKey, authorized } from "./featured.mjs";
 import { matchMedia } from "./match-media.mjs";
 import { enrichBroadcasts } from "./broadcast-schedule.mjs";
 import { SPORTS, BRAZIL_STATE_LEAGUES, SOCCER_REGIONS, SOCCER_INTERNATIONAL_GROUPS, SOCCER_TEAM_LEAGUES, leagueFor } from "./catalog.mjs";
-import { listTeams, teamDetails, saveTeam } from "./teams.mjs";
+import { listTeams, teamDetails, saveTeam, getTeam } from "./teams.mjs";
 import { fetchTeamCatalog, normalizeTeamSearch, fetchSportsDBSearch, normalizeSportsDBSearch } from "./team-search.mjs";
 import { authBaseUrl, adminAuthorized } from "./admin-auth.mjs";
 import { normalizeStandings } from "./standings.mjs";
@@ -124,6 +125,15 @@ export async function route(url) {
   }
   if (url.pathname === "/api/admin-auth-config") { const url=authBaseUrl(); return url ? [200, { url }] : [503, {error:"Neon Auth não configurado."}]; }
   if (url.pathname === "/api/teams") return [200, { teams: await listTeams() }];
+  if (url.pathname === "/api/team-competitions") {
+    const id = q.get("id");
+    if (!/^\d{1,12}$/.test(id || "")) return [400, {error:"Time inválido."}];
+    const team = await getTeam(id);
+    if (!team) return [404, {error:"Time não encontrado."}];
+    if (!leagueFor(team.sport, team.league)) return [200, {teamId:id,competitions:[],partial:true,fetchedAt:new Date().toISOString(),source:"ESPN"}];
+    const result = await cached(`team-competitions:${team.sport}:${team.league}:${id}`, 60000, () => fetchTeamCompetitions(team), 300000);
+    return [200, {...result.value,stale:result.stale}];
+  }
   if (url.pathname === "/api/team") {
     const id=q.get("id"); if (!/^\d{1,12}$/.test(id || "")) return [400, {error:"Time inválido."}];
     const result=await cached(`team:${id}`, 60000, () => teamDetails(id), 300000);
