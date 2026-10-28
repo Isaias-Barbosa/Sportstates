@@ -1,0 +1,971 @@
+{
+  "revision": "mls-missing-clubs-20261028-v1",
+  "reviewedAt": "2026-10-28",
+  "season": "2026",
+  "preservedIds": ["18418", "20232"],
+  "expectedIds": [
+    "18418",
+    "20906",
+    "9720",
+    "21300",
+    "182",
+    "184",
+    "183",
+    "193",
+    "18267",
+    "185",
+    "6077",
+    "20232",
+    "187",
+    "18966",
+    "17362",
+    "18986",
+    "189",
+    "17606",
+    "12011",
+    "10739",
+    "9723",
+    "4771",
+    "190",
+    "22529",
+    "191",
+    "9726",
+    "186",
+    "21812",
+    "7318",
+    "9727"
+  ],
+  "clubs": [
+    {
+      "id": "20906",
+      "name": "Austin FC",
+      "sport": "soccer",
+      "league": "usa.1",
+      "city": "Austin, Texas",
+      "stadium": "Q2 Stadium",
+      "website": "https://www.austinfc.com/",
+      "description": "O Austin FC é um clube estadunidense da Major League Soccer, com sede em Austin, Texas. Estreou na MLS em 2021 e tem como casa o Q2 Stadium.",
+      "honours": [],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/20906.png",
+      "colors": ["#00b140", "#000000"],
+      "sources": [
+        {
+          "label": "Guia oficial de mídia da MLS 2026 (MNUFC)",
+          "url": "https://images.mlssoccer.com/image/upload/v1777668287/assets/min/media/2026_MNUFC_MediaGuide_avbiup.pdf#page=247"
+        },
+        {
+          "label": "Diretório oficial de clubes da MLS",
+          "url": "https://www.mlssoccer.com/clubs/"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Austin_FC"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://www.austinfc.com/"
+        }
+      ]
+    },
+    {
+      "id": "9720",
+      "name": "CF Montréal",
+      "sport": "soccer",
+      "league": "usa.1",
+      "city": "Montréal, Québec",
+      "stadium": "Stade Saputo",
+      "website": "https://www.cfmontreal.com/",
+      "description": "O CF Montréal representa Montreal, no Canadá, e disputa a MLS desde 2012. Manda seus jogos no Stade Saputo. Sua identidade está ligada à trajetória do Montreal Impact, nome pelo qual o clube era conhecido antes da mudança para CF Montréal.",
+      "honours": ["Campeonato Canadense - 2008, 2013, 2014, 2019, 2021"],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/9720.png",
+      "colors": ["#003da6", "#c1c5c8"],
+      "sources": [
+        {
+          "label": "Guia oficial de mídia da MLS 2026 (MNUFC)",
+          "url": "https://images.mlssoccer.com/image/upload/v1777668287/assets/min/media/2026_MNUFC_MediaGuide_avbiup.pdf#page=260"
+        },
+        {
+          "label": "Diretório oficial de clubes da MLS",
+          "url": "https://www.mlssoccer.com/clubs/"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Club_de_Foot_Montréal"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://www.cfmontreal.com/"
+        }
+      ]
+    },
+    {
+      "id": "21300",
+      "name": "Charlotte FC",
+      "sport": "soccer",
+      "league": "usa.1",
+      "city": "Charlotte, Carolina do Norte",
+      "stadium": "Bank of America Stadium",
+      "website": "https://www.charlottefootballclub.com/",
+      "description": "O Charlotte FC é um clube estadunidense da Major League Soccer, com sede em Charlotte, Carolina do Norte. Estreou na MLS em 2022 e tem como casa o Bank of America Stadium.",
+      "honours": [],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/21300.png",
+      "colors": ["#0085ca", "#000000"],
+      "sources": [
+        {
+          "label": "Guia oficial de mídia da MLS 2026 (MNUFC)",
+          "url": "https://images.mlssoccer.com/image/upload/v1777668287/assets/min/media/2026_MNUFC_MediaGuide_avbiup.pdf#page=248"
+        },
+        {
+          "label": "Diretório oficial de clubes da MLS",
+          "url": "https://www.mlssoccer.com/clubs/"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Charlotte_Football_Club"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://www.charlottefootballclub.com/"
+        }
+      ]
+    },
+    {
+      "id": "182",
+      "name": "Chicago Fire FC",
+      "sport": "soccer",
+      "league": "usa.1",
+      "city": "Chicago, Illinois",
+      "stadium": "Soldier Field",
+      "website": "https://www.chicagofirefc.com/",
+      "description": "O Chicago Fire FC é um clube estadunidense da Major League Soccer, com sede em Chicago, Illinois. Estreou na MLS em 1998 e tem como casa o Soldier Field. Entre os marcos de sua história está o título da MLS Cup em 1998.",
+      "honours": [
+        "MLS Cup - 1998",
+        "Supporters' Shield - 2003",
+        "U.S. Open Cup - 1998, 2000, 2003, 2006"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/182.png",
+      "colors": ["#7ccdef", "#ff0000"],
+      "sources": [
+        {
+          "label": "Guia oficial de mídia da MLS 2026 (MNUFC)",
+          "url": "https://images.mlssoccer.com/image/upload/v1777668287/assets/min/media/2026_MNUFC_MediaGuide_avbiup.pdf#page=249"
+        },
+        {
+          "label": "Diretório oficial de clubes da MLS",
+          "url": "https://www.mlssoccer.com/clubs/"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Chicago_Fire_Football_Club"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://www.chicagofirefc.com/"
+        }
+      ]
+    },
+    {
+      "id": "184",
+      "name": "Colorado Rapids",
+      "sport": "soccer",
+      "league": "usa.1",
+      "city": "Commerce City, Colorado",
+      "stadium": "Dick's Sporting Goods Park",
+      "website": "https://www.coloradorapids.com/",
+      "description": "O Colorado Rapids é um clube estadunidense da Major League Soccer, com sede em Commerce City, Colorado. Estreou na MLS em 1996 e tem como casa o Dick's Sporting Goods Park. Entre os marcos de sua história está o título da MLS Cup em 2010.",
+      "honours": ["MLS Cup - 2010"],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/184.png",
+      "colors": ["#8a2432", "#8ab7e9"],
+      "sources": [
+        {
+          "label": "Guia oficial de mídia da MLS 2026 (MNUFC)",
+          "url": "https://images.mlssoccer.com/image/upload/v1777668287/assets/min/media/2026_MNUFC_MediaGuide_avbiup.pdf#page=251"
+        },
+        {
+          "label": "Diretório oficial de clubes da MLS",
+          "url": "https://www.mlssoccer.com/clubs/"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Colorado_Rapids"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://www.coloradorapids.com/"
+        }
+      ]
+    },
+    {
+      "id": "183",
+      "name": "Columbus Crew",
+      "sport": "soccer",
+      "league": "usa.1",
+      "city": "Columbus, Ohio",
+      "stadium": "ScottsMiracle-Gro Field",
+      "website": "https://www.columbuscrew.com/",
+      "description": "O Columbus Crew é um clube estadunidense da Major League Soccer, com sede em Columbus, Ohio. Estreou na MLS em 1996 e tem como casa o ScottsMiracle-Gro Field. Entre os marcos de sua história está o título da Campeones Cup em 2021.",
+      "honours": [
+        "Campeones Cup - 2021",
+        "Leagues Cup - 2024",
+        "MLS Cup - 2008, 2020, 2023",
+        "Supporters' Shield - 2004, 2008, 2009",
+        "U.S. Open Cup - 2002"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/183.png",
+      "colors": ["#000000", "#fedd00"],
+      "sources": [
+        {
+          "label": "Guia oficial de mídia da MLS 2026 (MNUFC)",
+          "url": "https://images.mlssoccer.com/image/upload/v1777668287/assets/min/media/2026_MNUFC_MediaGuide_avbiup.pdf#page=252"
+        },
+        {
+          "label": "Diretório oficial de clubes da MLS",
+          "url": "https://www.mlssoccer.com/clubs/"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Columbus_Crew"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://www.columbuscrew.com/"
+        },
+        {
+          "label": "ScottsMiracle-Gro Field — nome atual",
+          "url": "https://www.columbuscrew.com/stadium/"
+        }
+      ]
+    },
+    {
+      "id": "193",
+      "name": "D.C. United",
+      "sport": "soccer",
+      "league": "usa.1",
+      "city": "Washington, D.C.",
+      "stadium": "Audi Field",
+      "website": "https://www.dcunited.com/",
+      "description": "O D.C. United é um clube estadunidense da Major League Soccer, com sede em Washington, D.C.. Estreou na MLS em 1996 e tem como casa o Audi Field. Entre os marcos de sua história está o título da Copa Interamericana em 1998.",
+      "honours": [
+        "Copa Interamericana - 1998",
+        "Copa dos Campeões da Concacaf - 1998",
+        "MLS Cup - 1996, 1997, 1999, 2004",
+        "Supporters' Shield - 1997, 1999, 2006, 2007",
+        "U.S. Open Cup - 1996, 2008, 2013"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/193.png",
+      "colors": ["#000000", "#d61018"],
+      "sources": [
+        {
+          "label": "Guia oficial de mídia da MLS 2026 (MNUFC)",
+          "url": "https://images.mlssoccer.com/image/upload/v1777668287/assets/min/media/2026_MNUFC_MediaGuide_avbiup.pdf#page=254"
+        },
+        {
+          "label": "Diretório oficial de clubes da MLS",
+          "url": "https://www.mlssoccer.com/clubs/"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/D.C._United"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://www.dcunited.com/"
+        }
+      ]
+    },
+    {
+      "id": "18267",
+      "name": "FC Cincinnati",
+      "sport": "soccer",
+      "league": "usa.1",
+      "city": "Cincinnati, Ohio",
+      "stadium": "TQL Stadium",
+      "website": "https://www.fccincinnati.com/",
+      "description": "O FC Cincinnati é um clube estadunidense da Major League Soccer, com sede em Cincinnati, Ohio. Estreou na MLS em 2019 e tem como casa o TQL Stadium. Entre os marcos de sua história está o título da Supporters' Shield em 2023.",
+      "honours": ["Supporters' Shield - 2023"],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/18267.png",
+      "colors": ["#003087", "#fe5000"],
+      "sources": [
+        {
+          "label": "Guia oficial de mídia da MLS 2026 (MNUFC)",
+          "url": "https://images.mlssoccer.com/image/upload/v1777668287/assets/min/media/2026_MNUFC_MediaGuide_avbiup.pdf#page=250"
+        },
+        {
+          "label": "Diretório oficial de clubes da MLS",
+          "url": "https://www.mlssoccer.com/clubs/"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Football_Club_Cincinnati"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://www.fccincinnati.com/"
+        }
+      ]
+    },
+    {
+      "id": "185",
+      "name": "FC Dallas",
+      "sport": "soccer",
+      "league": "usa.1",
+      "city": "Frisco, Texas",
+      "stadium": "Toyota Stadium",
+      "website": "https://www.fcdallas.com/",
+      "description": "O FC Dallas é um clube estadunidense da Major League Soccer, com sede em Frisco, Texas. Estreou na MLS em 1996 e tem como casa o Toyota Stadium. Entre os marcos de sua história está o título da Supporters' Shield em 2016.",
+      "honours": ["Supporters' Shield - 2016", "U.S. Open Cup - 1997, 2016"],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/185.png",
+      "colors": ["#c6093b", "#001f5b"],
+      "sources": [
+        {
+          "label": "Guia oficial de mídia da MLS 2026 (MNUFC)",
+          "url": "https://images.mlssoccer.com/image/upload/v1777668287/assets/min/media/2026_MNUFC_MediaGuide_avbiup.pdf#page=253"
+        },
+        {
+          "label": "Diretório oficial de clubes da MLS",
+          "url": "https://www.mlssoccer.com/clubs/"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Football_Club_Dallas"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://www.fcdallas.com/"
+        }
+      ]
+    },
+    {
+      "id": "6077",
+      "name": "Houston Dynamo FC",
+      "sport": "soccer",
+      "league": "usa.1",
+      "city": "Houston, Texas",
+      "stadium": "Shell Energy Stadium",
+      "website": "https://www.houstondynamofc.com/",
+      "description": "O Houston Dynamo FC é um clube estadunidense da Major League Soccer, com sede em Houston, Texas. Estreou na MLS em 2006 e tem como casa o Shell Energy Stadium. Entre os marcos de sua história está o título da MLS Cup em 2006.",
+      "honours": ["MLS Cup - 2006, 2007", "U.S. Open Cup - 2018, 2023"],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/6077.png",
+      "colors": ["#ff6b00", "#101820"],
+      "sources": [
+        {
+          "label": "Guia oficial de mídia da MLS 2026 (MNUFC)",
+          "url": "https://images.mlssoccer.com/image/upload/v1777668287/assets/min/media/2026_MNUFC_MediaGuide_avbiup.pdf#page=255"
+        },
+        {
+          "label": "Diretório oficial de clubes da MLS",
+          "url": "https://www.mlssoccer.com/clubs/"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Houston_Dynamo_Football_Club"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://www.houstondynamofc.com/"
+        }
+      ]
+    },
+    {
+      "id": "187",
+      "name": "LA Galaxy",
+      "sport": "soccer",
+      "league": "usa.1",
+      "city": "Carson, California",
+      "stadium": "Dignity Health Sports Park",
+      "website": "https://www.lagalaxy.com/",
+      "description": "O LA Galaxy é um clube estadunidense da Major League Soccer, com sede em Carson, California. Estreou na MLS em 1996 e tem como casa o Dignity Health Sports Park. Entre os marcos de sua história está o título da Copa dos Campeões da Concacaf em 2000.",
+      "honours": [
+        "Copa dos Campeões da Concacaf - 2000",
+        "MLS Cup - 2002, 2005, 2011, 2012, 2014, 2024",
+        "Supporters' Shield - 1998, 2002, 2010, 2011",
+        "U.S. Open Cup - 2001, 2005"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/187.png",
+      "colors": ["#00235d", "#ffffff"],
+      "sources": [
+        {
+          "label": "Guia oficial de mídia da MLS 2026 (MNUFC)",
+          "url": "https://images.mlssoccer.com/image/upload/v1777668287/assets/min/media/2026_MNUFC_MediaGuide_avbiup.pdf#page=257"
+        },
+        {
+          "label": "Diretório oficial de clubes da MLS",
+          "url": "https://www.mlssoccer.com/clubs/"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Los_Angeles_Galaxy"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://www.lagalaxy.com/"
+        }
+      ]
+    },
+    {
+      "id": "18966",
+      "name": "LAFC",
+      "sport": "soccer",
+      "league": "usa.1",
+      "city": "Los Angeles, California",
+      "stadium": "BMO Stadium",
+      "website": "https://www.lafc.com/",
+      "description": "O LAFC é um clube estadunidense da Major League Soccer, com sede em Los Angeles, California. Estreou na MLS em 2018 e tem como casa o BMO Stadium. Entre os marcos de sua história está o título da MLS Cup em 2022.",
+      "honours": [
+        "MLS Cup - 2022",
+        "Supporters' Shield - 2019, 2022",
+        "U.S. Open Cup - 2024"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/18966.png",
+      "colors": ["#000000", "#c7a36f"],
+      "sources": [
+        {
+          "label": "Guia oficial de mídia da MLS 2026 (MNUFC)",
+          "url": "https://images.mlssoccer.com/image/upload/v1777668287/assets/min/media/2026_MNUFC_MediaGuide_avbiup.pdf#page=258"
+        },
+        {
+          "label": "Diretório oficial de clubes da MLS",
+          "url": "https://www.mlssoccer.com/clubs/"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Los_Angeles_Football_Club"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://www.lafc.com/"
+        }
+      ]
+    },
+    {
+      "id": "17362",
+      "name": "Minnesota United FC",
+      "sport": "soccer",
+      "league": "usa.1",
+      "city": "Saint Paul, Minnesota",
+      "stadium": "Allianz Field",
+      "website": "https://www.mnufc.com/",
+      "description": "O Minnesota United FC representa a região de Minneapolis e Saint Paul, no estado de Minnesota. Estreou na Major League Soccer em 2017 e manda seus jogos no Allianz Field, em Saint Paul. O clube é conhecido como Loons, referência à ave símbolo do estado.",
+      "honours": [],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/17362.png",
+      "colors": ["#000000", "#9bcde4"],
+      "sources": [
+        {
+          "label": "Diretório oficial de clubes da MLS",
+          "url": "https://www.mlssoccer.com/clubs/"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Minnesota_United_Football_Club"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://www.mnufc.com/"
+        },
+        {
+          "label": "Allianz Field — site oficial",
+          "url": "https://www.mnufc.com/stadium/"
+        }
+      ]
+    },
+    {
+      "id": "18986",
+      "name": "Nashville SC",
+      "sport": "soccer",
+      "league": "usa.1",
+      "city": "Nashville, Tennessee",
+      "stadium": "GEODIS Park",
+      "website": "https://www.nashvillesc.com/",
+      "description": "O Nashville SC é um clube estadunidense da Major League Soccer, com sede em Nashville, Tennessee. Estreou na MLS em 2020 e tem como casa o GEODIS Park. Entre os marcos de sua história está o título da U.S. Open Cup em 2025.",
+      "honours": ["U.S. Open Cup - 2025"],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/18986.png",
+      "colors": ["#ece83a", "#1f1646"],
+      "sources": [
+        {
+          "label": "Guia oficial de mídia da MLS 2026 (MNUFC)",
+          "url": "https://images.mlssoccer.com/image/upload/v1777668287/assets/min/media/2026_MNUFC_MediaGuide_avbiup.pdf#page=261"
+        },
+        {
+          "label": "Diretório oficial de clubes da MLS",
+          "url": "https://www.mlssoccer.com/clubs/"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Nashville_Soccer_Club"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://www.nashvillesc.com/"
+        }
+      ]
+    },
+    {
+      "id": "189",
+      "name": "New England Revolution",
+      "sport": "soccer",
+      "league": "usa.1",
+      "city": "Foxborough, Massachusetts",
+      "stadium": "Gillette Stadium",
+      "website": "https://www.revolutionsoccer.net/",
+      "description": "O New England Revolution é um clube estadunidense da Major League Soccer, com sede em Foxborough, Massachusetts. Estreou na MLS em 1996 e tem como casa o Gillette Stadium. Entre os marcos de sua história está o título da SuperLiga Norte-Americana em 2008.",
+      "honours": [
+        "SuperLiga Norte-Americana - 2008",
+        "Supporters' Shield - 2021",
+        "U.S. Open Cup - 2007"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/189.png",
+      "colors": ["#022166", "#ce0e2d"],
+      "sources": [
+        {
+          "label": "Guia oficial de mídia da MLS 2026 (MNUFC)",
+          "url": "https://images.mlssoccer.com/image/upload/v1777668287/assets/min/media/2026_MNUFC_MediaGuide_avbiup.pdf#page=262"
+        },
+        {
+          "label": "Diretório oficial de clubes da MLS",
+          "url": "https://www.mlssoccer.com/clubs/"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/New_England_Revolution"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://www.revolutionsoccer.net/"
+        }
+      ]
+    },
+    {
+      "id": "17606",
+      "name": "New York City FC",
+      "sport": "soccer",
+      "league": "usa.1",
+      "city": "Nova York, Nova York",
+      "stadium": "Yankee Stadium e Citi Field",
+      "website": "https://www.newyorkcityfc.com/",
+      "description": "O New York City FC representa Nova York na Major League Soccer desde 2015. Em 2026, utiliza o Yankee Stadium, no Bronx, e o Citi Field, no Queens. Conquistou a MLS Cup em 2021 e a Campeones Cup em 2022.",
+      "honours": ["Campeones Cup - 2022", "MLS Cup - 2021"],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/17606.png",
+      "colors": ["#9fd2ff", "#000229"],
+      "sources": [
+        {
+          "label": "Guia oficial de mídia da MLS 2026 (MNUFC)",
+          "url": "https://images.mlssoccer.com/image/upload/v1777668287/assets/min/media/2026_MNUFC_MediaGuide_avbiup.pdf#page=264"
+        },
+        {
+          "label": "Diretório oficial de clubes da MLS",
+          "url": "https://www.mlssoccer.com/clubs/"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/New_York_City_Football_Club"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://www.newyorkcityfc.com/"
+        },
+        {
+          "label": "Estádios da temporada 2026",
+          "url": "https://en.wikipedia.org/wiki/2026_Major_League_Soccer_season#Stadiums_and_locations"
+        }
+      ]
+    },
+    {
+      "id": "12011",
+      "name": "Orlando City SC",
+      "sport": "soccer",
+      "league": "usa.1",
+      "city": "Orlando, Florida",
+      "stadium": "Inter&Co Stadium",
+      "website": "https://www.orlandocitysc.com/",
+      "description": "O Orlando City SC é um clube estadunidense da Major League Soccer, com sede em Orlando, Florida. Estreou na MLS em 2015 e tem como casa o Inter&Co Stadium. Entre os marcos de sua história está o título da U.S. Open Cup em 2022.",
+      "honours": ["U.S. Open Cup - 2022"],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/12011.png",
+      "colors": ["#60269e", "#f0d283"],
+      "sources": [
+        {
+          "label": "Guia oficial de mídia da MLS 2026 (MNUFC)",
+          "url": "https://images.mlssoccer.com/image/upload/v1777668287/assets/min/media/2026_MNUFC_MediaGuide_avbiup.pdf#page=265"
+        },
+        {
+          "label": "Diretório oficial de clubes da MLS",
+          "url": "https://www.mlssoccer.com/clubs/"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Orlando_City_Soccer_Club"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://www.orlandocitysc.com/"
+        }
+      ]
+    },
+    {
+      "id": "10739",
+      "name": "Philadelphia Union",
+      "sport": "soccer",
+      "league": "usa.1",
+      "city": "Chester, Pensilvânia",
+      "stadium": "Subaru Park",
+      "website": "https://www.philadelphiaunion.com/",
+      "description": "O Philadelphia Union é um clube estadunidense da Major League Soccer, com sede em Chester, Pensilvânia. Estreou na MLS em 2010 e tem como casa o Subaru Park. Entre os marcos de sua história está o título da Supporters' Shield em 2020.",
+      "honours": ["Supporters' Shield - 2020, 2025"],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/10739.png",
+      "colors": ["#051f31", "#e0d0a6"],
+      "sources": [
+        {
+          "label": "Guia oficial de mídia da MLS 2026 (MNUFC)",
+          "url": "https://images.mlssoccer.com/image/upload/v1777668287/assets/min/media/2026_MNUFC_MediaGuide_avbiup.pdf#page=266"
+        },
+        {
+          "label": "Diretório oficial de clubes da MLS",
+          "url": "https://www.mlssoccer.com/clubs/"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Philadelphia_Union"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://www.philadelphiaunion.com/"
+        },
+        {
+          "label": "Conferência dos títulos do Supporters’ Shield",
+          "url": "https://en.wikipedia.org/wiki/Philadelphia_Union#Honors"
+        }
+      ]
+    },
+    {
+      "id": "9723",
+      "name": "Portland Timbers",
+      "sport": "soccer",
+      "league": "usa.1",
+      "city": "Portland, Oregon",
+      "stadium": "Providence Park",
+      "website": "https://www.timbers.com/",
+      "description": "O Portland Timbers é um clube estadunidense da Major League Soccer, com sede em Portland, Oregon. Estreou na MLS em 2011 e tem como casa o Providence Park. Entre os marcos de sua história está o título da MLS Cup em 2015.",
+      "honours": ["MLS Cup - 2015", "MLS is Back Tournament - 2020"],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/9723.png",
+      "colors": ["#2c5234", "#c99700"],
+      "sources": [
+        {
+          "label": "Guia oficial de mídia da MLS 2026 (MNUFC)",
+          "url": "https://images.mlssoccer.com/image/upload/v1777668287/assets/min/media/2026_MNUFC_MediaGuide_avbiup.pdf#page=267"
+        },
+        {
+          "label": "Diretório oficial de clubes da MLS",
+          "url": "https://www.mlssoccer.com/clubs/"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Portland_Timbers"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://www.timbers.com/"
+        }
+      ]
+    },
+    {
+      "id": "4771",
+      "name": "Real Salt Lake",
+      "sport": "soccer",
+      "league": "usa.1",
+      "city": "Sandy, Utah",
+      "stadium": "America First Field",
+      "website": "https://www.rsl.com/",
+      "description": "O Real Salt Lake é um clube estadunidense da Major League Soccer, com sede em Sandy, Utah. Estreou na MLS em 2005 e tem como casa o America First Field. Entre os marcos de sua história está o título da MLS Cup em 2009.",
+      "honours": ["MLS Cup - 2009"],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/4771.png",
+      "colors": ["#a32035", "#daa900"],
+      "sources": [
+        {
+          "label": "Guia oficial de mídia da MLS 2026 (MNUFC)",
+          "url": "https://images.mlssoccer.com/image/upload/v1777668287/assets/min/media/2026_MNUFC_MediaGuide_avbiup.pdf#page=268"
+        },
+        {
+          "label": "Diretório oficial de clubes da MLS",
+          "url": "https://www.mlssoccer.com/clubs/"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Real_Salt_Lake"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://www.rsl.com/"
+        }
+      ]
+    },
+    {
+      "id": "190",
+      "name": "Red Bull New York",
+      "sport": "soccer",
+      "league": "usa.1",
+      "city": "Harrison, Nova Jersey",
+      "stadium": "Sports Illustrated Stadium",
+      "website": "https://www.newyorkredbulls.com/",
+      "description": "O Red Bull New York é um clube estadunidense da Major League Soccer, com sede em Harrison, Nova Jersey. Estreou na MLS em 1996 e tem como casa o Sports Illustrated Stadium. Entre os marcos de sua história está o título da Supporters' Shield em 2013.",
+      "honours": ["Supporters' Shield - 2013, 2015, 2018"],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/190.png",
+      "colors": ["#ba0c2f", "#ffc72c"],
+      "sources": [
+        {
+          "label": "Guia oficial de mídia da MLS 2026 (MNUFC)",
+          "url": "https://images.mlssoccer.com/image/upload/v1777668287/assets/min/media/2026_MNUFC_MediaGuide_avbiup.pdf#page=263"
+        },
+        {
+          "label": "Diretório oficial de clubes da MLS",
+          "url": "https://www.mlssoccer.com/clubs/"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/New_York_Red_Bulls"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://www.newyorkredbulls.com/"
+        }
+      ]
+    },
+    {
+      "id": "22529",
+      "name": "San Diego FC",
+      "sport": "soccer",
+      "league": "usa.1",
+      "city": "San Diego, California",
+      "stadium": "Snapdragon Stadium",
+      "website": "https://www.sandiegofc.com/",
+      "description": "O San Diego FC é um clube estadunidense da Major League Soccer, com sede em San Diego, California. Estreou na MLS em 2025 e tem como casa o Snapdragon Stadium.",
+      "honours": [],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/22529.png",
+      "colors": ["#697a7c", "#f89e1a"],
+      "sources": [
+        {
+          "label": "Guia oficial de mídia da MLS 2026 (MNUFC)",
+          "url": "https://images.mlssoccer.com/image/upload/v1777668287/assets/min/media/2026_MNUFC_MediaGuide_avbiup.pdf#page=269"
+        },
+        {
+          "label": "Diretório oficial de clubes da MLS",
+          "url": "https://www.mlssoccer.com/clubs/"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/San_Diego_Football_Club"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://www.sandiegofc.com/"
+        }
+      ]
+    },
+    {
+      "id": "191",
+      "name": "San Jose Earthquakes",
+      "sport": "soccer",
+      "league": "usa.1",
+      "city": "San Jose, California",
+      "stadium": "PayPal Park",
+      "website": "https://www.sjearthquakes.com/",
+      "description": "O San Jose Earthquakes é um clube estadunidense da Major League Soccer, com sede em San Jose, California. Estreou na MLS em 1996 e tem como casa o PayPal Park. Entre os marcos de sua história está o título da MLS Cup em 2001.",
+      "honours": ["MLS Cup - 2001, 2003", "Supporters' Shield - 2005, 2012"],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/191.png",
+      "colors": ["#003da6", "#ffffff"],
+      "sources": [
+        {
+          "label": "Guia oficial de mídia da MLS 2026 (MNUFC)",
+          "url": "https://images.mlssoccer.com/image/upload/v1777668287/assets/min/media/2026_MNUFC_MediaGuide_avbiup.pdf#page=270"
+        },
+        {
+          "label": "Diretório oficial de clubes da MLS",
+          "url": "https://www.mlssoccer.com/clubs/"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/San_Jose_Earthquakes"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://www.sjearthquakes.com/"
+        }
+      ]
+    },
+    {
+      "id": "9726",
+      "name": "Seattle Sounders FC",
+      "sport": "soccer",
+      "league": "usa.1",
+      "city": "Seattle, Washington",
+      "stadium": "Lumen Field",
+      "website": "https://www.soundersfc.com/",
+      "description": "O Seattle Sounders FC é um clube estadunidense da Major League Soccer, com sede em Seattle, Washington. Estreou na MLS em 2009 e tem como casa o Lumen Field. Entre os marcos de sua história está o título da Copa dos Campeões da Concacaf em 2022.",
+      "honours": [
+        "Copa dos Campeões da Concacaf - 2022",
+        "Leagues Cup - 2025",
+        "MLS Cup - 2016, 2019",
+        "Supporters' Shield - 2014",
+        "U.S. Open Cup - 2009, 2010, 2011, 2014"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/9726.png",
+      "colors": ["#2dc84d", "#0033a0"],
+      "sources": [
+        {
+          "label": "Guia oficial de mídia da MLS 2026 (MNUFC)",
+          "url": "https://images.mlssoccer.com/image/upload/v1777668287/assets/min/media/2026_MNUFC_MediaGuide_avbiup.pdf#page=271"
+        },
+        {
+          "label": "Diretório oficial de clubes da MLS",
+          "url": "https://www.mlssoccer.com/clubs/"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Seattle_Sounders_Football_Club"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://www.soundersfc.com/"
+        }
+      ]
+    },
+    {
+      "id": "186",
+      "name": "Sporting Kansas City",
+      "sport": "soccer",
+      "league": "usa.1",
+      "city": "Kansas City, Kansas",
+      "stadium": "Sporting Park",
+      "website": "https://www.sportingkc.com/",
+      "description": "O Sporting Kansas City é um clube estadunidense da Major League Soccer, com sede em Kansas City, Kansas. Estreou na MLS em 1996 e tem como casa o Sporting Park. Entre os marcos de sua história está o título da MLS Cup em 2000.",
+      "honours": [
+        "MLS Cup - 2000, 2013",
+        "Supporters' Shield - 2000",
+        "U.S. Open Cup - 2004, 2012, 2015, 2017"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/186.png",
+      "colors": ["#a7c6ed", "#0a2240"],
+      "sources": [
+        {
+          "label": "Guia oficial de mídia da MLS 2026 (MNUFC)",
+          "url": "https://images.mlssoccer.com/image/upload/v1777668287/assets/min/media/2026_MNUFC_MediaGuide_avbiup.pdf#page=256"
+        },
+        {
+          "label": "Diretório oficial de clubes da MLS",
+          "url": "https://www.mlssoccer.com/clubs/"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Sporting_Kansas_City"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://www.sportingkc.com/"
+        },
+        {
+          "label": "Sporting Park — nome atual",
+          "url": "https://www.sportingkc.com/stadium/"
+        }
+      ]
+    },
+    {
+      "id": "21812",
+      "name": "St. Louis CITY SC",
+      "sport": "soccer",
+      "league": "usa.1",
+      "city": "St. Louis, Missouri",
+      "stadium": "Energizer Park",
+      "website": "https://www.stlcitysc.com/",
+      "description": "O St. Louis CITY SC é um clube estadunidense da Major League Soccer, com sede em St. Louis, Missouri. Estreou na MLS em 2023 e tem como casa o Energizer Park.",
+      "honours": [],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/21812.png",
+      "colors": ["#ec1458", "#001544"],
+      "sources": [
+        {
+          "label": "Guia oficial de mídia da MLS 2026 (MNUFC)",
+          "url": "https://images.mlssoccer.com/image/upload/v1777668287/assets/min/media/2026_MNUFC_MediaGuide_avbiup.pdf#page=272"
+        },
+        {
+          "label": "Diretório oficial de clubes da MLS",
+          "url": "https://www.mlssoccer.com/clubs/"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/St._Louis_City_Soccer_Club"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://www.stlcitysc.com/"
+        },
+        {
+          "label": "Energizer Park — nome atual",
+          "url": "https://www.stlcitysc.com/stadium/"
+        }
+      ]
+    },
+    {
+      "id": "7318",
+      "name": "Toronto FC",
+      "sport": "soccer",
+      "league": "usa.1",
+      "city": "Toronto, Ontario",
+      "stadium": "BMO Field",
+      "website": "https://www.torontofc.ca/",
+      "description": "O Toronto FC é um clube canadense da Major League Soccer, com sede em Toronto, Ontario. Estreou na MLS em 2007 e tem como casa o BMO Field. Entre os marcos de sua história está o título da MLS Cup em 2017.",
+      "honours": [
+        "MLS Cup - 2017",
+        "Supporters' Shield - 2017",
+        "Campeonato Canadense - 2009, 2010, 2011, 2012, 2016, 2017, 2018, 2020"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/7318.png",
+      "colors": ["#aa182c", "#a2a9ad"],
+      "sources": [
+        {
+          "label": "Guia oficial de mídia da MLS 2026 (MNUFC)",
+          "url": "https://images.mlssoccer.com/image/upload/v1777668287/assets/min/media/2026_MNUFC_MediaGuide_avbiup.pdf#page=273"
+        },
+        {
+          "label": "Diretório oficial de clubes da MLS",
+          "url": "https://www.mlssoccer.com/clubs/"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Toronto_Football_Club"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://www.torontofc.ca/"
+        }
+      ]
+    },
+    {
+      "id": "9727",
+      "name": "Vancouver Whitecaps",
+      "sport": "soccer",
+      "league": "usa.1",
+      "city": "Vancouver, Colúmbia Britânica",
+      "stadium": "BC Place",
+      "website": "https://www.whitecapsfc.com/",
+      "description": "O Vancouver Whitecaps é um clube canadense da Major League Soccer, com sede em Vancouver, Colúmbia Britânica. Estreou na MLS em 2011 e tem como casa o BC Place. Entre os marcos de sua história está o título da Campeonato Canadense em 2015.",
+      "honours": ["Campeonato Canadense - 2015, 2022, 2023, 2024, 2025"],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/9727.png",
+      "colors": ["#ffffff", "#12284c"],
+      "sources": [
+        {
+          "label": "Guia oficial de mídia da MLS 2026 (MNUFC)",
+          "url": "https://images.mlssoccer.com/image/upload/v1777668287/assets/min/media/2026_MNUFC_MediaGuide_avbiup.pdf#page=274"
+        },
+        {
+          "label": "Diretório oficial de clubes da MLS",
+          "url": "https://www.mlssoccer.com/clubs/"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Vancouver_Whitecaps_Football_Club"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://www.whitecapsfc.com/"
+        }
+      ]
+    }
+  ]
+}
