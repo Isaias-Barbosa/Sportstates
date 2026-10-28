@@ -1,0 +1,625 @@
+{
+  "revision": "premier-league-handbook-2026-27-20261028-v1",
+  "reviewedAt": "2026-10-28",
+  "clubs": [
+    {
+      "id": "349",
+      "name": "AFC Bournemouth",
+      "sport": "soccer",
+      "league": "eng.1",
+      "city": "Bournemouth",
+      "stadium": "Vitality Stadium",
+      "website": "https://www.afcb.co.uk/",
+      "description": "O AFC Bournemouth representa a cidade de Bournemouth, no litoral sul da Inglaterra, e joga no Vitality Stadium, em Dean Court. Sua trajetória reúne conquistas nas divisões de acesso e a chegada à elite do futebol inglês. O título da segunda divisão em 2014–15 marcou a primeira promoção do clube à Premier League.",
+      "honours": [
+        "Campeonato Inglês (2ª Divisão) - 2014-15",
+        "Campeonato Inglês (3ª Divisão) - 1986-87",
+        "EFL Trophy - 1983-84"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/349.png",
+      "colors": ["#f42727", "#b57edc"],
+      "sources": [
+        {
+          "label": "Premier League Handbook 2026/27",
+          "url": "https://resources.premierleague.pulselive.com/premierleague/document/2026/10/22/24902579-d9e8-44b3-a9e4-777c7b3d7134/TM2040_PL-Handbook-and-Collateral-2026-27_Digital_21.10.pdf#page=6"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Athletic_Football_Club_Bournemouth"
+        }
+      ]
+    },
+    {
+      "id": "359",
+      "name": "Arsenal",
+      "sport": "soccer",
+      "league": "eng.1",
+      "city": "London",
+      "stadium": "Emirates Stadium",
+      "website": "https://www.arsenal.com/",
+      "description": "O Arsenal é um clube londrino cuja história está ligada à região norte da capital inglesa. Depois de atuar em Highbury, passou a jogar no Emirates Stadium. Entre suas conquistas estão campeonatos ingleses, Copas da Inglaterra e a Recopa Europeia. A campanha invicta de 2003–04 tornou-se um dos marcos mais conhecidos de sua trajetória.",
+      "honours": [
+        "Campeonato Inglês - 1930-31, 1932-33, 1933-34, 1934-35, 1937-38, 1947-48, 1952-53, 1970-71, 1988-89, 1990-91, 1997-98, 2001-02, 2003-04, 2025-26",
+        "Copa da Inglaterra - 1929-30, 1935-36, 1949-50, 1970-71, 1978-79, 1992-93, 1997-98, 2001-02, 2002-03, 2004-05, 2013-14, 2014-15, 2016-17, 2019-20",
+        "Copa da Liga Inglesa - 1986-87, 1992-93",
+        "Supercopa da Inglaterra (inclui título compartilhado) - 1930, 1931, 1933, 1934, 1938, 1948, 1953, 1991, 1998, 1999, 2002, 2004, 2014, 2015, 2017, 2020, 2023, 2026",
+        "Recopa Europeia da UEFA - 1993-94",
+        "Taça das Cidades com Feiras - 1969-70"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/359.png",
+      "colors": ["#e20520", "#003399"],
+      "sources": [
+        {
+          "label": "Premier League Handbook 2026/27",
+          "url": "https://resources.premierleague.pulselive.com/premierleague/document/2026/10/22/24902579-d9e8-44b3-a9e4-777c7b3d7134/TM2040_PL-Handbook-and-Collateral-2026-27_Digital_21.10.pdf#page=7"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Arsenal_Football_Club"
+        },
+        {
+          "label": "Estádio do Arsenal",
+          "url": "https://www.arsenal.com/news/get-to-emirates-stadium-aErsq4S9pmwx"
+        }
+      ]
+    },
+    {
+      "id": "362",
+      "name": "Aston Villa",
+      "sport": "soccer",
+      "league": "eng.1",
+      "city": "Birmingham",
+      "stadium": "Villa Park",
+      "website": "https://www.avfc.co.uk/",
+      "description": "O Aston Villa é um dos clubes tradicionais de Birmingham e tem o Villa Park como casa. Sua história reúne conquistas nacionais e europeias, com destaque para a Copa dos Campeões de 1981–82 e a Supercopa da UEFA de 1982. O clube também possui títulos do Campeonato Inglês, da Copa da Inglaterra e da Copa da Liga.",
+      "honours": [
+        "Liga dos Campeões da UEFA - 1981-82",
+        "Liga Europa da UEFA - 2025-26",
+        "Supercopa da UEFA - 1982",
+        "Copa Intertoto da UEFA - 2001",
+        "Campeonato Inglês - 1893-94, 1895-96, 1896-97, 1898-99, 1899-1900, 1909-10, 1980-81",
+        "Copa da Inglaterra - 1886-87, 1894-95, 1896-97, 1904-05, 1912-13, 1919-20, 1956-57",
+        "Copa da Liga Inglesa - 1960-61, 1974-75, 1976-77, 1993-94, 1995-96",
+        "Supercopa da Inglaterra (compartilhada) - 1981",
+        "Campeonato Inglês (2ª Divisão) - 1937-38, 1959-60",
+        "Campeonato Inglês (3ª Divisão) - 1971-72"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/362.png",
+      "colors": ["#660e36", "#000000"],
+      "sources": [
+        {
+          "label": "Premier League Handbook 2026/27",
+          "url": "https://resources.premierleague.pulselive.com/premierleague/document/2026/10/22/24902579-d9e8-44b3-a9e4-777c7b3d7134/TM2040_PL-Handbook-and-Collateral-2026-27_Digital_21.10.pdf#page=8"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Aston_Villa_Football_Club"
+        }
+      ]
+    },
+    {
+      "id": "337",
+      "name": "Brentford",
+      "sport": "soccer",
+      "league": "eng.1",
+      "city": "Brentford",
+      "stadium": "Gtech Community Stadium",
+      "website": "https://www.brentfordfc.com/",
+      "description": "O Brentford é um clube da região de Brentford, no oeste da Grande Londres. Atualmente recebe seus jogos no Gtech Community Stadium, após uma longa ligação com Griffin Park. Sua história inclui conquistas nas divisões inferiores do futebol inglês e a ascensão à Premier League, consolidada pelo acesso obtido nos playoffs de 2021.",
+      "honours": [
+        "Campeonato Inglês (2ª Divisão) - 1934-35",
+        "Campeonato Inglês (3ª Divisão) - 1932-33",
+        "Campeonato Inglês (4ª Divisão) - 1962-63, 1998-99, 2008-09"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/337.png",
+      "colors": ["#f42727", "#0f1c3f"],
+      "sources": [
+        {
+          "label": "Premier League Handbook 2026/27",
+          "url": "https://resources.premierleague.pulselive.com/premierleague/document/2026/10/22/24902579-d9e8-44b3-a9e4-777c7b3d7134/TM2040_PL-Handbook-and-Collateral-2026-27_Digital_21.10.pdf#page=9"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Brentford_Football_Club"
+        }
+      ]
+    },
+    {
+      "id": "331",
+      "name": "Brighton & Hove Albion",
+      "sport": "soccer",
+      "league": "eng.1",
+      "city": "Brighton",
+      "stadium": "The American Express Stadium",
+      "website": "https://www.brightonandhovealbion.com/",
+      "description": "O Brighton & Hove Albion representa Brighton e Hove, na costa sul da Inglaterra. O American Express Stadium é sua casa, também conhecida como Falmer Stadium. Depois de períodos difíceis e mudanças de estádio, o clube voltou à primeira divisão e ampliou sua presença no futebol inglês e nas competições europeias.",
+      "honours": [
+        "Supercopa da Inglaterra - 1910",
+        "Campeonato Inglês (3ª Divisão) - 1957-58, 2001-02, 2010-11",
+        "Campeonato Inglês (4ª Divisão) - 1964-65, 2000-01"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/331.png",
+      "colors": ["#0606fa", "#005f60"],
+      "sources": [
+        {
+          "label": "Premier League Handbook 2026/27",
+          "url": "https://resources.premierleague.pulselive.com/premierleague/document/2026/10/22/24902579-d9e8-44b3-a9e4-777c7b3d7134/TM2040_PL-Handbook-and-Collateral-2026-27_Digital_21.10.pdf#page=10"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Brighton_&_Hove_Albion_Football_Club"
+        }
+      ]
+    },
+    {
+      "id": "363",
+      "name": "Chelsea",
+      "sport": "soccer",
+      "league": "eng.1",
+      "city": "London",
+      "stadium": "Stamford Bridge",
+      "website": "https://www.chelseafc.com/",
+      "description": "O Chelsea é um clube de Londres que tem o Stamford Bridge como casa. Sua trajetória reúne títulos do Campeonato Inglês, da Copa da Inglaterra e da Copa da Liga, além de conquistas europeias e mundiais. Entre os marcos estão as Ligas dos Campeões de 2011–12 e 2020–21 e o título da Liga Conferência de 2024–25.",
+      "honours": [
+        "Mundial de Clubes da FIFA (formato de 2025) - 2025",
+        "Copa do Mundo de Clubes da FIFA - 2021",
+        "Liga dos Campeões da UEFA - 2011-12, 2020-21",
+        "Liga Europa da UEFA - 2012-13, 2018-19",
+        "Liga Conferência da UEFA - 2024-25",
+        "Supercopa da UEFA - 1998, 2021",
+        "Recopa Europeia da UEFA - 1970-71, 1997-98",
+        "Campeonato Inglês - 1954-55, 2004-05, 2005-06, 2009-10, 2014-15, 2016-17",
+        "Copa da Inglaterra - 1969-70, 1996-97, 1999-00, 2006-07, 2008-09, 2009-10, 2011-12, 2017-18",
+        "Copa da Liga Inglesa - 1964-65, 1997-98, 2004-05, 2006-07, 2014-15",
+        "Supercopa da Inglaterra - 1955, 2000, 2005, 2009",
+        "Campeonato Inglês (2ª Divisão) - 1983-84, 1988-89",
+        "Copa de Membros Ingleses - 1985-86, 1989-90"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/363.png",
+      "colors": ["#144992", "#ffffff"],
+      "sources": [
+        {
+          "label": "Premier League Handbook 2026/27",
+          "url": "https://resources.premierleague.pulselive.com/premierleague/document/2026/10/22/24902579-d9e8-44b3-a9e4-777c7b3d7134/TM2040_PL-Handbook-and-Collateral-2026-27_Digital_21.10.pdf#page=11"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Chelsea_Football_Club"
+        }
+      ]
+    },
+    {
+      "id": "388",
+      "name": "Coventry City",
+      "sport": "soccer",
+      "league": "eng.1",
+      "city": "Coventry",
+      "stadium": "Coventry Building Society Arena",
+      "website": "https://www.ccfc.co.uk/",
+      "description": "O Coventry City representa a cidade de Coventry e manda seus jogos na Coventry Building Society Arena. A conquista da Copa da Inglaterra de 1986–87 é um dos grandes marcos de sua história. O clube também venceu divisões de acesso do futebol inglês e o EFL Trophy, construindo sua trajetória entre a elite e os campeonatos inferiores.",
+      "honours": [
+        "Copa da Inglaterra - 1986-87",
+        "Campeonato Inglês (2ª Divisão) - 1966-67, 2025-26",
+        "Campeonato Inglês (3ª Divisão) - 1963-64, 2019-20",
+        "EFL Trophy - 2016-17"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/388.png",
+      "colors": ["#87cced", "#ffffff"],
+      "sources": [
+        {
+          "label": "Premier League Handbook 2026/27",
+          "url": "https://resources.premierleague.pulselive.com/premierleague/document/2026/10/22/24902579-d9e8-44b3-a9e4-777c7b3d7134/TM2040_PL-Handbook-and-Collateral-2026-27_Digital_21.10.pdf#page=12"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Coventry_City_Football_Club"
+        }
+      ]
+    },
+    {
+      "id": "384",
+      "name": "Crystal Palace",
+      "sport": "soccer",
+      "league": "eng.1",
+      "city": "London",
+      "stadium": "Selhurst Park",
+      "website": "https://www.cpfc.co.uk/",
+      "description": "O Crystal Palace é um clube do sul de Londres e tem o Selhurst Park como estádio. Após diversas campanhas nas divisões de acesso e na elite inglesa, conquistou a Copa da Inglaterra de 2024–25 e a Supercopa de 2025. Sua história também reúne títulos de divisões inferiores e conquistas internacionais.",
+      "honours": [
+        "Liga Conferência da UEFA - 2025-26",
+        "Copa da Inglaterra - 2024-25",
+        "Supercopa da Inglaterra - 2025",
+        "Copa de Membros Ingleses - 1990-91",
+        "Campeonato Inglês (2ª Divisão) - 1978-79, 1993-94",
+        "Campeonato Inglês (3ª Divisão) - 1920-21"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/384.png",
+      "colors": ["#0202fb", "#000000"],
+      "sources": [
+        {
+          "label": "Premier League Handbook 2026/27",
+          "url": "https://resources.premierleague.pulselive.com/premierleague/document/2026/10/22/24902579-d9e8-44b3-a9e4-777c7b3d7134/TM2040_PL-Handbook-and-Collateral-2026-27_Digital_21.10.pdf#page=13"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Crystal_Palace_Football_Club"
+        }
+      ]
+    },
+    {
+      "id": "368",
+      "name": "Everton",
+      "sport": "soccer",
+      "league": "eng.1",
+      "city": "Liverpool",
+      "stadium": "Hill Dickinson Stadium",
+      "website": "https://www.evertonfc.com/",
+      "description": "O Everton é um clube da cidade de Liverpool com uma longa história no futebol inglês. Depois de décadas em Goodison Park, passou a jogar no Hill Dickinson Stadium, em Bramley-Moore Dock. Seu histórico reúne campeonatos ingleses, Copas da Inglaterra e a Recopa Europeia de 1984–85.",
+      "honours": [
+        "Recopa Europeia da UEFA - 1984-85",
+        "Campeonato Inglês - 1890-91, 1914-15, 1927-28, 1931-32, 1938-39, 1962-63, 1969-70, 1984-85, 1986-87",
+        "Copa da Inglaterra - 1905-06, 1932-33, 1965-66, 1983-84, 1994-95",
+        "Supercopa da Inglaterra - 1928, 1932, 1963, 1970, 1984, 1985, 1986, 1987, 1995",
+        "Campeonato Inglês (2ª Divisão) - 1930-31"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/368.png",
+      "colors": ["#0606fa", "#ffffff"],
+      "sources": [
+        {
+          "label": "Premier League Handbook 2026/27",
+          "url": "https://resources.premierleague.pulselive.com/premierleague/document/2026/10/22/24902579-d9e8-44b3-a9e4-777c7b3d7134/TM2040_PL-Handbook-and-Collateral-2026-27_Digital_21.10.pdf#page=14"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Everton_Football_Club"
+        }
+      ]
+    },
+    {
+      "id": "370",
+      "name": "Fulham",
+      "sport": "soccer",
+      "league": "eng.1",
+      "city": "London",
+      "stadium": "Craven Cottage",
+      "website": "https://www.fulhamfc.com/",
+      "description": "O Fulham é um clube de Londres associado ao Craven Cottage, seu tradicional estádio às margens do rio Tâmisa. Sua trajetória inclui conquistas nas divisões de acesso do futebol inglês e o título da Copa Intertoto de 2002. Em 2009–10, chegou à final da Liga Europa, uma das campanhas internacionais mais marcantes do clube.",
+      "honours": [
+        "Copa Intertoto da UEFA - 2002",
+        "Campeonato Inglês (2ª Divisão) - 1948-49, 2000-01, 2021-22",
+        "Campeonato Inglês (3ª Divisão) - 1931-32, 1998-99"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/370.png",
+      "colors": ["#ffffff", "#cc0000"],
+      "sources": [
+        {
+          "label": "Premier League Handbook 2026/27",
+          "url": "https://resources.premierleague.pulselive.com/premierleague/document/2026/10/22/24902579-d9e8-44b3-a9e4-777c7b3d7134/TM2040_PL-Handbook-and-Collateral-2026-27_Digital_21.10.pdf#page=15"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Fulham_Football_Club"
+        }
+      ]
+    },
+    {
+      "id": "306",
+      "name": "Hull City",
+      "sport": "soccer",
+      "league": "eng.1",
+      "city": "Hull",
+      "stadium": "MKM Stadium",
+      "website": "https://www.wearehullcity.co.uk/",
+      "description": "O Hull City é o representante de Hull que disputa seus jogos no MKM Stadium. Sua história inclui títulos da terceira divisão e a estreia na primeira divisão inglesa em 2008–09. Na Copa da Inglaterra de 2013–14, o clube chegou à decisão e ficou com o vice-campeonato, após enfrentar o Arsenal.",
+      "honours": [
+        "Campeonato Inglês (3ª Divisão) - 1932-33, 1948-49, 1965-66, 2020-21"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/306.png",
+      "colors": ["#f28800", "#ffffff"],
+      "sources": [
+        {
+          "label": "Premier League Handbook 2026/27",
+          "url": "https://resources.premierleague.pulselive.com/premierleague/document/2026/10/22/24902579-d9e8-44b3-a9e4-777c7b3d7134/TM2040_PL-Handbook-and-Collateral-2026-27_Digital_21.10.pdf#page=16"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Hull_City_Association_Football_Club"
+        },
+        {
+          "label": "Títulos do Hull City",
+          "url": "https://tigerbase.hullcity.com/tigers-honours.php"
+        }
+      ]
+    },
+    {
+      "id": "373",
+      "name": "Ipswich Town",
+      "sport": "soccer",
+      "league": "eng.1",
+      "city": "Ipswich",
+      "stadium": "Portman Road",
+      "website": "https://www.itfc.co.uk/",
+      "description": "O Ipswich Town representa Ipswich, no condado de Suffolk, e joga em Portman Road. Seu currículo inclui o Campeonato Inglês de 1961–62, a Copa da Inglaterra de 1977–78 e a Copa da UEFA de 1980–81. Essas conquistas nacionais e europeias fazem parte dos principais capítulos da história do clube.",
+      "honours": [
+        "Liga Europa da UEFA (antiga Copa da UEFA) - 1980-81",
+        "Campeonato Inglês - 1961-62",
+        "Copa da Inglaterra - 1977-78",
+        "Campeonato Inglês (2ª Divisão) - 1960-61, 1967-68, 1991-92",
+        "Campeonato Inglês (3ª Divisão) - 1953-54, 1956-57"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/373.png",
+      "colors": ["#0000fa", "#f5f2dc"],
+      "sources": [
+        {
+          "label": "Premier League Handbook 2026/27",
+          "url": "https://resources.premierleague.pulselive.com/premierleague/document/2026/10/22/24902579-d9e8-44b3-a9e4-777c7b3d7134/TM2040_PL-Handbook-and-Collateral-2026-27_Digital_21.10.pdf#page=17"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Ipswich_Town_Football_Club"
+        }
+      ]
+    },
+    {
+      "id": "357",
+      "name": "Leeds United",
+      "sport": "soccer",
+      "league": "eng.1",
+      "city": "Leeds",
+      "stadium": "Elland Road",
+      "website": "https://www.leedsunited.com/",
+      "description": "O Leeds United é um clube de Leeds, em Yorkshire, e tem Elland Road como casa. Sua história reúne títulos do Campeonato Inglês, da Copa da Inglaterra e da Copa da Liga. No cenário internacional, conquistou duas edições da Taça das Cidades com Feiras e foi finalista da Copa dos Campeões de 1974–75.",
+      "honours": [
+        "Taça das Cidades com Feiras - 1967-68, 1970-71",
+        "Campeonato Inglês - 1968-69, 1973-74, 1991-92",
+        "Copa da Inglaterra - 1971-72",
+        "Copa da Liga Inglesa - 1967-68",
+        "Supercopa da Inglaterra - 1969, 1992",
+        "Campeonato Inglês (2ª Divisão) - 1923-24, 1963-64, 1989-90, 2019-20, 2024-25"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/357.png",
+      "colors": ["#ffffff", "#ffcd00"],
+      "sources": [
+        {
+          "label": "Premier League Handbook 2026/27",
+          "url": "https://resources.premierleague.pulselive.com/premierleague/document/2026/10/22/24902579-d9e8-44b3-a9e4-777c7b3d7134/TM2040_PL-Handbook-and-Collateral-2026-27_Digital_21.10.pdf#page=18"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Leeds_United_Football_Club"
+        }
+      ]
+    },
+    {
+      "id": "364",
+      "name": "Liverpool",
+      "sport": "soccer",
+      "league": "eng.1",
+      "city": "Liverpool",
+      "stadium": "Anfield",
+      "website": "https://www.liverpoolfc.com/",
+      "description": "O Liverpool é um clube da cidade de Liverpool que joga em Anfield. Sua trajetória reúne uma extensa coleção de títulos nacionais e internacionais, incluindo seis conquistas da principal competição europeia de clubes. As campanhas de 2004–05 e 2018–19 na Liga dos Campeões estão entre seus capítulos mais conhecidos.",
+      "honours": [
+        "Copa do Mundo de Clubes da FIFA - 2019",
+        "Liga dos Campeões da UEFA - 1976-77, 1977-78, 1980-81, 1983-84, 2004-05, 2018-19",
+        "Liga Europa da UEFA - 1972-73, 1975-76, 2000-01",
+        "Supercopa da UEFA - 1977, 2001, 2005, 2019",
+        "Campeonato Inglês - 1900-01, 1905-06, 1921-22, 1922-23, 1946-47, 1963-64, 1965-66, 1972-73, 1975-76, 1976-77, 1978-79, 1979-80, 1981-82, 1982-83, 1983-84, 1985-86, 1987-88, 1989-90, 2019-20, 2024-25",
+        "Copa da Inglaterra - 1964-65, 1973-74, 1985-86, 1988-89, 1991-92, 2000-01, 2005-06, 2021-22",
+        "Copa da Liga Inglesa - 1980-81, 1981-82, 1982-83, 1983-84, 1994-95, 2000-01, 2002-03, 2011-12, 2021-22, 2023-24",
+        "Supercopa da Inglaterra (inclui títulos compartilhados) - 1964, 1965, 1966, 1974, 1976, 1977, 1979, 1980, 1982, 1986, 1988, 1989, 1990, 2001, 2006, 2022",
+        "Campeonato Inglês (2ª Divisão) - 1893-94, 1895-96, 1904-05, 1961-62",
+        "Supercopa da Liga de Futebol - 1985-86"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/364.png",
+      "colors": ["#d11317", "#ffffff"],
+      "sources": [
+        {
+          "label": "Premier League Handbook 2026/27",
+          "url": "https://resources.premierleague.pulselive.com/premierleague/document/2026/10/22/24902579-d9e8-44b3-a9e4-777c7b3d7134/TM2040_PL-Handbook-and-Collateral-2026-27_Digital_21.10.pdf#page=19"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Liverpool_Football_Club"
+        }
+      ]
+    },
+    {
+      "id": "382",
+      "name": "Manchester City",
+      "sport": "soccer",
+      "league": "eng.1",
+      "city": "Manchester",
+      "stadium": "Etihad Stadium",
+      "website": "https://www.mancity.com/",
+      "description": "O Manchester City é um clube de Manchester que disputa seus jogos no Etihad Stadium. Sua história combina conquistas tradicionais do futebol inglês com uma fase recente de grande sucesso nacional e internacional. Em 2022–23, venceu a Liga dos Campeões; em 2023, acrescentou a Supercopa da UEFA e a Copa do Mundo de Clubes ao seu currículo.",
+      "honours": [
+        "Copa do Mundo de Clubes da FIFA - 2023",
+        "Liga dos Campeões da UEFA - 2022-23",
+        "Supercopa da UEFA - 2023",
+        "Recopa Europeia da UEFA - 1969-70",
+        "Campeonato Inglês - 1936-37, 1967-68, 2011-12, 2013-14, 2017-18, 2018-19, 2020-21, 2021-22, 2022-23, 2023-24",
+        "Copa da Inglaterra - 1903-04, 1933-34, 1955-56, 1968-69, 2010-11, 2018-19, 2022-23, 2025-26",
+        "Copa da Liga Inglesa - 1969-70, 1975-76, 2013-14, 2015-16, 2017-18, 2018-19, 2019-20, 2020-21, 2025-26",
+        "Supercopa da Inglaterra - 1937, 1968, 1972, 2012, 2018, 2019, 2024",
+        "Campeonato Inglês (2ª Divisão) - 1898-99, 1902-03, 1909-10, 1927-28, 1946-47, 1965-66, 2001-02"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/382.png",
+      "colors": ["#99c5ea", "#000000"],
+      "sources": [
+        {
+          "label": "Premier League Handbook 2026/27",
+          "url": "https://resources.premierleague.pulselive.com/premierleague/document/2026/10/22/24902579-d9e8-44b3-a9e4-777c7b3d7134/TM2040_PL-Handbook-and-Collateral-2026-27_Digital_21.10.pdf#page=20"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Manchester_City_Football_Club"
+        }
+      ]
+    },
+    {
+      "id": "360",
+      "name": "Manchester United",
+      "sport": "soccer",
+      "league": "eng.1",
+      "city": "Manchester",
+      "stadium": "Old Trafford",
+      "website": "https://www.manutd.co.uk/",
+      "description": "O Manchester United é um clube de Manchester e tem Old Trafford como estádio. Sua história reúne títulos ingleses, europeus e mundiais, com destaque para a tríplice conquista de 1998–99 e as Ligas dos Campeões de 1967–68 e 2007–08. O clube também possui conquistas da Liga Europa, da Recopa Europeia e da Supercopa da UEFA.",
+      "honours": [
+        "Copa do Mundo de Clubes da FIFA - 2008",
+        "Copa Intercontinental - 1999",
+        "Liga dos Campeões da UEFA - 1967-68, 1998-99, 2007-08",
+        "Liga Europa da UEFA - 2016-17",
+        "Recopa Europeia da UEFA - 1990-91",
+        "Supercopa da UEFA - 1991",
+        "Campeonato Inglês - 1907-08, 1910-11, 1951-52, 1955-56, 1956-57, 1964-65, 1966-67, 1992-93, 1993-94, 1995-96, 1996-97, 1998-99, 1999-00, 2000-01, 2002-03, 2006-07, 2007-08, 2008-09, 2010-11, 2012-13",
+        "Copa da Inglaterra - 1908-09, 1947-48, 1962-63, 1976-77, 1982-83, 1984-85, 1989-90, 1993-94, 1995-96, 1998-99, 2003-04, 2015-16, 2023-24",
+        "Copa da Liga Inglesa - 1991-92, 2005-06, 2008-09, 2009-10, 2016-17, 2022-23",
+        "Supercopa da Inglaterra (inclui títulos compartilhados) - 1908, 1911, 1952, 1956, 1957, 1965, 1967, 1977, 1983, 1990, 1993, 1994, 1996, 1997, 2003, 2007, 2008, 2010, 2011, 2013, 2016",
+        "Campeonato Inglês (2ª Divisão) - 1935-36, 1974-75"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/360.png",
+      "colors": ["#da020e", "#4169e1"],
+      "sources": [
+        {
+          "label": "Premier League Handbook 2026/27",
+          "url": "https://resources.premierleague.pulselive.com/premierleague/document/2026/10/22/24902579-d9e8-44b3-a9e4-777c7b3d7134/TM2040_PL-Handbook-and-Collateral-2026-27_Digital_21.10.pdf#page=21"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Manchester_United_Football_Club"
+        }
+      ]
+    },
+    {
+      "id": "361",
+      "name": "Newcastle United",
+      "sport": "soccer",
+      "league": "eng.1",
+      "city": "Newcastle upon Tyne",
+      "stadium": "St James’ Park",
+      "website": "https://www.newcastleunited.com/",
+      "description": "O Newcastle United representa Newcastle upon Tyne e tem o St James’ Park como casa. O clube reúne títulos do Campeonato Inglês e da Copa da Inglaterra, além da Taça das Cidades com Feiras e da Intertoto. A conquista da Copa da Liga de 2024–25 marcou o retorno aos títulos nacionais depois de um longo intervalo.",
+      "honours": [
+        "Taça das Cidades com Feiras - 1968-69",
+        "Copa Intertoto da UEFA - 2006",
+        "Campeonato Inglês - 1904-05, 1906-07, 1908-09, 1926-27",
+        "Copa da Inglaterra - 1909-10, 1923-24, 1931-32, 1950-51, 1951-52, 1954-55",
+        "Copa da Liga Inglesa - 2024-25",
+        "Supercopa da Inglaterra - 1909",
+        "Campeonato Inglês (2ª Divisão) - 1964-65, 1992-93, 2009-10, 2016-17"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/361.png",
+      "colors": ["#000000", "#0b1b3d"],
+      "sources": [
+        {
+          "label": "Premier League Handbook 2026/27",
+          "url": "https://resources.premierleague.pulselive.com/premierleague/document/2026/10/22/24902579-d9e8-44b3-a9e4-777c7b3d7134/TM2040_PL-Handbook-and-Collateral-2026-27_Digital_21.10.pdf#page=22"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Newcastle_United_Football_Club"
+        }
+      ]
+    },
+    {
+      "id": "393",
+      "name": "Nottingham Forest",
+      "sport": "soccer",
+      "league": "eng.1",
+      "city": "Nottingham",
+      "stadium": "The City Ground",
+      "website": "https://www.nottinghamforest.co.uk/",
+      "description": "O Nottingham Forest é um clube de Nottingham que joga no City Ground, em West Bridgford. Sua história tem como destaque os títulos europeus consecutivos de 1978–79 e 1979–80. Também conquistou o Campeonato Inglês de 1977–78, a Supercopa da UEFA e diversas copas nacionais.",
+      "honours": [
+        "Liga dos Campeões da UEFA - 1978-79, 1979-80",
+        "Supercopa da UEFA - 1979",
+        "Campeonato Inglês - 1977-78",
+        "Copa da Inglaterra - 1897-98, 1958-59",
+        "Copa da Liga Inglesa - 1977-78, 1978-79, 1988-89, 1989-90",
+        "Supercopa da Inglaterra - 1978",
+        "Campeonato Inglês (2ª Divisão) - 1906-07, 1921-22, 1997-98",
+        "Campeonato Inglês (3ª Divisão) - 1950-51",
+        "Copa de Membros Ingleses - 1989, 1992"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/393.png",
+      "colors": ["#c8102e", "#1b3624"],
+      "sources": [
+        {
+          "label": "Premier League Handbook 2026/27",
+          "url": "https://resources.premierleague.pulselive.com/premierleague/document/2026/10/22/24902579-d9e8-44b3-a9e4-777c7b3d7134/TM2040_PL-Handbook-and-Collateral-2026-27_Digital_21.10.pdf#page=23"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Nottingham_Forest_Football_Club"
+        }
+      ]
+    },
+    {
+      "id": "366",
+      "name": "Sunderland",
+      "sport": "soccer",
+      "league": "eng.1",
+      "city": "Sunderland",
+      "stadium": "Stadium of Light",
+      "website": "https://www.safc.com/",
+      "description": "O Sunderland representa a cidade de Sunderland, no nordeste da Inglaterra, e joga no Stadium of Light. Entre suas conquistas estão seis campeonatos ingleses e duas Copas da Inglaterra. O título da copa nacional em 1972–73, conquistado quando o clube estava na segunda divisão, é um dos episódios mais lembrados de sua história.",
+      "honours": [
+        "Campeonato Inglês - 1891-92, 1892-93, 1894-95, 1901-02, 1912-13, 1935-36",
+        "Copa da Inglaterra - 1936-37, 1972-73",
+        "Supercopa da Inglaterra - 1936",
+        "Campeonato Inglês (2ª Divisão) - 1975-76, 1995-96, 1998-99, 2004-05, 2006-07",
+        "Campeonato Inglês (3ª Divisão) - 1987-88",
+        "EFL Trophy - 2020-21"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/366.png",
+      "colors": ["#eb172b", "#ffb6c1"],
+      "sources": [
+        {
+          "label": "Premier League Handbook 2026/27",
+          "url": "https://resources.premierleague.pulselive.com/premierleague/document/2026/10/22/24902579-d9e8-44b3-a9e4-777c7b3d7134/TM2040_PL-Handbook-and-Collateral-2026-27_Digital_21.10.pdf#page=24"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Sunderland_Association_Football_Club"
+        }
+      ]
+    },
+    {
+      "id": "367",
+      "name": "Tottenham Hotspur",
+      "sport": "soccer",
+      "league": "eng.1",
+      "city": "London",
+      "stadium": "Tottenham Hotspur Stadium",
+      "website": "https://www.tottenhamhotspur.com/",
+      "description": "O Tottenham Hotspur é um clube do norte de Londres e manda seus jogos no Tottenham Hotspur Stadium. Seu currículo reúne campeonatos ingleses, Copas da Inglaterra, Copas da Liga e conquistas continentais. Entre os marcos internacionais estão a Recopa Europeia de 1962–63 e os títulos da Copa da UEFA e da Liga Europa.",
+      "honours": [
+        "Liga Europa da UEFA - 1971-72, 1983-84, 2024-25",
+        "Recopa Europeia da UEFA - 1962-63",
+        "Campeonato Inglês - 1950-51, 1960-61",
+        "Copa da Inglaterra - 1900-01, 1920-21, 1960-61, 1961-62, 1966-67, 1980-81, 1981-82, 1990-91",
+        "Copa da Liga Inglesa - 1970-71, 1972-73, 1998-99, 2007-08",
+        "Supercopa da Inglaterra (inclui títulos compartilhados) - 1921, 1951, 1961, 1962, 1967, 1981, 1991",
+        "Campeonato Inglês (2ª Divisão) - 1919-20, 1949-50"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/367.png",
+      "colors": ["#ffffff", "#0b1426"],
+      "sources": [
+        {
+          "label": "Premier League Handbook 2026/27",
+          "url": "https://resources.premierleague.pulselive.com/premierleague/document/2026/10/22/24902579-d9e8-44b3-a9e4-777c7b3d7134/TM2040_PL-Handbook-and-Collateral-2026-27_Digital_21.10.pdf#page=25"
+        },
+        {
+          "label": "História e títulos em português",
+          "url": "https://pt.wikipedia.org/wiki/Tottenham_Hotspur_Football_Club"
+        },
+        {
+          "label": "Estádio do Tottenham",
+          "url": "https://www.tottenhamhotspur.com/the-stadium"
+        }
+      ]
+    }
+  ]
+}

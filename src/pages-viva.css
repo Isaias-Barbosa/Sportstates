@@ -799,3 +799,21 @@ summary:focus-visible {
     transition: none;
   }
 }
+
+.club-profile-references {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+.club-profile-references h3 {
+  color: var(--muted);
+  font-size: 11px;
+  margin-bottom: 10px;
+}
+.club-profile-references a {
+  display: block;
+  font-size: 11px;
+  line-height: 1.7;
+  margin-top: 7px;
+  overflow-wrap: anywhere;
+}
