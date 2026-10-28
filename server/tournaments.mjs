@@ -11,6 +11,7 @@ export const KNOCKOUT_LEAGUES = new Set([
   "fra.coupe_de_france",
   "usa.open",
   "concacaf.leagues.cup",
+  "concacaf.champions",
   "ksa.kings.cup",
   "afc.champions",
   "uefa.champions",

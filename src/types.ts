@@ -151,7 +151,7 @@ export type WatchOptions = {
 export type MatchVideo = { sourceRegion?:"BR"|"international"; provider?:"youtube"|"espn"; mediaUrl?:string; id:string; title:string; channel:string; url:string; eventId?:string; minute?:string };
 export type MatchMedia = { related?:MatchVideo[]; searchLinks?:{name:string;url:string}[]; highlights:MatchVideo[]; replays:MatchVideo[]; partial:boolean; message:string; source:string };
 
-export type CompetitionCatalog = { sports: { id: string; name: string; icon: string; leagues: { id: string; name: string; hasKnockout?: boolean }[] }[]; soccerRegions?: { id: string; name: string; competitions: string[] }[] };
+export type CompetitionCatalog = { sports: { id: string; name: string; icon: string; leagues: { id: string; name: string; hasKnockout?: boolean; teamLeague?: boolean }[] }[]; soccerRegions?: { id: string; name: string; competitions: string[] }[]; soccerInternationalGroups?: { id: string; name: string; competitions: string[] }[] };
 export type KnockoutTeam = {id:string;name:string;logo:string|null;score:string|null;penalties:string|null};
 export type KnockoutFixture = {id:string;date:string|null;timeConfirmed:boolean;home:KnockoutTeam;away:KnockoutTeam;state:'live'|'scheduled'|'finished';statusName:string;clock:string;leg:string|null};
 export type KnockoutRound = {id:string;name:string;fixtures:KnockoutFixture[]};

@@ -28,15 +28,25 @@ test('standings route requests the selected competition and normalizes its respo
     assert.equal(result.groups[0].rows[0].stats.points,'10');
   } finally {globalThis.fetch=original;}
 });
-test('regiões apresentam competições nacionais e continentais sem duplicar o catálogo', async () => {
+test('regiões locais e torneios internacionais ficam separados, sem perder competições', async () => {
   const [, catalog] = await route(new URL('http://localhost/api/competitions'));
   const leagues = catalog.sports.find(s => s.id === 'soccer').leagues;
   const ids = leagues.map(l => l.id);
   assert.equal(new Set(ids).size, ids.length);
   const brasil = catalog.soccerRegions.find(r => r.id === 'brasil');
   const england = catalog.soccerRegions.find(r => r.id === 'inglaterra');
-  assert.ok(['bra.copa_do_brazil','conmebol.libertadores','conmebol.sudamericana'].every(id => brasil.competitions.includes(id)));
-  assert.ok(['eng.fa','eng.league_cup','uefa.champions'].every(id => england.competitions.includes(id)));
+  assert.ok(['bra.1','bra.2','bra.copa_do_brazil','bra.camp.carioca','bra.camp.paulista','bra.camp.gaucho','bra.camp.mineiro'].every(id => brasil.competitions.includes(id)));
+  assert.ok(!brasil.competitions.includes('conmebol.libertadores'));
+  assert.deepEqual(england.competitions,['eng.1','eng.fa','eng.league_cup']);
+  const americas=catalog.soccerInternationalGroups.find(g=>g.id==='americas');
+  const internationals=catalog.soccerInternationalGroups.find(g=>g.id==='international');
+  assert.ok(['conmebol.libertadores','conmebol.sudamericana','concacaf.champions','concacaf.leagues.cup'].every(id=>americas.competitions.includes(id)));
+  assert.ok(['uefa.champions','uefa.europa','uefa.europa.conf'].every(id=>internationals.competitions.includes(id)));
   assert.ok(ids.includes('usa.1') && ids.includes('ksa.1'));
-  for (const region of catalog.soccerRegions) for (const id of region.competitions) assert.ok(ids.includes(id), id);
+  const grouped=[...catalog.soccerRegions,...catalog.soccerInternationalGroups].flatMap(g=>g.competitions);
+  assert.equal(new Set(grouped).size,grouped.length);
+  assert.deepEqual([...grouped].sort(),[...ids].sort());
+  assert.ok(leagues.find(l=>l.id==='usa.1').teamLeague);
+  assert.ok(!leagues.find(l=>l.id==='uefa.champions').teamLeague);
+  assert.ok(leagues.find(l=>l.id==='concacaf.champions').hasKnockout);
 });

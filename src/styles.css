@@ -2755,3 +2755,8 @@ body.club-page-active { background:var(--club-page-bg, var(--canvas)); backgroun
 .knockout-fixture-footer > span { display:inline-flex; align-items:center; gap:6px; }
 .knockout-phase-select { display:none; }
 @media(max-width:640px) { .knockout-phases { display:none; }.knockout-phase-select { display:grid; gap:8px; font-size:13px; font-weight:600; }.knockout-phase-select select { width:100%; border:1px solid var(--border); border-radius:10px; padding:12px; font:inherit; color:var(--text); background:var(--panel); } }
+
+.standings-filters { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; margin-top:24px; }
+.standings-filters .standings-filter { max-width:none; margin-top:0; align-content:start; }
+.team-league-filters { margin-bottom:24px; }
+@media(max-width:760px) { .standings-filters { grid-template-columns:1fr; } }

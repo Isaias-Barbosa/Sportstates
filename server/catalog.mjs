@@ -7,6 +7,10 @@ export const SPORTS = [
       ["bra.1", "Brasileirão Série A"],
       ["bra.2", "Brasileirão Série B"],
       ["bra.copa_do_brazil", "Copa do Brasil"],
+      ["bra.camp.carioca", "Campeonato Carioca"],
+      ["bra.camp.paulista", "Campeonato Paulista"],
+      ["bra.camp.gaucho", "Campeonato Gaúcho"],
+      ["bra.camp.mineiro", "Campeonato Mineiro"],
       ["conmebol.libertadores", "Copa Libertadores"],
       ["conmebol.sudamericana", "Copa Sul-Americana"],
       ["eng.1", "Premier League"],
@@ -23,6 +27,7 @@ export const SPORTS = [
       ["usa.1", "MLS"],
       ["usa.open", "US Open Cup"],
       ["concacaf.leagues.cup", "Leagues Cup"],
+      ["concacaf.champions", "Copa dos Campeões da Concacaf"],
       ["ksa.1", "Liga Saudita"],
       ["ksa.kings.cup", "Copa do Rei Saudita"],
       ["afc.champions", "Liga dos Campeões da Ásia"],
@@ -55,14 +60,83 @@ export function leagueFor(sport, league) {
   return l ? { sport: s.id, league: l[0], name: l[1] } : null;
 }
 
-// Continental tournaments are shared by all qualifying national leagues.
+// Local and cross-border competitions have separate navigation groups.
 export const SOCCER_REGIONS = [
-  {id: 'brasil', name: 'Brasil', competitions: ['bra.1','bra.2','bra.copa_do_brazil','conmebol.libertadores','conmebol.sudamericana']},
-  {id: 'inglaterra', name: 'Inglaterra', competitions: ['eng.1','eng.fa','eng.league_cup','uefa.champions','uefa.europa','uefa.europa.conf']},
-  {id: 'espanha', name: 'Espanha', competitions: ['esp.1','esp.copa_del_rey','uefa.champions','uefa.europa','uefa.europa.conf']},
-  {id: 'italia', name: 'Itália', competitions: ['ita.1','ita.coppa_italia','uefa.champions','uefa.europa','uefa.europa.conf']},
-  {id: 'alemanha', name: 'Alemanha', competitions: ['ger.1','ger.dfb_pokal','uefa.champions','uefa.europa','uefa.europa.conf']},
-  {id: 'franca', name: 'França', competitions: ['fra.1','fra.coupe_de_france','uefa.champions','uefa.europa','uefa.europa.conf']},
-  {id: 'eua', name: 'Estados Unidos e Canadá', competitions: ['usa.1','usa.open','concacaf.leagues.cup']},
-  {id: 'arabia', name: 'Arábia Saudita', competitions: ['ksa.1','ksa.kings.cup','afc.champions']},
+  {
+    id: "brasil",
+    name: "Brasil",
+    competitions: [
+      "bra.1",
+      "bra.2",
+      "bra.copa_do_brazil",
+      "bra.camp.carioca",
+      "bra.camp.paulista",
+      "bra.camp.gaucho",
+      "bra.camp.mineiro",
+    ],
+  },
+  {
+    id: "inglaterra",
+    name: "Inglaterra",
+    competitions: ["eng.1", "eng.fa", "eng.league_cup"],
+  },
+  {
+    id: "espanha",
+    name: "Espanha",
+    competitions: ["esp.1", "esp.copa_del_rey"],
+  },
+  { id: "italia", name: "Itália", competitions: ["ita.1", "ita.coppa_italia"] },
+  {
+    id: "alemanha",
+    name: "Alemanha",
+    competitions: ["ger.1", "ger.dfb_pokal"],
+  },
+  {
+    id: "franca",
+    name: "França",
+    competitions: ["fra.1", "fra.coupe_de_france"],
+  },
+  {
+    id: "eua",
+    name: "Estados Unidos e Canadá",
+    competitions: ["usa.1", "usa.open"],
+  },
+  {
+    id: "arabia",
+    name: "Arábia Saudita",
+    competitions: ["ksa.1", "ksa.kings.cup"],
+  },
 ];
+export const SOCCER_INTERNATIONAL_GROUPS = [
+  {
+    id: "americas",
+    name: "Ligas Intercontinentais",
+    competitions: [
+      "conmebol.libertadores",
+      "conmebol.sudamericana",
+      "concacaf.champions",
+      "concacaf.leagues.cup",
+    ],
+  },
+  {
+    id: "international",
+    name: "Ligas Internacionais",
+    competitions: [
+      "uefa.champions",
+      "uefa.europa",
+      "uefa.europa.conf",
+      "afc.champions",
+    ],
+  },
+];
+export const SOCCER_TEAM_LEAGUES = new Set([
+  "bra.1",
+  "bra.2",
+  "eng.1",
+  "esp.1",
+  "ita.1",
+  "ger.1",
+  "fra.1",
+  "usa.1",
+  "ksa.1",
+]);

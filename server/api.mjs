@@ -1,7 +1,7 @@
 import { readFeatured, saveFeatured, validKey, authorized } from "./featured.mjs";
 import { matchMedia } from "./match-media.mjs";
 import { enrichBroadcasts } from "./broadcast-schedule.mjs";
-import { SPORTS, SOCCER_REGIONS, leagueFor } from "./catalog.mjs";
+import { SPORTS, SOCCER_REGIONS, SOCCER_INTERNATIONAL_GROUPS, SOCCER_TEAM_LEAGUES, leagueFor } from "./catalog.mjs";
 import { listTeams, teamDetails, saveTeam } from "./teams.mjs";
 import { fetchTeamCatalog, normalizeTeamSearch, fetchSportsDBSearch, normalizeSportsDBSearch } from "./team-search.mjs";
 import { authBaseUrl, adminAuthorized } from "./admin-auth.mjs";
@@ -129,7 +129,7 @@ export async function route(url) {
     return result.value ? [200, { ...result.value, stale: result.stale }] : [404, {error:"Time não encontrado."}];
   }
   if (url.pathname === "/api/competitions") {
-    return [200, { sports: SPORTS.map(s => ({ ...s, leagues: s.leagues.map(([id, name]) => ({ id, name, hasKnockout: s.id === 'soccer' && KNOCKOUT_LEAGUES.has(id) })) })), soccerRegions: SOCCER_REGIONS }];
+    return [200, { sports: SPORTS.map(s => ({ ...s, leagues: s.leagues.map(([id, name]) => ({ id, name, hasKnockout: s.id === 'soccer' && KNOCKOUT_LEAGUES.has(id), teamLeague: s.id !== 'soccer' || SOCCER_TEAM_LEAGUES.has(id) })) })), soccerRegions: SOCCER_REGIONS, soccerInternationalGroups: SOCCER_INTERNATIONAL_GROUPS }];
   }
   if (url.pathname === "/api/standings") {
     const config = leagueFor(q.get("sport"), q.get("league"));
