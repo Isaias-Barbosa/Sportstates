@@ -1,4 +1,12 @@
 import {
+  useAccount,
+  defaultNotifications,
+  type NotificationPreferences,
+} from "../account/AccountProvider";
+import { NotificationPreferencesForm } from "../account/PreferencesForm";
+import { configuredAlerts, allowAlert } from "./preferences";
+import { playOnceForAlert, unlockSound } from "./sound";
+import {
   createContext,
   useContext,
   useEffect,
@@ -10,7 +18,7 @@ import { Bell, BellRing, X } from "lucide-react";
 import { Link } from "react-router-dom";
 import type { Detail, Match } from "../types";
 import { sports } from "../catalog";
-import { detectAlerts, matchKey, selectGame, type GameAlert } from "./events";
+import { matchKey, selectGame, type GameAlert } from "./events";
 
 type Followed = Pick<Match, "sport" | "league" | "id" | "name" | "date"> & {
   system?: boolean;
@@ -23,9 +31,9 @@ const valid = (v: unknown): v is Followed =>
     (k) => typeof (v as Record<string, unknown>)[k] === "string",
   ) &&
   sports.some((s) => s.id === (v as Followed).sport);
-function read(): Followed[] {
+function read(storage = STORAGE, multi = false): Followed[] {
   try {
-    const value: unknown = JSON.parse(localStorage.getItem(STORAGE) || "[]");
+    const value: unknown = JSON.parse(localStorage.getItem(storage) || "[]");
     if (!Array.isArray(value)) return [];
     const items = value
       .filter(valid)
@@ -33,10 +41,10 @@ function read(): Followed[] {
     return items
       .filter(
         (m, i) =>
-          m.sport === items[0]?.sport &&
+          (multi || m.sport === items[0]?.sport) &&
           items.findIndex((v) => matchKey(v) === matchKey(m)) === i,
       )
-      .slice(0, 10);
+      .slice(0, multi ? 30 : 10);
   } catch {
     return [];
   }
@@ -99,7 +107,45 @@ export default function NotificationsProvider({
 }: {
   children: ReactNode;
 }) {
-  const [games, setGames] = useState(read);
+  const { user, preferences, mutate, saving } = useAccount();
+  const owner = user?.id || "guest";
+  const storage =
+    owner === "guest" ? STORAGE : "sportstates:notifications:v2:" + owner;
+  const [games, setGames] = useState<Followed[]>(() => read());
+  const [gamesOwner, setGamesOwner] = useState("guest");
+  const [guestPreferences, setGuestPreferences] =
+    useState<NotificationPreferences>(() => {
+      try {
+        const p = JSON.parse(
+          localStorage.getItem("sportstates:notification-preferences:v1") ||
+            "null",
+        );
+        return p &&
+          ["all", "important", "results"].includes(p.mode) &&
+          ["stadium", "whistle", "soft"].includes(p.tone) &&
+          typeof p.volume === "number" &&
+          p.volume >= 0 &&
+          p.volume <= 1 &&
+          ["sound", "start", "finish", "period", "score", "red", "phase"].every(
+            (k) => typeof p[k] === "boolean",
+          )
+          ? p
+          : { ...defaultNotifications };
+      } catch {
+        return { ...defaultNotifications };
+      }
+    });
+  const notificationPreferences = user
+    ? preferences.notifications
+    : guestPreferences;
+  const preferencesRef = useRef(notificationPreferences);
+  preferencesRef.current = notificationPreferences;
+  useEffect(() => {
+    setGames(read(storage, !!user));
+    setGamesOwner(owner);
+    setCards([]);
+  }, [storage, owner]);
+
   const [open, setOpen] = useState(false);
   const [candidate, setCandidate] = useState<Match>();
   const [message, setMessage] = useState("");
@@ -111,17 +157,18 @@ export default function NotificationsProvider({
   const seen = useRef(new Set<string>());
   const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
   useEffect(() => {
+    if (gamesOwner !== owner) return;
     try {
-      localStorage.setItem(STORAGE, JSON.stringify(games));
+      localStorage.setItem(storage, JSON.stringify(games));
     } catch {
       setMessage(
         "Não foi possível salvar neste navegador. As escolhas valem apenas nesta sessão.",
       );
     }
-  }, [games]);
+  }, [games, storage, gamesOwner, owner]);
   useEffect(() => {
     if (!("BroadcastChannel" in window)) return;
-    const channel = new BroadcastChannel("sportstates-game-alerts");
+    const channel = new BroadcastChannel("sportstates-game-alerts:" + owner);
     broadcast.current = channel;
     channel.onmessage = ({ data }) => {
       if (
@@ -135,6 +182,9 @@ export default function NotificationsProvider({
         seen.current.has(data.id)
       )
         return;
+      void playOnceForAlert(data.id, owner, preferencesRef.current).catch(
+        () => {},
+      );
       seen.current.add(data.id);
       if (seen.current.size > 1000)
         seen.current.delete(seen.current.values().next().value!);
@@ -149,17 +199,17 @@ export default function NotificationsProvider({
       broadcast.current = null;
       channel.close();
     };
-  }, []);
+  }, [owner]);
   useEffect(() => {
     const sync = (e: StorageEvent) => {
-      if (e.key === STORAGE) setGames(read());
+      if (e.key === storage) setGames(read(storage, !!user));
     };
     window.addEventListener("storage", sync);
     return () => {
       window.removeEventListener("storage", sync);
       timers.current.forEach(clearTimeout);
     };
-  }, []);
+  }, [storage, owner]);
   useEffect(() => {
     if (open && !panel.current?.open) panel.current?.showModal();
     if (!open && panel.current?.open) panel.current.close();
@@ -170,15 +220,19 @@ export default function NotificationsProvider({
       baselines.current.delete(matchKey(m));
       return;
     }
+    if (preferencesRef.current.sound) void unlockSound().catch(() => {});
     setCandidate(m);
     setMessage("");
     setOpen(true);
   };
   const activate = async (requestSystem: boolean) => {
     if (!candidate || activating) return;
-    if (games.length >= 10 && games[0]?.sport === candidate.sport) {
+    if (
+      games.length >= (user ? 30 : 10) &&
+      (user || games[0]?.sport === candidate.sport)
+    ) {
       setMessage(
-        "Você pode acompanhar até 10 jogos. Remova um para adicionar outro.",
+        `Você pode acompanhar até ${user ? 30 : 10} jogos. Remova um para adicionar outro.`,
       );
       return;
     }
@@ -205,16 +259,24 @@ export default function NotificationsProvider({
     setActivating(false);
     const m = candidate;
     baselines.current.delete(matchKey(m));
-    setGames((gs) =>
-      selectGame(gs, {
+    setGames((gs) => {
+      const selected = {
         sport: m.sport,
         league: m.league,
         id: m.id,
         date: m.date,
         name: `${m.home.name} × ${m.away.name}`,
         system: requestSystem && permission === "granted",
-      }),
-    );
+      };
+      return user
+        ? [
+            ...gs
+              .filter((g) => matchKey(g) !== matchKey(selected))
+              .slice(0, 29),
+            selected,
+          ]
+        : selectGame(gs, selected);
+    });
     setCandidate(undefined);
     setMessage(
       permission === "granted"
@@ -224,15 +286,19 @@ export default function NotificationsProvider({
   };
   useEffect(() => {
     const controller = new AbortController();
+    if (gamesOwner !== owner) return () => controller.abort();
     let timeout: ReturnType<typeof setTimeout>;
     const keys = new Set(games.map(matchKey));
     for (const key of baselines.current.keys())
       if (!keys.has(key)) baselines.current.delete(key);
     const publish = async (alert: GameAlert) => {
-      if (seen.current.has(alert.id)) return;
+      if (controller.signal.aborted || seen.current.has(alert.id)) return;
       seen.current.add(alert.id);
       if (seen.current.size > 1000)
         seen.current.delete(seen.current.values().next().value!);
+      void playOnceForAlert(alert.id, owner, preferencesRef.current).catch(
+        () => {},
+      );
       broadcast.current?.postMessage(alert);
       setCards((old) => [...old, alert].slice(-4));
       const timer = setTimeout(() => {
@@ -256,12 +322,18 @@ export default function NotificationsProvider({
           if (registration?.active)
             await registration.showNotification(
               `${alert.icon} ${alert.title}`,
-              { body: alert.body, tag: alert.id, data: { url: alert.url } },
+              {
+                body: alert.body,
+                tag: alert.id,
+                silent: !preferencesRef.current.sound || !document.hidden,
+                data: { url: alert.url },
+              },
             );
           else if (!mobile) {
             const n = new Notification(`${alert.icon} ${alert.title}`, {
               body: alert.body,
               tag: alert.id,
+              silent: !preferencesRef.current.sound || !document.hidden,
             });
             n.onclick = () => {
               window.focus();
@@ -315,8 +387,9 @@ export default function NotificationsProvider({
               Date.now() - old.time < 120000 &&
               Date.parse(detail.fetchedAt) > Date.parse(old.detail.fetchedAt)
             )
-              for (const alert of detectAlerts(old.detail, detail))
-                await publish(alert);
+              for (const alert of configuredAlerts(old.detail, detail))
+                if (allowAlert(alert, game.sport, preferencesRef.current))
+                  await publish(alert);
             baselines.current.set(key, { detail, time: Date.now() });
           } catch {
             /* Retry on the next cycle; never turn an API failure into a score alert. */
@@ -340,7 +413,7 @@ export default function NotificationsProvider({
       if (navigator.locks)
         void navigator.locks
           .request(
-            "sportstates-notifications",
+            "sportstates-notifications:" + owner,
             { signal: controller.signal },
             run,
           )
@@ -351,10 +424,13 @@ export default function NotificationsProvider({
       controller.abort();
       clearTimeout(timeout);
     };
-  }, [games]);
+  }, [games, owner, gamesOwner]);
   const sportName = sports.find((s) => s.id === games[0]?.sport)?.name;
   const switching =
-    candidate && games.length > 0 && candidate.sport !== games[0].sport;
+    candidate &&
+    !user &&
+    games.length > 0 &&
+    candidate.sport !== games[0].sport;
   return (
     <Context.Provider value={{ games, choose }}>
       {children}
@@ -407,9 +483,12 @@ export default function NotificationsProvider({
           pênaltis no futebol.
         </p>
         <p className="notification-limit">
-          Sem login: um esporte por vez, até 10 jogos neste navegador. Mantenha
-          o site aberto. A atualização ocorre a cada 30 segundos e depende da
-          cobertura da API. Com o site fechado, esta versão não envia avisos.
+          {user
+            ? "Conta conectada: até 30 jogos de vários esportes neste navegador. Preferências sincronizadas com sua conta."
+            : "Sem login: um esporte por vez, até 10 jogos neste navegador."}{" "}
+          Mantenha o site aberto. A atualização ocorre a cada 30 segundos e
+          depende da cobertura da API. Com o site fechado, esta versão não envia
+          avisos.
         </p>
         <p className="notification-limit">
           No computador, os lances aparecem como cards. No celular, o aviso do
@@ -453,9 +532,29 @@ export default function NotificationsProvider({
             </button>
           </div>
         )}
+        <NotificationPreferencesForm
+          value={notificationPreferences}
+          saving={saving}
+          onSave={async (n) => {
+            if (n.sound) await unlockSound();
+            if (user)
+              await mutate({ action: "notifications", notifications: n });
+            else {
+              setGuestPreferences(n);
+              try {
+                localStorage.setItem(
+                  "sportstates:notification-preferences:v1",
+                  JSON.stringify(n),
+                );
+              } catch {
+                setMessage("Preferências válidas apenas nesta sessão.");
+              }
+            }
+          }}
+        />
         <h3>
           {games.length
-            ? `Acompanhando · ${sportName}`
+            ? `Acompanhando · ${games.length} jogos`
             : "Nenhum jogo selecionado"}
         </h3>
         <ul className="notification-games">

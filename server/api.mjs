@@ -1,3 +1,11 @@
+import { userIdentity } from "./user-auth.mjs";
+import {
+  getPreferences,
+  mutatePreferences,
+  validatePreferenceAction,
+  favoriteTeams,
+} from "./user-preferences.mjs";
+import { buildDailySummary, summarySports } from "./daily-summary.mjs";
 import { tennisInsights } from "./tennis-insights.mjs";
 import { tableMatches, tableDetail, tableRankings } from "./table-tennis.mjs";
 import { volleyballProfiles } from "./volleyball-profiles.mjs";
@@ -697,6 +705,127 @@ export async function handler(req, res) {
     requestUrl.searchParams.has("path")
   )
     requestUrl.pathname = "/api/" + requestUrl.searchParams.get("path");
+  if (["/api/me", "/api/me/summary"].includes(requestUrl.pathname)) {
+    res.setHeader("Cache-Control", "private, no-store");
+    res.setHeader("Vercel-CDN-Cache-Control", "no-store");
+    res.setHeader("Vary", "Authorization");
+    const user = await userIdentity(req.headers?.authorization);
+    if (!user) {
+      res.statusCode = 401;
+      return res.end(
+        JSON.stringify({
+          error: "Entre na sua conta para acessar este conteúdo.",
+        }),
+      );
+    }
+    const summary = requestUrl.pathname.endsWith("/summary");
+    if (!["GET", ...(summary ? [] : ["POST"])].includes(req.method)) {
+      res.statusCode = 405;
+      res.setHeader("Allow", summary ? "GET" : "GET, POST");
+      return res.end(JSON.stringify({ error: "Método não permitido." }));
+    }
+    try {
+      if (req.method === "POST") {
+        if (
+          !String(req.headers?.["content-type"] || "").startsWith(
+            "application/json",
+          )
+        ) {
+          res.statusCode = 415;
+          return res.end(JSON.stringify({ error: "Envie JSON." }));
+        }
+        let body = req.body;
+        if (body == null) {
+          body = "";
+          for await (const chunk of req) {
+            body += chunk;
+            if (Buffer.byteLength(body) > 12000)
+              throw Error("Dados muito grandes.");
+          }
+        }
+        if (typeof body === "string") {
+          if (Buffer.byteLength(body) > 12000)
+            throw Error("Dados muito grandes.");
+          body = JSON.parse(body);
+        }
+        if (Buffer.byteLength(JSON.stringify(body)) > 12000)
+          throw Error("Dados muito grandes.");
+        const action = validatePreferenceAction(body);
+        if (
+          action.action === "favorite" &&
+          action.kind === "team" &&
+          action.selected &&
+          !(await getTeam(action.id))
+        )
+          throw Error("Time não encontrado.");
+        const result = await mutatePreferences(user.id, action);
+        res.statusCode = 200;
+        return res.end(
+          JSON.stringify({
+            ...result,
+            teams: await favoriteTeams(result.preferences),
+          }),
+        );
+      }
+      const row = await getPreferences(user.id),
+        teams = await favoriteTeams(row.preferences);
+      if (!summary) {
+        res.statusCode = 200;
+        return res.end(JSON.stringify({ user, ...row, teams }));
+      }
+      const date = dayInBrazil(new Date()),
+        prior = new Date(date + "T12:00:00Z");
+      prior.setUTCDate(prior.getUTCDate() - 1);
+      const selected = summarySports(row.preferences, teams).filter((id) =>
+        SPORTS.some((s) => s.id === id),
+      );
+      const [scores, news] = await Promise.all([
+        Promise.allSettled(
+          selected.flatMap((sport) =>
+            [date, prior.toISOString().slice(0, 10)].map((day) =>
+              scoreboard(day, sport),
+            ),
+          ),
+        ),
+        selected.length
+          ? fetchNews().catch(() => ({ articles: [], unavailable: true }))
+          : Promise.resolve({ articles: [] }),
+      ]);
+      const good = scores
+        .filter((r) => r.status === "fulfilled")
+        .map((r) => r.value);
+      const result = buildDailySummary({
+        date,
+        preferences: row.preferences,
+        teams,
+        today: good.filter((r) => r.date === date).flatMap((r) => r.matches),
+        yesterday: good
+          .filter((r) => r.date !== date)
+          .flatMap((r) => r.matches),
+        articles: news.articles,
+        partial:
+          scores.some((r) => r.status === "rejected") ||
+          good.some((r) => r.stale || r.warnings.length) ||
+          !!news.unavailable,
+      });
+      res.statusCode = 200;
+      return res.end(JSON.stringify(result));
+    } catch (error) {
+      const validation =
+        error instanceof SyntaxError ||
+        /inválid|Limite|não encontrado|Dados muito grandes|Ação|Configuração/.test(
+          error.message,
+        );
+      res.statusCode = validation ? 400 : 503;
+      return res.end(
+        JSON.stringify({
+          error: validation
+            ? error.message
+            : "Não foi possível carregar ou salvar sua conta. Tente novamente.",
+        }),
+      );
+    }
+  }
   if (requestUrl.pathname === "/api/admin/cache") {
     res.setHeader("Cache-Control", "no-store");
     if (req.method !== "POST") {

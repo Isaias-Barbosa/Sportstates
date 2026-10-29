@@ -1,3 +1,4 @@
+import { FavoriteTeamButton } from "../account/AccountProvider";
 import { matchScore } from "../components/shared";
 import TeamCompetitions from "../components/TeamCompetitions";
 import { useEffect, useState } from "react";
@@ -93,6 +94,7 @@ export default function TeamPage() {
         <div>
           <div className="eyebrow">{leagueName}</div>
           <h1>{team.name}</h1>
+          <FavoriteTeamButton id={team.id} />
           <p>
             {[team.city, team.stadium].filter(Boolean).join(" · ") ||
               (team.sport === "basketball"

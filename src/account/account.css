@@ -1,0 +1,288 @@
+.account-page {
+  max-width: 1120px;
+  margin: 36px auto;
+  padding: 0 22px 40px;
+}
+.account-page h1 {
+  font-size: clamp(26px, 4vw, 44px);
+  margin: 12px 0 24px;
+}
+.account-card {
+  padding: 24px;
+  margin: 20px 0;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: var(--panel);
+  min-width: 0;
+}
+.account-card h2 {
+  margin: 0 0 14px;
+  font-size: 22px;
+}
+.account-card p {
+  line-height: 1.65;
+  color: var(--muted);
+}
+.account-login {
+  max-width: 500px;
+}
+.account-form {
+  display: grid;
+  gap: 15px;
+}
+.account-form label {
+  display: grid;
+  gap: 7px;
+  font-size: 13px;
+}
+.account-form input:not([type="checkbox"]):not([type="range"]),
+.account-form select {
+  width: 100%;
+  min-width: 0;
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  padding: 12px;
+}
+.account-checkbox {
+  display: flex !important;
+  align-items: center;
+  gap: 9px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.account-checkbox input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--green);
+  flex-shrink: 0;
+}
+.account-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin: 14px 0;
+}
+.account-actions .admin-primary,
+.account-form .admin-primary,
+.account-card > form > .admin-primary {
+  display: inline-flex;
+  padding: 12px 18px;
+  border-radius: 9px;
+  justify-content: center;
+}
+.account-preferences {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+.account-sport-grid {
+  display: grid;
+  gap: 15px;
+  margin: 20px 0;
+}
+.summary-metrics {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin: 24px 0;
+}
+.summary-metrics > div {
+  padding: 20px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  font-size: 12px;
+}
+.summary-metrics strong {
+  display: block;
+  font-size: 32px;
+  margin-bottom: 8px;
+}
+.summary-match {
+  margin: 12px 0;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  min-width: 0;
+}
+.summary-match-link {
+  display: block;
+  padding: 16px;
+}
+.summary-match-link > small {
+  display: block;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+.summary-match-link > span {
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr) auto minmax(0, 1fr) 30px;
+  gap: 10px;
+  align-items: center;
+}
+.summary-match-link b {
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+.summary-match-link strong {
+  font-size: 20px;
+}
+.summary-match .crest {
+  width: 28px;
+  height: 28px;
+}
+.summary-news {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border);
+  line-height: 1.5;
+}
+.summary-news small {
+  color: var(--muted);
+}
+.favorite-team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+}
+.favorite-team-grid article {
+  padding: 15px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+.favorite-team-grid a {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+  text-align: center;
+}
+.favorite-team-grid img {
+  object-fit: contain;
+}
+.favorite-team-grid button {
+  display: block;
+  margin: 14px auto 0;
+  font-size: 12px;
+  color: var(--muted);
+}
+.home-personal {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  align-items: center;
+}
+.home-personal p {
+  font-size: 12px;
+  margin-bottom: 0;
+}
+.home-personal .account-actions {
+  flex-shrink: 0;
+}
+.home-watch-filter {
+  margin-top: 15px;
+  font-size: 11px;
+}
+.account-page button:disabled {
+  opacity: 0.55;
+  cursor: wait;
+}
+.account-page button[aria-pressed="true"],
+.home-personal button[aria-pressed="true"],
+.home-watch-filter button[aria-pressed="true"] {
+  border-color: var(--green);
+  color: var(--green);
+}
+.topbar .topbar-nav {
+  min-width: 0;
+}
+.topbar .topbar-nav a {
+  white-space: nowrap;
+}
+@media (max-width: 900px) {
+  .account-preferences {
+    grid-template-columns: 1fr;
+  }
+  .home-personal {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .summary-metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 720px) {
+  .topbar .topbar-nav {
+    overflow-x: auto;
+    max-width: 100%;
+    gap: 18px;
+  }
+  .account-page {
+    padding: 0 14px;
+    margin-top: 24px;
+  }
+  .account-card {
+    padding: 17px;
+  }
+  .home-personal .account-actions {
+    flex-shrink: 1;
+  }
+  .summary-match-link > span {
+    grid-template-columns: 22px minmax(0, 1fr) auto minmax(0, 1fr) 22px;
+    gap: 6px;
+  }
+  .summary-match .crest {
+    width: 22px;
+    height: 22px;
+  }
+  .summary-match-link b {
+    font-size: 11px;
+  }
+  .summary-match-link strong {
+    font-size: 16px;
+  }
+}
+@media (max-width: 1000px) {
+  .topbar {
+    height: auto;
+    flex-wrap: wrap;
+    gap: 9px 12px;
+    padding-bottom: 0;
+  }
+  .topbar .top-left {
+    display: contents;
+  }
+  .topbar .topbar-brand {
+    order: 0;
+  }
+  .topbar .top-right {
+    order: 1;
+    margin-left: auto;
+  }
+  .topbar .topbar-nav {
+    order: 2;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    justify-content: flex-start;
+    gap: 22px;
+    border-top: 1px solid var(--border);
+  }
+  .topbar .topbar-nav a {
+    padding: 12px 0;
+    flex-shrink: 0;
+  }
+}
+@media (max-width: 480px) {
+  .topbar .navbar-login span {
+    display: none;
+  }
+  .topbar .topbar-nav {
+    gap: 18px;
+  }
+}

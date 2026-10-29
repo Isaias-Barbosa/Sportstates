@@ -1,3 +1,4 @@
+import AccountProvider,{AccountButton} from "./account/AccountProvider";
 import NotificationsProvider, {
   NotificationSettingsButton,
 } from "./notifications/Notifications";
@@ -23,7 +24,11 @@ import { Empty, Loading } from "./components/shared";
 import "./styles.css";
 import "./home-viva.css";
 import "./pages-viva.css";
+import "./account/account.css";
 import Dashboard from "./pages/Dashboard";
+const AccountPage=lazy(()=>import("./pages/AccountPage"));
+const DailySummaryPage=lazy(()=>import("./pages/DailySummaryPage"));
+const FavoritesPage=lazy(()=>import("./pages/FavoritesPage"));
 const MatchPage = lazy(() => import("./pages/MatchPage"));
 const TransfersPage = lazy(() => import("./pages/TransfersPage"));
 const About = lazy(() => import("./pages/About"));
@@ -141,6 +146,9 @@ function App() {
                 <Newspaper size={18} />
                 Notícias
               </NavLink>
+              <NavLink to="/resumo-diario"><Newspaper size={18}/>Resumo Diário</NavLink>
+              <NavLink to="/favoritos"><UserRound size={18}/>Meus favoritos</NavLink>
+              <NavLink to="/conta"><UserRound size={18}/>Minha conta</NavLink>
               <div className="nav-label">ESPORTES</div>
               <SportsNavigation />
               <NavLink to="/admin/jogos">
@@ -184,6 +192,7 @@ function App() {
                   <NavLink to="/classificacoes">Classificações</NavLink>
                   <NavLink to="/times">Times</NavLink>
                   <NavLink to="/noticias">Notícias</NavLink>
+                  <NavLink to="/resumo-diario">Resumo Diário</NavLink>
                 </nav>
               </div>
               <div className="top-right">
@@ -204,15 +213,7 @@ function App() {
                   </span>
                 </button>
                 <NotificationSettingsButton />
-                <button
-                  type="button"
-                  className="navbar-login"
-                  aria-disabled="true"
-                  title="Login em breve"
-                >
-                  <UserRound size={17} aria-hidden="true" />
-                  <span>Login</span>
-                </button>
+                <AccountButton />
                 <button
                   ref={menuButton}
                   aria-expanded={menu}
@@ -232,8 +233,10 @@ function App() {
                   <Route path="/" element={<Dashboard />} />
                   <Route
                     path="/favoritos"
-                    element={<Dashboard favoritesOnly />}
+                    element={<FavoritesPage />}
                   />
+                  <Route path="/conta" element={<AccountPage/>}/>
+                  <Route path="/resumo-diario" element={<DailySummaryPage/>}/>
                   <Route path="/atletas" element={<TennisAthletesPage />} />
                   <Route path="/classificacoes" element={<StandingsPage />} />
                   <Route
@@ -275,6 +278,6 @@ function App() {
 }
 createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <App />
+    <AccountProvider><App /></AccountProvider>
   </React.StrictMode>,
 );

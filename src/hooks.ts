@@ -1,3 +1,4 @@
+import { useAccount } from "./account/AccountProvider";
 import { pollDelay } from "./poll-policy";
 import { useEffect, useState, useCallback } from "react";
 const CACHE_RESET_EVENT = "sportstates:cache-reset";
@@ -103,6 +104,7 @@ export const dateLabel = (d: string) =>
   }).format(new Date(d + "T12:00:00Z"));
 
 export function useFavorites() {
+  const { user, preferences, mutate } = useAccount();
   const [ids, setIds] = useState<string[]>(() => {
     try {
       const x = JSON.parse(
@@ -113,18 +115,30 @@ export function useFavorites() {
       return [];
     }
   });
-  const toggle = useCallback((id: string) => {
-    setIds((old) => {
-      const next = old.includes(id)
-        ? old.filter((i) => i !== id)
-        : [...old, id];
-      try {
-        localStorage.setItem("sportstates:favorites", JSON.stringify(next));
-      } catch {
-        /* Storage may be unavailable in private browsing. */
+  const toggle = useCallback(
+    (id: string) => {
+      if (user) {
+        void mutate({
+          action: "favorite",
+          kind: "match",
+          id,
+          selected: !preferences.matches.includes(id),
+        }).catch(() => {});
+        return;
       }
-      return next;
-    });
-  }, []);
-  return { ids, toggle };
+      setIds((old) => {
+        const next = old.includes(id)
+          ? old.filter((i) => i !== id)
+          : [...old, id];
+        try {
+          localStorage.setItem("sportstates:favorites", JSON.stringify(next));
+        } catch {
+          /* Storage may be unavailable in private browsing. */
+        }
+        return next;
+      });
+    },
+    [user?.id, preferences.matches, mutate],
+  );
+  return { ids: user ? preferences.matches : ids, toggle };
 }

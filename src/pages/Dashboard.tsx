@@ -1,3 +1,5 @@
+import { useAccount } from "../account/AccountProvider";
+import { preferredMatch, followsTeam } from "../account/personalization";
 import { useScores } from "../useScores";
 import { NotificationBell } from "../notifications/Notifications";
 import { matchScore } from "../components/shared";
@@ -39,7 +41,15 @@ export default function Dashboard({
 }: {
   favoritesOnly?: boolean;
 }) {
+  const {
+    user,
+    preferences,
+    teams: favoriteTeams,
+    error: accountError,
+  } = useAccount();
   const [params, setParams] = useSearchParams();
+  const personal = params.get("personal") === "1";
+  const confirmedWatch = params.get("watch") === "confirmed";
   const date = params.get("date") || today();
   const sport = params.get("sport") || "all";
   const status = params.get("status") || "all";
@@ -101,8 +111,17 @@ export default function Dashboard({
     (m) =>
       (sport === "all" || m.sport === sport) &&
       (league === "all" || m.league === league) &&
-      (!favoritesOnly || ids.includes(keyOf(m))),
+      (!favoritesOnly || ids.includes(keyOf(m))) &&
+      (!personal || !user || preferredMatch(m, preferences, favoriteTeams)) &&
+      (!confirmedWatch || !!m.watch?.confirmedForMatch),
   );
+  const preferred = (m: Match) =>
+    Number(
+      !!user &&
+        (followsTeam(m, favoriteTeams) ||
+          preferences.matches.includes(keyOf(m))),
+    );
+  scoped.sort((a, b) => preferred(b) - preferred(a));
   const live = scoped.filter((m) => isLiveMatch(m));
   const upcoming = scoped
     .filter((m) => m.state === "scheduled")
@@ -230,6 +249,36 @@ export default function Dashboard({
         <span>O jogo acontece aqui</span>
       </div>
       <div className="hv-wrap hv-main">
+        {accountError && <Notice error>{accountError}</Notice>}
+        {user && (
+          <section
+            className="home-personal account-card"
+            aria-label="Personalizar agenda"
+          >
+            <div>
+              <strong>Seu jogo, {user.name}.</strong>
+              <p>
+                {preferences.sports.length || favoriteTeams.length
+                  ? "Seus times e partidas favoritos aparecem primeiro."
+                  : "Escolha seus esportes e siga seus times para personalizar sua agenda."}
+              </p>
+            </div>
+            <div className="account-actions">
+              <button
+                className="broadcast-chip"
+                aria-pressed={personal}
+                onClick={() => set("personal", personal ? "all" : "1")}
+              >
+                {personal ? "Ver todos os jogos" : "Para você"}
+              </button>
+              <Link className="broadcast-chip" to="/resumo-diario">
+                Resumo Diário →
+              </Link>
+              <Link to="/conta">Personalizar</Link>
+            </div>
+          </section>
+        )}
+
         <section aria-labelledby="hv-spotlight-title">
           <div className="hv-section-head">
             <div>
@@ -491,6 +540,24 @@ export default function Dashboard({
                   onChange={(e) => setSearch(e.target.value)}
                 />
               </label>
+            </div>
+            <div className="account-actions home-watch-filter">
+              <button
+                className="broadcast-chip"
+                aria-pressed={confirmedWatch}
+                onClick={() =>
+                  set("watch", confirmedWatch ? "all" : "confirmed")
+                }
+              >
+                <Tv size={15} />
+                Com transmissão confirmada
+              </button>
+              {confirmedWatch && (
+                <span className="muted">
+                  Somente anúncios por partida. Guias de competição não contam
+                  como confirmação.
+                </span>
+              )}
             </div>
             <div className="hv-status-filters" aria-label="Situação da partida">
               {[

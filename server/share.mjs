@@ -36,6 +36,8 @@ export async function metadata(raw, providers = {}) {
     Object.assign(m,{kind:"standings",heading:league?.name || sport?.name || "CADA PONTO CONTA.",title:(league?.name || sport?.name || "Classificações")+" · Classificação | Sportstates",label:"A DISPUTA PELA LIDERANÇA",description:"Confira a classificação"+(league ? " da "+league.name : "")+", os pontos e os jogos da competição no Sportstates."});
   } else if (u.pathname === "/times") {
     Object.assign(m,{kind:"teams",heading:league?.name || sport?.name || "AS CORES DA SUA PAIXÃO.",title:"Times"+(league ? " · "+league.name : sport ? " · "+sport.name : "")+" | Sportstates",label:"ENCONTRE SEU TIME",description:"Explore os times, elencos, histórias e próximos jogos no Sportstates."});
+  } else if (["/conta","/resumo-diario","/favoritos"].includes(u.pathname)) {
+    Object.assign(m,{kind:"account",heading:u.pathname==="/resumo-diario"?"SEU RESUMO DIÁRIO.":"SEU ESPORTE. SUA CONTA.",title:(u.pathname==="/resumo-diario"?"Resumo Diário":u.pathname==="/favoritos"?"Meus favoritos":"Minha conta")+" | Sportstates",label:"FEITO PARA ACOMPANHAR",description:"Entre no Sportstates para personalizar sua agenda, seguir seus times e acessar seu Resumo Diário."});
   } else if (u.pathname === "/noticias") {
     Object.assign(m,{heading:"O ESPORTE NÃO PARA.",title:"Notícias | Sportstates",label:"NOTÍCIAS DO ESPORTE",description:"Acompanhe as notícias esportivas e acesse as matérias nas fontes originais."});
   } else if (u.pathname === "/" && (sport || league || u.searchParams.get("status")==="live")) {
