@@ -195,6 +195,8 @@ export async function cbvSchedule() {
 }
 export function parseCbvStandings(html) {
   const objects = flightObjects(html);
+  if (!objects.some((o) => o.gender === "masculino"))
+    throw Error("Classificação masculina não confirmada.");
   const data = objects.find(
     (o) =>
       o.championshipId &&
@@ -247,11 +249,11 @@ export async function volleyStandings() {
   };
 }
 const positions = {
-  1: "Levantador",
+  1: "Líbero",
   2: "Ponteiro",
   3: "Oposto",
   4: "Central",
-  5: "Líbero",
+  5: "Levantador",
 };
 export function volleyRoster(team) {
   return (Array.isArray(team?.PlayerList) ? team.PlayerList : [])

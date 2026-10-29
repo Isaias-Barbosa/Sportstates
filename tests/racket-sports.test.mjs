@@ -87,7 +87,7 @@ const row = {
         Player_Name: "Atleta",
         Player_Surname: "A",
         Number: 5,
-        Position: 1,
+        Position: 5,
       },
     ],
   },
@@ -194,6 +194,7 @@ test("CBV standings preserve official points and order rather than recalculating
   const rows = parseCbvStandings(
     flight({
       championshipId: 6979,
+      gender: "masculino",
       teams: [
         {
           teamId: 12,

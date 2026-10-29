@@ -254,7 +254,7 @@ export async function route(url) {
     const id = q.get("id");
     if (!validProfileId(id)) return [400, { error: "Time inválido." }];
     const result = await cached(
-      `team:brazil-profiles-v1:${id}`,
+      `${id.startsWith("volleyball-") ? "team:volleyball-roles-v2" : "team:brazil-profiles-v1"}:${id}`,
       teamTtl,
       () => teamDetails(id),
       300000,
