@@ -877,3 +877,234 @@
     gap: 5px;
   }
 }
+
+.home-personal.personal-hub {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  padding: 26px 28px;
+  border-radius: 20px;
+  background:
+    radial-gradient(ellipse at 0 0, #2862ff14, transparent 65%), var(--panel);
+}
+.personal-hub::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 28px;
+  width: 48px;
+  height: 3px;
+  background: #2862ff;
+  border-radius: 0 0 3px 3px;
+}
+.personal-hub-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+}
+.personal-hub-intro {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  min-width: 0;
+}
+.personal-hub-symbol {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border: 1px solid var(--green-border);
+  border-radius: 14px;
+  background: var(--green-glow);
+  color: var(--green);
+}
+.personal-hub-eyebrow,
+.personal-hub-label {
+  display: block;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+}
+.personal-hub-eyebrow {
+  color: var(--green);
+  margin-bottom: 6px;
+}
+.personal-hub-intro h2 {
+  font-size: clamp(19px, 2.4vw, 24px);
+  letter-spacing: -0.035em;
+  margin: 0;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+.home-personal .personal-hub-intro p {
+  margin: 7px 0 0;
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+.personal-hub-settings {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  padding: 9px 12px;
+  border-radius: 9px;
+  font-size: 11px;
+  flex-shrink: 0;
+}
+.personal-hub-settings:hover {
+  color: var(--green);
+  border-color: var(--green-border);
+}
+.personal-hub-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-top: 23px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+}
+.personal-hub-favorites {
+  min-width: 0;
+  flex: 1;
+}
+.personal-hub-teams {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 9px;
+}
+.personal-hub-teams a {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 10px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: var(--canvas);
+  font-size: 11px;
+  min-width: 0;
+  max-width: 100%;
+}
+.personal-hub-teams img {
+  object-fit: contain;
+  flex-shrink: 0;
+}
+.personal-hub-teams span {
+  overflow-wrap: anywhere;
+}
+.personal-hub-teams a:hover {
+  border-color: var(--green-border);
+}
+.personal-hub-empty {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+.personal-hub-empty > svg {
+  color: var(--green);
+  flex-shrink: 0;
+}
+.personal-hub-empty strong {
+  display: block;
+  color: var(--text);
+  font-size: 12px;
+}
+.personal-hub-controls {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  flex-shrink: 0;
+}
+.personal-hub-filter > div {
+  display: flex;
+  gap: 3px;
+  margin-top: 8px;
+  padding: 3px;
+  background: var(--surface);
+  border-radius: 9px;
+}
+.personal-hub-filter button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 9px 13px;
+  border-radius: 7px;
+  font-size: 11px;
+  color: var(--muted);
+}
+.account-card.personal-hub .personal-hub-filter button[aria-pressed="true"] {
+  background: var(--panel);
+  color: var(--text);
+  box-shadow: 0 1px 4px #10203a12;
+}
+.personal-hub-summary {
+  border-left: 1px solid var(--border);
+  padding: 7px 0 7px 22px;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+.personal-hub-summary strong {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--green);
+  font-size: 12px;
+  letter-spacing: 0;
+  margin-top: 8px;
+}
+.personal-hub :is(a, button):focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 3px;
+}
+@media (max-width: 950px) {
+  .personal-hub-bottom {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .personal-hub-controls {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+@media (max-width: 520px) {
+  .home-personal.personal-hub {
+    padding: 20px 17px;
+  }
+  .personal-hub-top {
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+  .personal-hub-symbol {
+    width: 40px;
+    height: 40px;
+    border-radius: 11px;
+  }
+  .personal-hub-intro {
+    gap: 11px;
+  }
+  .personal-hub-settings {
+    margin-left: 51px;
+  }
+  .personal-hub-controls {
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .personal-hub-summary {
+    padding-left: 15px;
+  }
+  .personal-hub-filter button {
+    padding: 9px 10px;
+  }
+}

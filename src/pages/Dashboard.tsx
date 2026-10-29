@@ -21,6 +21,8 @@ import {
   RefreshCw,
   Search,
   Star,
+  SlidersHorizontal,
+  Sparkles,
   Tv,
 } from "lucide-react";
 import type { Match, Scores, CompetitionCatalog } from "../types";
@@ -262,29 +264,94 @@ export default function Dashboard({
         {accountError && <Notice error>{accountError}</Notice>}
         {user && (
           <section
-            className="home-personal account-card"
-            aria-label="Personalizar agenda"
+            className="home-personal personal-hub"
+            aria-labelledby="personal-hub-title"
           >
-            <div>
-              <strong>Seu jogo, {user.name}.</strong>
-              <p>
-                {preferences.sports.length || favoriteTeams.length
-                  ? "Seus times e partidas favoritos aparecem primeiro."
-                  : "Escolha seus esportes e siga seus times para personalizar sua agenda."}
-              </p>
-            </div>
-            <div className="account-actions">
-              <button
-                className="broadcast-chip"
-                aria-pressed={personal}
-                onClick={() => set("personal", personal ? "all" : "1")}
-              >
-                {personal ? "Ver todos os jogos" : "Para você"}
-              </button>
-              <Link className="broadcast-chip" to="/resumo-diario">
-                Resumo Diário →
+            <div className="personal-hub-top">
+              <div className="personal-hub-intro">
+                <span className="personal-hub-symbol" aria-hidden="true">
+                  <Star size={23} />
+                </span>
+                <div>
+                  <span className="personal-hub-eyebrow">SUA ARQUIBANCADA</span>
+                  <h2 id="personal-hub-title">
+                    Seu jogo, {user.name.split(" ")[0]}.
+                  </h2>
+                  <p>
+                    {personal
+                      ? "Sua agenda está filtrada pelos seus interesses."
+                      : "Encontre seus favoritos e acompanhe o que importa para você."}
+                  </p>
+                </div>
+              </div>
+              <Link className="personal-hub-settings" to="/conta#personalizar">
+                <SlidersHorizontal size={16} aria-hidden="true" /> Personalizar
               </Link>
-              <Link to="/conta">Personalizar</Link>
+            </div>
+            <div className="personal-hub-bottom">
+              <div className="personal-hub-favorites">
+                {favoriteTeams.length ? (
+                  <>
+                    <span className="personal-hub-label">SUA TORCIDA</span>
+                    <div className="personal-hub-teams">
+                      {favoriteTeams.slice(0, 3).map((t) => (
+                        <Link
+                          key={t.id}
+                          to={"/times/" + encodeURIComponent(t.id)}
+                        >
+                          {t.logo && (
+                            <img src={t.logo} width={22} height={22} alt="" />
+                          )}
+                          <span>{t.name}</span>
+                        </Link>
+                      ))}
+                      {favoriteTeams.length > 3 && (
+                        <Link to="/favoritos">
+                          +{favoriteTeams.length - 3} times
+                        </Link>
+                      )}
+                    </div>
+                  </>
+                ) : (
+                  <Link className="personal-hub-empty" to="/times">
+                    <Star size={17} aria-hidden="true" />
+                    <span>
+                      <strong>Qual é o seu time?</strong>Escolha um favorito
+                      para ver os jogos dele primeiro.
+                    </span>
+                    <ArrowRight size={16} aria-hidden="true" />
+                  </Link>
+                )}
+              </div>
+              <div className="personal-hub-controls">
+                <div className="personal-hub-filter">
+                  <span className="personal-hub-label">MOSTRAR JOGOS</span>
+                  <div role="group" aria-label="Filtrar agenda">
+                    <button
+                      type="button"
+                      aria-pressed={!personal}
+                      onClick={() => set("personal", "all")}
+                    >
+                      Todos
+                    </button>
+                    <button
+                      type="button"
+                      aria-pressed={personal}
+                      onClick={() => set("personal", "1")}
+                    >
+                      <Sparkles size={14} aria-hidden="true" /> Para você
+                    </button>
+                  </div>
+                </div>
+                <Link className="personal-hub-summary" to="/resumo-diario">
+                  <span>
+                    SEU DIA EM CAMPO
+                    <strong>
+                      Resumo Diário <ArrowRight size={16} aria-hidden="true" />
+                    </strong>
+                  </span>
+                </Link>
+              </div>
             </div>
           </section>
         )}
