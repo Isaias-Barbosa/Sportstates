@@ -17,6 +17,8 @@ export type Match = {
   home: Team;
   away: Team;
   state: "live" | "scheduled" | "finished";
+  seasonType?: number | null;
+  seasonPhase?: string;
   soccerPhase?: "penalties" | "extra-time" | null;
   statusName: string;
   status: string;

@@ -1,3 +1,5 @@
+import { ArrowUp, ArrowDown, Minus } from "lucide-react";
+import { standingsImpact, type StandingsImpact } from "../standings-impact";
 import { profileFor } from "../team-profile";
 import { useState } from "react";
 import KnockoutRounds from "./KnockoutRounds";
@@ -46,6 +48,29 @@ const columns: Record<string, [string, string[]][]> = {
     ["P", ["points"]],
   ],
 };
+function ImpactBadge({ impact }: { impact: StandingsImpact }) {
+  const Icon =
+    impact.direction === "up"
+      ? ArrowUp
+      : impact.direction === "down"
+        ? ArrowDown
+        : Minus;
+  return (
+    <span className="standings-impact-cell">
+      <span
+        className={`standings-impact-badge ${impact.direction}`}
+        title={impact.description}
+        aria-label={`${impact.label}: ${impact.value}. ${impact.description}`}
+      >
+        <Icon size={15} aria-hidden="true" />
+        {impact.value}
+      </span>
+      <small>
+        {impact.label !== impact.value ? impact.label : "Neste confronto"}
+      </small>
+    </span>
+  );
+}
 export default function StandingsTable({
   sport,
   league,
@@ -131,8 +156,9 @@ export default function StandingsTable({
       )}
       {!showKnockout && match && match.state === "live" && (
         <p className="standings-note">
-          A tabela mostra a posição informada pela fonte. A posição projetada
-          ainda não está disponível: a fonte pode já incluir resultados ao vivo.
+          As setas indicam o resultado deste confronto. A ordem e os totais da
+          tabela vêm da fonte e podem já incluir o jogo ao vivo; o impacto não é
+          somado duas vezes.
         </p>
       )}
       {!showKnockout &&
@@ -142,6 +168,8 @@ export default function StandingsTable({
               keys.some((key) => row.stats[key] !== undefined),
             ),
           );
+          const showImpact =
+            !!match && group.rows.some((row) => standingsImpact(match, row.id));
           return (
             <section className="standings-group" key={`${group.name}-${i}`}>
               <h3>{group.name}</h3>
@@ -151,6 +179,13 @@ export default function StandingsTable({
                     <tr>
                       <th scope="col">#</th>
                       <th scope="col">Equipe</th>
+                      {showImpact && (
+                        <th scope="col">
+                          {match?.state === "live"
+                            ? "Se terminar assim"
+                            : "Neste jogo"}
+                        </th>
+                      )}
                       {visibleColumns.map(([label]) => (
                         <th scope="col" key={label}>
                           {label}
@@ -159,59 +194,78 @@ export default function StandingsTable({
                     </tr>
                   </thead>
                   <tbody>
-                    {group.rows.map((row) => (
-                      <tr
-                        key={row.id}
-                        className={
-                          match &&
-                          [match.home.id, match.away.id].includes(row.id)
-                            ? "standings-team-highlight"
-                            : ""
-                        }
-                      >
-                        <td>{row.rank}</td>
-                        <th scope="row">
-                          <span className="standings-team">
-                            {profileFor(clubs?.teams, row.id, sport, league) ? (
-                              <Link
-                                className="standings-team-link"
-                                to={
-                                  "/times/" +
-                                  encodeURIComponent(
-                                    profileFor(
-                                      clubs?.teams,
-                                      row.id,
-                                      sport,
-                                      league,
-                                    )!.id,
-                                  )
-                                }
-                                aria-label={"Ver perfil de " + row.name}
-                              >
-                                {row.logo && (
-                                  <img src={row.logo} alt="" loading="lazy" />
-                                )}
-                                <span>{row.name}</span>
-                              </Link>
-                            ) : (
-                              <>
-                                {row.logo && (
-                                  <img src={row.logo} alt="" loading="lazy" />
-                                )}
-                                <span>{row.name}</span>
-                              </>
-                            )}
-                          </span>
-                        </th>
-                        {visibleColumns.map(([label, keys]) => (
-                          <td key={label}>
-                            {keys
-                              .map((key) => row.stats[key])
-                              .find((v) => v !== undefined) ?? "—"}
-                          </td>
-                        ))}
-                      </tr>
-                    ))}
+                    {group.rows.map((row) => {
+                      const impact = match
+                        ? standingsImpact(match, row.id)
+                        : null;
+                      return (
+                        <tr
+                          key={row.id}
+                          className={
+                            match &&
+                            [match.home.id, match.away.id].includes(row.id)
+                              ? "standings-team-highlight"
+                              : ""
+                          }
+                        >
+                          <td>{row.rank}</td>
+                          <th scope="row">
+                            <span className="standings-team">
+                              {profileFor(
+                                clubs?.teams,
+                                row.id,
+                                sport,
+                                league,
+                              ) ? (
+                                <Link
+                                  className="standings-team-link"
+                                  to={
+                                    "/times/" +
+                                    encodeURIComponent(
+                                      profileFor(
+                                        clubs?.teams,
+                                        row.id,
+                                        sport,
+                                        league,
+                                      )!.id,
+                                    )
+                                  }
+                                  aria-label={"Ver perfil de " + row.name}
+                                >
+                                  {row.logo && (
+                                    <img src={row.logo} alt="" loading="lazy" />
+                                  )}
+                                  <span>{row.name}</span>
+                                </Link>
+                              ) : (
+                                <>
+                                  {row.logo && (
+                                    <img src={row.logo} alt="" loading="lazy" />
+                                  )}
+                                  <span>{row.name}</span>
+                                </>
+                              )}
+                            </span>
+                          </th>
+                          {showImpact && (
+                            <td>
+                              {impact ? (
+                                <ImpactBadge impact={impact} />
+                              ) : (
+                                <span className="muted">—</span>
+                              )}
+                            </td>
+                          )}
+                          {visibleColumns.map(([label, keys]) => (
+                            <td key={label}>
+                              {keys
+                                .map((key) => row.stats[key])
+                                .find((v) => v !== undefined) ?? "—"}
+                            </td>
+                          ))}
+                        </tr>
+                      );
+                    })}
                   </tbody>
                 </table>
               </div>

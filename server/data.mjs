@@ -65,6 +65,19 @@ export function normalizeEvent(e, sport, league, leagueName) {
     status: status.type?.shortDetail || status.type?.description || "",
     clock: status.displayClock || "",
     period: status.period || 0,
+    seasonType:
+      Number(
+        e.season?.type?.id ??
+          e.season?.type ??
+          c.season?.type?.id ??
+          c.season?.type,
+      ) || null,
+    seasonPhase:
+      e.season?.slug ||
+      e.season?.type?.name ||
+      e.season?.name ||
+      c.season?.slug ||
+      "",
     soccerPhase:
       sport !== "soccer"
         ? null
@@ -117,7 +130,11 @@ export function normalizeSummary(raw, sport, league, leagueName) {
   const match =
     event &&
     normalizeEvent(
-      { ...event, date: competition?.date || event.date },
+      {
+        ...event,
+        season: event.season || raw.season,
+        date: competition?.date || event.date,
+      },
       sport,
       league,
       leagueName,
