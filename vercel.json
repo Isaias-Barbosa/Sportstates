@@ -1,7 +1,15 @@
 {
-  "buildCommand": "npm run build",
+  "buildCommand": "npm test && npm run build",
   "outputDirectory": "dist",
   "rewrites": [
+    {
+      "source": "/api/share-image",
+      "destination": "/api/share-image"
+    },
+    {
+      "source": "/api/share",
+      "destination": "/api/share"
+    },
     {
       "source": "/api/market",
       "destination": "/api/transfermarkt"
@@ -11,14 +19,25 @@
       "destination": "/api/index?path=:path*"
     },
     {
-      "source": "/((?!api/).*)",
-      "destination": "/index.html"
+      "source": "/",
+      "destination": "/api/share?page=/"
+    },
+    {
+      "source": "/:page((?!api/).*)",
+      "destination": "/api/share?page=:page"
     }
   ],
   "functions": {
     "api/transfermarkt.py": {
       "maxDuration": 120,
       "excludeFiles": "{node_modules/**,dist/**,src/**,tests/**,.git/**}"
+    },
+    "api/share.mjs": {
+      "includeFiles": "dist/index.html",
+      "maxDuration": 30
+    },
+    "api/share-image.mjs": {
+      "maxDuration": 30
     }
   }
 }
