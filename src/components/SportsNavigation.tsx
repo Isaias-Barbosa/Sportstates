@@ -1,3 +1,4 @@
+import { useAccount } from "../account/AccountProvider";
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { ChevronDown } from "lucide-react";
@@ -7,6 +8,7 @@ import type { CompetitionCatalog } from "../types";
 import { leagueLinks } from "../league-navigation";
 
 export default function SportsNavigation() {
+  const { user, preferences } = useAccount();
   const { search, pathname } = useLocation();
   const params = new URLSearchParams(search);
   const [expandedSport, setExpandedSport] = useState<string | null>(
@@ -48,6 +50,9 @@ export default function SportsNavigation() {
   }
   return (
     <div className="menu-sports">
+      <Link to="/conta#personalizar" className="menu-personalize">
+        Personalizar esportes e ligas →
+      </Link>
       {sports.map((s) => {
         const open = expandedSport === s.id;
         return (
@@ -66,7 +71,11 @@ export default function SportsNavigation() {
             {open && (
               <div id={`menu-sport-${s.id}`} className="menu-sport-content">
                 <div className="menu-all-leagues">
-                  <span>Todas as ligas</span>
+                  <span>
+                    {user && preferences.leagues?.length
+                      ? "Suas ligas"
+                      : "Todas as ligas"}
+                  </span>
                   {links(s.id, "all", s.name)}
                 </div>
                 {loading && (
@@ -83,7 +92,15 @@ export default function SportsNavigation() {
                   </div>
                 )}
                 {s.leagues
-                  .filter((l) => s.id !== "soccer" || l.teamLeague)
+                  .filter(
+                    (l) =>
+                      (s.id !== "soccer" ||
+                        l.teamLeague ||
+                        preferences.leagues?.includes(`${s.id}/${l.id}`)) &&
+                      (!user ||
+                        !preferences.leagues?.length ||
+                        preferences.leagues.includes(`${s.id}/${l.id}`)),
+                  )
                   .map((l) => {
                     const key = `${s.id}/${l.id}`,
                       expanded = expandedLeague === key;

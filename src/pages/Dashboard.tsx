@@ -72,8 +72,13 @@ export default function Dashboard({
   const dayLeagueIds = new Set(
     matches.filter((m) => m.sport === sport).map((m) => m.league),
   );
-  const dayLeagues = (selectedSport?.leagues || []).filter((l) =>
-    dayLeagueIds.has(l.id),
+  const dayLeagues = (selectedSport?.leagues || []).filter(
+    (l) =>
+      dayLeagueIds.has(l.id) &&
+      (!user ||
+        !preferences.leagues?.length ||
+        preferences.leagues.includes(`${sport}/${l.id}`) ||
+        l.id === requestedLeague),
   );
   const league = dayLeagues.some((l) => l.id === requestedLeague)
     ? requestedLeague
@@ -111,6 +116,11 @@ export default function Dashboard({
     (m) =>
       (sport === "all" || m.sport === sport) &&
       (league === "all" || m.league === league) &&
+      (!user ||
+        !preferences.leagues?.length ||
+        requestedLeague !== "all" ||
+        preferences.leagues.includes(`${m.sport}/${m.league}`) ||
+        followsTeam(m, favoriteTeams)) &&
       (!favoritesOnly || ids.includes(keyOf(m))) &&
       (!personal || !user || preferredMatch(m, preferences, favoriteTeams)) &&
       (!confirmedWatch || !!m.watch?.confirmedForMatch),

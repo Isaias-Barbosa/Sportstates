@@ -754,10 +754,14 @@ export async function handler(req, res) {
         if (
           action.action === "favorite" &&
           action.kind === "team" &&
-          action.selected &&
-          !(await getTeam(action.id))
-        )
-          throw Error("Time não encontrado.");
+          action.selected
+        ) {
+          const team = await getTeam(action.id);
+          if (!team) throw Error("Time não encontrado.");
+          if (!team.league)
+            throw Error("Este time ainda não tem liga cadastrada.");
+          action.teamScope = `${team.sport}/${team.league}`;
+        }
         const result = await mutatePreferences(user.id, action);
         res.statusCode = 200;
         return res.end(

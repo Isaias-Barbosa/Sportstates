@@ -17,6 +17,7 @@ export function summarySports(preferences, teams) {
   return [
     ...new Set([
       ...preferences.sports,
+      ...(preferences.leagues || []).map((key) => key.split("/")[0]),
       ...teams.map((t) => t.sport),
       ...preferences.matches.map((id) => id.split("/")[0]),
     ]),
@@ -32,7 +33,10 @@ export function buildDailySummary({
   partial = false,
 }) {
   const relevant = (m) =>
-    preferences.sports.includes(m.sport) ||
+    (preferences.sports.includes(m.sport) &&
+      (!preferences.leagues?.length ||
+        preferences.leagues.includes(`${m.sport}/${m.league}`))) ||
+    (preferences.leagues || []).includes(`${m.sport}/${m.league}`) ||
     isFavoriteMatch(m, preferences, teams);
   const sort = (values, newest = false) =>
     values

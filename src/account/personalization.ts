@@ -22,6 +22,9 @@ export function preferredMatch(
       `${match.sport}/${match.league}/${match.id}`,
     ) ||
     followsTeam(match, teams) ||
-    preferences.sports.includes(match.sport)
+    (preferences.sports.includes(match.sport) &&
+      (!preferences.leagues?.length ||
+        preferences.leagues.includes(`${match.sport}/${match.league}`))) ||
+    !!preferences.leagues?.includes(`${match.sport}/${match.league}`)
   );
 }

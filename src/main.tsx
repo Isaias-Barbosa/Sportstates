@@ -1,4 +1,4 @@
-import AccountProvider,{AccountButton} from "./account/AccountProvider";
+import AccountProvider, { AccountButton } from "./account/AccountProvider";
 import NotificationsProvider, {
   NotificationSettingsButton,
 } from "./notifications/Notifications";
@@ -26,9 +26,9 @@ import "./home-viva.css";
 import "./pages-viva.css";
 import "./account/account.css";
 import Dashboard from "./pages/Dashboard";
-const AccountPage=lazy(()=>import("./pages/AccountPage"));
-const DailySummaryPage=lazy(()=>import("./pages/DailySummaryPage"));
-const FavoritesPage=lazy(()=>import("./pages/FavoritesPage"));
+const AccountPage = lazy(() => import("./pages/AccountPage"));
+const DailySummaryPage = lazy(() => import("./pages/DailySummaryPage"));
+const FavoritesPage = lazy(() => import("./pages/FavoritesPage"));
 const MatchPage = lazy(() => import("./pages/MatchPage"));
 const TransfersPage = lazy(() => import("./pages/TransfersPage"));
 const About = lazy(() => import("./pages/About"));
@@ -146,9 +146,22 @@ function App() {
                 <Newspaper size={18} />
                 Notícias
               </NavLink>
-              <NavLink to="/resumo-diario"><Newspaper size={18}/>Resumo Diário</NavLink>
-              <NavLink to="/favoritos"><UserRound size={18}/>Meus favoritos</NavLink>
-              <NavLink to="/conta"><UserRound size={18}/>Minha conta</NavLink>
+              <NavLink to="/resumo-diario">
+                <Newspaper size={18} />
+                Resumo Diário
+              </NavLink>
+              <NavLink to="/favoritos">
+                <UserRound size={18} />
+                Meus favoritos
+              </NavLink>
+              <NavLink to="/conta">
+                <UserRound size={18} />
+                Minha conta
+              </NavLink>
+              <NavLink to="/conta#personalizar">
+                <Settings size={18} />
+                Personalizar
+              </NavLink>
               <div className="nav-label">ESPORTES</div>
               <SportsNavigation />
               <NavLink to="/admin/jogos">
@@ -231,12 +244,9 @@ function App() {
               <Suspense fallback={<Loading />}>
                 <Routes>
                   <Route path="/" element={<Dashboard />} />
-                  <Route
-                    path="/favoritos"
-                    element={<FavoritesPage />}
-                  />
-                  <Route path="/conta" element={<AccountPage/>}/>
-                  <Route path="/resumo-diario" element={<DailySummaryPage/>}/>
+                  <Route path="/favoritos" element={<FavoritesPage />} />
+                  <Route path="/conta" element={<AccountPage />} />
+                  <Route path="/resumo-diario" element={<DailySummaryPage />} />
                   <Route path="/atletas" element={<TennisAthletesPage />} />
                   <Route path="/classificacoes" element={<StandingsPage />} />
                   <Route
@@ -278,6 +288,8 @@ function App() {
 }
 createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <AccountProvider><App /></AccountProvider>
+    <AccountProvider>
+      <App />
+    </AccountProvider>
   </React.StrictMode>,
 );

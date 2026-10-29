@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { useAccount, type NotificationPreferences } from "./AccountProvider";
+import { useApi } from "../hooks";
+import type { CompetitionCatalog } from "../types";
 import { sports } from "../catalog";
 import { playAlertSound, unlockSound } from "../notifications/sound";
 export function NotificationPreferencesForm({
@@ -133,18 +135,27 @@ export default function PreferencesForm() {
   const { preferences, mutate, saving } = useAccount();
   const [selected, setSelected] = useState(preferences.sports),
     [message, setMessage] = useState("");
+  const {
+    data: catalog,
+    error: catalogError,
+    refresh: reloadCatalog,
+  } = useApi<CompetitionCatalog>("/api/competitions", 0);
+  const [leagues, setLeagues] = useState(preferences.leagues || []);
+  const leaguesKey = (preferences.leagues || []).join("|");
+  useEffect(() => setLeagues(preferences.leagues || []), [leaguesKey]);
   const sportsKey = preferences.sports.join("|");
   useEffect(() => setSelected(preferences.sports), [sportsKey]);
   return (
-    <div className="account-preferences">
+    <div className="account-preferences" id="personalizar">
       <section className="account-card">
-        <h2>Seus esportes</h2>
+        <span className="profile-eyebrow">SUA AGENDA</span>
+        <h2>Esportes e ligas</h2>
         <p>Personalize sua home e o Resumo Diário.</p>
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            void mutate({ action: "sports", sports: selected })
-              .then(() => setMessage("Esportes salvos."))
+            void mutate({ action: "interests", sports: selected, leagues })
+              .then(() => setMessage("Esportes e ligas salvos."))
               .catch(() => setMessage("Não foi possível salvar."));
           }}
         >
@@ -166,8 +177,73 @@ export default function PreferencesForm() {
               </label>
             ))}
           </div>
-          <button className="admin-primary" disabled={saving}>
-            Salvar esportes
+          <div className="league-preferences">
+            <div className="profile-section-title">
+              <h3>Quais competições você quer ver?</h3>
+              <button
+                type="button"
+                className="auth-text-button"
+                disabled={saving}
+                onClick={() => setLeagues([])}
+              >
+                Mostrar todas
+              </button>
+            </div>
+            <p>
+              Sem seleção, todas aparecem. Suas escolhas organizam o menu, a
+              home e o Resumo Diário. Os jogos dos seus times favoritos
+              continuam em destaque.
+            </p>
+            {catalogError && (
+              <p role="alert">
+                Não foi possível carregar as ligas.{" "}
+                <button type="button" onClick={reloadCatalog}>
+                  Tentar novamente
+                </button>
+              </p>
+            )}
+            {!catalog && !catalogError && (
+              <p role="status">Carregando competições…</p>
+            )}
+            {catalog?.sports.map((s) => (
+              <details key={s.id} className="league-choice-group">
+                <summary>
+                  {s.icon} {s.name}
+                  <span>
+                    {
+                      s.leagues.filter((l) =>
+                        leagues.includes(`${s.id}/${l.id}`),
+                      ).length
+                    }{" "}
+                    selecionadas
+                  </span>
+                </summary>
+                <div>
+                  {s.leagues.map((l) => {
+                    const key = `${s.id}/${l.id}`;
+                    return (
+                      <label className="account-checkbox" key={key}>
+                        <input
+                          type="checkbox"
+                          checked={leagues.includes(key)}
+                          onChange={(e) =>
+                            setLeagues((old) =>
+                              e.target.checked
+                                ? [...old, key]
+                                : old.filter((v) => v !== key),
+                            )
+                          }
+                        />
+                        {l.name}
+                      </label>
+                    );
+                  })}
+                </div>
+              </details>
+            ))}
+          </div>
+          <button className="admin-primary" disabled={saving || !catalog}>
+            Salvar personalização
           </button>
           {message && <p role="status">{message}</p>}
         </form>

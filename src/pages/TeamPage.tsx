@@ -413,7 +413,7 @@ const supported = new Set([
   "hockey/nhl",
   "volleyball/superliga-men",
 ]);
-function GameList({
+export function GameList({
   matches,
   empty,
 }: {

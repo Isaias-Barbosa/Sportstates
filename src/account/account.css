@@ -630,3 +630,250 @@
     transition: none;
   }
 }
+
+.profile-hero {
+  background: linear-gradient(115deg, #2862ff18, transparent 70%), var(--panel);
+  padding: 30px;
+  border-top: 3px solid #2862ff;
+}
+.profile-identity {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  min-width: 0;
+}
+.profile-identity h2 {
+  font-size: clamp(26px, 4vw, 36px);
+  margin: 8px 0 0;
+  letter-spacing: -0.04em;
+}
+.profile-identity p {
+  margin: 5px 0;
+  overflow-wrap: anywhere;
+}
+.profile-avatar {
+  width: 84px;
+  height: 84px;
+  border-radius: 22px;
+  display: grid;
+  place-items: center;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  flex-shrink: 0;
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--green);
+}
+.profile-avatar img {
+  width: 58px;
+  height: 58px;
+  object-fit: contain;
+}
+.profile-eyebrow {
+  display: block;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: var(--green);
+  margin-bottom: 8px;
+}
+.profile-stats {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+  border-block: 1px solid var(--border);
+  margin: 24px 0;
+  padding: 18px 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+.profile-stats strong {
+  color: var(--text);
+  font-size: 22px;
+  margin-right: 4px;
+}
+.profile-section-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+.profile-section-title h2 {
+  margin-bottom: 0;
+}
+.profile-section-title h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+}
+.profile-following > p,
+.league-preferences p {
+  font-size: 12px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+.profile-team-picker {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 10px;
+  margin-top: 22px;
+}
+.profile-team-picker button {
+  display: flex;
+  gap: 12px;
+  text-align: left;
+  align-items: center;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 15px;
+  background: var(--canvas);
+  min-width: 0;
+}
+.profile-team-picker img {
+  object-fit: contain;
+  flex-shrink: 0;
+}
+.profile-team-picker span {
+  min-width: 0;
+}
+.profile-team-picker strong {
+  display: block;
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+.profile-team-picker small {
+  display: block;
+  color: var(--muted);
+  margin-top: 4px;
+  font-size: 11px;
+}
+.profile-team-picker button[aria-pressed="true"] {
+  background: var(--green-glow);
+  box-shadow: inset 3px 0 var(--green);
+}
+.profile-team-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  font-size: 12px;
+  padding: 18px 0;
+  color: var(--green);
+}
+.profile-team-actions button {
+  color: var(--muted);
+}
+.profile-agenda {
+  border-top: 1px solid var(--border);
+  padding-top: 15px;
+}
+.profile-agenda-tabs {
+  display: flex;
+  gap: 6px;
+  padding: 4px;
+  border-radius: 10px;
+  background: var(--surface);
+}
+.profile-agenda-tabs button {
+  padding: 8px 12px;
+  border-radius: 7px;
+  font-size: 12px;
+}
+.profile-agenda-tabs button[aria-pressed="true"] {
+  background: var(--panel);
+}
+.profile-empty {
+  text-align: center;
+  padding: 28px 14px;
+  background: var(--canvas);
+  border: 1px dashed var(--border);
+  border-radius: 14px;
+  margin-top: 20px;
+}
+.profile-empty > svg {
+  color: var(--green);
+  margin-bottom: 12px;
+}
+.profile-empty p {
+  max-width: 410px;
+  margin: 12px auto 18px;
+}
+#personalizar {
+  scroll-margin-top: 100px;
+}
+.league-preferences {
+  margin-bottom: 20px;
+}
+.league-choice-group {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  margin: 8px 0;
+  background: var(--canvas);
+}
+.league-choice-group summary {
+  cursor: pointer;
+  padding: 13px;
+  font-size: 12px;
+  font-weight: 700;
+}
+.league-choice-group summary span {
+  float: right;
+  font-size: 10px;
+  color: var(--muted);
+  font-weight: 400;
+}
+.league-choice-group > div {
+  display: grid;
+  gap: 12px;
+  padding: 4px 14px 16px;
+  max-height: 280px;
+  overflow-y: auto;
+}
+.favorite-rule {
+  display: block;
+  max-width: 360px;
+  font-size: 11px;
+  line-height: 1.6;
+  color: var(--muted);
+  margin-top: 8px;
+}
+.menu-personalize {
+  font-size: 11px;
+  color: var(--green);
+}
+.account-page :is(button, summary, a):focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 3px;
+}
+@media (max-width: 600px) {
+  .profile-hero {
+    padding: 20px;
+  }
+  .profile-avatar {
+    width: 62px;
+    height: 62px;
+    border-radius: 16px;
+  }
+  .profile-avatar img {
+    width: 44px;
+    height: 44px;
+  }
+  .profile-identity {
+    gap: 12px;
+  }
+  .profile-identity p {
+    font-size: 12px;
+  }
+  .profile-stats {
+    gap: 18px;
+  }
+  .profile-team-picker {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .profile-agenda .team-game-teams {
+    gap: 5px;
+  }
+}

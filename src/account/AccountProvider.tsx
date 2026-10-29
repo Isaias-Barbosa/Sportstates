@@ -38,6 +38,7 @@ export type Preferences = {
   matches: string[];
   teams: string[];
   sports: string[];
+  leagues: string[];
   notifications: NotificationPreferences;
 };
 export type FavoriteTeam = {
@@ -52,6 +53,7 @@ const empty = (): Preferences => ({
   matches: [],
   teams: [],
   sports: [],
+  leagues: [],
   notifications: { ...defaultNotifications },
 });
 type Account = {
@@ -269,8 +271,12 @@ export function FavoriteTeamButton({ id }: { id: string }) {
         }}
       >
         <Star size={16} fill={selected ? "currentColor" : "none"} />
-        {selected ? "Time favorito" : "Seguir time"}
+        {selected ? "Time favorito" : "Favoritar time"}
       </button>
+      <small className="favorite-rule">
+        Um time por liga. Ao escolher outro da mesma liga, o favorito anterior
+        será substituído.
+      </small>
       {message && <p role="alert">{message}</p>}
     </>
   );

@@ -13,11 +13,14 @@ import {
 import { Link, useSearchParams } from "react-router-dom";
 import { useAccount } from "../account/AccountProvider";
 import { accountClient } from "../account/client";
+import FavoriteAgenda from "../account/FavoriteAgenda";
 import PreferencesForm from "../account/PreferencesForm";
 import { Notice } from "../components/shared";
 export default function AccountPage() {
   const {
     user,
+    teams,
+    preferences,
     loading,
     refresh,
     logout,
@@ -141,9 +144,35 @@ export default function AccountPage() {
       {user && message && <Notice>{message}</Notice>}
       {user ? (
         <>
-          <section className="account-card">
-            <h2>Olá, {user.name}</h2>
-            <p>{user.email}</p>
+          <section className="account-card profile-hero">
+            <div className="profile-identity">
+              <div className="profile-avatar">
+                {teams[0]?.logo ? (
+                  <img src={teams[0].logo} alt="Escudo do seu time favorito" />
+                ) : (
+                  <span>{user.name.slice(0, 1).toUpperCase()}</span>
+                )}
+              </div>
+              <div>
+                <span className="profile-eyebrow">
+                  SUA ARQUIBANCADA DIGITAL
+                </span>
+                <h2>Olá, {user.name.split(" ")[0]}.</h2>
+                <p>{user.email}</p>
+              </div>
+            </div>
+            <div className="profile-stats">
+              <span>
+                <strong>{teams.length}</strong>{" "}
+                {teams.length === 1 ? "time favorito" : "times favoritos"}
+              </span>
+              <span>
+                <strong>{preferences.leagues?.length || "Todas"}</strong> ligas
+              </span>
+              <span>
+                <strong>{preferences.matches.length}</strong> jogos salvos
+              </span>
+            </div>
             <div className="account-actions">
               <Link className="admin-primary" to={destination}>
                 Abrir Resumo Diário
@@ -163,6 +192,7 @@ export default function AccountPage() {
               </button>
             </div>
           </section>
+          <FavoriteAgenda />
           <PreferencesForm />
           <section className="account-card">
             <h2>Favoritos deste navegador</h2>
