@@ -126,7 +126,23 @@ export type AmericanFootballData = Pick<
     redZone: boolean;
   } | null;
 };
+export type MatchIncident = {
+  id: string;
+  kind: "goal" | "red-card";
+  player: string;
+  minute: string;
+  ownGoal: boolean;
+  penalty: boolean;
+  secondYellow: boolean;
+};
+export type MatchHighlights = {
+  winnerId: string | null;
+  penalties: boolean;
+  home: MatchIncident[];
+  away: MatchIncident[];
+};
 export type Detail = {
+  highlights?: MatchHighlights;
   basketball?: BasketballData;
   americanFootball?: AmericanFootballData;
   match: Match;

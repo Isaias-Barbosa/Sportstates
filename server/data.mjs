@@ -1,3 +1,4 @@
+import { matchHighlights } from "./match-highlights.mjs";
 import {
   normalizeAmericanFootball,
   footballPlays,
@@ -229,6 +230,7 @@ export function normalizeSummary(raw, sport, league, leagueName) {
   return {
     match: { ...match, venue: raw.gameInfo?.venue?.fullName || match.venue },
     events,
+    highlights: matchHighlights(raw, match, eventKind),
     ...(sport === "basketball" ? { basketball } : {}),
     ...(sport === "football"
       ? { americanFootball: normalizeAmericanFootball(raw, match) }

@@ -1,3 +1,4 @@
+import MatchTeamFacts from "../components/MatchTeamFacts";
 import { matchScore } from "../components/shared";
 import AmericanFootballMatch from "../components/AmericanFootballMatch";
 import PeriodScoreboard from "../components/PeriodScoreboard";
@@ -120,7 +121,13 @@ export default function MatchPage() {
                 {matchLabel(data.match)}
               </div>
               <div className="detail-score">
-                <div>
+                <div
+                  className={
+                    data.highlights?.winnerId === data.match.home.id
+                      ? "detail-team is-winner"
+                      : "detail-team"
+                  }
+                >
                   <TeamCrest
                     team={data.match.home}
                     large
@@ -142,13 +149,24 @@ export default function MatchPage() {
                     }
                   />
                   <h2>{data.match.home.name}</h2>
+                  <MatchTeamFacts
+                    highlights={data.highlights}
+                    side="home"
+                    team={data.match.home}
+                  />
                 </div>
                 <strong>
                   {data.match.state === "scheduled"
                     ? "×"
                     : matchScore(data.match)}
                 </strong>
-                <div>
+                <div
+                  className={
+                    data.highlights?.winnerId === data.match.away.id
+                      ? "detail-team is-winner"
+                      : "detail-team"
+                  }
+                >
                   <TeamCrest
                     team={data.match.away}
                     large
@@ -170,6 +188,11 @@ export default function MatchPage() {
                     }
                   />
                   <h2>{data.match.away.name}</h2>
+                  <MatchTeamFacts
+                    highlights={data.highlights}
+                    side="away"
+                    team={data.match.away}
+                  />
                 </div>
               </div>
               <p>
