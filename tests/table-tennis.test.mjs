@@ -138,6 +138,8 @@ test("official results retain home/away, scores, winner and played sets only", (
 });
 test("scheduled matches never fabricate points, winners or live status", () => {
   const m = normalizeTableMatch(unit, null, event, { countryCode: "FRA" });
+  assert.ok(m.watch.links.some(l => l.id === "cazetv"));
+  assert.equal(m.watch.confirmedForMatch, false);
   assert.equal(m.state, "scheduled");
   assert.equal(m.home.score, null);
   assert.equal(m.home.winner, false);

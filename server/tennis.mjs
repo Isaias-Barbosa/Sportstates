@@ -1,3 +1,4 @@
+import { getWatchOptions } from "./watch.mjs";
 import { createCache } from "./cache.mjs";
 import { normalizeEvent, validDate } from "./data.mjs";
 const cached = createCache();
@@ -88,6 +89,7 @@ export function normalizeTennis(raw) {
               name: `${match.home.name} x ${match.away.name}`,
               setScores: sets,
               tournament: event.name,
+              watch: getWatchOptions({...match, tournament: event.name}, c),
               round: tennisRound(c.round?.displayName || ""),
               venue: [c.venue?.fullName, c.venue?.court]
                 .filter(Boolean)
@@ -102,7 +104,7 @@ export function normalizeTennis(raw) {
 }
 export async function tennisMatches(date) {
   const r = await cached(
-    `tennis:date:fresh-v2:${date}`,
+    `tennis:date:watch-v3:${date}`,
     (matches) => (matches.some((m) => m.state === "live") ? 15000 : 60000),
     async () =>
       normalizeTennis(

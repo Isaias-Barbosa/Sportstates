@@ -1,3 +1,4 @@
+import { enrichGoatBroadcasts } from "./goat-broadcasts.mjs";
 import { enrichGeBroadcasts } from './ge-broadcasts.mjs';
 import { createCache } from './cache.mjs';
 const cached = createCache();
@@ -44,6 +45,7 @@ export async function enrichBroadcasts(matches) {
   const details = VERIFIED_DETAILS.filter(ref => matches.some(m => m.id === ref.eventId && m.sport === ref.sport && m.league === ref.league && m.date.slice(0, 10) === ref.date && m.state !== 'finished'));
   const urls = [CAZE_AGENDA, ...details.map(ref => `${CAZE_AGENDA}watch/${ref.videoId}`)];
   const gePromise = enrichGeBroadcasts(matches);
+  const goatPromise = enrichGoatBroadcasts(matches);
   const results = await Promise.allSettled(urls.map(url => cached(`caze:${url}`, 300000, async () => {
     const response = await fetch(url, { signal: AbortSignal.timeout(8000), headers: { Accept: 'text/html' } });
     if (!response.ok) throw new Error('Agenda indisponível');
@@ -54,5 +56,7 @@ export async function enrichBroadcasts(matches) {
   const events = results.filter(r => r.status === 'fulfilled').flatMap(r => r.value.value);
   // The same video may appear in homepage and detail. Prefer the more specific page.
   const schedule = [...new Map(events.map(e => [e.id, e])).values()];
-  return applyCazeSchedule(await gePromise, schedule);
+  const [ge, goat] = await Promise.all([gePromise, goatPromise]);
+  const merged = ge.map((m,i) => goat[i].watch?.confirmedForMatch ? {...m,watch:{...m.watch,...goat[i].watch,links:[...new Map([...(m.watch?.confirmedForMatch?m.watch.links:[]),...goat[i].watch.links].map(l=>[l.id,l])).values()]}} : m);
+  return applyCazeSchedule(merged, schedule);
 }

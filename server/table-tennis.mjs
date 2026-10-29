@@ -1,3 +1,4 @@
+import { getWatchOptions } from "./watch.mjs";
 import { createHash } from "node:crypto";
 import { createCache } from "./cache.mjs";
 import { dayInBrazil, validDate } from "./data.mjs";
@@ -270,7 +271,7 @@ export function normalizeTableMatch(unit, card, event, meta = {}) {
       meta.venueName ||
       "",
     broadcast: "",
-    watch: null,
+    watch: getWatchOptions({sport: "table-tennis", league: event.league, state}),
     setScores: games,
     tournament: event.name,
     round: rounds[unit.Round] || (unit.Draw === "QUAL" ? "Qualificatório" : ""),
@@ -297,7 +298,7 @@ export function mergeTableCards(cards, official) {
 }
 async function eventMatches(event) {
   return cached(
-    `table-tennis:event:official-v2:${event.id}`,
+    `table-tennis:event:official-watch-v3:${event.id}`,
     (matches) =>
       matches.some((m) => m.state === "live")
         ? 15000

@@ -7,6 +7,9 @@ const leagues = new Map(
     "Campeonato Brasileiro": "bra.1",
     "Campeonato Brasileiro Série B": "bra.2",
     "Copa do Brasil": "bra.copa_do_brazil",
+    "Copa do Rei": "esp.copa_del_rey",
+    "Copa do Rei da Espanha": "esp.copa_del_rey",
+    "Copa da Itália": "ita.coppa_italia",
     "Premier League": "eng.1",
     "Copa da Liga Inglesa": "eng.league_cup",
     "Copa da Inglaterra": "eng.fa",
@@ -30,6 +33,7 @@ const key = (value) =>
 const aliases = new Map(
   Object.entries({
     vascodagama: "vasco",
+    aldiriyah: "diriyahclub",
     atletico_mg: "atleticomg",
     rbbragantino: "bragantino",
     redbullbragantino: "bragantino",

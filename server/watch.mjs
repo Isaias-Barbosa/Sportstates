@@ -2,7 +2,7 @@
  * This is a competition directory, NOT a per-event TV schedule.
  * Never infer Brazilian rights from the ESPN feed's US broadcast strings.
  */
-export const WATCH_REVIEWED_AT = "2026-10-26";
+export const WATCH_REVIEWED_AT = "2026-10-29";
 const disney = {
   id: "disney",
   name: "Disney+ · ESPN",
@@ -156,7 +156,37 @@ export const WATCH_DIRECTORY = {
   ],
 };
 
+// Competition rights are a guide, never proof of an individual match's channel.
+const tennisSource = 'https://brazil.espnpressroom.com/press-releases/2026/03/casa-do-tenis-no-brasil-espn-e-disney-ampliam-cobertura-da-modalidade-com-novos-torneios-challenger/';
+WATCH_DIRECTORY['tennis/atp'] = [
+  { ...disney, sourceUrl: tennisSource, note: 'Tênis masculino na ESPN/Disney+ Premium. Confira o torneio, a quadra e o plano; o canal ESPN específico depende da programação.' },
+  guide('atpguide', 'Programação oficial ATP', 'https://www.atptour.com/en/tournaments/tv-schedule'),
+];
+const cazeWtt = {
+  id: 'cazetv', name: 'CazéTV · YouTube', badge: 'CAZÉ',
+  url: 'https://www.youtube.com/@CazeTV/streams', access: 'free', kind: 'platform',
+  sourceUrl: 'https://www.ittf.com/2025/09/17/ittf-and-wtt-sign-four-year-broadcast-deal-with-cazetv-in-brazil/',
+  note: 'Parceira digital gratuita da ITTF/WTT no Brasil (2025–2028). Confira a sessão e a mesa anunciadas; este link não confirma a exibição individual.',
+};
+for (const league of ['grand-smash','champions','star-contender','contender','world-championships','world-cup'])
+  WATCH_DIRECTORY['table-tennis/'+league] = [cazeWtt, guide('wttguide','Guia oficial WTT','https://www.worldtabletennis.com/livevideo','Confira as emissoras e possíveis restrições territoriais deste evento.')];
+for (const league of ['feeder','finals'])
+  WATCH_DIRECTORY['table-tennis/'+league] = [guide('wttguide','Guia oficial WTT','https://www.worldtabletennis.com/livevideo','Confira a cobertura deste evento e as restrições no Brasil.'),guide('wttglobal','WTT · YouTube oficial','https://www.youtube.com/@wttglobal/streams','Consulte as mesas disponíveis. Alguns eventos podem ter bloqueio territorial no Brasil.')];
+WATCH_DIRECTORY['soccer/esp.copa_del_rey'] = [{...disney, sourceUrl:'https://brazil.espnpressroom.com/press-releases/2026/02/espn-e-disney-transmitem-semifinal-da-copa-do-rei-entre-barcelona-e-atletico-de-madrid/'}];
+for (const league of ['eng.fa','eng.league_cup'])
+ WATCH_DIRECTORY['soccer/'+league] = [{...disney,sourceUrl:'https://brazil.espnpressroom.com/press-releases/2026/01/final-da-supercopa-da-espanha-e-wild-card-da-nfl-marcam-a-semana-da-espn-e-do-disney/'}];
+const goat = {id:'goat',name:'Canal GOAT · YouTube',badge:'GOAT',url:'https://www.youtube.com/@canalgoatbr/streams',access:'free',kind:'platform',sourceUrl:'https://www.spl.com.sa/en/news/where-to-watch',note:'Parceiro da Liga Saudita no Brasil. Confira o jogo na agenda oficial do GOAT; nem todas as partidas estão confirmadas.'};
+WATCH_DIRECTORY['soccer/ksa.1'] = [goat,guide('goatguide','Programação oficial GOAT','https://canalgoat.com.br/transmissoes/')];
+// Tennis TV excludes Grand Slams and other tours. A tournament must be explicit.
+export function competitionWatchLinks(match) {
+ const links = [...(WATCH_DIRECTORY[match.sport+'/'+match.league] || [])];
+ if(match.sport==='tennis' && /\bATP\s*(?:250|500|1000)|masters\s*1000|\bATP\s*Finals/i.test(match.tournament || '') && !/grand slam|wimbledon|roland|australian open|us open|challenger|davis|laver/i.test(match.tournament || ''))
+ links.push({id:'tennistv',name:'Tennis TV · ATP',badge:'ATP',url:'https://www.tennistv.com/',access:'subscription',kind:'platform',sourceUrl:'https://www.tennistv.com/live-atp-streaming',note:'Streaming oficial ATP. Não inclui Grand Slams, Challenger, Davis Cup ou Laver Cup. Confira a disponibilidade do torneio e da quadra.'});
+ return links;
+}
+
 const HOSTS = new Set([
+  "www.atptour.com", "www.tennistv.com", "www.worldtabletennis.com", "canalgoat.com.br",
   "www.xsports.com.br", "www.espn.com.br", "www.espn.com", "www.youtube.com", "ge.globo.com", "globoplay.globo.com", "www.band.uol.com.br", "www.sbt.com.br", "record.r7.com", "tntsports.com.br", "qazsporttv.kz", "www.peacocktv.com", "www.cbssports.com",
   "www.disneyplus.com",
   "www.primevideo.com",
@@ -181,7 +211,7 @@ export function safeWatchUrl(value) {
       !u.username &&
       !u.password &&
       !u.port &&
-      (u.hostname !== "www.youtube.com" || /^\/@(?:CazeTV|canalgoatbr|espnbrasil|tntsportsbr)(?:\/streams)?\/?$/i.test(u.pathname) || (u.pathname === "/watch" && /^[\w-]{11}$/.test(u.searchParams.get("v") || "") && [...u.searchParams.keys()].every(k => k === "v")))
+      (u.hostname !== "www.youtube.com" || /^\/@(?:CazeTV|canalgoatbr|espnbrasil|tntsportsbr|wttglobal)(?:\/streams)?\/?$/i.test(u.pathname) || (u.pathname === "/watch" && /^[\w-]{11}$/.test(u.searchParams.get("v") || "") && [...u.searchParams.keys()].every(k => k === "v")))
     );
   } catch {
     return false;
@@ -203,6 +233,7 @@ export const BRAZIL_CHANNEL_GUIDES = [
   { id: 'tnt', name: 'TNT Sports', url: 'https://tntsports.com.br/', badge: 'TNT' },
 ].map(l => ({ access: 'subscription', ...l, country: 'BR', kind: 'guide', note: 'Consulte a programação oficial. A presença neste guia não confirma a transmissão deste jogo.', sourceUrl: l.url }));
 const CHANNELS = [
+  {pattern: /^GOAT$/i, ...goat},
   ...[1,2,3].map(n => ({pattern:new RegExp(`^sportv\\s*${n === 1 ? '1?' : n}$`,'i'),id:`sportv${n}`,name:n===1?'sportv':`sportv ${n}`,badge:`S${n}`,url:'https://globoplay.globo.com/',access:'subscription'})),
   { pattern: /^globoplay$/i, id: 'globoplay', name: 'Globoplay', url: 'https://globoplay.globo.com/', badge: 'Gplay', access: 'check' },
   { pattern: /^Globo$/i, id: 'globo', name: 'TV Globo', url: 'https://globoplay.globo.com/', badge: 'G', access: 'check' },
@@ -211,7 +242,7 @@ const CHANNELS = [
   ...BRAZIL_CHANNEL_GUIDES.filter(l => !/^espn\d?$/.test(l.id)).map(l => ({ ...l, pattern: new RegExp(`^${l.name.split(' · ')[0].replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}$`, 'i') })),
   { pattern: /^ESPN(?:\s*1)?(?:\s*Brasil)?$/i, id: "espn", name: "ESPN", url: "https://www.espn.com.br/watch/", badge: "ESPN" },
   ...[2, 3, 4, 5, 6].map(n => ({ pattern: new RegExp(`^ESPN\\s*${n}$`, "i"), id: `espn${n}`, name: `ESPN ${n}`, url: "https://www.espn.com.br/watch/", badge: `ESPN ${n}` })),
-  { pattern: /^Disney\s*\+$/, ...disney, name: "Disney+", badge: "D+" },
+  { pattern: /^Disney\s*\+(?:\s*Premium)?$/i, ...disney, name: "Disney+", badge: "D+" },
   { pattern: /^Premiere$/i, ...WATCH_DIRECTORY["soccer/bra.1"][0], badge: "P" },
   { pattern: /^(Amazon\s+)?Prime V[ií]deo$/i, ...prime, badge: "prime" },
 ];
@@ -254,7 +285,7 @@ export function getWatchOptions(match, competition = {}) {
     reviewedAt: WATCH_REVIEWED_AT, links: channels,
     message: "Canais informados pela fonte para esta partida no Brasil. A programação pode mudar e exigir assinatura.",
   };
-  const links = (WATCH_DIRECTORY[`${match.sport}/${match.league}`] || [])
+  const links = competitionWatchLinks(match)
     .filter((l) => safeWatchUrl(l.url))
     .map((l) => ({ ...l }));
   return {
