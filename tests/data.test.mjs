@@ -165,7 +165,7 @@ test('match provider receives Portuguese locale for details and preserves halfti
   const original = globalThis.fetch;
   let requested;
   globalThis.fetch = async (url) => {
-    if (String(url).includes("agendacazetv.com.br")) return { ok: true, text: async () => "" };
+    if (String(url).includes("agendacazetv.com.br") || String(url).includes("ge.globo.com/agenda/")) return { ok: true, text: async () => "" };
     requested = new URL(url);
     return { ok: true, json: async () => ({ header: { id: '998877', competitions: [{ ...event.competitions[0], date: event.date, status: { type: { state: 'in', name: 'STATUS_HALFTIME', description: 'Intervalo' }, displayClock: "45'" } }] } }) };
   };

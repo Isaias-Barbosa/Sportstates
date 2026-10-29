@@ -78,13 +78,13 @@ export default function WhereToWatch({
             {new Intl.DateTimeFormat("pt-BR", { timeZone: "UTC" }).format(
               new Date(watch.reviewedAt + "T12:00:00Z"),
             )}
-            . {watch.confirmedForMatch ? "Canais informados no feed desta partida para o Brasil." : "A transmissão específica desta partida não foi confirmada."}
+            . {watch.confirmedForMatch ? "Programação específica desta partida para o Brasil; confira a fonte abaixo." : "A transmissão específica desta partida não foi confirmada."}
           </p>
           <ul>
             {watch.links.map((l) => (
               <li key={l.id}>
                 <a href={l.sourceUrl} target="_blank" rel="noopener noreferrer">
-                  {l.name} · fonte oficial ↗
+                  {l.name} · fonte da programação ↗
                 </a>
               </li>
             ))}

@@ -203,12 +203,16 @@ export const BRAZIL_CHANNEL_GUIDES = [
   { id: 'tnt', name: 'TNT Sports', url: 'https://tntsports.com.br/', badge: 'TNT' },
 ].map(l => ({ access: 'subscription', ...l, country: 'BR', kind: 'guide', note: 'Consulte a programação oficial. A presença neste guia não confirma a transmissão deste jogo.', sourceUrl: l.url }));
 const CHANNELS = [
+  { pattern: /^globoplay$/i, id: 'globoplay', name: 'Globoplay', url: 'https://globoplay.globo.com/', badge: 'Gplay', access: 'check' },
+  { pattern: /^Globo$/i, id: 'globo', name: 'TV Globo', url: 'https://globoplay.globo.com/', badge: 'G', access: 'check' },
+  { pattern: /^Ge\s*TV$/i, id: 'getv', name: 'ge tv', url: 'https://globoplay.globo.com/categorias/esportes/', badge: 'ge', access: 'free' },
+
   ...BRAZIL_CHANNEL_GUIDES.filter(l => !/^espn\d?$/.test(l.id)).map(l => ({ ...l, pattern: new RegExp(`^${l.name.split(' · ')[0].replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}$`, 'i') })),
   { pattern: /^ESPN(?:\s*1)?(?:\s*Brasil)?$/i, id: "espn", name: "ESPN", url: "https://www.espn.com.br/watch/", badge: "ESPN" },
   ...[2, 3, 4, 5, 6].map(n => ({ pattern: new RegExp(`^ESPN\\s*${n}$`, "i"), id: `espn${n}`, name: `ESPN ${n}`, url: "https://www.espn.com.br/watch/", badge: `ESPN ${n}` })),
   { pattern: /^Disney\s*\+$/, ...disney, name: "Disney+", badge: "D+" },
   { pattern: /^Premiere$/i, ...WATCH_DIRECTORY["soccer/bra.1"][0], badge: "P" },
-  { pattern: /^(Amazon\s+)?Prime Video$/i, ...prime, badge: "prime" },
+  { pattern: /^(Amazon\s+)?Prime V[ií]deo$/i, ...prime, badge: "prime" },
 ];
 export function matchChannels(competition = {}) {
   // Only explicit Brazilian geography is eligible. A Portuguese request is not proof.
@@ -219,7 +223,7 @@ export function matchChannels(competition = {}) {
     const channel = CHANNELS.find(c => c.pattern.test(name));
     if (!channel) return [];
     const { pattern, ...data } = channel;
-    return [[data.id, { access: "subscription", kind: "platform", note: "Canal informado no feed da partida para o Brasil. Confira a programação da emissora.", ...data, sourceUrl: data.url }]];
+    return [[data.id, { access: "subscription", kind: "platform", note: "Canal informado no feed da partida para o Brasil. Confira a programação da emissora.", ...data, kind: "platform", sourceUrl: data.url }]];
   })).values()];
 }
 export function internationalChannels(competition = {}) {

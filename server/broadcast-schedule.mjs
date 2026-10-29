@@ -1,3 +1,4 @@
+import { enrichGeBroadcasts } from './ge-broadcasts.mjs';
 import { createCache } from './cache.mjs';
 const cached = createCache();
 export const CAZE_AGENDA = 'https://www.agendacazetv.com.br/';
@@ -42,6 +43,7 @@ export async function enrichBroadcasts(matches) {
   if (!matches.some(m => m.sport === 'soccer' && m.state !== 'finished')) return matches;
   const details = VERIFIED_DETAILS.filter(ref => matches.some(m => m.id === ref.eventId && m.sport === ref.sport && m.league === ref.league && m.date.slice(0, 10) === ref.date && m.state !== 'finished'));
   const urls = [CAZE_AGENDA, ...details.map(ref => `${CAZE_AGENDA}watch/${ref.videoId}`)];
+  const gePromise = enrichGeBroadcasts(matches);
   const results = await Promise.allSettled(urls.map(url => cached(`caze:${url}`, 300000, async () => {
     const response = await fetch(url, { signal: AbortSignal.timeout(8000), headers: { Accept: 'text/html' } });
     if (!response.ok) throw new Error('Agenda indisponível');
@@ -52,5 +54,5 @@ export async function enrichBroadcasts(matches) {
   const events = results.filter(r => r.status === 'fulfilled').flatMap(r => r.value.value);
   // The same video may appear in homepage and detail. Prefer the more specific page.
   const schedule = [...new Map(events.map(e => [e.id, e])).values()];
-  return applyCazeSchedule(matches, schedule);
+  return applyCazeSchedule(await gePromise, schedule);
 }
