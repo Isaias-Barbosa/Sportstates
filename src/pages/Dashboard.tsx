@@ -713,16 +713,17 @@ function GameRow({
               <Tv size={16} />
             </Link>
           )}
-          {m.state === "finished" && (
-            <Link
-              className="icon-button"
-              to={"/partida/" + keyOf(m) + "#videos"}
-              aria-label={`Consultar vídeos oficiais: ${m.home.name} x ${m.away.name}`}
-              title="Vídeos oficiais"
-            >
-              <Play size={16} />
-            </Link>
-          )}
+          {m.state === "finished" &&
+            !["tennis", "volleyball", "table-tennis"].includes(m.sport) && (
+              <Link
+                className="icon-button"
+                to={"/partida/" + keyOf(m) + "#videos"}
+                aria-label={`Consultar vídeos oficiais: ${m.home.name} x ${m.away.name}`}
+                title="Vídeos oficiais"
+              >
+                <Play size={16} />
+              </Link>
+            )}
           <button
             type="button"
             className={"icon-button " + (saved ? "saved" : "")}

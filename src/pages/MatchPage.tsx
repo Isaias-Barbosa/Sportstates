@@ -91,7 +91,11 @@ export default function MatchPage() {
   }, [sport, league, id]);
   useEffect(() => {
     if (hash === "#videos" && data?.match) {
-      setTab("videos");
+      setTab(
+        ["tennis", "volleyball", "table-tennis"].includes(data.match.sport)
+          ? "overview"
+          : "videos",
+      );
       document.getElementById("match-tabs")?.scrollIntoView({ block: "start" });
     }
     if (hash === "#onde-assistir" && data?.match) {

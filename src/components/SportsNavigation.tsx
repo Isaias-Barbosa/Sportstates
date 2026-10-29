@@ -83,7 +83,7 @@ export default function SportsNavigation() {
                   </div>
                 )}
                 {s.leagues
-                  .filter((l) => l.teamLeague)
+                  .filter((l) => s.id !== "soccer" || l.teamLeague)
                   .map((l) => {
                     const key = `${s.id}/${l.id}`,
                       expanded = expandedLeague === key;
