@@ -193,7 +193,7 @@ export async function route(url) {
   }
   if (url.pathname === "/api/teams") {
     const result = await cached(
-      "teams:volleyball-profiles-v1",
+      "teams:saudi-profiles-v1",
       CACHE_TTL.teams,
       () => listTeams(),
     );

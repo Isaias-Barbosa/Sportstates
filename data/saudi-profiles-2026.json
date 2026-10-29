@@ -1,0 +1,646 @@
+{
+  "revision": "saudi-pro-league-2026-27-v1",
+  "season": "2026/27",
+  "reviewedAt": "2026-10-29",
+  "expectedIds": [
+    "21833",
+    "8346",
+    "131746",
+    "8363",
+    "21446",
+    "13033",
+    "21827",
+    "21964",
+    "929",
+    "2276",
+    "21829",
+    "22028",
+    "817",
+    "22022",
+    "21965",
+    "793",
+    "18459",
+    "130899"
+  ],
+  "clubs": [
+    {
+      "id": "21833",
+      "name": "Abha",
+      "sport": "soccer",
+      "league": "ksa.1",
+      "city": "Abha",
+      "stadium": "Prince Sultan Bin Abdulaziz Sports City",
+      "stadium_image": "",
+      "website": "https://abhafc.sa/",
+      "description": "O Abha é um clube de futebol da Arábia Saudita, fundado em 1966, com sede em Abha. O clube representa a região de Asir, no sudoeste do país. Manda seus jogos no Prince Sultan Bin Abdulaziz Sports City.",
+      "honours": [],
+      "logo": "https://media-sdp.spl.com.sa/clubLogos/b950674ec2cf4184a0dea482414ac915.webp",
+      "colors": ["#103e72", "#0d47a1"],
+      "sources": [
+        {
+          "label": "Perfil oficial na Saudi Pro League",
+          "url": "https://www.spl.com.sa/en/teams/abha/"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://abhafc.sa/"
+        },
+        {
+          "label": "ESPN — identidade, elenco e partidas",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/ksa.1/teams/21833"
+        },
+        {
+          "label": "SAFF — fundação do Abha",
+          "url": "https://www.saff.com.sa/en/teams.php?id=1&season=19"
+        }
+      ]
+    },
+    {
+      "id": "8346",
+      "name": "Al Ahli",
+      "sport": "soccer",
+      "league": "ksa.1",
+      "city": "Jidá",
+      "stadium": "Alinma Stadium",
+      "stadium_image": "",
+      "website": "https://www.alahlifc.sa/",
+      "description": "O Al Ahli é um clube de futebol da Arábia Saudita, fundado em 1937, com sede em Jidá. É um dos clubes tradicionais de Jidá e conquistou a Liga dos Campeões da Ásia em 2025 e 2026. Manda seus jogos no Alinma Stadium.",
+      "honours": [
+        "Campeonato Saudita - 1978, 1984, 2016",
+        "Copa do Rei Saudita - 1962, 1965, 1969, 1970, 1971, 1973, 1977, 1978, 1979, 1983, 2011, 2012, 2016",
+        "Liga dos Campeões da Ásia - 2025, 2026"
+      ],
+      "logo": "https://media-sdp.spl.com.sa/clubLogos/efdd3327b51d4fbd95b83d784301d411.webp",
+      "colors": ["#3d8261", "#193b67"],
+      "sources": [
+        {
+          "label": "Perfil oficial na Saudi Pro League",
+          "url": "https://www.spl.com.sa/en/teams/al-ahli/"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://www.alahlifc.sa/"
+        },
+        {
+          "label": "ESPN — identidade, elenco e partidas",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/ksa.1/teams/8346"
+        },
+        {
+          "label": "RSSSF — campeões sauditas, Atsushi Fujioka e Mohammed Qayed",
+          "url": "https://www.rsssf.org/tabless/sauchamp.html"
+        },
+        {
+          "label": "RSSSF — vencedores das copas sauditas",
+          "url": "https://www.rsssf.org/tabless/saucuphist.html"
+        },
+        {
+          "label": "AFC — bicampeonato continental de 2026",
+          "url": "https://www.the-afc.com/en/club/afc_champions_league_elite.html/news/al-ahli-saudi-savour-glory-again"
+        }
+      ]
+    },
+    {
+      "id": "131746",
+      "name": "Diriyah Club",
+      "sport": "soccer",
+      "league": "ksa.1",
+      "city": "Diriyah",
+      "stadium": "Al Awwal Park",
+      "stadium_image": "",
+      "website": "https://www.diriyahclub.sa/en",
+      "description": "O Diriyah Club é um clube de futebol da Arábia Saudita, fundado em 1976, com sede em Diriyah. O clube representa Diriyah, na região de Riade, e integra a Liga Saudita na temporada 2026/27. Manda seus jogos no Al Awwal Park.",
+      "honours": [],
+      "logo": "https://media-sdp.spl.com.sa/clubLogos/1a2a221d20d34ffa8f41246ce61f2079.webp",
+      "colors": ["#194646"],
+      "sources": [
+        {
+          "label": "Perfil oficial na Saudi Pro League",
+          "url": "https://www.spl.com.sa/en/teams/diriyah/"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://www.diriyahclub.sa/en"
+        },
+        {
+          "label": "ESPN — identidade, elenco e partidas",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/ksa.1/teams/131746"
+        },
+        {
+          "label": "Diriyah Company — história do clube",
+          "url": "https://www.diriyahcompany.sa/en/news/diriyah-club"
+        }
+      ]
+    },
+    {
+      "id": "8363",
+      "name": "Al Ettifaq",
+      "sport": "soccer",
+      "league": "ksa.1",
+      "city": "Dammam",
+      "stadium": "Al Ettifaq Club Stadium",
+      "stadium_image": "",
+      "website": "https://ettifaq.com/",
+      "description": "O Al Ettifaq é um clube de futebol da Arábia Saudita, fundado em 1945, com sede em Dammam. Representa Dammam, na Província Oriental, e possui títulos do Campeonato Saudita. Manda seus jogos no Al Ettifaq Club Stadium.",
+      "honours": [
+        "Campeonato Saudita - 1983, 1987",
+        "Copa do Rei Saudita - 1968, 1985"
+      ],
+      "logo": "https://media-sdp.spl.com.sa/clubLogos/ab988d0ad28b419b96ab3cf2c49e0f6f.webp",
+      "colors": ["#017f53", "#e40010"],
+      "sources": [
+        {
+          "label": "Perfil oficial na Saudi Pro League",
+          "url": "https://www.spl.com.sa/en/teams/al-ettifaq/"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://ettifaq.com/"
+        },
+        {
+          "label": "ESPN — identidade, elenco e partidas",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/ksa.1/teams/8363"
+        },
+        {
+          "label": "RSSSF — campeões sauditas, Atsushi Fujioka e Mohammed Qayed",
+          "url": "https://www.rsssf.org/tabless/sauchamp.html"
+        },
+        {
+          "label": "RSSSF — vencedores das copas sauditas",
+          "url": "https://www.rsssf.org/tabless/saucuphist.html"
+        }
+      ]
+    },
+    {
+      "id": "21446",
+      "name": "Al Faisaly",
+      "sport": "soccer",
+      "league": "ksa.1",
+      "city": "Harmah",
+      "stadium": "Al Majma'ah Sports City",
+      "stadium_image": "",
+      "website": "https://alfaisalyfc.net/",
+      "description": "O Al Faisaly é um clube de futebol da Arábia Saudita, fundado em 1954, com sede em Harmah. O clube tem origem em Harmah, na região de Riade, e venceu a Copa do Rei Saudita em 2021. Manda seus jogos no Al Majma'ah Sports City.",
+      "honours": ["Copa do Rei Saudita - 2021"],
+      "logo": "https://media-sdp.spl.com.sa/clubLogos/874890145b9d43d59ec3f646e8bd4fee.webp",
+      "colors": ["#7e2423", "#ffffff"],
+      "sources": [
+        {
+          "label": "Perfil oficial na Saudi Pro League",
+          "url": "https://www.spl.com.sa/en/teams/al-faisaly/"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://alfaisalyfc.net/"
+        },
+        {
+          "label": "ESPN — identidade, elenco e partidas",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/ksa.1/teams/21446"
+        },
+        {
+          "label": "RSSSF — vencedores das copas sauditas",
+          "url": "https://www.rsssf.org/tabless/saucuphist.html"
+        }
+      ]
+    },
+    {
+      "id": "13033",
+      "name": "Al Fateh",
+      "sport": "soccer",
+      "league": "ksa.1",
+      "city": "Al Ahsa",
+      "stadium": "Maydan Tamweel Aloula",
+      "stadium_image": "",
+      "website": "https://www.fatehclub.com/",
+      "description": "O Al Fateh é um clube de futebol da Arábia Saudita, fundado em 1958, com sede em Al Ahsa. O clube conquistou o Campeonato Saudita de 2013. Manda seus jogos no Maydan Tamweel Aloula.",
+      "honours": ["Campeonato Saudita - 2013"],
+      "logo": "https://media-sdp.spl.com.sa/clubLogos/02f22b11aa604566a1858f96addb669c.webp",
+      "colors": ["#003dd3", "#0999ba"],
+      "sources": [
+        {
+          "label": "Perfil oficial na Saudi Pro League",
+          "url": "https://www.spl.com.sa/en/teams/al-fateh/"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://www.fatehclub.com/"
+        },
+        {
+          "label": "ESPN — identidade, elenco e partidas",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/ksa.1/teams/13033"
+        },
+        {
+          "label": "RSSSF — campeões sauditas, Atsushi Fujioka e Mohammed Qayed",
+          "url": "https://www.rsssf.org/tabless/sauchamp.html"
+        }
+      ]
+    },
+    {
+      "id": "21827",
+      "name": "Al Fayha",
+      "sport": "soccer",
+      "league": "ksa.1",
+      "city": "Al Majma'ah",
+      "stadium": "Al Majma'ah Sports City",
+      "stadium_image": "",
+      "website": "https://www.alfayhasc.com/en",
+      "description": "O Al Fayha é um clube de futebol da Arábia Saudita, fundado em 1953, com sede em Al Majma'ah. A equipe conquistou a Copa do Rei Saudita em 2022. Manda seus jogos no Al Majma'ah Sports City.",
+      "honours": ["Copa do Rei Saudita - 2022"],
+      "logo": "https://media-sdp.spl.com.sa/clubLogos/504ab03d43954464917361ed38f5cad2.webp",
+      "colors": ["#fd7301", "#0000ff"],
+      "sources": [
+        {
+          "label": "Perfil oficial na Saudi Pro League",
+          "url": "https://www.spl.com.sa/en/teams/al-fayha/"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://www.alfayhasc.com/en"
+        },
+        {
+          "label": "ESPN — identidade, elenco e partidas",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/ksa.1/teams/21827"
+        },
+        {
+          "label": "RSSSF — vencedores das copas sauditas",
+          "url": "https://www.rsssf.org/tabless/saucuphist.html"
+        }
+      ]
+    },
+    {
+      "id": "21964",
+      "name": "Al Hazem",
+      "sport": "soccer",
+      "league": "ksa.1",
+      "city": "Ar Rass",
+      "stadium": "Al Hazem Club Stadium",
+      "stadium_image": "",
+      "website": "https://alhazem.sa/",
+      "description": "O Al Hazem é um clube de futebol da Arábia Saudita, fundado em 1957, com sede em Ar Rass. O clube representa Ar Rass, na região de Qassim. Manda seus jogos no Al Hazem Club Stadium.",
+      "honours": [],
+      "logo": "https://media-sdp.spl.com.sa/clubLogos/8a2bfb4eeaad41e9a84107e0a9c75744.webp",
+      "colors": ["#fed23d", "#cccccc"],
+      "sources": [
+        {
+          "label": "Perfil oficial na Saudi Pro League",
+          "url": "https://www.spl.com.sa/en/teams/al-hazem/"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://alhazem.sa/"
+        },
+        {
+          "label": "ESPN — identidade, elenco e partidas",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/ksa.1/teams/21964"
+        }
+      ]
+    },
+    {
+      "id": "929",
+      "name": "Al Hilal",
+      "sport": "soccer",
+      "league": "ksa.1",
+      "city": "Riade",
+      "stadium": "Kingdom Arena",
+      "stadium_image": "",
+      "website": "https://alhilal.com/",
+      "description": "O Al Hilal é um clube de futebol da Arábia Saudita, fundado em 1957, com sede em Riade. É um dos clubes mais tradicionais da capital saudita e possui conquistas nacionais e continentais. Manda seus jogos no Kingdom Arena.",
+      "honours": [
+        "Campeonato Saudita - 1977, 1979, 1985, 1986, 1988, 1990, 1996, 1998, 2002, 2005, 2008, 2010, 2011, 2017, 2018, 2020, 2021, 2022, 2024",
+        "Copa do Rei Saudita - 1961, 1964, 1980, 1982, 1984, 1989, 2015, 2017, 2020, 2023, 2024, 2026"
+      ],
+      "logo": "https://media-sdp.spl.com.sa/clubLogos/ae14a651fb584440979f8c4d02b89428.webp",
+      "colors": ["#012ced", "#e3e4ed"],
+      "sources": [
+        {
+          "label": "Perfil oficial na Saudi Pro League",
+          "url": "https://www.spl.com.sa/en/teams/al-hilal/"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://alhilal.com/"
+        },
+        {
+          "label": "ESPN — identidade, elenco e partidas",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/ksa.1/teams/929"
+        },
+        {
+          "label": "RSSSF — campeões sauditas, Atsushi Fujioka e Mohammed Qayed",
+          "url": "https://www.rsssf.org/tabless/sauchamp.html"
+        },
+        {
+          "label": "RSSSF — vencedores das copas sauditas",
+          "url": "https://www.rsssf.org/tabless/saucuphist.html"
+        },
+        {
+          "label": "SAFF — Copa do Rei 2026",
+          "url": "https://www.saff.com.sa/en/news.php?id=4202"
+        }
+      ]
+    },
+    {
+      "id": "2276",
+      "name": "Al Ittihad",
+      "sport": "soccer",
+      "league": "ksa.1",
+      "city": "Jidá",
+      "stadium": "Alinma Stadium",
+      "stadium_image": "",
+      "website": "https://www.ittihadclub.sa/",
+      "description": "O Al Ittihad é um clube de futebol da Arábia Saudita, fundado em 1927, com sede em Jidá. É um dos clubes mais antigos do país e mantém uma rivalidade local com o Al Ahli. Manda seus jogos no Alinma Stadium.",
+      "honours": [
+        "Campeonato Saudita - 1982, 1997, 1999, 2000, 2001, 2003, 2007, 2009, 2023, 2025",
+        "Copa do Rei Saudita - 1958, 1959, 1960, 1963, 1967, 1988, 2010, 2013, 2018, 2025"
+      ],
+      "logo": "https://media-sdp.spl.com.sa/clubLogos/5c55f144687d497da1249c312392bb47.webp",
+      "colors": ["#f4de0f", "#000000"],
+      "sources": [
+        {
+          "label": "Perfil oficial na Saudi Pro League",
+          "url": "https://www.spl.com.sa/en/teams/al-ittihad/"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://www.ittihadclub.sa/"
+        },
+        {
+          "label": "ESPN — identidade, elenco e partidas",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/ksa.1/teams/2276"
+        },
+        {
+          "label": "RSSSF — campeões sauditas, Atsushi Fujioka e Mohammed Qayed",
+          "url": "https://www.rsssf.org/tabless/sauchamp.html"
+        },
+        {
+          "label": "RSSSF — vencedores das copas sauditas",
+          "url": "https://www.rsssf.org/tabless/saucuphist.html"
+        }
+      ]
+    },
+    {
+      "id": "21829",
+      "name": "Al Khaleej",
+      "sport": "soccer",
+      "league": "ksa.1",
+      "city": "Saihat",
+      "stadium": "Prince Mohammed Bin Fahd Stadium",
+      "stadium_image": "",
+      "website": "https://khaleejclub.sa/",
+      "description": "O Al Khaleej é um clube de futebol da Arábia Saudita, fundado em 1945. O clube tem sede em Saihat e disputa suas partidas em casa no estádio Prince Mohammed Bin Fahd, em Dammam.",
+      "honours": [],
+      "logo": "https://media-sdp.spl.com.sa/clubLogos/6bb24501d8c04b7e8cbd05fe89d8910f.webp",
+      "colors": ["#eebe26", "#ffee58"],
+      "sources": [
+        {
+          "label": "Perfil oficial na Saudi Pro League",
+          "url": "https://www.spl.com.sa/en/teams/al-khaleej/"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://khaleejclub.sa/"
+        },
+        {
+          "label": "ESPN — identidade, elenco e partidas",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/ksa.1/teams/21829"
+        }
+      ]
+    },
+    {
+      "id": "22028",
+      "name": "Al Kholood",
+      "sport": "soccer",
+      "league": "ksa.1",
+      "city": "Ar Rass",
+      "stadium": "Al Hazem Club Stadium",
+      "stadium_image": "",
+      "website": "https://akfc-sa.com/",
+      "description": "O Al Kholood é um clube de futebol da Arábia Saudita, fundado em 1970, com sede em Ar Rass. A equipe representa Ar Rass, na região de Qassim. Manda seus jogos no Al Hazem Club Stadium.",
+      "honours": [],
+      "logo": "https://media-sdp.spl.com.sa/clubLogos/8f7c588e0292459f98d90969682dc2ae.webp",
+      "colors": ["#a8012d", "#c60000"],
+      "sources": [
+        {
+          "label": "Perfil oficial na Saudi Pro League",
+          "url": "https://www.spl.com.sa/en/teams/al-kholood/"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://akfc-sa.com/"
+        },
+        {
+          "label": "ESPN — identidade, elenco e partidas",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/ksa.1/teams/22028"
+        }
+      ]
+    },
+    {
+      "id": "817",
+      "name": "Al Nassr",
+      "sport": "soccer",
+      "league": "ksa.1",
+      "city": "Riade",
+      "stadium": "Al Awwal Park",
+      "stadium_image": "",
+      "website": "https://alnassr.sa/",
+      "description": "O Al Nassr é um clube de futebol da Arábia Saudita, fundado em 1955, com sede em Riade. É um dos clubes tradicionais de Riade e conquistou o Campeonato Saudita de 2026. Manda seus jogos no Al Awwal Park.",
+      "honours": [
+        "Campeonato Saudita - 1975, 1980, 1981, 1989, 1994, 1995, 2014, 2015, 2019, 2026",
+        "Copa do Rei Saudita - 1974, 1976, 1981, 1986, 1987, 1990"
+      ],
+      "logo": "https://media-sdp.spl.com.sa/clubLogos/94263b19841944c38cb20892b176c862.webp",
+      "colors": ["#ffdb00", "#1c31ce"],
+      "sources": [
+        {
+          "label": "Perfil oficial na Saudi Pro League",
+          "url": "https://www.spl.com.sa/en/teams/al-nassr/"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://alnassr.sa/"
+        },
+        {
+          "label": "ESPN — identidade, elenco e partidas",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/ksa.1/teams/817"
+        },
+        {
+          "label": "RSSSF — campeões sauditas, Atsushi Fujioka e Mohammed Qayed",
+          "url": "https://www.rsssf.org/tabless/sauchamp.html"
+        },
+        {
+          "label": "RSSSF — vencedores das copas sauditas",
+          "url": "https://www.rsssf.org/tabless/saucuphist.html"
+        },
+        {
+          "label": "SPL — campeão saudita em 2026",
+          "url": "https://www.spl.com.sa/en/news/cristiano-ronaldo-double-fires-al-nassr-to-2025-26-rsl-title-glory"
+        }
+      ]
+    },
+    {
+      "id": "22022",
+      "name": "Al Qadsiah",
+      "sport": "soccer",
+      "league": "ksa.1",
+      "city": "Al Khobar",
+      "stadium": "Prince Mohammed Bin Fahd Stadium",
+      "stadium_image": "",
+      "website": "https://alqadsiah.com/",
+      "description": "O Al Qadsiah é um clube de futebol da Arábia Saudita, fundado em 1967. Representa Al Khobar, na Província Oriental, e utiliza o estádio Prince Mohammed Bin Fahd, em Dammam.",
+      "honours": ["Copa do Príncipe Herdeiro - 1992"],
+      "logo": "https://media-sdp.spl.com.sa/clubLogos/dd29e62730be4d848e1be4c244fbfe5f.webp",
+      "colors": ["#eb0101", "#c60000"],
+      "sources": [
+        {
+          "label": "Perfil oficial na Saudi Pro League",
+          "url": "https://www.spl.com.sa/en/teams/al-qadsiah/"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://alqadsiah.com/"
+        },
+        {
+          "label": "ESPN — identidade, elenco e partidas",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/ksa.1/teams/22022"
+        },
+        {
+          "label": "RSSSF — vencedores das copas sauditas",
+          "url": "https://www.rsssf.org/tabless/saucuphist.html"
+        }
+      ]
+    },
+    {
+      "id": "21965",
+      "name": "Al Riyadh",
+      "sport": "soccer",
+      "league": "ksa.1",
+      "city": "Riade",
+      "stadium": "Prince Faisal bin Fahd Sports City",
+      "stadium_image": "",
+      "website": "https://riyadhclub.sa/",
+      "description": "O Al Riyadh é um clube de futebol da Arábia Saudita, fundado em 1953, com sede em Riade. O clube representa a capital saudita e venceu a Copa do Príncipe Herdeiro em 1994. Manda seus jogos no Prince Faisal bin Fahd Sports City.",
+      "honours": ["Copa do Príncipe Herdeiro - 1994"],
+      "logo": "https://media-sdp.spl.com.sa/clubLogos/2ba5364e60854fb8a7ca60903875e1ff.webp",
+      "colors": ["#c90000", "#c60000"],
+      "sources": [
+        {
+          "label": "Perfil oficial na Saudi Pro League",
+          "url": "https://www.spl.com.sa/en/teams/al-riyadh/"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://riyadhclub.sa/"
+        },
+        {
+          "label": "ESPN — identidade, elenco e partidas",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/ksa.1/teams/21965"
+        },
+        {
+          "label": "RSSSF — vencedores das copas sauditas",
+          "url": "https://www.rsssf.org/tabless/saucuphist.html"
+        }
+      ]
+    },
+    {
+      "id": "793",
+      "name": "Al Shabab",
+      "sport": "soccer",
+      "league": "ksa.1",
+      "city": "Riade",
+      "stadium": "SHG Arena",
+      "stadium_image": "",
+      "website": "https://alshabab-sc.sa/",
+      "description": "O Al Shabab é um clube de futebol da Arábia Saudita, fundado em 1947, com sede em Riade. É um dos clubes tradicionais de Riade e possui títulos do Campeonato Saudita. Manda seus jogos no SHG Arena.",
+      "honours": [
+        "Campeonato Saudita - 1991, 1992, 1993, 2004, 2006, 2012",
+        "Copa do Rei Saudita - 2008, 2009, 2014"
+      ],
+      "logo": "https://media-sdp.spl.com.sa/clubLogos/8169ad25b0754c44a49375717b3f9fb2.webp",
+      "colors": ["#e9e9e9", "#ffffff"],
+      "sources": [
+        {
+          "label": "Perfil oficial na Saudi Pro League",
+          "url": "https://www.spl.com.sa/en/teams/al-shabab/"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://alshabab-sc.sa/"
+        },
+        {
+          "label": "ESPN — identidade, elenco e partidas",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/ksa.1/teams/793"
+        },
+        {
+          "label": "RSSSF — campeões sauditas, Atsushi Fujioka e Mohammed Qayed",
+          "url": "https://www.rsssf.org/tabless/sauchamp.html"
+        },
+        {
+          "label": "RSSSF — vencedores das copas sauditas",
+          "url": "https://www.rsssf.org/tabless/saucuphist.html"
+        }
+      ]
+    },
+    {
+      "id": "18459",
+      "name": "Al Taawoun",
+      "sport": "soccer",
+      "league": "ksa.1",
+      "city": "Buraydah",
+      "stadium": "Wolves Park",
+      "stadium_image": "",
+      "website": "https://www.altaawounfc.com/",
+      "description": "O Al Taawoun é um clube de futebol da Arábia Saudita, fundado em 1956, com sede em Buraydah. Representa Buraydah, na região de Qassim, e conquistou a Copa do Rei Saudita em 2019. Manda seus jogos no Wolves Park.",
+      "honours": ["Copa do Rei Saudita - 2019"],
+      "logo": "https://media-sdp.spl.com.sa/clubLogos/d234b1ebf80e481a888ce64cab2dcd89.webp",
+      "colors": ["#fed814", "#000000"],
+      "sources": [
+        {
+          "label": "Perfil oficial na Saudi Pro League",
+          "url": "https://www.spl.com.sa/en/teams/al-taawoun/"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://www.altaawounfc.com/"
+        },
+        {
+          "label": "ESPN — identidade, elenco e partidas",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/ksa.1/teams/18459"
+        },
+        {
+          "label": "RSSSF — vencedores das copas sauditas",
+          "url": "https://www.rsssf.org/tabless/saucuphist.html"
+        }
+      ]
+    },
+    {
+      "id": "130899",
+      "name": "NEOM",
+      "sport": "soccer",
+      "league": "ksa.1",
+      "city": "Tabuk",
+      "stadium": "King Khalid Sports City",
+      "stadium_image": "",
+      "website": "https://www.neom.com/neomsc",
+      "description": "O NEOM é um clube de futebol da Arábia Saudita, fundado em 1965, com sede em Tabuk. Fundado originalmente como Al Suqor, o clube passou a utilizar a identidade NEOM Sports Club em 2023. Manda seus jogos no King Khalid Sports City.",
+      "honours": [],
+      "logo": "https://media-sdp.spl.com.sa/clubLogos/aaac358d37704691aadcfd92ebd53c7b.webp",
+      "colors": ["#0084bd", "#ff9300"],
+      "sources": [
+        {
+          "label": "Perfil oficial na Saudi Pro League",
+          "url": "https://www.spl.com.sa/en/teams/neom/"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://www.neom.com/neomsc"
+        },
+        {
+          "label": "ESPN — identidade, elenco e partidas",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/ksa.1/teams/130899"
+        },
+        {
+          "label": "NEOM — origem e nova identidade",
+          "url": "https://www.neom.com/en-us/newsroom/neom-introduces-neom-sports-club"
+        }
+      ]
+    }
+  ]
+}

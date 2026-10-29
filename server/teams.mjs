@@ -1,3 +1,4 @@
+import { saudiProfileReferences } from "./saudi-profiles.mjs";
 import { volleyTeamDetails } from "./volleyball.mjs";
 import { volleyballProfileReferences } from "./volleyball-profiles.mjs";
 import { nhlProfileReferences } from "./nhl-profiles.mjs";
@@ -304,6 +305,7 @@ export async function teamDetails(id) {
                     ...brazilProfileReferences(team.id, team.league),
                     ...leagueProfileReferences(team.id, team.league),
                     ...mlsProfileReferences(team.id, team.league),
+                    ...saudiProfileReferences(team.id, team.league),
                   ],
     athletes,
     leaders,
