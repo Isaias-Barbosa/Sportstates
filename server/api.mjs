@@ -1,3 +1,4 @@
+import { listAdminUsers, userListOptions } from "./admin-users.mjs";
 import { userIdentity } from "./user-auth.mjs";
 import {
   getPreferences,
@@ -826,6 +827,39 @@ export async function handler(req, res) {
           error: validation
             ? error.message
             : "Não foi possível carregar ou salvar sua conta. Tente novamente.",
+        }),
+      );
+    }
+  }
+  if (requestUrl.pathname === "/api/admin/users") {
+    res.setHeader("Cache-Control", "private, no-store");
+    res.setHeader("Vercel-CDN-Cache-Control", "no-store");
+    res.setHeader("Vary", "Authorization");
+    if (!(await adminAuthorized(req.headers?.authorization))) {
+      res.statusCode = 401;
+      return res.end(
+        JSON.stringify({ error: "Acesso administrativo necessário." }),
+      );
+    }
+    if (req.method !== "GET") {
+      res.statusCode = 405;
+      res.setHeader("Allow", "GET");
+      return res.end(
+        JSON.stringify({ error: "Use GET para consultar usuários." }),
+      );
+    }
+    try {
+      return res.end(
+        JSON.stringify(
+          await listAdminUsers(userListOptions(requestUrl.searchParams)),
+        ),
+      );
+    } catch {
+      res.statusCode = 503;
+      return res.end(
+        JSON.stringify({
+          error:
+            "Não foi possível consultar os usuários do Neon Auth. Tente novamente.",
         }),
       );
     }

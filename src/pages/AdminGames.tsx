@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import AdminUsers from "../components/AdminUsers";
 import AdminTeams from "../components/AdminTeams";
 import AdminNeonLogin from "../components/AdminNeonLogin";
 import { CalendarDays, Check, Pencil, X } from "lucide-react";
@@ -46,7 +47,7 @@ export default function AdminGames() {
     }
   }
   const [secret, setSecret] = useState("");
-  const [section, setSection] = useState<"games" | "teams">("games");
+  const [section, setSection] = useState<"games" | "teams" | "users">("games");
   const [draftSecret, setDraftSecret] = useState("");
   const [date, setDate] = useState(today());
   const [sport, setSport] = useState("all");
@@ -159,7 +160,7 @@ export default function AdminGames() {
           <h1>
             Painel administrativo<span className="green">.</span>
           </h1>
-          <p>Gerencie o destaque e os perfis dos times.</p>
+          <p>Gerencie jogos, times e usuários do Sportstates.</p>
         </div>
         <button
           className="quiet-button"
@@ -201,8 +202,16 @@ export default function AdminGames() {
         >
           Times
         </button>
+        <button
+          className={section === "users" ? "active" : ""}
+          onClick={() => setSection("users")}
+        >
+          Usuários
+        </button>
       </div>
-      {section === "teams" ? (
+      {section === "users" ? (
+        <AdminUsers secret={secret} />
+      ) : section === "teams" ? (
         <AdminTeams secret={secret} />
       ) : (
         <>
