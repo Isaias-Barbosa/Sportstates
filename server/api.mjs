@@ -1,3 +1,4 @@
+import { enrichPlayerRatings } from "./player-ratings.mjs";
 import { validProfileId } from "./team-identity.mjs";
 import { fetchTeamCompetitions } from "./team-competitions.mjs";
 import { fetchNews } from "./news.mjs";
@@ -156,10 +157,8 @@ export async function route(url) {
       : [503, { error: "Neon Auth não configurado." }];
   }
   if (url.pathname === "/api/teams") {
-    const result = await cached(
-      "teams:brazil-profiles-v1",
-      CACHE_TTL.teams,
-      () => listTeams(),
+    const result = await cached("teams:mlb-profiles-v1", CACHE_TTL.teams, () =>
+      listTeams(),
     );
     return [
       200,
@@ -396,7 +395,7 @@ export async function route(url) {
     if (!config || !/^\d{1,15}$/.test(id || ""))
       return [400, { error: "Partida ou competição inválida." }];
     const result = await cached(
-      `match:standings-impact-v1:${config.sport}:${config.league}:${id}`,
+      `match:player-lances-v2:${config.sport}:${config.league}:${id}`,
       matchTtl,
       async () =>
         normalizeSummary(
@@ -414,15 +413,23 @@ export async function route(url) {
         200,
         await matchMedia(
           result.value.match,
-          result.value.events,
+          result.value.match.sport === "soccer" && result.value.highlights
+            ? [...result.value.highlights.home, ...result.value.highlights.away]
+                .filter((e) => e.kind === "goal")
+                .map((e) => ({ ...e, scorer: e.player }))
+            : result.value.events,
           result.value.associatedVideos,
         ),
       ];
+    const [rated, broadcasts] = await Promise.all([
+      enrichPlayerRatings(result.value),
+      enrichBroadcasts([result.value.match]),
+    ]);
     return [
       200,
       {
-        ...result.value,
-        match: (await enrichBroadcasts([result.value.match]))[0],
+        ...rated,
+        match: broadcasts[0],
         stale: result.stale,
         fetchedAt: new Date(result.at).toISOString(),
         source: "ESPN · feed público não oficial",

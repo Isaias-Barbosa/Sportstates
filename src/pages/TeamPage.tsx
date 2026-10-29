@@ -99,7 +99,9 @@ export default function TeamPage() {
                 ? "Equipe de basquete"
                 : team.sport === "football"
                   ? "Equipe de futebol americano"
-                  : "Clube de futebol")}
+                  : team.sport === "baseball"
+                    ? "Equipe de beisebol"
+                    : "Clube de futebol")}
           </p>
           {team.description && <p>{descriptionPreview(team.description)}</p>}
           {team.website && (

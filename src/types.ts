@@ -147,6 +147,7 @@ export type MatchHighlights = {
   away: MatchIncident[];
 };
 export type Detail = {
+  ratingSourceUrl?: string;
   highlights?: MatchHighlights;
   basketball?: BasketballData;
   americanFootball?: AmericanFootballData;
@@ -159,6 +160,8 @@ export type Detail = {
     text: string;
     scoring: boolean;
     scorer?: string;
+    scorerTeamId?: string;
+    points?: number | null;
     score?: string;
     kind: "goal" | "yellow-card" | "red-card" | "second-yellow" | "other";
   }[];
@@ -175,6 +178,14 @@ export type Detail = {
       positionName: string;
       role?: string;
       formationPlace: number | null;
+      rating?: number | null;
+      ratingSource?: string | null;
+      substitutions?: {
+        direction: "in" | "out";
+        minute: string;
+        counterpart: string;
+        counterpartId: string;
+      }[];
       subbedIn: boolean;
       subbedOut: boolean;
       jersey: string;
@@ -265,7 +276,8 @@ export type WatchOptions = {
 
 export type MatchVideo = {
   sourceRegion?: "BR" | "international";
-  provider?: "youtube" | "espn";
+  provider?: "youtube" | "espn" | "globo";
+  thumbnail?: string;
   mediaUrl?: string;
   id: string;
   title: string;

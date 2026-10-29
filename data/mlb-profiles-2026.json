@@ -1,0 +1,1116 @@
+{
+  "revision": "mlb-profiles-2026-v1",
+  "reviewedAt": "2026-10-29",
+  "clubs": [
+    {
+      "id": "baseball-mlb-29",
+      "espnId": "29",
+      "mlbId": 109,
+      "name": "Arizona Diamondbacks",
+      "sport": "baseball",
+      "league": "mlb",
+      "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/ari.png",
+      "city": "Phoenix",
+      "stadium": "Chase Field",
+      "stadium_image": "",
+      "website": "https://www.mlb.com/dbacks",
+      "colors": [
+        "#aa182c",
+        "#000000"
+      ],
+      "honours": [],
+      "description": "Arizona Diamondbacks é uma equipe de beisebol da MLB, integrante da Liga Nacional. Seu estádio é Chase Field, em Phoenix.",
+      "references": [
+        {
+          "label": "MLB · diretório oficial",
+          "url": "https://www.mlb.com/team"
+        },
+        {
+          "label": "Site oficial",
+          "url": "https://www.mlb.com/dbacks"
+        },
+        {
+          "label": "MLB · dados da equipe",
+          "url": "https://statsapi.mlb.com/api/v1/teams/109"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/mlb/time/_/nome/ari/arizona-diamondbacks"
+        }
+      ]
+    },
+    {
+      "id": "baseball-mlb-11",
+      "espnId": "11",
+      "mlbId": 133,
+      "name": "Athletics",
+      "sport": "baseball",
+      "league": "mlb",
+      "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/ath.png",
+      "city": "West Sacramento",
+      "stadium": "Sutter Health Park",
+      "stadium_image": "",
+      "website": "https://www.mlb.com/athletics",
+      "colors": [
+        "#003831",
+        "#efb21e"
+      ],
+      "honours": [],
+      "description": "Athletics é uma equipe de beisebol da MLB, integrante da Liga Americana. Seu estádio é Sutter Health Park, em West Sacramento.",
+      "references": [
+        {
+          "label": "MLB · diretório oficial",
+          "url": "https://www.mlb.com/team"
+        },
+        {
+          "label": "Site oficial",
+          "url": "https://www.mlb.com/athletics"
+        },
+        {
+          "label": "MLB · dados da equipe",
+          "url": "https://statsapi.mlb.com/api/v1/teams/133"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/mlb/time/_/nome/ath/athletics"
+        }
+      ]
+    },
+    {
+      "id": "baseball-mlb-15",
+      "espnId": "15",
+      "mlbId": 144,
+      "name": "Atlanta Braves",
+      "sport": "baseball",
+      "league": "mlb",
+      "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/atl.png",
+      "city": "Atlanta",
+      "stadium": "Truist Park",
+      "stadium_image": "",
+      "website": "https://www.mlb.com/braves",
+      "colors": [
+        "#0c2340",
+        "#ba0c2f"
+      ],
+      "honours": [],
+      "description": "Atlanta Braves é uma equipe de beisebol da MLB, integrante da Liga Nacional. Seu estádio é Truist Park, em Atlanta.",
+      "references": [
+        {
+          "label": "MLB · diretório oficial",
+          "url": "https://www.mlb.com/team"
+        },
+        {
+          "label": "Site oficial",
+          "url": "https://www.mlb.com/braves"
+        },
+        {
+          "label": "MLB · dados da equipe",
+          "url": "https://statsapi.mlb.com/api/v1/teams/144"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/mlb/time/_/nome/atl/atlanta-braves"
+        }
+      ]
+    },
+    {
+      "id": "baseball-mlb-1",
+      "espnId": "1",
+      "mlbId": 110,
+      "name": "Baltimore Orioles",
+      "sport": "baseball",
+      "league": "mlb",
+      "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/bal.png",
+      "city": "Baltimore",
+      "stadium": "Oriole Park",
+      "stadium_image": "",
+      "website": "https://www.mlb.com/orioles",
+      "colors": [
+        "#df4601",
+        "#000000"
+      ],
+      "honours": [],
+      "description": "Baltimore Orioles é uma equipe de beisebol da MLB, integrante da Liga Americana. Seu estádio é Oriole Park, em Baltimore.",
+      "references": [
+        {
+          "label": "MLB · diretório oficial",
+          "url": "https://www.mlb.com/team"
+        },
+        {
+          "label": "Site oficial",
+          "url": "https://www.mlb.com/orioles"
+        },
+        {
+          "label": "MLB · dados da equipe",
+          "url": "https://statsapi.mlb.com/api/v1/teams/110"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/mlb/time/_/nome/bal/baltimore-orioles"
+        }
+      ]
+    },
+    {
+      "id": "baseball-mlb-2",
+      "espnId": "2",
+      "mlbId": 111,
+      "name": "Boston Red Sox",
+      "sport": "baseball",
+      "league": "mlb",
+      "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/bos.png",
+      "city": "Boston",
+      "stadium": "Fenway Park",
+      "stadium_image": "",
+      "website": "https://www.mlb.com/redsox",
+      "colors": [
+        "#0d2b56",
+        "#bd3039"
+      ],
+      "honours": [],
+      "description": "Boston Red Sox é uma equipe de beisebol da MLB, integrante da Liga Americana. Seu estádio é Fenway Park, em Boston.",
+      "references": [
+        {
+          "label": "MLB · diretório oficial",
+          "url": "https://www.mlb.com/team"
+        },
+        {
+          "label": "Site oficial",
+          "url": "https://www.mlb.com/redsox"
+        },
+        {
+          "label": "MLB · dados da equipe",
+          "url": "https://statsapi.mlb.com/api/v1/teams/111"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/mlb/time/_/nome/bos/boston-red-sox"
+        }
+      ]
+    },
+    {
+      "id": "baseball-mlb-16",
+      "espnId": "16",
+      "mlbId": 112,
+      "name": "Chicago Cubs",
+      "sport": "baseball",
+      "league": "mlb",
+      "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/chc.png",
+      "city": "Chicago",
+      "stadium": "Wrigley Field",
+      "stadium_image": "",
+      "website": "https://www.mlb.com/cubs",
+      "colors": [
+        "#0e3386",
+        "#cc3433"
+      ],
+      "honours": [],
+      "description": "Chicago Cubs é uma equipe de beisebol da MLB, integrante da Liga Nacional. Seu estádio é Wrigley Field, em Chicago.",
+      "references": [
+        {
+          "label": "MLB · diretório oficial",
+          "url": "https://www.mlb.com/team"
+        },
+        {
+          "label": "Site oficial",
+          "url": "https://www.mlb.com/cubs"
+        },
+        {
+          "label": "MLB · dados da equipe",
+          "url": "https://statsapi.mlb.com/api/v1/teams/112"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/mlb/time/_/nome/chc/chicago-cubs"
+        }
+      ]
+    },
+    {
+      "id": "baseball-mlb-4",
+      "espnId": "4",
+      "mlbId": 145,
+      "name": "Chicago White Sox",
+      "sport": "baseball",
+      "league": "mlb",
+      "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/chw.png",
+      "city": "Cincinnati",
+      "stadium": "Great American Ball Park",
+      "stadium_image": "",
+      "website": "https://www.mlb.com/whitesox",
+      "colors": [
+        "#000000",
+        "#c4ced4"
+      ],
+      "honours": [],
+      "description": "Chicago White Sox é uma equipe de beisebol da MLB, integrante da Liga Americana. Seu estádio é Great American Ball Park, em Cincinnati.",
+      "references": [
+        {
+          "label": "MLB · diretório oficial",
+          "url": "https://www.mlb.com/team"
+        },
+        {
+          "label": "Site oficial",
+          "url": "https://www.mlb.com/whitesox"
+        },
+        {
+          "label": "MLB · dados da equipe",
+          "url": "https://statsapi.mlb.com/api/v1/teams/145"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/mlb/time/_/nome/chw/chicago-white-sox"
+        }
+      ]
+    },
+    {
+      "id": "baseball-mlb-17",
+      "espnId": "17",
+      "mlbId": 113,
+      "name": "Cincinnati Reds",
+      "sport": "baseball",
+      "league": "mlb",
+      "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/cin.png",
+      "city": "Cincinnati",
+      "stadium": "Great American Ball Park",
+      "stadium_image": "",
+      "website": "https://www.mlb.com/reds",
+      "colors": [
+        "#c6011f",
+        "#ffffff"
+      ],
+      "honours": [],
+      "description": "Cincinnati Reds é uma equipe de beisebol da MLB, integrante da Liga Nacional. Seu estádio é Great American Ball Park, em Cincinnati.",
+      "references": [
+        {
+          "label": "MLB · diretório oficial",
+          "url": "https://www.mlb.com/team"
+        },
+        {
+          "label": "Site oficial",
+          "url": "https://www.mlb.com/reds"
+        },
+        {
+          "label": "MLB · dados da equipe",
+          "url": "https://statsapi.mlb.com/api/v1/teams/113"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/mlb/time/_/nome/cin/cincinnati-reds"
+        }
+      ]
+    },
+    {
+      "id": "baseball-mlb-5",
+      "espnId": "5",
+      "mlbId": 114,
+      "name": "Cleveland Guardians",
+      "sport": "baseball",
+      "league": "mlb",
+      "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/cle.png",
+      "city": "Cleveland",
+      "stadium": "Progressive Field",
+      "stadium_image": "",
+      "website": "https://www.mlb.com/rockies",
+      "colors": [
+        "#002b5c",
+        "#e31937"
+      ],
+      "honours": [],
+      "description": "Cleveland Guardians é uma equipe de beisebol da MLB, integrante da Liga Americana. Seu estádio é Progressive Field, em Cleveland.",
+      "references": [
+        {
+          "label": "MLB · diretório oficial",
+          "url": "https://www.mlb.com/team"
+        },
+        {
+          "label": "Site oficial",
+          "url": "https://www.mlb.com/rockies"
+        },
+        {
+          "label": "MLB · dados da equipe",
+          "url": "https://statsapi.mlb.com/api/v1/teams/114"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/mlb/time/_/nome/cle/cleveland-guardians"
+        }
+      ]
+    },
+    {
+      "id": "baseball-mlb-27",
+      "espnId": "27",
+      "mlbId": 115,
+      "name": "Colorado Rockies",
+      "sport": "baseball",
+      "league": "mlb",
+      "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/col.png",
+      "city": "Denver",
+      "stadium": "Coors Field",
+      "stadium_image": "",
+      "website": "https://www.mlb.com/rockies",
+      "colors": [
+        "#33006f",
+        "#000000"
+      ],
+      "honours": [],
+      "description": "Colorado Rockies é uma equipe de beisebol da MLB, integrante da Liga Nacional. Seu estádio é Coors Field, em Denver.",
+      "references": [
+        {
+          "label": "MLB · diretório oficial",
+          "url": "https://www.mlb.com/team"
+        },
+        {
+          "label": "Site oficial",
+          "url": "https://www.mlb.com/rockies"
+        },
+        {
+          "label": "MLB · dados da equipe",
+          "url": "https://statsapi.mlb.com/api/v1/teams/115"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/mlb/time/_/nome/col/colorado-rockies"
+        }
+      ]
+    },
+    {
+      "id": "baseball-mlb-6",
+      "espnId": "6",
+      "mlbId": 116,
+      "name": "Detroit Tigers",
+      "sport": "baseball",
+      "league": "mlb",
+      "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/det.png",
+      "city": "Detroit",
+      "stadium": "Comerica Park",
+      "stadium_image": "",
+      "website": "https://www.mlb.com/tigers",
+      "colors": [
+        "#0a2240",
+        "#ff4713"
+      ],
+      "honours": [],
+      "description": "Detroit Tigers é uma equipe de beisebol da MLB, integrante da Liga Americana. Seu estádio é Comerica Park, em Detroit.",
+      "references": [
+        {
+          "label": "MLB · diretório oficial",
+          "url": "https://www.mlb.com/team"
+        },
+        {
+          "label": "Site oficial",
+          "url": "https://www.mlb.com/tigers"
+        },
+        {
+          "label": "MLB · dados da equipe",
+          "url": "https://statsapi.mlb.com/api/v1/teams/116"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/mlb/time/_/nome/det/detroit-tigers"
+        }
+      ]
+    },
+    {
+      "id": "baseball-mlb-18",
+      "espnId": "18",
+      "mlbId": 117,
+      "name": "Houston Astros",
+      "sport": "baseball",
+      "league": "mlb",
+      "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/hou.png",
+      "city": "Houston",
+      "stadium": "Daikin Park",
+      "stadium_image": "",
+      "website": "https://www.mlb.com/astros",
+      "colors": [
+        "#002d62",
+        "#eb6e1f"
+      ],
+      "honours": [],
+      "description": "Houston Astros é uma equipe de beisebol da MLB, integrante da Liga Americana. Seu estádio é Daikin Park, em Houston.",
+      "references": [
+        {
+          "label": "MLB · diretório oficial",
+          "url": "https://www.mlb.com/team"
+        },
+        {
+          "label": "Site oficial",
+          "url": "https://www.mlb.com/astros"
+        },
+        {
+          "label": "MLB · dados da equipe",
+          "url": "https://statsapi.mlb.com/api/v1/teams/117"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/mlb/time/_/nome/hou/houston-astros"
+        }
+      ]
+    },
+    {
+      "id": "baseball-mlb-7",
+      "espnId": "7",
+      "mlbId": 118,
+      "name": "Kansas City Royals",
+      "sport": "baseball",
+      "league": "mlb",
+      "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/kc.png",
+      "city": "Kansas City",
+      "stadium": "Kauffman Stadium",
+      "stadium_image": "",
+      "website": "https://www.mlb.com/royals",
+      "colors": [
+        "#004687",
+        "#7ab2dd"
+      ],
+      "honours": [],
+      "description": "Kansas City Royals é uma equipe de beisebol da MLB, integrante da Liga Americana. Seu estádio é Kauffman Stadium, em Kansas City.",
+      "references": [
+        {
+          "label": "MLB · diretório oficial",
+          "url": "https://www.mlb.com/team"
+        },
+        {
+          "label": "Site oficial",
+          "url": "https://www.mlb.com/royals"
+        },
+        {
+          "label": "MLB · dados da equipe",
+          "url": "https://statsapi.mlb.com/api/v1/teams/118"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/mlb/time/_/nome/kc/kansas-city-royals"
+        }
+      ]
+    },
+    {
+      "id": "baseball-mlb-3",
+      "espnId": "3",
+      "mlbId": 108,
+      "name": "Los Angeles Angels",
+      "sport": "baseball",
+      "league": "mlb",
+      "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/laa.png",
+      "city": "Anaheim",
+      "stadium": "Angel Stadium",
+      "stadium_image": "",
+      "website": "https://www.mlb.com/angels",
+      "colors": [
+        "#ba0021",
+        "#c4ced4"
+      ],
+      "honours": [],
+      "description": "Los Angeles Angels é uma equipe de beisebol da MLB, integrante da Liga Americana. Seu estádio é Angel Stadium, em Anaheim.",
+      "references": [
+        {
+          "label": "MLB · diretório oficial",
+          "url": "https://www.mlb.com/team"
+        },
+        {
+          "label": "Site oficial",
+          "url": "https://www.mlb.com/angels"
+        },
+        {
+          "label": "MLB · dados da equipe",
+          "url": "https://statsapi.mlb.com/api/v1/teams/108"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/mlb/time/_/nome/laa/los-angeles-angels"
+        }
+      ]
+    },
+    {
+      "id": "baseball-mlb-19",
+      "espnId": "19",
+      "mlbId": 119,
+      "name": "Los Angeles Dodgers",
+      "sport": "baseball",
+      "league": "mlb",
+      "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/lad.png",
+      "city": "Los Angeles",
+      "stadium": "Dodger Stadium",
+      "stadium_image": "",
+      "website": "https://www.mlb.com/dodgers",
+      "colors": [
+        "#005a9c",
+        "#ffffff"
+      ],
+      "honours": [],
+      "description": "Los Angeles Dodgers é uma equipe de beisebol da MLB, integrante da Liga Nacional. Seu estádio é Dodger Stadium, em Los Angeles.",
+      "references": [
+        {
+          "label": "MLB · diretório oficial",
+          "url": "https://www.mlb.com/team"
+        },
+        {
+          "label": "Site oficial",
+          "url": "https://www.mlb.com/dodgers"
+        },
+        {
+          "label": "MLB · dados da equipe",
+          "url": "https://statsapi.mlb.com/api/v1/teams/119"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/mlb/time/_/nome/lad/los-angeles-dodgers"
+        }
+      ]
+    },
+    {
+      "id": "baseball-mlb-28",
+      "espnId": "28",
+      "mlbId": 146,
+      "name": "Miami Marlins",
+      "sport": "baseball",
+      "league": "mlb",
+      "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/mia.png",
+      "city": "Miami",
+      "stadium": "loanDepot park",
+      "stadium_image": "",
+      "website": "https://www.mlb.com/marlins",
+      "colors": [
+        "#00a3e0",
+        "#000000"
+      ],
+      "honours": [],
+      "description": "Miami Marlins é uma equipe de beisebol da MLB, integrante da Liga Nacional. Seu estádio é loanDepot park, em Miami.",
+      "references": [
+        {
+          "label": "MLB · diretório oficial",
+          "url": "https://www.mlb.com/team"
+        },
+        {
+          "label": "Site oficial",
+          "url": "https://www.mlb.com/marlins"
+        },
+        {
+          "label": "MLB · dados da equipe",
+          "url": "https://statsapi.mlb.com/api/v1/teams/146"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/mlb/time/_/nome/mia/miami-marlins"
+        }
+      ]
+    },
+    {
+      "id": "baseball-mlb-8",
+      "espnId": "8",
+      "mlbId": 158,
+      "name": "Milwaukee Brewers",
+      "sport": "baseball",
+      "league": "mlb",
+      "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/mil.png",
+      "city": "Milwaukee",
+      "stadium": "American Family Field",
+      "stadium_image": "",
+      "website": "https://www.mlb.com/brewers",
+      "colors": [
+        "#13294b",
+        "#ffc72c"
+      ],
+      "honours": [],
+      "description": "Milwaukee Brewers é uma equipe de beisebol da MLB, integrante da Liga Nacional. Seu estádio é American Family Field, em Milwaukee.",
+      "references": [
+        {
+          "label": "MLB · diretório oficial",
+          "url": "https://www.mlb.com/team"
+        },
+        {
+          "label": "Site oficial",
+          "url": "https://www.mlb.com/brewers"
+        },
+        {
+          "label": "MLB · dados da equipe",
+          "url": "https://statsapi.mlb.com/api/v1/teams/158"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/mlb/time/_/nome/mil/milwaukee-brewers"
+        }
+      ]
+    },
+    {
+      "id": "baseball-mlb-9",
+      "espnId": "9",
+      "mlbId": 142,
+      "name": "Minnesota Twins",
+      "sport": "baseball",
+      "league": "mlb",
+      "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/min.png",
+      "city": "Minneapolis",
+      "stadium": "Target Field",
+      "stadium_image": "",
+      "website": "https://www.mlb.com/twins",
+      "colors": [
+        "#031f40",
+        "#e20e32"
+      ],
+      "honours": [],
+      "description": "Minnesota Twins é uma equipe de beisebol da MLB, integrante da Liga Americana. Seu estádio é Target Field, em Minneapolis.",
+      "references": [
+        {
+          "label": "MLB · diretório oficial",
+          "url": "https://www.mlb.com/team"
+        },
+        {
+          "label": "Site oficial",
+          "url": "https://www.mlb.com/twins"
+        },
+        {
+          "label": "MLB · dados da equipe",
+          "url": "https://statsapi.mlb.com/api/v1/teams/142"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/mlb/time/_/nome/min/minnesota-twins"
+        }
+      ]
+    },
+    {
+      "id": "baseball-mlb-21",
+      "espnId": "21",
+      "mlbId": 121,
+      "name": "New York Mets",
+      "sport": "baseball",
+      "league": "mlb",
+      "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/nym.png",
+      "city": "Flushing",
+      "stadium": "Citi Field",
+      "stadium_image": "",
+      "website": "https://www.mlb.com/mets",
+      "colors": [
+        "#002d72",
+        "#ff5910"
+      ],
+      "honours": [],
+      "description": "New York Mets é uma equipe de beisebol da MLB, integrante da Liga Nacional. Seu estádio é Citi Field, em Flushing.",
+      "references": [
+        {
+          "label": "MLB · diretório oficial",
+          "url": "https://www.mlb.com/team"
+        },
+        {
+          "label": "Site oficial",
+          "url": "https://www.mlb.com/mets"
+        },
+        {
+          "label": "MLB · dados da equipe",
+          "url": "https://statsapi.mlb.com/api/v1/teams/121"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/mlb/time/_/nome/nym/new-york-mets"
+        }
+      ]
+    },
+    {
+      "id": "baseball-mlb-10",
+      "espnId": "10",
+      "mlbId": 147,
+      "name": "New York Yankees",
+      "sport": "baseball",
+      "league": "mlb",
+      "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/nyy.png",
+      "city": "Bronx",
+      "stadium": "Yankee Stadium",
+      "stadium_image": "",
+      "website": "https://www.mlb.com/yankees",
+      "colors": [
+        "#132448",
+        "#c4ced4"
+      ],
+      "honours": [],
+      "description": "New York Yankees é uma equipe de beisebol da MLB, integrante da Liga Americana. Seu estádio é Yankee Stadium, em Bronx.",
+      "references": [
+        {
+          "label": "MLB · diretório oficial",
+          "url": "https://www.mlb.com/team"
+        },
+        {
+          "label": "Site oficial",
+          "url": "https://www.mlb.com/yankees"
+        },
+        {
+          "label": "MLB · dados da equipe",
+          "url": "https://statsapi.mlb.com/api/v1/teams/147"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/mlb/time/_/nome/nyy/new-york-yankees"
+        }
+      ]
+    },
+    {
+      "id": "baseball-mlb-22",
+      "espnId": "22",
+      "mlbId": 143,
+      "name": "Philadelphia Phillies",
+      "sport": "baseball",
+      "league": "mlb",
+      "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/phi.png",
+      "city": "Philadelphia",
+      "stadium": "Citizens Bank Park",
+      "stadium_image": "",
+      "website": "https://www.mlb.com/phillies",
+      "colors": [
+        "#e81828",
+        "#003278"
+      ],
+      "honours": [],
+      "description": "Philadelphia Phillies é uma equipe de beisebol da MLB, integrante da Liga Nacional. Seu estádio é Citizens Bank Park, em Philadelphia.",
+      "references": [
+        {
+          "label": "MLB · diretório oficial",
+          "url": "https://www.mlb.com/team"
+        },
+        {
+          "label": "Site oficial",
+          "url": "https://www.mlb.com/phillies"
+        },
+        {
+          "label": "MLB · dados da equipe",
+          "url": "https://statsapi.mlb.com/api/v1/teams/143"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/mlb/time/_/nome/phi/philadelphia-phillies"
+        }
+      ]
+    },
+    {
+      "id": "baseball-mlb-23",
+      "espnId": "23",
+      "mlbId": 134,
+      "name": "Pittsburgh Pirates",
+      "sport": "baseball",
+      "league": "mlb",
+      "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/pit.png",
+      "city": "Pittsburgh",
+      "stadium": "PNC Park",
+      "stadium_image": "",
+      "website": "https://www.mlb.com/pirates",
+      "colors": [
+        "#000000",
+        "#fdb827"
+      ],
+      "honours": [],
+      "description": "Pittsburgh Pirates é uma equipe de beisebol da MLB, integrante da Liga Nacional. Seu estádio é PNC Park, em Pittsburgh.",
+      "references": [
+        {
+          "label": "MLB · diretório oficial",
+          "url": "https://www.mlb.com/team"
+        },
+        {
+          "label": "Site oficial",
+          "url": "https://www.mlb.com/pirates"
+        },
+        {
+          "label": "MLB · dados da equipe",
+          "url": "https://statsapi.mlb.com/api/v1/teams/134"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/mlb/time/_/nome/pit/pittsburgh-pirates"
+        }
+      ]
+    },
+    {
+      "id": "baseball-mlb-25",
+      "espnId": "25",
+      "mlbId": 135,
+      "name": "San Diego Padres",
+      "sport": "baseball",
+      "league": "mlb",
+      "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/sd.png",
+      "city": "San Diego",
+      "stadium": "Petco Park",
+      "stadium_image": "",
+      "website": "https://www.mlb.com/padres",
+      "colors": [
+        "#2f241d",
+        "#ffc425"
+      ],
+      "honours": [],
+      "description": "San Diego Padres é uma equipe de beisebol da MLB, integrante da Liga Nacional. Seu estádio é Petco Park, em San Diego.",
+      "references": [
+        {
+          "label": "MLB · diretório oficial",
+          "url": "https://www.mlb.com/team"
+        },
+        {
+          "label": "Site oficial",
+          "url": "https://www.mlb.com/padres"
+        },
+        {
+          "label": "MLB · dados da equipe",
+          "url": "https://statsapi.mlb.com/api/v1/teams/135"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/mlb/time/_/nome/sd/san-diego-padres"
+        }
+      ]
+    },
+    {
+      "id": "baseball-mlb-26",
+      "espnId": "26",
+      "mlbId": 137,
+      "name": "San Francisco Giants",
+      "sport": "baseball",
+      "league": "mlb",
+      "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/sf.png",
+      "city": "San Francisco",
+      "stadium": "Oracle Park",
+      "stadium_image": "",
+      "website": "https://www.mlb.com/giants",
+      "colors": [
+        "#000000",
+        "#fd5a1e"
+      ],
+      "honours": [],
+      "description": "San Francisco Giants é uma equipe de beisebol da MLB, integrante da Liga Nacional. Seu estádio é Oracle Park, em San Francisco.",
+      "references": [
+        {
+          "label": "MLB · diretório oficial",
+          "url": "https://www.mlb.com/team"
+        },
+        {
+          "label": "Site oficial",
+          "url": "https://www.mlb.com/giants"
+        },
+        {
+          "label": "MLB · dados da equipe",
+          "url": "https://statsapi.mlb.com/api/v1/teams/137"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/mlb/time/_/nome/sf/san-francisco-giants"
+        }
+      ]
+    },
+    {
+      "id": "baseball-mlb-12",
+      "espnId": "12",
+      "mlbId": 136,
+      "name": "Seattle Mariners",
+      "sport": "baseball",
+      "league": "mlb",
+      "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/sea.png",
+      "city": "Seattle",
+      "stadium": "T-Mobile Park",
+      "stadium_image": "",
+      "website": "https://www.mlb.com/mariners",
+      "colors": [
+        "#005c5c",
+        "#0c2c56"
+      ],
+      "honours": [],
+      "description": "Seattle Mariners é uma equipe de beisebol da MLB, integrante da Liga Americana. Seu estádio é T-Mobile Park, em Seattle.",
+      "references": [
+        {
+          "label": "MLB · diretório oficial",
+          "url": "https://www.mlb.com/team"
+        },
+        {
+          "label": "Site oficial",
+          "url": "https://www.mlb.com/mariners"
+        },
+        {
+          "label": "MLB · dados da equipe",
+          "url": "https://statsapi.mlb.com/api/v1/teams/136"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/mlb/time/_/nome/sea/seattle-mariners"
+        }
+      ]
+    },
+    {
+      "id": "baseball-mlb-24",
+      "espnId": "24",
+      "mlbId": 138,
+      "name": "St. Louis Cardinals",
+      "sport": "baseball",
+      "league": "mlb",
+      "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/stl.png",
+      "city": "St. Louis",
+      "stadium": "Busch Stadium",
+      "stadium_image": "",
+      "website": "https://www.mlb.com/cardinals",
+      "colors": [
+        "#be0a14",
+        "#001541"
+      ],
+      "honours": [],
+      "description": "St. Louis Cardinals é uma equipe de beisebol da MLB, integrante da Liga Nacional. Seu estádio é Busch Stadium, em St. Louis.",
+      "references": [
+        {
+          "label": "MLB · diretório oficial",
+          "url": "https://www.mlb.com/team"
+        },
+        {
+          "label": "Site oficial",
+          "url": "https://www.mlb.com/cardinals"
+        },
+        {
+          "label": "MLB · dados da equipe",
+          "url": "https://statsapi.mlb.com/api/v1/teams/138"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/mlb/time/_/nome/stl/st-louis-cardinals"
+        }
+      ]
+    },
+    {
+      "id": "baseball-mlb-30",
+      "espnId": "30",
+      "mlbId": 139,
+      "name": "Tampa Bay Rays",
+      "sport": "baseball",
+      "league": "mlb",
+      "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/tb.png",
+      "city": "St. Petersburg",
+      "stadium": "Tropicana Field",
+      "stadium_image": "",
+      "website": "https://www.mlb.com/rays",
+      "colors": [
+        "#092c5c",
+        "#8fbce6"
+      ],
+      "honours": [],
+      "description": "Tampa Bay Rays é uma equipe de beisebol da MLB, integrante da Liga Americana. Seu estádio é Tropicana Field, em St. Petersburg.",
+      "references": [
+        {
+          "label": "MLB · diretório oficial",
+          "url": "https://www.mlb.com/team"
+        },
+        {
+          "label": "Site oficial",
+          "url": "https://www.mlb.com/rays"
+        },
+        {
+          "label": "MLB · dados da equipe",
+          "url": "https://statsapi.mlb.com/api/v1/teams/139"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/mlb/time/_/nome/tb/tampa-bay-rays"
+        }
+      ]
+    },
+    {
+      "id": "baseball-mlb-13",
+      "espnId": "13",
+      "mlbId": 140,
+      "name": "Texas Rangers",
+      "sport": "baseball",
+      "league": "mlb",
+      "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/tex.png",
+      "city": "Arlington",
+      "stadium": "Globe Life Field",
+      "stadium_image": "",
+      "website": "https://www.mlb.com/rangers",
+      "colors": [
+        "#003278",
+        "#c0111f"
+      ],
+      "honours": [],
+      "description": "Texas Rangers é uma equipe de beisebol da MLB, integrante da Liga Americana. Seu estádio é Globe Life Field, em Arlington.",
+      "references": [
+        {
+          "label": "MLB · diretório oficial",
+          "url": "https://www.mlb.com/team"
+        },
+        {
+          "label": "Site oficial",
+          "url": "https://www.mlb.com/rangers"
+        },
+        {
+          "label": "MLB · dados da equipe",
+          "url": "https://statsapi.mlb.com/api/v1/teams/140"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/mlb/time/_/nome/tex/texas-rangers"
+        }
+      ]
+    },
+    {
+      "id": "baseball-mlb-14",
+      "espnId": "14",
+      "mlbId": 141,
+      "name": "Toronto Blue Jays",
+      "sport": "baseball",
+      "league": "mlb",
+      "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/tor.png",
+      "city": "Toronto",
+      "stadium": "Rogers Centre",
+      "stadium_image": "",
+      "website": "https://www.mlb.com/bluejays",
+      "colors": [
+        "#134a8e",
+        "#6cace5"
+      ],
+      "honours": [],
+      "description": "Toronto Blue Jays é uma equipe de beisebol da MLB, integrante da Liga Americana. Seu estádio é Rogers Centre, em Toronto.",
+      "references": [
+        {
+          "label": "MLB · diretório oficial",
+          "url": "https://www.mlb.com/team"
+        },
+        {
+          "label": "Site oficial",
+          "url": "https://www.mlb.com/bluejays"
+        },
+        {
+          "label": "MLB · dados da equipe",
+          "url": "https://statsapi.mlb.com/api/v1/teams/141"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/mlb/time/_/nome/tor/toronto-blue-jays"
+        }
+      ]
+    },
+    {
+      "id": "baseball-mlb-20",
+      "espnId": "20",
+      "mlbId": 120,
+      "name": "Washington Nationals",
+      "sport": "baseball",
+      "league": "mlb",
+      "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/wsh.png",
+      "city": "Washington",
+      "stadium": "Nationals Park",
+      "stadium_image": "",
+      "website": "https://www.mlb.com/nationals",
+      "colors": [
+        "#ab0003",
+        "#11225b"
+      ],
+      "honours": [],
+      "description": "Washington Nationals é uma equipe de beisebol da MLB, integrante da Liga Nacional. Seu estádio é Nationals Park, em Washington.",
+      "references": [
+        {
+          "label": "MLB · diretório oficial",
+          "url": "https://www.mlb.com/team"
+        },
+        {
+          "label": "Site oficial",
+          "url": "https://www.mlb.com/nationals"
+        },
+        {
+          "label": "MLB · dados da equipe",
+          "url": "https://statsapi.mlb.com/api/v1/teams/120"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/mlb/time/_/nome/wsh/washington-nationals"
+        }
+      ]
+    }
+  ]
+}

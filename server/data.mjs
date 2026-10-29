@@ -1,3 +1,4 @@
+import { playerParticipation } from "./player-participation.mjs";
 import { matchHighlights } from "./match-highlights.mjs";
 import {
   normalizeAmericanFootball,
@@ -148,9 +149,19 @@ export function normalizeSummary(raw, sport, league, leagueName) {
       : sport === "football"
         ? footballPlays(raw)
         : raw.keyEvents || [];
+  const playerNames = new Map(
+    (raw.boxscore?.players || []).flatMap((t) =>
+      (t.statistics || []).flatMap((block) =>
+        (block.athletes || []).map((p) => [
+          String(p.athlete?.id || ""),
+          p.athlete?.displayName || "",
+        ]),
+      ),
+    ),
+  );
   const events = source
     .map((p, i) => ({
-      id: String(p.id || p.sequenceNumber || i),
+      id: String(p.play?.id || p.id || p.sequenceNumber || i),
       minute: p.time?.displayValue || p.clock?.displayValue || "",
       period: p.period?.number || p.play?.period?.number || "",
       text: p.text || p.shortText || p.type?.text || "Evento",
@@ -173,7 +184,16 @@ export function normalizeSummary(raw, sport, league, leagueName) {
           ? p.play?.participants?.[0]?.athlete?.displayName ||
             p.participants?.[0]?.athlete?.displayName ||
             ""
-          : "",
+          : sport === "basketball" && p.scoringPlay
+            ? playerNames.get(String(p.participants?.[0]?.athlete?.id || "")) ||
+              ""
+            : "",
+      ...(sport === "basketball"
+        ? {
+            scorerTeamId: String(p.team?.id || ""),
+            points: Number(p.scoreValue) || null,
+          }
+        : {}),
       kind: eventKind(p, sport),
       sequence: Number(p.sequenceNumber ?? p.sequence ?? i),
       scoring:
@@ -212,6 +232,7 @@ export function normalizeSummary(raw, sport, league, leagueName) {
       positionName:
         p.position?.displayName || p.athlete?.position?.displayName || "",
       formationPlace: Number(p.formationPlace) || null,
+      ...playerParticipation(p, raw),
       subbedIn: !!p.subbedIn,
       subbedOut: !!p.subbedOut,
       jersey: p.jersey || p.athlete?.jersey || "",

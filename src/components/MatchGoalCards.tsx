@@ -1,8 +1,24 @@
 import { useState } from "react";
+import { OfficialVideo } from "./MatchVideos";
 import { Crest } from "./shared";
-import type { Match, MatchHighlights, MatchIncident, Team } from "../types";
+import type {
+  Match,
+  MatchHighlights,
+  MatchIncident,
+  MatchMedia,
+  MatchVideo,
+  Team,
+} from "../types";
 
-function GoalCard({ goal, team }: { goal: MatchIncident; team: Team }) {
+function GoalCard({
+  goal,
+  team,
+  videos,
+}: {
+  goal: MatchIncident;
+  team: Team;
+  videos: MatchVideo[];
+}) {
   const [failedPhoto, setFailedPhoto] = useState("");
   const initials = goal.player
     .split(/\s+/)
@@ -44,6 +60,9 @@ function GoalCard({ goal, team }: { goal: MatchIncident; team: Team }) {
         <Crest team={team} />
         <span>{goal.ownGoal ? `A favor de ${team.name}` : team.name}</span>
       </div>
+      {videos.map((video) => (
+        <OfficialVideo key={video.id} video={video} replay />
+      ))}
     </li>
   );
 }
@@ -51,9 +70,11 @@ function GoalCard({ goal, team }: { goal: MatchIncident; team: Team }) {
 export default function MatchGoalCards({
   match,
   highlights,
+  media,
 }: {
   match: Match;
   highlights?: MatchHighlights;
+  media?: MatchMedia;
 }) {
   if (match.sport !== "soccer" || !highlights) return null;
   const goals = [
@@ -93,7 +114,14 @@ export default function MatchGoalCards({
         aria-label="Cards dos gols da partida"
       >
         {goals.map(({ goal, team }) => (
-          <GoalCard key={`${team.id}:${goal.id}`} goal={goal} team={team} />
+          <GoalCard
+            key={`${team.id}:${goal.id}`}
+            goal={goal}
+            team={team}
+            videos={(media?.replays || [])
+              .filter((v) => v.eventId === goal.id)
+              .slice(0, 2)}
+          />
         ))}
       </ul>
     </section>

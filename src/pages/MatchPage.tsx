@@ -258,7 +258,7 @@ export default function MatchPage() {
                     ?.scrollIntoView({ block: "start" });
                 }}
               >
-                ▶ Vídeos oficiais disponíveis · Ver melhores momentos
+                ▶ Lances oficiais disponíveis · Ver lances da partida
               </button>
             )}
             <div className="detail-content" id="match-tabs">
@@ -286,7 +286,7 @@ export default function MatchPage() {
                   ["standings", "Classificação"],
                   [
                     "videos",
-                    `Vídeos${media && media.highlights.length + media.replays.length + (media.related?.length || 0) ? ` (${media.highlights.length + media.replays.length + (media.related?.length || 0)})` : ""}`,
+                    `Lances da Partida${media && media.highlights.length + media.replays.length + (media.related?.length || 0) ? ` (${media.highlights.length + media.replays.length + (media.related?.length || 0)})` : ""}`,
                   ],
                 ].map(([v, l]) => (
                   <button
@@ -339,7 +339,27 @@ export default function MatchPage() {
                   <MatchGoalCards
                     match={data.match}
                     highlights={data.highlights}
+                    media={media}
                   />
+                  {data.match.sport === "basketball" &&
+                    !!media?.replays.length && (
+                      <section className="basket-play-cards">
+                        <div className="goal-summary-heading">
+                          <h2>Cestas e lances da partida</h2>
+                          <span>Clipes publicados por canais oficiais</span>
+                        </div>
+                        <div className="goal-summary-cards">
+                          {media.replays.map((video) => (
+                            <div
+                              className="goal-summary-card basket-play-card"
+                              key={video.id}
+                            >
+                              <OfficialVideo video={video} replay />
+                            </div>
+                          ))}
+                        </div>
+                      </section>
+                    )}
                   <div className="timeline-heading">
                     <h2>Dentro da partida</h2>
                     <span>
@@ -392,7 +412,7 @@ export default function MatchPage() {
                                 Placar: {e.score} · mandante–visitante
                               </small>
                             )}
-                            {e.kind === "goal" &&
+                            {(e.kind === "goal" || e.scoring) &&
                               media?.replays
                                 .filter((v) => v.eventId === e.id)
                                 .map((video) => (
@@ -439,6 +459,7 @@ export default function MatchPage() {
                   <Lineups
                     lineups={data.lineups}
                     soccer={data.match.sport === "soccer"}
+                    ratingSourceUrl={data.ratingSourceUrl}
                   />
                 ) : (
                   <Empty title="Escalações indisponíveis">

@@ -5,14 +5,14 @@ export function profileFor(
   sport: string,
   league: string,
 ) {
-  const key =
-    sport === "basketball" || sport === "football"
-      ? `${sport}-${league}-${id}`
-      : id;
+  const key = ["basketball", "football", "baseball"].includes(sport)
+    ? `${sport}-${league}-${id}`
+    : id;
   return teams?.find(
     (t) =>
       t.id === key &&
       t.sport === sport &&
-      (!["basketball", "football"].includes(sport) || t.league === league),
+      (!["basketball", "football", "baseball"].includes(sport) ||
+        t.league === league),
   );
 }
