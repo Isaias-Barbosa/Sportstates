@@ -1,3 +1,4 @@
+import { NotificationBell } from "../notifications/Notifications";
 import SetScoreboard from "../components/SetScoreboard";
 import MatchGoalCards from "../components/MatchGoalCards";
 import MatchTeamFacts from "../components/MatchTeamFacts";
@@ -119,6 +120,7 @@ export default function MatchPage() {
               }
             >
               <div className="eyebrow">{data.match.leagueName}</div>
+              <NotificationBell match={data.match} text />
               <div className="detail-status">
                 <span
                   className={data.match.state === "live" ? "live-dot" : ""}

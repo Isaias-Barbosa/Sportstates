@@ -1,3 +1,4 @@
+import { NotificationBell } from "../notifications/Notifications";
 import { matchScore } from "../components/shared";
 import { useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
@@ -695,6 +696,7 @@ function GameRow({
           </div>
         </Link>
         <div className="hv-row-actions">
+          <NotificationBell match={m} />
           {m.state === "live" && !!m.watch?.links.length && (
             <Link
               className="icon-button"

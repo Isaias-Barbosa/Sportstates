@@ -1,3 +1,6 @@
+import NotificationsProvider, {
+  NotificationSettingsButton,
+} from "./notifications/Notifications";
 import TennisAthletesPage from "./pages/TennisAthletesPage";
 import SportsNavigation from "./components/SportsNavigation";
 import React, { useState, useEffect, useRef } from "react";
@@ -84,177 +87,187 @@ function App() {
   }, [menu]);
   return (
     <BrowserRouter>
-      <div className="app">
-        <aside
-          ref={drawer}
-          id="main-menu"
-          className={menu ? "sidebar open" : "sidebar"}
-          inert={!menu}
-          role="dialog"
-          aria-modal={menu || undefined}
-          aria-label="Menu principal"
-        >
-          <Link to="/" className="brand" onClick={() => setMenu(false)}>
-            <span className="brandmark">
-              <Activity size={24} />
-            </span>
-            sportstates<span className="brand-dot">.</span>
-          </Link>
-          <button
-            className="close-menu icon-button"
-            aria-label="Fechar menu"
-            onClick={() => setMenu(false)}
+      <NotificationsProvider>
+        <div className="app">
+          <aside
+            ref={drawer}
+            id="main-menu"
+            className={menu ? "sidebar open" : "sidebar"}
+            inert={!menu}
+            role="dialog"
+            aria-modal={menu || undefined}
+            aria-label="Menu principal"
           >
-            <X />
-          </button>
-          <div className="nav-label">ACOMPANHE O JOGO</div>
-          <nav
-            aria-label="Páginas e esportes"
-            onClick={(event) => {
-              if ((event.target as Element).closest("a")) {
-                setMenu(false);
-                window.scrollTo(0, 0);
-              }
-            }}
-          >
-            <NavLink to="/" end>
-              <LayoutGrid size={18} />
-              Visão geral
-            </NavLink>
-            <NavLink
-              to="/?status=live"
-              className={({ isActive }) => (isActive ? "" : " ")}
+            <Link to="/" className="brand" onClick={() => setMenu(false)}>
+              <span className="brandmark">
+                <Activity size={24} />
+              </span>
+              sportstates<span className="brand-dot">.</span>
+            </Link>
+            <button
+              className="close-menu icon-button"
+              aria-label="Fechar menu"
+              onClick={() => setMenu(false)}
             >
-              <Radio size={18} />
-              Ao vivo
-              <span className="nav-live" />
-            </NavLink>
-            <NavLink to="/classificacoes">
-              <ListOrdered size={18} />
-              Classificações
-            </NavLink>
-            <NavLink to="/noticias">
-              <Newspaper size={18} />
-              Notícias
-            </NavLink>
-            <div className="nav-label">ESPORTES</div>
-            <SportsNavigation />
-            <NavLink to="/admin/jogos">
-              <Settings size={18} />
-              Administração
-            </NavLink>
-            <NavLink to="/sobre">
-              <Globe2 size={18} />
-              Fontes e cobertura
-            </NavLink>
-          </nav>
-          <div className="sidebar-bottom">
-            <span className="tiny-dot" /> Feito para acompanhar.
-            <p>Seu esporte. Seu momento.</p>
+              <X />
+            </button>
+            <div className="nav-label">ACOMPANHE O JOGO</div>
+            <nav
+              aria-label="Páginas e esportes"
+              onClick={(event) => {
+                if ((event.target as Element).closest("a")) {
+                  setMenu(false);
+                  window.scrollTo(0, 0);
+                }
+              }}
+            >
+              <NavLink to="/" end>
+                <LayoutGrid size={18} />
+                Visão geral
+              </NavLink>
+              <NavLink
+                to="/?status=live"
+                className={({ isActive }) => (isActive ? "" : " ")}
+              >
+                <Radio size={18} />
+                Ao vivo
+                <span className="nav-live" />
+              </NavLink>
+              <NavLink to="/classificacoes">
+                <ListOrdered size={18} />
+                Classificações
+              </NavLink>
+              <NavLink to="/noticias">
+                <Newspaper size={18} />
+                Notícias
+              </NavLink>
+              <div className="nav-label">ESPORTES</div>
+              <SportsNavigation />
+              <NavLink to="/admin/jogos">
+                <Settings size={18} />
+                Administração
+              </NavLink>
+              <NavLink to="/sobre">
+                <Globe2 size={18} />
+                Fontes e cobertura
+              </NavLink>
+            </nav>
+            <div className="sidebar-bottom">
+              <span className="tiny-dot" /> Feito para acompanhar.
+              <p>Seu esporte. Seu momento.</p>
+            </div>
+          </aside>
+          {menu && (
+            <button
+              className="scrim"
+              aria-label="Fechar menu"
+              onClick={() => setMenu(false)}
+            />
+          )}
+          <div className="workspace" inert={menu}>
+            <header className="topbar">
+              <div className="top-left">
+                <Link
+                  to="/"
+                  className="brand topbar-brand"
+                  aria-label="Sportstates — início"
+                >
+                  <span className="brandmark">
+                    <Activity size={20} />
+                  </span>
+                  sportstates<span className="brand-dot">.</span>
+                </Link>
+                <nav className="topbar-nav" aria-label="Navegação principal">
+                  <NavLink to="/" end>
+                    Jogos
+                  </NavLink>
+                  <NavLink to="/classificacoes">Classificações</NavLink>
+                  <NavLink to="/times">Times</NavLink>
+                  <NavLink to="/noticias">Notícias</NavLink>
+                </nav>
+              </div>
+              <div className="top-right">
+                <button
+                  className="theme-toggle"
+                  onClick={() =>
+                    setTheme((t) => (t === "light" ? "dark" : "light"))
+                  }
+                  aria-label={
+                    theme === "light"
+                      ? "Ativar tema escuro"
+                      : "Ativar tema claro"
+                  }
+                >
+                  {theme === "light" ? <Moon size={17} /> : <Sun size={17} />}
+                  <span>
+                    {theme === "light" ? "Modo escuro" : "Modo claro"}
+                  </span>
+                </button>
+                <NotificationSettingsButton />
+                <button
+                  type="button"
+                  className="navbar-login"
+                  aria-disabled="true"
+                  title="Login em breve"
+                >
+                  <UserRound size={17} aria-hidden="true" />
+                  <span>Login</span>
+                </button>
+                <button
+                  ref={menuButton}
+                  aria-expanded={menu}
+                  aria-controls="main-menu"
+                  className="mobile-menu menu-trigger"
+                  onClick={() => setMenu(true)}
+                  aria-label="Abrir menu"
+                >
+                  <span>Menu</span>
+                  <Menu size={20} aria-hidden="true" />
+                </button>
+              </div>
+            </header>
+            <main>
+              <Routes>
+                <Route path="/" element={<Dashboard />} />
+                <Route
+                  path="/favoritos"
+                  element={<Dashboard favoritesOnly />}
+                />
+                <Route path="/atletas" element={<TennisAthletesPage />} />
+                <Route path="/classificacoes" element={<StandingsPage />} />
+                <Route
+                  path="/partida/:sport/:league/:id"
+                  element={<MatchPage />}
+                />
+                <Route path="/noticias" element={<NewsPage />} />
+                <Route path="/times" element={<TeamsPage />} />
+                <Route path="/times/:id" element={<TeamPage />} />
+                <Route path="/transferencias" element={<TransfersPage />} />
+                <Route path="/admin/jogos" element={<AdminGames />} />
+                <Route path="/sobre" element={<About />} />
+                <Route
+                  path="*"
+                  element={
+                    <Empty title="Página não encontrada">
+                      <Link to="/">Voltar para os jogos</Link>
+                    </Empty>
+                  }
+                />
+              </Routes>
+            </main>
+            <footer>
+              <span>
+                sportstates<span className="green">.</span>
+              </span>
+              <p>
+                Dados de terceiros · A cobertura e os atrasos variam por
+                competição.
+              </p>
+              <Link to="/sobre">Sobre os dados ↗</Link>
+            </footer>
           </div>
-        </aside>
-        {menu && (
-          <button
-            className="scrim"
-            aria-label="Fechar menu"
-            onClick={() => setMenu(false)}
-          />
-        )}
-        <div className="workspace" inert={menu}>
-          <header className="topbar">
-            <div className="top-left">
-              <Link
-                to="/"
-                className="brand topbar-brand"
-                aria-label="Sportstates — início"
-              >
-                <span className="brandmark">
-                  <Activity size={20} />
-                </span>
-                sportstates<span className="brand-dot">.</span>
-              </Link>
-              <nav className="topbar-nav" aria-label="Navegação principal">
-                <NavLink to="/" end>
-                  Jogos
-                </NavLink>
-                <NavLink to="/classificacoes">Classificações</NavLink>
-                <NavLink to="/times">Times</NavLink>
-                <NavLink to="/noticias">Notícias</NavLink>
-              </nav>
-            </div>
-            <div className="top-right">
-              <button
-                className="theme-toggle"
-                onClick={() =>
-                  setTheme((t) => (t === "light" ? "dark" : "light"))
-                }
-                aria-label={
-                  theme === "light" ? "Ativar tema escuro" : "Ativar tema claro"
-                }
-              >
-                {theme === "light" ? <Moon size={17} /> : <Sun size={17} />}
-                <span>{theme === "light" ? "Modo escuro" : "Modo claro"}</span>
-              </button>
-              <button
-                type="button"
-                className="navbar-login"
-                aria-disabled="true"
-                title="Login em breve"
-              >
-                <UserRound size={17} aria-hidden="true" />
-                <span>Login</span>
-              </button>
-              <button
-                ref={menuButton}
-                aria-expanded={menu}
-                aria-controls="main-menu"
-                className="mobile-menu menu-trigger"
-                onClick={() => setMenu(true)}
-                aria-label="Abrir menu"
-              >
-                <span>Menu</span>
-                <Menu size={20} aria-hidden="true" />
-              </button>
-            </div>
-          </header>
-          <main>
-            <Routes>
-              <Route path="/" element={<Dashboard />} />
-              <Route path="/favoritos" element={<Dashboard favoritesOnly />} />
-              <Route path="/atletas" element={<TennisAthletesPage />} />
-              <Route path="/classificacoes" element={<StandingsPage />} />
-              <Route
-                path="/partida/:sport/:league/:id"
-                element={<MatchPage />}
-              />
-              <Route path="/noticias" element={<NewsPage />} />
-              <Route path="/times" element={<TeamsPage />} />
-              <Route path="/times/:id" element={<TeamPage />} />
-              <Route path="/transferencias" element={<TransfersPage />} />
-              <Route path="/admin/jogos" element={<AdminGames />} />
-              <Route path="/sobre" element={<About />} />
-              <Route
-                path="*"
-                element={
-                  <Empty title="Página não encontrada">
-                    <Link to="/">Voltar para os jogos</Link>
-                  </Empty>
-                }
-              />
-            </Routes>
-          </main>
-          <footer>
-            <span>
-              sportstates<span className="green">.</span>
-            </span>
-            <p>
-              Dados de terceiros · A cobertura e os atrasos variam por
-              competição.
-            </p>
-            <Link to="/sobre">Sobre os dados ↗</Link>
-          </footer>
         </div>
-      </div>
+      </NotificationsProvider>
     </BrowserRouter>
   );
 }

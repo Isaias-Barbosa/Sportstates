@@ -1,0 +1,15 @@
+# Notificações — primeira fase
+
+O sino nos cards da home e no placar da partida abre a ativação. O sino da navbar gerencia os jogos. Sem conta, a escolha vale neste navegador: um esporte por vez, até 10 partidas. Trocar de esporte exige o botão explícito que substitui a seleção anterior. Clicar num sino já ativo remove a partida. As preferências são locais e sincronizadas entre abas.
+
+O monitor consulta os detalhes pela API existente a cada 30 segundos, reutilizando seu cache. Jogos futuros só começam a ser consultados cinco minutos antes do início; partidas encerradas param após a última consulta; seleções com mais de 48 horas não são consultadas. Web Locks mantém um único monitor por origem quando disponível. BroadcastChannel replica os cards entre abas, sem duplicar as notificações do sistema.
+
+A primeira resposta é uma referência: nunca dispara lances anteriores. São comparados placares e incidentes de respostas novas, descartando respostas stale. Após pausa superior a dois minutos, reconstrói a referência sem enviar um lote histórico. IDs deduplicam alertas durante a sessão; recarregar reconstrói a referência. Quedas e correções de placar não são gols.
+
+Futebol: gols (nome do jogador quando informado nos incidentes), cartões vermelhos e segundo amarelo com expulsão, entrada na prorrogação e nos pênaltis. Conversões de disputa de pênaltis não são gols regulares. Basquete: aumento de pontos, com autor quando informado. Futebol americano: pontos; beisebol: corridas; hóquei: gols. Vôlei: pontos por set e sets conquistados. Tênis: games e sets; a fonte atual não oferece todos os pontos individuais. Vários lances entre duas consultas podem resultar num aviso agregado. O atraso depende do fornecedor e do intervalo do navegador.
+
+Desktop: cards de 18 segundos com ícone, título, jogador quando disponível, equipe e link da partida. Há no máximo quatro cards simultâneos e opção de fechar. Celulares e abas ocultas: Notification API com permissão, preferindo ServiceWorkerRegistration.showNotification. Se indisponível ou negada, os cards continuam funcionando. A permissão só é solicitada no botão de ativar. O service worker atende cliques e abre apenas URLs da própria origem; não intercepta requisições, não recebe push e não armazena dados esportivos.
+
+**Esta fase exige o site aberto.** Não garante execução no celular com a tela bloqueada ou o navegador suspenso. No iOS a API pode exigir instalação na tela inicial; não se promete compatibilidade universal. Notificações com o site fechado exigem uma etapa separada com Web Push, inscrições persistentes, VAPID e um monitor no servidor. Não foi implementada entrega em segundo plano no servidor.
+
+Validação: testes de diferenças de placar, autoria, expulsões, fases, dados antigos, correções, múltiplos esportes, sets e encerramento em `tests/notifications.test.mjs`. Build TypeScript/Vite e conferência do fluxo de preferências na interface. A entrega nativa depende do dispositivo e da permissão do usuário e precisa de teste num aparelho real.
