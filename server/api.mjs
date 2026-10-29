@@ -396,7 +396,7 @@ export async function route(url) {
     if (!config || !/^\d{1,15}$/.test(id || ""))
       return [400, { error: "Partida ou competição inválida." }];
     const result = await cached(
-      `match:highlights-v1:${config.sport}:${config.league}:${id}`,
+      `match:highlights-v2:${config.sport}:${config.league}:${id}`,
       matchTtl,
       async () =>
         normalizeSummary(

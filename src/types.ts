@@ -127,6 +127,9 @@ export type AmericanFootballData = Pick<
   } | null;
 };
 export type MatchIncident = {
+  photo?: string | null;
+  order?: number;
+  period?: number;
   id: string;
   kind: "goal" | "red-card";
   player: string;

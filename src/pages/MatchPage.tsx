@@ -1,3 +1,4 @@
+import MatchGoalCards from "../components/MatchGoalCards";
 import MatchTeamFacts from "../components/MatchTeamFacts";
 import { matchScore } from "../components/shared";
 import AmericanFootballMatch from "../components/AmericanFootballMatch";
@@ -335,6 +336,10 @@ export default function MatchPage() {
               )}
               {tab === "events" && (
                 <>
+                  <MatchGoalCards
+                    match={data.match}
+                    highlights={data.highlights}
+                  />
                   <div className="timeline-heading">
                     <h2>Dentro da partida</h2>
                     <span>

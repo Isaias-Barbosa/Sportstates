@@ -7,6 +7,23 @@ const clean = (value) =>
     .toLowerCase()
     .trim();
 
+export function playerPhoto(athlete) {
+  const value =
+    athlete?.headshot?.href ||
+    (typeof athlete?.headshot === "string" ? athlete.headshot : "");
+  try {
+    const url = new URL(value);
+    return url.protocol === "https:" &&
+      /(^|\.)espncdn\.com$/.test(url.hostname) &&
+      !url.username &&
+      !url.password
+      ? url.href
+      : null;
+  } catch {
+    return null;
+  }
+}
+
 export function matchWinner(match) {
   if (
     match.state !== "finished" ||
@@ -57,6 +74,7 @@ export function matchHighlights(raw, match, classify) {
         clean(team?.displayName) === clean(t.name),
     )?.id;
   const memberships = new Map();
+  const photos = new Map();
   for (const roster of raw.rosters || []) {
     const id =
       teamId(roster.team) ||
@@ -72,6 +90,8 @@ export function matchHighlights(raw, match, classify) {
         player.athlete?.displayName &&
           `name:${clean(player.athlete.displayName)}`,
       ].filter(Boolean)) {
+        const photo = playerPhoto(player.athlete);
+        if (photo) photos.set(`${id}:${key}`, photo);
         memberships.set(
           key,
           memberships.has(key) && memberships.get(key) !== id ? null : id,
@@ -135,7 +155,13 @@ export function matchHighlights(raw, match, classify) {
       id: eventId || signature,
       kind: kind === "goal" ? "goal" : "red-card",
       player,
+      photo:
+        playerPhoto(athlete) ||
+        photos.get(`${membership || id}:id:${athlete.id}`) ||
+        photos.get(`${membership || id}:name:${clean(player)}`) ||
+        null,
       minute,
+      period: period || undefined,
       ownGoal,
       penalty:
         kind === "goal" &&
@@ -153,6 +179,8 @@ export function matchHighlights(raw, match, classify) {
   for (const entry of raw.commentary?.length ? raw.commentary : raw.plays || [])
     add(entry, true);
   for (const side of ["home", "away"])
-    result[side].sort((a, b) => a.order - b.order);
+    result[side].sort(
+      (a, b) => (a.period || 0) - (b.period || 0) || a.order - b.order,
+    );
   return result;
 }

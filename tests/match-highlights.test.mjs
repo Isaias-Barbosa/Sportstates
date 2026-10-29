@@ -205,3 +205,32 @@ test("non soccer games still highlight the winner and do not show soccer icons",
   assert.equal(result.highlights.winnerId, "h");
   assert.equal(result.highlights.home.length, 0);
 });
+
+test("goal cards use supplied ESPN portraits and reject unsafe or unrelated image URLs", () => {
+  const p = incident("portrait", "goal");
+  p.participants[0].athlete.headshot = {
+    href: "https://a.espncdn.com/i/headshots/soccer/players/full/123.png",
+  };
+  assert.equal(
+    normalize(raw({ events: [p] })).highlights.home[0].photo,
+    p.participants[0].athlete.headshot.href,
+  );
+  p.participants[0].athlete.headshot = { href: "javascript:alert(1)" };
+  assert.equal(normalize(raw({ events: [p] })).highlights.home[0].photo, null);
+  p.participants[0].athlete.headshot = {
+    href: "https://espncdn.com.evil.test/player.png",
+  };
+  assert.equal(normalize(raw({ events: [p] })).highlights.home[0].photo, null);
+});
+test("goal chronology keeps first-half stoppage time before the second half", () => {
+  const first = incident("first", "goal", "h", "Home Player", "45+5'", 1);
+  first.clock.value = 3000;
+  const second = incident("second", "goal", "h", "Home Player", "46'", 2);
+  second.clock.value = 2760;
+  const result = normalize(raw({ events: [second, first] })).highlights.home;
+  assert.deepEqual(
+    result.map((p) => p.id),
+    ["first", "second"],
+  );
+  assert.equal(result[0].period, 1);
+});
