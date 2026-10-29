@@ -203,6 +203,7 @@ export const BRAZIL_CHANNEL_GUIDES = [
   { id: 'tnt', name: 'TNT Sports', url: 'https://tntsports.com.br/', badge: 'TNT' },
 ].map(l => ({ access: 'subscription', ...l, country: 'BR', kind: 'guide', note: 'Consulte a programação oficial. A presença neste guia não confirma a transmissão deste jogo.', sourceUrl: l.url }));
 const CHANNELS = [
+  ...[1,2,3].map(n => ({pattern:new RegExp(`^sportv\\s*${n === 1 ? '1?' : n}$`,'i'),id:`sportv${n}`,name:n===1?'sportv':`sportv ${n}`,badge:`S${n}`,url:'https://globoplay.globo.com/',access:'subscription'})),
   { pattern: /^globoplay$/i, id: 'globoplay', name: 'Globoplay', url: 'https://globoplay.globo.com/', badge: 'Gplay', access: 'check' },
   { pattern: /^Globo$/i, id: 'globo', name: 'TV Globo', url: 'https://globoplay.globo.com/', badge: 'G', access: 'check' },
   { pattern: /^Ge\s*TV$/i, id: 'getv', name: 'ge tv', url: 'https://globoplay.globo.com/categorias/esportes/', badge: 'ge', access: 'free' },

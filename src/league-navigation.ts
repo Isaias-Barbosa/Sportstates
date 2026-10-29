@@ -4,8 +4,14 @@ export function leagueLinks(sport: string, league = "all") {
   if (league !== "all") query.set("league", league);
   return [
     { label: "Jogos", to: "/?" + query },
-    { label: "Times", to: "/times?" + query },
-    { label: "Classificação", to: "/classificacoes?" + query },
+    {
+      label: sport === "tennis" ? "Atletas" : "Times",
+      to: (sport === "tennis" ? "/atletas?" : "/times?") + query,
+    },
+    {
+      label: sport === "tennis" ? "Ranking" : "Classificação",
+      to: "/classificacoes?" + query,
+    },
   ];
 }
 export function leagueSelection(

@@ -1,3 +1,4 @@
+import SetScoreboard from "../components/SetScoreboard";
 import MatchGoalCards from "../components/MatchGoalCards";
 import MatchTeamFacts from "../components/MatchTeamFacts";
 import { matchScore } from "../components/shared";
@@ -68,11 +69,15 @@ export default function MatchPage() {
     300000,
   );
   const [tab, setTab] = useState(
-    ["basketball", "football"].includes(sport || "") ? "overview" : "events",
+    ["basketball", "football", "tennis", "volleyball"].includes(sport || "")
+      ? "overview"
+      : "events",
   );
   useEffect(() => {
     setTab(
-      ["basketball", "football"].includes(sport || "") ? "overview" : "events",
+      ["basketball", "football", "tennis", "volleyball"].includes(sport || "")
+        ? "overview"
+        : "events",
     );
   }, [sport, league, id]);
   useEffect(() => {
@@ -264,30 +269,53 @@ export default function MatchPage() {
             <div className="detail-content" id="match-tabs">
               <div className="tabs detail-tabs">
                 {[
+                  ...(["tennis", "volleyball"].includes(data.match.sport)
+                    ? [["overview", "Placar por sets"]]
+                    : []),
                   ...(["basketball", "football"].includes(data.match.sport)
                     ? [
                         ["overview", "Resumo"],
                         ["players", "Jogadores"],
                       ]
                     : []),
-                  [
-                    "events",
-                    ["basketball", "football"].includes(data.match.sport)
-                      ? "Lance a lance"
-                      : "Minuto a minuto",
-                  ],
-                  ["stats", "Estatísticas"],
-                  ...(["basketball", "football"].includes(data.match.sport)
+                  ...(["tennis", "volleyball"].includes(data.match.sport)
                     ? []
-                    : [["lineups", "Escalações"]]),
+                    : [
+                        [
+                          "events",
+                          ["basketball", "football"].includes(data.match.sport)
+                            ? "Lance a lance"
+                            : "Minuto a minuto",
+                        ],
+                        ["stats", "Estatísticas"],
+                      ]),
+                  ...(["basketball", "football", "tennis"].includes(
+                    data.match.sport,
+                  )
+                    ? []
+                    : [
+                        [
+                          "lineups",
+                          data.match.sport === "volleyball"
+                            ? "Relacionados"
+                            : "Escalações",
+                        ],
+                      ]),
                   ...(data.match.sport === "football"
                     ? [["drives", "Campanhas"]]
                     : []),
-                  ["standings", "Classificação"],
                   [
-                    "videos",
-                    `Lances da Partida${media && media.highlights.length + media.replays.length + (media.related?.length || 0) ? ` (${media.highlights.length + media.replays.length + (media.related?.length || 0)})` : ""}`,
+                    "standings",
+                    data.match.sport === "tennis" ? "Ranking" : "Classificação",
                   ],
+                  ...(["tennis", "volleyball"].includes(data.match.sport)
+                    ? []
+                    : [
+                        [
+                          "videos",
+                          `Lances da Partida${media && media.highlights.length + media.replays.length + (media.related?.length || 0) ? ` (${media.highlights.length + media.replays.length + (media.related?.length || 0)})` : ""}`,
+                        ],
+                      ]),
                 ].map(([v, l]) => (
                   <button
                     key={v}
@@ -299,6 +327,8 @@ export default function MatchPage() {
                   </button>
                 ))}
               </div>
+              {["tennis", "volleyball"].includes(data.match.sport) &&
+                tab === "overview" && <SetScoreboard match={data.match} />}
               {data.match.sport === "basketball" &&
                 data.basketball &&
                 (tab === "overview" || tab === "players") && (
@@ -428,8 +458,9 @@ export default function MatchPage() {
                     </div>
                   ) : (
                     <Empty title="Lances ainda não disponíveis">
-                      A fonte pode liberar os eventos após o início da partida.
-                      Nem todas as competições têm cobertura lance a lance.
+                      Consulte o resumo por sets. A fonte pode liberar eventos
+                      após o início da partida. Nem todas as competições têm
+                      cobertura lance a lance.
                     </Empty>
                   )}
                 </>
@@ -459,6 +490,7 @@ export default function MatchPage() {
                   <Lineups
                     lineups={data.lineups}
                     soccer={data.match.sport === "soccer"}
+                    rosterOnly={data.match.sport === "volleyball"}
                     ratingSourceUrl={data.ratingSourceUrl}
                   />
                 ) : (

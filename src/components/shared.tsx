@@ -86,6 +86,8 @@ export function matchLabel(m: Match) {
     )
   )
     return "Partida interrompida";
+  if (["tennis", "volleyball"].includes(m.sport) && m.state === "live")
+    return m.period ? `${m.period}º set · Ao vivo` : "Ao vivo";
   if (m.sport === "soccer") {
     const penalties =
       m.soccerPhase === "penalties" ||

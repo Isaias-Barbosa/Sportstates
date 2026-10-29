@@ -1,3 +1,5 @@
+import { volleyTeamDetails } from "./volleyball.mjs";
+import { volleyballProfileReferences } from "./volleyball-profiles.mjs";
 import { nhlProfileReferences } from "./nhl-profiles.mjs";
 import { mlbProfileReferences } from "./mlb-profiles.mjs";
 import {
@@ -54,6 +56,10 @@ export async function getTeam(id) {
   return rows[0] || null;
 }
 export async function saveTeam(p) {
+  if (p.sport === "tennis")
+    throw new Error(
+      "Os atletas de tênis são consultados na página Atletas; este formulário cadastra equipes.",
+    );
   const sport = String(p.sport || "soccer"),
     league = String(p.league || "");
   const colors = Array.isArray(p.colors) ? p.colors : [],
@@ -133,6 +139,11 @@ export function normalizeTeamSchedule(
 export async function teamDetails(id) {
   const team = await getTeam(id);
   if (!team) return null;
+  if (team.sport === "volleyball")
+    return {
+      ...(await volleyTeamDetails(team)),
+      profileReferences: volleyballProfileReferences(team.id),
+    };
   const config = leagueFor(team.sport, team.league);
   if (!config)
     return {

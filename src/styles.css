@@ -2764,3 +2764,102 @@ body.club-page-active { background:var(--club-page-bg, var(--canvas)); backgroun
 .player-participation{display:flex;align-items:center;justify-content:flex-end;gap:8px;flex-wrap:wrap}.substitution-badge{display:inline-flex;align-items:center;gap:3px;font-size:.72rem;font-weight:800;flex-wrap:wrap;max-width:160px}.substitution-badge small{flex-basis:100%;font-weight:500;font-size:.65rem;color:var(--muted)}.substitution-badge.sub-in{color:#16a34a}.substitution-badge.sub-out{color:#ef4444}.player-rating{display:inline-flex;align-items:center;justify-content:center;min-width:32px;height:27px;padding:0 5px;border-radius:7px;background:var(--surface);color:var(--muted);font-size:.75rem;font-weight:800}.player-rating.rated{background:#166534;color:#fff}.squad-player>.player-participation{margin-left:auto}.goal-summary-card .official-video{margin-top:12px}.goal-summary-card .video-launch{padding:12px;min-height:64px}.goal-summary-card .video-caption{font-size:.7rem}.basket-play-cards{margin-bottom:24px}.basket-play-card{min-width:260px;max-width:360px}.basket-play-card h3{font-size:.95rem;margin:10px 0}
 .globo-video-launch{position:relative;overflow:hidden;color:#fff!important;background:#122234!important;text-decoration:none;min-height:150px!important}.globo-video-launch>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.35}.globo-video-launch>svg,.globo-video-launch>span{position:relative;z-index:1}.goal-summary-card:has(.official-video){min-width:280px;max-width:340px}.globo-video-launch small{display:block;font-size:.67rem;font-weight:500;margin-top:4px}
 .squad-player>.player-participation{flex:0 1 auto;max-width:52%}.pitch-sub-out{color:#fca5a5;vertical-align:middle;margin-left:3px}.pitch-rating{display:inline-block;margin-left:4px;background:#166534;color:white;border-radius:4px;padding:1px 4px;font-weight:800;font-size:9px}
+
+.set-scoreboard {
+  padding: 22px;
+}
+.set-scoreboard table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 430px;
+}
+.set-scoreboard th,
+.set-scoreboard td {
+  padding: 15px 12px;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+}
+.set-scoreboard th:first-child {
+  text-align: left;
+}
+.set-team-logo {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+.set-winner {
+  background: color-mix(in srgb, #16a34a 12%, transparent);
+}
+.set-scoreboard sup {
+  font-size: 0.65em;
+  padding-left: 2px;
+}
+.athlete-search {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 500px;
+  margin: 24px 0;
+  font-size: 0.85rem;
+}
+.athlete-search input {
+  padding: 13px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--panel);
+  color: var(--text);
+}
+.tennis-athlete-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 16px;
+  margin-bottom: 22px;
+}
+.tennis-athlete-card {
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 22px;
+  background: var(--panel);
+  position: relative;
+}
+.athlete-rank {
+  font-weight: 900;
+  color: var(--accent);
+  font-size: 1.4rem;
+}
+.athlete-photo {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  display: block;
+  margin: 10px auto;
+  border-radius: 50%;
+  background: var(--surface);
+}
+.tennis-athlete-card h2 {
+  font-size: 1.05rem;
+}
+.tennis-athlete-card small {
+  display: block;
+  margin-top: 8px;
+  color: var(--muted);
+}
+.athlete-flag {
+  width: 23px;
+  height: 18px;
+  object-fit: contain;
+  margin-right: 7px;
+  vertical-align: middle;
+}
+.set-scoreboard {
+  min-width: 0;
+}
+.set-scoreboard .table-scroll {
+  max-width: 100%;
+  overflow-x: auto;
+}
+.athlete-rank {
+  color: var(--green, #b8f930);
+}

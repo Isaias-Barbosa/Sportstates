@@ -9,6 +9,18 @@ import type { Match, Standings, ClubProfile } from "../types";
 import { Empty, Loading, Notice } from "./shared";
 
 const columns: Record<string, [string, string[]][]> = {
+  tennis: [
+    ["Pontos", ["points"]],
+    ["Anterior", ["previous"]],
+  ],
+  volleyball: [
+    ["P", ["points"]],
+    ["J", ["gamesPlayed"]],
+    ["V", ["wins"]],
+    ["D", ["losses"]],
+    ["SV", ["setsWon"]],
+    ["SP", ["setsLost"]],
+  ],
   soccer: [
     ["P", ["points"]],
     ["J", ["gamesPlayed"]],
@@ -178,7 +190,9 @@ export default function StandingsTable({
                   <thead>
                     <tr>
                       <th scope="col">#</th>
-                      <th scope="col">Equipe</th>
+                      <th scope="col">
+                        {sport === "tennis" ? "Atleta" : "Equipe"}
+                      </th>
                       {showImpact && (
                         <th scope="col">
                           {match?.state === "live"

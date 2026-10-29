@@ -8,6 +8,16 @@ export type Team = {
   winner: boolean;
 };
 export type Match = {
+  setScores?: {
+    number: number;
+    home: string | null;
+    away: string | null;
+    homeTiebreak?: number | null;
+    awayTiebreak?: number | null;
+  }[];
+  tournament?: string;
+  round?: string;
+  sourceUrl?: string;
   id: string;
   sport: string;
   league: string;

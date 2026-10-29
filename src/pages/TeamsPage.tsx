@@ -1,5 +1,5 @@
 import { leagueSelection } from "../league-navigation";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, Navigate, useSearchParams } from "react-router-dom";
 import { useApi } from "../hooks";
 import { Empty, Loading, Notice } from "../components/shared";
 import type { ClubProfile, CompetitionCatalog } from "../types";
@@ -55,6 +55,8 @@ export default function TeamsPage() {
       : league === "all"
         ? sportTeams
         : sportTeams.filter((t) => t.league === league);
+  if (sport === "tennis")
+    return <Navigate to="/atletas?sport=tennis&league=atp" replace />;
   return (
     <>
       <div className="page-title">

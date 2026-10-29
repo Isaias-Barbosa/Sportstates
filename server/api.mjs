@@ -1,3 +1,17 @@
+import { volleyballProfiles } from "./volleyball-profiles.mjs";
+import {
+  tennisMatches,
+  tennisDetail,
+  atpRankings,
+  tennisJSON,
+  normalizeTennis,
+} from "./tennis.mjs";
+import {
+  cbvSchedule,
+  normalizeVolley,
+  volleyDetail,
+  volleyStandings,
+} from "./volleyball.mjs";
 import { enrichPlayerRatings } from "./player-ratings.mjs";
 import { validProfileId } from "./team-identity.mjs";
 import { fetchTeamCompetitions } from "./team-competitions.mjs";
@@ -65,21 +79,28 @@ export async function scoreboard(date) {
     s.leagues.map(async ([league, name]) => {
       const parts = await Promise.allSettled(
         dates.map((d) =>
-          cached(
-            `${s.id}/${league}/${d}`,
-            (matches) => scoresTtl(matches, d, dayInBrazil(new Date())),
-            async () => {
-              const raw = await json(
-                `${ESPN}/${s.id}/${league}/scoreboard?dates=${d.replaceAll("-", "")}&limit=1000&lang=pt&region=br`,
-              );
-              if (!Array.isArray(raw.events))
-                throw new Error("Resposta de placares inválida.");
-              return raw.events
-                .map((e) => normalizeEvent(e, s.id, league, name))
-                .filter(Boolean);
-            },
-            15 * 60000,
-          ),
+          s.id === "tennis"
+            ? tennisMatches(d)
+            : s.id === "volleyball"
+              ? cbvSchedule().then((r) => ({
+                  ...r,
+                  value: r.value.map(normalizeVolley),
+                }))
+              : cached(
+                  `${s.id}/${league}/${d}`,
+                  (matches) => scoresTtl(matches, d, dayInBrazil(new Date())),
+                  async () => {
+                    const raw = await json(
+                      `${ESPN}/${s.id}/${league}/scoreboard?dates=${d.replaceAll("-", "")}&limit=1000&lang=pt&region=br`,
+                    );
+                    if (!Array.isArray(raw.events))
+                      throw new Error("Resposta de placares inválida.");
+                    return raw.events
+                      .map((e) => normalizeEvent(e, s.id, league, name))
+                      .filter(Boolean);
+                  },
+                  15 * 60000,
+                ),
         ),
       );
       const good = parts
@@ -115,7 +136,7 @@ export async function scoreboard(date) {
       competitions: leagues.map((l) => l[1]),
     })),
     date,
-    source: "ESPN · feed público não oficial",
+    source: "ESPN · CBV (vôlei masculino)",
     fetchedAt: new Date(
       Math.min(...results.filter((r) => r.at).map((r) => r.at)),
     ).toISOString(),
@@ -157,8 +178,10 @@ export async function route(url) {
       : [503, { error: "Neon Auth não configurado." }];
   }
   if (url.pathname === "/api/teams") {
-    const result = await cached("teams:nhl-profiles-v1", CACHE_TTL.teams, () =>
-      listTeams(),
+    const result = await cached(
+      "teams:volleyball-profiles-v1",
+      CACHE_TTL.teams,
+      () => listTeams(),
     );
     return [
       200,
@@ -170,6 +193,44 @@ export async function route(url) {
     if (!validProfileId(id)) return [400, { error: "Time inválido." }];
     const team = await getTeam(id);
     if (!team) return [404, { error: "Time não encontrado." }];
+    if (team.sport === "volleyball") {
+      const table = await volleyStandings();
+      const row = table.groups[0].rows.find(
+        (r) => r.id === team.id.replace("volleyball-superliga-men-", ""),
+      );
+      return [
+        200,
+        {
+          teamId: id,
+          competitions: row
+            ? [
+                {
+                  id: "superliga-men",
+                  sport: "volleyball",
+                  name: "Superliga Masculina",
+                  logo: null,
+                  kind: "league",
+                  season: "Temporada atual",
+                  year: null,
+                  active: true,
+                  status: "active",
+                  rank: Number(row.rank),
+                  group: null,
+                  points: row.stats.points,
+                  played: row.stats.gamesPlayed,
+                  phase: "Classificação da competição",
+                  phaseContext: null,
+                  lastPlayed: null,
+                },
+              ]
+            : [],
+          partial: !row,
+          fetchedAt: table.fetchedAt,
+          source: table.source,
+        },
+      ];
+    }
+
     if (!leagueFor(team.sport, team.league))
       return [
         200,
@@ -227,9 +288,44 @@ export async function route(url) {
       },
     ];
   }
+  if (url.pathname === "/api/tennis-athletes")
+    return [200, await atpRankings()];
   if (url.pathname === "/api/standings") {
     const config = leagueFor(q.get("sport"), q.get("league"));
     if (!config) return [400, { error: "Competição inválida." }];
+    if (config.sport === "volleyball") return [200, await volleyStandings()];
+    if (config.sport === "tennis") {
+      const data = await atpRankings();
+      return [
+        200,
+        {
+          ...config,
+          groups: [
+            {
+              name: "Ranking ATP · Simples masculino",
+              rows: data.players.map((p) => ({
+                id: p.id,
+                name: p.name,
+                logo: p.flag,
+                rank: String(p.rank),
+                stats: {
+                  points: String(p.points),
+                  previous: String(p.previous),
+                  age: String(p.age || "—"),
+                },
+              })),
+            },
+          ],
+          rounds: [],
+          fetchedAt: data.fetchedAt,
+          stale: data.stale,
+          source: data.source,
+          warnings: [],
+          rankingUpdatedAt: data.updatedAt,
+        },
+      ];
+    }
+
     const stateCompetition =
       config.sport === "soccer" && BRAZIL_STATE_LEAGUES.has(config.league);
     const seasonParam = q.get("season");
@@ -320,6 +416,42 @@ export async function route(url) {
     const month = q.get("month") || dayInBrazil(new Date()).slice(0, 7);
     if (!config || !/^(20\d{2})-(0[1-9]|1[0-2])$/.test(month))
       return [400, { error: "Competição ou mês inválido. Use AAAA-MM." }];
+    if (config.sport === "volleyball" || config.sport === "tennis") {
+      const r =
+        config.sport === "volleyball"
+          ? await cbvSchedule().then((r) => ({
+              ...r,
+              value: r.value.map(normalizeVolley),
+            }))
+          : await cached(
+              `tennis:month:v1:${month}`,
+              60000,
+              async () =>
+                normalizeTennis(
+                  await tennisJSON(
+                    `https://site.api.espn.com/apis/site/v2/sports/tennis/atp/scoreboard?dates=${month.replaceAll("-", "")}&lang=pt&region=br`,
+                  ),
+                ),
+              300000,
+            );
+      return [
+        200,
+        {
+          ...config,
+          month,
+          matches: r.value
+            .filter((m) => dayInBrazil(m.date).startsWith(month))
+            .sort((a, b) => a.date.localeCompare(b.date)),
+          partial: false,
+          stale: r.stale,
+          fetchedAt: new Date(r.at).toISOString(),
+          source:
+            config.sport === "volleyball"
+              ? "CBV · Superliga Masculina"
+              : "ESPN · ATP masculino",
+        },
+      ];
+    }
     const first = `${month}-01`;
     const next = new Date(`${first}T12:00:00Z`);
     next.setUTCMonth(next.getUTCMonth() + 1);
@@ -394,6 +526,28 @@ export async function route(url) {
     const id = q.get("id");
     if (!config || !/^\d{1,15}$/.test(id || ""))
       return [400, { error: "Partida ou competição inválida." }];
+    if (config.sport === "tennis" || config.sport === "volleyball") {
+      if (url.pathname === "/api/media")
+        return [
+          200,
+          {
+            highlights: [],
+            replays: [],
+            related: [],
+            searchLinks: [],
+            partial: false,
+            message:
+              "Lances em vídeo ainda não são fornecidos para esta competição. Consulte a fonte oficial da partida.",
+            source: "Cobertura por sets",
+          },
+        ];
+      return [
+        200,
+        config.sport === "tennis"
+          ? await tennisDetail(id)
+          : await volleyDetail(id),
+      ];
+    }
     const result = await cached(
       `match:player-lances-v2:${config.sport}:${config.league}:${id}`,
       matchTtl,
@@ -549,6 +703,18 @@ export async function handler(req, res) {
           error: "Selecione a liga e digite entre 2 e 80 caracteres.",
         }),
       );
+    }
+    if (sport === "volleyball") {
+      const text = (v) =>
+        String(v)
+          .normalize("NFD")
+          .replace(/\p{Diacritic}/gu, "")
+          .toLowerCase();
+      const teams = volleyballProfiles.clubs
+        .filter((t) => text(t.name + " " + t.city).includes(text(q)))
+        .map((t) => ({ ...t, source: "CBV" }));
+      res.statusCode = 200;
+      return res.end(JSON.stringify({ teams, source: "CBV", stale: false }));
     }
     const failures = [];
     try {

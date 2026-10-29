@@ -1,0 +1,342 @@
+{
+  "revision": "volleyball-superliga-men-2026-v1",
+  "reviewedAt": "2026-10-29",
+  "clubs": [
+    {
+      "id": "volleyball-superliga-men-2253014",
+      "name": "VÔLEI RENATA",
+      "sport": "volleyball",
+      "league": "superliga-men",
+      "logo": "https://assets.volleystation.com/website/teams/2253014/badge.png",
+      "city": "CAMPINAS",
+      "stadium": "GINÁSIO DO TAQUARAL",
+      "stadium_image": "",
+      "website": "https://cbv.com.br/volei-de-quadra/superliga-a-masculina/clubes/2253014/volei-renata",
+      "colors": [
+        "#c9ab6b",
+        "#242c64"
+      ],
+      "honours": [],
+      "description": "VÔLEI RENATA é uma equipe da Superliga Masculina de vôlei do Brasil. Seu ginásio informado na programação da CBV é GINÁSIO DO TAQUARAL, em CAMPINAS.",
+      "references": [
+        {
+          "label": "CBV · equipe na Superliga Masculina",
+          "url": "https://cbv.com.br/volei-de-quadra/superliga-a-masculina/clubes/2253014/volei-renata"
+        },
+        {
+          "label": "CBV · classificação oficial",
+          "url": "https://cbv.com.br/volei-de-quadra/superliga-a-masculina/classificacao"
+        }
+      ],
+      "cbvId": "2253014"
+    },
+    {
+      "id": "volleyball-superliga-men-2253016",
+      "name": "PRAIA CLUBE UBERLANDIA VOLEI",
+      "sport": "volleyball",
+      "league": "superliga-men",
+      "logo": "https://assets.volleystation.com/website/teams/2253016/badge.png",
+      "city": "UBERLANDIA",
+      "stadium": "GINÁSIO DO UTC",
+      "stadium_image": "",
+      "website": "https://cbv.com.br/volei-de-quadra/superliga-a-masculina/clubes/2253016/praia-clube-uberlandia-volei",
+      "colors": [
+        "#fbdb04",
+        "#847414"
+      ],
+      "honours": [],
+      "description": "PRAIA CLUBE UBERLANDIA VOLEI é uma equipe da Superliga Masculina de vôlei do Brasil. Seu ginásio informado na programação da CBV é GINÁSIO DO UTC, em UBERLANDIA.",
+      "references": [
+        {
+          "label": "CBV · equipe na Superliga Masculina",
+          "url": "https://cbv.com.br/volei-de-quadra/superliga-a-masculina/clubes/2253016/praia-clube-uberlandia-volei"
+        },
+        {
+          "label": "CBV · classificação oficial",
+          "url": "https://cbv.com.br/volei-de-quadra/superliga-a-masculina/classificacao"
+        }
+      ],
+      "cbvId": "2253016"
+    },
+    {
+      "id": "volleyball-superliga-men-2253020",
+      "name": "SUZANO VOLEI",
+      "sport": "volleyball",
+      "league": "superliga-men",
+      "logo": "https://assets.volleystation.com/website/teams/2253020/badge.png",
+      "city": "SUZANO",
+      "stadium": "ARENA SUZANO",
+      "stadium_image": "",
+      "website": "https://cbv.com.br/volei-de-quadra/superliga-a-masculina/clubes/2253020/suzano-volei",
+      "colors": [
+        "#f31c29",
+        "#044484"
+      ],
+      "honours": [],
+      "description": "SUZANO VOLEI é uma equipe da Superliga Masculina de vôlei do Brasil. Seu ginásio informado na programação da CBV é ARENA SUZANO, em SUZANO.",
+      "references": [
+        {
+          "label": "CBV · equipe na Superliga Masculina",
+          "url": "https://cbv.com.br/volei-de-quadra/superliga-a-masculina/clubes/2253020/suzano-volei"
+        },
+        {
+          "label": "CBV · classificação oficial",
+          "url": "https://cbv.com.br/volei-de-quadra/superliga-a-masculina/classificacao"
+        }
+      ],
+      "cbvId": "2253020"
+    },
+    {
+      "id": "volleyball-superliga-men-2253017",
+      "name": "ITAMBÉ MINAS",
+      "sport": "volleyball",
+      "league": "superliga-men",
+      "logo": "https://assets.volleystation.com/website/teams/2253017/badge.png",
+      "city": "BELO HORIZONTE",
+      "stadium": "ARENA MINAS",
+      "stadium_image": "",
+      "website": "https://cbv.com.br/volei-de-quadra/superliga-a-masculina/clubes/2253017/itambe-minas",
+      "colors": [
+        "#064ea5",
+        "#044494"
+      ],
+      "honours": [],
+      "description": "ITAMBÉ MINAS é uma equipe da Superliga Masculina de vôlei do Brasil. Seu ginásio informado na programação da CBV é ARENA MINAS, em BELO HORIZONTE.",
+      "references": [
+        {
+          "label": "CBV · equipe na Superliga Masculina",
+          "url": "https://cbv.com.br/volei-de-quadra/superliga-a-masculina/clubes/2253017/itambe-minas"
+        },
+        {
+          "label": "CBV · classificação oficial",
+          "url": "https://cbv.com.br/volei-de-quadra/superliga-a-masculina/classificacao"
+        }
+      ],
+      "cbvId": "2253017"
+    },
+    {
+      "id": "volleyball-superliga-men-2253021",
+      "name": "SIL VÔLEI GUARULHOS",
+      "sport": "volleyball",
+      "league": "superliga-men",
+      "logo": "https://assets.volleystation.com/website/teams/2253021/badge.png",
+      "city": "GUARULHOS",
+      "stadium": "GINÁSIO DA PONTE GRANDE",
+      "stadium_image": "",
+      "website": "https://cbv.com.br/volei-de-quadra/superliga-a-masculina/clubes/2253021/sil-volei-guarulhos",
+      "colors": [
+        "#ec6d22",
+        "#145494"
+      ],
+      "honours": [],
+      "description": "SIL VÔLEI GUARULHOS é uma equipe da Superliga Masculina de vôlei do Brasil. Seu ginásio informado na programação da CBV é GINÁSIO DA PONTE GRANDE, em GUARULHOS.",
+      "references": [
+        {
+          "label": "CBV · equipe na Superliga Masculina",
+          "url": "https://cbv.com.br/volei-de-quadra/superliga-a-masculina/clubes/2253021/sil-volei-guarulhos"
+        },
+        {
+          "label": "CBV · classificação oficial",
+          "url": "https://cbv.com.br/volei-de-quadra/superliga-a-masculina/classificacao"
+        }
+      ],
+      "cbvId": "2253021"
+    },
+    {
+      "id": "volleyball-superliga-men-2253015",
+      "name": "SADA CRUZEIRO VOLEI",
+      "sport": "volleyball",
+      "league": "superliga-men",
+      "logo": "https://assets.volleystation.com/website/teams/2253015/badge.png",
+      "city": "CONTAGEM",
+      "stadium": "RIACHÃO",
+      "stadium_image": "",
+      "website": "https://cbv.com.br/volei-de-quadra/superliga-a-masculina/clubes/2253015/sada-cruzeiro-volei",
+      "colors": [
+        "#0464ac",
+        "#14446c"
+      ],
+      "honours": [],
+      "description": "SADA CRUZEIRO VOLEI é uma equipe da Superliga Masculina de vôlei do Brasil. Seu ginásio informado na programação da CBV é RIACHÃO, em CONTAGEM.",
+      "references": [
+        {
+          "label": "CBV · equipe na Superliga Masculina",
+          "url": "https://cbv.com.br/volei-de-quadra/superliga-a-masculina/clubes/2253015/sada-cruzeiro-volei"
+        },
+        {
+          "label": "CBV · classificação oficial",
+          "url": "https://cbv.com.br/volei-de-quadra/superliga-a-masculina/classificacao"
+        }
+      ],
+      "cbvId": "2253015"
+    },
+    {
+      "id": "volleyball-superliga-men-2253705",
+      "name": "MONTES CLAROS VOLEI",
+      "sport": "volleyball",
+      "league": "superliga-men",
+      "logo": "https://assets.volleystation.com/website/teams/2253705/badge.png",
+      "city": "MONTES CLAROS",
+      "stadium": "GINÁSIO TANCREDO NEVES (CALDEIRÃO)",
+      "stadium_image": "",
+      "website": "https://cbv.com.br/volei-de-quadra/superliga-a-masculina/clubes/2253705/montes-claros-volei",
+      "colors": [
+        "#fbb424",
+        "#046c3c"
+      ],
+      "honours": [],
+      "description": "MONTES CLAROS VOLEI é uma equipe da Superliga Masculina de vôlei do Brasil. Seu ginásio informado na programação da CBV é GINÁSIO TANCREDO NEVES (CALDEIRÃO), em MONTES CLAROS.",
+      "references": [
+        {
+          "label": "CBV · equipe na Superliga Masculina",
+          "url": "https://cbv.com.br/volei-de-quadra/superliga-a-masculina/clubes/2253705/montes-claros-volei"
+        },
+        {
+          "label": "CBV · classificação oficial",
+          "url": "https://cbv.com.br/volei-de-quadra/superliga-a-masculina/classificacao"
+        }
+      ],
+      "cbvId": "2253705"
+    },
+    {
+      "id": "volleyball-superliga-men-2253018",
+      "name": "AZULIM/SICOOB/MONTE",
+      "sport": "volleyball",
+      "league": "superliga-men",
+      "logo": "https://assets.volleystation.com/website/teams/2253018/badge.png",
+      "city": "MONTE CARMELO",
+      "stadium": "GINÁSIO VILA NOVA",
+      "stadium_image": "",
+      "website": "https://cbv.com.br/volei-de-quadra/superliga-a-masculina/clubes/2253018/azulim-sicoob-monte",
+      "colors": [
+        "#fcac14",
+        "#041444"
+      ],
+      "honours": [],
+      "description": "AZULIM/SICOOB/MONTE é uma equipe da Superliga Masculina de vôlei do Brasil. Seu ginásio informado na programação da CBV é GINÁSIO VILA NOVA, em MONTE CARMELO.",
+      "references": [
+        {
+          "label": "CBV · equipe na Superliga Masculina",
+          "url": "https://cbv.com.br/volei-de-quadra/superliga-a-masculina/clubes/2253018/azulim-sicoob-monte"
+        },
+        {
+          "label": "CBV · classificação oficial",
+          "url": "https://cbv.com.br/volei-de-quadra/superliga-a-masculina/classificacao"
+        }
+      ],
+      "cbvId": "2253018"
+    },
+    {
+      "id": "volleyball-superliga-men-2253022",
+      "name": "SESI BAURU",
+      "sport": "volleyball",
+      "league": "superliga-men",
+      "logo": "https://assets.volleystation.com/website/teams/2253022/badge.png",
+      "city": "BAURU",
+      "stadium": "ARENA PAULO SKAF",
+      "stadium_image": "",
+      "website": "https://cbv.com.br/volei-de-quadra/superliga-a-masculina/clubes/2253022/sesi-bauru",
+      "colors": [
+        "#da0c14",
+        "#6f1312"
+      ],
+      "honours": [],
+      "description": "SESI BAURU é uma equipe da Superliga Masculina de vôlei do Brasil. Seu ginásio informado na programação da CBV é ARENA PAULO SKAF, em BAURU.",
+      "references": [
+        {
+          "label": "CBV · equipe na Superliga Masculina",
+          "url": "https://cbv.com.br/volei-de-quadra/superliga-a-masculina/clubes/2253022/sesi-bauru"
+        },
+        {
+          "label": "CBV · classificação oficial",
+          "url": "https://cbv.com.br/volei-de-quadra/superliga-a-masculina/classificacao"
+        }
+      ],
+      "cbvId": "2253022"
+    },
+    {
+      "id": "volleyball-superliga-men-2253024",
+      "name": "SANEAGO GOIÁS VÔLEI",
+      "sport": "volleyball",
+      "league": "superliga-men",
+      "logo": "https://assets.volleystation.com/website/teams/2253024/badge.png",
+      "city": "GOIANIA",
+      "stadium": "RIO VERMELHO",
+      "stadium_image": "",
+      "website": "https://cbv.com.br/volei-de-quadra/superliga-a-masculina/clubes/2253024/saneago-goias-volei",
+      "colors": [
+        "#35744c",
+        "#044c1c"
+      ],
+      "honours": [],
+      "description": "SANEAGO GOIÁS VÔLEI é uma equipe da Superliga Masculina de vôlei do Brasil. Seu ginásio informado na programação da CBV é RIO VERMELHO, em GOIANIA.",
+      "references": [
+        {
+          "label": "CBV · equipe na Superliga Masculina",
+          "url": "https://cbv.com.br/volei-de-quadra/superliga-a-masculina/clubes/2253024/saneago-goias-volei"
+        },
+        {
+          "label": "CBV · classificação oficial",
+          "url": "https://cbv.com.br/volei-de-quadra/superliga-a-masculina/classificacao"
+        }
+      ],
+      "cbvId": "2253024"
+    },
+    {
+      "id": "volleyball-superliga-men-2253023",
+      "name": "VIAPOL VÔLEI SÃO JOSÉ",
+      "sport": "volleyball",
+      "league": "superliga-men",
+      "logo": "https://assets.volleystation.com/website/teams/2253023/badge.png",
+      "city": "SAO JOSE DOS CAMPOS",
+      "stadium": "FARMA CONDE ARENA",
+      "stadium_image": "",
+      "website": "https://cbv.com.br/volei-de-quadra/superliga-a-masculina/clubes/2253023/viapol-volei-sao-jose",
+      "colors": [
+        "#bccc2a",
+        "#043c94"
+      ],
+      "honours": [],
+      "description": "VIAPOL VÔLEI SÃO JOSÉ é uma equipe da Superliga Masculina de vôlei do Brasil. Seu ginásio informado na programação da CBV é FARMA CONDE ARENA, em SAO JOSE DOS CAMPOS.",
+      "references": [
+        {
+          "label": "CBV · equipe na Superliga Masculina",
+          "url": "https://cbv.com.br/volei-de-quadra/superliga-a-masculina/clubes/2253023/viapol-volei-sao-jose"
+        },
+        {
+          "label": "CBV · classificação oficial",
+          "url": "https://cbv.com.br/volei-de-quadra/superliga-a-masculina/classificacao"
+        }
+      ],
+      "cbvId": "2253023"
+    },
+    {
+      "id": "volleyball-superliga-men-2253025",
+      "name": "NORDE VÔLEI",
+      "sport": "volleyball",
+      "league": "superliga-men",
+      "logo": "https://assets.volleystation.com/website/teams/2253025/badge.png",
+      "city": "FORTALEZA",
+      "stadium": "PAULO SARASATE (ATERRÃO)",
+      "stadium_image": "",
+      "website": "https://cbv.com.br/volei-de-quadra/superliga-a-masculina/clubes/2253025/norde-volei",
+      "colors": [
+        "#e3057c",
+        "#9c0c5c"
+      ],
+      "honours": [],
+      "description": "NORDE VÔLEI é uma equipe da Superliga Masculina de vôlei do Brasil. Seu ginásio informado na programação da CBV é PAULO SARASATE (ATERRÃO), em FORTALEZA.",
+      "references": [
+        {
+          "label": "CBV · equipe na Superliga Masculina",
+          "url": "https://cbv.com.br/volei-de-quadra/superliga-a-masculina/clubes/2253025/norde-volei"
+        },
+        {
+          "label": "CBV · classificação oficial",
+          "url": "https://cbv.com.br/volei-de-quadra/superliga-a-masculina/classificacao"
+        }
+      ],
+      "cbvId": "2253025"
+    }
+  ]
+}

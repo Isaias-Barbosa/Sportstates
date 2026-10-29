@@ -73,7 +73,7 @@ export default function AdminTeams({ secret }: { secret: string }) {
       setSaving(false);
     }
   }
-  const sports = catalog?.sports || [];
+  const sports = (catalog?.sports || []).filter((s) => s.id !== "tennis");
   const leagues = sports.find((s) => s.id === form?.sport)?.leagues || [];
   return (
     <>

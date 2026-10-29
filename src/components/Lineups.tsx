@@ -54,10 +54,12 @@ export default function Lineups({
   lineups,
   soccer,
   ratingSourceUrl,
+  rosterOnly = false,
 }: {
   lineups: Detail["lineups"];
   soccer: boolean;
   ratingSourceUrl?: string;
+  rosterOnly?: boolean;
 }) {
   return (
     <div className="lineup-grid">
@@ -79,91 +81,97 @@ export default function Lineups({
             )}
           </header>
           {soccer && <Formation squad={squad} />}
-          {(["Titulares", "Reservas"] as const).map((label, index) => {
-            const players = squad.players.filter(
-              (p) => p.starter === (index === 0),
-            );
-            return players.length ? (
-              <div className="squad-list" key={label}>
-                <h4>
-                  {label} <span>{players.length}</span>
-                </h4>
-                {players.map((p, i) => (
-                  <div className="squad-player" key={p.id || p.name + i}>
-                    <b className="jersey">{p.jersey || "–"}</b>
-                    <div>
-                      <strong>{p.name}</strong>
-                      <small>{p.positionName || p.position}</small>
+          {(rosterOnly ? ["Relacionados"] : ["Titulares", "Reservas"]).map(
+            (label, index) => {
+              const players = squad.players.filter(
+                (p) => rosterOnly || p.starter === (index === 0),
+              );
+              return players.length ? (
+                <div className="squad-list" key={label}>
+                  <h4>
+                    {label} <span>{players.length}</span>
+                  </h4>
+                  {players.map((p, i) => (
+                    <div className="squad-player" key={p.id || p.name + i}>
+                      <b className="jersey">{p.jersey || "–"}</b>
+                      <div>
+                        <strong>{p.name}</strong>
+                        <small>{p.positionName || p.position}</small>
+                      </div>
+                      <div className="player-participation">
+                        {(p.substitutions?.length
+                          ? p.substitutions
+                          : [
+                              ...(p.subbedIn
+                                ? [
+                                    {
+                                      direction: "in" as const,
+                                      minute: "",
+                                      counterpart: "",
+                                    },
+                                  ]
+                                : []),
+                              ...(p.subbedOut
+                                ? [
+                                    {
+                                      direction: "out" as const,
+                                      minute: "",
+                                      counterpart: "",
+                                    },
+                                  ]
+                                : []),
+                            ]
+                        ).map((sub, si) => (
+                          <span
+                            key={si}
+                            className={`substitution-badge sub-${sub.direction}`}
+                            title={
+                              sub.counterpart
+                                ? `${sub.direction === "in" ? "Entrou no lugar de" : "Saiu para"} ${sub.counterpart}`
+                                : undefined
+                            }
+                          >
+                            {sub.direction === "in" ? (
+                              <ArrowUp size={14} />
+                            ) : (
+                              <ArrowDown size={14} />
+                            )}{" "}
+                            {sub.direction === "in" ? "Entrou" : "Saiu"}{" "}
+                            {sub.minute}
+                            {sub.counterpart && (
+                              <small>{sub.counterpart}</small>
+                            )}
+                          </span>
+                        ))}
+                        {!rosterOnly && (
+                          <span
+                            className={`player-rating ${p.rating != null ? "rated" : ""}`}
+                            title={
+                              p.rating != null
+                                ? `Nota informada pela ${p.ratingSource || "fonte"}`
+                                : "A fonte não disponibilizou uma nota para este jogador"
+                            }
+                            aria-label={
+                              p.rating != null
+                                ? `Nota ${p.rating} de 10`
+                                : "Nota indisponível"
+                            }
+                          >
+                            {p.rating != null
+                              ? p.rating.toLocaleString("pt-BR", {
+                                  minimumFractionDigits: 1,
+                                  maximumFractionDigits: 1,
+                                })
+                              : "—"}
+                          </span>
+                        )}
+                      </div>
                     </div>
-                    <div className="player-participation">
-                      {(p.substitutions?.length
-                        ? p.substitutions
-                        : [
-                            ...(p.subbedIn
-                              ? [
-                                  {
-                                    direction: "in" as const,
-                                    minute: "",
-                                    counterpart: "",
-                                  },
-                                ]
-                              : []),
-                            ...(p.subbedOut
-                              ? [
-                                  {
-                                    direction: "out" as const,
-                                    minute: "",
-                                    counterpart: "",
-                                  },
-                                ]
-                              : []),
-                          ]
-                      ).map((sub, si) => (
-                        <span
-                          key={si}
-                          className={`substitution-badge sub-${sub.direction}`}
-                          title={
-                            sub.counterpart
-                              ? `${sub.direction === "in" ? "Entrou no lugar de" : "Saiu para"} ${sub.counterpart}`
-                              : undefined
-                          }
-                        >
-                          {sub.direction === "in" ? (
-                            <ArrowUp size={14} />
-                          ) : (
-                            <ArrowDown size={14} />
-                          )}{" "}
-                          {sub.direction === "in" ? "Entrou" : "Saiu"}{" "}
-                          {sub.minute}
-                          {sub.counterpart && <small>{sub.counterpart}</small>}
-                        </span>
-                      ))}
-                      <span
-                        className={`player-rating ${p.rating != null ? "rated" : ""}`}
-                        title={
-                          p.rating != null
-                            ? `Nota informada pela ${p.ratingSource || "fonte"}`
-                            : "A fonte não disponibilizou uma nota para este jogador"
-                        }
-                        aria-label={
-                          p.rating != null
-                            ? `Nota ${p.rating} de 10`
-                            : "Nota indisponível"
-                        }
-                      >
-                        {p.rating != null
-                          ? p.rating.toLocaleString("pt-BR", {
-                              minimumFractionDigits: 1,
-                              maximumFractionDigits: 1,
-                            })
-                          : "—"}
-                      </span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            ) : null;
-          })}
+                  ))}
+                </div>
+              ) : null;
+            },
+          )}
           {ratingSourceUrl && (
             <p className="lineup-note">
               <a
@@ -176,8 +184,11 @@ export default function Lineups({
             </p>
           )}
           <p className="lineup-note">
-            Escalação inicial e banco informados pela fonte. Notas de 0 a 10
-            quando fornecidas; — indica nota indisponível.
+            {rosterOnly
+              ? "Jogadores relacionados pela CBV; esta lista não identifica quem está em quadra agora."
+              : "Escalação inicial e banco informados pela fonte."}{" "}
+            {!rosterOnly &&
+              "Notas de 0 a 10 quando fornecidas; — indica nota indisponível."}
             {soccer
               ? " O desenho é esquemático; não indica a posição atual em campo."
               : ""}

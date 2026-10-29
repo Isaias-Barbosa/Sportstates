@@ -103,7 +103,9 @@ export default function TeamPage() {
                     ? "Equipe de beisebol"
                     : team.sport === "hockey"
                       ? "Equipe de hóquei no gelo"
-                      : "Clube de futebol")}
+                      : team.sport === "volleyball"
+                        ? "Equipe de vôlei masculino"
+                        : "Clube de futebol")}
           </p>
           {team.description && <p>{descriptionPreview(team.description)}</p>}
           {team.website && (
@@ -141,7 +143,7 @@ export default function TeamPage() {
             ["players", "Elenco"],
             ["games", "Jogos"],
             ["competitions", "Competições"],
-            ...(team.sport === "football"
+            ...(["football", "volleyball"].includes(team.sport)
               ? []
               : [
                   [
@@ -185,7 +187,7 @@ export default function TeamPage() {
                 </div>
                 <div>
                   <dt>
-                    {["basketball", "hockey"].includes(team.sport)
+                    {["basketball", "hockey", "volleyball"].includes(team.sport)
                       ? "Arena"
                       : "Estádio"}
                   </dt>
@@ -407,6 +409,7 @@ const supported = new Set([
   "football/nfl",
   "baseball/mlb",
   "hockey/nhl",
+  "volleyball/superliga-men",
 ]);
 function GameList({
   matches,

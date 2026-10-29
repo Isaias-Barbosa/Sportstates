@@ -61,6 +61,18 @@ export const SPORTS = [
   },
   { id: "baseball", name: "Beisebol", icon: "⚾", leagues: [["mlb", "MLB"]] },
   { id: "hockey", name: "Hóquei", icon: "🏒", leagues: [["nhl", "NHL"]] },
+  {
+    id: "tennis",
+    name: "Tênis masculino",
+    icon: "🎾",
+    leagues: [["atp", "ATP · Simples masculino"]],
+  },
+  {
+    id: "volleyball",
+    name: "Vôlei masculino",
+    icon: "🏐",
+    leagues: [["superliga-men", "Superliga Masculina"]],
+  },
 ];
 export function leagueFor(sport, league) {
   const s = SPORTS.find((s) => s.id === sport);

@@ -1,3 +1,4 @@
+import TennisAthletesPage from "./pages/TennisAthletesPage";
 import SportsNavigation from "./components/SportsNavigation";
 import React, { useState, useEffect, useRef } from "react";
 import { createRoot } from "react-dom/client";
@@ -220,6 +221,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Dashboard />} />
               <Route path="/favoritos" element={<Dashboard favoritesOnly />} />
+              <Route path="/atletas" element={<TennisAthletesPage />} />
               <Route path="/classificacoes" element={<StandingsPage />} />
               <Route
                 path="/partida/:sport/:league/:id"
