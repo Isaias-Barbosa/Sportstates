@@ -1,12 +1,12 @@
 // ESPN IDs are scoped to a sport/league, while the existing database uses a
 // single primary key. Keep soccer URLs intact and namespace IDs for the other supported sports.
 export const validProfileId = (id) =>
-  /^(?:\d{1,12}|(?:basketball-(?:nba|wnba)|football-nfl|baseball-mlb)-\d{1,12})$/.test(
+  /^(?:\d{1,12}|(?:basketball-(?:nba|wnba)|football-nfl|baseball-mlb|hockey-nhl)-\d{1,12})$/.test(
     String(id || ""),
   );
 export function providerTeamId(id) {
   return String(id || "").replace(
-    /^(?:basketball-(?:nba|wnba)|football-nfl|baseball-mlb)-/,
+    /^(?:basketball-(?:nba|wnba)|football-nfl|baseball-mlb|hockey-nhl)-/,
     "",
   );
 }
@@ -17,9 +17,10 @@ export function teamProfileId(id, sport, league) {
   const scoped =
     (sport === "basketball" && ["nba", "wnba"].includes(league)) ||
     (sport === "football" && league === "nfl") ||
-    (sport === "baseball" && league === "mlb");
+    (sport === "baseball" && league === "mlb") ||
+    (sport === "hockey" && league === "nhl");
   const prefix = String(id).match(
-    /^(basketball-(?:nba|wnba)|football-nfl|baseball-mlb)-/,
+    /^(basketball-(?:nba|wnba)|football-nfl|baseball-mlb|hockey-nhl)-/,
   );
   if (scoped) {
     if (prefix && prefix[1] !== `${sport}-${league}`)

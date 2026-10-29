@@ -1,0 +1,1046 @@
+{
+  "revision": "nhl-profiles-2026-v1",
+  "reviewedAt": "2026-10-29",
+  "clubs": [
+    {
+      "id": "hockey-nhl-25",
+      "espnId": "25",
+      "name": "Anaheim Ducks",
+      "sport": "hockey",
+      "league": "nhl",
+      "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/ana.png",
+      "city": "Anaheim",
+      "stadium": "Honda Center",
+      "stadium_image": "",
+      "website": "https://www.nhl.com/ducks",
+      "colors": [
+        "#fc4c02",
+        "#000000"
+      ],
+      "honours": [],
+      "description": "Anaheim Ducks é uma equipe de hóquei no gelo da NHL (National Hockey League). Sua arena é Honda Center, em Anaheim.",
+      "references": [
+        {
+          "label": "NHL · clubes membros",
+          "url": "https://www.nhl.com/info/nhl-affiliates-member-clubs"
+        },
+        {
+          "label": "Site oficial",
+          "url": "https://www.nhl.com/ducks"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nhl/time/_/nome/ana/anaheim-ducks"
+        }
+      ]
+    },
+    {
+      "id": "hockey-nhl-1",
+      "espnId": "1",
+      "name": "Boston Bruins",
+      "sport": "hockey",
+      "league": "nhl",
+      "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/bos.png",
+      "city": "Boston",
+      "stadium": "TD Garden",
+      "stadium_image": "",
+      "website": "https://www.nhl.com/bruins",
+      "colors": [
+        "#231f20",
+        "#fdb71a"
+      ],
+      "honours": [],
+      "description": "Boston Bruins é uma equipe de hóquei no gelo da NHL (National Hockey League). Sua arena é TD Garden, em Boston.",
+      "references": [
+        {
+          "label": "NHL · clubes membros",
+          "url": "https://www.nhl.com/info/nhl-affiliates-member-clubs"
+        },
+        {
+          "label": "Site oficial",
+          "url": "https://www.nhl.com/bruins"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nhl/time/_/nome/bos/boston-bruins"
+        }
+      ]
+    },
+    {
+      "id": "hockey-nhl-2",
+      "espnId": "2",
+      "name": "Buffalo Sabres",
+      "sport": "hockey",
+      "league": "nhl",
+      "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/buf.png",
+      "city": "Buffalo",
+      "stadium": "KeyBank Center",
+      "stadium_image": "",
+      "website": "https://www.nhl.com/sabres",
+      "colors": [
+        "#00468b",
+        "#fdb71a"
+      ],
+      "honours": [],
+      "description": "Buffalo Sabres é uma equipe de hóquei no gelo da NHL (National Hockey League). Sua arena é KeyBank Center, em Buffalo.",
+      "references": [
+        {
+          "label": "NHL · clubes membros",
+          "url": "https://www.nhl.com/info/nhl-affiliates-member-clubs"
+        },
+        {
+          "label": "Site oficial",
+          "url": "https://www.nhl.com/sabres"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nhl/time/_/nome/buf/buffalo-sabres"
+        }
+      ]
+    },
+    {
+      "id": "hockey-nhl-3",
+      "espnId": "3",
+      "name": "Calgary Flames",
+      "sport": "hockey",
+      "league": "nhl",
+      "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/cgy.png",
+      "city": "Calgary",
+      "stadium": "Scotiabank Saddledome",
+      "stadium_image": "",
+      "website": "https://www.nhl.com/flames",
+      "colors": [
+        "#dd1a32",
+        "#000000"
+      ],
+      "honours": [],
+      "description": "Calgary Flames é uma equipe de hóquei no gelo da NHL (National Hockey League). Sua arena é Scotiabank Saddledome, em Calgary.",
+      "references": [
+        {
+          "label": "NHL · clubes membros",
+          "url": "https://www.nhl.com/info/nhl-affiliates-member-clubs"
+        },
+        {
+          "label": "Site oficial",
+          "url": "https://www.nhl.com/flames"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nhl/time/_/nome/cgy/calgary-flames"
+        }
+      ]
+    },
+    {
+      "id": "hockey-nhl-7",
+      "espnId": "7",
+      "name": "Carolina Hurricanes",
+      "sport": "hockey",
+      "league": "nhl",
+      "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/car.png",
+      "city": "Raleigh",
+      "stadium": "Lenovo Center",
+      "stadium_image": "",
+      "website": "https://www.nhl.com/hurricanes",
+      "colors": [
+        "#e30426",
+        "#000000"
+      ],
+      "honours": [],
+      "description": "Carolina Hurricanes é uma equipe de hóquei no gelo da NHL (National Hockey League). Sua arena é Lenovo Center, em Raleigh.",
+      "references": [
+        {
+          "label": "NHL · clubes membros",
+          "url": "https://www.nhl.com/info/nhl-affiliates-member-clubs"
+        },
+        {
+          "label": "Site oficial",
+          "url": "https://www.nhl.com/hurricanes"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nhl/time/_/nome/car/carolina-hurricanes"
+        },
+        {
+          "label": "Clube · nome atual da arena",
+          "url": "https://www.nhl.com/hurricanes/news/hurricanes-home-arena-officially-re-named-lenovo-center"
+        }
+      ]
+    },
+    {
+      "id": "hockey-nhl-4",
+      "espnId": "4",
+      "name": "Chicago Blackhawks",
+      "sport": "hockey",
+      "league": "nhl",
+      "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/chi.png",
+      "city": "Chicago",
+      "stadium": "United Center",
+      "stadium_image": "",
+      "website": "https://www.nhl.com/blackhawks",
+      "colors": [
+        "#e31937",
+        "#000000"
+      ],
+      "honours": [],
+      "description": "Chicago Blackhawks é uma equipe de hóquei no gelo da NHL (National Hockey League). Sua arena é United Center, em Chicago.",
+      "references": [
+        {
+          "label": "NHL · clubes membros",
+          "url": "https://www.nhl.com/info/nhl-affiliates-member-clubs"
+        },
+        {
+          "label": "Site oficial",
+          "url": "https://www.nhl.com/blackhawks"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nhl/time/_/nome/chi/chicago-blackhawks"
+        }
+      ]
+    },
+    {
+      "id": "hockey-nhl-17",
+      "espnId": "17",
+      "name": "Colorado Avalanche",
+      "sport": "hockey",
+      "league": "nhl",
+      "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/col.png",
+      "city": "Denver",
+      "stadium": "Ball Arena",
+      "stadium_image": "",
+      "website": "https://www.nhl.com/avalanche",
+      "colors": [
+        "#860038",
+        "#005ea3"
+      ],
+      "honours": [],
+      "description": "Colorado Avalanche é uma equipe de hóquei no gelo da NHL (National Hockey League). Sua arena é Ball Arena, em Denver.",
+      "references": [
+        {
+          "label": "NHL · clubes membros",
+          "url": "https://www.nhl.com/info/nhl-affiliates-member-clubs"
+        },
+        {
+          "label": "Site oficial",
+          "url": "https://www.nhl.com/avalanche"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nhl/time/_/nome/col/colorado-avalanche"
+        }
+      ]
+    },
+    {
+      "id": "hockey-nhl-29",
+      "espnId": "29",
+      "name": "Columbus Blue Jackets",
+      "sport": "hockey",
+      "league": "nhl",
+      "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/cbj.png",
+      "city": "Columbus",
+      "stadium": "Nationwide Arena",
+      "stadium_image": "",
+      "website": "https://www.nhl.com/bluejackets",
+      "colors": [
+        "#002d62",
+        "#e31937"
+      ],
+      "honours": [],
+      "description": "Columbus Blue Jackets é uma equipe de hóquei no gelo da NHL (National Hockey League). Sua arena é Nationwide Arena, em Columbus.",
+      "references": [
+        {
+          "label": "NHL · clubes membros",
+          "url": "https://www.nhl.com/info/nhl-affiliates-member-clubs"
+        },
+        {
+          "label": "Site oficial",
+          "url": "https://www.nhl.com/bluejackets"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nhl/time/_/nome/cbj/columbus-blue-jackets"
+        }
+      ]
+    },
+    {
+      "id": "hockey-nhl-9",
+      "espnId": "9",
+      "name": "Dallas Stars",
+      "sport": "hockey",
+      "league": "nhl",
+      "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/dal.png",
+      "city": "Dallas",
+      "stadium": "American Airlines Center",
+      "stadium_image": "",
+      "website": "https://www.nhl.com/stars",
+      "colors": [
+        "#20864c",
+        "#000000"
+      ],
+      "honours": [],
+      "description": "Dallas Stars é uma equipe de hóquei no gelo da NHL (National Hockey League). Sua arena é American Airlines Center, em Dallas.",
+      "references": [
+        {
+          "label": "NHL · clubes membros",
+          "url": "https://www.nhl.com/info/nhl-affiliates-member-clubs"
+        },
+        {
+          "label": "Site oficial",
+          "url": "https://www.nhl.com/stars"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nhl/time/_/nome/dal/dallas-stars"
+        }
+      ]
+    },
+    {
+      "id": "hockey-nhl-5",
+      "espnId": "5",
+      "name": "Detroit Red Wings",
+      "sport": "hockey",
+      "league": "nhl",
+      "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/det.png",
+      "city": "Detroit",
+      "stadium": "Little Caesars Arena",
+      "stadium_image": "",
+      "website": "https://www.nhl.com/redwings",
+      "colors": [
+        "#e30526",
+        "#ffffff"
+      ],
+      "honours": [],
+      "description": "Detroit Red Wings é uma equipe de hóquei no gelo da NHL (National Hockey League). Sua arena é Little Caesars Arena, em Detroit.",
+      "references": [
+        {
+          "label": "NHL · clubes membros",
+          "url": "https://www.nhl.com/info/nhl-affiliates-member-clubs"
+        },
+        {
+          "label": "Site oficial",
+          "url": "https://www.nhl.com/redwings"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nhl/time/_/nome/det/detroit-red-wings"
+        }
+      ]
+    },
+    {
+      "id": "hockey-nhl-6",
+      "espnId": "6",
+      "name": "Edmonton Oilers",
+      "sport": "hockey",
+      "league": "nhl",
+      "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/edm.png",
+      "city": "Edmonton",
+      "stadium": "Rogers Place",
+      "stadium_image": "",
+      "website": "https://www.nhl.com/oilers",
+      "colors": [
+        "#00205b",
+        "#ff4c00"
+      ],
+      "honours": [],
+      "description": "Edmonton Oilers é uma equipe de hóquei no gelo da NHL (National Hockey League). Sua arena é Rogers Place, em Edmonton.",
+      "references": [
+        {
+          "label": "NHL · clubes membros",
+          "url": "https://www.nhl.com/info/nhl-affiliates-member-clubs"
+        },
+        {
+          "label": "Site oficial",
+          "url": "https://www.nhl.com/oilers"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nhl/time/_/nome/edm/edmonton-oilers"
+        }
+      ]
+    },
+    {
+      "id": "hockey-nhl-26",
+      "espnId": "26",
+      "name": "Florida Panthers",
+      "sport": "hockey",
+      "league": "nhl",
+      "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/fla.png",
+      "city": "Sunrise",
+      "stadium": "Amerant Bank Arena",
+      "stadium_image": "",
+      "website": "https://www.nhl.com/panthers",
+      "colors": [
+        "#e51937",
+        "#002d62"
+      ],
+      "honours": [],
+      "description": "Florida Panthers é uma equipe de hóquei no gelo da NHL (National Hockey League). Sua arena é Amerant Bank Arena, em Sunrise.",
+      "references": [
+        {
+          "label": "NHL · clubes membros",
+          "url": "https://www.nhl.com/info/nhl-affiliates-member-clubs"
+        },
+        {
+          "label": "Site oficial",
+          "url": "https://www.nhl.com/panthers"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nhl/time/_/nome/fla/florida-panthers"
+        }
+      ]
+    },
+    {
+      "id": "hockey-nhl-8",
+      "espnId": "8",
+      "name": "Los Angeles Kings",
+      "sport": "hockey",
+      "league": "nhl",
+      "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/la.png",
+      "city": "Los Angeles",
+      "stadium": "Crypto.com Arena",
+      "stadium_image": "",
+      "website": "https://www.nhl.com/kings",
+      "colors": [
+        "#121212",
+        "#a2aaad"
+      ],
+      "honours": [],
+      "description": "Los Angeles Kings é uma equipe de hóquei no gelo da NHL (National Hockey League). Sua arena é Crypto.com Arena, em Los Angeles.",
+      "references": [
+        {
+          "label": "NHL · clubes membros",
+          "url": "https://www.nhl.com/info/nhl-affiliates-member-clubs"
+        },
+        {
+          "label": "Site oficial",
+          "url": "https://www.nhl.com/kings"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nhl/time/_/nome/la/los-angeles-kings"
+        }
+      ]
+    },
+    {
+      "id": "hockey-nhl-30",
+      "espnId": "30",
+      "name": "Minnesota Wild",
+      "sport": "hockey",
+      "league": "nhl",
+      "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/min.png",
+      "city": "St Paul",
+      "stadium": "Grand Casino Arena",
+      "stadium_image": "",
+      "website": "https://www.nhl.com/wild",
+      "colors": [
+        "#124734",
+        "#ae122a"
+      ],
+      "honours": [],
+      "description": "Minnesota Wild é uma equipe de hóquei no gelo da NHL (National Hockey League). Sua arena é Grand Casino Arena, em St Paul.",
+      "references": [
+        {
+          "label": "NHL · clubes membros",
+          "url": "https://www.nhl.com/info/nhl-affiliates-member-clubs"
+        },
+        {
+          "label": "Site oficial",
+          "url": "https://www.nhl.com/wild"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nhl/time/_/nome/min/minnesota-wild"
+        },
+        {
+          "label": "Clube · nome atual da arena",
+          "url": "https://www.nhl.com/wild/news/grand-goes-wild-inside-the-partnership-of-grand-casino-and-the-minnesota-wild-60312"
+        }
+      ]
+    },
+    {
+      "id": "hockey-nhl-10",
+      "espnId": "10",
+      "name": "Montreal Canadiens",
+      "sport": "hockey",
+      "league": "nhl",
+      "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/mtl.png",
+      "city": "Montréal",
+      "stadium": "Bell Centre",
+      "stadium_image": "",
+      "website": "https://www.nhl.com/canadiens",
+      "colors": [
+        "#c41230",
+        "#013a81"
+      ],
+      "honours": [],
+      "description": "Montreal Canadiens é uma equipe de hóquei no gelo da NHL (National Hockey League). Sua arena é Bell Centre, em Montréal.",
+      "references": [
+        {
+          "label": "NHL · clubes membros",
+          "url": "https://www.nhl.com/info/nhl-affiliates-member-clubs"
+        },
+        {
+          "label": "Site oficial",
+          "url": "https://www.nhl.com/canadiens"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nhl/time/_/nome/mtl/montreal-canadiens"
+        }
+      ]
+    },
+    {
+      "id": "hockey-nhl-27",
+      "espnId": "27",
+      "name": "Nashville Predators",
+      "sport": "hockey",
+      "league": "nhl",
+      "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/nsh.png",
+      "city": "Nashville",
+      "stadium": "Bridgestone Arena",
+      "stadium_image": "",
+      "website": "https://www.nhl.com/predators",
+      "colors": [
+        "#fdba31",
+        "#002d62"
+      ],
+      "honours": [],
+      "description": "Nashville Predators é uma equipe de hóquei no gelo da NHL (National Hockey League). Sua arena é Bridgestone Arena, em Nashville.",
+      "references": [
+        {
+          "label": "NHL · clubes membros",
+          "url": "https://www.nhl.com/info/nhl-affiliates-member-clubs"
+        },
+        {
+          "label": "Site oficial",
+          "url": "https://www.nhl.com/predators"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nhl/time/_/nome/nsh/nashville-predators"
+        }
+      ]
+    },
+    {
+      "id": "hockey-nhl-11",
+      "espnId": "11",
+      "name": "New Jersey Devils",
+      "sport": "hockey",
+      "league": "nhl",
+      "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/nj.png",
+      "city": "Newark",
+      "stadium": "Prudential Center",
+      "stadium_image": "",
+      "website": "https://www.nhl.com/devils",
+      "colors": [
+        "#e30b2b",
+        "#000000"
+      ],
+      "honours": [],
+      "description": "New Jersey Devils é uma equipe de hóquei no gelo da NHL (National Hockey League). Sua arena é Prudential Center, em Newark.",
+      "references": [
+        {
+          "label": "NHL · clubes membros",
+          "url": "https://www.nhl.com/info/nhl-affiliates-member-clubs"
+        },
+        {
+          "label": "Site oficial",
+          "url": "https://www.nhl.com/devils"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nhl/time/_/nome/nj/new-jersey-devils"
+        }
+      ]
+    },
+    {
+      "id": "hockey-nhl-12",
+      "espnId": "12",
+      "name": "New York Islanders",
+      "sport": "hockey",
+      "league": "nhl",
+      "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/nyi.png",
+      "city": "Elmont",
+      "stadium": "UBS Arena",
+      "stadium_image": "",
+      "website": "https://www.nhl.com/islanders",
+      "colors": [
+        "#00529b",
+        "#f47d31"
+      ],
+      "honours": [],
+      "description": "New York Islanders é uma equipe de hóquei no gelo da NHL (National Hockey League). Sua arena é UBS Arena, em Elmont.",
+      "references": [
+        {
+          "label": "NHL · clubes membros",
+          "url": "https://www.nhl.com/info/nhl-affiliates-member-clubs"
+        },
+        {
+          "label": "Site oficial",
+          "url": "https://www.nhl.com/islanders"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nhl/time/_/nome/nyi/new-york-islanders"
+        }
+      ]
+    },
+    {
+      "id": "hockey-nhl-13",
+      "espnId": "13",
+      "name": "New York Rangers",
+      "sport": "hockey",
+      "league": "nhl",
+      "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/nyr.png",
+      "city": "New York",
+      "stadium": "Madison Square Garden",
+      "stadium_image": "",
+      "website": "https://www.nhl.com/rangers",
+      "colors": [
+        "#0056ae",
+        "#e51937"
+      ],
+      "honours": [],
+      "description": "New York Rangers é uma equipe de hóquei no gelo da NHL (National Hockey League). Sua arena é Madison Square Garden, em New York.",
+      "references": [
+        {
+          "label": "NHL · clubes membros",
+          "url": "https://www.nhl.com/info/nhl-affiliates-member-clubs"
+        },
+        {
+          "label": "Site oficial",
+          "url": "https://www.nhl.com/rangers"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nhl/time/_/nome/nyr/new-york-rangers"
+        }
+      ]
+    },
+    {
+      "id": "hockey-nhl-14",
+      "espnId": "14",
+      "name": "Ottawa Senators",
+      "sport": "hockey",
+      "league": "nhl",
+      "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/ott.png",
+      "city": "Ottawa",
+      "stadium": "Canadian Tire Centre",
+      "stadium_image": "",
+      "website": "https://www.nhl.com/flyers",
+      "colors": [
+        "#dd1a32",
+        "#b79257"
+      ],
+      "honours": [],
+      "description": "Ottawa Senators é uma equipe de hóquei no gelo da NHL (National Hockey League). Sua arena é Canadian Tire Centre, em Ottawa.",
+      "references": [
+        {
+          "label": "NHL · clubes membros",
+          "url": "https://www.nhl.com/info/nhl-affiliates-member-clubs"
+        },
+        {
+          "label": "Site oficial",
+          "url": "https://www.nhl.com/flyers"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nhl/time/_/nome/ott/ottawa-senators"
+        }
+      ]
+    },
+    {
+      "id": "hockey-nhl-15",
+      "espnId": "15",
+      "name": "Philadelphia Flyers",
+      "sport": "hockey",
+      "league": "nhl",
+      "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/phi.png",
+      "city": "Philadelphia",
+      "stadium": "Xfinity Mobile Arena",
+      "stadium_image": "",
+      "website": "https://www.nhl.com/flyers",
+      "colors": [
+        "#fe5823",
+        "#000000"
+      ],
+      "honours": [],
+      "description": "Philadelphia Flyers é uma equipe de hóquei no gelo da NHL (National Hockey League). Sua arena é Xfinity Mobile Arena, em Philadelphia.",
+      "references": [
+        {
+          "label": "NHL · clubes membros",
+          "url": "https://www.nhl.com/info/nhl-affiliates-member-clubs"
+        },
+        {
+          "label": "Site oficial",
+          "url": "https://www.nhl.com/flyers"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nhl/time/_/nome/phi/philadelphia-flyers"
+        },
+        {
+          "label": "Clube · nome atual da arena",
+          "url": "https://www.nhl.com/flyers/arena/"
+        }
+      ]
+    },
+    {
+      "id": "hockey-nhl-16",
+      "espnId": "16",
+      "name": "Pittsburgh Penguins",
+      "sport": "hockey",
+      "league": "nhl",
+      "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/pit.png",
+      "city": "Pittsburgh",
+      "stadium": "PPG Paints Arena",
+      "stadium_image": "",
+      "website": "https://www.nhl.com/penguins",
+      "colors": [
+        "#000000",
+        "#fdb71a"
+      ],
+      "honours": [],
+      "description": "Pittsburgh Penguins é uma equipe de hóquei no gelo da NHL (National Hockey League). Sua arena é PPG Paints Arena, em Pittsburgh.",
+      "references": [
+        {
+          "label": "NHL · clubes membros",
+          "url": "https://www.nhl.com/info/nhl-affiliates-member-clubs"
+        },
+        {
+          "label": "Site oficial",
+          "url": "https://www.nhl.com/penguins"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nhl/time/_/nome/pit/pittsburgh-penguins"
+        }
+      ]
+    },
+    {
+      "id": "hockey-nhl-18",
+      "espnId": "18",
+      "name": "San Jose Sharks",
+      "sport": "hockey",
+      "league": "nhl",
+      "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/sj.png",
+      "city": "San Jose",
+      "stadium": "SAP Center at San Jose",
+      "stadium_image": "",
+      "website": "https://www.nhl.com/sharks",
+      "colors": [
+        "#00788a",
+        "#070707"
+      ],
+      "honours": [],
+      "description": "San Jose Sharks é uma equipe de hóquei no gelo da NHL (National Hockey League). Sua arena é SAP Center at San Jose, em San Jose.",
+      "references": [
+        {
+          "label": "NHL · clubes membros",
+          "url": "https://www.nhl.com/info/nhl-affiliates-member-clubs"
+        },
+        {
+          "label": "Site oficial",
+          "url": "https://www.nhl.com/sharks"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nhl/time/_/nome/sj/san-jose-sharks"
+        }
+      ]
+    },
+    {
+      "id": "hockey-nhl-124292",
+      "espnId": "124292",
+      "name": "Seattle Kraken",
+      "sport": "hockey",
+      "league": "nhl",
+      "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/sea.png",
+      "city": "Seattle",
+      "stadium": "Climate Pledge Arena",
+      "stadium_image": "",
+      "website": "https://www.nhl.com/kraken",
+      "colors": [
+        "#000d33",
+        "#a3dce4"
+      ],
+      "honours": [],
+      "description": "Seattle Kraken é uma equipe de hóquei no gelo da NHL (National Hockey League). Sua arena é Climate Pledge Arena, em Seattle.",
+      "references": [
+        {
+          "label": "NHL · clubes membros",
+          "url": "https://www.nhl.com/info/nhl-affiliates-member-clubs"
+        },
+        {
+          "label": "Site oficial",
+          "url": "https://www.nhl.com/kraken"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nhl/time/_/nome/sea/seattle-kraken"
+        }
+      ]
+    },
+    {
+      "id": "hockey-nhl-19",
+      "espnId": "19",
+      "name": "St. Louis Blues",
+      "sport": "hockey",
+      "league": "nhl",
+      "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/stl.png",
+      "city": "St Louis",
+      "stadium": "Enterprise Center",
+      "stadium_image": "",
+      "website": "https://www.nhl.com/blues",
+      "colors": [
+        "#0070b9",
+        "#fdb71a"
+      ],
+      "honours": [],
+      "description": "St. Louis Blues é uma equipe de hóquei no gelo da NHL (National Hockey League). Sua arena é Enterprise Center, em St Louis.",
+      "references": [
+        {
+          "label": "NHL · clubes membros",
+          "url": "https://www.nhl.com/info/nhl-affiliates-member-clubs"
+        },
+        {
+          "label": "Site oficial",
+          "url": "https://www.nhl.com/blues"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nhl/time/_/nome/stl/st-louis-blues"
+        }
+      ]
+    },
+    {
+      "id": "hockey-nhl-20",
+      "espnId": "20",
+      "name": "Tampa Bay Lightning",
+      "sport": "hockey",
+      "league": "nhl",
+      "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/tb.png",
+      "city": "Tampa",
+      "stadium": "Benchmark International Arena",
+      "stadium_image": "",
+      "website": "https://www.nhl.com/lightning",
+      "colors": [
+        "#003e7e",
+        "#ffffff"
+      ],
+      "honours": [],
+      "description": "Tampa Bay Lightning é uma equipe de hóquei no gelo da NHL (National Hockey League). Sua arena é Benchmark International Arena, em Tampa.",
+      "references": [
+        {
+          "label": "NHL · clubes membros",
+          "url": "https://www.nhl.com/info/nhl-affiliates-member-clubs"
+        },
+        {
+          "label": "Site oficial",
+          "url": "https://www.nhl.com/lightning"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nhl/time/_/nome/tb/tampa-bay-lightning"
+        },
+        {
+          "label": "Clube · nome atual da arena",
+          "url": "https://www.nhl.com/lightning/news/vinik-sports-group-benchmark-international-announce-multi-year-naming-rights-partnership"
+        }
+      ]
+    },
+    {
+      "id": "hockey-nhl-21",
+      "espnId": "21",
+      "name": "Toronto Maple Leafs",
+      "sport": "hockey",
+      "league": "nhl",
+      "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/tor.png",
+      "city": "Toronto",
+      "stadium": "Scotiabank Arena",
+      "stadium_image": "",
+      "website": "https://www.nhl.com/mapleleafs",
+      "colors": [
+        "#003e7e",
+        "#ffffff"
+      ],
+      "honours": [],
+      "description": "Toronto Maple Leafs é uma equipe de hóquei no gelo da NHL (National Hockey League). Sua arena é Scotiabank Arena, em Toronto.",
+      "references": [
+        {
+          "label": "NHL · clubes membros",
+          "url": "https://www.nhl.com/info/nhl-affiliates-member-clubs"
+        },
+        {
+          "label": "Site oficial",
+          "url": "https://www.nhl.com/mapleleafs"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nhl/time/_/nome/tor/toronto-maple-leafs"
+        }
+      ]
+    },
+    {
+      "id": "hockey-nhl-129764",
+      "espnId": "129764",
+      "name": "Utah Mammoth",
+      "sport": "hockey",
+      "league": "nhl",
+      "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/utah.png",
+      "city": "Salt Lake City",
+      "stadium": "Delta Center",
+      "stadium_image": "",
+      "website": "https://www.nhl.com/utah",
+      "colors": [
+        "#000000",
+        "#7ab2e1"
+      ],
+      "honours": [],
+      "description": "Utah Mammoth é uma equipe de hóquei no gelo da NHL (National Hockey League). Sua arena é Delta Center, em Salt Lake City.",
+      "references": [
+        {
+          "label": "NHL · clubes membros",
+          "url": "https://www.nhl.com/info/nhl-affiliates-member-clubs"
+        },
+        {
+          "label": "Site oficial",
+          "url": "https://www.nhl.com/utah"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nhl/time/_/nome/utah/utah-mammoth"
+        }
+      ]
+    },
+    {
+      "id": "hockey-nhl-22",
+      "espnId": "22",
+      "name": "Vancouver Canucks",
+      "sport": "hockey",
+      "league": "nhl",
+      "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/van.png",
+      "city": "Vancouver",
+      "stadium": "Rogers Arena",
+      "stadium_image": "",
+      "website": "https://www.nhl.com/canucks",
+      "colors": [
+        "#003e7e",
+        "#008752"
+      ],
+      "honours": [],
+      "description": "Vancouver Canucks é uma equipe de hóquei no gelo da NHL (National Hockey League). Sua arena é Rogers Arena, em Vancouver.",
+      "references": [
+        {
+          "label": "NHL · clubes membros",
+          "url": "https://www.nhl.com/info/nhl-affiliates-member-clubs"
+        },
+        {
+          "label": "Site oficial",
+          "url": "https://www.nhl.com/canucks"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nhl/time/_/nome/van/vancouver-canucks"
+        }
+      ]
+    },
+    {
+      "id": "hockey-nhl-37",
+      "espnId": "37",
+      "name": "Vegas Golden Knights",
+      "sport": "hockey",
+      "league": "nhl",
+      "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/vgk.png",
+      "city": "Las Vegas",
+      "stadium": "T-Mobile Arena",
+      "stadium_image": "",
+      "website": "https://www.nhl.com/goldenknights",
+      "colors": [
+        "#344043",
+        "#b4975a"
+      ],
+      "honours": [],
+      "description": "Vegas Golden Knights é uma equipe de hóquei no gelo da NHL (National Hockey League). Sua arena é T-Mobile Arena, em Las Vegas.",
+      "references": [
+        {
+          "label": "NHL · clubes membros",
+          "url": "https://www.nhl.com/info/nhl-affiliates-member-clubs"
+        },
+        {
+          "label": "Site oficial",
+          "url": "https://www.nhl.com/goldenknights"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nhl/time/_/nome/vgk/vegas-golden-knights"
+        }
+      ]
+    },
+    {
+      "id": "hockey-nhl-23",
+      "espnId": "23",
+      "name": "Washington Capitals",
+      "sport": "hockey",
+      "league": "nhl",
+      "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/wsh.png",
+      "city": "Washington",
+      "stadium": "Capital One Arena",
+      "stadium_image": "",
+      "website": "https://www.nhl.com/capitals",
+      "colors": [
+        "#d71830",
+        "#0b1f41"
+      ],
+      "honours": [],
+      "description": "Washington Capitals é uma equipe de hóquei no gelo da NHL (National Hockey League). Sua arena é Capital One Arena, em Washington.",
+      "references": [
+        {
+          "label": "NHL · clubes membros",
+          "url": "https://www.nhl.com/info/nhl-affiliates-member-clubs"
+        },
+        {
+          "label": "Site oficial",
+          "url": "https://www.nhl.com/capitals"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nhl/time/_/nome/wsh/washington-capitals"
+        }
+      ]
+    },
+    {
+      "id": "hockey-nhl-28",
+      "espnId": "28",
+      "name": "Winnipeg Jets",
+      "sport": "hockey",
+      "league": "nhl",
+      "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/wpg.png",
+      "city": "Winnipeg",
+      "stadium": "Canada Life Centre",
+      "stadium_image": "",
+      "website": "https://www.nhl.com/jets",
+      "colors": [
+        "#002d62",
+        "#c41230"
+      ],
+      "honours": [],
+      "description": "Winnipeg Jets é uma equipe de hóquei no gelo da NHL (National Hockey League). Sua arena é Canada Life Centre, em Winnipeg.",
+      "references": [
+        {
+          "label": "NHL · clubes membros",
+          "url": "https://www.nhl.com/info/nhl-affiliates-member-clubs"
+        },
+        {
+          "label": "Site oficial",
+          "url": "https://www.nhl.com/jets"
+        },
+        {
+          "label": "ESPN · perfil e elenco",
+          "url": "https://www.espn.com.br/nhl/time/_/nome/wpg/winnipeg-jets"
+        }
+      ]
+    }
+  ]
+}

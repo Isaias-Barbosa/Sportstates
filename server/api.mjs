@@ -157,7 +157,7 @@ export async function route(url) {
       : [503, { error: "Neon Auth não configurado." }];
   }
   if (url.pathname === "/api/teams") {
-    const result = await cached("teams:mlb-profiles-v1", CACHE_TTL.teams, () =>
+    const result = await cached("teams:nhl-profiles-v1", CACHE_TTL.teams, () =>
       listTeams(),
     );
     return [

@@ -101,7 +101,9 @@ export default function TeamPage() {
                   ? "Equipe de futebol americano"
                   : team.sport === "baseball"
                     ? "Equipe de beisebol"
-                    : "Clube de futebol")}
+                    : team.sport === "hockey"
+                      ? "Equipe de hóquei no gelo"
+                      : "Clube de futebol")}
           </p>
           {team.description && <p>{descriptionPreview(team.description)}</p>}
           {team.website && (
@@ -182,7 +184,11 @@ export default function TeamPage() {
                   <dd>{team.city || "Não informada"}</dd>
                 </div>
                 <div>
-                  <dt>{team.sport === "basketball" ? "Arena" : "Estádio"}</dt>
+                  <dt>
+                    {["basketball", "hockey"].includes(team.sport)
+                      ? "Arena"
+                      : "Estádio"}
+                  </dt>
                   <dd>{team.stadium || "Não informado"}</dd>
                 </div>
               </dl>

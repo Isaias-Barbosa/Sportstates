@@ -1,3 +1,4 @@
+import { nhlProfileReferences } from "./nhl-profiles.mjs";
 import { mlbProfileReferences } from "./mlb-profiles.mjs";
 import {
   brazilProfileReferences,
@@ -278,19 +279,21 @@ export async function teamDetails(id) {
     team,
     stadiumImageCredit: brazilStadiumCredit(team),
     profileReferences:
-      team.sport === "baseball"
-        ? mlbProfileReferences(team.id)
-        : team.sport === "football"
-          ? nflProfileReferences(team.id)
-          : team.sport === "basketball"
-            ? basketballProfileReferences(team.id)
-            : team.league === "eng.1"
-              ? premierLeagueReferences(team.id)
-              : [
-                  ...brazilProfileReferences(team.id, team.league),
-                  ...leagueProfileReferences(team.id, team.league),
-                  ...mlsProfileReferences(team.id, team.league),
-                ],
+      team.sport === "hockey"
+        ? nhlProfileReferences(team.id)
+        : team.sport === "baseball"
+          ? mlbProfileReferences(team.id)
+          : team.sport === "football"
+            ? nflProfileReferences(team.id)
+            : team.sport === "basketball"
+              ? basketballProfileReferences(team.id)
+              : team.league === "eng.1"
+                ? premierLeagueReferences(team.id)
+                : [
+                    ...brazilProfileReferences(team.id, team.league),
+                    ...leagueProfileReferences(team.id, team.league),
+                    ...mlsProfileReferences(team.id, team.league),
+                  ],
     athletes,
     leaders,
     upcoming,
