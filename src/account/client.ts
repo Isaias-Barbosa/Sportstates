@@ -15,8 +15,7 @@ export function accountClient() {
     });
   return clientPromise;
 }
-export async function accountToken() {
-  const auth = await accountClient();
+export async function sessionToken(auth: Awaited<ReturnType<typeof accountClient>>) {
   let token: string | null = null;
   const session = await auth.getSession({
     fetchOptions: {
@@ -26,7 +25,16 @@ export async function accountToken() {
     },
   });
   if (session.error || !session.data?.user) return null;
-  if (token) return token;
+  // Cached Neon sessions carry the JWT in session.token without a response header.
+  const cached = session.data.session?.token;
+  const compact = (value: unknown): value is string =>
+    typeof value === "string" && /^[\w-]+\.[\w-]+\.[\w-]+$/.test(value);
+  if (compact(token)) return token;
+  if (compact(cached)) return cached;
   const result = await auth.token();
-  return result.error ? null : result.data?.token || null;
+  return !result.error && compact(result.data?.token) ? result.data.token : null;
+}
+
+export async function accountToken() {
+  return sessionToken(await accountClient());
 }

@@ -60,7 +60,9 @@ export default function AccountPage() {
         setMode("login");
         setMessage("Senha atualizada. Entre com a nova senha.");
       } else {
-        await refresh();
+        const restored = await refresh();
+        if (!restored && mode === "login")
+          throw Error("O login foi aceito, mas não foi possível carregar sua sessão. Tente novamente; se persistir, confira a verificação do e-mail.");
         setMessage(
           mode === "signup"
             ? "Cadastro enviado. Se a verificação for solicitada, confira seu e-mail antes de entrar."

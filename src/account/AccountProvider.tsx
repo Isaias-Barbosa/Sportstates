@@ -61,7 +61,7 @@ type Account = {
   loading: boolean;
   saving: boolean;
   error: string;
-  refresh: () => Promise<void>;
+  refresh: () => Promise<boolean>;
   mutate: (action: unknown) => Promise<void>;
   request: <T>(url: string, init?: RequestInit) => Promise<T>;
   logout: () => Promise<void>;
@@ -101,19 +101,19 @@ export default function AccountProvider({ children }: { children: ReactNode }) {
     [],
   );
   const refresh = useCallback(async () => {
-    if (busyRef.current) return;
+    if (busyRef.current) return false;
     const run = ++generation.current;
     setLoading(true);
     setError("");
     try {
       const token = await accountToken();
-      if (run !== generation.current) return;
+      if (run !== generation.current) return false;
       if (!token) {
         identity.current = null;
         setUser(null);
         setPreferences(empty());
         setTeams([]);
-        return;
+        return false;
       }
       const r = await fetch("/api/me", {
         cache: "no-store",
@@ -121,11 +121,12 @@ export default function AccountProvider({ children }: { children: ReactNode }) {
       });
       const d = await r.json();
       if (!r.ok) throw Error(d.error || "Não foi possível carregar a conta.");
-      if (run !== generation.current) return;
+      if (run !== generation.current) return false;
       identity.current = d.user.id;
       setUser(d.user);
       setPreferences(d.preferences);
       setTeams(d.teams);
+      return true;
     } catch (e) {
       if (run === generation.current) {
         identity.current = null;
@@ -134,6 +135,7 @@ export default function AccountProvider({ children }: { children: ReactNode }) {
         setTeams([]);
         setError(e instanceof Error ? e.message : "Falha ao carregar a conta.");
       }
+      return false;
     } finally {
       if (run === generation.current) setLoading(false);
     }
