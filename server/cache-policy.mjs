@@ -23,7 +23,7 @@ export function dateTtl(date, today) {
 }
 export function scoresTtl(matches, date, today) {
   return matches?.some((m) => m.state === "live")
-    ? 30000
+    ? 15000
     : dateTtl(date, today);
 }
 export function leagueGamesTtl(body, month, today) {
@@ -70,6 +70,15 @@ export function responseTtl(url, body, now = Date.now()) {
       ttl = matchTtl(body, now);
       break;
     case "/api/scores":
+      // Live/current-day responses must not stack a CDN cache on provider caching.
+      if (
+        body.matches?.some((m) => m.state === "live") ||
+        body.date ===
+          new Intl.DateTimeFormat("en-CA", {
+            timeZone: "America/Sao_Paulo",
+          }).format(new Date(now))
+      )
+        return 0;
       ttl = scoresTtl(
         body.matches,
         body.date,

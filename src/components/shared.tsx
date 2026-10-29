@@ -71,7 +71,11 @@ export function teamScore(team: Team) {
 export function matchScore(match: Match) {
   return `${teamScore(match.home)} x ${teamScore(match.away)}`;
 }
+export function isLiveMatch(m: Match) {
+  return m.state === "live" && !m.liveUnverified;
+}
 export function matchLabel(m: Match) {
+  if (m.liveUnverified) return "Atualização pendente";
   if (m.statusName === "STATUS_POSTPONED") return "Adiado";
   if (m.statusName === "STATUS_CANCELED") return "Cancelado";
   if (["STATUS_HALFTIME", "STATUS_HALFTIME_ET"].includes(m.statusName))

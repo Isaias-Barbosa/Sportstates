@@ -29,6 +29,7 @@ import {
   Empty,
   Loading,
   matchLabel,
+  isLiveMatch,
 } from "../components/shared";
 import MatchBroadcasts from "../components/MatchBroadcasts";
 
@@ -53,7 +54,12 @@ export default function Dashboard({
     "/api/featured?date=" + encodeURIComponent(date),
     30000,
   );
-  const matches = data?.date === date ? data.matches : [];
+  const matches =
+    data?.date === date
+      ? data.matches.map((m) =>
+          error && isLiveMatch(m) ? { ...m, liveUnverified: true } : m,
+        )
+      : [];
   const dayLeagueIds = new Set(
     matches.filter((m) => m.sport === sport).map((m) => m.league),
   );
@@ -97,16 +103,18 @@ export default function Dashboard({
       (league === "all" || m.league === league) &&
       (!favoritesOnly || ids.includes(keyOf(m))),
   );
-  const live = scoped.filter((m) => m.state === "live");
+  const live = scoped.filter((m) => isLiveMatch(m));
   const upcoming = scoped
     .filter((m) => m.state === "scheduled")
     .sort((a, b) => a.date.localeCompare(b.date));
   const selectedMatch =
     sport === "all" && selection?.key
-      ? scoped.find((m) => keyOf(m) === selection.key)
+      ? scoped.find((m) => keyOf(m) === selection.key && !m.liveUnverified)
       : undefined;
   const featured =
-    (selectedMatch?.state !== "finished" ? selectedMatch : undefined) ||
+    (selectedMatch?.state !== "finished" && !selectedMatch?.liveUnverified
+      ? selectedMatch
+      : undefined) ||
     live[0] ||
     upcoming[0] ||
     selectedMatch ||
@@ -123,7 +131,8 @@ export default function Dashboard({
     .toLowerCase();
   const visible = scoped.filter(
     (m) =>
-      (status === "all" || m.state === status) &&
+      (status === "all" ||
+        (status === "live" ? isLiveMatch(m) : m.state === status)) &&
       `${m.home.name} ${m.away.name} ${m.leagueName}`
         .normalize("NFD")
         .replace(/[\u0300-\u036f]/g, "")
@@ -150,7 +159,7 @@ export default function Dashboard({
     keyOf(featured) === selection?.key &&
     featured.state !== "finished"
       ? "Jogo do Dia"
-      : featured?.state === "live"
+      : featured && isLiveMatch(featured)
         ? "Ao vivo agora"
         : featured?.state === "finished"
           ? "Último destaque"
@@ -226,7 +235,7 @@ export default function Dashboard({
             <div>
               <p className="hv-eyebrow">No centro da emoção</p>
               <h2 id="hv-spotlight-title">
-                {featured?.state === "live" ? (
+                {featured && isLiveMatch(featured) ? (
                   <>
                     Agora é <em>jogo.</em>
                   </>
@@ -255,7 +264,7 @@ export default function Dashboard({
               <div>
                 <Link
                   className={
-                    "hv-feature " + (featured.state === "live" ? "is-live" : "")
+                    "hv-feature " + (isLiveMatch(featured) ? "is-live" : "")
                   }
                   to={"/partida/" + keyOf(featured)}
                   aria-label={`Acompanhar partida: ${featured.home.name} x ${featured.away.name}`}
@@ -266,7 +275,7 @@ export default function Dashboard({
                       {featured.leagueName}
                     </span>
                     <strong>
-                      {featured.state === "live" && (
+                      {isLiveMatch(featured) && (
                         <i className="live-dot" aria-hidden="true" />
                       )}
                       {featuredTitle}
@@ -289,7 +298,7 @@ export default function Dashboard({
                           : matchScore(featured)}
                       </b>
                       <small>
-                        {featured.state === "live"
+                        {isLiveMatch(featured)
                           ? matchLabel(featured)
                           : featured.state === "finished"
                             ? "Encerrado"
@@ -307,7 +316,7 @@ export default function Dashboard({
                       {featured.venue || "Detalhes da partida"}
                     </span>
                     <strong>
-                      {featured.state === "live"
+                      {isLiveMatch(featured)
                         ? "Acompanhar partida"
                         : "Ver detalhes"}
                       <ArrowRight size={15} />
@@ -499,8 +508,13 @@ export default function Dashboard({
                   {label}
                   <span>
                     {
-                      scoped.filter((m) => value === "all" || m.state === value)
-                        .length
+                      scoped.filter(
+                        (m) =>
+                          value === "all" ||
+                          (value === "live"
+                            ? isLiveMatch(m)
+                            : m.state === value),
+                      ).length
                     }
                   </span>
                 </button>
@@ -670,16 +684,14 @@ function GameRow({
 }) {
   return (
     <article className="hv-match-card">
-      <div className={"hv-match-row " + (m.state === "live" ? "is-live" : "")}>
+      <div className={"hv-match-row " + (isLiveMatch(m) ? "is-live" : "")}>
         <Link
           className="hv-match-main"
           to={"/partida/" + keyOf(m)}
           aria-label={`Ver partida ${m.home.name} x ${m.away.name}`}
         >
           <span className="hv-minute">
-            {m.state === "live" && (
-              <i className="live-dot" aria-hidden="true" />
-            )}
+            {isLiveMatch(m) && <i className="live-dot" aria-hidden="true" />}
             {matchLabel(m)}
           </span>
           <div className="hv-row-teams">
@@ -703,7 +715,7 @@ function GameRow({
         </Link>
         <div className="hv-row-actions">
           <NotificationBell match={m} />
-          {m.state === "live" && !!m.watch?.links.length && (
+          {isLiveMatch(m) && !!m.watch?.links.length && (
             <Link
               className="icon-button"
               to={"/partida/" + keyOf(m) + "#onde-assistir"}

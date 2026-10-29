@@ -1,8 +1,7 @@
-import { useSearchParams } from "react-router-dom";
+import { Navigate, useSearchParams } from "react-router-dom";
 import { useState } from "react";
-import { useApi } from "../hooks";
 import { Loading, Notice, Empty } from "../components/shared";
-type Player = {
+export type Player = {
   id: string;
   name: string;
   rank: number;
@@ -13,14 +12,33 @@ type Player = {
   country: string;
   age: number | null;
 };
+export type AthletesData = {
+  players: Player[];
+  updatedAt: string;
+  source: string;
+};
 export default function TennisAthletesPage() {
   const [params] = useSearchParams();
-  const table = params.get("sport") === "table-tennis";
-  const { data, loading, error, refresh } = useApi<{
-    players: Player[];
-    updatedAt: string;
-    source: string;
-  }>(table ? "/api/table-tennis-athletes" : "/api/tennis-athletes", 3600000);
+  const next = new URLSearchParams(params);
+  next.set(
+    "sport",
+    params.get("sport") === "table-tennis" ? "table-tennis" : "tennis",
+  );
+  return <Navigate to={"/times?" + next} replace />;
+}
+export function AthletesContent({
+  table,
+  data,
+  loading,
+  error,
+  refresh,
+}: {
+  table: boolean;
+  data?: AthletesData;
+  loading: boolean;
+  error?: string;
+  refresh: () => void;
+}) {
   const [query, setQuery] = useState("");
   const [limit, setLimit] = useState(30);
   const normalize = (s: string) =>
@@ -33,12 +51,12 @@ export default function TennisAthletesPage() {
   );
   return (
     <>
-      <div className="page-title">
+      <div className="athletes-section-title">
         <div>
           <div className="eyebrow">
             {table ? "🏓 TÊNIS DE MESA MASCULINO" : "🎾 TÊNIS MASCULINO"}
           </div>
-          <h1>{table ? "Atletas da ITTF / WTT" : "Atletas da ATP"}</h1>
+          <h2>{table ? "Atletas da ITTF / WTT" : "Atletas da ATP"}</h2>
           <p>Ranking de simples masculino, pontos e países dos jogadores.</p>
         </div>
       </div>

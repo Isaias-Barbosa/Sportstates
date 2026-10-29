@@ -2,6 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import {
   tableLeague,
+  mergeTableCards,
   normalizeTableCalendar,
   tableMatchId,
   tableStartDate,
@@ -218,7 +219,9 @@ test("WTT data reaches public scores, match detail, athletes, standings and leag
     else if (url.includes("GetAllEventsWithIds")) {
       assert.equal(options.method, "POST");
       body = [{ eventId: 3250, countryCode: "FRA" }];
-    } else if (url.endsWith("MatchCards")) {
+    } else if (url.includes("GetOfficialResult"))
+      body = JSON.stringify([{ match_card: card, fullResults: "OFFICIAL" }]);
+    else if (url.endsWith("MatchCards")) {
       assert.equal(options.method, "POST");
       body = [card];
     } else if (url.includes("GetRankingIndividuals"))
@@ -298,4 +301,22 @@ test("ranking accepts the official endpoint double-encoded JSON response", () =>
     "115641",
   );
   assert.throws(() => normalizeTableRankings("invalid json"));
+});
+
+test("official final results replace stale intermediate match cards", () => {
+  const stale = {
+    ...card,
+    resultStatus: "INTERMEDIATE",
+    overallScores: "0-0",
+    gameScores: "0-0",
+    currentGameNumber: 1,
+  };
+  const merged = mergeTableCards(
+    [stale],
+    [{ match_card: card, fullResults: "OFFICIAL" }],
+  );
+  const result = normalizeTableMatch(unit, [...merged.values()][0], event);
+  assert.equal(result.state, "finished");
+  assert.equal(result.away.score, "3");
+  assert.equal(result.setScores.length, 3);
 });

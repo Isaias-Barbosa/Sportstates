@@ -2919,3 +2919,9 @@ body.club-page-active { background:var(--club-page-bg, var(--canvas)); backgroun
 
 .notification-cards-only { background: transparent; color: #d6fff1; border: 1px solid #42dfb3; }
 .notification-cards-only:hover { background: #42dfb31a; }
+
+.athletes-section-title { margin: 26px 0 20px; }
+.athletes-section-title h2 { margin: 8px 0; }
+.athletes-section-title p { color: var(--muted); }
+.standings-sports .sport-card { padding: 12px; min-width: 0; }
+.standings-sports .sport-card strong { white-space: normal; overflow-wrap: anywhere; line-height: 1.35; }

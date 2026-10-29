@@ -1432,3 +1432,11 @@ summary.hv-league-heading:focus-visible { outline: 2px solid #57bbff; outline-of
 details.hv-league[open] > summary .hv-league-chevron { transform: rotate(180deg); }
 details.hv-league:not([open]) > summary { border-bottom: 0; }
 @media (prefers-reduced-motion: reduce) { .hv-league-chevron { transition: none; } }
+
+/* Compact sport controls: let long names wrap inside their own card. */
+.hv-sport-filters { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(128px, 1fr); gap: 7px; }
+.hv-sport-filters button { min-width: 0; display: grid; grid-template-columns: 17px minmax(0,1fr) auto; gap: 5px; padding: 9px 8px; min-height: 44px; white-space: normal; }
+.hv-sport-filters button strong { min-width: 0; white-space: normal; overflow-wrap: anywhere; text-align: left; line-height: 1.35; font-size: 9px; }
+.hv-sport-filters button > span { font-size: 15px; }
+.hv-sport-filters button > svg { width: 16px; height: 16px; }
+.hv-sport-filters button small { margin-left: 0; font-size: 8px; }

@@ -25,7 +25,7 @@ export function pollDelay(
       }
     | undefined;
   if (path === "/api/scores" && data?.matches?.some((m) => m.state === "live"))
-    return 30000;
+    return 15000;
   if (path === "/api/team")
     return [...(data?.upcoming || []), ...(data?.recent || [])].some(
       (m) => m.state === "live",

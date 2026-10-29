@@ -167,7 +167,7 @@ test("sport cache policies separate live, recent final and older finished matche
   assert.equal(scoresTtl([], "2026-10-25", "2026-10-29"), 6 * HOUR);
   assert.equal(
     scoresTtl([{ state: "live" }], "2026-10-25", "2026-10-29"),
-    30000,
+    15000,
   );
   assert.equal(
     leagueGamesTtl({ matches: [] }, "2026-09", "2026-10-29"),
@@ -336,8 +336,73 @@ test("only healthy public reads receive tagged CDN caching, never private browse
   );
   assert.equal(catalog.headers["Vercel-Cache-Tag"], CACHE_TAG);
   const authenticated = await request("/api/competitions", "Bearer test");
-  assert.equal(authenticated.headers["Vercel-CDN-Cache-Control"], undefined);
+  assert.equal(authenticated.headers["Vercel-CDN-Cache-Control"], "no-store");
   const invalid = await request("/api/match?sport=bad&league=bad&id=bad");
   assert.equal(invalid.status, 400);
-  assert.equal(invalid.headers["Vercel-CDN-Cache-Control"], undefined);
+  assert.equal(invalid.headers["Vercel-CDN-Cache-Control"], "no-store");
+});
+
+test("current-day and live agendas bypass the CDN while old completed dates retain caching", () => {
+  const now = Date.parse("2026-10-29T15:00:00Z"),
+    url = new URL("https://app.test/api/scores?date=2026-10-29");
+  assert.equal(
+    responseTtl(
+      url,
+      {
+        date: "2026-10-29",
+        matches: [{ state: "live" }],
+        fetchedAt: new Date(now).toISOString(),
+      },
+      now,
+    ),
+    0,
+  );
+  assert.equal(
+    responseTtl(
+      url,
+      {
+        date: "2026-10-29",
+        matches: [{ state: "finished" }],
+        fetchedAt: new Date(now).toISOString(),
+      },
+      now,
+    ),
+    0,
+  );
+  assert.ok(
+    responseTtl(
+      url,
+      {
+        date: "2026-10-20",
+        matches: [{ state: "finished" }],
+        fetchedAt: new Date(now).toISOString(),
+      },
+      now,
+    ) > 0,
+  );
+});
+
+test("live agenda polling is short and a failed source cannot reuse minutes-old live data", async () => {
+  assert.equal(
+    pollDelay(
+      "/api/scores?date=2026-10-29",
+      { matches: [{ state: "live" }] },
+      60000,
+    ),
+    15000,
+  );
+  let now = 0;
+  const cache = createCache({ shared: false, now: () => now });
+  const ttl = (value) => scoresTtl(value, "2026-10-29", "2026-10-29");
+  await cache("live", ttl, async () => [{ state: "live" }], 30000);
+  const unavailable = async () => {
+    throw Error("source unavailable");
+  };
+  now = 16000;
+  assert.equal((await cache("live", ttl, unavailable, 30000)).stale, true);
+  now = 46000;
+  await assert.rejects(
+    () => cache("live", ttl, unavailable, 30000),
+    /source unavailable/,
+  );
 });

@@ -47,11 +47,7 @@ test("each supported league has three destinations preserving sport and league",
         links.map(
           (l) => new URL(l.to, "https://sportstates.vercel.app").pathname,
         ),
-        [
-          "/",
-          ["tennis", "table-tennis"].includes(s.id) ? "/atletas" : "/times",
-          "/classificacoes",
-        ],
+        ["/", "/times", "/classificacoes"],
       );
       for (const link of links) {
         const u = new URL(link.to, "https://sportstates.vercel.app");

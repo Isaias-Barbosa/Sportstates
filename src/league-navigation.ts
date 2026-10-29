@@ -6,9 +6,7 @@ export function leagueLinks(sport: string, league = "all") {
     { label: "Jogos", to: "/?" + query },
     {
       label: ["tennis", "table-tennis"].includes(sport) ? "Atletas" : "Times",
-      to:
-        (["tennis", "table-tennis"].includes(sport) ? "/atletas?" : "/times?") +
-        query,
+      to: "/times?" + query,
     },
     {
       label: ["tennis", "table-tennis"].includes(sport)

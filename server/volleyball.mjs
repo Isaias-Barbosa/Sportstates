@@ -182,7 +182,7 @@ export function normalizeVolley(m) {
 export async function cbvSchedule() {
   return cached(
     "cbv:superliga-men:v1",
-    (rows) => (rows.some((m) => m.isLive && !m.isFinished) ? 30000 : 60000),
+    (rows) => (rows.some((m) => m.isLive && !m.isFinished) ? 15000 : 60000),
     async () => {
       const r = await fetch(CBV_URL, { signal: AbortSignal.timeout(10000) });
       if (!r.ok) throw Error("CBV indisponível.");
@@ -190,7 +190,7 @@ export async function cbvSchedule() {
       if (!rows.length) throw Error("Programação masculina indisponível.");
       return rows;
     },
-    300000,
+    30000,
   );
 }
 export function parseCbvStandings(html) {

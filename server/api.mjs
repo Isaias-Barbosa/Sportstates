@@ -63,6 +63,7 @@ const ESPN = "https://site.api.espn.com/apis/site/v2/sports";
 
 async function json(url, headers = {}) {
   const response = await fetch(url, {
+    cache: "no-store",
     headers: { Accept: "application/json", ...headers },
     signal: AbortSignal.timeout(12000),
   });
@@ -90,7 +91,7 @@ export async function scoreboard(date) {
                     value: r.value.map(normalizeVolley),
                   }))
                 : cached(
-                    `${s.id}/${league}/${d}`,
+                    `scores:fresh-v2:${s.id}/${league}/${d}`,
                     (matches) => scoresTtl(matches, d, dayInBrazil(new Date())),
                     async () => {
                       const raw = await json(
@@ -102,7 +103,7 @@ export async function scoreboard(date) {
                         .map((e) => normalizeEvent(e, s.id, league, name))
                         .filter(Boolean);
                     },
-                    15 * 60000,
+                    30000,
                   ),
         ),
       );
@@ -111,7 +112,12 @@ export async function scoreboard(date) {
         .map((p) => p.value);
       return {
         matches: good
-          .flatMap((r) => r.value)
+          .flatMap((r) =>
+            r.value.map((m) => ({
+              ...m,
+              liveUnverified: m.state === "live" && r.stale,
+            })),
+          )
           .filter((e) => dayInBrazil(e.date) === date),
         failed: parts.some((p) => p.status === "rejected"),
         stale: good.some((r) => r.stale),
@@ -946,6 +952,7 @@ export async function handler(req, res) {
         ? responseTtl(url, body)
         : 0;
     res.setHeader("Cache-Control", "no-store");
+    res.setHeader("Vercel-CDN-Cache-Control", "no-store");
     if (ttl > 0) {
       res.setHeader("Vercel-CDN-Cache-Control", `public, max-age=${ttl}`);
       res.setHeader("Vercel-Cache-Tag", CACHE_TAG);

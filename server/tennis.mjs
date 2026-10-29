@@ -4,6 +4,7 @@ const cached = createCache();
 const BASE = "https://site.api.espn.com/apis/site/v2/sports/tennis/atp";
 export async function tennisJSON(url) {
   const r = await fetch(url, {
+    cache: "no-store",
     signal: AbortSignal.timeout(10000),
     headers: { Accept: "application/json" },
   });
@@ -101,15 +102,15 @@ export function normalizeTennis(raw) {
 }
 export async function tennisMatches(date) {
   const r = await cached(
-    `tennis:date:v1:${date}`,
-    (matches) => (matches.some((m) => m.state === "live") ? 30000 : 60000),
+    `tennis:date:fresh-v2:${date}`,
+    (matches) => (matches.some((m) => m.state === "live") ? 15000 : 60000),
     async () =>
       normalizeTennis(
         await tennisJSON(
           `${BASE}/scoreboard?dates=${date.replaceAll("-", "")}&lang=pt&region=br`,
         ),
       ),
-    300000,
+    30000,
   );
   return r;
 }

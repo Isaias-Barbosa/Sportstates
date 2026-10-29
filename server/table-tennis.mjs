@@ -29,6 +29,7 @@ export function tableLeague(name = "") {
 }
 async function json(path, body) {
   const response = await fetch(BASE + path, {
+    cache: "no-store",
     signal: AbortSignal.timeout(18000),
     headers: {
       Accept: "application/json",
@@ -37,7 +38,8 @@ async function json(path, body) {
     ...(body ? { method: "POST", body: JSON.stringify(body) } : {}),
   });
   if (!response.ok) throw Error(`WTT indisponível (HTTP ${response.status}).`);
-  return response.json();
+  const data = await response.json();
+  return typeof data === "string" ? JSON.parse(data) : data;
 }
 const months = [
   "Jan",
@@ -275,23 +277,44 @@ export function normalizeTableMatch(unit, card, event, meta = {}) {
     sourceUrl: `https://www.worldtabletennis.com/eventInfo?eventId=${event.id}`,
   };
 }
+export function mergeTableCards(cards, official) {
+  if (!Array.isArray(official))
+    throw Error("Resultados oficiais WTT inválidos.");
+  const byCode = new Map(cards.map((c) => [canonical(c.documentCode), c]));
+  for (const result of official) {
+    const card = result?.match_card;
+    if (
+      card &&
+      (/^(OFFICIAL|FINAL|FINISHED)$/i.test(card.resultStatus || "") ||
+        /^(OFFICIAL|FINAL|FINISHED)$/i.test(result.fullResults || ""))
+    )
+      byCode.set(canonical(card.documentCode || result.documentCode), {
+        ...card,
+        resultStatus: "OFFICIAL",
+      });
+  }
+  return byCode;
+}
 async function eventMatches(event) {
   return cached(
-    `table-tennis:event:v1:${event.id}`,
+    `table-tennis:event:official-v2:${event.id}`,
     (matches) =>
       matches.some((m) => m.state === "live")
-        ? 30000
+        ? 15000
         : event.end < dayInBrazil(new Date(Date.now() - 2 * 86400000))
           ? 21600000
           : 60000,
     async () => {
-      const [raw, metadata] = await Promise.all([
+      const [raw, metadata, official] = await Promise.all([
         json(`GetEventSchedule/${event.id}`),
         cached(
           `table-tennis:meta:v1:${event.id}`,
           21600000,
           () => json("GetAllEventsWithIds", [Number(event.id)]),
           86400000,
+        ),
+        json(
+          `GetOfficialResult?EventId=${event.id}&include_match_card=true&take=1000`,
         ),
       ]);
       if (!Array.isArray(raw)) throw Error("Agenda WTT inválida.");
@@ -318,7 +341,7 @@ async function eventMatches(event) {
         if (!Array.isArray(batch)) throw Error("Placares WTT inválidos.");
         cards.push(...batch.filter(Boolean));
       }
-      const byCode = new Map(cards.map((c) => [canonical(c.documentCode), c]));
+      const byCode = mergeTableCards(cards, official);
       return units
         .map((u) =>
           normalizeTableMatch(
@@ -330,7 +353,7 @@ async function eventMatches(event) {
         )
         .filter(Boolean);
     },
-    120000,
+    30000,
   );
 }
 export async function tableMatches(range, league) {

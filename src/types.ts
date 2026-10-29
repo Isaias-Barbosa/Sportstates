@@ -8,6 +8,7 @@ export type Team = {
   winner: boolean;
 };
 export type Match = {
+  liveUnverified?: boolean;
   setScores?: {
     number: number;
     home: string | null;
