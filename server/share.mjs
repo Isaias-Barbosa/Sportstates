@@ -55,5 +55,5 @@ export function injectMetadata(html,m) {
     ...Object.entries({"og:type":"website","og:locale":"pt_BR","og:site_name":"Sportstates","og:title":m.title,"og:description":m.description,"og:url":m.url,"og:image":m.image,"og:image:secure_url":m.image,"og:image:type":"image/png","og:image:width":"1200","og:image:height":"630","og:image:alt":m.heading}).map(([k,v])=>'<meta property="'+k+'" content="'+escape(v)+'"/>'),
     ...Object.entries({"twitter:card":"summary_large_image","twitter:title":m.title,"twitter:description":m.description,"twitter:image":m.image,"twitter:image:alt":m.heading}).map(([k,v])=>'<meta name="'+k+'" content="'+escape(v)+'"/>')
   ].join("\n");
-  return html.replace(/<title>[\s\S]*?<\/title>/i,"").replace(/<meta\s+name="description"[^>]*>/i,"").replace("</head>",tags+"\n</head>");
+  return html.replace(/<meta\s+(?:property="og:[^"]+"|name="twitter:[^"]+")[^>]*>/g,"").replace(/<link\s+rel="canonical"[^>]*>/g,"").replace(/<title>[\s\S]*?<\/title>/i,"").replace(/<meta\s+name="description"[^>]*>/i,"").replace("</head>",tags+"\n</head>");
 }

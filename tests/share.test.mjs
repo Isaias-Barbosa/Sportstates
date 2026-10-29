@@ -37,3 +37,10 @@ test("PNG is a real 1200 by 630 RGB image with complete pixel scanlines",async()
  while(offset<png.length){const size=png.readUInt32BE(offset);const type=png.toString("ascii",offset+4,offset+8);if(type==="IDAT")compressed.push(png.subarray(offset+8,offset+8+size));offset+=size+12;}
  assert.equal(inflateSync(Buffer.concat(compressed)).length,630*(1200*3+1));
 });
+
+test("dynamic metadata replaces generic home tags without conflicting duplicates",async()=>{
+ const html=injectMetadata('<head><title>Home</title><meta property="og:title" content="Home"/><meta name="twitter:title" content="Home"/><link rel="canonical" href="/"/></head>',await metadata("/times"));
+ assert.equal((html.match(/property="og:title"/g)||[]).length,1);
+ assert.equal((html.match(/name="twitter:title"/g)||[]).length,1);
+ assert.equal((html.match(/rel="canonical"/g)||[]).length,1);
+});
