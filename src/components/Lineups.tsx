@@ -25,7 +25,24 @@ function Formation({ squad }: { squad: Squad }) {
           {row.map((p) => (
             <div className="field-player" key={p.id || p.name}>
               <b>{p.jersey || "–"}</b>
-              <span>{p.shortName}</span>
+              <span>
+                {p.shortName}
+                {p.subbedOut && (
+                  <ArrowDown
+                    size={12}
+                    className="pitch-sub-out"
+                    aria-label="Foi substituído"
+                  />
+                )}
+                {p.rating != null && (
+                  <small className="pitch-rating">
+                    {p.rating.toLocaleString("pt-BR", {
+                      minimumFractionDigits: 1,
+                      maximumFractionDigits: 1,
+                    })}
+                  </small>
+                )}
+              </span>
             </div>
           ))}
         </div>
