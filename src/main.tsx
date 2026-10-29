@@ -13,7 +13,7 @@ import {
   Radio,
   ListOrdered,
   X,
-  Clock3,
+  UserRound,
   Settings,
 } from "lucide-react";
 import { Empty } from "./components/shared";
@@ -194,14 +194,15 @@ function App() {
                 {theme === "light" ? <Moon size={17} /> : <Sun size={17} />}
                 <span>{theme === "light" ? "Modo escuro" : "Modo claro"}</span>
               </button>
-              <span className="topbar-locale">
-                <Globe2 size={15} />
-                PT-BR
-              </span>
-              <span className="topbar-time">
-                <Clock3 size={15} />
-                Horário de Brasília
-              </span>
+              <button
+                type="button"
+                className="navbar-login"
+                aria-disabled="true"
+                title="Login em breve"
+              >
+                <UserRound size={17} aria-hidden="true" />
+                <span>Login</span>
+              </button>
               <button
                 ref={menuButton}
                 aria-expanded={menu}

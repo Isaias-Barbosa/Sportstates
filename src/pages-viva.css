@@ -1610,3 +1610,58 @@ summary:focus-visible {
     padding: 5px 7px;
   }
 }
+
+.navbar-login {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 9px 13px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: var(--surface);
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 750;
+  white-space: nowrap;
+}
+.navbar-login:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 3px;
+}
+@media (max-width: 600px) {
+  .navbar-login {
+    padding: 8px 9px;
+    gap: 5px;
+  }
+}
+
+.stadium-image-credit {
+  font-size: 10px;
+  color: var(--muted);
+  margin: 8px 4px 0;
+  line-height: 1.6;
+}
+.stadium-image-credit a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+@media (max-width: 420px) {
+  .topbar {
+    padding-inline: 12px;
+  }
+  .top-right {
+    gap: 5px;
+  }
+  .topbar-brand {
+    font-size: 18px;
+  }
+  .navbar-login {
+    padding: 8px 7px;
+    font-size: 11px;
+  }
+  .top-right .menu-trigger {
+    padding: 8px 7px;
+    gap: 5px;
+  }
+}

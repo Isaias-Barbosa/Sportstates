@@ -109,6 +109,26 @@ export default function TeamPage() {
           )}
         </div>
       </section>
+      {data.stadiumImageCredit && (
+        <p className="stadium-image-credit">
+          Foto do estádio (arquivo):{" "}
+          <a
+            href={data.stadiumImageCredit.page}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {data.stadiumImageCredit.author}
+          </a>{" "}
+          ·{" "}
+          <a
+            href={data.stadiumImageCredit.licenseUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {data.stadiumImageCredit.license}
+          </a>
+        </p>
+      )}
       {data.stale && <Notice>Exibindo dados em cache.</Notice>}
       <div className="detail-content">
         <div className="tabs detail-tabs">

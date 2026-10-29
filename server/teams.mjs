@@ -1,4 +1,8 @@
 import {
+  brazilProfileReferences,
+  brazilStadiumCredit,
+} from "./brazil-profiles.mjs";
+import {
   footballRosterPosition,
   footballRosterGroup,
 } from "./american-football.mjs";
@@ -271,6 +275,7 @@ export async function teamDetails(id) {
       : [];
   return {
     team,
+    stadiumImageCredit: brazilStadiumCredit(team),
     profileReferences:
       team.sport === "football"
         ? nflProfileReferences(team.id)
@@ -279,6 +284,7 @@ export async function teamDetails(id) {
           : team.league === "eng.1"
             ? premierLeagueReferences(team.id)
             : [
+                ...brazilProfileReferences(team.id, team.league),
                 ...leagueProfileReferences(team.id, team.league),
                 ...mlsProfileReferences(team.id, team.league),
               ],

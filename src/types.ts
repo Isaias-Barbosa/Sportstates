@@ -399,6 +399,12 @@ export type TeamCompetitionsData = {
   source: string;
 };
 export type ClubDetails = {
+  stadiumImageCredit?: {
+    page: string;
+    author: string;
+    license: string;
+    licenseUrl: string;
+  } | null;
   profileReferences?: { label: string; url: string }[];
   team: ClubProfile;
   athletes: {

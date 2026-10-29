@@ -1,0 +1,742 @@
+{
+  "revision": "brazil-serie-a-missing-fields-2026-v1",
+  "reviewedAt": "2026-10-28",
+  "expectedIds": [
+    "1936",
+    "2022",
+    "2026",
+    "2029",
+    "2674",
+    "3445",
+    "3454",
+    "3456",
+    "3457",
+    "3458",
+    "4936",
+    "6079",
+    "6086",
+    "6273",
+    "7632",
+    "819",
+    "874",
+    "9169",
+    "9318",
+    "9967"
+  ],
+  "preservedIds": ["819", "2026"],
+  "clubs": [
+    {
+      "id": "3458",
+      "name": "Athletico Paranaense",
+      "sport": "soccer",
+      "league": "bra.1",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/3458.png",
+      "description": "Fundado em 26 de março de 1924, o Club Athletico Paranaense representa Curitiba e é conhecido como Furacão. Suas cores são o vermelho e o preto. Manda seus jogos na Arena da Baixada e conquistou o Campeonato Brasileiro de 2001, a Copa do Brasil de 2019 e duas edições da Copa Sul-Americana.",
+      "city": "Curitiba",
+      "stadium": "Estádio Mário Celso Petraglia (Arena da Baixada)",
+      "website": "https://www.athletico.com.br/",
+      "colors": ["#d71920", "#000000"],
+      "honours": [
+        "Copa Sul-Americana - 2018 e 2021",
+        "Campeonato Brasileiro Série A - 2001",
+        "Copa do Brasil - 2019",
+        "Campeonato Brasileiro Série B - 1995",
+        "Campeonato Paranaense - 1925, 1929, 1930, 1934, 1936, 1940, 1943, 1945, 1949, 1958, 1970, 1982, 1983, 1985, 1988, 1990, 1998, 2000, 2001, 2002, 2005, 2009, 2016, 2018, 2019, 2020, 2023 e 2024",
+        "Copa Suruga Bank - 2019"
+      ],
+      "stadium_image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/20/Arenadabaixada2.jpg/1280px-Arenadabaixada2.jpg",
+      "stadiumPhoto": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/20/Arenadabaixada2.jpg/1280px-Arenadabaixada2.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:Arenadabaixada2.jpg",
+        "author": "Gustavo Paolo",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/deed.en"
+      },
+      "sources": [
+        {
+          "label": "Wikipedia em português — história e principais títulos",
+          "url": "https://pt.wikipedia.org/wiki/Club_Athletico_Paranaense"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://www.athletico.com.br/"
+        },
+        {
+          "label": "Conferência de estádio ou conquista recente",
+          "url": "https://loja.athletico.com.br/institucional/quem-somos"
+        }
+      ]
+    },
+    {
+      "id": "7632",
+      "name": "Atlético-MG",
+      "sport": "soccer",
+      "league": "bra.1",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/7632.png",
+      "description": "O Clube Atlético Mineiro foi fundado em Belo Horizonte em 25 de março de 1908. Conhecido como Galo, tem o preto e o branco como cores e a Arena MRV como casa. Sua trajetória inclui títulos do Campeonato Brasileiro, da Copa do Brasil e da Libertadores da América.",
+      "city": "Belo Horizonte",
+      "stadium": "Arena MRV",
+      "website": "https://atletico.com.br/",
+      "colors": ["#000000", "#ffffff"],
+      "honours": [
+        "Copa Libertadores da América - 2013",
+        "Recopa Sul-Americana - 2014",
+        "Copa CONMEBOL - 1992 e 1997",
+        "Campeonato Brasileiro Série A - 1937, 1971 e 2021",
+        "Copa do Brasil - 2014 e 2021",
+        "Supercopa do Brasil - 2022",
+        "Campeonato Brasileiro Série B - 2006",
+        "Campeonato Mineiro - 1915, 1926, 1927, 1931, 1932, 1936, 1938, 1939, 1941, 1942, 1946, 1947, 1949, 1950, 1952, 1953, 1954, 1955, 1956, 1958, 1962, 1963, 1970, 1976, 1978, 1979, 1980, 1981, 1982, 1983, 1985, 1986, 1988, 1989, 1991, 1995, 1999, 2000, 2007, 2010, 2012, 2013, 2015, 2017, 2020, 2021, 2022, 2023, 2024 e 2025"
+      ],
+      "stadium_image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b5/ARENA_MRV.jpg/1280px-ARENA_MRV.jpg",
+      "stadiumPhoto": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b5/ARENA_MRV.jpg/1280px-ARENA_MRV.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:ARENA_MRV.jpg",
+        "author": "Heuler.silva",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+      },
+      "sources": [
+        {
+          "label": "Wikipedia em português — história e principais títulos",
+          "url": "https://pt.wikipedia.org/wiki/Clube_Atl%C3%A9tico_Mineiro"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://atletico.com.br/"
+        }
+      ]
+    },
+    {
+      "id": "9967",
+      "name": "Bahia",
+      "sport": "soccer",
+      "league": "bra.1",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/9967.png",
+      "description": "Fundado em 1º de janeiro de 1931, o Esporte Clube Bahia é um clube de Salvador identificado pelas cores azul, vermelha e branca. Conhecido como Esquadrão de Aço, manda seus jogos na Arena Fonte Nova. Foi campeão brasileiro em 1959 e 1988 e tem uma história de conquistas estaduais e regionais.",
+      "city": "Salvador",
+      "stadium": "Arena Fonte Nova",
+      "website": "https://www.esporteclubebahia.com.br/",
+      "colors": ["#005ca9", "#e30613", "#ffffff"],
+      "honours": [
+        "Campeonato Brasileiro Série A - 1959 e 1988",
+        "Copa do Nordeste - 2001, 2002, 2017, 2021 e 2025",
+        "Campeonato Baiano - 1931, 1933, 1934, 1936, 1938, 1940, 1944, 1945, 1947, 1948, 1949, 1950, 1952, 1954, 1956, 1958, 1959, 1960, 1961, 1962, 1967, 1970, 1971, 1973, 1974, 1975, 1976, 1977, 1978, 1979, 1981, 1982, 1983, 1984, 1986, 1987, 1988, 1991, 1993, 1994, 1998, 1999, 2001, 2012, 2014, 2015, 2018, 2019, 2020, 2023, 2025 e 2026"
+      ],
+      "stadium_image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/34/Arena_Fonte_Nova_view_from_lake_%28zoom%29.jpg/1280px-Arena_Fonte_Nova_view_from_lake_%28zoom%29.jpg",
+      "stadiumPhoto": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/34/Arena_Fonte_Nova_view_from_lake_%28zoom%29.jpg/1280px-Arena_Fonte_Nova_view_from_lake_%28zoom%29.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:Arena_Fonte_Nova_view_from_lake_(zoom).jpg",
+        "author": "Faquini Produção Fotográfica; Fotógrafo David Campbell;",
+        "license": "CC BY 3.0 br",
+        "licenseUrl": "https://creativecommons.org/licenses/by/3.0/br/deed.en"
+      },
+      "sources": [
+        {
+          "label": "Wikipedia em português — história e principais títulos",
+          "url": "https://pt.wikipedia.org/wiki/Esporte_Clube_Bahia"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://www.esporteclubebahia.com.br/"
+        },
+        {
+          "label": "Conferência de estádio ou conquista recente",
+          "url": "https://www.esporteclubebahia.com.br/campeoes/"
+        }
+      ]
+    },
+    {
+      "id": "6086",
+      "name": "Botafogo",
+      "sport": "soccer",
+      "league": "bra.1",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/6086.png",
+      "description": "O Botafogo de Futebol e Regatas nasceu da união, em 1942, dos clubes de remo e futebol fundados em 1894 e 1904. Sediado no Rio de Janeiro, o Alvinegro tem a Estrela Solitária como símbolo e joga no Estádio Nilton Santos. Conquistou a Libertadores e o Campeonato Brasileiro em 2024.",
+      "city": "Rio de Janeiro",
+      "stadium": "Estádio Nilton Santos",
+      "website": "https://www.botafogo.com.br/",
+      "colors": ["#000000", "#ffffff"],
+      "honours": [
+        "Copa Libertadores da América - 2024",
+        "Copa CONMEBOL - 1993",
+        "Campeonato Brasileiro Série A - 1968, 1995 e 2024",
+        "Campeonato Brasileiro Série B - 2015 e 2021",
+        "Campeonato Carioca - 1907, 1910, 1912, 1930, 1932, 1933, 1934, 1935, 1948, 1957, 1961, 1962, 1967, 1968, 1989, 1990, 1997, 2006, 2010, 2013 e 2018"
+      ],
+      "stadium_image": "https://upload.wikimedia.org/wikipedia/commons/9/96/Nilton_Santos%2C_Est%C3%A1dio_Nilton_Santos.jpg",
+      "stadiumPhoto": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/9/96/Nilton_Santos%2C_Est%C3%A1dio_Nilton_Santos.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:Nilton_Santos,_Est%C3%A1dio_Nilton_Santos.jpg",
+        "author": "Andrea Hernández",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+      },
+      "sources": [
+        {
+          "label": "Wikipedia em português — história e principais títulos",
+          "url": "https://pt.wikipedia.org/wiki/Botafogo_de_Futebol_e_Regatas"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://www.botafogo.com.br/"
+        }
+      ]
+    },
+    {
+      "id": "9318",
+      "name": "Chapecoense",
+      "sport": "soccer",
+      "league": "bra.1",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/9318.png",
+      "description": "A Associação Chapecoense de Futebol foi fundada em 10 de maio de 1973 em Chapecó, Santa Catarina. Conhecida como Verdão do Oeste, veste verde e branco e manda suas partidas na Arena Condá. Entre suas principais conquistas estão a Copa Sul-Americana de 2016 e o Campeonato Brasileiro da Série B de 2020.",
+      "city": "Chapecó",
+      "stadium": "Arena Condá",
+      "website": "https://chapecoense.com/",
+      "colors": ["#008a45", "#ffffff"],
+      "honours": [
+        "Copa Sul-Americana - 2016",
+        "Campeonato Brasileiro Série B - 2020",
+        "Campeonato Catarinense - 1977, 1996, 2007, 2011, 2016, 2017 e 2020"
+      ],
+      "stadium_image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e5/Arena_Cond%C3%A1.jpg/1280px-Arena_Cond%C3%A1.jpg",
+      "stadiumPhoto": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e5/Arena_Cond%C3%A1.jpg/1280px-Arena_Cond%C3%A1.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:Arena_Cond%C3%A1.jpg",
+        "author": "Rafinha C.",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+      },
+      "sources": [
+        {
+          "label": "Wikipedia em português — história e principais títulos",
+          "url": "https://pt.wikipedia.org/wiki/Associa%C3%A7%C3%A3o_Chapecoense_de_Futebol"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://chapecoense.com/"
+        }
+      ]
+    },
+    {
+      "id": "874",
+      "name": "Corinthians",
+      "sport": "soccer",
+      "league": "bra.1",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/874.png",
+      "description": "O Sport Club Corinthians Paulista foi fundado em São Paulo em 1º de setembro de 1910. Conhecido como Timão, tem o preto e o branco como cores e manda seus jogos na Neo Química Arena. Sua história reúne títulos mundiais, a Libertadores da América e conquistas nacionais e estaduais.",
+      "city": "São Paulo",
+      "stadium": "Neo Química Arena",
+      "website": "https://www.corinthians.com.br/",
+      "colors": ["#000000", "#ffffff"],
+      "honours": [
+        "Copa do Mundo de Clubes da FIFA - 2000 e 2012",
+        "Copa Libertadores da América - 2012",
+        "Recopa Sul-Americana - 2013",
+        "Campeonato Brasileiro Série A - 1990, 1998, 1999, 2005, 2011, 2015 e 2017",
+        "Copa do Brasil - 1995, 2002, 2009 e 2025",
+        "Supercopa Rei - 1991 e 2026",
+        "Campeonato Brasileiro Série B - 2008",
+        "Campeonato Paulista - 1914, 1916, 1922, 1923, 1924, 1928, 1929, 1930, 1937, 1938, 1939, 1941, 1951, 1952, 1954, 1977, 1979, 1982, 1983, 1988, 1995, 1997, 1999, 2001, 2003, 2009, 2013, 2017, 2018, 2019 e 2025"
+      ],
+      "stadium_image": "https://upload.wikimedia.org/wikipedia/commons/c/c6/ARENA_CORINTHIANS.jpg",
+      "stadiumPhoto": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/c/c6/ARENA_CORINTHIANS.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:ARENA_CORINTHIANS.jpg",
+        "author": "Alexandre Breveglieri",
+        "license": "CC BY 2.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/2.0"
+      },
+      "sources": [
+        {
+          "label": "Wikipedia em português — história e principais títulos",
+          "url": "https://pt.wikipedia.org/wiki/Sport_Club_Corinthians_Paulista"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://www.corinthians.com.br/"
+        },
+        {
+          "label": "Conferência de estádio ou conquista recente",
+          "url": "https://www.cbf.com.br/futebol-brasileiro/noticias/copa-do-brasil/profissional/elenco-do-corinthians-celebra-tetracampeonato-da-copa-do-brasil"
+        }
+      ]
+    },
+    {
+      "id": "3456",
+      "name": "Coritiba",
+      "sport": "soccer",
+      "league": "bra.1",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/3456.png",
+      "description": "Fundado em 12 de outubro de 1909, o Coritiba Foot Ball Club representa Curitiba e é conhecido como Coxa. O verde e o branco identificam o clube, cuja casa é o Couto Pereira. Foi campeão brasileiro em 1985 e conquistou a Série B em 2007, 2010 e 2025.",
+      "city": "Curitiba",
+      "stadium": "Estádio Major Antônio Couto Pereira",
+      "website": "https://www.coritiba.com.br/",
+      "colors": ["#006b3f", "#ffffff"],
+      "honours": [
+        "Campeonato Brasileiro Série A - 1985",
+        "Campeonato Brasileiro Série B - 2007, 2010 e 2025",
+        "Campeonato Paranaense - 1916, 1927, 1931, 1933, 1935, 1939, 1941, 1942, 1946, 1947, 1951, 1952, 1954, 1956, 1957, 1959, 1960, 1968, 1969, 1971, 1972, 1973, 1974, 1975, 1976, 1978, 1979, 1986, 1989, 1999, 2003, 2004, 2008, 2010, 2011, 2012, 2013, 2017 e 2022"
+      ],
+      "stadium_image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/39/Est%C3%A1dio_Major_Ant%C3%B4nio_Couto_Pereira_%2817819160010%29.jpg/1280px-Est%C3%A1dio_Major_Ant%C3%B4nio_Couto_Pereira_%2817819160010%29.jpg",
+      "stadiumPhoto": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/39/Est%C3%A1dio_Major_Ant%C3%B4nio_Couto_Pereira_%2817819160010%29.jpg/1280px-Est%C3%A1dio_Major_Ant%C3%B4nio_Couto_Pereira_%2817819160010%29.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:Est%C3%A1dio_Major_Ant%C3%B4nio_Couto_Pereira_(17819160010).jpg",
+        "author": "Roberto Sabino from Campinas - SP, BRAZIL",
+        "license": "CC BY 2.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/2.0"
+      },
+      "sources": [
+        {
+          "label": "Wikipedia em português — história e principais títulos",
+          "url": "https://pt.wikipedia.org/wiki/Coritiba_Foot_Ball_Club"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://www.coritiba.com.br/"
+        },
+        {
+          "label": "Conferência de estádio ou conquista recente",
+          "url": "https://www.cbf.com.br/futebol-brasileiro/noticias/noticias-supercopa/a/coritiba-e-o-campeao-da-serie-b-de-2025"
+        }
+      ]
+    },
+    {
+      "id": "2022",
+      "name": "Cruzeiro",
+      "sport": "soccer",
+      "league": "bra.1",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/2022.png",
+      "description": "O Cruzeiro Esporte Clube foi fundado em Belo Horizonte em 2 de janeiro de 1921, com o nome de Palestra Itália, e adotou a denominação atual em 1942. Conhecido como Raposa, veste azul e branco e manda seus jogos no Mineirão. Entre suas conquistas estão a Libertadores, o Campeonato Brasileiro e a Copa do Brasil.",
+      "city": "Belo Horizonte",
+      "stadium": "Mineirão",
+      "website": "https://www.cruzeiro.com.br/",
+      "colors": ["#003da5", "#ffffff"],
+      "honours": [
+        "Copa Libertadores da América - 1976 e 1997",
+        "Supercopa Libertadores - 1991 e 1992",
+        "Recopa Sul-Americana - 1998",
+        "Copa Master da Supercopa - 1995",
+        "Campeonato Brasileiro Série A - 1966, 2003, 2013 e 2014",
+        "Copa do Brasil - 1993, 1996, 2000, 2003, 2017 e 2018",
+        "Campeonato Brasileiro Série B - 2022",
+        "Campeonato Mineiro - 1928, 1929, 1930, 1940, 1943, 1944, 1945, 1956, 1959, 1960, 1961, 1965, 1966, 1967, 1968, 1969, 1972, 1973, 1974, 1975, 1977, 1984, 1987, 1990, 1992, 1994, 1996, 1997, 1998, 2003, 2004, 2006, 2008, 2009, 2011, 2014, 2018, 2019 e 2026"
+      ],
+      "stadium_image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/82/Mineir%C3%A3o_A%C3%A9rea.jpg/1280px-Mineir%C3%A3o_A%C3%A9rea.jpg",
+      "stadiumPhoto": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/82/Mineir%C3%A3o_A%C3%A9rea.jpg/1280px-Mineir%C3%A3o_A%C3%A9rea.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:Mineir%C3%A3o_A%C3%A9rea.jpg",
+        "author": "Rodrigo Lima/Portal da Copa",
+        "license": "CC BY 2.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/2.0"
+      },
+      "sources": [
+        {
+          "label": "Wikipedia em português — história e principais títulos",
+          "url": "https://pt.wikipedia.org/wiki/Cruzeiro_Esporte_Clube"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://www.cruzeiro.com.br/"
+        }
+      ]
+    },
+    {
+      "id": "3445",
+      "name": "Fluminense",
+      "sport": "soccer",
+      "league": "bra.1",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/3445.png",
+      "description": "O Fluminense Football Club foi fundado no Rio de Janeiro em 21 de julho de 1902. Identificado pelas cores verde, branca e grená, o Tricolor tem sua sede histórica nas Laranjeiras e manda suas principais partidas no Maracanã. Sua galeria inclui a Libertadores de 2023, a Recopa de 2024 e quatro Campeonatos Brasileiros.",
+      "city": "Rio de Janeiro",
+      "stadium": "Maracanã",
+      "website": "https://www.fluminense.com.br/",
+      "colors": ["#7a172c", "#006341", "#ffffff"],
+      "honours": [
+        "Copa Libertadores da América - 2023",
+        "Recopa Sul-Americana - 2024",
+        "Campeonato Brasileiro Série A - 1970, 1984, 2010 e 2012",
+        "Copa do Brasil - 2007",
+        "Campeonato Brasileiro Série C - 1999",
+        "Campeonato Carioca - 1906, 1907, 1908, 1909, 1911, 1917, 1918, 1919, 1924, 1936, 1937, 1938, 1940, 1941, 1946, 1951, 1959, 1964, 1969, 1971, 1973, 1975, 1976, 1980, 1983, 1984, 1985, 1995, 2002, 2005, 2012, 2022 e 2023",
+        "Copa Rio - 1952",
+        "Primeira Liga - 2016"
+      ],
+      "stadium_image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a4/Maracana_2022.jpg/1280px-Maracana_2022.jpg",
+      "stadiumPhoto": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a4/Maracana_2022.jpg/1280px-Maracana_2022.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:Maracana_2022.jpg",
+        "author": "Arne Müseler / www.arne-mueseler.com",
+        "license": "CC BY-SA 3.0 de",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/de/deed.en"
+      },
+      "sources": [
+        {
+          "label": "Wikipedia em português — história e principais títulos",
+          "url": "https://pt.wikipedia.org/wiki/Fluminense_Football_Club"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://www.fluminense.com.br/"
+        }
+      ]
+    },
+    {
+      "id": "6273",
+      "name": "Grêmio",
+      "sport": "soccer",
+      "league": "bra.1",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/6273.png",
+      "description": "O Grêmio Foot-Ball Porto Alegrense foi fundado em 15 de setembro de 1903, em Porto Alegre. Conhecido como Tricolor Gaúcho, tem azul, preto e branco como cores e a Arena do Grêmio como casa. Conquistou a Copa Intercontinental de 1983, três Libertadores e títulos nacionais e estaduais.",
+      "city": "Porto Alegre",
+      "stadium": "Arena do Grêmio",
+      "website": "https://gremio.net/",
+      "colors": ["#00adef", "#000000", "#ffffff"],
+      "honours": [
+        "Campeonato Brasileiro Série A - 1981 e 1996",
+        "Campeonato Brasileiro Série B - 2005",
+        "Campeonato Gaúcho - 1921, 1922, 1926, 1931, 1932, 1946, 1949, 1956, 1957, 1958, 1959, 1960, 1962, 1963, 1964, 1965, 1966, 1967, 1968, 1977, 1979, 1980, 1985, 1986, 1987, 1988, 1989, 1990, 1993, 1995, 1996, 1999, 2001, 2006, 2007, 2010, 2018 , 2019, 2020, 2021, 2022, 2023, 2024 e 2026",
+        "Copa Intercontinental - 1983",
+        "Copa Libertadores da América - 1983, 1995, 2017",
+        "Recopa Sul-Americana - 1996, 2018",
+        "Copa do Brasil - 1989, 1994, 1997, 2001, 2016",
+        "Supercopa do Brasil - 1990"
+      ],
+      "stadium_image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a2/Arena_do_Gr%C3%AAmio.jpg/1280px-Arena_do_Gr%C3%AAmio.jpg",
+      "stadiumPhoto": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a2/Arena_do_Gr%C3%AAmio.jpg/1280px-Arena_do_Gr%C3%AAmio.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:Arena_do_Gr%C3%AAmio.jpg",
+        "author": "Cecilia Heinen",
+        "license": "CC BY 2.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/2.0"
+      },
+      "sources": [
+        {
+          "label": "Wikipedia em português — história e principais títulos",
+          "url": "https://pt.wikipedia.org/wiki/Gr%C3%AAmio_Foot-Ball_Porto_Alegrense"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://gremio.net/"
+        }
+      ]
+    },
+    {
+      "id": "1936",
+      "name": "Internacional",
+      "sport": "soccer",
+      "league": "bra.1",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/1936.png",
+      "description": "O Sport Club Internacional foi fundado em Porto Alegre em 4 de abril de 1909. Conhecido como Colorado e Clube do Povo, veste vermelho e branco e manda seus jogos no Beira-Rio. Entre suas conquistas estão o Mundial de Clubes da FIFA de 2006, duas Libertadores e três Campeonatos Brasileiros.",
+      "city": "Porto Alegre",
+      "stadium": "Estádio Beira-Rio",
+      "website": "https://internacional.com.br/",
+      "colors": ["#e30613", "#ffffff"],
+      "honours": [
+        "Copa do Mundo de Clubes da FIFA - 2006",
+        "Copa Libertadores da América - 2006 e 2010",
+        "Copa Sul-Americana - 2008",
+        "Recopa Sul-Americana - 2007 e 2011",
+        "Campeonato Brasileiro Série A - 1975, 1976 e 1979",
+        "Copa do Brasil - 1992",
+        "Campeonato Gaúcho - 1927, 1934, 1940, 1941, 1942, 1943, 1944, 1945, 1947, 1948, 1950, 1951, 1952, 1953, 1955, 1961, 1969, 1970, 1971, 1972, 1973, 1974, 1975, 1976, 1978, 1981, 1982, 1983, 1984, 1991, 1992, 1994, 1997, 2002, 2003, 2004, 2005, 2008, 2009, 2011, 2012, 2013, 2014, 2015, 2016 e 2025"
+      ],
+      "stadium_image": "https://upload.wikimedia.org/wikipedia/commons/3/31/Beira-Rio-Stadium-Porto-Alegre-Brazil.jpg",
+      "stadiumPhoto": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/3/31/Beira-Rio-Stadium-Porto-Alegre-Brazil.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:Beira-Rio-Stadium-Porto-Alegre-Brazil.jpg",
+        "author": "Israel Heldt",
+        "license": "CC BY 2.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/2.0"
+      },
+      "sources": [
+        {
+          "label": "Wikipedia em português — história e principais títulos",
+          "url": "https://pt.wikipedia.org/wiki/Sport_Club_Internacional"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://internacional.com.br/"
+        }
+      ]
+    },
+    {
+      "id": "9169",
+      "name": "Mirassol",
+      "sport": "soccer",
+      "league": "bra.1",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/9169.png",
+      "description": "Fundado em 9 de novembro de 1925, o Mirassol Futebol Clube representa a cidade de Mirassol, no interior de São Paulo. Conhecido como Leão, veste amarelo e verde e manda suas partidas no Maião. Sua ascensão nacional inclui os títulos da Série D de 2020 e da Série C de 2022.",
+      "city": "Mirassol",
+      "stadium": "Estádio José Maria de Campos Maia (Maião)",
+      "website": "https://mirassolfc.com.br/",
+      "colors": ["#ffdd00", "#00783e"],
+      "honours": [
+        "Campeonato Brasileiro Série D - 2020",
+        "Campeonato Brasileiro Série C - 2022"
+      ],
+      "stadium_image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7a/Patinhas_esteve_aqui_-_Estadio_Mirassol_2_-_panoramio.jpg/1280px-Patinhas_esteve_aqui_-_Estadio_Mirassol_2_-_panoramio.jpg",
+      "stadiumPhoto": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7a/Patinhas_esteve_aqui_-_Estadio_Mirassol_2_-_panoramio.jpg/1280px-Patinhas_esteve_aqui_-_Estadio_Mirassol_2_-_panoramio.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:Patinhas_esteve_aqui_-_Estadio_Mirassol_2_-_panoramio.jpg",
+        "author": "Renato Patinhas",
+        "license": "CC BY 3.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/3.0"
+      },
+      "sources": [
+        {
+          "label": "Wikipedia em português — história e principais títulos",
+          "url": "https://pt.wikipedia.org/wiki/Mirassol_Futebol_Clube"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://mirassolfc.com.br/"
+        }
+      ]
+    },
+    {
+      "id": "2029",
+      "name": "Palmeiras",
+      "sport": "soccer",
+      "league": "bra.1",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/2029.png",
+      "description": "A Sociedade Esportiva Palmeiras foi fundada em São Paulo em 26 de agosto de 1914, com o nome de Palestra Italia, e adotou o nome atual em 1942. Conhecido como Verdão, tem o verde e o branco como cores. Sua casa é o Nubank Parque, arena anteriormente chamada Allianz Parque.",
+      "city": "São Paulo",
+      "stadium": "Nubank Parque",
+      "website": "https://www.palmeiras.com.br/",
+      "colors": ["#006437", "#ffffff"],
+      "honours": [
+        "Copa Libertadores da América - 1999, 2020 e 2021",
+        "Recopa Sul-Americana - 2022",
+        "Campeonato Brasileiro Série A - 1960, 1967-I, 1967-II, 1969, 1972, 1973, 1993, 1994, 2016, 2018, 2022 e 2023",
+        "Copa do Brasil - 1998, 2012, 2015 e 2020",
+        "Supercopa Rei - 2023",
+        "Campeonato Brasileiro Série B - 2003 e 2013",
+        "Campeonato Paulista - 1920, 1926, 1927, 1932, 1933, 1934, 1936, 1940, 1942, 1944, 1947, 1950, 1959, 1963, 1966, 1972, 1974, 1976, 1993, 1994, 1996, 2008, 2020, 2022, 2023, 2024 e 2026",
+        "Copa Rio - 1951"
+      ],
+      "stadium_image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/95/Imagens_da_Cidade_de_S%C3%A3o_Paulo_e_Zool%C3%B3gico_da_Capital_Paulista._%2847480340301%29.jpg/1280px-Imagens_da_Cidade_de_S%C3%A3o_Paulo_e_Zool%C3%B3gico_da_Capital_Paulista._%2847480340301%29.jpg",
+      "stadiumPhoto": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/95/Imagens_da_Cidade_de_S%C3%A3o_Paulo_e_Zool%C3%B3gico_da_Capital_Paulista._%2847480340301%29.jpg/1280px-Imagens_da_Cidade_de_S%C3%A3o_Paulo_e_Zool%C3%B3gico_da_Capital_Paulista._%2847480340301%29.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:Imagens_da_Cidade_de_S%C3%A3o_Paulo_e_Zool%C3%B3gico_da_Capital_Paulista._(47480340301).jpg",
+        "author": "Governo do Estado de São Paulo",
+        "license": "CC BY 2.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/2.0"
+      },
+      "sources": [
+        {
+          "label": "Wikipedia em português — história e principais títulos",
+          "url": "https://pt.wikipedia.org/wiki/Sociedade_Esportiva_Palmeiras"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://www.palmeiras.com.br/"
+        },
+        {
+          "label": "Conferência de estádio ou conquista recente",
+          "url": "https://palmeiras.com.br/noticias/venda-de-ingressos-para-classico-contra-corinthians-no-nubank-parque-gol-norte-com-restricoes/"
+        }
+      ]
+    },
+    {
+      "id": "6079",
+      "name": "Red Bull Bragantino",
+      "sport": "soccer",
+      "league": "bra.1",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/6079.png",
+      "description": "O Red Bull Bragantino tem origem no Clube Atlético Bragantino, fundado em 8 de janeiro de 1928 em Bragança Paulista. A parceria com a Red Bull começou em 2019 e a denominação atual foi adotada em 2020. Conhecido como Massa Bruta, conquistou o Paulista de 1990 e duas edições da Série B. Durante as obras do Nabi Abi Chedid, utiliza o Estádio Cícero de Souza Marques.",
+      "city": "Bragança Paulista",
+      "stadium": "Estádio Municipal Cícero de Souza Marques",
+      "website": "https://www.redbullbragantino.com/br-pt",
+      "colors": ["#e21b34", "#ffffff", "#000000"],
+      "honours": [
+        "Campeonato Brasileiro Série B - 1989 e 2019",
+        "Campeonato Brasileiro Série C - 2007",
+        "Campeonato Paulista - 1990",
+        "Campeonato Paulista - Segunda Divisão - 1965 e 1988"
+      ],
+      "stadium_image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/86/Est%C3%A1dio_C%C3%ADcero_de_Souza_Marques.jpg/1280px-Est%C3%A1dio_C%C3%ADcero_de_Souza_Marques.jpg",
+      "stadiumPhoto": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/86/Est%C3%A1dio_C%C3%ADcero_de_Souza_Marques.jpg/1280px-Est%C3%A1dio_C%C3%ADcero_de_Souza_Marques.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:Est%C3%A1dio_C%C3%ADcero_de_Souza_Marques.jpg",
+        "author": "BP Drones",
+        "license": "CC BY 3.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/3.0"
+      },
+      "sources": [
+        {
+          "label": "Wikipedia em português — história e principais títulos",
+          "url": "https://pt.wikipedia.org/wiki/Red_Bull_Bragantino"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://www.redbullbragantino.com/br-pt"
+        },
+        {
+          "label": "Conferência de estádio ou conquista recente",
+          "url": "https://www.redbullbragantino.com/br-pt/blog/como-chegar-ao-estadio-red-bull-bragantino"
+        }
+      ]
+    },
+    {
+      "id": "4936",
+      "name": "Remo",
+      "sport": "soccer",
+      "league": "bra.1",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/4936.png",
+      "description": "O Clube do Remo foi fundado em Belém em 5 de fevereiro de 1905. Conhecido como Leão Azul, tem o azul-marinho e o branco como cores e é proprietário do Baenão. Também manda partidas no Mangueirão, utilizado na Série A de 2026. Sua história inclui o título da Série C de 2005, a Copa Verde de 2021 e conquistas paraenses.",
+      "city": "Belém",
+      "stadium": "Estádio Olímpico do Pará (Mangueirão)",
+      "website": "https://www.clubedoremo.com.br/",
+      "colors": ["#071d49", "#ffffff"],
+      "honours": [
+        "Campeonato Brasileiro Série C - 2005",
+        "Copa Verde - 2021",
+        "Campeonato Paraense - 1913, 1914, 1915, 1916, 1917, 1918, 1919, 1924, 1925, 1926, 1930, 1933, 1936, 1940, 1949, 1950, 1952, 1953, 1954, 1960, 1964, 1968, 1973, 1974, 1975, 1977, 1978, 1979, 1986, 1989, 1990, 1991, 1993, 1994, 1995, 1996, 1997, 1999, 2003, 2004, 2007, 2008, 2014, 2015, 2018, 2019, 2022 e 2025"
+      ],
+      "stadium_image": "https://upload.wikimedia.org/wikipedia/commons/0/0d/Mangueir%C3%A3o_cheio.jpg",
+      "stadiumPhoto": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/0/0d/Mangueir%C3%A3o_cheio.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:Mangueir%C3%A3o_cheio.jpg",
+        "author": "Jamesfrontier",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+      },
+      "sources": [
+        {
+          "label": "Wikipedia em português — história e principais títulos",
+          "url": "https://pt.wikipedia.org/wiki/Clube_do_Remo"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://www.clubedoremo.com.br/"
+        }
+      ]
+    },
+    {
+      "id": "2674",
+      "name": "Santos",
+      "sport": "soccer",
+      "league": "bra.1",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/2674.png",
+      "description": "O Santos Futebol Clube foi fundado em 14 de abril de 1912 na cidade de Santos, no litoral paulista. Conhecido como Peixe, veste branco e preto e tem a Vila Belmiro como casa. O clube de Pelé conquistou duas Copas Intercontinentais, três Libertadores e oito Campeonatos Brasileiros da primeira divisão.",
+      "city": "Santos",
+      "stadium": "Estádio Urbano Caldeira (Vila Belmiro)",
+      "website": "https://www.santosfc.com.br/",
+      "colors": ["#ffffff", "#000000"],
+      "honours": [
+        "Copa Intercontinental - 1962 e 1963",
+        "Recopa Intercontinental - 1968",
+        "Copa Libertadores da América - 1962, 1963 e 2011",
+        "Recopa Sul-Americana - 2012",
+        "Copa CONMEBOL - 1998",
+        "Campeonato Brasileiro Série A - 1961, 1962, 1963, 1964, 1965, 1968, 2002 e 2004",
+        "Copa do Brasil - 2010",
+        "Campeonato Brasileiro Série B - 2024",
+        "Campeonato Paulista - 1935, 1955, 1956, 1958, 1960, 1961, 1962, 1964, 1965, 1967, 1968, 1969, 1973, 1978, 1984, 2006, 2007, 2010, 2011, 2012, 2015 e 2016"
+      ],
+      "stadium_image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/47/Vila_Belmiro_pre-match_Santos_vs_Gr%C3%AAmio_2021.jpg/1280px-Vila_Belmiro_pre-match_Santos_vs_Gr%C3%AAmio_2021.jpg",
+      "stadiumPhoto": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/47/Vila_Belmiro_pre-match_Santos_vs_Gr%C3%AAmio_2021.jpg/1280px-Vila_Belmiro_pre-match_Santos_vs_Gr%C3%AAmio_2021.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:Vila_Belmiro_pre-match_Santos_vs_Gr%C3%AAmio_2021.jpg",
+        "author": "BrazilianDude70",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+      },
+      "sources": [
+        {
+          "label": "Wikipedia em português — história e principais títulos",
+          "url": "https://pt.wikipedia.org/wiki/Santos_Futebol_Clube"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://www.santosfc.com.br/"
+        }
+      ]
+    },
+    {
+      "id": "3454",
+      "name": "Vasco da Gama",
+      "sport": "soccer",
+      "league": "bra.1",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/3454.png",
+      "description": "O Club de Regatas Vasco da Gama foi fundado no Rio de Janeiro em 21 de agosto de 1898, inicialmente dedicado ao remo. Conhecido como Gigante da Colina, tem o preto, o branco e a cruz vermelha como símbolos e manda jogos em São Januário. Entre suas conquistas estão a Libertadores de 1998, quatro Brasileiros e a Copa do Brasil de 2011.",
+      "city": "Rio de Janeiro",
+      "stadium": "Estádio São Januário",
+      "website": "https://vasco.com.br/",
+      "colors": ["#000000", "#ffffff", "#e30613"],
+      "honours": [
+        "Copa Libertadores da América - 1998",
+        "Campeonato Brasileiro Série A - 1974, 1989, 1997 e 2000",
+        "Copa do Brasil - 2011",
+        "Campeonato Brasileiro Série B - 2009",
+        "Campeonato Carioca - 1923, 1924, 1929, 1934, 1936, 1945, 1947, 1949, 1950, 1952, 1956, 1958, 1970, 1977, 1982, 1987, 1988, 1992, 1993, 1994, 1998, 2003, 2015 e 2016",
+        "Campeonato Sul-Americano de Campeões - 1948",
+        "Copa Mercosul - 2000"
+      ],
+      "stadium_image": "https://upload.wikimedia.org/wikipedia/commons/8/89/Est%C3%A1dio_de_S%C3%A3o_Janu%C3%A1rio.jpg",
+      "stadiumPhoto": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/8/89/Est%C3%A1dio_de_S%C3%A3o_Janu%C3%A1rio.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:Est%C3%A1dio_de_S%C3%A3o_Janu%C3%A1rio.jpg",
+        "author": "Bernardo1989",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+      },
+      "sources": [
+        {
+          "label": "Wikipedia em português — história e principais títulos",
+          "url": "https://pt.wikipedia.org/wiki/Club_de_Regatas_Vasco_da_Gama"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://vasco.com.br/"
+        }
+      ]
+    },
+    {
+      "id": "3457",
+      "name": "Vitória",
+      "sport": "soccer",
+      "league": "bra.1",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/3457.png",
+      "description": "O Esporte Clube Vitória foi fundado em Salvador em 13 de maio de 1899. Conhecido como Leão da Barra, veste vermelho e preto e manda seus jogos no Barradão. Sua galeria de conquistas inclui o Campeonato Brasileiro da Série B de 2023, títulos baianos e cinco edições da Copa do Nordeste, incluindo a de 2026.",
+      "city": "Salvador",
+      "stadium": "Estádio Manoel Barradas (Barradão)",
+      "website": "https://ecvitoria.com.br/",
+      "colors": ["#c8102e", "#000000"],
+      "honours": [
+        "Campeonato Brasileiro Série B - 2023",
+        "Copa do Nordeste - 1997, 1999, 2003, 2010 e 2026",
+        "Campeonato Baiano - 1908, 1909, 1953, 1955, 1957, 1964, 1965, 1972, 1980, 1985, 1989, 1990, 1992, 1995, 1996, 1997, 1999, 2000, 2002, 2003, 2004, 2005, 2007, 2008, 2009, 2010, 2013, 2016, 2017 e 2024"
+      ],
+      "stadium_image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e0/Est%C3%A1dio_Barrad%C3%A3o_-_Esporte_Clube_Vit%C3%B3ria_8.jpg/1280px-Est%C3%A1dio_Barrad%C3%A3o_-_Esporte_Clube_Vit%C3%B3ria_8.jpg",
+      "stadiumPhoto": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e0/Est%C3%A1dio_Barrad%C3%A3o_-_Esporte_Clube_Vit%C3%B3ria_8.jpg/1280px-Est%C3%A1dio_Barrad%C3%A3o_-_Esporte_Clube_Vit%C3%B3ria_8.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:Est%C3%A1dio_Barrad%C3%A3o_-_Esporte_Clube_Vit%C3%B3ria_8.jpg",
+        "author": "Jaorge",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+      },
+      "sources": [
+        {
+          "label": "Wikipedia em português — história e principais títulos",
+          "url": "https://pt.wikipedia.org/wiki/Esporte_Clube_Vit%C3%B3ria"
+        },
+        {
+          "label": "Site oficial do clube",
+          "url": "https://ecvitoria.com.br/"
+        },
+        {
+          "label": "Conferência de estádio ou conquista recente",
+          "url": "https://www.cbf.com.br/futebol-brasileiro/noticias/copa-nordeste/copa-nordeste-masculino/vitoria-e-pentacampeao-da-copa-do-nordeste"
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "CBF — participantes da Série A 2026",
+      "url": "https://www.cbf.com.br/futebol-brasileiro/times/campeonato-brasileiro/serie-a/2026"
+    }
+  ]
+}

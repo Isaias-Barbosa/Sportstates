@@ -156,7 +156,11 @@ export async function route(url) {
       : [503, { error: "Neon Auth não configurado." }];
   }
   if (url.pathname === "/api/teams") {
-    const result = await cached("teams", CACHE_TTL.teams, () => listTeams());
+    const result = await cached(
+      "teams:brazil-profiles-v1",
+      CACHE_TTL.teams,
+      () => listTeams(),
+    );
     return [
       200,
       { teams: result.value, fetchedAt: new Date(result.at).toISOString() },
@@ -190,7 +194,7 @@ export async function route(url) {
     const id = q.get("id");
     if (!validProfileId(id)) return [400, { error: "Time inválido." }];
     const result = await cached(
-      `team:${id}`,
+      `team:brazil-profiles-v1:${id}`,
       teamTtl,
       () => teamDetails(id),
       300000,
