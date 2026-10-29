@@ -1422,3 +1422,13 @@ main:has(> .home-viva) {
     scroll-behavior: auto !important;
   }
 }
+
+/* Each competition starts expanded and can be collapsed with mouse or keyboard. */
+summary.hv-league-heading { cursor: pointer; list-style: none; user-select: none; }
+summary.hv-league-heading::-webkit-details-marker { display: none; }
+summary.hv-league-heading::marker { content: ''; }
+summary.hv-league-heading:focus-visible { outline: 2px solid #57bbff; outline-offset: -3px; }
+.hv-league-chevron { flex-shrink: 0; transition: transform .18s ease; }
+details.hv-league[open] > summary .hv-league-chevron { transform: rotate(180deg); }
+details.hv-league:not([open]) > summary { border-bottom: 0; }
+@media (prefers-reduced-motion: reduce) { .hv-league-chevron { transition: none; } }

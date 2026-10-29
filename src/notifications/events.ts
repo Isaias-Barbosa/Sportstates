@@ -83,11 +83,13 @@ export function detectAlerts(previous: Detail, current: Detail): GameAlert[] {
               ? "⚾"
               : m.sport === "football"
                 ? "🏈"
-                : m.sport === "tennis"
-                  ? "🎾"
-                  : "🏐";
+                : m.sport === "table-tennis"
+                  ? "🏓"
+                  : m.sport === "tennis"
+                    ? "🎾"
+                    : "🏐";
     if (m.sport === "baseball") label = "CORRIDA!";
-    if (["tennis", "volleyball"].includes(m.sport)) {
+    if (["tennis", "volleyball", "table-tennis"].includes(m.sport)) {
       if (before !== null && after !== null && after > before) {
         add(
           `set:${side}:${after}`,

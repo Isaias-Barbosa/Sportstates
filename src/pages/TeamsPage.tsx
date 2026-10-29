@@ -55,8 +55,17 @@ export default function TeamsPage() {
       : league === "all"
         ? sportTeams
         : sportTeams.filter((t) => t.league === league);
-  if (sport === "tennis")
-    return <Navigate to="/atletas?sport=tennis&league=atp" replace />;
+  if (["tennis", "table-tennis"].includes(sport))
+    return (
+      <Navigate
+        to={
+          sport === "table-tennis"
+            ? "/atletas?sport=table-tennis"
+            : "/atletas?sport=tennis&league=atp"
+        }
+        replace
+      />
+    );
   return (
     <>
       <div className="page-title">

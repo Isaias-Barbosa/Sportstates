@@ -39,7 +39,7 @@ test("each supported league has three destinations preserving sport and league",
       const links = leagueLinks(s.id, l.id);
       assert.deepEqual(
         links.map((l) => l.label),
-        s.id === "tennis"
+        ["tennis", "table-tennis"].includes(s.id)
           ? ["Jogos", "Atletas", "Ranking"]
           : ["Jogos", "Times", "Classificação"],
       );
@@ -47,7 +47,11 @@ test("each supported league has three destinations preserving sport and league",
         links.map(
           (l) => new URL(l.to, "https://sportstates.vercel.app").pathname,
         ),
-        ["/", s.id === "tennis" ? "/atletas" : "/times", "/classificacoes"],
+        [
+          "/",
+          ["tennis", "table-tennis"].includes(s.id) ? "/atletas" : "/times",
+          "/classificacoes",
+        ],
       );
       for (const link of links) {
         const u = new URL(link.to, "https://sportstates.vercel.app");

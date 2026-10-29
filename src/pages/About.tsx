@@ -47,6 +47,22 @@ export default function About() {
       <div className="about-grid">
         <section>
           <Radio />
+          <h2>Tênis de mesa · WTT / ITTF</h2>
+          <p>
+            Agenda, placares por set e ranking mundial de simples masculino vêm
+            das consultas públicas da World Table Tennis. Os horários usam
+            Brasília e a cobertura depende da publicação da fonte.
+          </p>
+          <a
+            href="https://mobileappapi.worldtabletennis.com/index.html"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Documentação da fonte oficial ↗
+          </a>
+        </section>
+        <section>
+          <Radio />
           <h2>Placares e partidas</h2>
           <p>
             Feeds públicos não oficiais da ESPN. Jogos e detalhes reais, sem

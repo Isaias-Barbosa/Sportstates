@@ -70,13 +70,21 @@ export default function MatchPage() {
     300000,
   );
   const [tab, setTab] = useState(
-    ["basketball", "football", "tennis", "volleyball"].includes(sport || "")
+    ["basketball", "football", "tennis", "volleyball", "table-tennis"].includes(
+      sport || "",
+    )
       ? "overview"
       : "events",
   );
   useEffect(() => {
     setTab(
-      ["basketball", "football", "tennis", "volleyball"].includes(sport || "")
+      [
+        "basketball",
+        "football",
+        "tennis",
+        "volleyball",
+        "table-tennis",
+      ].includes(sport || "")
         ? "overview"
         : "events",
     );
@@ -271,7 +279,9 @@ export default function MatchPage() {
             <div className="detail-content" id="match-tabs">
               <div className="tabs detail-tabs">
                 {[
-                  ...(["tennis", "volleyball"].includes(data.match.sport)
+                  ...(["tennis", "volleyball", "table-tennis"].includes(
+                    data.match.sport,
+                  )
                     ? [["overview", "Placar por sets"]]
                     : []),
                   ...(["basketball", "football"].includes(data.match.sport)
@@ -280,7 +290,9 @@ export default function MatchPage() {
                         ["players", "Jogadores"],
                       ]
                     : []),
-                  ...(["tennis", "volleyball"].includes(data.match.sport)
+                  ...(["tennis", "volleyball", "table-tennis"].includes(
+                    data.match.sport,
+                  )
                     ? []
                     : [
                         [
@@ -291,9 +303,12 @@ export default function MatchPage() {
                         ],
                         ["stats", "Estatísticas"],
                       ]),
-                  ...(["basketball", "football", "tennis"].includes(
-                    data.match.sport,
-                  )
+                  ...([
+                    "basketball",
+                    "football",
+                    "tennis",
+                    "table-tennis",
+                  ].includes(data.match.sport)
                     ? []
                     : [
                         [
@@ -308,9 +323,13 @@ export default function MatchPage() {
                     : []),
                   [
                     "standings",
-                    data.match.sport === "tennis" ? "Ranking" : "Classificação",
+                    ["tennis", "table-tennis"].includes(data.match.sport)
+                      ? "Ranking"
+                      : "Classificação",
                   ],
-                  ...(["tennis", "volleyball"].includes(data.match.sport)
+                  ...(["tennis", "volleyball", "table-tennis"].includes(
+                    data.match.sport,
+                  )
                     ? []
                     : [
                         [
@@ -329,7 +348,9 @@ export default function MatchPage() {
                   </button>
                 ))}
               </div>
-              {["tennis", "volleyball"].includes(data.match.sport) &&
+              {["tennis", "volleyball", "table-tennis"].includes(
+                data.match.sport,
+              ) &&
                 tab === "overview" && <SetScoreboard match={data.match} />}
               {data.match.sport === "basketball" &&
                 data.basketball &&

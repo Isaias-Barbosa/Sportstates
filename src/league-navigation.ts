@@ -5,11 +5,15 @@ export function leagueLinks(sport: string, league = "all") {
   return [
     { label: "Jogos", to: "/?" + query },
     {
-      label: sport === "tennis" ? "Atletas" : "Times",
-      to: (sport === "tennis" ? "/atletas?" : "/times?") + query,
+      label: ["tennis", "table-tennis"].includes(sport) ? "Atletas" : "Times",
+      to:
+        (["tennis", "table-tennis"].includes(sport) ? "/atletas?" : "/times?") +
+        query,
     },
     {
-      label: sport === "tennis" ? "Ranking" : "Classificação",
+      label: ["tennis", "table-tennis"].includes(sport)
+        ? "Ranking"
+        : "Classificação",
       to: "/classificacoes?" + query,
     },
   ];

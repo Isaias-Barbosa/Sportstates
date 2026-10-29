@@ -73,7 +73,9 @@ export default function AdminTeams({ secret }: { secret: string }) {
       setSaving(false);
     }
   }
-  const sports = (catalog?.sports || []).filter((s) => s.id !== "tennis");
+  const sports = (catalog?.sports || []).filter(
+    (s) => !["tennis", "table-tennis"].includes(s.id),
+  );
   const leagues = sports.find((s) => s.id === form?.sport)?.leagues || [];
   return (
     <>

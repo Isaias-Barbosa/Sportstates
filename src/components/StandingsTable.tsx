@@ -9,6 +9,10 @@ import type { Match, Standings, ClubProfile } from "../types";
 import { Empty, Loading, Notice } from "./shared";
 
 const columns: Record<string, [string, string[]][]> = {
+  "table-tennis": [
+    ["Pontos", ["points"]],
+    ["Anterior", ["previous"]],
+  ],
   tennis: [
     ["Pontos", ["points"]],
     ["Anterior", ["previous"]],
@@ -191,7 +195,9 @@ export default function StandingsTable({
                     <tr>
                       <th scope="col">#</th>
                       <th scope="col">
-                        {sport === "tennis" ? "Atleta" : "Equipe"}
+                        {["tennis", "table-tennis"].includes(sport)
+                          ? "Atleta"
+                          : "Equipe"}
                       </th>
                       {showImpact && (
                         <th scope="col">

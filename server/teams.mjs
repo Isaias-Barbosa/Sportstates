@@ -56,7 +56,7 @@ export async function getTeam(id) {
   return rows[0] || null;
 }
 export async function saveTeam(p) {
-  if (p.sport === "tennis")
+  if (["tennis", "table-tennis"].includes(p.sport))
     throw new Error(
       "Os atletas de tênis são consultados na página Atletas; este formulário cadastra equipes.",
     );

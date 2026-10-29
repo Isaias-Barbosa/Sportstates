@@ -1,3 +1,4 @@
+import { useSearchParams } from "react-router-dom";
 import { useState } from "react";
 import { useApi } from "../hooks";
 import { Loading, Notice, Empty } from "../components/shared";
@@ -13,11 +14,13 @@ type Player = {
   age: number | null;
 };
 export default function TennisAthletesPage() {
+  const [params] = useSearchParams();
+  const table = params.get("sport") === "table-tennis";
   const { data, loading, error, refresh } = useApi<{
     players: Player[];
     updatedAt: string;
     source: string;
-  }>("/api/tennis-athletes", 3600000);
+  }>(table ? "/api/table-tennis-athletes" : "/api/tennis-athletes", 3600000);
   const [query, setQuery] = useState("");
   const [limit, setLimit] = useState(30);
   const normalize = (s: string) =>
@@ -32,8 +35,10 @@ export default function TennisAthletesPage() {
     <>
       <div className="page-title">
         <div>
-          <div className="eyebrow">🎾 TÊNIS MASCULINO</div>
-          <h1>Atletas da ATP</h1>
+          <div className="eyebrow">
+            {table ? "🏓 TÊNIS DE MESA MASCULINO" : "🎾 TÊNIS MASCULINO"}
+          </div>
+          <h1>{table ? "Atletas da ITTF / WTT" : "Atletas da ATP"}</h1>
           <p>Ranking de simples masculino, pontos e países dos jogadores.</p>
         </div>
       </div>

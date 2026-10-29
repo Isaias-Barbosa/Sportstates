@@ -21,7 +21,11 @@ export default function SetScoreboard({ match }: { match: Match }) {
           <table>
             <thead>
               <tr>
-                <th>{match.sport === "tennis" ? "Atleta" : "Equipe"}</th>
+                <th>
+                  {["tennis", "table-tennis"].includes(match.sport)
+                    ? "Atleta"
+                    : "Equipe"}
+                </th>
                 {match.setScores.map((s) => (
                   <th key={s.number}>{s.number}º set</th>
                 ))}

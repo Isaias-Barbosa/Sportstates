@@ -6,6 +6,7 @@ import {
   ArrowDownUp,
   ArrowRight,
   CalendarDays,
+  ChevronDown,
   ChevronLeft,
   ChevronRight,
   Clock3,
@@ -548,8 +549,8 @@ export default function Dashboard({
                   (m) => `${m.sport}/${m.league}` === group,
                 );
                 return (
-                  <section className="hv-league" key={group}>
-                    <div className="hv-league-heading">
+                  <details className="hv-league" key={group} open>
+                    <summary className="hv-league-heading">
                       <span aria-hidden="true">
                         {sports.find((s) => s.id === items[0].sport)?.icon}
                       </span>
@@ -557,7 +558,12 @@ export default function Dashboard({
                       <small>
                         {items.length} {items.length === 1 ? "jogo" : "jogos"}
                       </small>
-                    </div>
+                      <ChevronDown
+                        className="hv-league-chevron"
+                        size={19}
+                        aria-hidden="true"
+                      />
+                    </summary>
                     {items.map((m) => (
                       <GameRow
                         key={keyOf(m)}
@@ -566,7 +572,7 @@ export default function Dashboard({
                         onFavorite={() => toggle(keyOf(m))}
                       />
                     ))}
-                  </section>
+                  </details>
                 );
               })
             )}

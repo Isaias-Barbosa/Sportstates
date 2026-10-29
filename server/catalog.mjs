@@ -1,3 +1,4 @@
+import { TABLE_COMPETITIONS } from "./table-tennis.mjs";
 export const BRAZIL_STATE_LEAGUES = new Set([
   "bra.camp.carioca",
   "bra.camp.paulista",
@@ -66,6 +67,12 @@ export const SPORTS = [
     name: "Tênis masculino",
     icon: "🎾",
     leagues: [["atp", "ATP · Simples masculino"]],
+  },
+  {
+    id: "table-tennis",
+    name: "Tênis de mesa masculino",
+    icon: "🏓",
+    leagues: TABLE_COMPETITIONS,
   },
   {
     id: "volleyball",
