@@ -33,6 +33,10 @@ export function team(c = {}) {
     short: t.abbreviation || t.shortDisplayName || "",
     logo: t.logo || t.logos?.[0]?.href || null,
     score: score == null ? null : String(score),
+    penalties:
+      c.shootoutScore != null || c.score?.shootoutScore != null
+        ? String(c.shootoutScore ?? c.score.shootoutScore)
+        : null,
     winner: !!c.winner,
   };
 }
@@ -60,6 +64,17 @@ export function normalizeEvent(e, sport, league, leagueName) {
     status: status.type?.shortDetail || status.type?.description || "",
     clock: status.displayClock || "",
     period: status.period || 0,
+    soccerPhase:
+      sport !== "soccer"
+        ? null
+        : /SHOOTOUT|PENALT/i.test(status.type?.name || "") ||
+            status.period === 5
+          ? "penalties"
+          : /EXTRA_TIME|OVERTIME|HALFTIME_ET|END_ET/i.test(
+                status.type?.name || "",
+              ) || [3, 4].includes(status.period)
+            ? "extra-time"
+            : null,
     venue: c.venue?.fullName || "",
     broadcast: c.broadcasts?.flatMap((b) => b.names || []).join(", ") || "",
   };

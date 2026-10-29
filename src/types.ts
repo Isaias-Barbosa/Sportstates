@@ -4,6 +4,7 @@ export type Team = {
   short: string;
   logo: string | null;
   score: string | null;
+  penalties?: string | null;
   winner: boolean;
 };
 export type Match = {
@@ -16,6 +17,7 @@ export type Match = {
   home: Team;
   away: Team;
   state: "live" | "scheduled" | "finished";
+  soccerPhase?: "penalties" | "extra-time" | null;
   statusName: string;
   status: string;
   clock: string;

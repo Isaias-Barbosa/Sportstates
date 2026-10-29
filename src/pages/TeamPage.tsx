@@ -1,3 +1,4 @@
+import { matchScore } from "../components/shared";
 import TeamCompetitions from "../components/TeamCompetitions";
 import { useEffect, useState } from "react";
 import { parseHonour } from "../honours";
@@ -403,9 +404,7 @@ function GameList({
                 <strong>{m.home.name}</strong>
               </span>
               <b className="team-game-score">
-                {m.state === "finished"
-                  ? `${m.home.score ?? "–"} : ${m.away.score ?? "–"}`
-                  : "×"}
+                {m.state === "finished" ? matchScore(m) : "×"}
               </b>
               <span className="team-game-team">
                 <Crest team={m.away} />

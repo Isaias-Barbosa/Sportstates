@@ -1,3 +1,4 @@
+import { matchScore } from "../components/shared";
 import AmericanFootballMatch from "../components/AmericanFootballMatch";
 import PeriodScoreboard from "../components/PeriodScoreboard";
 import { profileFor } from "../team-profile";
@@ -145,7 +146,7 @@ export default function MatchPage() {
                 <strong>
                   {data.match.state === "scheduled"
                     ? "×"
-                    : `${data.match.home.score ?? "–"} : ${data.match.away.score ?? "–"}`}
+                    : matchScore(data.match)}
                 </strong>
                 <div>
                   <TeamCrest

@@ -1,3 +1,4 @@
+import { matchScore } from "../components/shared";
 import { useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import {
@@ -251,7 +252,7 @@ export default function Dashboard({
                       <b>
                         {featured.state === "scheduled"
                           ? time(featured.date)
-                          : `${featured.home.score ?? "–"} : ${featured.away.score ?? "–"}`}
+                          : matchScore(featured)}
                       </b>
                       <small>
                         {featured.state === "live"
@@ -298,9 +299,7 @@ export default function Dashboard({
                       <strong>
                         {m.home.name} × {m.away.name}
                       </strong>
-                      <b>
-                        {m.home.score ?? "–"} : {m.away.score ?? "–"}
-                      </b>
+                      <b>{matchScore(m)}</b>
                     </Link>
                   ))}
                 </aside>
@@ -634,9 +633,7 @@ function GameRow({
                 "hv-row-score " + (m.state === "scheduled" ? "scheduled" : "")
               }
             >
-              {m.state === "scheduled"
-                ? "×"
-                : `${m.home.score ?? "–"} : ${m.away.score ?? "–"}`}
+              {m.state === "scheduled" ? "×" : matchScore(m)}
             </b>
             <span className="hv-row-team">
               <Crest team={m.away} />

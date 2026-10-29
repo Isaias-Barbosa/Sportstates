@@ -1,3 +1,4 @@
+import { teamScore } from "./shared";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { CalendarDays, ChevronLeft, ChevronRight } from "lucide-react";
@@ -188,18 +189,14 @@ export default function LeagueOverview({
                           <Crest team={m.home} />
                           <strong>{m.home.name}</strong>
                           <b>
-                            {m.state === "scheduled"
-                              ? "–"
-                              : (m.home.score ?? "–")}
+                            {m.state === "scheduled" ? "–" : teamScore(m.home)}
                           </b>
                         </span>
                         <span>
                           <Crest team={m.away} />
                           <strong>{m.away.name}</strong>
                           <b>
-                            {m.state === "scheduled"
-                              ? "–"
-                              : (m.away.score ?? "–")}
+                            {m.state === "scheduled" ? "–" : teamScore(m.away)}
                           </b>
                         </span>
                       </span>

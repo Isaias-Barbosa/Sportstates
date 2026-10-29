@@ -65,11 +65,19 @@ export function Loading() {
     </div>
   );
 }
+export function teamScore(team: Team) {
+  return `${team.score ?? "–"}${team.penalties != null ? ` (${team.penalties})` : ""}`;
+}
+export function matchScore(match: Match) {
+  return `${teamScore(match.home)} x ${teamScore(match.away)}`;
+}
 export function matchLabel(m: Match) {
   if (m.statusName === "STATUS_POSTPONED") return "Adiado";
   if (m.statusName === "STATUS_CANCELED") return "Cancelado";
   if (["STATUS_HALFTIME", "STATUS_HALFTIME_ET"].includes(m.statusName))
-    return "Intervalo";
+    return m.statusName === "STATUS_HALFTIME_ET"
+      ? "Intervalo da prorrogação"
+      : "Intervalo";
   if (["STATUS_END_PERIOD", "STATUS_INTERMISSION"].includes(m.statusName))
     return "Intervalo entre períodos";
   if (
@@ -78,6 +86,22 @@ export function matchLabel(m: Match) {
     )
   )
     return "Partida interrompida";
+  if (m.sport === "soccer") {
+    const penalties =
+      m.soccerPhase === "penalties" ||
+      /SHOOTOUT|PENALT/i.test(m.statusName) ||
+      m.period === 5;
+    const extraTime =
+      m.soccerPhase === "extra-time" || [3, 4].includes(m.period);
+    if (m.state === "finished") {
+      if (penalties || m.home.penalties != null || m.away.penalties != null)
+        return "Encerrado · Pênaltis";
+      if (extraTime) return "Encerrado · Prorrogação";
+    }
+    if (m.state === "live" && penalties) return "Disputa de pênaltis";
+    if (m.state === "live" && extraTime)
+      return `Prorrogação${m.clock ? ` · ${m.clock}` : ""}`;
+  }
   if (m.state === "live")
     return ["basketball", "football"].includes(m.sport)
       ? `${m.period > 4 ? `${m.period - 4}ª PR` : m.period ? `${m.period}º quarto` : "Ao vivo"}${m.clock ? ` · ${m.clock}` : ""}`
