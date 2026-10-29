@@ -1,5 +1,5 @@
 {
-  "buildCommand": "npm test && npm run build",
+  "buildCommand": "VERCEL=0 npm test && npm run build",
   "outputDirectory": "dist",
   "rewrites": [
     {
