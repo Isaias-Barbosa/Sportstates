@@ -1,9 +1,8 @@
 import NotificationsProvider, {
   NotificationSettingsButton,
 } from "./notifications/Notifications";
-import TennisAthletesPage from "./pages/TennisAthletesPage";
 import SportsNavigation from "./components/SportsNavigation";
-import React, { useState, useEffect, useRef } from "react";
+import React, { lazy, Suspense, useState, useEffect, useRef } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Link, NavLink, Route, Routes } from "react-router-dom";
 import {
@@ -20,20 +19,21 @@ import {
   UserRound,
   Settings,
 } from "lucide-react";
-import { Empty } from "./components/shared";
+import { Empty, Loading } from "./components/shared";
 import "./styles.css";
 import "./home-viva.css";
 import "./pages-viva.css";
 import Dashboard from "./pages/Dashboard";
-import MatchPage from "./pages/MatchPage";
-import TransfersPage from "./pages/TransfersPage";
-import About from "./pages/About";
-import AdminGames from "./pages/AdminGames";
-import StandingsPage from "./pages/StandingsPage";
-import TeamsPage from "./pages/TeamsPage";
-import TeamPage from "./pages/TeamPage";
-import NewsPage from "./pages/NewsPage";
+const MatchPage = lazy(() => import("./pages/MatchPage"));
+const TransfersPage = lazy(() => import("./pages/TransfersPage"));
+const About = lazy(() => import("./pages/About"));
+const AdminGames = lazy(() => import("./pages/AdminGames"));
+const StandingsPage = lazy(() => import("./pages/StandingsPage"));
+const TeamsPage = lazy(() => import("./pages/TeamsPage"));
+const TeamPage = lazy(() => import("./pages/TeamPage"));
+const NewsPage = lazy(() => import("./pages/NewsPage"));
 import "./news.css";
+const TennisAthletesPage = lazy(() => import("./pages/TennisAthletesPage"));
 function App() {
   const [theme, setTheme] = useState<"light" | "dark">(() => {
     try {
@@ -227,33 +227,35 @@ function App() {
               </div>
             </header>
             <main>
-              <Routes>
-                <Route path="/" element={<Dashboard />} />
-                <Route
-                  path="/favoritos"
-                  element={<Dashboard favoritesOnly />}
-                />
-                <Route path="/atletas" element={<TennisAthletesPage />} />
-                <Route path="/classificacoes" element={<StandingsPage />} />
-                <Route
-                  path="/partida/:sport/:league/:id"
-                  element={<MatchPage />}
-                />
-                <Route path="/noticias" element={<NewsPage />} />
-                <Route path="/times" element={<TeamsPage />} />
-                <Route path="/times/:id" element={<TeamPage />} />
-                <Route path="/transferencias" element={<TransfersPage />} />
-                <Route path="/admin/jogos" element={<AdminGames />} />
-                <Route path="/sobre" element={<About />} />
-                <Route
-                  path="*"
-                  element={
-                    <Empty title="Página não encontrada">
-                      <Link to="/">Voltar para os jogos</Link>
-                    </Empty>
-                  }
-                />
-              </Routes>
+              <Suspense fallback={<Loading />}>
+                <Routes>
+                  <Route path="/" element={<Dashboard />} />
+                  <Route
+                    path="/favoritos"
+                    element={<Dashboard favoritesOnly />}
+                  />
+                  <Route path="/atletas" element={<TennisAthletesPage />} />
+                  <Route path="/classificacoes" element={<StandingsPage />} />
+                  <Route
+                    path="/partida/:sport/:league/:id"
+                    element={<MatchPage />}
+                  />
+                  <Route path="/noticias" element={<NewsPage />} />
+                  <Route path="/times" element={<TeamsPage />} />
+                  <Route path="/times/:id" element={<TeamPage />} />
+                  <Route path="/transferencias" element={<TransfersPage />} />
+                  <Route path="/admin/jogos" element={<AdminGames />} />
+                  <Route path="/sobre" element={<About />} />
+                  <Route
+                    path="*"
+                    element={
+                      <Empty title="Página não encontrada">
+                        <Link to="/">Voltar para os jogos</Link>
+                      </Empty>
+                    }
+                  />
+                </Routes>
+              </Suspense>
             </main>
             <footer>
               <span>

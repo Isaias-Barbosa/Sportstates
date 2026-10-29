@@ -1440,3 +1440,5 @@ details.hv-league:not([open]) > summary { border-bottom: 0; }
 .hv-sport-filters button > span { font-size: 15px; }
 .hv-sport-filters button > svg { width: 16px; height: 16px; }
 .hv-sport-filters button small { margin-left: 0; font-size: 8px; }
+
+.scores-loading-progress { margin: 12px 0; padding: 10px 14px; border-radius: 10px; background: var(--panel); color: var(--muted); font-size: 12px; line-height: 1.6; border: 1px solid var(--border); }

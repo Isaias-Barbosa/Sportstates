@@ -46,6 +46,7 @@ export type Sport = {
   competitions: string[];
 };
 export type Scores = {
+  partial?: boolean;
   matches: Match[];
   sports: Sport[];
   date: string;

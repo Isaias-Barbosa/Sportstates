@@ -72,12 +72,17 @@ async function json(url, headers = {}) {
   return response.json();
 }
 
-export async function scoreboard(date) {
+export async function scoreboard(date, sport = "all") {
+  if (sport !== "all" && !SPORTS.some((s) => s.id === sport))
+    throw Error("Esporte inválido.");
+  const selectedSports = SPORTS.filter(
+    (s) => sport === "all" || s.id === sport,
+  );
   // BRT day crosses two UTC dates. Fetch separately to avoid upstream range regressions.
   const next = new Date(`${date}T12:00:00Z`);
   next.setUTCDate(next.getUTCDate() + 1);
   const dates = [date, next.toISOString().slice(0, 10)];
-  const jobs = SPORTS.flatMap((s) =>
+  const jobs = selectedSports.flatMap((s) =>
     s.leagues.map(async ([league, name]) => {
       const parts = await Promise.allSettled(
         dates.map((d) =>
@@ -140,7 +145,7 @@ export async function scoreboard(date) {
   ].sort((a, b) => a.date.localeCompare(b.date));
   return {
     matches: await enrichBroadcasts(matches),
-    sports: SPORTS.map(({ leagues, ...s }) => ({
+    sports: selectedSports.map(({ leagues, ...s }) => ({
       ...s,
       competitions: leagues.map((l) => l[1]),
     })),
@@ -542,7 +547,10 @@ export async function route(url) {
     const date = q.get("date") || dayInBrazil(new Date());
     if (!validDate(date))
       return [400, { error: "Data inválida. Use AAAA-MM-DD." }];
-    return [200, await scoreboard(date)];
+    const sport = q.get("sport") || "all";
+    if (sport !== "all" && !SPORTS.some((s) => s.id === sport))
+      return [400, { error: "Esporte inválido." }];
+    return [200, await scoreboard(date, sport)];
   }
   if (["/api/match", "/api/media"].includes(url.pathname)) {
     const config = leagueFor(q.get("sport"), q.get("league"));

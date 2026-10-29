@@ -1,6 +1,7 @@
+import { useScores } from "../useScores";
 import { NotificationBell } from "../notifications/Notifications";
 import { matchScore } from "../components/shared";
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import {
   ArrowDownUp,
@@ -47,9 +48,7 @@ export default function Dashboard({
   const requestedLeague = params.get("league") || "all";
   const [search, setSearch] = useState("");
   const { ids, toggle } = useFavorites();
-  const { data, error, loading, refresh } = useApi<Scores>(
-    "/api/scores?date=" + encodeURIComponent(date),
-  );
+  const { data, error, loading, refresh, pending } = useScores(date, sport);
   const { data: selection } = useApi<{ key: string | null }>(
     "/api/featured?date=" + encodeURIComponent(date),
     30000,
@@ -79,6 +78,7 @@ export default function Dashboard({
       data?.date !== date ||
       !catalog ||
       data.warnings?.length ||
+      data.partial ||
       requestedLeague === "all" ||
       league !== "all"
     )
@@ -543,7 +543,20 @@ export default function Dashboard({
                 ))}
               </details>
             )}
-            {loading ? (
+            {!!pending.length && (
+              <p className="scores-loading-progress" role="status">
+                Carregando esportes:{" "}
+                {sports
+                  .filter((s) => pending.includes(s.id))
+                  .map((s) => s.name)
+                  .join(", ")}
+                . Os jogos disponíveis já aparecem abaixo.
+              </p>
+            )}
+            {loading ||
+            (!visible.length &&
+              pending.length > 0 &&
+              (sport === "all" || pending.includes(sport))) ? (
               <Loading />
             ) : !visible.length ? (
               <Empty
@@ -583,7 +596,7 @@ export default function Dashboard({
                         key={keyOf(m)}
                         match={m}
                         saved={ids.includes(keyOf(m))}
-                        onFavorite={() => toggle(keyOf(m))}
+                        onFavorite={toggle}
                       />
                     ))}
                   </details>
@@ -673,14 +686,14 @@ export default function Dashboard({
   );
 }
 
-function GameRow({
+const GameRow = memo(function GameRow({
   match: m,
   saved,
   onFavorite,
 }: {
   match: Match;
   saved: boolean;
-  onFavorite: () => void;
+  onFavorite: (id: string) => void;
 }) {
   return (
     <article className="hv-match-card">
@@ -741,7 +754,7 @@ function GameRow({
             className={"icon-button " + (saved ? "saved" : "")}
             aria-label={`${saved ? "Remover dos favoritos" : "Salvar favorito"}: ${m.home.name} x ${m.away.name}`}
             aria-pressed={saved}
-            onClick={onFavorite}
+            onClick={() => onFavorite(keyOf(m))}
           >
             <Star size={16} />
           </button>
@@ -750,4 +763,4 @@ function GameRow({
       <MatchBroadcasts match={m} />
     </article>
   );
-}
+});

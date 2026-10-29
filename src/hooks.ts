@@ -113,7 +113,7 @@ export function useFavorites() {
       return [];
     }
   });
-  function toggle(id: string) {
+  const toggle = useCallback((id: string) => {
     setIds((old) => {
       const next = old.includes(id)
         ? old.filter((i) => i !== id)
@@ -125,6 +125,6 @@ export function useFavorites() {
       }
       return next;
     });
-  }
+  }, []);
   return { ids, toggle };
 }
