@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   ArrowLeft,
   ArrowRight,
@@ -10,7 +10,7 @@ import {
   Newspaper,
   Star,
 } from "lucide-react";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useLocation, useSearchParams } from "react-router-dom";
 import { useAccount } from "../account/AccountProvider";
 import { accountClient } from "../account/client";
 import FavoriteAgenda from "../account/FavoriteAgenda";
@@ -48,6 +48,13 @@ export default function AccountPage() {
     setShowPassword(false);
   }
   const [params] = useSearchParams();
+  const { hash } = useLocation();
+  useEffect(() => {
+    if (user && hash === "#personalizar")
+      document
+        .getElementById("personalizar")
+        ?.scrollIntoView({ block: "start" });
+  }, [user?.id, hash]);
   const next = params.get("next");
   const destination =
     next?.startsWith("/") && !next.startsWith("//") && !next.includes("\\")
