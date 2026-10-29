@@ -2916,3 +2916,6 @@ body.club-page-active { background:var(--club-page-bg, var(--canvas)); backgroun
 .notification-action { background: #42dfb3; color: #09223a; border: 0; border-radius: 10px; padding: 12px 16px; font-weight: 800; line-height: 1.4; cursor: pointer; }
 .notification-action:hover { background: #70f0cb; }
 .notification-action:disabled { opacity: .6; cursor: wait; }
+
+.notification-cards-only { background: transparent; color: #d6fff1; border: 1px solid #42dfb3; }
+.notification-cards-only:hover { background: #42dfb31a; }

@@ -12,7 +12,9 @@ import type { Detail, Match } from "../types";
 import { sports } from "../catalog";
 import { detectAlerts, matchKey, selectGame, type GameAlert } from "./events";
 
-type Followed = Pick<Match, "sport" | "league" | "id" | "name" | "date">;
+type Followed = Pick<Match, "sport" | "league" | "id" | "name" | "date"> & {
+  system?: boolean;
+};
 const STORAGE = "sportstates:notifications:v1";
 const valid = (v: unknown): v is Followed =>
   !!v &&
@@ -172,7 +174,7 @@ export default function NotificationsProvider({
     setMessage("");
     setOpen(true);
   };
-  const activate = async () => {
+  const activate = async (requestSystem: boolean) => {
     if (!candidate || activating) return;
     if (games.length >= 10 && games[0]?.sport === candidate.sport) {
       setMessage(
@@ -183,7 +185,7 @@ export default function NotificationsProvider({
     setActivating(true);
     // Permission is requested only in response to this explicit activation button.
     let permission = "unsupported";
-    if ("Notification" in window) {
+    if (requestSystem && "Notification" in window) {
       try {
         permission =
           Notification.permission === "default"
@@ -210,6 +212,7 @@ export default function NotificationsProvider({
         id: m.id,
         date: m.date,
         name: `${m.home.name} × ${m.away.name}`,
+        system: requestSystem && permission === "granted",
       }),
     );
     setCandidate(undefined);
@@ -239,6 +242,9 @@ export default function NotificationsProvider({
       timers.current.push(timer);
       const mobile = window.matchMedia("(max-width: 700px)").matches;
       if (
+        games.some(
+          (g) => g.system && `/partida/${matchKey(g)}` === alert.url,
+        ) &&
         (mobile || document.hidden) &&
         "Notification" in window &&
         Notification.permission === "granted"
@@ -429,12 +435,21 @@ export default function NotificationsProvider({
             )}
             <button
               className="notification-action"
-              onClick={activate}
+              onClick={() => void activate(true)}
               disabled={activating}
             >
               {switching
                 ? "Trocar esporte e ativar"
                 : "Ativar notificações deste jogo"}
+            </button>
+            <button
+              className="notification-action notification-cards-only"
+              disabled={activating}
+              onClick={() => void activate(false)}
+            >
+              {switching
+                ? "Trocar esporte e receber apenas cards"
+                : "Receber apenas cards neste site"}
             </button>
           </div>
         )}
