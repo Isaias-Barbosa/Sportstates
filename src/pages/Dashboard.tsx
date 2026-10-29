@@ -1,5 +1,5 @@
 import { matchScore } from "../components/shared";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import {
   ArrowDownUp,
@@ -42,11 +42,6 @@ export default function Dashboard({
   const { data: catalog } = useApi<CompetitionCatalog>("/api/competitions", 0);
   const selectedSport = catalog?.sports.find((s) => s.id === sport);
   const requestedLeague = params.get("league") || "all";
-  const league =
-    catalog && !selectedSport?.leagues.some((l) => l.id === requestedLeague)
-      ? "all"
-      : requestedLeague;
-  const leagueName = selectedSport?.leagues.find((l) => l.id === league)?.name;
   const [search, setSearch] = useState("");
   const { ids, toggle } = useFavorites();
   const { data, error, loading, refresh } = useApi<Scores>(
@@ -56,7 +51,44 @@ export default function Dashboard({
     "/api/featured?date=" + encodeURIComponent(date),
     30000,
   );
-  const matches = data?.matches || [];
+  const matches = data?.date === date ? data.matches : [];
+  const dayLeagueIds = new Set(
+    matches.filter((m) => m.sport === sport).map((m) => m.league),
+  );
+  const dayLeagues = (selectedSport?.leagues || []).filter((l) =>
+    dayLeagueIds.has(l.id),
+  );
+  const league = dayLeagues.some((l) => l.id === requestedLeague)
+    ? requestedLeague
+    : "all";
+  const leagueName = dayLeagues.find((l) => l.id === league)?.name;
+  // Reconcile deep links and day changes only after this day's agenda arrives.
+  // A temporary provider failure must not erase a requested competition.
+  useEffect(() => {
+    if (
+      loading ||
+      error ||
+      data?.date !== date ||
+      !catalog ||
+      data.warnings?.length ||
+      requestedLeague === "all" ||
+      league !== "all"
+    )
+      return;
+    const next = new URLSearchParams(params);
+    next.delete("league");
+    setParams(next, { replace: true });
+  }, [
+    loading,
+    error,
+    data,
+    date,
+    catalog,
+    requestedLeague,
+    league,
+    params,
+    setParams,
+  ]);
   const scoped = matches.filter(
     (m) =>
       (sport === "all" || m.sport === sport) &&
@@ -356,16 +388,36 @@ export default function Dashboard({
                 id="games-league"
                 value={league}
                 onChange={(e) => set("league", e.target.value)}
-                disabled={!catalog}
+                disabled={
+                  !catalog ||
+                  loading ||
+                  data?.date !== date ||
+                  !dayLeagues.length
+                }
               >
-                <option value="all">Todas as competições</option>
-                {selectedSport?.leagues.map((l) => (
+                <option value="all">
+                  {!catalog || loading || data?.date !== date
+                    ? "Carregando competições…"
+                    : !dayLeagues.length
+                      ? "Nenhuma competição com jogos nesta data"
+                      : "Todas as competições do dia"}
+                </option>
+                {dayLeagues.map((l) => (
                   <option key={l.id} value={l.id}>
                     {l.name}
                   </option>
                 ))}
               </select>
             </label>
+            {catalog &&
+              !loading &&
+              data?.date === date &&
+              !dayLeagues.length && (
+                <p>
+                  Nenhuma competição deste esporte tem jogos disponíveis na data
+                  selecionada.
+                </p>
+              )}
             {leagueName && (
               <p>
                 Jogos de <strong>{leagueName}</strong> · escolha a data abaixo
