@@ -1,3 +1,4 @@
+import { tennisInsights } from "./tennis-insights.mjs";
 import { tableMatches, tableDetail, tableRankings } from "./table-tennis.mjs";
 import { volleyballProfiles } from "./volleyball-profiles.mjs";
 import {
@@ -304,6 +305,13 @@ export async function route(url) {
       },
     ];
   }
+  if (url.pathname === "/api/tennis-insights") {
+    const id = q.get("id");
+    if (!/^\d{9,15}$/.test(id || ""))
+      return [400, { error: "Partida de tênis inválida." }];
+    const detail = await tennisDetail(id);
+    return [200, await tennisInsights(detail.match)];
+  }
   if (url.pathname === "/api/table-tennis-athletes")
     return [200, await tableRankings()];
   if (url.pathname === "/api/tennis-athletes")
@@ -558,6 +566,10 @@ export async function route(url) {
     if (!config || !/^\d{1,15}$/.test(id || ""))
       return [400, { error: "Partida ou competição inválida." }];
     if (["tennis", "volleyball", "table-tennis"].includes(config.sport)) {
+      if (url.pathname === "/api/media" && config.sport === "tennis") {
+        const detail = await tennisDetail(id);
+        return [200, await matchMedia(detail.match, [])];
+      }
       if (url.pathname === "/api/media")
         return [
           200,

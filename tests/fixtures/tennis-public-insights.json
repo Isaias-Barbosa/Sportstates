@@ -1,0 +1,340 @@
+{
+  "match": {
+    "slug": "n-djokovic-vs-j-struff-2026-10-29",
+    "matchScoreKey": "sr:sport_event:75837590",
+    "status": "live",
+    "statusLabel": "2nd Set",
+    "round": "Round 2",
+    "nodeId": "bWF0Y2g6MDJlMzRlMTEtZTk3NS00YmRmLTk3MDQtMmEwMmJhMjliMGEy",
+    "startTime": "2026-10-29T18:20:00Z",
+    "startTimeConfirmed": true,
+    "endTime": null,
+    "venue": {
+      "id": "dmVudWU6M2JhMTJhYTItNDRlNS00ZGU5LWI4NzItNGMzMmMzYWU4Mzcy",
+      "name": "Center Court"
+    },
+    "watchUrl": {
+      "url": "https://www.tennischannel.com/en-us/video/djokovic-novak-struff-jan-lennard/2284754",
+      "status": "READY"
+    },
+    "homeCompetitor": {
+      "id": "novak-djokovic",
+      "slug": "novak-djokovic",
+      "name": "Djokovic, Novak",
+      "shortName": "N. Djokovic",
+      "abbreviation": "DJO",
+      "countryCode": "SRB",
+      "flag": "$5:0:props:children:1:props:children:0:props:children:2:props:children:props:children:0:props:flag",
+      "headshot": {
+        "cdnUrl": "https://d20b59fhju7onw.cloudfront.net/images/players/147c6562-483b-428e-8cc5-d31fdad40196/20260605_164115.png",
+        "tcMediaUrl": "https://media.prod.tennis.com/v1/tcf/images/players/147c6562-483b-428e-8cc5-d31fdad40196/20260605_164115.png"
+      },
+      "seed": 4,
+      "entryType": null,
+      "singlesRank": 12
+    },
+    "awayCompetitor": {
+      "id": "jan-lennard-struff",
+      "slug": "jan-lennard-struff",
+      "name": "Struff, Jan-Lennard",
+      "shortName": "J. Struff",
+      "abbreviation": "STR",
+      "countryCode": "DEU",
+      "flag": "$5:0:props:children:1:props:children:2:props:children:2:props:children:props:children:0:props:flag",
+      "headshot": {
+        "cdnUrl": "https://d20b59fhju7onw.cloudfront.net/images/players/e3e600e6-ed44-4538-bee9-ab795322aa42/20260605_182144.png",
+        "tcMediaUrl": "https://media.prod.tennis.com/v1/tcf/images/players/e3e600e6-ed44-4538-bee9-ab795322aa42/20260605_182144.png"
+      },
+      "seed": null,
+      "entryType": null,
+      "singlesRank": 47
+    },
+    "homeTeam": null,
+    "awayTeam": null,
+    "homeBio": {
+      "dateOfBirth": "1987-05-22",
+      "heightCm": 188,
+      "handedness": "RIGHT",
+      "proYear": 2003,
+      "singlesRank": 12,
+      "doublesRank": null,
+      "singlesHighest": 1,
+      "doublesHighest": 114
+    },
+    "awayBio": {
+      "dateOfBirth": "1990-04-25",
+      "heightCm": 196,
+      "handedness": "RIGHT",
+      "proYear": 2009,
+      "singlesRank": 47,
+      "doublesRank": 209,
+      "singlesHighest": 21,
+      "doublesHighest": 21
+    },
+    "winnerId": null,
+    "score": {
+      "currentSetNumber": 2,
+      "homeSetsWon": 1,
+      "awaySetsWon": 0,
+      "sets": [
+        {
+          "setNumber": 1,
+          "homeGames": 7,
+          "awayGames": 6,
+          "homeTiebreakPoints": 7,
+          "awayTiebreakPoints": 4
+        },
+        {
+          "setNumber": 2,
+          "homeGames": 0,
+          "awayGames": 0,
+          "homeTiebreakPoints": null,
+          "awayTiebreakPoints": null
+        }
+      ],
+      "currentGame": {
+        "homePointDisplay": "15",
+        "awayPointDisplay": "30",
+        "servingSide": "away",
+        "inTiebreak": false,
+        "advantageSide": null
+      }
+    },
+    "homeWinProbability": 75,
+    "awayWinProbability": 25,
+    "statistics": {
+      "sections": [
+        {
+          "key": "overall",
+          "title": null,
+          "entries": [
+            {
+              "key": "aces",
+              "label": "Aces",
+              "home": {
+                "display": "4"
+              },
+              "away": {
+                "display": "9"
+              }
+            },
+            {
+              "key": "double_faults",
+              "label": "Double Faults",
+              "home": {
+                "display": "0"
+              },
+              "away": {
+                "display": "0"
+              }
+            },
+            {
+              "key": "first_serve_pct",
+              "label": "1st Serve %",
+              "home": {
+                "display": "63% (22/35)"
+              },
+              "away": {
+                "display": "79% (23/29)"
+              }
+            },
+            {
+              "key": "first_serve_points_won",
+              "label": "1st Serve Points Won",
+              "home": {
+                "display": "82% (18/22)"
+              },
+              "away": {
+                "display": "83% (19/23)"
+              }
+            },
+            {
+              "key": "second_serve_points_won",
+              "label": "2nd Serve Points Won",
+              "home": {
+                "display": "69% (9/13)"
+              },
+              "away": {
+                "display": "83% (5/6)"
+              }
+            },
+            {
+              "key": "break_points_saved",
+              "label": "Break Points Saved",
+              "home": {
+                "display": "100% (2/2)"
+              },
+              "away": {
+                "display": "0/0"
+              }
+            },
+            {
+              "key": "service_games",
+              "label": "Service Games",
+              "home": {
+                "display": "100% (6/6)"
+              },
+              "away": {
+                "display": "100% (6/6)"
+              }
+            }
+          ]
+        },
+        {
+          "key": "return",
+          "title": "Return",
+          "entries": [
+            {
+              "key": "first_return_points_won",
+              "label": "1st Return Points Won",
+              "home": {
+                "display": "17% (4/23)"
+              },
+              "away": {
+                "display": "18% (4/22)"
+              }
+            },
+            {
+              "key": "second_return_points_won",
+              "label": "2nd Return Points Won",
+              "home": {
+                "display": "17% (1/6)"
+              },
+              "away": {
+                "display": "31% (4/13)"
+              }
+            },
+            {
+              "key": "break_points_won",
+              "label": "Break Points Won",
+              "home": {
+                "display": "0/0"
+              },
+              "away": {
+                "display": "0% (0/2)"
+              }
+            },
+            {
+              "key": "return_games",
+              "label": "Return Games",
+              "home": {
+                "display": "0% (0/6)"
+              },
+              "away": {
+                "display": "0% (0/6)"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "tournament": {
+      "slug": "swiss-indoors-basel",
+      "name": "ATP Basel",
+      "officialName": "Swiss Indoors Basel"
+    },
+    "eventCategory": "Men's Singles",
+    "level": "ATP 500",
+    "headToHeadPlayerIds": [
+      "cGxheWVyOjE0N2M2NTYyLTQ4M2ItNDI4ZS04Y2M1LWQzMWZkYWQ0MDE5Ng",
+      "cGxheWVyOmUzZTYwMGU2LWVkNDQtNDUzOC1iZWU5LWFiNzk1MzIyYWE0Mg"
+    ],
+    "liveDataPending": true
+  },
+  "headToHead": [
+    {
+      "id": "n-djokovic-vs-j-struff-2025-08-31",
+      "nodeId": "bWF0Y2g6ZTRmNmQxOGUtOGZhMS00YmI1LWFmZTUtYzYyZDVlODk3OTVh",
+      "slug": "n-djokovic-vs-j-struff-2025-08-31",
+      "matchScoreKey": "sr:sport_event:63100833",
+      "status": "completed",
+      "round": "Round 4",
+      "startTime": "2025-08-31T23:15:00Z",
+      "startTimeConfirmed": false,
+      "duration": null,
+      "venue": null,
+      "tournamentName": "US Open",
+      "eventCategory": "US Open Men Singles",
+      "competitionGender": "men",
+      "competitionCategory": "ATP",
+      "watchUrl": {
+        "url": null,
+        "status": "UNAVAILABLE"
+      },
+      "homeCompetitor": {
+        "id": "novak-djokovic",
+        "slug": "novak-djokovic",
+        "name": "Djokovic, Novak",
+        "shortName": "N. Djokovic",
+        "abbreviation": "DJO",
+        "countryCode": "SRB",
+        "flag": {
+          "cdnUrl": "https://d20b59fhju7onw.cloudfront.net/images/flags/srb.jpg",
+          "tcMediaUrl": "https://media.prod.tennis.com/v1/tcf/images/flags/srb.jpg"
+        },
+        "headshot": null,
+        "seed": 7,
+        "entryType": null,
+        "singlesRank": null
+      },
+      "awayCompetitor": {
+        "id": "jan-lennard-struff",
+        "slug": "jan-lennard-struff",
+        "name": "Struff, Jan-Lennard",
+        "shortName": "J. Struff",
+        "abbreviation": "STR",
+        "countryCode": "DEU",
+        "flag": {
+          "cdnUrl": "https://d20b59fhju7onw.cloudfront.net/images/flags/deu.jpg",
+          "tcMediaUrl": "https://media.prod.tennis.com/v1/tcf/images/flags/deu.jpg"
+        },
+        "headshot": null,
+        "seed": null,
+        "entryType": null,
+        "singlesRank": null
+      },
+      "homeTeam": null,
+      "awayTeam": null,
+      "winnerId": "novak-djokovic",
+      "score": {
+        "currentSetNumber": null,
+        "homeSetsWon": 3,
+        "awaySetsWon": 0,
+        "sets": [
+          {
+            "setNumber": 1,
+            "homeGames": 6,
+            "awayGames": 3,
+            "homeTiebreakPoints": null,
+            "awayTiebreakPoints": null
+          },
+          {
+            "setNumber": 2,
+            "homeGames": 6,
+            "awayGames": 3,
+            "homeTiebreakPoints": null,
+            "awayTiebreakPoints": null
+          },
+          {
+            "setNumber": 3,
+            "homeGames": 6,
+            "awayGames": 2,
+            "homeTiebreakPoints": null,
+            "awayTiebreakPoints": null
+          }
+        ],
+        "currentGame": null
+      },
+      "homeWinProbability": "$undefined",
+      "awayWinProbability": "$undefined",
+      "tournamentSlug": "us-open",
+      "tournamentLevel": "Grand Slam",
+      "tournamentCountry": "United States",
+      "tournamentCountryCode": "USA",
+      "tournamentFlag": {
+        "cdnUrl": "https://d20b59fhju7onw.cloudfront.net/images/flags/usa.jpg",
+        "tcMediaUrl": "https://media.prod.tennis.com/v1/tcf/images/flags/usa.jpg"
+      }
+    }
+  ]
+}

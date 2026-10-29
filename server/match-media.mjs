@@ -32,6 +32,7 @@ export const OFFICIAL_VIDEO_CHANNELS = [
   { id: "UCsiCOcr5SZAWlJMfcw9P__w", name: "NBA Brasil", leagues: ["nba"] },
   { id: "UCDVYQ4Zhbm3S2dlz7P1GBDg", name: "NFL", leagues: ["nfl"] },
   { id: "UCqFMzb-4AUf6WAIbl132QKA", name: "NHL", leagues: ["nhl"] },
+  { id: "UCbcxFkd6B9xUU54InHv4Tig", name: "Tennis TV · ATP", leagues: ["atp"] },
 ];
 const BRAZIL_CHANNELS = new Set([
   "UCZiYbVptd3PVPf4f6eR6UaQ",
@@ -69,6 +70,10 @@ export function channelsForMatch(match) {
   return OFFICIAL_VIDEO_CHANNELS.filter(
     (c) =>
       (!c.leagues || c.leagues.includes(match.league)) &&
+      (match.sport !== "tennis" ||
+        ["UCbcxFkd6B9xUU54InHv4Tig", "UCw5-xj3AKqEizC7MvHaIPqA"].includes(
+          c.id,
+        )) &&
       (!c.teams ||
         c.teams.some((id) =>
           [String(match.home.id), String(match.away.id)].includes(id),
@@ -81,6 +86,7 @@ const teamInTitle = (title, name, sport) => {
     const words = clean(name).split(" ");
     if (words.length > 1) names.push(words.at(-1), words.slice(-2).join(" "));
   }
+  if (sport === "tennis") names.push(name.split(/\s+/).at(-1));
   return names.some((n) => ` ${title} `.includes(` ${clean(n)} `));
 };
 const decode = (value) =>
@@ -121,11 +127,46 @@ export function parseVideoFeed(xml, channel) {
       ];
     });
 }
+export function tennisVideoContext(match, video) {
+  if (match.sport !== "tennis") return true;
+  const title = clean(video.title);
+  if (
+    /women|wta|doubles|duplas|legends|classic|throwback|relembre|simulacao|gameplay|preview/.test(
+      title,
+    )
+  )
+    return false;
+  const year = String(new Date(match.date).getUTCFullYear());
+  if ((title.match(/\b20\d{2}\b/g) || []).some((y) => y !== year)) return false;
+  const words = clean(match.tournament)
+    .replace(/basel/g, "basel basileia")
+    .replace(/vienna/g, "vienna viena")
+    .split(" ")
+    .filter(
+      (w) =>
+        w.length >= 4 &&
+        !["open", "tennis", "indoors", "tour", "atp", "masters"].includes(w),
+    );
+  if (!words.some((w) => new RegExp("\\b" + w + "\\b").test(title)))
+    return false;
+  const a = clean(match.home.name).split(" ").at(-1),
+    b = clean(match.away.name).split(" ").at(-1);
+  if (
+    a === b &&
+    !(
+      title.includes(clean(match.home.name)) &&
+      title.includes(clean(match.away.name))
+    )
+  )
+    return false;
+  return true;
+}
 export function selectMatchMedia(match, events, videos) {
   const kickoff = Date.parse(match.date);
   const candidates = videos.filter(
     (v) =>
       channelsForMatch(match).some((c) => c.id === v.channelId) &&
+      tennisVideoContext(match, v) &&
       !(
         match.sport === "soccer" &&
         /\bwomen\b|\bwomens\b|\bfeminino\b|\bfeminina\b|\bsub ?\d+\b|\bu ?(?:17|18|19|20|21|23)\b/.test(
@@ -235,6 +276,8 @@ export function normalizeEspnVideos(videos = []) {
 export async function matchMedia(match, events, associatedVideos = []) {
   const channels = channelsForMatch(match);
   const gePromise = geMatchVideos(match);
+  const tennisPromise =
+    match.sport === "tennis" ? tennisEspnMedia(match) : Promise.resolve([]);
   const settled = await Promise.allSettled(
     channels.map((channel) =>
       cached(`videos:${channel.id}`, 600000, async () => {
@@ -250,6 +293,7 @@ export async function matchMedia(match, events, associatedVideos = []) {
   const videos = settled
     .filter((r) => r.status === "fulfilled")
     .flatMap((r) => r.value.value);
+  associatedVideos = [...associatedVideos, ...(await tennisPromise)];
   const selected = selectMatchMedia(match, events, videos);
   const geVideos = await gePromise;
   const geReplays = geVideos
@@ -367,4 +411,51 @@ function basketballPlayerClip(match, events, video) {
       teamInTitle(title, opponent.name, match.sport)
     );
   });
+}
+
+async function tennisEspnMedia(match) {
+  if (!["live", "finished"].includes(match.state)) return [];
+  const results = await Promise.allSettled(
+    [match.home, match.away].map((p) =>
+      cached(
+        "tennis:espn-clips:v1:" + p.id,
+        600000,
+        async () => {
+          if (!/^\d{1,12}$/.test(p.id)) return [];
+          const r = await fetch(
+            "https://site.web.api.espn.com/apis/common/v3/sports/tennis/atp/athletes/" +
+              p.id +
+              "/overview?lang=pt&region=br",
+            { signal: AbortSignal.timeout(5000) },
+          );
+          if (!r.ok) throw Error("Vídeos ESPN indisponíveis");
+          const raw = await r.json();
+          return (raw.news || []).slice(0, 20).flatMap((n) => n.video || []);
+        },
+        0,
+      ),
+    ),
+  );
+  const raw = results
+    .filter((r) => r.status === "fulfilled")
+    .flatMap((r) => r.value.value);
+  return [
+    ...new Map(
+      raw.flatMap((v) => {
+        const text = clean(
+          (v.headline || v.title || "") + " " + (v.caption || ""),
+        );
+        const at = Date.parse(v.originalPublishDate || v.lastModified);
+        if (
+          !teamInTitle(text, match.home.name, "tennis") ||
+          !teamInTitle(text, match.away.name, "tennis") ||
+          !tennisVideoContext(match, { title: text }) ||
+          at < Date.parse(match.date) ||
+          at > Date.parse(match.date) + 72 * 3600000
+        )
+          return [];
+        return normalizeEspnVideos([v]).map((video) => [video.id, video]);
+      }),
+    ).values(),
+  ];
 }

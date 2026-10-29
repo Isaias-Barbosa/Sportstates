@@ -1,3 +1,4 @@
+import TennisMatch from "../components/TennisMatch";
 import { NotificationBell } from "../notifications/Notifications";
 import SetScoreboard from "../components/SetScoreboard";
 import MatchGoalCards from "../components/MatchGoalCards";
@@ -92,7 +93,7 @@ export default function MatchPage() {
   useEffect(() => {
     if (hash === "#videos" && data?.match) {
       setTab(
-        ["tennis", "volleyball", "table-tennis"].includes(data.match.sport)
+        ["volleyball", "table-tennis"].includes(data.match.sport)
           ? "overview"
           : "videos",
       );
@@ -322,6 +323,9 @@ export default function MatchPage() {
                             : "Escalações",
                         ],
                       ]),
+                  ...(data.match.sport === "tennis"
+                    ? [["stats", "Estatísticas"]]
+                    : []),
                   ...(data.match.sport === "football"
                     ? [["drives", "Campanhas"]]
                     : []),
@@ -331,9 +335,7 @@ export default function MatchPage() {
                       ? "Ranking"
                       : "Classificação",
                   ],
-                  ...(["tennis", "volleyball", "table-tennis"].includes(
-                    data.match.sport,
-                  )
+                  ...(["volleyball", "table-tennis"].includes(data.match.sport)
                     ? []
                     : [
                         [
@@ -356,6 +358,14 @@ export default function MatchPage() {
                 data.match.sport,
               ) &&
                 tab === "overview" && <SetScoreboard match={data.match} />}
+              {data.match.sport === "tennis" &&
+                (tab === "overview" || tab === "stats") && (
+                  <TennisMatch
+                    key={data.match.id}
+                    match={data.match}
+                    view={tab}
+                  />
+                )}
               {data.match.sport === "basketball" &&
                 data.basketball &&
                 (tab === "overview" || tab === "players") && (
@@ -493,6 +503,7 @@ export default function MatchPage() {
                 </>
               )}
               {tab === "stats" &&
+                data.match.sport !== "tennis" &&
                 (data.statistics.length ? (
                   <div className="stat-grid">
                     {data.statistics.map((t) => (

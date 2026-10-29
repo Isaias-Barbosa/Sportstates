@@ -89,13 +89,15 @@ export function normalizeTennis(raw) {
               name: `${match.home.name} x ${match.away.name}`,
               setScores: sets,
               tournament: event.name,
-              watch: getWatchOptions({...match, tournament: event.name}, c),
+              watch: getWatchOptions({ ...match, tournament: event.name }, c),
               round: tennisRound(c.round?.displayName || ""),
               venue: [c.venue?.fullName, c.venue?.court]
                 .filter(Boolean)
                 .join(" · "),
               sourceUrl: "https://www.espn.com/tennis/scoreboard",
               sourceEventId: String(c.id),
+              sourceTournamentId: String(event.id),
+              sourceUrl: `https://www.espn.com/tennis/scoreboard/tournament/_/eventId/${encodeURIComponent(event.id)}/competitionType/1`,
             },
           ];
         }),
