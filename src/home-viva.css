@@ -1442,3 +1442,62 @@ details.hv-league:not([open]) > summary { border-bottom: 0; }
 .hv-sport-filters button small { margin-left: 0; font-size: 8px; }
 
 .scores-loading-progress { margin: 12px 0; padding: 10px 14px; border-radius: 10px; background: var(--panel); color: var(--muted); font-size: 12px; line-height: 1.6; border: 1px solid var(--border); }
+
+/* Keep intrinsic card widths from stretching the mobile page. */
+.home-viva .hv-spotlight > *,
+.home-viva .hv-content-grid > *,
+.home-viva .hv-match-card,
+.home-viva .match-broadcasts,
+.home-viva .broadcast-chips {
+  min-width: 0;
+  max-width: 100%;
+}
+.home-viva .broadcast-chip {
+  min-width: 0;
+  max-width: 100%;
+}
+.home-viva .broadcast-chip > span:not(.channel-logo) {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.home-viva .broadcast-chip > svg,
+.home-viva .broadcast-chip .channel-logo {
+  flex-shrink: 0;
+}
+@media (max-width: 900px) {
+  .hv-sport-filters {
+    grid-auto-flow: row;
+    grid-auto-columns: auto;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .hv-sport-filters button {
+    width: 100%;
+    min-width: 0;
+  }
+}
+@media (max-width: 480px) {
+  .hv-sport-filters {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .hv-sport-filters button {
+    min-height: 48px;
+  }
+  .hv-sport-filters button strong {
+    font-size: 11px;
+  }
+  .hv-feature-top,
+  .hv-feature-footer {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .hv-feature-team h3 {
+    overflow-wrap: anywhere;
+  }
+  .hv-feature-score b {
+    font-size: clamp(24px, 7vw, 36px);
+    overflow-wrap: anywhere;
+  }
+  .home-viva .broadcast-chips {
+    width: 100%;
+  }
+}
