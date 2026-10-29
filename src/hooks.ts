@@ -1,4 +1,14 @@
+import { pollDelay } from "./poll-policy";
 import { useEffect, useState, useCallback } from "react";
+const CACHE_RESET_EVENT = "sportstates:cache-reset";
+export function notifyCacheCleared() {
+  window.dispatchEvent(new Event(CACHE_RESET_EVENT));
+  try {
+    localStorage.setItem(CACHE_RESET_EVENT, `${Date.now()}:${Math.random()}`);
+  } catch {
+    /* Private browsing may restrict storage. */
+  }
+}
 export function useApi<T>(url: string, interval = 60000) {
   const [state, setState] = useState<{
     data?: T;
@@ -11,6 +21,9 @@ export function useApi<T>(url: string, interval = 60000) {
     let active = true;
     let controller: AbortController | undefined;
     let inFlight = false;
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    let lastLoaded = 0;
+    let delay = interval;
     setState({ loading: true });
     async function load() {
       if (inFlight) return;
@@ -20,7 +33,11 @@ export function useApi<T>(url: string, interval = 60000) {
         const res = await fetch(url, { signal: controller.signal });
         const body = await res.json();
         if (!res.ok) throw new Error(body.error || "Falha na consulta.");
-        if (active) setState({ data: body, loading: false });
+        if (active) {
+          setState({ data: body, loading: false });
+          lastLoaded = Date.now();
+          delay = pollDelay(url, body, interval);
+        }
       } catch (e) {
         if (active && !(e instanceof DOMException && e.name === "AbortError"))
           setState((old) => ({
@@ -31,22 +48,35 @@ export function useApi<T>(url: string, interval = 60000) {
           }));
       } finally {
         inFlight = false;
+        if (active && delay) {
+          clearTimeout(timer);
+          timer = setTimeout(() => {
+            if (document.visibilityState === "visible") void load();
+          }, delay);
+        }
       }
     }
     void load();
-    const timer = interval
-      ? setInterval(() => {
-          if (document.visibilityState === "visible") void load();
-        }, interval)
-      : undefined;
     const wake = () => {
-      if (document.visibilityState === "visible") void load();
+      if (
+        document.visibilityState === "visible" &&
+        Date.now() - lastLoaded >= (delay || 60000)
+      )
+        void load();
     };
+    const reset = () => setRevision((r) => r + 1);
+    const storageReset = (event: StorageEvent) => {
+      if (event.key === CACHE_RESET_EVENT) reset();
+    };
+    window.addEventListener(CACHE_RESET_EVENT, reset);
+    window.addEventListener("storage", storageReset);
     document.addEventListener("visibilitychange", wake);
     return () => {
       active = false;
       controller?.abort();
-      clearInterval(timer);
+      clearTimeout(timer);
+      window.removeEventListener(CACHE_RESET_EVENT, reset);
+      window.removeEventListener("storage", storageReset);
       document.removeEventListener("visibilitychange", wake);
     };
   }, [url, interval, revision]);

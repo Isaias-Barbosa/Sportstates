@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Notice } from "./shared";
 import TeamLookup from "./TeamLookup";
-import { useApi } from "../hooks";
+import { useApi, notifyCacheCleared } from "../hooks";
 import type { ClubProfile, CompetitionCatalog } from "../types";
 const empty: ClubProfile = {
   id: "",
@@ -64,7 +64,8 @@ export default function AdminTeams({ secret }: { secret: string }) {
       const j = await r.json();
       if (!r.ok) throw new Error(j.error);
       setForm(null);
-      setMessage("Perfil salvo.");
+      setMessage(j.warning || "Perfil salvo. Cache atualizado.");
+      if (!j.warning) notifyCacheCleared();
       await load();
     } catch (e) {
       setMessage(e instanceof Error ? e.message : "Erro ao salvar.");

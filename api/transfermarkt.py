@@ -17,7 +17,10 @@ class handler(BaseHTTPRequestHandler):
         self.send_header("Content-Type", "application/json; charset=utf-8")
         self.send_header("Content-Length", str(len(payload)))
         self.send_header("X-Content-Type-Options", "nosniff")
-        self.send_header("Cache-Control", "public, s-maxage=3600" if status == 200 and not body.get("warnings") else "no-store")
+        self.send_header("Cache-Control", "no-store")
+        if status == 200 and not body.get("warnings"):
+            self.send_header("Vercel-CDN-Cache-Control", "public, max-age=3600")
+            self.send_header("Vercel-Cache-Tag", "sportstates-api-v2")
         self.end_headers()
         self.wfile.write(payload)
 

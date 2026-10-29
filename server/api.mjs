@@ -1,12 +1,29 @@
-import { validProfileId } from './team-identity.mjs';
-import { fetchTeamCompetitions } from './team-competitions.mjs';
+import { validProfileId } from "./team-identity.mjs";
+import { fetchTeamCompetitions } from "./team-competitions.mjs";
 import { fetchNews } from "./news.mjs";
-import { readFeatured, saveFeatured, validKey, authorized } from "./featured.mjs";
+import {
+  readFeatured,
+  saveFeatured,
+  validKey,
+  authorized,
+} from "./featured.mjs";
 import { matchMedia } from "./match-media.mjs";
 import { enrichBroadcasts } from "./broadcast-schedule.mjs";
-import { SPORTS, BRAZIL_STATE_LEAGUES, SOCCER_REGIONS, SOCCER_INTERNATIONAL_GROUPS, SOCCER_TEAM_LEAGUES, leagueFor } from "./catalog.mjs";
+import {
+  SPORTS,
+  BRAZIL_STATE_LEAGUES,
+  SOCCER_REGIONS,
+  SOCCER_INTERNATIONAL_GROUPS,
+  SOCCER_TEAM_LEAGUES,
+  leagueFor,
+} from "./catalog.mjs";
 import { listTeams, teamDetails, saveTeam, getTeam } from "./teams.mjs";
-import { fetchTeamCatalog, normalizeTeamSearch, fetchSportsDBSearch, normalizeSportsDBSearch } from "./team-search.mjs";
+import {
+  fetchTeamCatalog,
+  normalizeTeamSearch,
+  fetchSportsDBSearch,
+  normalizeSportsDBSearch,
+} from "./team-search.mjs";
 import { authBaseUrl, adminAuthorized } from "./admin-auth.mjs";
 import { normalizeStandings } from "./standings.mjs";
 import { KNOCKOUT_LEAGUES, fetchTournament } from "./tournaments.mjs";
@@ -16,7 +33,15 @@ import {
   normalizeEvent,
   normalizeSummary,
 } from "./data.mjs";
-import { createCache } from "./cache.mjs";
+import { createCache, clearAllCaches, CACHE_TAG } from "./cache.mjs";
+import {
+  CACHE_TTL,
+  matchTtl,
+  scoresTtl,
+  leagueGamesTtl,
+  teamTtl,
+  responseTtl,
+} from "./cache-policy.mjs";
 const cached = createCache();
 const ESPN = "https://site.api.espn.com/apis/site/v2/sports";
 
@@ -41,7 +66,7 @@ export async function scoreboard(date) {
         dates.map((d) =>
           cached(
             `${s.id}/${league}/${d}`,
-            60000,
+            (matches) => scoresTtl(matches, d, dayInBrazil(new Date())),
             async () => {
               const raw = await json(
                 `${ESPN}/${s.id}/${league}/scoreboard?dates=${d.replaceAll("-", "")}&limit=1000&lang=pt&region=br`,
@@ -120,55 +145,171 @@ async function football(path) {
 export async function route(url) {
   const q = url.searchParams;
   if (url.pathname === "/api/featured") {
-    const date=q.get("date") || dayInBrazil(new Date());
-    if (!validDate(date)) return [400,{error:"Data inválida."}];
-    return [200,await readFeatured(date)];
+    const date = q.get("date") || dayInBrazil(new Date());
+    if (!validDate(date)) return [400, { error: "Data inválida." }];
+    return [200, await readFeatured(date)];
   }
-  if (url.pathname === "/api/admin-auth-config") { const url=authBaseUrl(); return url ? [200, { url }] : [503, {error:"Neon Auth não configurado."}]; }
-  if (url.pathname === "/api/teams") return [200, { teams: await listTeams() }];
+  if (url.pathname === "/api/admin-auth-config") {
+    const url = authBaseUrl();
+    return url
+      ? [200, { url }]
+      : [503, { error: "Neon Auth não configurado." }];
+  }
+  if (url.pathname === "/api/teams") {
+    const result = await cached("teams", CACHE_TTL.teams, () => listTeams());
+    return [
+      200,
+      { teams: result.value, fetchedAt: new Date(result.at).toISOString() },
+    ];
+  }
   if (url.pathname === "/api/team-competitions") {
     const id = q.get("id");
-    if (!validProfileId(id)) return [400, {error:"Time inválido."}];
+    if (!validProfileId(id)) return [400, { error: "Time inválido." }];
     const team = await getTeam(id);
-    if (!team) return [404, {error:"Time não encontrado."}];
-    if (!leagueFor(team.sport, team.league)) return [200, {teamId:id,competitions:[],partial:true,fetchedAt:new Date().toISOString(),source:"ESPN"}];
-    const result = await cached(`team-competitions:${team.sport}:${team.league}:${id}`, 60000, () => fetchTeamCompetitions(team), 300000);
-    return [200, {...result.value,stale:result.stale}];
+    if (!team) return [404, { error: "Time não encontrado." }];
+    if (!leagueFor(team.sport, team.league))
+      return [
+        200,
+        {
+          teamId: id,
+          competitions: [],
+          partial: true,
+          fetchedAt: new Date().toISOString(),
+          source: "ESPN",
+        },
+      ];
+    const result = await cached(
+      `team-competitions:${team.sport}:${team.league}:${id}`,
+      CACHE_TTL.standings,
+      () => fetchTeamCompetitions(team),
+      300000,
+    );
+    return [200, { ...result.value, stale: result.stale }];
   }
   if (url.pathname === "/api/team") {
-    const id=q.get("id"); if (!validProfileId(id)) return [400, {error:"Time inválido."}];
-    const result=await cached(`team:${id}`, 60000, () => teamDetails(id), 300000);
-    return result.value ? [200, { ...result.value, stale: result.stale }] : [404, {error:"Time não encontrado."}];
+    const id = q.get("id");
+    if (!validProfileId(id)) return [400, { error: "Time inválido." }];
+    const result = await cached(
+      `team:${id}`,
+      teamTtl,
+      () => teamDetails(id),
+      300000,
+    );
+    return result.value
+      ? [
+          200,
+          {
+            ...result.value,
+            stale: result.stale,
+            fetchedAt: new Date(result.at).toISOString(),
+          },
+        ]
+      : [404, { error: "Time não encontrado." }];
   }
   if (url.pathname === "/api/competitions") {
-    return [200, { sports: SPORTS.map(s => ({ ...s, leagues: s.leagues.map(([id, name]) => ({ id, name, hasKnockout: s.id === 'soccer' && KNOCKOUT_LEAGUES.has(id), teamLeague: s.id !== 'soccer' || SOCCER_TEAM_LEAGUES.has(id) })) })), soccerRegions: SOCCER_REGIONS, soccerInternationalGroups: SOCCER_INTERNATIONAL_GROUPS }];
+    return [
+      200,
+      {
+        sports: SPORTS.map((s) => ({
+          ...s,
+          leagues: s.leagues.map(([id, name]) => ({
+            id,
+            name,
+            hasKnockout: s.id === "soccer" && KNOCKOUT_LEAGUES.has(id),
+            teamLeague: s.id !== "soccer" || SOCCER_TEAM_LEAGUES.has(id),
+          })),
+        })),
+        soccerRegions: SOCCER_REGIONS,
+        soccerInternationalGroups: SOCCER_INTERNATIONAL_GROUPS,
+      },
+    ];
   }
   if (url.pathname === "/api/standings") {
     const config = leagueFor(q.get("sport"), q.get("league"));
     if (!config) return [400, { error: "Competição inválida." }];
-    const stateCompetition = config.sport === 'soccer' && BRAZIL_STATE_LEAGUES.has(config.league);
-    const seasonParam = q.get('season');
-    if (seasonParam !== null && (!/^\d{4}$/.test(seasonParam) || Number(seasonParam)<2000 || Number(seasonParam)>2100)) return [400,{error:'Temporada inválida.'}];
-    const requestedYear = seasonParam ? Number(seasonParam) : stateCompetition ? Number(dayInBrazil(new Date()).slice(0,4)) : undefined;
-    const seasonQuery = requestedYear ? `&season=${requestedYear}` : '';
-    const hasKnockout = config.sport === 'soccer' && KNOCKOUT_LEAGUES.has(config.league);
+    const stateCompetition =
+      config.sport === "soccer" && BRAZIL_STATE_LEAGUES.has(config.league);
+    const seasonParam = q.get("season");
+    if (
+      seasonParam !== null &&
+      (!/^\d{4}$/.test(seasonParam) ||
+        Number(seasonParam) < 2000 ||
+        Number(seasonParam) > 2100)
+    )
+      return [400, { error: "Temporada inválida." }];
+    const requestedYear = seasonParam
+      ? Number(seasonParam)
+      : stateCompetition
+        ? Number(dayInBrazil(new Date()).slice(0, 4))
+        : undefined;
+    const seasonQuery = requestedYear ? `&season=${requestedYear}` : "";
+    const hasKnockout =
+      config.sport === "soccer" && KNOCKOUT_LEAGUES.has(config.league);
     const [table, tournament] = await Promise.allSettled([
-      cached(`standings:${config.sport}:${config.league}:${requestedYear || "current"}`, 60000, async () => {
-        const raw = await json(`https://site.api.espn.com/apis/v2/sports/${config.sport}/${config.league}/standings?lang=pt&region=br${seasonQuery}`);
-        if (stateCompetition && Number(raw.season?.year) !== requestedYear) throw new Error('Temporada indisponível.');
-        return normalizeStandings(raw);
-      }, 300000),
-      hasKnockout ? cached(`tournament:${config.league}:${requestedYear || "current"}`, 60000, () => fetchTournament(config.league, json, requestedYear), 300000) : Promise.resolve(null),
+      cached(
+        `standings:${config.sport}:${config.league}:${requestedYear || "current"}`,
+        CACHE_TTL.standings,
+        async () => {
+          const raw = await json(
+            `https://site.api.espn.com/apis/v2/sports/${config.sport}/${config.league}/standings?lang=pt&region=br${seasonQuery}`,
+          );
+          if (stateCompetition && Number(raw.season?.year) !== requestedYear)
+            throw new Error("Temporada indisponível.");
+          return normalizeStandings(raw);
+        },
+        300000,
+      ),
+      hasKnockout
+        ? cached(
+            `tournament:${config.league}:${requestedYear || "current"}`,
+            CACHE_TTL.standings,
+            () => fetchTournament(config.league, json, requestedYear),
+            300000,
+          )
+        : Promise.resolve(null),
     ]);
-    const tableData = table.status === 'fulfilled' ? table.value : null;
-    const cupData = tournament.status === 'fulfilled' ? tournament.value : null;
-    if (!tableData && !cupData) throw new Error(stateCompetition ? `Não foi possível consultar este estadual em ${requestedYear}. A fonte pode ainda não ter disponibilizado os dados.` : 'Não foi possível consultar a competição. Tente novamente.');
+    const tableData = table.status === "fulfilled" ? table.value : null;
+    const cupData = tournament.status === "fulfilled" ? tournament.value : null;
+    if (!tableData && !cupData)
+      throw new Error(
+        stateCompetition
+          ? `Não foi possível consultar este estadual em ${requestedYear}. A fonte pode ainda não ter disponibilizado os dados.`
+          : "Não foi possível consultar a competição. Tente novamente.",
+      );
     const warnings = [];
-    if (hasKnockout && !cupData) warnings.push('Não foi possível atualizar as fases eliminatórias.');
-    if (cupData?.value.partial) warnings.push('A fonte retornou uma lista parcial de jogos desta temporada.');
-    if ((!tableData || (stateCompetition && !tableData.value.length)) && cupData) warnings.push(`A fonte não disponibilizou a tabela de pontos${requestedYear ? ` de ${requestedYear}` : ''}; exibindo as fases eliminatórias disponíveis.`);
-    return [200, { ...config, groups: tableData?.value || [], rounds: cupData?.value.rounds || [], season: cupData?.value.season || (requestedYear ? {year:requestedYear,name:`${requestedYear} ${config.name}`} : null), currentRound: cupData?.value.currentRound || null, warnings,
-      fetchedAt: new Date(Math.min(...[tableData,cupData].filter(Boolean).map(r=>r.at))).toISOString(), stale: !!(tableData?.stale || cupData?.stale), source: "ESPN · feed público não oficial" }];
+    if (hasKnockout && !cupData)
+      warnings.push("Não foi possível atualizar as fases eliminatórias.");
+    if (cupData?.value.partial)
+      warnings.push(
+        "A fonte retornou uma lista parcial de jogos desta temporada.",
+      );
+    if (
+      (!tableData || (stateCompetition && !tableData.value.length)) &&
+      cupData
+    )
+      warnings.push(
+        `A fonte não disponibilizou a tabela de pontos${requestedYear ? ` de ${requestedYear}` : ""}; exibindo as fases eliminatórias disponíveis.`,
+      );
+    return [
+      200,
+      {
+        ...config,
+        groups: tableData?.value || [],
+        rounds: cupData?.value.rounds || [],
+        season:
+          cupData?.value.season ||
+          (requestedYear
+            ? { year: requestedYear, name: `${requestedYear} ${config.name}` }
+            : null),
+        currentRound: cupData?.value.currentRound || null,
+        warnings,
+        fetchedAt: new Date(
+          Math.min(...[tableData, cupData].filter(Boolean).map((r) => r.at)),
+        ).toISOString(),
+        stale: !!(tableData?.stale || cupData?.stale),
+        source: "ESPN · feed público não oficial",
+      },
+    ];
   }
   if (url.pathname === "/api/news") return [200, await fetchNews()];
   if (url.pathname === "/api/league-games") {
@@ -180,21 +321,64 @@ export async function route(url) {
     const next = new Date(`${first}T12:00:00Z`);
     next.setUTCMonth(next.getUTCMonth() + 1);
     const end = next.toISOString().slice(0, 10);
-    const result = await cached(`league-games:${config.sport}:${config.league}:${month}`, 60000, async () => {
-      // ESPN accepts YYYYMM; date ranges fail for some leagues. The first UTC
-      // day of next month also contains the final evening in Brasília.
-      const parts = await Promise.allSettled([month.replaceAll("-", ""), end.replaceAll("-", "")].map(async dates => {
-        const raw = await json(`${ESPN}/${config.sport}/${config.league}/scoreboard?dates=${dates}&limit=1000&lang=pt&region=br`);
-        if (!Array.isArray(raw.events)) throw new Error("Resposta de jogos inválida.");
-        return raw.events;
-      }));
-      const good = parts.filter(p => p.status === "fulfilled").map(p => p.value);
-      if (!good.length) throw new Error("Não foi possível consultar os jogos desta competição.");
-      const matches = good.flat().map(e => normalizeEvent(e, config.sport, config.league, config.name))
-        .filter(m => m && Number.isFinite(Date.parse(m.date)) && dayInBrazil(m.date).startsWith(month));
-      return { matches: [...new Map(matches.map(m => [m.id, m])).values()].sort((a,b) => a.date.localeCompare(b.date)), partial: parts.some(p => p.status === "rejected") || good.some(events => events.length >= 1000) };
-    }, 300000);
-    return [200, { ...config, ...result.value, month, stale: result.stale, fetchedAt: new Date(result.at).toISOString(), source: "ESPN · feed público não oficial" }];
+    const result = await cached(
+      `league-games:${config.sport}:${config.league}:${month}`,
+      (body) => leagueGamesTtl(body, month, dayInBrazil(new Date())),
+      async () => {
+        // ESPN accepts YYYYMM; date ranges fail for some leagues. The first UTC
+        // day of next month also contains the final evening in Brasília.
+        const parts = await Promise.allSettled(
+          [month.replaceAll("-", ""), end.replaceAll("-", "")].map(
+            async (dates) => {
+              const raw = await json(
+                `${ESPN}/${config.sport}/${config.league}/scoreboard?dates=${dates}&limit=1000&lang=pt&region=br`,
+              );
+              if (!Array.isArray(raw.events))
+                throw new Error("Resposta de jogos inválida.");
+              return raw.events;
+            },
+          ),
+        );
+        const good = parts
+          .filter((p) => p.status === "fulfilled")
+          .map((p) => p.value);
+        if (!good.length)
+          throw new Error(
+            "Não foi possível consultar os jogos desta competição.",
+          );
+        const matches = good
+          .flat()
+          .map((e) =>
+            normalizeEvent(e, config.sport, config.league, config.name),
+          )
+          .filter(
+            (m) =>
+              m &&
+              Number.isFinite(Date.parse(m.date)) &&
+              dayInBrazil(m.date).startsWith(month),
+          );
+        return {
+          matches: [...new Map(matches.map((m) => [m.id, m])).values()].sort(
+            (a, b) => a.date.localeCompare(b.date),
+          ),
+          partial:
+            parts.some((p) => p.status === "rejected") ||
+            good.some((events) => events.length >= 1000),
+        };
+      },
+      300000,
+    );
+    return [
+      200,
+      {
+        ...config,
+        ...result.value,
+        month,
+        stale: result.stale,
+        fetchedAt: new Date(result.at).toISOString(),
+        source: "ESPN · feed público não oficial",
+      },
+    ];
   }
   if (url.pathname === "/api/scores") {
     const date = q.get("date") || dayInBrazil(new Date());
@@ -209,7 +393,7 @@ export async function route(url) {
       return [400, { error: "Partida ou competição inválida." }];
     const result = await cached(
       `match:${config.sport}:${config.league}:${id}`,
-      30000,
+      matchTtl,
       async () =>
         normalizeSummary(
           await json(
@@ -221,7 +405,15 @@ export async function route(url) {
         ),
       300000,
     );
-    if (url.pathname === "/api/media") return [200, await matchMedia(result.value.match, result.value.events, result.value.associatedVideos)];
+    if (url.pathname === "/api/media")
+      return [
+        200,
+        await matchMedia(
+          result.value.match,
+          result.value.events,
+          result.value.associatedVideos,
+        ),
+      ];
     return [
       200,
       {
@@ -290,55 +482,256 @@ export async function handler(req, res) {
   res.setHeader("Content-Type", "application/json; charset=utf-8");
   res.setHeader("X-Content-Type-Options", "nosniff");
   const requestUrl = new URL(req.url, "http://localhost");
-  if (requestUrl.pathname === "/api/index" && requestUrl.searchParams.has("path")) requestUrl.pathname = "/api/" + requestUrl.searchParams.get("path");
+  if (
+    requestUrl.pathname === "/api/index" &&
+    requestUrl.searchParams.has("path")
+  )
+    requestUrl.pathname = "/api/" + requestUrl.searchParams.get("path");
+  if (requestUrl.pathname === "/api/admin/cache") {
+    res.setHeader("Cache-Control", "no-store");
+    if (req.method !== "POST") {
+      res.statusCode = 405;
+      res.setHeader("Allow", "POST");
+      return res.end(
+        JSON.stringify({ error: "Use POST para limpar o cache." }),
+      );
+    }
+    if (!(await adminAuthorized(req.headers?.authorization))) {
+      res.statusCode = 401;
+      return res.end(
+        JSON.stringify({ error: "Acesso administrativo necessário." }),
+      );
+    }
+    try {
+      const result = await clearAllCaches();
+      res.statusCode = 200;
+      return res.end(JSON.stringify(result));
+    } catch {
+      res.statusCode = 502;
+      return res.end(
+        JSON.stringify({
+          error: "Não foi possível limpar todo o cache. Tente novamente.",
+        }),
+      );
+    }
+  }
   if (requestUrl.pathname === "/api/admin/team-search") {
     res.setHeader("Cache-Control", "no-store");
-    if (req.method !== "GET") {res.statusCode=405;res.setHeader("Allow","GET");return res.end(JSON.stringify({error:"Método não permitido."}));}
-    if (!await adminAuthorized(req.headers?.authorization)) {res.statusCode=401;return res.end(JSON.stringify({error:"Acesso administrativo necessário."}));}
-    const sport=requestUrl.searchParams.get('sport'),league=requestUrl.searchParams.get('league'),q=(requestUrl.searchParams.get('q')||'').trim();
-    if(!leagueFor(sport,league)||q.length<2||q.length>80){res.statusCode=400;return res.end(JSON.stringify({error:"Selecione a liga e digite entre 2 e 80 caracteres."}));}
-    const failures=[];
+    if (req.method !== "GET") {
+      res.statusCode = 405;
+      res.setHeader("Allow", "GET");
+      return res.end(JSON.stringify({ error: "Método não permitido." }));
+    }
+    if (!(await adminAuthorized(req.headers?.authorization))) {
+      res.statusCode = 401;
+      return res.end(
+        JSON.stringify({ error: "Acesso administrativo necessário." }),
+      );
+    }
+    const sport = requestUrl.searchParams.get("sport"),
+      league = requestUrl.searchParams.get("league"),
+      q = (requestUrl.searchParams.get("q") || "").trim();
+    if (!leagueFor(sport, league) || q.length < 2 || q.length > 80) {
+      res.statusCode = 400;
+      return res.end(
+        JSON.stringify({
+          error: "Selecione a liga e digite entre 2 e 80 caracteres.",
+        }),
+      );
+    }
+    const failures = [];
     try {
-      const result=await cached(`team-catalog:${sport}:${league}`,3600000,()=>fetchTeamCatalog(sport,league),3600000);
-      const teams=normalizeTeamSearch(result.value,{sport,league,query:q}).map(team=>({...team,source:'ESPN'}));
-      if(teams.length){res.statusCode=200;return res.end(JSON.stringify({teams,source:'ESPN',stale:result.stale}));}
-    } catch {failures.push('ESPN');}
+      const result = await cached(
+        `team-catalog:${sport}:${league}`,
+        3600000,
+        () => fetchTeamCatalog(sport, league),
+        3600000,
+      );
+      const teams = normalizeTeamSearch(result.value, {
+        sport,
+        league,
+        query: q,
+      }).map((team) => ({ ...team, source: "ESPN" }));
+      if (teams.length) {
+        res.statusCode = 200;
+        return res.end(
+          JSON.stringify({ teams, source: "ESPN", stale: result.stale }),
+        );
+      }
+    } catch {
+      failures.push("ESPN");
+    }
     try {
-      const result=await cached(`sportsdb-search:${sport}:${q.toLowerCase()}`,3600000,()=>fetchSportsDBSearch(q),3600000);
-      const teams=normalizeSportsDBSearch(result.value,{sport,league,query:q});
-      res.statusCode=200;return res.end(JSON.stringify({teams,source:'TheSportsDB',stale:result.stale,unavailable:failures}));
-    } catch {failures.push('TheSportsDB');}
-    res.statusCode=502;return res.end(JSON.stringify({error:'Não foi possível consultar ESPN e TheSportsDB. Tente novamente.'}));
+      const result = await cached(
+        `sportsdb-search:${sport}:${q.toLowerCase()}`,
+        3600000,
+        () => fetchSportsDBSearch(q),
+        3600000,
+      );
+      const teams = normalizeSportsDBSearch(result.value, {
+        sport,
+        league,
+        query: q,
+      });
+      res.statusCode = 200;
+      return res.end(
+        JSON.stringify({
+          teams,
+          source: "TheSportsDB",
+          stale: result.stale,
+          unavailable: failures,
+        }),
+      );
+    } catch {
+      failures.push("TheSportsDB");
+    }
+    res.statusCode = 502;
+    return res.end(
+      JSON.stringify({
+        error:
+          "Não foi possível consultar ESPN e TheSportsDB. Tente novamente.",
+      }),
+    );
   }
   if (requestUrl.pathname === "/api/admin/teams") {
     res.setHeader("Cache-Control", "no-store");
-    if (!process.env.ADMIN_ACCESS_KEY || process.env.ADMIN_ACCESS_KEY.length < 32) { res.statusCode=503; return res.end(JSON.stringify({error:"Acesso administrativo ainda não configurado."})); }
-    if (!await adminAuthorized(req.headers?.authorization)) { res.statusCode=401; return res.end(JSON.stringify({error:"Chave de acesso inválida."})); }
+    if (
+      !process.env.ADMIN_ACCESS_KEY ||
+      process.env.ADMIN_ACCESS_KEY.length < 32
+    ) {
+      res.statusCode = 503;
+      return res.end(
+        JSON.stringify({
+          error: "Acesso administrativo ainda não configurado.",
+        }),
+      );
+    }
+    if (!(await adminAuthorized(req.headers?.authorization))) {
+      res.statusCode = 401;
+      return res.end(JSON.stringify({ error: "Chave de acesso inválida." }));
+    }
     try {
-      if(req.method === "GET") {const teams=await listTeams();res.statusCode=200;return res.end(JSON.stringify({teams}));}
-      if(req.method !== "PUT") {res.statusCode=405;res.setHeader("Allow","GET, PUT");return res.end(JSON.stringify({error:"Método não permitido."}));}
-      let body=req.body;if(body==null){let str='';for await(const chunk of req){str+=chunk;if(str.length>32000)throw new Error("Dados muito grandes.");}body=str;}
-      if(typeof body==='string'){if(body.length>32000)throw new Error("Dados muito grandes.");body=JSON.parse(body);}
-      if(!body||typeof body!=='object'||Array.isArray(body))throw new Error('Dados inválidos.');
-      if(JSON.stringify(body).length>32000)throw new Error('Dados muito grandes.');
-      await saveTeam(body);res.statusCode=200;return res.end(JSON.stringify({ok:true}));
-    } catch(error){res.statusCode=error.message==='Banco Neon não configurado.'?503:400;return res.end(JSON.stringify({error:!process.env.DATABASE_URL ? 'Banco Neon não configurado.' : (error.message==='Este ID já pertence a um time de outro esporte.' || error.message.startsWith('Confira os títulos:') || error.message==='Os links devem usar HTTPS.' || error.message==='Informe URLs válidas.' || error.message==='Dados muito grandes.') ? error.message : 'Não foi possível salvar ou consultar os times. Confira os dados e a configuração do banco.'}));}
+      if (req.method === "GET") {
+        const teams = await listTeams();
+        res.statusCode = 200;
+        return res.end(JSON.stringify({ teams }));
+      }
+      if (req.method !== "PUT") {
+        res.statusCode = 405;
+        res.setHeader("Allow", "GET, PUT");
+        return res.end(JSON.stringify({ error: "Método não permitido." }));
+      }
+      let body = req.body;
+      if (body == null) {
+        let str = "";
+        for await (const chunk of req) {
+          str += chunk;
+          if (str.length > 32000) throw new Error("Dados muito grandes.");
+        }
+        body = str;
+      }
+      if (typeof body === "string") {
+        if (body.length > 32000) throw new Error("Dados muito grandes.");
+        body = JSON.parse(body);
+      }
+      if (!body || typeof body !== "object" || Array.isArray(body))
+        throw new Error("Dados inválidos.");
+      if (JSON.stringify(body).length > 32000)
+        throw new Error("Dados muito grandes.");
+      await saveTeam(body);
+      let warning;
+      try {
+        await clearAllCaches();
+      } catch {
+        warning =
+          "Time salvo, mas não foi possível limpar todo o cache. Use o botão Limpar cache para tentar novamente.";
+      }
+      res.statusCode = 200;
+      return res.end(JSON.stringify({ ok: true, warning }));
+    } catch (error) {
+      res.statusCode =
+        error.message === "Banco Neon não configurado." ? 503 : 400;
+      return res.end(
+        JSON.stringify({
+          error: !process.env.DATABASE_URL
+            ? "Banco Neon não configurado."
+            : error.message ===
+                  "Este ID já pertence a um time de outro esporte." ||
+                error.message.startsWith("Confira os títulos:") ||
+                error.message === "Os links devem usar HTTPS." ||
+                error.message === "Informe URLs válidas." ||
+                error.message === "Dados muito grandes."
+              ? error.message
+              : "Não foi possível salvar ou consultar os times. Confira os dados e a configuração do banco.",
+        }),
+      );
+    }
   }
   if (requestUrl.pathname === "/api/admin/featured") {
     res.setHeader("Cache-Control", "no-store");
-    if (!process.env.ADMIN_ACCESS_KEY || process.env.ADMIN_ACCESS_KEY.length < 32) { res.statusCode=503; return res.end(JSON.stringify({error:"Acesso administrativo ainda não configurado."})); }
-    if (!await adminAuthorized(req.headers?.authorization)) { res.statusCode=401; return res.end(JSON.stringify({error:"Chave de acesso inválida."})); }
+    if (
+      !process.env.ADMIN_ACCESS_KEY ||
+      process.env.ADMIN_ACCESS_KEY.length < 32
+    ) {
+      res.statusCode = 503;
+      return res.end(
+        JSON.stringify({
+          error: "Acesso administrativo ainda não configurado.",
+        }),
+      );
+    }
+    if (!(await adminAuthorized(req.headers?.authorization))) {
+      res.statusCode = 401;
+      return res.end(JSON.stringify({ error: "Chave de acesso inválida." }));
+    }
     try {
-      if (req.method === "GET") { res.statusCode=200; return res.end(JSON.stringify({ok:true})); }
-      if (req.method !== "PUT") { res.statusCode=405; res.setHeader("Allow","GET, PUT"); return res.end(JSON.stringify({error:"Método não permitido."})); }
+      if (req.method === "GET") {
+        res.statusCode = 200;
+        return res.end(JSON.stringify({ ok: true }));
+      }
+      if (req.method !== "PUT") {
+        res.statusCode = 405;
+        res.setHeader("Allow", "GET, PUT");
+        return res.end(JSON.stringify({ error: "Método não permitido." }));
+      }
       let payload = req.body;
-      if (payload == null) { let body=''; for await (const chunk of req) { body+=chunk; if(body.length>4096) throw new Error("Dados muito grandes."); } payload=body; }
-      if (typeof payload === "string") { if(payload.length>4096) throw new Error("Dados muito grandes."); payload=JSON.parse(payload); }
-      const {date,key}=payload;
-      if(!validDate(date) || (key!==null && !validKey(key))) {res.statusCode=400;return res.end(JSON.stringify({error:"Data ou partida inválida."}));}
-      if(key!==null) {const results=await scoreboard(date); if(!results.matches.some(m=>`${m.sport}/${m.league}/${m.id}`===key)){res.statusCode=400;return res.end(JSON.stringify({error:"A partida não consta nesta data."}));}}
-      await saveFeatured(date,key); res.statusCode=200; return res.end(JSON.stringify({date,key}));
-    } catch(error) {res.statusCode=502; return res.end(JSON.stringify({error:"Não foi possível salvar o destaque."}));}
+      if (payload == null) {
+        let body = "";
+        for await (const chunk of req) {
+          body += chunk;
+          if (body.length > 4096) throw new Error("Dados muito grandes.");
+        }
+        payload = body;
+      }
+      if (typeof payload === "string") {
+        if (payload.length > 4096) throw new Error("Dados muito grandes.");
+        payload = JSON.parse(payload);
+      }
+      const { date, key } = payload;
+      if (!validDate(date) || (key !== null && !validKey(key))) {
+        res.statusCode = 400;
+        return res.end(JSON.stringify({ error: "Data ou partida inválida." }));
+      }
+      if (key !== null) {
+        const results = await scoreboard(date);
+        if (
+          !results.matches.some((m) => `${m.sport}/${m.league}/${m.id}` === key)
+        ) {
+          res.statusCode = 400;
+          return res.end(
+            JSON.stringify({ error: "A partida não consta nesta data." }),
+          );
+        }
+      }
+      await saveFeatured(date, key);
+      res.statusCode = 200;
+      return res.end(JSON.stringify({ date, key }));
+    } catch (error) {
+      res.statusCode = 502;
+      return res.end(
+        JSON.stringify({ error: "Não foi possível salvar o destaque." }),
+      );
+    }
   }
   if (req.method !== "GET") {
     res.setHeader("Allow", "GET");
@@ -352,16 +745,15 @@ export async function handler(req, res) {
       url.pathname = "/api/" + url.searchParams.get("path");
     const [status, body] = await route(url);
     res.statusCode = status;
-    res.setHeader(
-      "Cache-Control",
-      status === 200 &&
-        url.pathname !== "/api/featured" &&
-        !body.stale &&
-        !body.warnings?.length &&
-        body.configured !== false
-        ? "public, s-maxage=30, stale-while-revalidate=30"
-        : "no-store",
-    );
+    const ttl =
+      status === 200 && !req.headers?.authorization
+        ? responseTtl(url, body)
+        : 0;
+    res.setHeader("Cache-Control", "no-store");
+    if (ttl > 0) {
+      res.setHeader("Vercel-CDN-Cache-Control", `public, max-age=${ttl}`);
+      res.setHeader("Vercel-Cache-Tag", CACHE_TAG);
+    }
     res.end(JSON.stringify(body));
   } catch (error) {
     res.statusCode = 502;
