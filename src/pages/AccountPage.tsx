@@ -1,4 +1,15 @@
 import { useState } from "react";
+import {
+  ArrowLeft,
+  ArrowRight,
+  BellRing,
+  Eye,
+  EyeOff,
+  LoaderCircle,
+  LockKeyhole,
+  Newspaper,
+  Star,
+} from "lucide-react";
 import { Link, useSearchParams } from "react-router-dom";
 import { useAccount } from "../account/AccountProvider";
 import { accountClient } from "../account/client";
@@ -14,7 +25,9 @@ export default function AccountPage() {
     mutate,
     saving,
   } = useAccount();
-  const [mode, setMode] = useState<"login" | "signup" | "reset">("login"),
+  const [mode, setMode] = useState<"login" | "signup" | "recover" | "reset">(
+      "login",
+    ),
     [name, setName] = useState(""),
     [email, setEmail] = useState(""),
     [password, setPassword] = useState(""),
@@ -22,6 +35,15 @@ export default function AccountPage() {
     [message, setMessage] = useState(""),
     [error, setError] = useState(""),
     [busy, setBusy] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  function changeMode(nextMode: typeof mode) {
+    setMode(nextMode);
+    setError("");
+    setMessage("");
+    setPassword("");
+    setCode("");
+    setShowPassword(false);
+  }
   const [params] = useSearchParams();
   const next = params.get("next");
   const destination =
@@ -34,6 +56,10 @@ export default function AccountPage() {
     setError("");
     setMessage("");
     try {
+      if (mode === "recover") {
+        await reset();
+        return;
+      }
       const auth = await accountClient();
       const result =
         mode === "signup"
@@ -62,7 +88,9 @@ export default function AccountPage() {
       } else {
         const restored = await refresh();
         if (!restored && mode === "login")
-          throw Error("O login foi aceito, mas não foi possível carregar sua sessão. Tente novamente; se persistir, confira a verificação do e-mail.");
+          throw Error(
+            "O login foi aceito, mas não foi possível carregar sua sessão. Tente novamente; se persistir, confira a verificação do e-mail.",
+          );
         setMessage(
           mode === "signup"
             ? "Cadastro enviado. Se a verificação for solicitada, confira seu e-mail antes de entrar."
@@ -99,14 +127,18 @@ export default function AccountPage() {
     }
   }
   return (
-    <div className="account-page">
-      <p className="eyebrow">SEU ESPORTE. SUA CONTA.</p>
-      <h1>{user ? "Minha conta" : "Entre para acompanhar do seu jeito"}</h1>
+    <div className={`account-page${user ? "" : " account-auth-page"}`}>
+      {user && (
+        <>
+          <p className="eyebrow">SEU ESPORTE. SUA CONTA.</p>
+          <h1>Minha conta</h1>
+        </>
+      )}
       {loading && <p role="status">Verificando sua sessão…</p>}
-      {(error || accountError) && (
+      {user && (error || accountError) && (
         <Notice error>{error || accountError}</Notice>
       )}
-      {message && <Notice>{message}</Notice>}
+      {user && message && <Notice>{message}</Notice>}
       {user ? (
         <>
           <section className="account-card">
@@ -174,94 +206,280 @@ export default function AccountPage() {
         </>
       ) : (
         !loading && (
-          <section className="account-card account-login">
-            <div className="account-actions">
-              <button
-                className="broadcast-chip"
-                aria-pressed={mode === "login"}
-                onClick={() => setMode("login")}
-              >
-                Entrar
-              </button>
-              <button
-                className="broadcast-chip"
-                aria-pressed={mode === "signup"}
-                onClick={() => setMode("signup")}
-              >
-                Criar conta
-              </button>
-            </div>
-            <form className="account-form" onSubmit={submit}>
-              {mode === "signup" && (
-                <label>
-                  Seu nome
-                  <input
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    required
-                    maxLength={100}
-                    autoComplete="name"
-                  />
-                </label>
+          <div className="auth-layout">
+            <aside
+              className="auth-story"
+              aria-label="Sua experiência Sportstates"
+            >
+              <span className="auth-kicker">
+                <span /> MAIS PERTO DO JOGO
+              </span>
+              <div className="auth-story-copy">
+                <p className="auth-overline">SUA TORCIDA TEM LUGAR AQUI.</p>
+                <h2>
+                  O jogo muda.
+                  <br />
+                  Sua paixão <em>acompanha.</em>
+                </h2>
+                <p>
+                  Seus times, os lances que importam e um resumo para começar o
+                  dia por dentro de tudo.
+                </p>
+              </div>
+              <ul className="auth-benefits">
+                <li>
+                  <Star size={19} aria-hidden="true" />
+                  <span>
+                    <strong>Siga sua torcida</strong>Times e jogos favoritos em
+                    um só lugar.
+                  </span>
+                </li>
+                <li>
+                  <BellRing size={19} aria-hidden="true" />
+                  <span>
+                    <strong>Sinta cada lance</strong>Escolha os alertas que quer
+                    receber.
+                  </span>
+                </li>
+                <li>
+                  <Newspaper size={19} aria-hidden="true" />
+                  <span>
+                    <strong>Comece bem o dia</strong>Um Resumo Diário com o que
+                    você acompanha.
+                  </span>
+                </li>
+              </ul>
+              <span className="auth-story-footer">
+                SPORTSTATES <span>O esporte não para.</span>
+              </span>
+            </aside>
+            <section className="auth-panel" aria-labelledby="auth-title">
+              <Link to="/" className="auth-back">
+                <ArrowLeft size={15} aria-hidden="true" /> Voltar aos jogos
+              </Link>
+              {(mode === "login" || mode === "signup") && (
+                <div className="auth-switch" aria-label="Acesso à conta">
+                  <button
+                    type="button"
+                    aria-pressed={mode === "login"}
+                    disabled={busy}
+                    onClick={() => changeMode("login")}
+                  >
+                    Entrar
+                  </button>
+                  <button
+                    type="button"
+                    aria-pressed={mode === "signup"}
+                    disabled={busy}
+                    onClick={() => changeMode("signup")}
+                  >
+                    Criar conta
+                  </button>
+                </div>
               )}
-              <label>
-                E-mail
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                  autoComplete="username"
-                />
-              </label>
+              <div className="auth-intro">
+                <span className="auth-step">
+                  {mode === "recover" || mode === "reset"
+                    ? "RECUPERAR ACESSO"
+                    : "SUA CONTA SPORTSTATES"}
+                </span>
+                <h1 id="auth-title">
+                  {mode === "signup"
+                    ? "Entre para a torcida."
+                    : mode === "recover"
+                      ? "Esqueceu a senha?"
+                      : mode === "reset"
+                        ? "Defina sua nova senha."
+                        : "Bom ter você de volta."}
+                </h1>
+                <p>
+                  {mode === "signup"
+                    ? "Crie sua conta e acompanhe o esporte do seu jeito."
+                    : mode === "recover"
+                      ? "Informe seu e-mail. Vamos enviar um código para você recuperar o acesso."
+                      : mode === "reset"
+                        ? "Digite o código recebido por e-mail e escolha uma nova senha."
+                        : "Entre para encontrar seus favoritos e seu Resumo Diário."}
+                </p>
+              </div>
+              <div aria-live="polite" aria-atomic="true">
+                {(error || accountError) && (
+                  <Notice error>{error || accountError}</Notice>
+                )}
+                {message && <Notice>{message}</Notice>}
+              </div>
+              <form
+                className="account-form auth-form"
+                onSubmit={submit}
+                aria-busy={busy}
+              >
+                <fieldset disabled={busy}>
+                  {mode === "signup" && (
+                    <label htmlFor="account-name">
+                      Seu nome
+                      <input
+                        id="account-name"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        required
+                        maxLength={100}
+                        autoComplete="name"
+                        placeholder="Como podemos chamar você?"
+                      />
+                    </label>
+                  )}
+                  <label htmlFor="account-email">
+                    E-mail
+                    <input
+                      id="account-email"
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
+                      autoComplete="username"
+                      placeholder="voce@exemplo.com"
+                      autoCapitalize="none"
+                      spellCheck={false}
+                    />
+                  </label>
+                  {mode === "reset" && (
+                    <label htmlFor="account-code">
+                      Código de verificação
+                      <input
+                        id="account-code"
+                        value={code}
+                        onChange={(e) => setCode(e.target.value)}
+                        inputMode="numeric"
+                        autoComplete="one-time-code"
+                        required
+                        placeholder="Código recebido por e-mail"
+                      />
+                    </label>
+                  )}
+                  {mode !== "recover" && (
+                    <div className="auth-password-group">
+                      <div className="auth-label-row">
+                        <label htmlFor="account-password">
+                          {mode === "reset" ? "Nova senha" : "Senha"}
+                        </label>
+                        {mode === "login" && (
+                          <button
+                            type="button"
+                            className="auth-text-button"
+                            onClick={() => changeMode("recover")}
+                          >
+                            Esqueci minha senha
+                          </button>
+                        )}
+                      </div>
+                      <div className="auth-password">
+                        <input
+                          id="account-password"
+                          type={showPassword ? "text" : "password"}
+                          value={password}
+                          onChange={(e) => setPassword(e.target.value)}
+                          required
+                          minLength={mode === "login" ? undefined : 8}
+                          autoComplete={
+                            mode === "login"
+                              ? "current-password"
+                              : "new-password"
+                          }
+                          placeholder={
+                            mode === "login"
+                              ? "Sua senha"
+                              : "Crie uma senha com 8 ou mais caracteres"
+                          }
+                          aria-describedby={
+                            mode === "login" ? undefined : "password-hint"
+                          }
+                        />
+                        <button
+                          type="button"
+                          aria-label={
+                            showPassword ? "Ocultar senha" : "Mostrar senha"
+                          }
+                          aria-pressed={showPassword}
+                          onClick={() => setShowPassword((value) => !value)}
+                        >
+                          {showPassword ? (
+                            <EyeOff size={19} />
+                          ) : (
+                            <Eye size={19} />
+                          )}
+                        </button>
+                      </div>
+                      {mode !== "login" && (
+                        <small id="password-hint">
+                          Use pelo menos 8 caracteres.
+                        </small>
+                      )}
+                    </div>
+                  )}
+                  <button type="submit" className="auth-submit">
+                    {busy ? (
+                      <>
+                        <LoaderCircle
+                          size={18}
+                          className="auth-spinner"
+                          aria-hidden="true"
+                        />{" "}
+                        Aguarde…
+                      </>
+                    ) : (
+                      <>
+                        {mode === "signup"
+                          ? "Criar minha conta"
+                          : mode === "recover"
+                            ? "Enviar código por e-mail"
+                            : mode === "reset"
+                              ? "Salvar nova senha"
+                              : "Entrar na minha conta"}
+                        <ArrowRight size={18} aria-hidden="true" />
+                      </>
+                    )}
+                  </button>
+                </fieldset>
+              </form>
               {mode === "reset" && (
-                <label>
-                  Código recebido
-                  <input
-                    value={code}
-                    onChange={(e) => setCode(e.target.value)}
-                    inputMode="numeric"
-                    autoComplete="one-time-code"
-                    required
-                  />
-                </label>
+                <button
+                  type="button"
+                  className="auth-text-button auth-resend"
+                  disabled={busy}
+                  onClick={() => void reset()}
+                >
+                  Reenviar código
+                </button>
               )}
-              <label>
-                {mode === "reset" ? "Nova senha" : "Senha"}
-                <input
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                  minLength={8}
-                  autoComplete={
-                    mode === "login" ? "current-password" : "new-password"
-                  }
-                />
-              </label>
-              <button className="admin-primary" disabled={busy}>
-                {busy
-                  ? "Aguarde…"
-                  : mode === "signup"
-                    ? "Criar minha conta"
-                    : mode === "reset"
-                      ? "Salvar nova senha"
-                      : "Entrar"}
-              </button>
-              <button
-                className="broadcast-chip"
-                type="button"
-                disabled={busy}
-                onClick={() => void reset()}
-              >
-                Receber código para recuperar senha
-              </button>
-            </form>
-            <p>
-              Seus favoritos e preferências ficam vinculados à sua conta. O
-              Resumo Diário é exclusivo para usuários cadastrados.
-            </p>
-          </section>
+              <div className="auth-bottom">
+                {mode === "login" ? (
+                  <>
+                    Ainda não tem conta?{" "}
+                    <button
+                      type="button"
+                      disabled={busy}
+                      onClick={() => changeMode("signup")}
+                    >
+                      Crie a sua
+                    </button>
+                  </>
+                ) : (
+                  <button
+                    type="button"
+                    disabled={busy}
+                    onClick={() => changeMode("login")}
+                  >
+                    <ArrowLeft size={14} aria-hidden="true" /> Voltar para
+                    entrar
+                  </button>
+                )}
+              </div>
+              <p className="auth-security">
+                <LockKeyhole size={14} aria-hidden="true" /> Seus favoritos e
+                preferências acompanham sua conta.
+              </p>
+            </section>
+          </div>
         )
       )}
     </div>
