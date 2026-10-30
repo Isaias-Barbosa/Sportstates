@@ -10,8 +10,43 @@ export function pageURL(raw = "/") {
   for (const key of [...u.searchParams.keys()]) if (!allowed.includes(key)) u.searchParams.delete(key);
   return u;
 }
+
+export const VALID_ROUTES = [
+  /^\/$/,
+  /^\/favoritos\/?$/,
+  /^\/conta\/?$/,
+  /^\/resumo-diario\/?$/,
+  /^\/atletas\/?$/,
+  /^\/classificacoes\/?$/,
+  /^\/partida\/[a-z-]+\/[a-z0-9._-]+\/\d{1,15}\/?$/,
+  /^\/noticias\/?$/,
+  /^\/times\/?$/,
+  /^\/times\/[a-zA-Z0-9_-]{1,100}\/?$/,
+  /^\/transferencias\/?$/,
+  /^\/sobre\/?$/,
+  /^\/admin(\/.*)?$/,
+];
+
+export function isAppRoute(pathname) {
+  return VALID_ROUTES.some(regex => regex.test(pathname));
+}
+
 export async function metadata(raw, providers = {}) {
   const u = pageURL(raw);
+
+  // Se a URL não for uma rota válida da aplicação (ex: scans de bots, 404, arquivos inexistentes)
+  if (!isAppRoute(u.pathname)) {
+    return {
+      title: "Página não encontrada | Sportstates",
+      heading: "PÁGINA NÃO ENCONTRADA",
+      label: "404",
+      description: "A página solicitada não existe no Sportstates.",
+      url: u.href,
+      kind: "not_found",
+      image: ORIGIN + "/api/share-image?page=404",
+    };
+  }
+
   const sport = SPORTS.find(s => s.id === u.searchParams.get("sport"));
   const league = leagueFor(u.searchParams.get("sport"), u.searchParams.get("league"));
   const m = { title: "Sportstates · O jogo acontece aqui", heading: "O JOGO ACONTECE AQUI.", label: "SEU ESPORTE. SEU MOMENTO.", description: "Da primeira bola ao último segundo. Acompanhe placares, jogos do dia, times e classificações em um só lugar.", url: u.href, kind: "home" };
@@ -21,12 +56,15 @@ export async function metadata(raw, providers = {}) {
     const config = leagueFor(game[1], game[2]);
     Object.assign(m, {kind:"match", heading:config.name, title:config.name + " · Partida | Sportstates", label:"CENTRAL DA PARTIDA", description:"Placar, andamento e detalhes desta partida no Sportstates."});
     const match = await providers.match?.(game[1], game[2], game[3]);
-    if (match?.home?.name && match?.away?.name) {
-      m.heading = clean(match.home.name + " x " + match.away.name, 100);
-      m.title = m.heading + " | Sportstates";
-      const score = match.home.score != null && match.away.score != null ? match.home.score + " x " + match.away.score + " · " : "";
-      m.description = clean(config.name + " · " + score + (match.status || "Confira os detalhes da partida") + ". Acompanhe no Sportstates.");
-      m.label = match.state === "finished" ? "APITO FINAL" : match.state === "live" && !match.liveUnverified ? "PARTIDA EM ANDAMENTO" : "CENTRAL DA PARTIDA";
+    if (match) {
+      m.state = match.state;
+      if (match.home?.name && match.away?.name) {
+        m.heading = clean(match.home.name + " x " + match.away.name, 100);
+        m.title = m.heading + " | Sportstates";
+        const score = match.home.score != null && match.away.score != null ? match.home.score + " x " + match.away.score + " · " : "";
+        m.description = clean(config.name + " · " + score + (match.status || "Confira os detalhes da partida") + ". Acompanhe no Sportstates.");
+        m.label = match.state === "finished" ? "APITO FINAL" : match.state === "live" && !match.liveUnverified ? "PARTIDA EM ANDAMENTO" : "CENTRAL DA PARTIDA";
+      }
     }
   } else if (team) {
     Object.assign(m,{kind:"team",heading:"POR DENTRO DO TIME",title:"Perfil do time | Sportstates",label:"HISTÓRIA. ELENCO. PRÓXIMOS JOGOS.",description:"Conheça o elenco, a história, os títulos e os jogos do time no Sportstates."});
@@ -40,6 +78,10 @@ export async function metadata(raw, providers = {}) {
     Object.assign(m,{kind:"account",heading:u.pathname==="/resumo-diario"?"SEU RESUMO DIÁRIO.":"SEU ESPORTE. SUA CONTA.",title:(u.pathname==="/resumo-diario"?"Resumo Diário":u.pathname==="/favoritos"?"Meus favoritos":"Minha conta")+" | Sportstates",label:"FEITO PARA ACOMPANHAR",description:"Entre no Sportstates para personalizar sua agenda, seguir seus times e acessar seu Resumo Diário."});
   } else if (u.pathname === "/noticias") {
     Object.assign(m,{heading:"O ESPORTE NÃO PARA.",title:"Notícias | Sportstates",label:"NOTÍCIAS DO ESPORTE",description:"Acompanhe as notícias esportivas e acesse as matérias nas fontes originais."});
+  } else if (u.pathname === "/sobre") {
+    Object.assign(m,{kind:"about",heading:"SOBRE O SPORTSTATES",title:"Fontes e cobertura | Sportstates",label:"O PROJETO",description:"Conheça as fontes, competições cobertas e como o Sportstates organiza seus dados."});
+  } else if (u.pathname === "/transferencias") {
+    Object.assign(m,{kind:"transfers",heading:"MERCADO DA BOLA",title:"Transferências | Sportstates",label:"NOVAS CORES",description:"Acompanhe as transferências e movimentações do mercado no futebol."});
   } else if (u.pathname === "/" && (sport || league || u.searchParams.get("status")==="live")) {
     m.heading=league?.name || sport?.name || "O JOGO ESTÁ ROLANDO.";
     m.title=m.heading+" · Jogos | Sportstates";
