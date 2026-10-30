@@ -1,5 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
+  Eye,
+  X,
   Search,
   Users,
   CheckCircle2,
@@ -77,6 +79,12 @@ export default function AdminUsers({ secret }: { secret: string }) {
       });
     return () => controller.abort();
   }, [secret, q, status, page, reload]);
+  const [selected, setSelected] = useState<User | null>(null);
+  const dialog = useRef<HTMLDialogElement>(null);
+  useEffect(() => {
+    if (selected) dialog.current?.showModal();
+    else dialog.current?.close();
+  }, [selected]);
   const pages = Math.max(1, Math.ceil((data?.total || 0) / 25));
   return (
     <section className="admin-users" aria-labelledby="admin-users-title">
@@ -180,12 +188,13 @@ export default function AdminUsers({ secret }: { secret: string }) {
               <th scope="col">Perfil</th>
               <th scope="col">Verificação</th>
               <th scope="col">Cadastro</th>
+              <th scope="col">Opções</th>
             </tr>
           </thead>
           <tbody>
             {loading ? (
               <tr>
-                <td colSpan={5} role="status">
+                <td colSpan={6} role="status">
                   Carregando usuários…
                 </td>
               </tr>
@@ -225,11 +234,21 @@ export default function AdminUsers({ secret }: { secret: string }) {
                     </span>
                   </td>
                   <td>{createdDate(u.createdAt)}</td>
+                  <td>
+                    <button
+                      type="button"
+                      className="broadcast-chip admin-user-option"
+                      aria-label={`Ver detalhes de ${u.name || u.email}`}
+                      onClick={() => setSelected(u)}
+                    >
+                      <Eye size={16} aria-hidden="true" /> Detalhes
+                    </button>
+                  </td>
                 </tr>
               ))
             ) : (
               <tr>
-                <td colSpan={5}>
+                <td colSpan={6}>
                   {error
                     ? "Consulta indisponível."
                     : "Nenhum usuário encontrado para estes filtros."}
@@ -260,6 +279,72 @@ export default function AdminUsers({ secret }: { secret: string }) {
           </button>
         </div>
       </div>
+      <dialog
+        ref={dialog}
+        className="admin-user-dialog"
+        aria-labelledby="admin-user-dialog-title"
+        onClose={() => setSelected(null)}
+        onCancel={() => setSelected(null)}
+      >
+        {selected && (
+          <>
+            <div className="profile-section-title">
+              <div>
+                <span className="profile-eyebrow">CONTA SPORTSTATES</span>
+                <h2 id="admin-user-dialog-title">Detalhes do usuário</h2>
+              </div>
+              <button
+                type="button"
+                className="icon-button"
+                aria-label="Fechar detalhes"
+                autoFocus
+                onClick={() => setSelected(null)}
+              >
+                <X size={20} />
+              </button>
+            </div>
+            <dl>
+              <div>
+                <dt>Nome</dt>
+                <dd>{selected.name || "Não informado"}</dd>
+              </div>
+              <div>
+                <dt>E-mail</dt>
+                <dd>{selected.email}</dd>
+              </div>
+              <div>
+                <dt>Perfil</dt>
+                <dd>
+                  {selected.role === "admin" ? "Administrador" : "Usuário"}
+                </dd>
+              </div>
+              <div>
+                <dt>Verificação do e-mail</dt>
+                <dd>{selected.emailVerified ? "Verificado" : "Pendente"}</dd>
+              </div>
+              <div>
+                <dt>Situação da conta</dt>
+                <dd>{selected.banned ? "Bloqueada" : "Sem bloqueio"}</dd>
+              </div>
+              <div>
+                <dt>Cadastrado em</dt>
+                <dd>{createdDate(selected.createdAt)}</dd>
+              </div>
+              <div>
+                <dt>ID do usuário</dt>
+                <dd>{selected.id}</dd>
+              </div>
+            </dl>
+            <button
+              type="button"
+              className="admin-primary"
+              onClick={() => setSelected(null)}
+            >
+              Fechar
+            </button>
+          </>
+        )}
+      </dialog>
     </section>
   );
 }
