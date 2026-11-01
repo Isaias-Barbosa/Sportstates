@@ -83,6 +83,21 @@ import {
 const cached = createCache();
 const ESPN = "https://site.api.espn.com/apis/site/v2/sports";
 
+export function adminDatabaseErrorMessage(error) {
+  const message = error instanceof Error ? error.message : "";
+  if (!process.env.DATABASE_URL || message === "Banco Neon não configurado.")
+    return "DATABASE_URL não está disponível nesta função. Confira se está configurada para Production no Vercel e faça um novo deploy.";
+  if (/permission denied|must be owner|not authorized/i.test(message))
+    return "O banco está acessível, mas o usuário de DATABASE_URL não tem permissão para criar ou alterar as tabelas administrativas no schema public.";
+  if (
+    /password authentication failed|endpoint id is not specified|invalid connection string|ENOTFOUND|ECONNREFUSED|ETIMEDOUT|fetch failed/i.test(
+      message,
+    )
+  )
+    return "Não foi possível conectar ao Neon usando DATABASE_URL. Confira se a URL está válida e aponta para o banco e branch corretos no ambiente Production.";
+  return "Não foi possível preparar ou gravar no Neon. Confira os logs da função Vercel para identificar o erro sem compartilhar a URL do banco.";
+}
+
 async function json(url, headers = {}) {
   const response = await fetch(url, {
     cache: "no-store",
@@ -952,8 +967,23 @@ export async function handler(req, res) {
         res.statusCode = 400;
         return res.end(JSON.stringify({ error: "Data inválida." }));
       }
+      let scores;
       try {
-        const scores = await scoreboard(date);
+        scores = await scoreboard(date);
+      } catch (error) {
+        console.error(
+          "Falha ao carregar partidas para o painel administrativo:",
+          error,
+        );
+        res.statusCode = 503;
+        return res.end(
+          JSON.stringify({
+            error:
+              "Não foi possível carregar as partidas para consultar as transmissões.",
+          }),
+        );
+      }
+      try {
         const broadcasts = await listManualBroadcasts(scores.matches);
         res.statusCode = 200;
         return res.end(JSON.stringify({ date, broadcasts }));
@@ -964,9 +994,7 @@ export async function handler(req, res) {
         );
         res.statusCode = 503;
         return res.end(
-          JSON.stringify({
-            error: "Não foi possível consultar as transmissões manuais.",
-          }),
+          JSON.stringify({ error: adminDatabaseErrorMessage(error) }),
         );
       }
     }
@@ -1021,7 +1049,16 @@ export async function handler(req, res) {
           }),
         );
       }
-      const warning = await saveManualBroadcast(match, body);
+      let warning;
+      try {
+        warning = await saveManualBroadcast(match, body);
+      } catch (error) {
+        console.error("Falha ao salvar transmissão no Neon:", error);
+        res.statusCode = 503;
+        return res.end(
+          JSON.stringify({ error: adminDatabaseErrorMessage(error) }),
+        );
+      }
       const warnings = warning ? [warning] : [];
       try {
         await clearAllCaches();

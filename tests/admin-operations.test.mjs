@@ -4,7 +4,11 @@ import {
   applyManualBroadcasts,
   validateManualBroadcast,
 } from "../server/admin-operations.mjs";
-import { handler, scoreboard } from "../server/api.mjs";
+import {
+  adminDatabaseErrorMessage,
+  handler,
+  scoreboard,
+} from "../server/api.mjs";
 
 const match = (overrides = {}) => ({
   sport: "soccer",
@@ -146,6 +150,31 @@ test("scores expose source health with provider and last successful fetch", asyn
   assert.equal(data.sources[0].sport, "judo");
   assert.equal(data.sources[0].state, "unavailable");
   assert.equal(data.sources[0].fetchedAt, null);
+});
+
+test("admin database errors explain Vercel configuration and schema permission failures", () => {
+  const previous = process.env.DATABASE_URL;
+  try {
+    delete process.env.DATABASE_URL;
+    assert.match(
+      adminDatabaseErrorMessage(new Error("Banco Neon não configurado.")),
+      /DATABASE_URL.*Production.*novo deploy/,
+    );
+    process.env.DATABASE_URL = "configured";
+    assert.match(
+      adminDatabaseErrorMessage(
+        new Error("permission denied for schema public"),
+      ),
+      /permissão.*schema public/,
+    );
+    assert.match(
+      adminDatabaseErrorMessage(new Error("password authentication failed")),
+      /conectar ao Neon usando DATABASE_URL/,
+    );
+  } finally {
+    if (previous === undefined) delete process.env.DATABASE_URL;
+    else process.env.DATABASE_URL = previous;
+  }
 });
 
 test("manual broadcast routes require admin authorization and validate dates", async () => {

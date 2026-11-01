@@ -847,23 +847,31 @@ const GameRow = memo(function GameRow({
             {isLiveMatch(m) && <i className="live-dot" aria-hidden="true" />}
             {matchLabel(m)}
           </span>
-          <div className="hv-row-teams">
-            <span className="hv-row-team home">
-              <span>{m.home.name}</span>
-              <Crest team={m.home} />
-            </span>
-            <b
-              className={
-                "hv-row-score " + (m.state === "scheduled" ? "scheduled" : "")
-              }
-            >
-              {m.state === "scheduled" ? "×" : matchScore(m)}
-            </b>
-            <span className="hv-row-team">
-              <Crest team={m.away} />
-              <span>{m.away.name}</span>
-            </span>
-            <ChevronRight size={14} />
+          <div className="hv-row-info">
+            <div className="hv-row-teams">
+              <span className="hv-row-team home">
+                <span>{m.home.name}</span>
+                <Crest team={m.home} />
+              </span>
+              <b
+                className={
+                  "hv-row-score " + (m.state === "scheduled" ? "scheduled" : "")
+                }
+              >
+                {m.state === "scheduled" ? "×" : matchScore(m)}
+              </b>
+              <span className="hv-row-team">
+                <Crest team={m.away} />
+                <span>{m.away.name}</span>
+              </span>
+              <ChevronRight size={14} />
+            </div>
+            {m.venue && (
+              <small className="hv-row-venue">
+                <MapPin size={12} aria-hidden="true" />
+                <span>{m.venue}</span>
+              </small>
+            )}
           </div>
         </Link>
         <div className="hv-row-actions">
