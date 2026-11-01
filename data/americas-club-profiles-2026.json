@@ -1,0 +1,4945 @@
+{
+  "revision": "americas-clubs-2026-v1",
+  "reviewedAt": "2026-11-01",
+  "expectedTotal": 182,
+  "seasons": {
+    "arg.1": "2026",
+    "mex.1": "2026",
+    "col.1": "2026",
+    "chi.1": "2026",
+    "uru.1": "2026",
+    "ecu.1": "2026",
+    "arg.copa": "2026",
+    "arg.supercopa": "2026",
+    "arg.supercopa.internacional": "2026",
+    "mex.campeon": "2026",
+    "col.copa": "2026",
+    "col.superliga": "2026",
+    "chi.copa_chi": "2026",
+    "chi.super_cup": "2026"
+  },
+  "expectedCounts": {
+    "arg.1": 30,
+    "mex.1": 18,
+    "col.1": 20,
+    "chi.1": 16,
+    "uru.1": 16,
+    "ecu.1": 16
+  },
+  "clubs": [
+    {
+      "id": "9739",
+      "name": "Aldosivi",
+      "sport": "soccer",
+      "league": "arg.1",
+      "city": "",
+      "stadium": "José María Minella",
+      "stadium_image": "",
+      "website": "",
+      "description": "Aldosivi disputa Primera División da Argentina na temporada 2026. O estádio mandante identificado nas partidas da ESPN é José María Minella.",
+      "honours": [],
+      "colors": [
+        "#288a00",
+        "#ffff00"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/9739.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/9739/arg-aldosivi"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Jos%C3%A9%20Mar%C3%ADa%20Minella%2C%20Aldosivi"
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "Argentinos Juniors",
+      "sport": "soccer",
+      "league": "arg.1",
+      "city": "",
+      "stadium": "Diego Armando Maradona",
+      "stadium_image": "",
+      "website": "",
+      "description": "Argentinos Juniors disputa Primera División da Argentina na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Diego Armando Maradona.",
+      "honours": [],
+      "colors": [
+        "#c60000",
+        "#0060f0"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/3.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/3/arg-argentinos-juniors"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Diego%20Armando%20Maradona%2C%20Argentinos%20Juniors"
+        }
+      ]
+    },
+    {
+      "id": "9785",
+      "name": "Atlético Tucumán",
+      "sport": "soccer",
+      "league": "arg.1",
+      "city": "",
+      "stadium": "Monumental Presidente José Fierro",
+      "stadium_image": "",
+      "website": "",
+      "description": "Atlético Tucumán disputa Primera División da Argentina na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Monumental Presidente José Fierro.",
+      "honours": [],
+      "colors": [
+        "#0093ec",
+        "#c60000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/9785.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/9785/arg-atltico-tucumn"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Monumental%20Presidente%20Jos%C3%A9%20Fierro%2C%20Atl%C3%A9tico%20Tucum%C3%A1n"
+        }
+      ]
+    },
+    {
+      "id": "235",
+      "name": "Banfield",
+      "sport": "soccer",
+      "league": "arg.1",
+      "city": "",
+      "stadium": "Florencio Solá",
+      "stadium_image": "",
+      "website": "",
+      "description": "Banfield disputa Primera División da Argentina na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Florencio Solá.",
+      "honours": [],
+      "colors": [
+        "#288a00",
+        "#1a1a1a"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/235.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/235/arg-banfield"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Florencio%20Sol%C3%A1%2C%20Banfield"
+        }
+      ]
+    },
+    {
+      "id": "10060",
+      "name": "Barracas Central",
+      "sport": "soccer",
+      "league": "arg.1",
+      "city": "",
+      "stadium": "Estadio Claudio Chiqui Tapia",
+      "stadium_image": "",
+      "website": "",
+      "description": "Barracas Central disputa Primera División da Argentina na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Claudio Chiqui Tapia.",
+      "honours": [],
+      "colors": [
+        "#000000",
+        "#000000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/10060.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/10060/arg-barracas-central"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20Claudio%20Chiqui%20Tapia%2C%20Barracas%20Central"
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "name": "Belgrano (Córdoba)",
+      "sport": "soccer",
+      "league": "arg.1",
+      "city": "",
+      "stadium": "El Gigante de Alberdi",
+      "stadium_image": "",
+      "website": "",
+      "description": "Belgrano (Córdoba) disputa Primera División da Argentina na temporada 2026. O estádio mandante identificado nas partidas da ESPN é El Gigante de Alberdi.",
+      "honours": [],
+      "colors": [
+        "#0060f0",
+        "#1a1a1a"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/4.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/4/arg-belgrano-de-cordoba"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=El%20Gigante%20de%20Alberdi%2C%20Belgrano%20(C%C3%B3rdoba)"
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "name": "Boca Juniors",
+      "sport": "soccer",
+      "league": "arg.1",
+      "city": "",
+      "stadium": "Alberto José Armando (La Bombonera)",
+      "stadium_image": "",
+      "website": "",
+      "description": "Boca Juniors disputa Primera División da Argentina na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Alberto José Armando (La Bombonera).",
+      "honours": [],
+      "colors": [
+        "#fcb000",
+        "#0060f0"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/5.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/5/arg-boca-juniors"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Alberto%20Jos%C3%A9%20Armando%20(La%20Bombonera)%2C%20Boca%20Juniors"
+        }
+      ]
+    },
+    {
+      "id": "11989",
+      "name": "Central Córdoba (Santiago del Estero)",
+      "sport": "soccer",
+      "league": "arg.1",
+      "city": "",
+      "stadium": "'Estadio Único Madre de Ciudades",
+      "stadium_image": "",
+      "website": "",
+      "description": "Central Córdoba (Santiago del Estero) disputa Primera División da Argentina na temporada 2026. O estádio mandante identificado nas partidas da ESPN é 'Estadio Único Madre de Ciudades.",
+      "honours": [],
+      "colors": [
+        "#000000",
+        "#c60000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/11989.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/11989/arg-ctral-crdoba-se"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query='Estadio%20%C3%9Anico%20Madre%20de%20Ciudades%2C%20Central%20C%C3%B3rdoba%20(Santiago%20del%20Estero)"
+        }
+      ]
+    },
+    {
+      "id": "8950",
+      "name": "Defensa y Justicia",
+      "sport": "soccer",
+      "league": "arg.1",
+      "city": "",
+      "stadium": "Norberto Tomaghello",
+      "stadium_image": "",
+      "website": "",
+      "description": "Defensa y Justicia disputa Primera División da Argentina na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Norberto Tomaghello.",
+      "honours": [],
+      "colors": [
+        "#ffff00",
+        "#288a00"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/8950.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/8950/arg-defensa-y-justicia"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Norberto%20Tomaghello%2C%20Defensa%20y%20Justicia"
+        }
+      ]
+    },
+    {
+      "id": "17702",
+      "name": "Deportivo Riestra",
+      "sport": "soccer",
+      "league": "arg.1",
+      "city": "",
+      "stadium": "Guillermo Laza",
+      "stadium_image": "",
+      "website": "",
+      "description": "Deportivo Riestra disputa Primera División da Argentina na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Guillermo Laza.",
+      "honours": [],
+      "colors": [
+        "#212121",
+        "#c60000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/17702.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/17702/deportivo-riestra"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Guillermo%20Laza%2C%20Deportivo%20Riestra"
+        }
+      ]
+    },
+    {
+      "id": "8",
+      "name": "Estudiantes de La Plata",
+      "sport": "soccer",
+      "league": "arg.1",
+      "city": "",
+      "stadium": "Estadio Jorge Luis Hirschi",
+      "stadium_image": "",
+      "website": "",
+      "description": "Estudiantes de La Plata disputa Primera División da Argentina na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Jorge Luis Hirschi.",
+      "honours": [],
+      "colors": [
+        "#c60000",
+        "#288a00"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/8.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/8/arg-estudiantes-la-plata"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20Jorge%20Luis%20Hirschi%2C%20Estudiantes%20de%20La%20Plata"
+        }
+      ]
+    },
+    {
+      "id": "19685",
+      "name": "Estudiantes de Río Cuarto",
+      "sport": "soccer",
+      "league": "arg.1",
+      "city": "",
+      "stadium": "Ciudad de Río Cuarto Antonio Candini",
+      "stadium_image": "",
+      "website": "",
+      "description": "Estudiantes de Río Cuarto disputa Primera División da Argentina na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Ciudad de Río Cuarto Antonio Candini.",
+      "honours": [],
+      "colors": [
+        "#008bd0",
+        "#000000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/19685.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/19685/estudiantes-de-ro-cuarto"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Ciudad%20de%20R%C3%ADo%20Cuarto%20Antonio%20Candini%2C%20Estudiantes%20de%20R%C3%ADo%20Cuarto"
+        }
+      ]
+    },
+    {
+      "id": "11972",
+      "name": "Gimnasia (Mendoza)",
+      "sport": "soccer",
+      "league": "arg.1",
+      "city": "",
+      "stadium": "Estadio Víctor Antonio Legrotaglie",
+      "stadium_image": "",
+      "website": "",
+      "description": "Gimnasia (Mendoza) disputa Primera División da Argentina na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Víctor Antonio Legrotaglie.",
+      "honours": [],
+      "colors": [
+        "#000000",
+        "#c60000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/11972.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/11972/arg-gimnasia-m"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20V%C3%ADctor%20Antonio%20Legrotaglie%2C%20Gimnasia%20(Mendoza)"
+        }
+      ]
+    },
+    {
+      "id": "9",
+      "name": "Gimnasia La Plata",
+      "sport": "soccer",
+      "league": "arg.1",
+      "city": "",
+      "stadium": "Juan Carmelo Zerillo (El Bosque)",
+      "stadium_image": "",
+      "website": "",
+      "description": "Gimnasia La Plata disputa Primera División da Argentina na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Juan Carmelo Zerillo (El Bosque).",
+      "honours": [],
+      "colors": [
+        "#288a00",
+        "#0060f0"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/9.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/9/arg-gimnasia-la-plata"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Juan%20Carmelo%20Zerillo%20(El%20Bosque)%2C%20Gimnasia%20La%20Plata"
+        }
+      ]
+    },
+    {
+      "id": "10",
+      "name": "Huracán",
+      "sport": "soccer",
+      "league": "arg.1",
+      "city": "",
+      "stadium": "Estadio Tomás Adolfo Ducó",
+      "stadium_image": "",
+      "website": "",
+      "description": "Huracán disputa Primera División da Argentina na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Tomás Adolfo Ducó.",
+      "honours": [],
+      "colors": [
+        "#c60000",
+        "#000000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/10.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/10/arg-huracan"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20Tom%C3%A1s%20Adolfo%20Duc%C3%B3%2C%20Hurac%C3%A1n"
+        }
+      ]
+    },
+    {
+      "id": "11",
+      "name": "Independiente",
+      "sport": "soccer",
+      "league": "arg.1",
+      "city": "",
+      "stadium": "Estadio Libertadores de América",
+      "stadium_image": "",
+      "website": "",
+      "description": "Independiente disputa Primera División da Argentina na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Libertadores de América.",
+      "honours": [],
+      "colors": [
+        "#c60000",
+        "#000000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/11.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/11/arg-independiente"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20Libertadores%20de%20Am%C3%A9rica%2C%20Independiente"
+        }
+      ]
+    },
+    {
+      "id": "9744",
+      "name": "Independiente Rivadavia",
+      "sport": "soccer",
+      "league": "arg.1",
+      "city": "",
+      "stadium": "Bautista Gargantini",
+      "stadium_image": "",
+      "website": "",
+      "description": "Independiente Rivadavia disputa Primera División da Argentina na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Bautista Gargantini.",
+      "honours": [],
+      "colors": [
+        "#000061",
+        "#000000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/9744.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/9744/arg-independiente-rivadavia"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Bautista%20Gargantini%2C%20Independiente%20Rivadavia"
+        }
+      ]
+    },
+    {
+      "id": "2975",
+      "name": "Instituto (Córdoba)",
+      "sport": "soccer",
+      "league": "arg.1",
+      "city": "",
+      "stadium": "Monumental Presidente Perón",
+      "stadium_image": "",
+      "website": "",
+      "description": "Instituto (Córdoba) disputa Primera División da Argentina na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Monumental Presidente Perón.",
+      "honours": [],
+      "colors": [
+        "#c60000",
+        "#000000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/2975.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/2975/arg-instituto-de-cordoba"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Monumental%20Presidente%20Per%C3%B3n%2C%20Instituto%20(C%C3%B3rdoba)"
+        }
+      ]
+    },
+    {
+      "id": "12",
+      "name": "Lanús",
+      "sport": "soccer",
+      "league": "arg.1",
+      "city": "",
+      "stadium": "Ciudad de Lanús",
+      "stadium_image": "",
+      "website": "",
+      "description": "Lanús disputa Primera División da Argentina na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Ciudad de Lanús.",
+      "honours": [],
+      "colors": [
+        "#9f0000",
+        "#1a1a1a"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/12.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/12/arg-lanus"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Ciudad%20de%20Lan%C3%BAs%2C%20Lan%C3%BAs"
+        }
+      ]
+    },
+    {
+      "id": "14",
+      "name": "Newell's Old Boys",
+      "sport": "soccer",
+      "league": "arg.1",
+      "city": "",
+      "stadium": "Marcelo Bielsa",
+      "stadium_image": "",
+      "website": "",
+      "description": "Newell's Old Boys disputa Primera División da Argentina na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Marcelo Bielsa.",
+      "honours": [],
+      "colors": [
+        "#000000",
+        "#c60000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/14.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/14/arg-newells-old-boys"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Marcelo%20Bielsa%2C%20Newell's%20Old%20Boys"
+        }
+      ]
+    },
+    {
+      "id": "7764",
+      "name": "Platense",
+      "sport": "soccer",
+      "league": "arg.1",
+      "city": "",
+      "stadium": "Ciudad de Vicente López",
+      "stadium_image": "",
+      "website": "",
+      "description": "Platense disputa Primera División da Argentina na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Ciudad de Vicente López.",
+      "honours": [],
+      "colors": [
+        "#000000",
+        "#000000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/7764.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/7764/betbrain-platense"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Ciudad%20de%20Vicente%20L%C3%B3pez%2C%20Platense"
+        }
+      ]
+    },
+    {
+      "id": "15",
+      "name": "Racing Club",
+      "sport": "soccer",
+      "league": "arg.1",
+      "city": "",
+      "stadium": "Presidente Perón (Cilindro de Avellaneda)",
+      "stadium_image": "",
+      "website": "",
+      "description": "Racing Club disputa Primera División da Argentina na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Presidente Perón (Cilindro de Avellaneda).",
+      "honours": [],
+      "colors": [
+        "#409fff",
+        "#000000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/15.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/15/arg-racing-club"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Presidente%20Per%C3%B3n%20(Cilindro%20de%20Avellaneda)%2C%20Racing%20Club"
+        }
+      ]
+    },
+    {
+      "id": "16",
+      "name": "River Plate",
+      "sport": "soccer",
+      "league": "arg.1",
+      "city": "",
+      "stadium": "Estadio Más Monumental",
+      "stadium_image": "",
+      "website": "",
+      "description": "River Plate disputa Primera División da Argentina na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Más Monumental.",
+      "honours": [],
+      "colors": [
+        "#c60000",
+        "#792dcd"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/16.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/16/arg-river-plate"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20M%C3%A1s%20Monumental%2C%20River%20Plate"
+        }
+      ]
+    },
+    {
+      "id": "17",
+      "name": "Rosário Central",
+      "sport": "soccer",
+      "league": "arg.1",
+      "city": "",
+      "stadium": "Gigante de Arroyito",
+      "stadium_image": "",
+      "website": "",
+      "description": "Rosário Central disputa Primera División da Argentina na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Gigante de Arroyito.",
+      "honours": [],
+      "colors": [
+        "#ffff00",
+        "#792dcd"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/17.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/17/arg-rosario-central"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Gigante%20de%20Arroyito%2C%20Ros%C3%A1rio%20Central"
+        }
+      ]
+    },
+    {
+      "id": "18",
+      "name": "San Lorenzo",
+      "sport": "soccer",
+      "league": "arg.1",
+      "city": "",
+      "stadium": "Estadio Pedro Bidegain",
+      "stadium_image": "",
+      "website": "",
+      "description": "San Lorenzo disputa Primera División da Argentina na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Pedro Bidegain.",
+      "honours": [],
+      "colors": [
+        "#0060f0",
+        "#c60000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/18.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/18/arg-san-lorenzo"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20Pedro%20Bidegain%2C%20San%20Lorenzo"
+        }
+      ]
+    },
+    {
+      "id": "10158",
+      "name": "Sarmiento (Junín)",
+      "sport": "soccer",
+      "league": "arg.1",
+      "city": "",
+      "stadium": "Eva Perón",
+      "stadium_image": "",
+      "website": "",
+      "description": "Sarmiento (Junín) disputa Primera División da Argentina na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Eva Perón.",
+      "honours": [],
+      "colors": [
+        "#288a00",
+        "#000000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/10158.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/10158/arg-sarmiento-de-junn"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Eva%20Per%C3%B3n%2C%20Sarmiento%20(Jun%C3%ADn)"
+        }
+      ]
+    },
+    {
+      "id": "19",
+      "name": "Talleres (Córdoba)",
+      "sport": "soccer",
+      "league": "arg.1",
+      "city": "",
+      "stadium": "Mario Alberto Kempes",
+      "stadium_image": "",
+      "website": "",
+      "description": "Talleres (Córdoba) disputa Primera División da Argentina na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Mario Alberto Kempes.",
+      "honours": [],
+      "colors": [
+        "#000000",
+        "#000000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/19.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/19/arg-talleres-de-cordoba"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Mario%20Alberto%20Kempes%2C%20Talleres%20(C%C3%B3rdoba)"
+        }
+      ]
+    },
+    {
+      "id": "7767",
+      "name": "Tigre",
+      "sport": "soccer",
+      "league": "arg.1",
+      "city": "",
+      "stadium": "Monumental de Victoria (José Dellagiovanna)",
+      "stadium_image": "",
+      "website": "",
+      "description": "Tigre disputa Primera División da Argentina na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Monumental de Victoria (José Dellagiovanna).",
+      "honours": [],
+      "colors": [
+        "#c60000",
+        "#792dcd"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/7767.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/7767/arg-tigre"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Monumental%20de%20Victoria%20(Jos%C3%A9%20Dellagiovanna)%2C%20Tigre"
+        }
+      ]
+    },
+    {
+      "id": "20",
+      "name": "Unión (Santa Fe)",
+      "sport": "soccer",
+      "league": "arg.1",
+      "city": "",
+      "stadium": "15 de Abril",
+      "stadium_image": "",
+      "website": "",
+      "description": "Unión (Santa Fe) disputa Primera División da Argentina na temporada 2026. O estádio mandante identificado nas partidas da ESPN é 15 de Abril.",
+      "honours": [],
+      "colors": [
+        "#c60000",
+        "#000000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/20.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/20/arg-union-de-santa-fe"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=15%20de%20Abril%2C%20Uni%C3%B3n%20(Santa%20Fe)"
+        }
+      ]
+    },
+    {
+      "id": "21",
+      "name": "Vélez Sarsfield",
+      "sport": "soccer",
+      "league": "arg.1",
+      "city": "",
+      "stadium": "José Amalfitani",
+      "stadium_image": "",
+      "website": "",
+      "description": "Vélez Sarsfield disputa Primera División da Argentina na temporada 2026. O estádio mandante identificado nas partidas da ESPN é José Amalfitani.",
+      "honours": [],
+      "colors": [
+        "#0070b0",
+        "#c60000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/21.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/21/arg-velez-sarsfield"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Jos%C3%A9%20Amalfitani%2C%20V%C3%A9lez%20Sarsfield"
+        }
+      ]
+    },
+    {
+      "id": "227",
+      "name": "América",
+      "sport": "soccer",
+      "league": "mex.1",
+      "city": "",
+      "stadium": "Estadio Banorte",
+      "stadium_image": "",
+      "website": "",
+      "description": "América disputa Liga MX na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Banorte.",
+      "honours": [],
+      "colors": [
+        "#ffff91",
+        "#001c58"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/227.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/227/mex-america"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20Banorte%2C%20Am%C3%A9rica"
+        }
+      ]
+    },
+    {
+      "id": "226",
+      "name": "Atlante",
+      "sport": "soccer",
+      "league": "mex.1",
+      "city": "",
+      "stadium": "Estadio Banorte",
+      "stadium_image": "",
+      "website": "",
+      "description": "Atlante disputa Liga MX na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Banorte.",
+      "honours": [],
+      "colors": [
+        "#022789",
+        "#022789"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/226.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/226/mex-atlante"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20Banorte%2C%20Atlante"
+        }
+      ]
+    },
+    {
+      "id": "216",
+      "name": "Atlas",
+      "sport": "soccer",
+      "league": "mex.1",
+      "city": "",
+      "stadium": "Estadio Jalisco",
+      "stadium_image": "",
+      "website": "",
+      "description": "Atlas disputa Liga MX na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Jalisco.",
+      "honours": [],
+      "colors": [
+        "#ef0107",
+        "#e1e1e1"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/216.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/216/mex-atlas"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20Jalisco%2C%20Atlas"
+        }
+      ]
+    },
+    {
+      "id": "15720",
+      "name": "Atlético de San Luis",
+      "sport": "soccer",
+      "league": "mex.1",
+      "city": "",
+      "stadium": "Estadio Libertad Financiera",
+      "stadium_image": "",
+      "website": "",
+      "description": "Atlético de San Luis disputa Liga MX na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Libertad Financiera.",
+      "honours": [],
+      "colors": [
+        "#ef0107",
+        "#dfa829"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/15720.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/15720/mex-at-san-luis"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20Libertad%20Financiera%2C%20Atl%C3%A9tico%20de%20San%20Luis"
+        }
+      ]
+    },
+    {
+      "id": "218",
+      "name": "Cruz Azul",
+      "sport": "soccer",
+      "league": "mex.1",
+      "city": "",
+      "stadium": "Estadio Banorte",
+      "stadium_image": "",
+      "website": "",
+      "description": "Cruz Azul disputa Liga MX na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Banorte.",
+      "honours": [],
+      "colors": [
+        "#0000ff",
+        "#ffffff"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/218.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/218/mex-cruz-azul"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20Banorte%2C%20Cruz%20Azul"
+        }
+      ]
+    },
+    {
+      "id": "17851",
+      "name": "FC Juárez",
+      "sport": "soccer",
+      "league": "mex.1",
+      "city": "",
+      "stadium": "Estadio Olímpico Benito Juárez",
+      "stadium_image": "",
+      "website": "",
+      "description": "FC Juárez disputa Liga MX na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Olímpico Benito Juárez.",
+      "honours": [],
+      "colors": [
+        "#89f442",
+        "#ffffff"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/17851.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/17851/mex-fc-juarez"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20Ol%C3%ADmpico%20Benito%20Ju%C3%A1rez%2C%20FC%20Ju%C3%A1rez"
+        }
+      ]
+    },
+    {
+      "id": "219",
+      "name": "Guadalajara",
+      "sport": "soccer",
+      "league": "mex.1",
+      "city": "",
+      "stadium": "Estadio Akron",
+      "stadium_image": "",
+      "website": "",
+      "description": "Guadalajara disputa Liga MX na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Akron.",
+      "honours": [],
+      "colors": [
+        "#ef0107",
+        "#104e8a"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/219.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/219/mex-guadalajara"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20Akron%2C%20Guadalajara"
+        }
+      ]
+    },
+    {
+      "id": "228",
+      "name": "León",
+      "sport": "soccer",
+      "league": "mex.1",
+      "city": "",
+      "stadium": "Estadio León",
+      "stadium_image": "",
+      "website": "",
+      "description": "León disputa Liga MX na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio León.",
+      "honours": [],
+      "colors": [
+        "#008000",
+        "#fff61b"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/228.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/228/mex-leon"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20Le%C3%B3n%2C%20Le%C3%B3n"
+        }
+      ]
+    },
+    {
+      "id": "220",
+      "name": "Monterrey",
+      "sport": "soccer",
+      "league": "mex.1",
+      "city": "",
+      "stadium": "Estadio BBVA",
+      "stadium_image": "",
+      "website": "",
+      "description": "Monterrey disputa Liga MX na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio BBVA.",
+      "honours": [],
+      "colors": [
+        "#001c58",
+        "#ffffff"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/220.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/220/mex-monterrey"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20BBVA%2C%20Monterrey"
+        }
+      ]
+    },
+    {
+      "id": "229",
+      "name": "Necaxa",
+      "sport": "soccer",
+      "league": "mex.1",
+      "city": "",
+      "stadium": "Estadio Victoria",
+      "stadium_image": "",
+      "website": "",
+      "description": "Necaxa disputa Liga MX na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Victoria.",
+      "honours": [],
+      "colors": [
+        "#ef0107",
+        "#000000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/229.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/229/mex-necaxa"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20Victoria%2C%20Necaxa"
+        }
+      ]
+    },
+    {
+      "id": "234",
+      "name": "Pachuca",
+      "sport": "soccer",
+      "league": "mex.1",
+      "city": "",
+      "stadium": "Estadio Hidalgo",
+      "stadium_image": "",
+      "website": "",
+      "description": "Pachuca disputa Liga MX na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Hidalgo.",
+      "honours": [],
+      "colors": [
+        "#001c58",
+        "#02b0d0"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/234.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/234/mex-pachuca"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20Hidalgo%2C%20Pachuca"
+        }
+      ]
+    },
+    {
+      "id": "231",
+      "name": "Puebla",
+      "sport": "soccer",
+      "league": "mex.1",
+      "city": "",
+      "stadium": "Estadio Cuauhtémoc",
+      "stadium_image": "",
+      "website": "",
+      "description": "Puebla disputa Liga MX na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Cuauhtémoc.",
+      "honours": [],
+      "colors": [
+        "#ffffff",
+        "#0032a8"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/231.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/231/mex-puebla"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20Cuauht%C3%A9moc%2C%20Puebla"
+        }
+      ]
+    },
+    {
+      "id": "233",
+      "name": "Pumas UNAM",
+      "sport": "soccer",
+      "league": "mex.1",
+      "city": "",
+      "stadium": "Estadio Olímpico Universitario",
+      "stadium_image": "",
+      "website": "",
+      "description": "Pumas UNAM disputa Liga MX na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Olímpico Universitario.",
+      "honours": [],
+      "colors": [
+        "#ffffff",
+        "#060040"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/233.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/233/mex-unam"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20Ol%C3%ADmpico%20Universitario%2C%20Pumas%20UNAM"
+        }
+      ]
+    },
+    {
+      "id": "222",
+      "name": "Querétaro",
+      "sport": "soccer",
+      "league": "mex.1",
+      "city": "",
+      "stadium": "Estadio Corregidora",
+      "stadium_image": "",
+      "website": "",
+      "description": "Querétaro disputa Liga MX na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Corregidora.",
+      "honours": [],
+      "colors": [
+        "#212121",
+        "#02b0d0"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/222.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/222/mex-queretaro"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20Corregidora%2C%20Quer%C3%A9taro"
+        }
+      ]
+    },
+    {
+      "id": "225",
+      "name": "Santos",
+      "sport": "soccer",
+      "league": "mex.1",
+      "city": "",
+      "stadium": "Estadio Corona",
+      "stadium_image": "",
+      "website": "",
+      "description": "Santos disputa Liga MX na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Corona.",
+      "honours": [],
+      "colors": [
+        "#15926d",
+        "#00331b"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/225.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/225/mex-santos"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20Corona%2C%20Santos"
+        }
+      ]
+    },
+    {
+      "id": "232",
+      "name": "Tigres UANL",
+      "sport": "soccer",
+      "league": "mex.1",
+      "city": "",
+      "stadium": "Estadio Universitario",
+      "stadium_image": "",
+      "website": "",
+      "description": "Tigres UANL disputa Liga MX na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Universitario.",
+      "honours": [],
+      "colors": [
+        "#ffd011",
+        "#0000ff"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/232.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/232/mex-un-leon"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20Universitario%2C%20Tigres%20UANL"
+        }
+      ]
+    },
+    {
+      "id": "10125",
+      "name": "Tijuana",
+      "sport": "soccer",
+      "league": "mex.1",
+      "city": "",
+      "stadium": "Estadio Caliente",
+      "stadium_image": "",
+      "website": "",
+      "description": "Tijuana disputa Liga MX na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Caliente.",
+      "honours": [],
+      "colors": [
+        "#ef0107",
+        "#e1e1e1"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/10125.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/10125/mex-tijuana"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20Caliente%2C%20Tijuana"
+        }
+      ]
+    },
+    {
+      "id": "223",
+      "name": "Toluca",
+      "sport": "soccer",
+      "league": "mex.1",
+      "city": "",
+      "stadium": "Estadio Nemesio Díez Riega",
+      "stadium_image": "",
+      "website": "",
+      "description": "Toluca disputa Liga MX na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Nemesio Díez Riega.",
+      "honours": [],
+      "colors": [
+        "#ef0107",
+        "#ffffff"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/223.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/223/mex-toluca"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20Nemesio%20D%C3%ADez%20Riega%2C%20Toluca"
+        }
+      ]
+    },
+    {
+      "id": "9761",
+      "name": "Alianza FC",
+      "sport": "soccer",
+      "league": "col.1",
+      "city": "",
+      "stadium": "Armando Maestre Pavajeau",
+      "stadium_image": "",
+      "website": "",
+      "description": "Alianza FC disputa Categoría Primera A na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Armando Maestre Pavajeau.",
+      "honours": [],
+      "colors": [
+        "#000000",
+        "#ffff00"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/9761.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/9761/col-alianza-petrolera"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Armando%20Maestre%20Pavajeau%2C%20Alianza%20FC"
+        }
+      ]
+    },
+    {
+      "id": "8109",
+      "name": "América de Cali",
+      "sport": "soccer",
+      "league": "col.1",
+      "city": "",
+      "stadium": "Pascual Guerrero",
+      "stadium_image": "",
+      "website": "",
+      "description": "América de Cali disputa Categoría Primera A na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Pascual Guerrero.",
+      "honours": [],
+      "colors": [
+        "#ff0000",
+        "#000000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/8109.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/8109/col-america-cali"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Pascual%20Guerrero%2C%20Am%C3%A9rica%20de%20Cali"
+        }
+      ]
+    },
+    {
+      "id": "6137",
+      "name": "Atlético Bucaramanga",
+      "sport": "soccer",
+      "league": "col.1",
+      "city": "",
+      "stadium": "Estadio Alfonso López",
+      "stadium_image": "",
+      "website": "",
+      "description": "Atlético Bucaramanga disputa Categoría Primera A na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Alfonso López.",
+      "honours": [],
+      "colors": [
+        "#212121",
+        "#000000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/6137.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/6137/betbrain-bucaramanga"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20Alfonso%20L%C3%B3pez%2C%20Atl%C3%A9tico%20Bucaramanga"
+        }
+      ]
+    },
+    {
+      "id": "4815",
+      "name": "Atlético Junior",
+      "sport": "soccer",
+      "league": "col.1",
+      "city": "",
+      "stadium": "Romelio Martínez",
+      "stadium_image": "",
+      "website": "",
+      "description": "Atlético Junior disputa Categoría Primera A na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Romelio Martínez.",
+      "honours": [],
+      "colors": [
+        "#c60000",
+        "#000055"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/4815.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/4815/col-atletico-junior"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Romelio%20Mart%C3%ADnez%2C%20Atl%C3%A9tico%20Junior"
+        }
+      ]
+    },
+    {
+      "id": "5264",
+      "name": "Atlético Nacional",
+      "sport": "soccer",
+      "league": "col.1",
+      "city": "",
+      "stadium": "Atanasio Girardot",
+      "stadium_image": "",
+      "website": "",
+      "description": "Atlético Nacional disputa Categoría Primera A na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Atanasio Girardot.",
+      "honours": [],
+      "colors": [
+        "#06933c",
+        "#000000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/5264.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/5264/col-atletico-nacional"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Atanasio%20Girardot%2C%20Atl%C3%A9tico%20Nacional"
+        }
+      ]
+    },
+    {
+      "id": "5480",
+      "name": "Boyacá Chicó FC",
+      "sport": "soccer",
+      "league": "col.1",
+      "city": "",
+      "stadium": "La Independencia",
+      "stadium_image": "",
+      "website": "",
+      "description": "Boyacá Chicó FC disputa Categoría Primera A na temporada 2026. O estádio mandante identificado nas partidas da ESPN é La Independencia.",
+      "honours": [],
+      "colors": [
+        "#0202db",
+        "#000000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/5480.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/5480/col-boyaca-chico-fc"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=La%20Independencia%2C%20Boyac%C3%A1%20Chic%C3%B3%20FC"
+        }
+      ]
+    },
+    {
+      "id": "6101",
+      "name": "Cúcuta Deportivo",
+      "sport": "soccer",
+      "league": "col.1",
+      "city": "",
+      "stadium": "General Santander",
+      "stadium_image": "",
+      "website": "",
+      "description": "Cúcuta Deportivo disputa Categoría Primera A na temporada 2026. O estádio mandante identificado nas partidas da ESPN é General Santander.",
+      "honours": [],
+      "colors": [
+        "#320101",
+        "#ff0000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/6101.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/6101/col-cucuta"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=General%20Santander%2C%20C%C3%BAcuta%20Deportivo"
+        }
+      ]
+    },
+    {
+      "id": "5489",
+      "name": "Deportes Tolima",
+      "sport": "soccer",
+      "league": "col.1",
+      "city": "",
+      "stadium": "Estadio Manuel Murillo Toro",
+      "stadium_image": "",
+      "website": "",
+      "description": "Deportes Tolima disputa Categoría Primera A na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Manuel Murillo Toro.",
+      "honours": [],
+      "colors": [
+        "#5b0528",
+        "#000000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/5489.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/5489/col-deportes-tolima"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20Manuel%20Murillo%20Toro%2C%20Deportes%20Tolima"
+        }
+      ]
+    },
+    {
+      "id": "2672",
+      "name": "Deportivo Cali",
+      "sport": "soccer",
+      "league": "col.1",
+      "city": "",
+      "stadium": "Deportivo Cali",
+      "stadium_image": "",
+      "website": "",
+      "description": "Deportivo Cali disputa Categoría Primera A na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Deportivo Cali.",
+      "honours": [],
+      "colors": [
+        "#046d04",
+        "#000000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/2672.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/2672/col-deportivo-cali"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Deportivo%20Cali"
+        }
+      ]
+    },
+    {
+      "id": "5485",
+      "name": "Deportivo Pasto",
+      "sport": "soccer",
+      "league": "col.1",
+      "city": "",
+      "stadium": "Departamental Libertad",
+      "stadium_image": "",
+      "website": "",
+      "description": "Deportivo Pasto disputa Categoría Primera A na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Departamental Libertad.",
+      "honours": [],
+      "colors": [
+        "#fc0100",
+        "#000000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/5485.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/5485/col-deportivo-pasto"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Departamental%20Libertad%2C%20Deportivo%20Pasto"
+        }
+      ]
+    },
+    {
+      "id": "5486",
+      "name": "Deportivo Pereira",
+      "sport": "soccer",
+      "league": "col.1",
+      "city": "",
+      "stadium": "Estadio Santiago de Las Atalayas",
+      "stadium_image": "",
+      "website": "",
+      "description": "Deportivo Pereira disputa Categoría Primera A na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Santiago de Las Atalayas.",
+      "honours": [],
+      "colors": [
+        "#ffff00",
+        "#ff0000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/5486.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/5486/col-deportivo-pereira"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20Santiago%20de%20Las%20Atalayas%2C%20Deportivo%20Pereira"
+        }
+      ]
+    },
+    {
+      "id": "4928",
+      "name": "Fortaleza CEIF",
+      "sport": "soccer",
+      "league": "col.1",
+      "city": "",
+      "stadium": "Metropolitano de Techo",
+      "stadium_image": "",
+      "website": "",
+      "description": "Fortaleza CEIF disputa Categoría Primera A na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Metropolitano de Techo.",
+      "honours": [],
+      "colors": [
+        "#dc0000",
+        "#265891"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/4928.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/4928/betbrain-fortaleza-ce"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Metropolitano%20de%20Techo%2C%20Fortaleza%20CEIF"
+        }
+      ]
+    },
+    {
+      "id": "2690",
+      "name": "Independiente Medellín",
+      "sport": "soccer",
+      "league": "col.1",
+      "city": "",
+      "stadium": "Atanasio Girardot",
+      "stadium_image": "",
+      "website": "",
+      "description": "Independiente Medellín disputa Categoría Primera A na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Atanasio Girardot.",
+      "honours": [],
+      "colors": [
+        "#d70000",
+        "#000000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/2690.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/2690/col-independiente-medellin"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Atanasio%20Girardot%2C%20Independiente%20Medell%C3%ADn"
+        }
+      ]
+    },
+    {
+      "id": "5488",
+      "name": "Independiente Santa Fe",
+      "sport": "soccer",
+      "league": "col.1",
+      "city": "",
+      "stadium": "Estadio Nemesio Camacho El Campín",
+      "stadium_image": "",
+      "website": "",
+      "description": "Independiente Santa Fe disputa Categoría Primera A na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Nemesio Camacho El Campín.",
+      "honours": [],
+      "colors": [
+        "#e33439",
+        "#fafafc"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/5488.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/5488/col-independiente-santa-fe"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20Nemesio%20Camacho%20El%20Camp%C3%ADn%2C%20Independiente%20Santa%20Fe"
+        }
+      ]
+    },
+    {
+      "id": "7445",
+      "name": "Internacional de Bogotá",
+      "sport": "soccer",
+      "league": "col.1",
+      "city": "",
+      "stadium": "Metropolitano de Techo",
+      "stadium_image": "",
+      "website": "",
+      "description": "Internacional de Bogotá disputa Categoría Primera A na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Metropolitano de Techo.",
+      "honours": [],
+      "colors": [
+        "#c5a065",
+        "#000000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/7445.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/7445/col-intb"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Metropolitano%20de%20Techo%2C%20Internacional%20de%20Bogot%C3%A1"
+        }
+      ]
+    },
+    {
+      "id": "10309",
+      "name": "Jaguares de Córdoba",
+      "sport": "soccer",
+      "league": "col.1",
+      "city": "",
+      "stadium": "Estadio Jaraguay (Municipal de Montería)",
+      "stadium_image": "",
+      "website": "",
+      "description": "Jaguares de Córdoba disputa Categoría Primera A na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Jaraguay (Municipal de Montería).",
+      "honours": [],
+      "colors": [
+        "#329bd4",
+        "#c60000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/10309.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/10309/col-deportes-palmira"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20Jaraguay%20(Municipal%20de%20Monter%C3%ADa)%2C%20Jaguares%20de%20C%C3%B3rdoba"
+        }
+      ]
+    },
+    {
+      "id": "7915",
+      "name": "Llaneros FC",
+      "sport": "soccer",
+      "league": "col.1",
+      "city": "",
+      "stadium": "Estadio Bello Horizonte - Rey Pele",
+      "stadium_image": "",
+      "website": "",
+      "description": "Llaneros FC disputa Categoría Primera A na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Bello Horizonte - Rey Pele.",
+      "honours": [],
+      "colors": [
+        "#000000",
+        "#000000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/7915.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/7915/col-llanero"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20Bello%20Horizonte%20-%20Rey%20Pele%2C%20Llaneros%20FC"
+        }
+      ]
+    },
+    {
+      "id": "5484",
+      "name": "Millonarios",
+      "sport": "soccer",
+      "league": "col.1",
+      "city": "",
+      "stadium": "Estadio Nemesio Camacho El Campín",
+      "stadium_image": "",
+      "website": "",
+      "description": "Millonarios disputa Categoría Primera A na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Nemesio Camacho El Campín.",
+      "honours": [],
+      "colors": [
+        "#0202db",
+        "#000000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/5484.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/5484/col-millonarios"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20Nemesio%20Camacho%20El%20Camp%C3%ADn%2C%20Millonarios"
+        }
+      ]
+    },
+    {
+      "id": "2919",
+      "name": "Once Caldas",
+      "sport": "soccer",
+      "league": "col.1",
+      "city": "",
+      "stadium": "Palogrande",
+      "stadium_image": "",
+      "website": "",
+      "description": "Once Caldas disputa Categoría Primera A na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Palogrande.",
+      "honours": [],
+      "colors": [
+        "#000000",
+        "#fafafc"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/2919.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/2919/col-once-caldas"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Palogrande%2C%20Once%20Caldas"
+        }
+      ]
+    },
+    {
+      "id": "9762",
+      "name": "Águilas Doradas",
+      "sport": "soccer",
+      "league": "col.1",
+      "city": "",
+      "stadium": "Estadio Cincuentenario",
+      "stadium_image": "",
+      "website": "",
+      "description": "Águilas Doradas disputa Categoría Primera A na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Cincuentenario.",
+      "honours": [],
+      "colors": [
+        "#ffff00",
+        "#000000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/9762.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/9762/col-bajo-cauca-fc"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20Cincuentenario%2C%20%C3%81guilas%20Doradas"
+        }
+      ]
+    },
+    {
+      "id": "4138",
+      "name": "Audax Italiano",
+      "sport": "soccer",
+      "league": "chi.1",
+      "city": "",
+      "stadium": "Estadio Municipal de La Florida",
+      "stadium_image": "",
+      "website": "",
+      "description": "Audax Italiano disputa Primera División do Chile na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Municipal de La Florida.",
+      "honours": [],
+      "colors": [
+        "#046904",
+        "#000000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/4138.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/4138/chi-audax-italiano"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20Municipal%20de%20La%20Florida%2C%20Audax%20Italiano"
+        }
+      ]
+    },
+    {
+      "id": "4133",
+      "name": "Cobresal",
+      "sport": "soccer",
+      "league": "chi.1",
+      "city": "",
+      "stadium": "Estadio El Cobre",
+      "stadium_image": "",
+      "website": "",
+      "description": "Cobresal disputa Primera División do Chile na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio El Cobre.",
+      "honours": [],
+      "colors": [
+        "#fd0000",
+        "#fd0000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/4133.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/4133/chi-cobresal"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20El%20Cobre%2C%20Cobresal"
+        }
+      ]
+    },
+    {
+      "id": "2688",
+      "name": "Colo Colo",
+      "sport": "soccer",
+      "league": "chi.1",
+      "city": "",
+      "stadium": "Estadio Monumental David Arellano",
+      "stadium_image": "",
+      "website": "",
+      "description": "Colo Colo disputa Primera División do Chile na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Monumental David Arellano.",
+      "honours": [],
+      "colors": [
+        "#050505",
+        "#000000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/2688.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/2688/chi-colo-colo"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20Monumental%20David%20Arellano%2C%20Colo%20Colo"
+        }
+      ]
+    },
+    {
+      "id": "8186",
+      "name": "Coquimbo Unido",
+      "sport": "soccer",
+      "league": "chi.1",
+      "city": "",
+      "stadium": "Estadio Francisco Sánchez Rumoroso",
+      "stadium_image": "",
+      "website": "",
+      "description": "Coquimbo Unido disputa Primera División do Chile na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Francisco Sánchez Rumoroso.",
+      "honours": [],
+      "colors": [
+        "#000000",
+        "#fbe805"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/8186.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/8186/chi-coquimbo"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20Francisco%20S%C3%A1nchez%20Rumoroso%2C%20Coquimbo%20Unido"
+        }
+      ]
+    },
+    {
+      "id": "8110",
+      "name": "Deportes Concepcion",
+      "sport": "soccer",
+      "league": "chi.1",
+      "city": "",
+      "stadium": "Estadio Municipal Alcaldesa Ester Roa Rebolledo",
+      "stadium_image": "",
+      "website": "",
+      "description": "Deportes Concepcion disputa Primera División do Chile na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Municipal Alcaldesa Ester Roa Rebolledo.",
+      "honours": [],
+      "colors": [
+        "#800080",
+        "#ffffff"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/8110.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/8110/chi-deportes-concepcion"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20Municipal%20Alcaldesa%20Ester%20Roa%20Rebolledo%2C%20Deportes%20Concepcion"
+        }
+      ]
+    },
+    {
+      "id": "19195",
+      "name": "Deportes Limache",
+      "sport": "soccer",
+      "league": "chi.1",
+      "city": "",
+      "stadium": "Estadio Lucio Fariña Fernández",
+      "stadium_image": "",
+      "website": "",
+      "description": "Deportes Limache disputa Primera División do Chile na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Lucio Fariña Fernández.",
+      "honours": [],
+      "colors": [
+        "#000000",
+        "#c60000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/19195.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/19195/deportes-limache"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20Lucio%20Fari%C3%B1a%20Fern%C3%A1ndez%2C%20Deportes%20Limache"
+        }
+      ]
+    },
+    {
+      "id": "4129",
+      "name": "Everton CD",
+      "sport": "soccer",
+      "league": "chi.1",
+      "city": "",
+      "stadium": "Estadio Sausalito",
+      "stadium_image": "",
+      "website": "",
+      "description": "Everton CD disputa Primera División do Chile na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Sausalito.",
+      "honours": [],
+      "colors": [
+        "#212121",
+        "#000000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/4129.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/4129/chi-everton-cd"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20Sausalito%2C%20Everton%20CD"
+        }
+      ]
+    },
+    {
+      "id": "4134",
+      "name": "Huachipato",
+      "sport": "soccer",
+      "league": "chi.1",
+      "city": "",
+      "stadium": "Estadio Huachipato-CAP Acero",
+      "stadium_image": "",
+      "website": "",
+      "description": "Huachipato disputa Primera División do Chile na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Huachipato-CAP Acero.",
+      "honours": [],
+      "colors": [
+        "#023396",
+        "#000000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/4134.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/4134/chi-huachipato"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20Huachipato-CAP%20Acero%2C%20Huachipato"
+        }
+      ]
+    },
+    {
+      "id": "4137",
+      "name": "La Serena",
+      "sport": "soccer",
+      "league": "chi.1",
+      "city": "",
+      "stadium": "Estadio La Portada",
+      "stadium_image": "",
+      "website": "",
+      "description": "La Serena disputa Primera División do Chile na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio La Portada.",
+      "honours": [],
+      "colors": [
+        "#c22222",
+        "#c22222"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/4137.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/4137/chi-la-serena"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20La%20Portada%2C%20La%20Serena"
+        }
+      ]
+    },
+    {
+      "id": "6072",
+      "name": "O'Higgins",
+      "sport": "soccer",
+      "league": "chi.1",
+      "city": "",
+      "stadium": "Estadio El Teniente",
+      "stadium_image": "",
+      "website": "",
+      "description": "O'Higgins disputa Primera División do Chile na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio El Teniente.",
+      "honours": [],
+      "colors": [
+        "#517ab7",
+        "#000000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/6072.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/6072/chi-ohiggins"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20El%20Teniente%2C%20O'Higgins"
+        }
+      ]
+    },
+    {
+      "id": "4422",
+      "name": "Palestino",
+      "sport": "soccer",
+      "league": "chi.1",
+      "city": "",
+      "stadium": "Estadio Municipal de La Cisterna",
+      "stadium_image": "",
+      "website": "",
+      "description": "Palestino disputa Primera División do Chile na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Municipal de La Cisterna.",
+      "honours": [],
+      "colors": [
+        "#2a1b07",
+        "#000000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/4422.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/4422/chi-palestino"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20Municipal%20de%20La%20Cisterna%2C%20Palestino"
+        }
+      ]
+    },
+    {
+      "id": "885",
+      "name": "Universidad Católica",
+      "sport": "soccer",
+      "league": "chi.1",
+      "city": "",
+      "stadium": "Estadio San Carlos de Apoquindo",
+      "stadium_image": "",
+      "website": "",
+      "description": "Universidad Católica disputa Primera División do Chile na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio San Carlos de Apoquindo.",
+      "honours": [],
+      "colors": [
+        "#0a4f8d",
+        "#000000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/885.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/885/chi-universidad-catolica"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20San%20Carlos%20de%20Apoquindo%2C%20Universidad%20Cat%C3%B3lica"
+        }
+      ]
+    },
+    {
+      "id": "4139",
+      "name": "Universidad de Chile",
+      "sport": "soccer",
+      "league": "chi.1",
+      "city": "",
+      "stadium": "Estadio Nacional Julio Martínez Prádanos",
+      "stadium_image": "",
+      "website": "",
+      "description": "Universidad de Chile disputa Primera División do Chile na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Nacional Julio Martínez Prádanos.",
+      "honours": [],
+      "colors": [
+        "#0232cc",
+        "#000000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/4139.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/4139/chi-universidad-de-chile"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20Nacional%20Julio%20Mart%C3%ADnez%20Pr%C3%A1danos%2C%20Universidad%20de%20Chile"
+        }
+      ]
+    },
+    {
+      "id": "5362",
+      "name": "Universidad de Concepción",
+      "sport": "soccer",
+      "league": "chi.1",
+      "city": "",
+      "stadium": "Estadio Municipal Alcaldesa Ester Roa Rebolledo",
+      "stadium_image": "",
+      "website": "",
+      "description": "Universidad de Concepción disputa Primera División do Chile na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Municipal Alcaldesa Ester Roa Rebolledo.",
+      "honours": [],
+      "colors": [
+        "#0c4da2",
+        "#fbe805"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/5362.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/5362/chi-universidad-de-concepcion"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20Municipal%20Alcaldesa%20Ester%20Roa%20Rebolledo%2C%20Universidad%20de%20Concepci%C3%B3n"
+        }
+      ]
+    },
+    {
+      "id": "10144",
+      "name": "Unión La Calera",
+      "sport": "soccer",
+      "league": "chi.1",
+      "city": "",
+      "stadium": "Estadio Municipal Nicolás Chahuán",
+      "stadium_image": "",
+      "website": "",
+      "description": "Unión La Calera disputa Primera División do Chile na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Municipal Nicolás Chahuán.",
+      "honours": [],
+      "colors": [
+        "#fd0000",
+        "#000000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/10144.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/10144/chi-unin-la-calera"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20Municipal%20Nicol%C3%A1s%20Chahu%C3%A1n%2C%20Uni%C3%B3n%20La%20Calera"
+        }
+      ]
+    },
+    {
+      "id": "7427",
+      "name": "Ñublense",
+      "sport": "soccer",
+      "league": "chi.1",
+      "city": "",
+      "stadium": "Estadio Municipal Oyarzún Arenas",
+      "stadium_image": "",
+      "website": "",
+      "description": "Ñublense disputa Primera División do Chile na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Municipal Oyarzún Arenas.",
+      "honours": [],
+      "colors": [
+        "#c22222",
+        "#c22222"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/7427.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/7427/chi-ublense"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20Municipal%20Oyarz%C3%BAn%20Arenas%2C%20%C3%91ublense"
+        }
+      ]
+    },
+    {
+      "id": "21403",
+      "name": "Albion FC",
+      "sport": "soccer",
+      "league": "uru.1",
+      "city": "",
+      "stadium": "Estadio Luis Franzini",
+      "stadium_image": "",
+      "website": "",
+      "description": "Albion FC disputa Primera División Uruguaia na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Luis Franzini.",
+      "honours": [],
+      "colors": [
+        "#000000",
+        "#c60000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/21403.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/21403/albion-fc"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20Luis%20Franzini%2C%20Albion%20FC"
+        }
+      ]
+    },
+    {
+      "id": "9999",
+      "name": "Boston River",
+      "sport": "soccer",
+      "league": "uru.1",
+      "city": "",
+      "stadium": "Campeones Olímpicos",
+      "stadium_image": "",
+      "website": "",
+      "description": "Boston River disputa Primera División Uruguaia na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Campeones Olímpicos.",
+      "honours": [],
+      "colors": [
+        "#212121",
+        "#000000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/9999.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/9999/uru-boston-river"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Campeones%20Ol%C3%ADmpicos%2C%20Boston%20River"
+        }
+      ]
+    },
+    {
+      "id": "131688",
+      "name": "Central Español Fútbol Club",
+      "sport": "soccer",
+      "league": "uru.1",
+      "city": "",
+      "stadium": "Parque Palermo",
+      "stadium_image": "",
+      "website": "",
+      "description": "Central Español Fútbol Club disputa Primera División Uruguaia na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Parque Palermo.",
+      "honours": [],
+      "colors": [
+        "#000000",
+        "#c60000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/131688.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/131688/central"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Parque%20Palermo%2C%20Central%20Espa%C3%B1ol%20F%C3%BAtbol%20Club"
+        }
+      ]
+    },
+    {
+      "id": "5490",
+      "name": "Cerro",
+      "sport": "soccer",
+      "league": "uru.1",
+      "city": "",
+      "stadium": "Estadio Luis Tróccoli",
+      "stadium_image": "",
+      "website": "",
+      "description": "Cerro disputa Primera División Uruguaia na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Luis Tróccoli.",
+      "honours": [],
+      "colors": [
+        "#6bc7f5",
+        "#000000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/5490.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/5490/uru-cerro"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20Luis%20Tr%C3%B3ccoli%2C%20Cerro"
+        }
+      ]
+    },
+    {
+      "id": "9902",
+      "name": "Cerro Largo",
+      "sport": "soccer",
+      "league": "uru.1",
+      "city": "",
+      "stadium": "Estadio Arquitecto Antonio Eleuterio Ubilla",
+      "stadium_image": "",
+      "website": "",
+      "description": "Cerro Largo disputa Primera División Uruguaia na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Arquitecto Antonio Eleuterio Ubilla.",
+      "honours": [],
+      "colors": [
+        "#000000",
+        "#c60000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/9902.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/9902/uru-cerro-largo"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20Arquitecto%20Antonio%20Eleuterio%20Ubilla%2C%20Cerro%20Largo"
+        }
+      ]
+    },
+    {
+      "id": "4817",
+      "name": "Danubio",
+      "sport": "soccer",
+      "league": "uru.1",
+      "city": "",
+      "stadium": "Jardines del Hipódromo",
+      "stadium_image": "",
+      "website": "",
+      "description": "Danubio disputa Primera División Uruguaia na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Jardines del Hipódromo.",
+      "honours": [],
+      "colors": [
+        "#0a0a0a",
+        "#000000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/4817.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/4817/uru-danubio"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Jardines%20del%20Hip%C3%B3dromo%2C%20Danubio"
+        }
+      ]
+    },
+    {
+      "id": "1007",
+      "name": "Defensor Sporting",
+      "sport": "soccer",
+      "league": "uru.1",
+      "city": "",
+      "stadium": "Estadio Luis Franzini",
+      "stadium_image": "",
+      "website": "",
+      "description": "Defensor Sporting disputa Primera División Uruguaia na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Luis Franzini.",
+      "honours": [],
+      "colors": [
+        "#3e188b",
+        "#000000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/1007.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/1007/uru-defensor-sporting"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20Luis%20Franzini%2C%20Defensor%20Sporting"
+        }
+      ]
+    },
+    {
+      "id": "10000",
+      "name": "Deportivo Maldonado",
+      "sport": "soccer",
+      "league": "uru.1",
+      "city": "",
+      "stadium": "Estadio Domingo Burgueño Miguel",
+      "stadium_image": "",
+      "website": "",
+      "description": "Deportivo Maldonado disputa Primera División Uruguaia na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Domingo Burgueño Miguel.",
+      "honours": [],
+      "colors": [
+        "#000000",
+        "#000000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/10000.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/10000/uru-deportivo-maldonado"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20Domingo%20Burgue%C3%B1o%20Miguel%2C%20Deportivo%20Maldonado"
+        }
+      ]
+    },
+    {
+      "id": "8416",
+      "name": "Juventud",
+      "sport": "soccer",
+      "league": "uru.1",
+      "city": "",
+      "stadium": "Estadio Juventud Parque Artigas",
+      "stadium_image": "",
+      "website": "",
+      "description": "Juventud disputa Primera División Uruguaia na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Juventud Parque Artigas.",
+      "honours": [],
+      "colors": [
+        "#023396",
+        "#023396"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/8416.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/8416/uru-juventud"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20Juventud%20Parque%20Artigas%2C%20Juventud"
+        }
+      ]
+    },
+    {
+      "id": "5492",
+      "name": "Liverpool",
+      "sport": "soccer",
+      "league": "uru.1",
+      "city": "",
+      "stadium": "Parque Alfredo Víctor Viera",
+      "stadium_image": "",
+      "website": "",
+      "description": "Liverpool disputa Primera División Uruguaia na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Parque Alfredo Víctor Viera.",
+      "honours": [],
+      "colors": [
+        "#c60000",
+        "#c60000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/5492.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/5492/uru-liverpool"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Parque%20Alfredo%20V%C3%ADctor%20Viera%2C%20Liverpool"
+        }
+      ]
+    },
+    {
+      "id": "19002",
+      "name": "Montevideo City Torque",
+      "sport": "soccer",
+      "league": "uru.1",
+      "city": "",
+      "stadium": "Estadio Charrúa",
+      "stadium_image": "",
+      "website": "",
+      "description": "Montevideo City Torque disputa Primera División Uruguaia na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Charrúa.",
+      "honours": [],
+      "colors": [
+        "#6bc7f5",
+        "#000000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/19002.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/19002/torque"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20Charr%C3%BAa%2C%20Montevideo%20City%20Torque"
+        }
+      ]
+    },
+    {
+      "id": "5501",
+      "name": "Montevideo Wanderers",
+      "sport": "soccer",
+      "league": "uru.1",
+      "city": "",
+      "stadium": "Parque Alfredo Víctor Viera",
+      "stadium_image": "",
+      "website": "",
+      "description": "Montevideo Wanderers disputa Primera División Uruguaia na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Parque Alfredo Víctor Viera.",
+      "honours": [],
+      "colors": [
+        "#1a1a1a",
+        "#fafafc"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/5501.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/5501/uru-wanderers"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Parque%20Alfredo%20V%C3%ADctor%20Viera%2C%20Montevideo%20Wanderers"
+        }
+      ]
+    },
+    {
+      "id": "2684",
+      "name": "Nacional",
+      "sport": "soccer",
+      "league": "uru.1",
+      "city": "",
+      "stadium": "Gran Parque Central",
+      "stadium_image": "",
+      "website": "",
+      "description": "Nacional disputa Primera División Uruguaia na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Gran Parque Central.",
+      "honours": [],
+      "colors": [
+        "#345bbc",
+        "#c60000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/2684.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/2684/uru-nacional"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Gran%20Parque%20Central%2C%20Nacional"
+        }
+      ]
+    },
+    {
+      "id": "2683",
+      "name": "Peñarol",
+      "sport": "soccer",
+      "league": "uru.1",
+      "city": "",
+      "stadium": "Estadio Campeón del Siglo",
+      "stadium_image": "",
+      "website": "",
+      "description": "Peñarol disputa Primera División Uruguaia na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Campeón del Siglo.",
+      "honours": [],
+      "colors": [
+        "#000000",
+        "#000000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/2683.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/2683/uru-penarol"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20Campe%C3%B3n%20del%20Siglo%2C%20Pe%C3%B1arol"
+        }
+      ]
+    },
+    {
+      "id": "6866",
+      "name": "Progreso",
+      "sport": "soccer",
+      "league": "uru.1",
+      "city": "",
+      "stadium": "Parque Abraham Paladino",
+      "stadium_image": "",
+      "website": "",
+      "description": "Progreso disputa Primera División Uruguaia na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Parque Abraham Paladino.",
+      "honours": [],
+      "colors": [
+        "#212121",
+        "#000000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/6866.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/6866/betbrain-progreso"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Parque%20Abraham%20Paladino%2C%20Progreso"
+        }
+      ]
+    },
+    {
+      "id": "9903",
+      "name": "Racing (Montevideo)",
+      "sport": "soccer",
+      "league": "uru.1",
+      "city": "",
+      "stadium": "Parque Osvaldo Roberto",
+      "stadium_image": "",
+      "website": "",
+      "description": "Racing (Montevideo) disputa Primera División Uruguaia na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Parque Osvaldo Roberto.",
+      "honours": [],
+      "colors": [
+        "#107436",
+        "#c60000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/9903.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/9903/uru-racing-u"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Parque%20Osvaldo%20Roberto%2C%20Racing%20(Montevideo)"
+        }
+      ]
+    },
+    {
+      "id": "6017",
+      "name": "Aucas",
+      "sport": "soccer",
+      "league": "ecu.1",
+      "city": "",
+      "stadium": "Estadio Gonzalo Pozo Ripalda",
+      "stadium_image": "",
+      "website": "",
+      "description": "Aucas disputa LigaPro Ecuador na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Gonzalo Pozo Ripalda.",
+      "honours": [],
+      "colors": [
+        "#ca1524",
+        "#000000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/6017.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/6017/ecu-aucas"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20Gonzalo%20Pozo%20Ripalda%2C%20Aucas"
+        }
+      ]
+    },
+    {
+      "id": "2686",
+      "name": "Barcelona SC",
+      "sport": "soccer",
+      "league": "ecu.1",
+      "city": "",
+      "stadium": "Estadio Banco Pichincha",
+      "stadium_image": "",
+      "website": "",
+      "description": "Barcelona SC disputa LigaPro Ecuador na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Banco Pichincha.",
+      "honours": [],
+      "colors": [
+        "#ffff00",
+        "#000000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/2686.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/2686/ecu-barcelona"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20Banco%20Pichincha%2C%20Barcelona%20SC"
+        }
+      ]
+    },
+    {
+      "id": "1011",
+      "name": "Delfín",
+      "sport": "soccer",
+      "league": "ecu.1",
+      "city": "",
+      "stadium": "Estadio Jocay",
+      "stadium_image": "",
+      "website": "",
+      "description": "Delfín disputa LigaPro Ecuador na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Jocay.",
+      "honours": [],
+      "colors": [
+        "#212121",
+        "#000000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/1011.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/1011/ecu-delfin"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20Jocay%2C%20Delf%C3%ADn"
+        }
+      ]
+    },
+    {
+      "id": "4812",
+      "name": "Deportivo Cuenca",
+      "sport": "soccer",
+      "league": "ecu.1",
+      "city": "",
+      "stadium": "Banco del Austro Alejandro Serrano Aguil",
+      "stadium_image": "",
+      "website": "",
+      "description": "Deportivo Cuenca disputa LigaPro Ecuador na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Banco del Austro Alejandro Serrano Aguil.",
+      "honours": [],
+      "colors": [
+        "#fd0000",
+        "#000000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/4812.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/4812/ecu-deportivo-cuenca"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Banco%20del%20Austro%20Alejandro%20Serrano%20Aguil%2C%20Deportivo%20Cuenca"
+        }
+      ]
+    },
+    {
+      "id": "2668",
+      "name": "Emelec",
+      "sport": "soccer",
+      "league": "ecu.1",
+      "city": "",
+      "stadium": "Estadio George Capwell Banco del Austro",
+      "stadium_image": "",
+      "website": "",
+      "description": "Emelec disputa LigaPro Ecuador na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio George Capwell Banco del Austro.",
+      "honours": [],
+      "colors": [
+        "#0505d2",
+        "#000000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/2668.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/2668/ecu-emelec"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20George%20Capwell%20Banco%20del%20Austro%2C%20Emelec"
+        }
+      ]
+    },
+    {
+      "id": "11124",
+      "name": "Guayaquil City FC",
+      "sport": "soccer",
+      "league": "ecu.1",
+      "city": "",
+      "stadium": "Estadio Christian Benítez Betancourt",
+      "stadium_image": "",
+      "website": "",
+      "description": "Guayaquil City FC disputa LigaPro Ecuador na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Christian Benítez Betancourt.",
+      "honours": [],
+      "colors": [
+        "#0505d2",
+        "#c60000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/11124.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/11124/ecu-guayaquil"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20Christian%20Ben%C3%ADtez%20Betancourt%2C%20Guayaquil%20City%20FC"
+        }
+      ]
+    },
+    {
+      "id": "17086",
+      "name": "Independiente del Valle",
+      "sport": "soccer",
+      "league": "ecu.1",
+      "city": "",
+      "stadium": "Estadio Banco Guayaquil",
+      "stadium_image": "",
+      "website": "",
+      "description": "Independiente del Valle disputa LigaPro Ecuador na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Banco Guayaquil.",
+      "honours": [],
+      "colors": [
+        "#000d5d",
+        "#000000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/17086.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/17086/independiente-del-valle"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20Banco%20Guayaquil%2C%20Independiente%20del%20Valle"
+        }
+      ]
+    },
+    {
+      "id": "131702",
+      "name": "Leones",
+      "sport": "soccer",
+      "league": "ecu.1",
+      "city": "",
+      "stadium": "Estadio Olímpico de Ibarra",
+      "stadium_image": "",
+      "website": "",
+      "description": "Leones disputa LigaPro Ecuador na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Olímpico de Ibarra.",
+      "honours": [],
+      "colors": [
+        "#000000",
+        "#c60000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/131702.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/131702/leones"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20Ol%C3%ADmpico%20de%20Ibarra%2C%20Leones"
+        }
+      ]
+    },
+    {
+      "id": "21843",
+      "name": "Libertad (Ecuador)",
+      "sport": "soccer",
+      "league": "ecu.1",
+      "city": "",
+      "stadium": "Estadio Federativo Reina del Cisne",
+      "stadium_image": "",
+      "website": "",
+      "description": "Libertad (Ecuador) disputa LigaPro Ecuador na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Federativo Reina del Cisne.",
+      "honours": [],
+      "colors": [
+        "#ffa500",
+        "#000000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/21843.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/21843/libertad-ecuador"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20Federativo%20Reina%20del%20Cisne%2C%20Libertad%20(Ecuador)"
+        }
+      ]
+    },
+    {
+      "id": "4816",
+      "name": "Liga de Quito",
+      "sport": "soccer",
+      "league": "ecu.1",
+      "city": "",
+      "stadium": "Rodrigo Paz Delgado",
+      "stadium_image": "",
+      "website": "",
+      "description": "Liga de Quito disputa LigaPro Ecuador na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Rodrigo Paz Delgado.",
+      "honours": [],
+      "colors": [
+        "#1c1d5c",
+        "#000000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/4816.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/4816/ecu-ldu-quito"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Rodrigo%20Paz%20Delgado%2C%20Liga%20de%20Quito"
+        }
+      ]
+    },
+    {
+      "id": "18439",
+      "name": "Macará",
+      "sport": "soccer",
+      "league": "ecu.1",
+      "city": "",
+      "stadium": "Estadio Bellavista",
+      "stadium_image": "",
+      "website": "",
+      "description": "Macará disputa LigaPro Ecuador na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Bellavista.",
+      "honours": [],
+      "colors": [
+        "#0195dd",
+        "#fafafc"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/18439.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/18439/ecu-macara"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20Bellavista%2C%20Macar%C3%A1"
+        }
+      ]
+    },
+    {
+      "id": "10307",
+      "name": "Manta F.C.",
+      "sport": "soccer",
+      "league": "ecu.1",
+      "city": "",
+      "stadium": "Estadio Jocay",
+      "stadium_image": "",
+      "website": "",
+      "description": "Manta F.C. disputa LigaPro Ecuador na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Jocay.",
+      "honours": [],
+      "colors": [
+        "#000000",
+        "#c60000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/10307.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/10307/ecu-manta-f-c"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20Jocay%2C%20Manta%20F.C."
+        }
+      ]
+    },
+    {
+      "id": "17176",
+      "name": "Mushuc Runa",
+      "sport": "soccer",
+      "league": "ecu.1",
+      "city": "",
+      "stadium": "Estadio COAC Mushuc Runa",
+      "stadium_image": "",
+      "website": "",
+      "description": "Mushuc Runa disputa LigaPro Ecuador na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio COAC Mushuc Runa.",
+      "honours": [],
+      "colors": [
+        "#000000",
+        "#c60000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/17176.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/17176/mushuc-runa"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20COAC%20Mushuc%20Runa%2C%20Mushuc%20Runa"
+        }
+      ]
+    },
+    {
+      "id": "20695",
+      "name": "Orense",
+      "sport": "soccer",
+      "league": "ecu.1",
+      "city": "",
+      "stadium": "Estadio 9 de Mayo",
+      "stadium_image": "",
+      "website": "",
+      "description": "Orense disputa LigaPro Ecuador na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio 9 de Mayo.",
+      "honours": [],
+      "colors": [
+        "#008f39",
+        "#000000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/20695.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/20695/orense"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%209%20de%20Mayo%2C%20Orense"
+        }
+      ]
+    },
+    {
+      "id": "9292",
+      "name": "Técnico Universitario",
+      "sport": "soccer",
+      "league": "ecu.1",
+      "city": "",
+      "stadium": "Estadio Bellavista",
+      "stadium_image": "",
+      "website": "",
+      "description": "Técnico Universitario disputa LigaPro Ecuador na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Bellavista.",
+      "honours": [],
+      "colors": [
+        "#212121",
+        "#000000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/9292.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/9292/team-tecnico-universitario"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20Bellavista%2C%20T%C3%A9cnico%20Universitario"
+        }
+      ]
+    },
+    {
+      "id": "9283",
+      "name": "Universidad Católica (Quito)",
+      "sport": "soccer",
+      "league": "ecu.1",
+      "city": "",
+      "stadium": "Estadio Olímpico Atahualpa",
+      "stadium_image": "",
+      "website": "",
+      "description": "Universidad Católica (Quito) disputa LigaPro Ecuador na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Olímpico Atahualpa.",
+      "honours": [],
+      "colors": [
+        "#0a4f8d",
+        "#000000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/9283.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/9283/ecu-u-catlica"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20Ol%C3%ADmpico%20Atahualpa%2C%20Universidad%20Cat%C3%B3lica%20(Quito)"
+        }
+      ]
+    },
+    {
+      "id": "10145",
+      "name": "Acassuso",
+      "sport": "soccer",
+      "league": "arg.copa",
+      "city": "",
+      "stadium": "Estadio Ciudad de Caseros",
+      "stadium_image": "",
+      "website": "",
+      "description": "Acassuso disputa Copa Argentina na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Ciudad de Caseros.",
+      "honours": [],
+      "colors": [
+        "#000000",
+        "#000000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/10145.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/10145/arg-acassuso"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20Ciudad%20de%20Caseros%2C%20Acassuso"
+        }
+      ]
+    },
+    {
+      "id": "13913",
+      "name": "Agropecuario",
+      "sport": "soccer",
+      "league": "arg.copa",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "description": "Agropecuario disputa Copa Argentina na temporada 2026.",
+      "honours": [],
+      "colors": [
+        "#212121",
+        "#c60000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/13913.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/13913/arg-agropecuario-argentino"
+        },
+        {
+          "label": "Clube · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Agropecuario"
+        }
+      ]
+    },
+    {
+      "id": "22166",
+      "name": "Argentino Monte Maíz",
+      "sport": "soccer",
+      "league": "arg.copa",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "description": "Argentino Monte Maíz disputa Copa Argentina na temporada 2026.",
+      "honours": [],
+      "colors": [
+        "#000000",
+        "#c60000"
+      ],
+      "logo": "",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/22166/argentino-monte-maiz"
+        },
+        {
+          "label": "Clube · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Argentino%20Monte%20Ma%C3%ADz"
+        }
+      ]
+    },
+    {
+      "id": "17700",
+      "name": "Argentino de Merlo",
+      "sport": "soccer",
+      "league": "arg.copa",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "description": "Argentino de Merlo disputa Copa Argentina na temporada 2026.",
+      "honours": [],
+      "colors": [
+        "#000000",
+        "#c60000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/17700.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/17700/argentino-merlo"
+        },
+        {
+          "label": "Clube · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Argentino%20de%20Merlo"
+        }
+      ]
+    },
+    {
+      "id": "10146",
+      "name": "Atlanta",
+      "sport": "soccer",
+      "league": "arg.copa",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "description": "Atlanta disputa Copa Argentina na temporada 2026.",
+      "honours": [],
+      "colors": [
+        "#000000",
+        "#000000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/10146.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/10146/arg-atlanta"
+        },
+        {
+          "label": "Clube · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Atlanta"
+        }
+      ]
+    },
+    {
+      "id": "9747",
+      "name": "Atletico Rafaela",
+      "sport": "soccer",
+      "league": "arg.copa",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "description": "Atletico Rafaela disputa Copa Argentina na temporada 2026.",
+      "honours": [],
+      "colors": [
+        "#0a82ab",
+        "#c60000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/9747.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/9747/arg-atletico-rafaela"
+        },
+        {
+          "label": "Clube · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Atletico%20Rafaela"
+        }
+      ]
+    },
+    {
+      "id": "18662",
+      "name": "Camioneros",
+      "sport": "soccer",
+      "league": "arg.copa",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "description": "Camioneros disputa Copa Argentina na temporada 2026.",
+      "honours": [],
+      "colors": [
+        "#000000",
+        "#c60000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/18662.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/18662/camioneros"
+        },
+        {
+          "label": "Clube · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Camioneros"
+        }
+      ]
+    },
+    {
+      "id": "11963",
+      "name": "Chaco For Ever",
+      "sport": "soccer",
+      "league": "arg.copa",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "description": "Chaco For Ever disputa Copa Argentina na temporada 2026.",
+      "honours": [],
+      "colors": [
+        "#000000",
+        "#c60000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/11963.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/11963/arg-chaco-for-ever"
+        },
+        {
+          "label": "Clube · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Chaco%20For%20Ever"
+        }
+      ]
+    },
+    {
+      "id": "21799",
+      "name": "Ciudad de Bolívar",
+      "sport": "soccer",
+      "league": "arg.copa",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "description": "Ciudad de Bolívar disputa Copa Argentina na temporada 2026.",
+      "honours": [],
+      "colors": [
+        "#000000",
+        "#c60000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/21799.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/21799/ciudad-de-bolivar"
+        },
+        {
+          "label": "Clube · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Ciudad%20de%20Bol%C3%ADvar"
+        }
+      ]
+    },
+    {
+      "id": "10102",
+      "name": "Claypole",
+      "sport": "soccer",
+      "league": "arg.copa",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "description": "Claypole disputa Copa Argentina na temporada 2026.",
+      "honours": [],
+      "colors": [
+        "#000000",
+        "#000000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/10102.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/10102/arg-claypole"
+        },
+        {
+          "label": "Clube · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Claypole"
+        }
+      ]
+    },
+    {
+      "id": "10152",
+      "name": "Deportivo Armenio",
+      "sport": "soccer",
+      "league": "arg.copa",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "description": "Deportivo Armenio disputa Copa Argentina na temporada 2026.",
+      "honours": [],
+      "colors": [
+        "#000000",
+        "#000000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/10152.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/10152/arg-deportivo-armenio"
+        },
+        {
+          "label": "Clube · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Deportivo%20Armenio"
+        }
+      ]
+    },
+    {
+      "id": "18260",
+      "name": "Deportivo Madryn",
+      "sport": "soccer",
+      "league": "arg.copa",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "description": "Deportivo Madryn disputa Copa Argentina na temporada 2026.",
+      "honours": [],
+      "colors": [
+        "#000000",
+        "#c60000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/18260.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/18260/deportivo-madryn"
+        },
+        {
+          "label": "Clube · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Deportivo%20Madryn"
+        }
+      ]
+    },
+    {
+      "id": "11978",
+      "name": "Deportivo Maipú",
+      "sport": "soccer",
+      "league": "arg.copa",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "description": "Deportivo Maipú disputa Copa Argentina na temporada 2026.",
+      "honours": [],
+      "colors": [
+        "#000000",
+        "#c60000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/11978.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/11978/arg-deportivo-maip"
+        },
+        {
+          "label": "Clube · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Deportivo%20Maip%C3%BA"
+        }
+      ]
+    },
+    {
+      "id": "10154",
+      "name": "Deportivo Morón",
+      "sport": "soccer",
+      "league": "arg.copa",
+      "city": "",
+      "stadium": "Alfredo Beranger",
+      "stadium_image": "",
+      "website": "",
+      "description": "Deportivo Morón disputa Copa Argentina na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Alfredo Beranger.",
+      "honours": [],
+      "colors": [
+        "#212121",
+        "#000000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/10154.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/10154/arg-deportivo-morn"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Alfredo%20Beranger%2C%20Deportivo%20Mor%C3%B3n"
+        }
+      ]
+    },
+    {
+      "id": "19144",
+      "name": "Deportivo Rincón",
+      "sport": "soccer",
+      "league": "arg.copa",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "description": "Deportivo Rincón disputa Copa Argentina na temporada 2026.",
+      "honours": [],
+      "colors": [
+        "#000000",
+        "#c60000"
+      ],
+      "logo": "",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/19144/deportivo-rincon"
+        },
+        {
+          "label": "Clube · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Deportivo%20Rinc%C3%B3n"
+        }
+      ]
+    },
+    {
+      "id": "17352",
+      "name": "Estudiantes (Buenos Aires)",
+      "sport": "soccer",
+      "league": "arg.copa",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "description": "Estudiantes (Buenos Aires) disputa Copa Argentina na temporada 2026.",
+      "honours": [],
+      "colors": [
+        "#000000",
+        "#c60000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/17352.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/17352/estudiantes-de-caseros"
+        },
+        {
+          "label": "Clube · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estudiantes%20(Buenos%20Aires)"
+        }
+      ]
+    },
+    {
+      "id": "131651",
+      "name": "Gimnasia Chivilcoy",
+      "sport": "soccer",
+      "league": "arg.copa",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "description": "Gimnasia Chivilcoy disputa Copa Argentina na temporada 2026.",
+      "honours": [],
+      "colors": [
+        "#000000",
+        "#c60000"
+      ],
+      "logo": "",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/131651/chivilcoy"
+        },
+        {
+          "label": "Clube · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Gimnasia%20Chivilcoy"
+        }
+      ]
+    },
+    {
+      "id": "5263",
+      "name": "Gimnasia y Esgrima (Jujuy)",
+      "sport": "soccer",
+      "league": "arg.copa",
+      "city": "",
+      "stadium": "'Estadio Único Madre de Ciudades",
+      "stadium_image": "",
+      "website": "",
+      "description": "Gimnasia y Esgrima (Jujuy) disputa Copa Argentina na temporada 2026. O estádio mandante identificado nas partidas da ESPN é 'Estadio Único Madre de Ciudades.",
+      "honours": [],
+      "colors": [
+        "#0e5196",
+        "#000000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/5263.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/5263/arg-gimnasia-y-esgrima-de-jujuy"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query='Estadio%20%C3%9Anico%20Madre%20de%20Ciudades%2C%20Gimnasia%20y%20Esgrima%20(Jujuy)"
+        }
+      ]
+    },
+    {
+      "id": "10743",
+      "name": "Gimnasia y Tiro (Salta)",
+      "sport": "soccer",
+      "league": "arg.copa",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "description": "Gimnasia y Tiro (Salta) disputa Copa Argentina na temporada 2026.",
+      "honours": [],
+      "colors": [
+        "#000000",
+        "#fafafc"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/10743.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/10743/arg-gimnasia-y-trio"
+        },
+        {
+          "label": "Clube · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Gimnasia%20y%20Tiro%20(Salta)"
+        }
+      ]
+    },
+    {
+      "id": "6756",
+      "name": "Godoy Cruz Antonio Tomba",
+      "sport": "soccer",
+      "league": "arg.copa",
+      "city": "",
+      "stadium": "Monumental de Victoria (José Dellagiovanna)",
+      "stadium_image": "",
+      "website": "",
+      "description": "Godoy Cruz Antonio Tomba disputa Copa Argentina na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Monumental de Victoria (José Dellagiovanna).",
+      "honours": [],
+      "colors": [
+        "#0060f0",
+        "#000000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/6756.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/6756/arg-godoy-cruz-de-mendoza"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Monumental%20de%20Victoria%20(Jos%C3%A9%20Dellagiovanna)%2C%20Godoy%20Cruz%20Antonio%20Tomba"
+        }
+      ]
+    },
+    {
+      "id": "10105",
+      "name": "Ituzaingó",
+      "sport": "soccer",
+      "league": "arg.copa",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "description": "Ituzaingó disputa Copa Argentina na temporada 2026.",
+      "honours": [],
+      "colors": [
+        "#000000",
+        "#000000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/10105.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/10105/arg-ituzaing"
+        },
+        {
+          "label": "Clube · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Ituzaing%C3%B3"
+        }
+      ]
+    },
+    {
+      "id": "10109",
+      "name": "Midland",
+      "sport": "soccer",
+      "league": "arg.copa",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "description": "Midland disputa Copa Argentina na temporada 2026.",
+      "honours": [],
+      "colors": [
+        "#000000",
+        "#000000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/10109.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/10109/arg-midland"
+        },
+        {
+          "label": "Clube · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Midland"
+        }
+      ]
+    },
+    {
+      "id": "2636",
+      "name": "Olimpo",
+      "sport": "soccer",
+      "league": "arg.copa",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "description": "Olimpo disputa Copa Argentina na temporada 2026.",
+      "honours": [],
+      "colors": [
+        "#ffff00",
+        "#000000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/2636.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/2636/arg-olimpo-de-bahia-blanca"
+        },
+        {
+          "label": "Clube · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Olimpo"
+        }
+      ]
+    },
+    {
+      "id": "18844",
+      "name": "Real Pilar",
+      "sport": "soccer",
+      "league": "arg.copa",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "description": "Real Pilar disputa Copa Argentina na temporada 2026.",
+      "honours": [],
+      "colors": [
+        "#000000",
+        "#c60000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/18844.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/18844/real-pilar"
+        },
+        {
+          "label": "Clube · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Real%20Pilar"
+        }
+      ]
+    },
+    {
+      "id": "7845",
+      "name": "San Martín (San Juan)",
+      "sport": "soccer",
+      "league": "arg.copa",
+      "city": "",
+      "stadium": "Estadio Regional de Los Andes",
+      "stadium_image": "",
+      "website": "",
+      "description": "San Martín (San Juan) disputa Copa Argentina na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Regional de Los Andes.",
+      "honours": [],
+      "colors": [
+        "#288a00",
+        "#000000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/7845.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/7845/arg-san-martin-de-san-juan"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20Regional%20de%20Los%20Andes%2C%20San%20Mart%C3%ADn%20(San%20Juan)"
+        }
+      ]
+    },
+    {
+      "id": "17814",
+      "name": "San Martín (Tucumán)",
+      "sport": "soccer",
+      "league": "arg.copa",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "description": "San Martín (Tucumán) disputa Copa Argentina na temporada 2026.",
+      "honours": [],
+      "colors": [
+        "#212121",
+        "#c60000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/17814.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/17814/san-martin-de-tucuman"
+        },
+        {
+          "label": "Clube · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=San%20Mart%C3%ADn%20(Tucum%C3%A1n)"
+        }
+      ]
+    },
+    {
+      "id": "18328",
+      "name": "San Martín de Formosa",
+      "sport": "soccer",
+      "league": "arg.copa",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "description": "San Martín de Formosa disputa Copa Argentina na temporada 2026.",
+      "honours": [],
+      "colors": [
+        "#000000",
+        "#c60000"
+      ],
+      "logo": "",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/18328/san-martin-de-formosa"
+        },
+        {
+          "label": "Clube · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=San%20Mart%C3%ADn%20de%20Formosa"
+        }
+      ]
+    },
+    {
+      "id": "10058",
+      "name": "San Miguel",
+      "sport": "soccer",
+      "league": "arg.copa",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "description": "San Miguel disputa Copa Argentina na temporada 2026.",
+      "honours": [],
+      "colors": [
+        "#000000",
+        "#000000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/10058.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/10058/arg-san-miguel"
+        },
+        {
+          "label": "Clube · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=San%20Miguel"
+        }
+      ]
+    },
+    {
+      "id": "22521",
+      "name": "Sarmiento de La Banda",
+      "sport": "soccer",
+      "league": "arg.copa",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "description": "Sarmiento de La Banda disputa Copa Argentina na temporada 2026.",
+      "honours": [],
+      "colors": [
+        "#000000",
+        "#c60000"
+      ],
+      "logo": "",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/22521/sarmiento-de-la-banda"
+        },
+        {
+          "label": "Clube · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Sarmiento%20de%20La%20Banda"
+        }
+      ]
+    },
+    {
+      "id": "11991",
+      "name": "Sp. Belgrano",
+      "sport": "soccer",
+      "league": "arg.copa",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "description": "Sp. Belgrano disputa Copa Argentina na temporada 2026.",
+      "honours": [],
+      "colors": [
+        "#000000",
+        "#c60000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/11991.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/11991/arg-sp-belgrano"
+        },
+        {
+          "label": "Clube · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Sp.%20Belgrano"
+        }
+      ]
+    },
+    {
+      "id": "131652",
+      "name": "Sportivo Atenas",
+      "sport": "soccer",
+      "league": "arg.copa",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "description": "Sportivo Atenas disputa Copa Argentina na temporada 2026.",
+      "honours": [],
+      "colors": [
+        "#000000",
+        "#c60000"
+      ],
+      "logo": "",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/131652/sportivo-atenas"
+        },
+        {
+          "label": "Clube · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Sportivo%20Atenas"
+        }
+      ]
+    },
+    {
+      "id": "17706",
+      "name": "Sportivo Barracas",
+      "sport": "soccer",
+      "league": "arg.copa",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "description": "Sportivo Barracas disputa Copa Argentina na temporada 2026.",
+      "honours": [],
+      "colors": [
+        "#000000",
+        "#c60000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/17706.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/17706/barracas-bolvar"
+        },
+        {
+          "label": "Clube · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Sportivo%20Barracas"
+        }
+      ]
+    },
+    {
+      "id": "10162",
+      "name": "Temperley",
+      "sport": "soccer",
+      "league": "arg.copa",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "description": "Temperley disputa Copa Argentina na temporada 2026.",
+      "honours": [],
+      "colors": [
+        "#409fff",
+        "#000000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/10162.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/10162/arg-temperley"
+        },
+        {
+          "label": "Clube · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Temperley"
+        }
+      ]
+    },
+    {
+      "id": "10163",
+      "name": "Tristán Suárez",
+      "sport": "soccer",
+      "league": "arg.copa",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "description": "Tristán Suárez disputa Copa Argentina na temporada 2026.",
+      "honours": [],
+      "colors": [
+        "#000000",
+        "#000000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/10163.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/10163/arg-tristn-surez"
+        },
+        {
+          "label": "Clube · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Trist%C3%A1n%20Su%C3%A1rez"
+        }
+      ]
+    },
+    {
+      "id": "17370",
+      "name": "Atlético FC",
+      "sport": "soccer",
+      "league": "col.copa",
+      "city": "",
+      "stadium": "Pascual Guerrero",
+      "stadium_image": "",
+      "website": "",
+      "description": "Atlético FC disputa Copa Colombia na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Pascual Guerrero.",
+      "honours": [],
+      "colors": [
+        "#000000",
+        "#c60000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/17370.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/17370/depor-aguablanca"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Pascual%20Guerrero%2C%20Atl%C3%A9tico%20FC"
+        }
+      ]
+    },
+    {
+      "id": "17373",
+      "name": "Barranquilla FC",
+      "sport": "soccer",
+      "league": "col.copa",
+      "city": "",
+      "stadium": "Romelio Martínez",
+      "stadium_image": "",
+      "website": "",
+      "description": "Barranquilla FC disputa Copa Colombia na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Romelio Martínez.",
+      "honours": [],
+      "colors": [
+        "#000000",
+        "#c60000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/17373.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/17373/barranquilla-fc"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Romelio%20Mart%C3%ADnez%2C%20Barranquilla%20FC"
+        }
+      ]
+    },
+    {
+      "id": "17372",
+      "name": "Boca Juniors de Cali",
+      "sport": "soccer",
+      "league": "col.copa",
+      "city": "",
+      "stadium": "Pascual Guerrero",
+      "stadium_image": "",
+      "website": "",
+      "description": "Boca Juniors de Cali disputa Copa Colombia na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Pascual Guerrero.",
+      "honours": [],
+      "colors": [
+        "#000000",
+        "#c60000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/17372.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/17372/universitario-popayn"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Pascual%20Guerrero%2C%20Boca%20Juniors%20de%20Cali"
+        }
+      ]
+    },
+    {
+      "id": "17371",
+      "name": "Bogotá FC",
+      "sport": "soccer",
+      "league": "col.copa",
+      "city": "",
+      "stadium": "Estadio Enrique Olaya Herrera",
+      "stadium_image": "",
+      "website": "",
+      "description": "Bogotá FC disputa Copa Colombia na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Enrique Olaya Herrera.",
+      "honours": [],
+      "colors": [
+        "#000000",
+        "#c60000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/17371.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/17371/bogot-fc"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20Enrique%20Olaya%20Herrera%2C%20Bogot%C3%A1%20FC"
+        }
+      ]
+    },
+    {
+      "id": "5487",
+      "name": "Deportes Quindío",
+      "sport": "soccer",
+      "league": "col.copa",
+      "city": "",
+      "stadium": "Centenario de Armenia",
+      "stadium_image": "",
+      "website": "",
+      "description": "Deportes Quindío disputa Copa Colombia na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Centenario de Armenia.",
+      "honours": [],
+      "colors": [
+        "#000000",
+        "#000000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/5487.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/5487/col-deportes-quindio"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Centenario%20de%20Armenia%2C%20Deportes%20Quind%C3%ADo"
+        }
+      ]
+    },
+    {
+      "id": "5481",
+      "name": "Envigado FC",
+      "sport": "soccer",
+      "league": "col.copa",
+      "city": "",
+      "stadium": "Polideportivo Sur",
+      "stadium_image": "",
+      "website": "",
+      "description": "Envigado FC disputa Copa Colombia na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Polideportivo Sur.",
+      "honours": [],
+      "colors": [
+        "#ef7f02",
+        "#000000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/5481.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/5481/col-envigado"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Polideportivo%20Sur%2C%20Envigado%20FC"
+        }
+      ]
+    },
+    {
+      "id": "131659",
+      "name": "Independiente Yumbo",
+      "sport": "soccer",
+      "league": "col.copa",
+      "city": "",
+      "stadium": "Estadio Municipal Raúl Miranda",
+      "stadium_image": "",
+      "website": "",
+      "description": "Independiente Yumbo disputa Copa Colombia na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Municipal Raúl Miranda.",
+      "honours": [],
+      "colors": [
+        "#000000",
+        "#c60000"
+      ],
+      "logo": "",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/131659/yumbo"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20Municipal%20Ra%C3%BAl%20Miranda%2C%20Independiente%20Yumbo"
+        }
+      ]
+    },
+    {
+      "id": "22184",
+      "name": "Inter Palmira",
+      "sport": "soccer",
+      "league": "col.copa",
+      "city": "",
+      "stadium": "Estadio Francisco Rivera Escobar",
+      "stadium_image": "",
+      "website": "",
+      "description": "Inter Palmira disputa Copa Colombia na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Francisco Rivera Escobar.",
+      "honours": [],
+      "colors": [
+        "#000000",
+        "#c60000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/22184.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/22184/internacional-fc-de-palmira"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20Francisco%20Rivera%20Escobar%2C%20Inter%20Palmira"
+        }
+      ]
+    },
+    {
+      "id": "9769",
+      "name": "Itagüí Leones",
+      "sport": "soccer",
+      "league": "col.copa",
+      "city": "",
+      "stadium": "Metropolitano Ciudad de Itagüí",
+      "stadium_image": "",
+      "website": "",
+      "description": "Itagüí Leones disputa Copa Colombia na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Metropolitano Ciudad de Itagüí.",
+      "honours": [],
+      "colors": [
+        "#212121",
+        "#c60000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/9769.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/9769/col-deportivo-rionegro"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Metropolitano%20Ciudad%20de%20Itag%C3%BC%C3%AD%2C%20Itag%C3%BC%C3%AD%20Leones"
+        }
+      ]
+    },
+    {
+      "id": "18156",
+      "name": "Orsomarso SC",
+      "sport": "soccer",
+      "league": "col.copa",
+      "city": "",
+      "stadium": "Estadio Daniel Villa Zapata",
+      "stadium_image": "",
+      "website": "",
+      "description": "Orsomarso SC disputa Copa Colombia na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Daniel Villa Zapata.",
+      "honours": [],
+      "colors": [
+        "#000000",
+        "#c60000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/18156.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/18156/orsomarso-sc"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20Daniel%20Villa%20Zapata%2C%20Orsomarso%20SC"
+        }
+      ]
+    },
+    {
+      "id": "9773",
+      "name": "Patriotas",
+      "sport": "soccer",
+      "league": "col.copa",
+      "city": "",
+      "stadium": "La Independencia",
+      "stadium_image": "",
+      "website": "",
+      "description": "Patriotas disputa Copa Colombia na temporada 2026. O estádio mandante identificado nas partidas da ESPN é La Independencia.",
+      "honours": [],
+      "colors": [
+        "#ca0034",
+        "#000000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/9773.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/9773/col-patriotas-fc"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=La%20Independencia%2C%20Patriotas"
+        }
+      ]
+    },
+    {
+      "id": "5479",
+      "name": "Real Cartagena",
+      "sport": "soccer",
+      "league": "col.copa",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "description": "Real Cartagena disputa Copa Colombia na temporada 2026.",
+      "honours": [],
+      "colors": [
+        "#000000",
+        "#000000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/5479.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/5479/col-real-cartagena"
+        },
+        {
+          "label": "Clube · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Real%20Cartagena"
+        }
+      ]
+    },
+    {
+      "id": "21967",
+      "name": "Real Cundinamarca",
+      "sport": "soccer",
+      "league": "col.copa",
+      "city": "",
+      "stadium": "Municipal de Mosquera",
+      "stadium_image": "",
+      "website": "",
+      "description": "Real Cundinamarca disputa Copa Colombia na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Municipal de Mosquera.",
+      "honours": [],
+      "colors": [
+        "#000000",
+        "#c60000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/21967.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/21967/real-soacha-cundinamarca"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Municipal%20de%20Mosquera%2C%20Real%20Cundinamarca"
+        }
+      ]
+    },
+    {
+      "id": "9774",
+      "name": "Real Santander",
+      "sport": "soccer",
+      "league": "col.copa",
+      "city": "",
+      "stadium": "Villa Concha",
+      "stadium_image": "",
+      "website": "",
+      "description": "Real Santander disputa Copa Colombia na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Villa Concha.",
+      "honours": [],
+      "colors": [
+        "#000000",
+        "#c60000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/9774.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/9774/col-real-santander"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Villa%20Concha%2C%20Real%20Santander"
+        }
+      ]
+    },
+    {
+      "id": "9770",
+      "name": "Tigres FC",
+      "sport": "soccer",
+      "league": "col.copa",
+      "city": "",
+      "stadium": "Estadio Nemesio Camacho El Campín",
+      "stadium_image": "",
+      "website": "",
+      "description": "Tigres FC disputa Copa Colombia na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Nemesio Camacho El Campín.",
+      "honours": [],
+      "colors": [
+        "#dd8603",
+        "#000000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/9770.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/9770/col-expreso-rojo"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20Nemesio%20Camacho%20El%20Camp%C3%ADn%2C%20Tigres%20FC"
+        }
+      ]
+    },
+    {
+      "id": "17374",
+      "name": "Unión Magdalena",
+      "sport": "soccer",
+      "league": "col.copa",
+      "city": "",
+      "stadium": "Estadio Sierra Nevada",
+      "stadium_image": "",
+      "website": "",
+      "description": "Unión Magdalena disputa Copa Colombia na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Sierra Nevada.",
+      "honours": [],
+      "colors": [
+        "#000000",
+        "#c60000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/17374.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/17374/magdalena"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20Sierra%20Nevada%2C%20Uni%C3%B3n%20Magdalena"
+        }
+      ]
+    },
+    {
+      "id": "6071",
+      "name": "Antofagasta",
+      "sport": "soccer",
+      "league": "chi.copa_chi",
+      "city": "",
+      "stadium": "Estadio Bicentenario Calvo y Bascuñán",
+      "stadium_image": "",
+      "website": "",
+      "description": "Antofagasta disputa Copa Chile na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Bicentenario Calvo y Bascuñán.",
+      "honours": [],
+      "colors": [
+        "#142e93",
+        "#000000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/6071.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/6071/chi-antofagasta"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20Bicentenario%20Calvo%20y%20Bascu%C3%B1%C3%A1n%2C%20Antofagasta"
+        }
+      ]
+    },
+    {
+      "id": "2678",
+      "name": "Cobreloa",
+      "sport": "soccer",
+      "league": "chi.copa_chi",
+      "city": "",
+      "stadium": "Estadio Zorros del Desierto",
+      "stadium_image": "",
+      "website": "",
+      "description": "Cobreloa disputa Copa Chile na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Zorros del Desierto.",
+      "honours": [],
+      "colors": [
+        "#050505",
+        "#050505"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/2678.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/2678/chi-cobreloa"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20Zorros%20del%20Desierto%2C%20Cobreloa"
+        }
+      ]
+    },
+    {
+      "id": "10139",
+      "name": "Copiapó",
+      "sport": "soccer",
+      "league": "chi.copa_chi",
+      "city": "",
+      "stadium": "Estadio Luis Valenzuela Hermosilla",
+      "stadium_image": "",
+      "website": "",
+      "description": "Copiapó disputa Copa Chile na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Luis Valenzuela Hermosilla.",
+      "honours": [],
+      "colors": [
+        "#c22222",
+        "#c22222"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/10139.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/10139/chi-copiapo"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20Luis%20Valenzuela%20Hermosilla%2C%20Copiap%C3%B3"
+        }
+      ]
+    },
+    {
+      "id": "17365",
+      "name": "Curicó Unido",
+      "sport": "soccer",
+      "league": "chi.copa_chi",
+      "city": "",
+      "stadium": "La Granja",
+      "stadium_image": "",
+      "website": "",
+      "description": "Curicó Unido disputa Copa Chile na temporada 2026. O estádio mandante identificado nas partidas da ESPN é La Granja.",
+      "honours": [],
+      "colors": [
+        "#212121",
+        "#c60000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/17365.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/17365/curico-unido"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=La%20Granja%2C%20Curic%C3%B3%20Unido"
+        }
+      ]
+    },
+    {
+      "id": "10142",
+      "name": "Deportes Iquique",
+      "sport": "soccer",
+      "league": "chi.copa_chi",
+      "city": "",
+      "stadium": "Estadio Tierra de Campeones Ramón Estay Saavedra",
+      "stadium_image": "",
+      "website": "",
+      "description": "Deportes Iquique disputa Copa Chile na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Tierra de Campeones Ramón Estay Saavedra.",
+      "honours": [],
+      "colors": [
+        "#5edbff",
+        "#000000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/10142.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/10142/chi-municipal-iquique"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20Tierra%20de%20Campeones%20Ram%C3%B3n%20Estay%20Saavedra%2C%20Deportes%20Iquique"
+        }
+      ]
+    },
+    {
+      "id": "19197",
+      "name": "Deportes Recoleta",
+      "sport": "soccer",
+      "league": "chi.copa_chi",
+      "city": "",
+      "stadium": "Leonel Sánchez Lineros Municipal Stadium",
+      "stadium_image": "",
+      "website": "",
+      "description": "Deportes Recoleta disputa Copa Chile na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Leonel Sánchez Lineros Municipal Stadium.",
+      "honours": [],
+      "colors": [
+        "#ffffff",
+        "#800080"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/19197.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/19197/deportes-recoleta"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Leonel%20S%C3%A1nchez%20Lineros%20Municipal%20Stadium%2C%20Deportes%20Recoleta"
+        }
+      ]
+    },
+    {
+      "id": "19198",
+      "name": "Deportes Santa Cruz",
+      "sport": "soccer",
+      "league": "chi.copa_chi",
+      "city": "",
+      "stadium": "Municipal Joaquín Muñoz García",
+      "stadium_image": "",
+      "website": "",
+      "description": "Deportes Santa Cruz disputa Copa Chile na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Municipal Joaquín Muñoz García.",
+      "honours": [],
+      "colors": [
+        "#000000",
+        "#c60000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/19198.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/19198/deportes-santa-cruz"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Municipal%20Joaqu%C3%ADn%20Mu%C3%B1oz%20Garc%C3%ADa%2C%20Deportes%20Santa%20Cruz"
+        }
+      ]
+    },
+    {
+      "id": "4128",
+      "name": "Deportes Temuco",
+      "sport": "soccer",
+      "league": "chi.copa_chi",
+      "city": "",
+      "stadium": "Estadio Germán Becker",
+      "stadium_image": "",
+      "website": "",
+      "description": "Deportes Temuco disputa Copa Chile na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Germán Becker.",
+      "honours": [],
+      "colors": [
+        "#212121",
+        "#000000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/4128.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/4128/chi-deportes-temuco"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20Germ%C3%A1n%20Becker%2C%20Deportes%20Temuco"
+        }
+      ]
+    },
+    {
+      "id": "17363",
+      "name": "Magallanes",
+      "sport": "soccer",
+      "league": "chi.copa_chi",
+      "city": "",
+      "stadium": "Municipal San Bernardo",
+      "stadium_image": "",
+      "website": "",
+      "description": "Magallanes disputa Copa Chile na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Municipal San Bernardo.",
+      "honours": [],
+      "colors": [
+        "#5edbff",
+        "#5edbff"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/17363.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/17363/chi-magallanes"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Municipal%20San%20Bernardo%2C%20Magallanes"
+        }
+      ]
+    },
+    {
+      "id": "4423",
+      "name": "Puerto Montt",
+      "sport": "soccer",
+      "league": "chi.copa_chi",
+      "city": "",
+      "stadium": "Estadio Municipal de Chinquihue",
+      "stadium_image": "",
+      "website": "",
+      "description": "Puerto Montt disputa Copa Chile na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Municipal de Chinquihue.",
+      "honours": [],
+      "colors": [
+        "#12592d",
+        "#12592d"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/4423.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/4423/chi-puerto-montt"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20Municipal%20de%20Chinquihue%2C%20Puerto%20Montt"
+        }
+      ]
+    },
+    {
+      "id": "4135",
+      "name": "Rangers de Talca",
+      "sport": "soccer",
+      "league": "chi.copa_chi",
+      "city": "",
+      "stadium": "Estadio Fiscal",
+      "stadium_image": "",
+      "website": "",
+      "description": "Rangers de Talca disputa Copa Chile na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Fiscal.",
+      "honours": [],
+      "colors": [
+        "#c22222",
+        "#000000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/4135.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/4135/chi-rangers-de-talca"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20Fiscal%2C%20Rangers%20de%20Talca"
+        }
+      ]
+    },
+    {
+      "id": "10143",
+      "name": "San Luis",
+      "sport": "soccer",
+      "league": "chi.copa_chi",
+      "city": "",
+      "stadium": "Estadio Lucio Fariña Fernández",
+      "stadium_image": "",
+      "website": "",
+      "description": "San Luis disputa Copa Chile na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Lucio Fariña Fernández.",
+      "honours": [],
+      "colors": [
+        "#000000",
+        "#000000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/10143.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/10143/chi-san-luis"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20Lucio%20Fari%C3%B1a%20Fern%C3%A1ndez%2C%20San%20Luis"
+        }
+      ]
+    },
+    {
+      "id": "10138",
+      "name": "San Marcos de Arica",
+      "sport": "soccer",
+      "league": "chi.copa_chi",
+      "city": "",
+      "stadium": "Estadio Carlos Dittborn",
+      "stadium_image": "",
+      "website": "",
+      "description": "San Marcos de Arica disputa Copa Chile na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Carlos Dittborn.",
+      "honours": [],
+      "colors": [
+        "#023396",
+        "#023396"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/10138.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/10138/chi-arica"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20Carlos%20Dittborn%2C%20San%20Marcos%20de%20Arica"
+        }
+      ]
+    },
+    {
+      "id": "3552",
+      "name": "Santiago Wanderers",
+      "sport": "soccer",
+      "league": "chi.copa_chi",
+      "city": "",
+      "stadium": "Estadio Elías Figueroa Brander",
+      "stadium_image": "",
+      "website": "",
+      "description": "Santiago Wanderers disputa Copa Chile na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Elías Figueroa Brander.",
+      "honours": [],
+      "colors": [
+        "#12592d",
+        "#fafafc"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/3552.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/3552/chi-santiago-wanderers"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20El%C3%ADas%20Figueroa%20Brander%2C%20Santiago%20Wanderers"
+        }
+      ]
+    },
+    {
+      "id": "4132",
+      "name": "Unión Española",
+      "sport": "soccer",
+      "league": "chi.copa_chi",
+      "city": "",
+      "stadium": "Estadio Santa Laura-Universidad SEK",
+      "stadium_image": "",
+      "website": "",
+      "description": "Unión Española disputa Copa Chile na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Santa Laura-Universidad SEK.",
+      "honours": [],
+      "colors": [
+        "#c22222",
+        "#000000"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/4132.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/4132/chi-union-espaola"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20Santa%20Laura-Universidad%20SEK%2C%20Uni%C3%B3n%20Espa%C3%B1ola"
+        }
+      ]
+    },
+    {
+      "id": "4130",
+      "name": "Unión San Felipe",
+      "sport": "soccer",
+      "league": "chi.copa_chi",
+      "city": "",
+      "stadium": "Estadio Municipal de San Felipe",
+      "stadium_image": "",
+      "website": "",
+      "description": "Unión San Felipe disputa Copa Chile na temporada 2026. O estádio mandante identificado nas partidas da ESPN é Estadio Municipal de San Felipe.",
+      "honours": [],
+      "colors": [
+        "#c22222",
+        "#c22222"
+      ],
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/4130.png",
+      "sources": [
+        {
+          "label": "Elenco e escudo · ESPN",
+          "url": "https://www.espn.com.br/futebol/time/_/id/4130/chi-union-san-felipe"
+        },
+        {
+          "label": "Estádio · localização pública",
+          "url": "https://www.google.com/maps/search/?api=1&query=Estadio%20Municipal%20de%20San%20Felipe%2C%20Uni%C3%B3n%20San%20Felipe"
+        }
+      ]
+    }
+  ]
+}

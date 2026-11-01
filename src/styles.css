@@ -2278,6 +2278,7 @@ body.club-page-active { background:var(--club-page-bg, var(--canvas)); backgroun
 .standings-region-option:hover, .standings-region-option.selected { border-color: var(--green); background: var(--green-glow); }
 .standings-region-option.selected strong { color: var(--green-dim); }
 .standings-league-format { font-weight: 700; }
+.standings-tournament-started { color: var(--green-dim); font-weight: 750; }
 .standings-league-action { margin-top: auto; }
 .standings-format-note { margin: -12px 0 16px; color: var(--muted); font-size: 13px; line-height: 1.6; }
 .team-league-filters { margin-bottom:24px; }

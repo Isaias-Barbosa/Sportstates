@@ -35,12 +35,14 @@ export default function KnockoutRounds({
   season,
   sport,
   league,
+  linkMatches = true,
 }: {
   rounds: KnockoutRound[];
   currentRound?: string | null;
   season?: string;
   sport: string;
   league: string;
+  linkMatches?: boolean;
 }) {
   const [selected, setSelected] = useState(() => {
     const live = rounds.find((r) => r.fixtures.some((f) => f.state === "live"));
@@ -78,7 +80,9 @@ export default function KnockoutRounds({
           <h3>Fases eliminatórias</h3>
           {season && <p>{season}</p>}
         </div>
-        <span>Horário de Brasília</span>
+        <span>
+          {linkMatches ? "Horário de Brasília" : "Datas oficiais da FEF"}
+        </span>
       </div>
       <label className="knockout-phase-select">
         Fase
@@ -115,53 +119,67 @@ export default function KnockoutRounds({
         <h4>{round.name}</h4>
         <span>
           {round.fixtures.length
-            ? "Clique em uma partida para ver os detalhes."
+            ? linkMatches
+              ? "Clique em uma partida para ver os detalhes."
+              : "Confrontos conforme a fonte oficial."
             : "Confrontos ainda não divulgados pela fonte."}
         </span>
       </div>
       <div className="knockout-fixtures">
-        {round.fixtures.map((f) => (
-          <Link
-            key={f.id}
-            className={`knockout-fixture ${f.state === "live" ? "is-live" : ""}`}
-            to={`/partida/${sport}/${league}/${f.id}`}
-            aria-label={`${f.home.name} x ${f.away.name}${f.leg ? `, ${f.leg}` : ""}, ${fixtureStatus(f)}`}
-          >
-            <div className="knockout-fixture-meta">
-              <span>{fixtureDate(f)}</span>
-              <strong>{f.leg || "Partida"}</strong>
-            </div>
-            {[f.home, f.away].map((team, i) => (
-              <div className="knockout-team" key={i}>
-                {team.logo ? (
-                  <img src={team.logo} alt="" loading="lazy" />
-                ) : (
-                  <span
-                    className="knockout-crest-placeholder"
-                    aria-hidden="true"
-                  >
-                    ◇
+        {round.fixtures.map((f) => {
+          const content = (
+            <>
+              <div className="knockout-fixture-meta">
+                <span>{fixtureDate(f)}</span>
+                <strong>{f.leg || "Partida"}</strong>
+              </div>
+              {[f.home, f.away].map((team, i) => (
+                <div className="knockout-team" key={i}>
+                  {team.logo ? (
+                    <img src={team.logo} alt="" loading="lazy" />
+                  ) : (
+                    <span
+                      className="knockout-crest-placeholder"
+                      aria-hidden="true"
+                    >
+                      ◇
+                    </span>
+                  )}
+                  <span>{team.name}</span>
+                  <b>{team.score ?? "—"}</b>
+                </div>
+              ))}
+              <div className="knockout-fixture-footer">
+                <span>
+                  {f.state === "live" && (
+                    <i className="live-dot" aria-hidden="true" />
+                  )}
+                  {fixtureStatus(f)}
+                </span>
+                {f.home.penalties !== null && f.away.penalties !== null && (
+                  <span>
+                    Pênaltis: {f.home.penalties} × {f.away.penalties}
                   </span>
                 )}
-                <span>{team.name}</span>
-                <b>{team.score ?? "—"}</b>
               </div>
-            ))}
-            <div className="knockout-fixture-footer">
-              <span>
-                {f.state === "live" && (
-                  <i className="live-dot" aria-hidden="true" />
-                )}
-                {fixtureStatus(f)}
-              </span>
-              {f.home.penalties !== null && f.away.penalties !== null && (
-                <span>
-                  Pênaltis: {f.home.penalties} × {f.away.penalties}
-                </span>
-              )}
-            </div>
-          </Link>
-        ))}
+            </>
+          );
+          const className = `knockout-fixture ${f.state === "live" ? "is-live" : ""}`;
+          return linkMatches ? (
+            <Link
+              key={f.id}
+              className={className}
+              to={`/partida/${sport}/${league}/${f.id}`}
+              aria-label={`${f.home.name} x ${f.away.name}${f.leg ? `, ${f.leg}` : ""}, ${fixtureStatus(f)}`}
+            >
+              {content}
+            </Link>
+          ) : (
+            <article key={f.id} className={className}>
+              {content}
+            </article>
+          );
+        })}
       </div>
       <p className="standings-note">
         Fases e confrontos conforme a fonte. Datas e participantes podem mudar;

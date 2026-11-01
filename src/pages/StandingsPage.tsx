@@ -5,6 +5,7 @@ import { useApi, today } from "../hooks";
 import type { CompetitionCatalog } from "../types";
 import { Empty, Loading, Notice } from "../components/shared";
 import LeagueOverview from "../components/LeagueOverview";
+import StandingsTable from "../components/StandingsTable";
 
 export default function StandingsPage() {
   const { data, loading, error, refresh } = useApi<CompetitionCatalog>(
@@ -153,6 +154,9 @@ export default function StandingsPage() {
               ))}
             </div>
           )}
+          {data.warnings?.map((warning) => (
+            <Notice key={warning}>{warning}</Notice>
+          ))}
           <div className="section-heading">
             <h2>
               Competições{" "}
@@ -175,6 +179,11 @@ export default function StandingsPage() {
                 {l.tournamentFormat && (
                   <small className="standings-league-format">
                     {l.tournamentFormat}
+                  </small>
+                )}
+                {l.tournamentStarted && (
+                  <small className="standings-tournament-started">
+                    Torneio iniciado
                   </small>
                 )}
                 <small className="standings-league-action">
@@ -256,12 +265,35 @@ export default function StandingsPage() {
                       fonte.
                     </p>
                   )}
-                  <LeagueOverview
-                    key={`${sport}/${league}`}
-                    name={selectedName}
-                    sport={sport}
-                    league={league}
-                  />
+                  {selectedCompetition?.provider === "fef" ? (
+                    <section
+                      className="league-table-panel"
+                      aria-label={`Fases de ${selectedName}`}
+                    >
+                      {selectedCompetition.tournamentSource && (
+                        <a
+                          className="standings-link"
+                          href={selectedCompetition.tournamentSource}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          Calendário oficial da FEF ↗
+                        </a>
+                      )}
+                      <StandingsTable
+                        key={`${sport}/${league}`}
+                        sport={sport}
+                        league={league}
+                      />
+                    </section>
+                  ) : (
+                    <LeagueOverview
+                      key={`${sport}/${league}`}
+                      name={selectedName}
+                      sport={sport}
+                      league={league}
+                    />
+                  )}
                 </>
               ) : (
                 <Empty title="Sem competições disponíveis">

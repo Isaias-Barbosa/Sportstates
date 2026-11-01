@@ -20,6 +20,8 @@ import {
 } from "./team-identity.mjs";
 import { mlsProfileReferences } from "./mls-profiles.mjs";
 import { leagueProfileReferences } from "./league-profiles.mjs";
+import { americasClubProfileReferences } from "./americas-club-profiles.mjs";
+import { ecuadorCupClubProfileReferences } from "./ecuador-cup-club-profiles.mjs";
 import { premierLeagueReferences } from "./premier-league-profiles.mjs";
 import { neon } from "@neondatabase/serverless";
 import { normalizeEvent, normalizeSummary } from "./data.mjs";
@@ -140,6 +142,19 @@ export function normalizeTeamSchedule(
 export async function teamDetails(id) {
   const team = await getTeam(id);
   if (!team) return null;
+  if (team.id.startsWith("fef-"))
+    return {
+      team,
+      athletes: [],
+      leaders: null,
+      upcoming: [],
+      recent: [],
+      lineup: null,
+      articles: [],
+      coverage: { roster: false, schedule: false, news: false, next: false },
+      source: "Federación Ecuatoriana de Fútbol",
+      profileReferences: ecuadorCupClubProfileReferences(team.id),
+    };
   if (team.sport === "volleyball")
     return {
       ...(await volleyTeamDetails(team)),
@@ -304,6 +319,7 @@ export async function teamDetails(id) {
                 : [
                     ...brazilProfileReferences(team.id, team.league),
                     ...leagueProfileReferences(team.id, team.league),
+                    ...americasClubProfileReferences(team.id, team.league),
                     ...mlsProfileReferences(team.id, team.league),
                     ...saudiProfileReferences(team.id, team.league),
                   ],

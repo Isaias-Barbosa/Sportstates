@@ -57,7 +57,7 @@ export function responseTtl(url, body, now = Date.now()) {
       ttl = CACHE_TTL.teams;
       break;
     case "/api/competitions":
-      ttl = CACHE_TTL.competitions;
+      ttl = HOUR;
       break;
     case "/api/standings":
     case "/api/team-competitions":

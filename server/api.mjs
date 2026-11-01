@@ -50,8 +50,11 @@ import {
   SOCCER_INTERNATIONAL_GROUPS,
   SOCCER_TEAM_LEAGUES,
   SOCCER_TOURNAMENT_FORMATS,
+  SOCCER_DOMESTIC_TOURNAMENTS,
   leagueFor,
 } from "./catalog.mjs";
+import { startedDomesticTournaments } from "./domestic-tournaments.mjs";
+import { ECUADOR_CUPS, fetchEcuadorCupStandings } from "./ecuador-cups.mjs";
 import { listTeams, teamDetails, saveTeam, getTeam } from "./teams.mjs";
 import {
   fetchTeamCatalog,
@@ -393,24 +396,53 @@ export async function route(url) {
       : [404, { error: "Time não encontrado." }];
   }
   if (url.pathname === "/api/competitions") {
+    const year = Number(dayInBrazil(new Date()).slice(0, 4));
+    const tournamentStatus = await cached(
+      `domestic-tournaments:${year}`,
+      60 * 60 * 1000,
+      () => startedDomesticTournaments(year, new Date(), json),
+      60 * 60 * 1000,
+    );
+    const startedTournaments = new Set(tournamentStatus.value.started);
+    const visibleLeagues = new Set(
+      SOCCER_DOMESTIC_TOURNAMENTS.filter((id) => startedTournaments.has(id)),
+    );
+    const visible = (id) =>
+      !SOCCER_DOMESTIC_TOURNAMENTS.includes(id) || visibleLeagues.has(id);
+    const warnings = tournamentStatus.value.unavailable.map((id) => {
+      const name = leagueFor("soccer", id)?.name || id;
+      return `Não foi possível confirmar se ${name} já começou; a competição foi ocultada temporariamente.`;
+    });
     return [
       200,
       {
         sports: SPORTS.map((s) => ({
           ...s,
-          leagues: s.leagues.map(([id, name]) => ({
-            id,
-            name,
-            hasKnockout: s.id === "soccer" && KNOCKOUT_LEAGUES.has(id),
-            tournamentFormat:
-              s.id === "soccer" ? SOCCER_TOURNAMENT_FORMATS[id] : undefined,
-            teamLeague:
-              !["tennis", "table-tennis"].includes(s.id) &&
-              (s.id !== "soccer" || SOCCER_TEAM_LEAGUES.has(id)),
-          })),
+          leagues: s.leagues
+            .filter(([id]) => s.id !== "soccer" || visible(id))
+            .map(([id, name]) => ({
+              id,
+              name,
+              hasKnockout: s.id === "soccer" && KNOCKOUT_LEAGUES.has(id),
+              tournamentFormat:
+                s.id === "soccer" ? SOCCER_TOURNAMENT_FORMATS[id] : undefined,
+              tournamentStarted:
+                s.id === "soccer" && startedTournaments.has(id),
+              provider: ECUADOR_CUPS[id] ? "fef" : undefined,
+              tournamentSource: ECUADOR_CUPS[id]?.page,
+              teamLeague:
+                !["tennis", "table-tennis"].includes(s.id) &&
+                (s.id !== "soccer" || SOCCER_TEAM_LEAGUES.has(id)),
+            })),
         })),
-        soccerRegions: SOCCER_REGIONS,
+        soccerRegions: SOCCER_REGIONS.map((region) => ({
+          ...region,
+          competitions: region.competitions.filter(visible),
+        })),
         soccerInternationalGroups: SOCCER_INTERNATIONAL_GROUPS,
+        warnings,
+        stale: tournamentStatus.stale,
+        fetchedAt: new Date(tournamentStatus.at).toISOString(),
       },
     ];
   }
@@ -428,6 +460,8 @@ export async function route(url) {
   if (url.pathname === "/api/standings") {
     const config = leagueFor(q.get("sport"), q.get("league"));
     if (!config) return [400, { error: "Competição inválida." }];
+    if (ECUADOR_CUPS[config.league])
+      return [200, await fetchEcuadorCupStandings(config.league, json)];
     if (config.sport === "volleyball") return [200, await volleyStandings()];
     if (["tennis", "table-tennis"].includes(config.sport)) {
       const data =

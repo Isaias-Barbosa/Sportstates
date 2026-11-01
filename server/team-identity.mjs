@@ -1,7 +1,7 @@
 // ESPN IDs are scoped to a sport/league, while the existing database uses a
 // single primary key. Keep soccer URLs intact and namespace IDs for the other supported sports.
 export const validProfileId = (id) =>
-  /^(?:\d{1,12}|(?:basketball-(?:nba|wnba|nbb)|football-nfl|baseball-mlb|hockey-nhl|volleyball-superliga-men)-\d{1,12})$/.test(
+  /^(?:\d{1,12}|fef-[a-z0-9-]{1,120}|(?:basketball-(?:nba|wnba|nbb)|football-nfl|baseball-mlb|hockey-nhl|volleyball-superliga-men)-\d{1,12})$/.test(
     String(id || ""),
   );
 export function providerTeamId(id) {

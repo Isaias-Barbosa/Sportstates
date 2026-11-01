@@ -16,6 +16,8 @@
     "db:setup": "node --env-file-if-exists=.env.local scripts/setup-teams.mjs",
     "db:premier-league": "node --env-file-if-exists=.env.local scripts/sync-premier-league.mjs --apply",
     "db:league-profiles": "node --env-file-if-exists=.env.local scripts/sync-league-profiles.mjs --apply",
+    "db:americas-profiles": "node --env-file-if-exists=.env.local scripts/sync-americas-club-profiles.mjs --apply",
+    "db:ecuador-cup-clubs": "node --env-file-if-exists=.env.local scripts/sync-ecuador-cup-clubs.mjs --apply",
     "db:mls": "node --env-file-if-exists=.env.local scripts/sync-mls-profiles.mjs --apply",
     "db:basketball": "node --env-file-if-exists=.env.local scripts/sync-basketball-profiles.mjs --apply",
     "db:nfl": "node --env-file-if-exists=.env.local scripts/sync-nfl-profiles.mjs --apply",

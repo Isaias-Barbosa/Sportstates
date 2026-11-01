@@ -280,6 +280,9 @@ export type CompetitionCatalog = {
       hasKnockout?: boolean;
       teamLeague?: boolean;
       tournamentFormat?: string;
+      tournamentStarted?: boolean;
+      provider?: "fef";
+      tournamentSource?: string;
     }[];
   }[];
   soccerRegions?: {
@@ -293,6 +296,9 @@ export type CompetitionCatalog = {
     name: string;
     competitions: string[];
   }[];
+  warnings?: string[];
+  stale?: boolean;
+  fetchedAt?: string;
 };
 export type KnockoutTeam = {
   id: string;
@@ -318,6 +324,7 @@ export type KnockoutRound = {
   fixtures: KnockoutFixture[];
 };
 export type Standings = {
+  provider?: "fef";
   rounds?: KnockoutRound[];
   season?: { year: number; name: string } | null;
   currentRound?: string | null;

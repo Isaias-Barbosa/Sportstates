@@ -1,0 +1,987 @@
+{
+  "revision": "ecuador-cup-clubs-2026-v1",
+  "reviewedAt": "2026-11-01",
+  "expectedTotal": 35,
+  "clubs": [
+    {
+      "id": "fef-gualaceo-sc-4001",
+      "name": "GUALACEO S.C.",
+      "sport": "soccer",
+      "league": "ecu.copa_2026",
+      "city": "",
+      "stadium": "GERARDO LEON P.",
+      "stadium_image": "",
+      "website": "",
+      "description": "Participante da Copa Ecuador 2026. Estadio mandante identificado pela FEF: GERARDO LEON P..",
+      "honours": [],
+      "colors": [],
+      "logo": "https://latam.analyticom.de/file?id=c99639ff-410b-4b60-af72-f9c834b5d2ea",
+      "sources": [
+        {
+          "label": "Club y escudo ? FEF",
+          "url": "https://apiweb.fef.ec/api/public/competitions/teams?path=competiciones%2Fliga-profesional%2Fmasculino%2Fcopa-ecuador-2026"
+        },
+        {
+          "label": "Copa Ecuador 2026 ? FEF",
+          "url": "https://fef.ec/competiciones/liga-profesional/masculino/copa-ecuador-2026"
+        },
+        {
+          "label": "Estadio ? ubicacion publica",
+          "url": "https://www.google.com/maps/search/?api=1&query=GERARDO%20LEON%20P.%2C%20GUALACEO%20S.C.%2C%20Ecuador"
+        }
+      ]
+    },
+    {
+      "id": "fef-7-de-febrero-2001",
+      "name": "7 DE FEBRERO",
+      "sport": "soccer",
+      "league": "ecu.copa_2026",
+      "city": "",
+      "stadium": "ARENA LA VICTORIA",
+      "stadium_image": "",
+      "website": "",
+      "description": "Participante da Copa Ecuador 2026. Estadio mandante identificado pela FEF: ARENA LA VICTORIA.",
+      "honours": [],
+      "colors": [],
+      "logo": "https://apiweb.fef.ec/api/files/019fb3ef-a1a2-73ea-afb0-b6adb6db8dee",
+      "sources": [
+        {
+          "label": "Club y escudo ? FEF",
+          "url": "https://apiweb.fef.ec/api/public/competitions/teams?path=competiciones%2Fliga-profesional%2Fmasculino%2Fcopa-ecuador-2026"
+        },
+        {
+          "label": "Copa Ecuador 2026 ? FEF",
+          "url": "https://fef.ec/competiciones/liga-profesional/masculino/copa-ecuador-2026"
+        },
+        {
+          "label": "Estadio ? ubicacion publica",
+          "url": "https://www.google.com/maps/search/?api=1&query=ARENA%20LA%20VICTORIA%2C%207%20DE%20FEBRERO%2C%20Ecuador"
+        }
+      ]
+    },
+    {
+      "id": "fef-loja-city-fc-5001",
+      "name": "LOJA CITY F.C.",
+      "sport": "soccer",
+      "league": "ecu.copa_2026",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "description": "Participante da Copa Ecuador 2026.",
+      "honours": [],
+      "colors": [],
+      "logo": "https://apiweb.fef.ec/api/files/019fb3f6-8779-7076-b3c5-5a433d0ffa23",
+      "sources": [
+        {
+          "label": "Club y escudo ? FEF",
+          "url": "https://apiweb.fef.ec/api/public/competitions/teams?path=competiciones%2Fliga-profesional%2Fmasculino%2Fcopa-ecuador-2026"
+        },
+        {
+          "label": "Copa Ecuador 2026 ? FEF",
+          "url": "https://fef.ec/competiciones/liga-profesional/masculino/copa-ecuador-2026"
+        },
+        {
+          "label": "Club ? ubicacion publica",
+          "url": "https://www.google.com/maps/search/?api=1&query=LOJA%20CITY%20F.C.%2C%20Ecuador"
+        }
+      ]
+    },
+    {
+      "id": "fef-bejucal-sport-3001",
+      "name": "BEJUCAL SPORT",
+      "sport": "soccer",
+      "league": "ecu.copa_2026",
+      "city": "",
+      "stadium": "JULIO SALINAS RIZZO - L.D.P. BABA",
+      "stadium_image": "",
+      "website": "",
+      "description": "Participante da Copa Ecuador 2026. Estadio mandante identificado pela FEF: JULIO SALINAS RIZZO - L.D.P. BABA.",
+      "honours": [],
+      "colors": [],
+      "logo": "https://latam.analyticom.de/file?id=677dae76-ecd9-47cf-9865-3ba85dc91f64",
+      "sources": [
+        {
+          "label": "Club y escudo ? FEF",
+          "url": "https://apiweb.fef.ec/api/public/competitions/teams?path=competiciones%2Fliga-profesional%2Fmasculino%2Fcopa-ecuador-2026"
+        },
+        {
+          "label": "Copa Ecuador 2026 ? FEF",
+          "url": "https://fef.ec/competiciones/liga-profesional/masculino/copa-ecuador-2026"
+        },
+        {
+          "label": "Estadio ? ubicacion publica",
+          "url": "https://www.google.com/maps/search/?api=1&query=JULIO%20SALINAS%20RIZZO%20-%20L.D.P.%20BABA%2C%20BEJUCAL%20SPORT%2C%20Ecuador"
+        }
+      ]
+    },
+    {
+      "id": "fef-primero-de-mayo-de-yantzaza-8001",
+      "name": "PRIMERO DE MAYO DE YANTZAZA",
+      "sport": "soccer",
+      "league": "ecu.copa_2026",
+      "city": "",
+      "stadium": "MUNICIPAL DE YANTZATZA",
+      "stadium_image": "",
+      "website": "",
+      "description": "Participante da Copa Ecuador 2026. Estadio mandante identificado pela FEF: MUNICIPAL DE YANTZATZA.",
+      "honours": [],
+      "colors": [],
+      "logo": "https://apiweb.fef.ec/api/files/019fb3f7-ab57-7029-98b2-4697b98dcefe",
+      "sources": [
+        {
+          "label": "Club y escudo ? FEF",
+          "url": "https://apiweb.fef.ec/api/public/competitions/teams?path=competiciones%2Fliga-profesional%2Fmasculino%2Fcopa-ecuador-2026"
+        },
+        {
+          "label": "Copa Ecuador 2026 ? FEF",
+          "url": "https://fef.ec/competiciones/liga-profesional/masculino/copa-ecuador-2026"
+        },
+        {
+          "label": "Estadio ? ubicacion publica",
+          "url": "https://www.google.com/maps/search/?api=1&query=MUNICIPAL%20DE%20YANTZATZA%2C%20PRIMERO%20DE%20MAYO%20DE%20YANTZAZA%2C%20Ecuador"
+        }
+      ]
+    },
+    {
+      "id": "fef-fc-insutec-1001",
+      "name": "F.C. INSUTEC",
+      "sport": "soccer",
+      "league": "ecu.copa_2026",
+      "city": "",
+      "stadium": "SIETE DE OCTUBRE",
+      "stadium_image": "",
+      "website": "",
+      "description": "Participante da Copa Ecuador 2026. Estadio mandante identificado pela FEF: SIETE DE OCTUBRE.",
+      "honours": [],
+      "colors": [],
+      "logo": "https://apiweb.fef.ec/api/files/019fb3f2-08fe-70ff-bea5-3e53d02d55aa",
+      "sources": [
+        {
+          "label": "Club y escudo ? FEF",
+          "url": "https://apiweb.fef.ec/api/public/competitions/teams?path=competiciones%2Fliga-profesional%2Fmasculino%2Fcopa-ecuador-2026"
+        },
+        {
+          "label": "Copa Ecuador 2026 ? FEF",
+          "url": "https://fef.ec/competiciones/liga-profesional/masculino/copa-ecuador-2026"
+        },
+        {
+          "label": "Estadio ? ubicacion publica",
+          "url": "https://www.google.com/maps/search/?api=1&query=SIETE%20DE%20OCTUBRE%2C%20F.C.%20INSUTEC%2C%20Ecuador"
+        }
+      ]
+    },
+    {
+      "id": "fef-dibarra-0001",
+      "name": "D.IBARRA",
+      "sport": "soccer",
+      "league": "ecu.copa_2026",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "description": "Participante da Copa Ecuador 2026.",
+      "honours": [],
+      "colors": [],
+      "logo": "https://apiweb.fef.ec/api/files/019fb3f1-17fb-726e-a416-ab9edfbb4e95",
+      "sources": [
+        {
+          "label": "Club y escudo ? FEF",
+          "url": "https://apiweb.fef.ec/api/public/competitions/teams?path=competiciones%2Fliga-profesional%2Fmasculino%2Fcopa-ecuador-2026"
+        },
+        {
+          "label": "Copa Ecuador 2026 ? FEF",
+          "url": "https://fef.ec/competiciones/liga-profesional/masculino/copa-ecuador-2026"
+        },
+        {
+          "label": "Club ? ubicacion publica",
+          "url": "https://www.google.com/maps/search/?api=1&query=D.IBARRA%2C%20Ecuador"
+        }
+      ]
+    },
+    {
+      "id": "fef-sdquito-0001",
+      "name": "S.D.QUITO",
+      "sport": "soccer",
+      "league": "ecu.copa_2026",
+      "city": "",
+      "stadium": "OLIMPICO ATAHUALPA",
+      "stadium_image": "",
+      "website": "",
+      "description": "Participante da Copa Ecuador 2026. Estadio mandante identificado pela FEF: OLIMPICO ATAHUALPA.",
+      "honours": [],
+      "colors": [],
+      "logo": "https://apiweb.fef.ec/api/files/019fb3ff-5560-718a-8ad0-6a57384220a9",
+      "sources": [
+        {
+          "label": "Club y escudo ? FEF",
+          "url": "https://apiweb.fef.ec/api/public/competitions/teams?path=competiciones%2Fliga-profesional%2Fmasculino%2Fcopa-ecuador-2026"
+        },
+        {
+          "label": "Copa Ecuador 2026 ? FEF",
+          "url": "https://fef.ec/competiciones/liga-profesional/masculino/copa-ecuador-2026"
+        },
+        {
+          "label": "Estadio ? ubicacion publica",
+          "url": "https://www.google.com/maps/search/?api=1&query=OLIMPICO%20ATAHUALPA%2C%20S.D.QUITO%2C%20Ecuador"
+        }
+      ]
+    },
+    {
+      "id": "fef-santo-domingo-de-los-tsa-4001",
+      "name": "SANTO DOMINGO DE LOS TSA.",
+      "sport": "soccer",
+      "league": "ecu.copa_2026",
+      "city": "",
+      "stadium": "OLIMPICO ETHO VEGA BAQUERO",
+      "stadium_image": "",
+      "website": "",
+      "description": "Participante da Copa Ecuador 2026. Estadio mandante identificado pela FEF: OLIMPICO ETHO VEGA BAQUERO.",
+      "honours": [],
+      "colors": [],
+      "logo": "https://apiweb.fef.ec/api/files/019fb3ff-8702-71a2-8e93-a7ded96cba7e",
+      "sources": [
+        {
+          "label": "Club y escudo ? FEF",
+          "url": "https://apiweb.fef.ec/api/public/competitions/teams?path=competiciones%2Fliga-profesional%2Fmasculino%2Fcopa-ecuador-2026"
+        },
+        {
+          "label": "Copa Ecuador 2026 ? FEF",
+          "url": "https://fef.ec/competiciones/liga-profesional/masculino/copa-ecuador-2026"
+        },
+        {
+          "label": "Estadio ? ubicacion publica",
+          "url": "https://www.google.com/maps/search/?api=1&query=OLIMPICO%20ETHO%20VEGA%20BAQUERO%2C%20SANTO%20DOMINGO%20DE%20LOS%20TSA.%2C%20Ecuador"
+        }
+      ]
+    },
+    {
+      "id": "fef-vino-tinto-del-ecuador-8001",
+      "name": "VINO TINTO DEL ECUADOR",
+      "sport": "soccer",
+      "league": "ecu.copa_2026",
+      "city": "",
+      "stadium": "SAN CARLOS",
+      "stadium_image": "",
+      "website": "",
+      "description": "Participante da Copa Ecuador 2026. Estadio mandante identificado pela FEF: SAN CARLOS.",
+      "honours": [],
+      "colors": [],
+      "logo": "https://apiweb.fef.ec/api/files/019fb437-6388-736e-afa9-b6c418bb6b40",
+      "sources": [
+        {
+          "label": "Club y escudo ? FEF",
+          "url": "https://apiweb.fef.ec/api/public/competitions/teams?path=competiciones%2Fliga-profesional%2Fmasculino%2Fcopa-ecuador-2026"
+        },
+        {
+          "label": "Copa Ecuador 2026 ? FEF",
+          "url": "https://fef.ec/competiciones/liga-profesional/masculino/copa-ecuador-2026"
+        },
+        {
+          "label": "Estadio ? ubicacion publica",
+          "url": "https://www.google.com/maps/search/?api=1&query=SAN%20CARLOS%2C%20VINO%20TINTO%20DEL%20ECUADOR%2C%20Ecuador"
+        }
+      ]
+    },
+    {
+      "id": "fef-astillero-fc-5001",
+      "name": "ASTILLERO F.C.",
+      "sport": "soccer",
+      "league": "ecu.copa_2026",
+      "city": "",
+      "stadium": "ALEJANDRO PONCE NOBOA",
+      "stadium_image": "",
+      "website": "",
+      "description": "Participante da Copa Ecuador 2026. Estadio mandante identificado pela FEF: ALEJANDRO PONCE NOBOA.",
+      "honours": [],
+      "colors": [],
+      "logo": "https://apiweb.fef.ec/api/files/019fb3f5-015d-7318-8887-70e802b0ace8",
+      "sources": [
+        {
+          "label": "Club y escudo ? FEF",
+          "url": "https://apiweb.fef.ec/api/public/competitions/teams?path=competiciones%2Fliga-profesional%2Fmasculino%2Fcopa-ecuador-2026"
+        },
+        {
+          "label": "Copa Ecuador 2026 ? FEF",
+          "url": "https://fef.ec/competiciones/liga-profesional/masculino/copa-ecuador-2026"
+        },
+        {
+          "label": "Estadio ? ubicacion publica",
+          "url": "https://www.google.com/maps/search/?api=1&query=ALEJANDRO%20PONCE%20NOBOA%2C%20ASTILLERO%20F.C.%2C%20Ecuador"
+        }
+      ]
+    },
+    {
+      "id": "fef-22-de-julio-fc-3001",
+      "name": "22 DE JULIO F.C.",
+      "sport": "soccer",
+      "league": "ecu.copa_2026",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "description": "Participante da Copa Ecuador 2026.",
+      "honours": [],
+      "colors": [],
+      "logo": "https://apiweb.fef.ec/api/files/019fb3ef-69b8-70fd-96e2-38df5f7aa12f",
+      "sources": [
+        {
+          "label": "Club y escudo ? FEF",
+          "url": "https://apiweb.fef.ec/api/public/competitions/teams?path=competiciones%2Fliga-profesional%2Fmasculino%2Fcopa-ecuador-2026"
+        },
+        {
+          "label": "Copa Ecuador 2026 ? FEF",
+          "url": "https://fef.ec/competiciones/liga-profesional/masculino/copa-ecuador-2026"
+        },
+        {
+          "label": "Club ? ubicacion publica",
+          "url": "https://www.google.com/maps/search/?api=1&query=22%20DE%20JULIO%20F.C.%2C%20Ecuador"
+        }
+      ]
+    },
+    {
+      "id": "fef-nazareno-sporting-club-3001",
+      "name": "NAZARENO SPORTING CLUB",
+      "sport": "soccer",
+      "league": "ecu.copa_2026",
+      "city": "",
+      "stadium": "VICTOR H. GEORGIS",
+      "stadium_image": "",
+      "website": "",
+      "description": "Participante da Copa Ecuador 2026. Estadio mandante identificado pela FEF: VICTOR H. GEORGIS.",
+      "honours": [],
+      "colors": [],
+      "logo": "https://apiweb.fef.ec/api/files/019fb3f7-2a88-7326-81ea-a0d6b7f15c73",
+      "sources": [
+        {
+          "label": "Club y escudo ? FEF",
+          "url": "https://apiweb.fef.ec/api/public/competitions/teams?path=competiciones%2Fliga-profesional%2Fmasculino%2Fcopa-ecuador-2026"
+        },
+        {
+          "label": "Copa Ecuador 2026 ? FEF",
+          "url": "https://fef.ec/competiciones/liga-profesional/masculino/copa-ecuador-2026"
+        },
+        {
+          "label": "Estadio ? ubicacion publica",
+          "url": "https://www.google.com/maps/search/?api=1&query=VICTOR%20H.%20GEORGIS%2C%20NAZARENO%20SPORTING%20CLUB%2C%20Ecuador"
+        }
+      ]
+    },
+    {
+      "id": "fef-adnueve-de-octubre-6001",
+      "name": "A.D.NUEVE DE OCTUBRE",
+      "sport": "soccer",
+      "league": "ecu.copa_2026",
+      "city": "",
+      "stadium": "MUNICIPAL DE LA TRONCAL",
+      "stadium_image": "",
+      "website": "",
+      "description": "Participante da Copa Ecuador 2026. Estadio mandante identificado pela FEF: MUNICIPAL DE LA TRONCAL.",
+      "honours": [],
+      "colors": [],
+      "logo": "https://apiweb.fef.ec/api/files/019e094b-616c-70f5-9395-8808e0ab3d83",
+      "sources": [
+        {
+          "label": "Club y escudo ? FEF",
+          "url": "https://apiweb.fef.ec/api/public/competitions/teams?path=competiciones%2Fliga-profesional%2Fmasculino%2Fcopa-ecuador-2026"
+        },
+        {
+          "label": "Copa Ecuador 2026 ? FEF",
+          "url": "https://fef.ec/competiciones/liga-profesional/masculino/copa-ecuador-2026"
+        },
+        {
+          "label": "Estadio ? ubicacion publica",
+          "url": "https://www.google.com/maps/search/?api=1&query=MUNICIPAL%20DE%20LA%20TRONCAL%2C%20A.D.NUEVE%20DE%20OCTUBRE%2C%20Ecuador"
+        }
+      ]
+    },
+    {
+      "id": "fef-independiente-azogues-2001",
+      "name": "INDEPENDIENTE AZOGUES",
+      "sport": "soccer",
+      "league": "ecu.copa_2026",
+      "city": "",
+      "stadium": "JORGE ANDRADE CANTOS",
+      "stadium_image": "",
+      "website": "",
+      "description": "Participante da Copa Ecuador 2026. Estadio mandante identificado pela FEF: JORGE ANDRADE CANTOS.",
+      "honours": [],
+      "colors": [],
+      "logo": "https://apiweb.fef.ec/api/files/019fb3f5-4f26-722e-9476-ddf50f351ae2",
+      "sources": [
+        {
+          "label": "Club y escudo ? FEF",
+          "url": "https://apiweb.fef.ec/api/public/competitions/teams?path=competiciones%2Fliga-profesional%2Fmasculino%2Fcopa-ecuador-2026"
+        },
+        {
+          "label": "Copa Ecuador 2026 ? FEF",
+          "url": "https://fef.ec/competiciones/liga-profesional/masculino/copa-ecuador-2026"
+        },
+        {
+          "label": "Estadio ? ubicacion publica",
+          "url": "https://www.google.com/maps/search/?api=1&query=JORGE%20ANDRADE%20CANTOS%2C%20INDEPENDIENTE%20AZOGUES%2C%20Ecuador"
+        }
+      ]
+    },
+    {
+      "id": "fef-lduportoviejo-3001",
+      "name": "L.D.U.PORTOVIEJO",
+      "sport": "soccer",
+      "league": "ecu.copa_2026",
+      "city": "",
+      "stadium": "REALES TAMARINDOS",
+      "stadium_image": "",
+      "website": "",
+      "description": "Participante da Copa Ecuador 2026. Estadio mandante identificado pela FEF: REALES TAMARINDOS.",
+      "honours": [],
+      "colors": [],
+      "logo": "https://apiweb.fef.ec/api/files/019fb3f5-b29c-7293-a6ce-fc00ffec43e2",
+      "sources": [
+        {
+          "label": "Club y escudo ? FEF",
+          "url": "https://apiweb.fef.ec/api/public/competitions/teams?path=competiciones%2Fliga-profesional%2Fmasculino%2Fcopa-ecuador-2026"
+        },
+        {
+          "label": "Copa Ecuador 2026 ? FEF",
+          "url": "https://fef.ec/competiciones/liga-profesional/masculino/copa-ecuador-2026"
+        },
+        {
+          "label": "Estadio ? ubicacion publica",
+          "url": "https://www.google.com/maps/search/?api=1&query=REALES%20TAMARINDOS%2C%20L.D.U.PORTOVIEJO%2C%20Ecuador"
+        }
+      ]
+    },
+    {
+      "id": "fef-guaranda-fc-2001",
+      "name": "GUARANDA F.C.",
+      "sport": "soccer",
+      "league": "ecu.copa_2026",
+      "city": "",
+      "stadium": "FEDERATIVO GUARANDA",
+      "stadium_image": "",
+      "website": "",
+      "description": "Participante da Copa Ecuador 2026. Estadio mandante identificado pela FEF: FEDERATIVO GUARANDA.",
+      "honours": [],
+      "colors": [],
+      "logo": "https://latam.analyticom.de/file?id=a7daeaff-c6d6-4c46-a1f2-e959263d231e",
+      "sources": [
+        {
+          "label": "Club y escudo ? FEF",
+          "url": "https://apiweb.fef.ec/api/public/competitions/teams?path=competiciones%2Fliga-profesional%2Fmasculino%2Fcopa-ecuador-2026"
+        },
+        {
+          "label": "Copa Ecuador 2026 ? FEF",
+          "url": "https://fef.ec/competiciones/liga-profesional/masculino/copa-ecuador-2026"
+        },
+        {
+          "label": "Estadio ? ubicacion publica",
+          "url": "https://www.google.com/maps/search/?api=1&query=FEDERATIVO%20GUARANDA%2C%20GUARANDA%20F.C.%2C%20Ecuador"
+        }
+      ]
+    },
+    {
+      "id": "fef-san-antonio-2001",
+      "name": "SAN ANTONIO",
+      "sport": "soccer",
+      "league": "ecu.copa_2026",
+      "city": "",
+      "stadium": "OLIMPICO CIUDAD DE IBARRA",
+      "stadium_image": "",
+      "website": "",
+      "description": "Participante da Copa Ecuador 2026. Estadio mandante identificado pela FEF: OLIMPICO CIUDAD DE IBARRA.",
+      "honours": [],
+      "colors": [],
+      "logo": "https://apiweb.fef.ec/api/files/019fb3fb-cae3-7263-86f0-b22662def36a",
+      "sources": [
+        {
+          "label": "Club y escudo ? FEF",
+          "url": "https://apiweb.fef.ec/api/public/competitions/teams?path=competiciones%2Fliga-profesional%2Fmasculino%2Fcopa-ecuador-2026"
+        },
+        {
+          "label": "Copa Ecuador 2026 ? FEF",
+          "url": "https://fef.ec/competiciones/liga-profesional/masculino/copa-ecuador-2026"
+        },
+        {
+          "label": "Estadio ? ubicacion publica",
+          "url": "https://www.google.com/maps/search/?api=1&query=OLIMPICO%20CIUDAD%20DE%20IBARRA%2C%20SAN%20ANTONIO%2C%20Ecuador"
+        }
+      ]
+    },
+    {
+      "id": "fef-la-union-1001",
+      "name": "LA UNION",
+      "sport": "soccer",
+      "league": "ecu.copa_2026",
+      "city": "",
+      "stadium": "ESTADIO LA UNION",
+      "stadium_image": "",
+      "website": "",
+      "description": "Participante da Copa Ecuador 2026. Estadio mandante identificado pela FEF: ESTADIO LA UNION.",
+      "honours": [],
+      "colors": [],
+      "logo": "https://apiweb.fef.ec/api/files/019fb3f6-0dff-7355-86be-146494f1f7bf",
+      "sources": [
+        {
+          "label": "Club y escudo ? FEF",
+          "url": "https://apiweb.fef.ec/api/public/competitions/teams?path=competiciones%2Fliga-profesional%2Fmasculino%2Fcopa-ecuador-2026"
+        },
+        {
+          "label": "Copa Ecuador 2026 ? FEF",
+          "url": "https://fef.ec/competiciones/liga-profesional/masculino/copa-ecuador-2026"
+        },
+        {
+          "label": "Estadio ? ubicacion publica",
+          "url": "https://www.google.com/maps/search/?api=1&query=ESTADIO%20LA%20UNION%2C%20LA%20UNION%2C%20Ecuador"
+        }
+      ]
+    },
+    {
+      "id": "fef-cumbaya-fc-0001",
+      "name": "CUMBAYA F.C.",
+      "sport": "soccer",
+      "league": "ecu.copa_2026",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "description": "Participante da Copa Ecuador 2026.",
+      "honours": [],
+      "colors": [],
+      "logo": "https://latam.analyticom.de/file?id=eab9e3e3-7b46-4105-8790-618a920b2537",
+      "sources": [
+        {
+          "label": "Club y escudo ? FEF",
+          "url": "https://apiweb.fef.ec/api/public/competitions/teams?path=competiciones%2Fliga-profesional%2Fmasculino%2Fcopa-ecuador-2026"
+        },
+        {
+          "label": "Copa Ecuador 2026 ? FEF",
+          "url": "https://fef.ec/competiciones/liga-profesional/masculino/copa-ecuador-2026"
+        },
+        {
+          "label": "Club ? ubicacion publica",
+          "url": "https://www.google.com/maps/search/?api=1&query=CUMBAYA%20F.C.%2C%20Ecuador"
+        }
+      ]
+    },
+    {
+      "id": "fef-juventud-italiana-9001",
+      "name": "JUVENTUD ITALIANA",
+      "sport": "soccer",
+      "league": "ecu.copa_2026",
+      "city": "",
+      "stadium": "JOCAY",
+      "stadium_image": "",
+      "website": "",
+      "description": "Participante da Copa Ecuador 2026. Estadio mandante identificado pela FEF: JOCAY.",
+      "honours": [],
+      "colors": [],
+      "logo": "https://apiweb.fef.ec/api/files/019fb3f5-7dad-714c-876c-6ed6035e0076",
+      "sources": [
+        {
+          "label": "Club y escudo ? FEF",
+          "url": "https://apiweb.fef.ec/api/public/competitions/teams?path=competiciones%2Fliga-profesional%2Fmasculino%2Fcopa-ecuador-2026"
+        },
+        {
+          "label": "Copa Ecuador 2026 ? FEF",
+          "url": "https://fef.ec/competiciones/liga-profesional/masculino/copa-ecuador-2026"
+        },
+        {
+          "label": "Estadio ? ubicacion publica",
+          "url": "https://www.google.com/maps/search/?api=1&query=JOCAY%2C%20JUVENTUD%20ITALIANA%2C%20Ecuador"
+        }
+      ]
+    },
+    {
+      "id": "fef-atl-rojiblanco-2001",
+      "name": "ATL. ROJIBLANCO",
+      "sport": "soccer",
+      "league": "ecu.copa_2026",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "description": "Participante da Copa Ecuador 2026.",
+      "honours": [],
+      "colors": [],
+      "logo": "https://apiweb.fef.ec/api/files/019fb3f4-e456-734c-954f-187dd138ffcd",
+      "sources": [
+        {
+          "label": "Club y escudo ? FEF",
+          "url": "https://apiweb.fef.ec/api/public/competitions/teams?path=competiciones%2Fliga-profesional%2Fmasculino%2Fcopa-ecuador-2026"
+        },
+        {
+          "label": "Copa Ecuador 2026 ? FEF",
+          "url": "https://fef.ec/competiciones/liga-profesional/masculino/copa-ecuador-2026"
+        },
+        {
+          "label": "Club ? ubicacion publica",
+          "url": "https://www.google.com/maps/search/?api=1&query=ATL.%20ROJIBLANCO%2C%20Ecuador"
+        }
+      ]
+    },
+    {
+      "id": "fef-quito-fc-1001",
+      "name": "QUITO F.C.",
+      "sport": "soccer",
+      "league": "ecu.copa_2026",
+      "city": "",
+      "stadium": "TABACUNDO",
+      "stadium_image": "",
+      "website": "",
+      "description": "Participante da Copa Ecuador 2026. Estadio mandante identificado pela FEF: TABACUNDO.",
+      "honours": [],
+      "colors": [],
+      "logo": "https://apiweb.fef.ec/api/files/019fb3fa-72b0-7014-b0ce-092fc0661567",
+      "sources": [
+        {
+          "label": "Club y escudo ? FEF",
+          "url": "https://apiweb.fef.ec/api/public/competitions/teams?path=competiciones%2Fliga-profesional%2Fmasculino%2Fcopa-ecuador-2026"
+        },
+        {
+          "label": "Copa Ecuador 2026 ? FEF",
+          "url": "https://fef.ec/competiciones/liga-profesional/masculino/copa-ecuador-2026"
+        },
+        {
+          "label": "Estadio ? ubicacion publica",
+          "url": "https://www.google.com/maps/search/?api=1&query=TABACUNDO%2C%20QUITO%20F.C.%2C%20Ecuador"
+        }
+      ]
+    },
+    {
+      "id": "fef-cuenca-jrs-6001",
+      "name": "CUENCA JRS",
+      "sport": "soccer",
+      "league": "ecu.copa_2026",
+      "city": "",
+      "stadium": "SERRANO A. BANCO DEL AUSTRO",
+      "stadium_image": "",
+      "website": "",
+      "description": "Participante da Copa Ecuador 2026. Estadio mandante identificado pela FEF: SERRANO A. BANCO DEL AUSTRO.",
+      "honours": [],
+      "colors": [],
+      "logo": "https://apiweb.fef.ec/api/files/019fb3f0-69b4-723d-839c-661669891901",
+      "sources": [
+        {
+          "label": "Club y escudo ? FEF",
+          "url": "https://apiweb.fef.ec/api/public/competitions/teams?path=competiciones%2Fliga-profesional%2Fmasculino%2Fcopa-ecuador-2026"
+        },
+        {
+          "label": "Copa Ecuador 2026 ? FEF",
+          "url": "https://fef.ec/competiciones/liga-profesional/masculino/copa-ecuador-2026"
+        },
+        {
+          "label": "Estadio ? ubicacion publica",
+          "url": "https://www.google.com/maps/search/?api=1&query=SERRANO%20A.%20BANCO%20DEL%20AUSTRO%2C%20CUENCA%20JRS%2C%20Ecuador"
+        }
+      ]
+    },
+    {
+      "id": "fef-udjquininde-9001",
+      "name": "U.D.J.QUININDE",
+      "sport": "soccer",
+      "league": "ecu.copa_2026",
+      "city": "",
+      "stadium": "FOLKE ANDERSON",
+      "stadium_image": "",
+      "website": "",
+      "description": "Participante da Copa Ecuador 2026. Estadio mandante identificado pela FEF: FOLKE ANDERSON.",
+      "honours": [],
+      "colors": [],
+      "logo": "https://apiweb.fef.ec/api/files/019fb3fb-4367-73e1-988c-878eca4f5ed3",
+      "sources": [
+        {
+          "label": "Club y escudo ? FEF",
+          "url": "https://apiweb.fef.ec/api/public/competitions/teams?path=competiciones%2Fliga-profesional%2Fmasculino%2Fcopa-ecuador-2026"
+        },
+        {
+          "label": "Copa Ecuador 2026 ? FEF",
+          "url": "https://fef.ec/competiciones/liga-profesional/masculino/copa-ecuador-2026"
+        },
+        {
+          "label": "Estadio ? ubicacion publica",
+          "url": "https://www.google.com/maps/search/?api=1&query=FOLKE%20ANDERSON%2C%20U.D.J.QUININDE%2C%20Ecuador"
+        }
+      ]
+    },
+    {
+      "id": "fef-daquilema-fc-3001",
+      "name": "DAQUILEMA F.C.",
+      "sport": "soccer",
+      "league": "ecu.copa_2026",
+      "city": "",
+      "stadium": "OLIMPICO FERNANDO GUERRERO G.",
+      "stadium_image": "",
+      "website": "",
+      "description": "Participante da Copa Ecuador 2026. Estadio mandante identificado pela FEF: OLIMPICO FERNANDO GUERRERO G..",
+      "honours": [],
+      "colors": [],
+      "logo": "https://apiweb.fef.ec/api/files/019fb3f4-922b-716e-b2d9-2c040827644a",
+      "sources": [
+        {
+          "label": "Club y escudo ? FEF",
+          "url": "https://apiweb.fef.ec/api/public/competitions/teams?path=competiciones%2Fliga-profesional%2Fmasculino%2Fcopa-ecuador-2026"
+        },
+        {
+          "label": "Copa Ecuador 2026 ? FEF",
+          "url": "https://fef.ec/competiciones/liga-profesional/masculino/copa-ecuador-2026"
+        },
+        {
+          "label": "Estadio ? ubicacion publica",
+          "url": "https://www.google.com/maps/search/?api=1&query=OLIMPICO%20FERNANDO%20GUERRERO%20G.%2C%20DAQUILEMA%20F.C.%2C%20Ecuador"
+        }
+      ]
+    },
+    {
+      "id": "fef-africando-sc-0001",
+      "name": "AFRICANDO S.C.",
+      "sport": "soccer",
+      "league": "ecu.copa_2026",
+      "city": "",
+      "stadium": "ALEJANDRO PONCE NOBOA",
+      "stadium_image": "",
+      "website": "",
+      "description": "Participante da Copa Ecuador 2026. Estadio mandante identificado pela FEF: ALEJANDRO PONCE NOBOA.",
+      "honours": [],
+      "colors": [],
+      "logo": "https://latam.analyticom.de/file?id=8d000fbb-066e-4ffc-a0fe-48e40daebaf6",
+      "sources": [
+        {
+          "label": "Club y escudo ? FEF",
+          "url": "https://apiweb.fef.ec/api/public/competitions/teams?path=competiciones%2Fliga-profesional%2Fmasculino%2Fcopa-ecuador-2026"
+        },
+        {
+          "label": "Copa Ecuador 2026 ? FEF",
+          "url": "https://fef.ec/competiciones/liga-profesional/masculino/copa-ecuador-2026"
+        },
+        {
+          "label": "Estadio ? ubicacion publica",
+          "url": "https://www.google.com/maps/search/?api=1&query=ALEJANDRO%20PONCE%20NOBOA%2C%20AFRICANDO%20S.C.%2C%20Ecuador"
+        }
+      ]
+    },
+    {
+      "id": "fef-independiente-juniors-4001",
+      "name": "INDEPENDIENTE JUNIORS",
+      "sport": "soccer",
+      "league": "ecu.copa_2026",
+      "city": "",
+      "stadium": "BANCO GUAYAQUIL",
+      "stadium_image": "",
+      "website": "",
+      "description": "Participante da Copa Ecuador 2026. Estadio mandante identificado pela FEF: BANCO GUAYAQUIL.",
+      "honours": [],
+      "colors": [],
+      "logo": "https://latam.analyticom.de/file?id=c96dceb7-b935-41a2-9994-199724557bee",
+      "sources": [
+        {
+          "label": "Club y escudo ? FEF",
+          "url": "https://apiweb.fef.ec/api/public/competitions/teams?path=competiciones%2Fliga-profesional%2Fmasculino%2Fcopa-ecuador-2026"
+        },
+        {
+          "label": "Copa Ecuador 2026 ? FEF",
+          "url": "https://fef.ec/competiciones/liga-profesional/masculino/copa-ecuador-2026"
+        },
+        {
+          "label": "Estadio ? ubicacion publica",
+          "url": "https://www.google.com/maps/search/?api=1&query=BANCO%20GUAYAQUIL%2C%20INDEPENDIENTE%20JUNIORS%2C%20Ecuador"
+        }
+      ]
+    },
+    {
+      "id": "fef-huaquillas-fc-2001",
+      "name": "HUAQUILLAS F.C.",
+      "sport": "soccer",
+      "league": "ecu.copa_2026",
+      "city": "",
+      "stadium": "HUMBERTO ARTETA",
+      "stadium_image": "",
+      "website": "",
+      "description": "Participante da Copa Ecuador 2026. Estadio mandante identificado pela FEF: HUMBERTO ARTETA.",
+      "honours": [],
+      "colors": [],
+      "logo": "https://latam.analyticom.de/file?id=b699d482-0427-45d4-b54c-fe3e4728cd14",
+      "sources": [
+        {
+          "label": "Club y escudo ? FEF",
+          "url": "https://apiweb.fef.ec/api/public/competitions/teams?path=competiciones%2Fliga-profesional%2Fmasculino%2Fcopa-ecuador-2026"
+        },
+        {
+          "label": "Copa Ecuador 2026 ? FEF",
+          "url": "https://fef.ec/competiciones/liga-profesional/masculino/copa-ecuador-2026"
+        },
+        {
+          "label": "Estadio ? ubicacion publica",
+          "url": "https://www.google.com/maps/search/?api=1&query=HUMBERTO%20ARTETA%2C%20HUAQUILLAS%20F.C.%2C%20Ecuador"
+        }
+      ]
+    },
+    {
+      "id": "fef-rio-aguarico-fc-9001",
+      "name": "RIO AGUARICO F.C.",
+      "sport": "soccer",
+      "league": "ecu.copa_2026",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "description": "Participante da Copa Ecuador 2026.",
+      "honours": [],
+      "colors": [],
+      "logo": "https://latam.analyticom.de/file?id=162c44dc-4cd8-49d6-9fec-3fc93439f67d",
+      "sources": [
+        {
+          "label": "Club y escudo ? FEF",
+          "url": "https://apiweb.fef.ec/api/public/competitions/teams?path=competiciones%2Fliga-profesional%2Fmasculino%2Fcopa-ecuador-2026"
+        },
+        {
+          "label": "Copa Ecuador 2026 ? FEF",
+          "url": "https://fef.ec/competiciones/liga-profesional/masculino/copa-ecuador-2026"
+        },
+        {
+          "label": "Club ? ubicacion publica",
+          "url": "https://www.google.com/maps/search/?api=1&query=RIO%20AGUARICO%20F.C.%2C%20Ecuador"
+        }
+      ]
+    },
+    {
+      "id": "fef-banos-ciudad-de-fuego-2001",
+      "name": "BAÑOS CIUDAD DE FUEGO",
+      "sport": "soccer",
+      "league": "ecu.copa_2026",
+      "city": "",
+      "stadium": "CORONEL JOSE SILVA ROMO",
+      "stadium_image": "",
+      "website": "",
+      "description": "Participante da Copa Ecuador 2026. Estadio mandante identificado pela FEF: CORONEL JOSE SILVA ROMO.",
+      "honours": [],
+      "colors": [],
+      "logo": "https://latam.analyticom.de/file?id=a5028d89-70fd-4bad-aad4-3d6d93169068",
+      "sources": [
+        {
+          "label": "Club y escudo ? FEF",
+          "url": "https://apiweb.fef.ec/api/public/competitions/teams?path=competiciones%2Fliga-profesional%2Fmasculino%2Fcopa-ecuador-2026"
+        },
+        {
+          "label": "Copa Ecuador 2026 ? FEF",
+          "url": "https://fef.ec/competiciones/liga-profesional/masculino/copa-ecuador-2026"
+        },
+        {
+          "label": "Estadio ? ubicacion publica",
+          "url": "https://www.google.com/maps/search/?api=1&query=CORONEL%20JOSE%20SILVA%20ROMO%2C%20BA%C3%91OS%20CIUDAD%20DE%20FUEGO%2C%20Ecuador"
+        }
+      ]
+    },
+    {
+      "id": "fef-anaconda-fc-3001",
+      "name": "ANACONDA FC",
+      "sport": "soccer",
+      "league": "ecu.copa_2026",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "description": "Participante da Copa Ecuador 2026.",
+      "honours": [],
+      "colors": [],
+      "logo": "https://apiweb.fef.ec/api/files/019fb3ef-d3b9-706e-81dc-5006edebafa9",
+      "sources": [
+        {
+          "label": "Club y escudo ? FEF",
+          "url": "https://apiweb.fef.ec/api/public/competitions/teams?path=competiciones%2Fliga-profesional%2Fmasculino%2Fcopa-ecuador-2026"
+        },
+        {
+          "label": "Copa Ecuador 2026 ? FEF",
+          "url": "https://fef.ec/competiciones/liga-profesional/masculino/copa-ecuador-2026"
+        },
+        {
+          "label": "Club ? ubicacion publica",
+          "url": "https://www.google.com/maps/search/?api=1&query=ANACONDA%20FC%2C%20Ecuador"
+        }
+      ]
+    },
+    {
+      "id": "fef-dunamis-04-carchi-ecuador-9001",
+      "name": "DUNAMIS 04 CARCHI-ECUADOR",
+      "sport": "soccer",
+      "league": "ecu.copa_2026",
+      "city": "",
+      "stadium": "OLIMPICO CIUDAD DE TULCAN",
+      "stadium_image": "",
+      "website": "",
+      "description": "Participante da Copa Ecuador 2026. Estadio mandante identificado pela FEF: OLIMPICO CIUDAD DE TULCAN.",
+      "honours": [],
+      "colors": [],
+      "logo": "https://apiweb.fef.ec/api/files/019fb3f1-d651-734c-b728-0849646cc695",
+      "sources": [
+        {
+          "label": "Club y escudo ? FEF",
+          "url": "https://apiweb.fef.ec/api/public/competitions/teams?path=competiciones%2Fliga-profesional%2Fmasculino%2Fcopa-ecuador-2026"
+        },
+        {
+          "label": "Copa Ecuador 2026 ? FEF",
+          "url": "https://fef.ec/competiciones/liga-profesional/masculino/copa-ecuador-2026"
+        },
+        {
+          "label": "Estadio ? ubicacion publica",
+          "url": "https://www.google.com/maps/search/?api=1&query=OLIMPICO%20CIUDAD%20DE%20TULCAN%2C%20DUNAMIS%2004%20CARCHI-ECUADOR%2C%20Ecuador"
+        }
+      ]
+    },
+    {
+      "id": "fef-el-nacional-9001",
+      "name": "EL NACIONAL",
+      "sport": "soccer",
+      "league": "ecu.copa_2026",
+      "city": "",
+      "stadium": "GONZALO POZO",
+      "stadium_image": "",
+      "website": "",
+      "description": "Participante da Copa Ecuador 2026. Estadio mandante identificado pela FEF: GONZALO POZO.",
+      "honours": [],
+      "colors": [],
+      "logo": "https://apiweb.fef.ec/api/files/019fb43d-9176-723b-8aff-9b1691282f7e",
+      "sources": [
+        {
+          "label": "Club y escudo ? FEF",
+          "url": "https://apiweb.fef.ec/api/public/competitions/teams?path=competiciones%2Fliga-profesional%2Fmasculino%2Fcopa-ecuador-2026"
+        },
+        {
+          "label": "Copa Ecuador 2026 ? FEF",
+          "url": "https://fef.ec/competiciones/liga-profesional/masculino/copa-ecuador-2026"
+        },
+        {
+          "label": "Estadio ? ubicacion publica",
+          "url": "https://www.google.com/maps/search/?api=1&query=GONZALO%20POZO%2C%20EL%20NACIONAL%2C%20Ecuador"
+        }
+      ]
+    },
+    {
+      "id": "fef-sdsanto-domingo-6001",
+      "name": "S.D.SANTO DOMINGO",
+      "sport": "soccer",
+      "league": "ecu.copa_2026",
+      "city": "",
+      "stadium": "OLIMPICO ETHO VEGA BAQUERO",
+      "stadium_image": "",
+      "website": "",
+      "description": "Participante da Copa Ecuador 2026. Estadio mandante identificado pela FEF: OLIMPICO ETHO VEGA BAQUERO.",
+      "honours": [],
+      "colors": [],
+      "logo": "https://apiweb.fef.ec/api/files/019fb3ff-6f26-7266-96d5-de762cacbae4",
+      "sources": [
+        {
+          "label": "Club y escudo ? FEF",
+          "url": "https://apiweb.fef.ec/api/public/competitions/teams?path=competiciones%2Fliga-profesional%2Fmasculino%2Fcopa-ecuador-2026"
+        },
+        {
+          "label": "Copa Ecuador 2026 ? FEF",
+          "url": "https://fef.ec/competiciones/liga-profesional/masculino/copa-ecuador-2026"
+        },
+        {
+          "label": "Estadio ? ubicacion publica",
+          "url": "https://www.google.com/maps/search/?api=1&query=OLIMPICO%20ETHO%20VEGA%20BAQUERO%2C%20S.D.SANTO%20DOMINGO%2C%20Ecuador"
+        }
+      ]
+    }
+  ]
+}

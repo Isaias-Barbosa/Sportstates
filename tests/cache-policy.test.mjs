@@ -316,6 +316,14 @@ test("authorized admin clearing invalidates entries without deleting saved data"
 });
 
 test("only healthy public reads receive tagged CDN caching, never private browser caching", async () => {
+  const originalFetch = globalThis.fetch;
+  globalThis.fetch = async (url) => ({
+    ok: true,
+    json: async () =>
+      String(url).includes("apiweb.fef.ec")
+        ? { status_code: 200, success: true, data: { stages: [] } }
+        : { events: [] },
+  });
   async function request(url, authorization) {
     let body;
     const headers = {};
@@ -330,18 +338,22 @@ test("only healthy public reads receive tagged CDN caching, never private browse
     await handler({ method: "GET", url, headers: { authorization } }, res);
     return { status: res.statusCode, headers, body };
   }
-  const catalog = await request("/api/competitions");
-  assert.equal(catalog.headers["Cache-Control"], "no-store");
-  assert.equal(
-    catalog.headers["Vercel-CDN-Cache-Control"],
-    "public, max-age=86400",
-  );
-  assert.equal(catalog.headers["Vercel-Cache-Tag"], CACHE_TAG);
-  const authenticated = await request("/api/competitions", "Bearer test");
-  assert.equal(authenticated.headers["Vercel-CDN-Cache-Control"], "no-store");
-  const invalid = await request("/api/match?sport=bad&league=bad&id=bad");
-  assert.equal(invalid.status, 400);
-  assert.equal(invalid.headers["Vercel-CDN-Cache-Control"], "no-store");
+  try {
+    const catalog = await request("/api/competitions");
+    assert.equal(catalog.headers["Cache-Control"], "no-store");
+    assert.match(
+      catalog.headers["Vercel-CDN-Cache-Control"],
+      /^public, max-age=[1-9]\d*$/,
+    );
+    assert.equal(catalog.headers["Vercel-Cache-Tag"], CACHE_TAG);
+    const authenticated = await request("/api/competitions", "Bearer test");
+    assert.equal(authenticated.headers["Vercel-CDN-Cache-Control"], "no-store");
+    const invalid = await request("/api/match?sport=bad&league=bad&id=bad");
+    assert.equal(invalid.status, 400);
+    assert.equal(invalid.headers["Vercel-CDN-Cache-Control"], "no-store");
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
 });
 
 test("current-day and live agendas use short tagged CDN caching", () => {
