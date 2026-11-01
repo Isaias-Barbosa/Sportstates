@@ -279,6 +279,7 @@ export type CompetitionCatalog = {
       name: string;
       hasKnockout?: boolean;
       teamLeague?: boolean;
+      tournamentFormat?: string;
     }[];
   }[];
   soccerRegions?: {

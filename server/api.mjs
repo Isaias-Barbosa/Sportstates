@@ -49,6 +49,7 @@ import {
   SOCCER_REGIONS,
   SOCCER_INTERNATIONAL_GROUPS,
   SOCCER_TEAM_LEAGUES,
+  SOCCER_TOURNAMENT_FORMATS,
   leagueFor,
 } from "./catalog.mjs";
 import { listTeams, teamDetails, saveTeam, getTeam } from "./teams.mjs";
@@ -401,6 +402,8 @@ export async function route(url) {
             id,
             name,
             hasKnockout: s.id === "soccer" && KNOCKOUT_LEAGUES.has(id),
+            tournamentFormat:
+              s.id === "soccer" ? SOCCER_TOURNAMENT_FORMATS[id] : undefined,
             teamLeague:
               !["tennis", "table-tennis"].includes(s.id) &&
               (s.id !== "soccer" || SOCCER_TEAM_LEAGUES.has(id)),

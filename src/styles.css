@@ -2271,6 +2271,15 @@ body.club-page-active { background:var(--club-page-bg, var(--canvas)); backgroun
 
 .standings-filters { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; margin-top:24px; }
 .standings-filters .standings-filter { max-width:none; margin-top:0; align-content:start; }
+.standings-region-picker { grid-column: 1 / -1; display: grid; gap: 12px; }
+.standings-region-nav { display: flex; gap: 10px; overflow-x: auto; padding: 2px 2px 8px; }
+.standings-region-option { flex: 0 0 auto; display: grid; gap: 5px; min-width: 132px; padding: 12px 14px; text-align: left; background: var(--panel); border: 1px solid var(--border); border-radius: 12px; }
+.standings-region-option small { color: var(--muted); }
+.standings-region-option:hover, .standings-region-option.selected { border-color: var(--green); background: var(--green-glow); }
+.standings-region-option.selected strong { color: var(--green-dim); }
+.standings-league-format { font-weight: 700; }
+.standings-league-action { margin-top: auto; }
+.standings-format-note { margin: -12px 0 16px; color: var(--muted); font-size: 13px; line-height: 1.6; }
 .team-league-filters { margin-bottom:24px; }
 @media(max-width:760px) { .standings-filters { grid-template-columns:1fr; } }
 

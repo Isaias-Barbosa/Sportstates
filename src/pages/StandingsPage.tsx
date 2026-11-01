@@ -34,8 +34,8 @@ export default function StandingsPage() {
       : [];
   const isState = stateIds.includes(league);
   const currentYear = Number(today().slice(0, 4));
-  const selectedName =
-    selected?.leagues.find((l) => l.id === league)?.name || "Classificação";
+  const selectedCompetition = selected?.leagues.find((l) => l.id === league);
+  const selectedName = selectedCompetition?.name || "Classificação";
 
   function changeSport(id: string) {
     const first = data?.sports.find((s) => s.id === id)?.leagues[0]?.id || "";
@@ -81,33 +81,42 @@ export default function StandingsPage() {
           </div>
           {sport === "soccer" && (
             <div className="standings-filters">
-              <div className="standings-filter">
-                <label htmlFor="standings-region">Liga ou região</label>
-                <select
-                  id="standings-region"
-                  value={scope === "local" ? region : ""}
-                  onChange={(e) => {
-                    const next = e.target.value;
-                    setParams({
-                      sport: "soccer",
-                      region: next,
-                      scope: "local",
-                      league:
-                        data.soccerRegions?.find((r) => r.id === next)
-                          ?.competitions[0] || "",
-                    });
-                  }}
+              <div className="standings-region-picker">
+                <h2>Escolha uma liga ou região</h2>
+                <div
+                  className="standings-region-nav"
+                  aria-label="Ligas e regiões"
                 >
-                  <option value="" disabled>
-                    Selecione uma região
-                  </option>
-                  {data.soccerRegions?.map((r) => (
-                    <option key={r.id} value={r.id}>
-                      {r.name}
-                    </option>
-                  ))}
-                </select>
-                <small>Ligas nacionais e competições locais.</small>
+                  {data.soccerRegions?.map((r) => {
+                    const competitionCount =
+                      r.competitions.length +
+                      (r.stateCompetitions?.length || 0);
+                    return (
+                      <button
+                        type="button"
+                        key={r.id}
+                        className={`standings-region-option ${scope === "local" && region === r.id ? "selected" : ""}`}
+                        aria-pressed={scope === "local" && region === r.id}
+                        onClick={() =>
+                          setParams({
+                            sport: "soccer",
+                            region: r.id,
+                            scope: "local",
+                            league: r.competitions[0] || "",
+                          })
+                        }
+                      >
+                        <strong>{r.name}</strong>
+                        <small>
+                          {competitionCount}{" "}
+                          {competitionCount === 1
+                            ? "competição"
+                            : "competições"}
+                        </small>
+                      </button>
+                    );
+                  })}
+                </div>
               </div>
               {data.soccerInternationalGroups?.map((g) => (
                 <div className="standings-filter" key={g.id}>
@@ -163,7 +172,12 @@ export default function StandingsPage() {
               >
                 <span>{selected?.icon}</span>
                 <strong>{l.name}</strong>
-                <small>
+                {l.tournamentFormat && (
+                  <small className="standings-league-format">
+                    {l.tournamentFormat}
+                  </small>
+                )}
+                <small className="standings-league-action">
                   {l.hasKnockout
                     ? "Ver fases e classificação →"
                     : "Ver classificação →"}
@@ -234,12 +248,21 @@ export default function StandingsPage() {
                 <h2>{selectedName}</h2>
               </div>
               {league ? (
-                <LeagueOverview
-                  key={`${sport}/${league}`}
-                  name={selectedName}
-                  sport={sport}
-                  league={league}
-                />
+                <>
+                  {selectedCompetition?.tournamentFormat && (
+                    <p className="standings-format-note">
+                      Formato: {selectedCompetition.tournamentFormat}. A tabela
+                      abaixo segue a etapa mais recente disponibilizada pela
+                      fonte.
+                    </p>
+                  )}
+                  <LeagueOverview
+                    key={`${sport}/${league}`}
+                    name={selectedName}
+                    sport={sport}
+                    league={league}
+                  />
+                </>
               ) : (
                 <Empty title="Sem competições disponíveis">
                   Escolha outra região ou esporte.

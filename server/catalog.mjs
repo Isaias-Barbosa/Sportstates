@@ -19,6 +19,12 @@ export const SPORTS = [
       ["bra.camp.paulista", "Campeonato Paulista"],
       ["bra.camp.gaucho", "Campeonato Gaúcho"],
       ["bra.camp.mineiro", "Campeonato Mineiro"],
+      ["arg.1", "Primera División da Argentina"],
+      ["mex.1", "Liga MX"],
+      ["col.1", "Categoría Primera A"],
+      ["chi.1", "Primera División do Chile"],
+      ["uru.1", "Primera División Uruguaia"],
+      ["ecu.1", "LigaPro Ecuador"],
       ["conmebol.libertadores", "Copa Libertadores"],
       ["conmebol.sudamericana", "Copa Sul-Americana"],
       ["eng.1", "Premier League"],
@@ -97,6 +103,12 @@ export const SOCCER_REGIONS = [
     competitions: ["bra.1", "bra.2", "bra.copa_do_brazil"],
     stateCompetitions: [...BRAZIL_STATE_LEAGUES],
   },
+  { id: "argentina", name: "Argentina", competitions: ["arg.1"] },
+  { id: "mexico", name: "México", competitions: ["mex.1"] },
+  { id: "colombia", name: "Colômbia", competitions: ["col.1"] },
+  { id: "chile", name: "Chile", competitions: ["chi.1"] },
+  { id: "uruguai", name: "Uruguai", competitions: ["uru.1"] },
+  { id: "equador", name: "Equador", competitions: ["ecu.1"] },
   {
     id: "inglaterra",
     name: "Inglaterra",
@@ -155,6 +167,12 @@ export const SOCCER_INTERNATIONAL_GROUPS = [
 export const SOCCER_TEAM_LEAGUES = new Set([
   "bra.1",
   "bra.2",
+  "arg.1",
+  "mex.1",
+  "col.1",
+  "chi.1",
+  "uru.1",
+  "ecu.1",
   "eng.1",
   "esp.1",
   "ita.1",
@@ -164,3 +182,12 @@ export const SOCCER_TEAM_LEAGUES = new Set([
   "usa.1",
   "ksa.1",
 ]);
+
+export const SOCCER_TOURNAMENT_FORMATS = {
+  "arg.1": "Apertura e Clausura",
+  "mex.1": "Apertura e Clausura",
+  "col.1": "Apertura e Finalización",
+  "chi.1": "Torneio anual",
+  "uru.1": "Apertura, Intermedio e Clausura",
+  "ecu.1": "Duas etapas e classificação acumulada",
+};

@@ -34,8 +34,16 @@ test('regiões locais e torneios internacionais ficam separados, sem perder comp
   const ids = leagues.map(l => l.id);
   assert.equal(new Set(ids).size, ids.length);
   const brasil = catalog.soccerRegions.find(r => r.id === 'brasil');
+  const argentina = catalog.soccerRegions.find(r => r.id === 'argentina');
   const england = catalog.soccerRegions.find(r => r.id === 'inglaterra');
+  const southAmericanLeagues = ['arg.1','col.1','chi.1','uru.1','ecu.1'];
+  const featuredLeagues = [...southAmericanLeagues,'mex.1'];
   assert.deepEqual(brasil.competitions,['bra.1','bra.2','bra.copa_do_brazil']);
+  assert.deepEqual(argentina.competitions,['arg.1']);
+  assert.ok(featuredLeagues.every(id => ids.includes(id)));
+  assert.ok(leagues.find(l=>l.id==='arg.1').tournamentFormat.includes('Apertura'));
+  assert.ok(leagues.find(l=>l.id==='mex.1').tournamentFormat.includes('Clausura'));
+  assert.ok(leagues.find(l=>l.id==='col.1').teamLeague);
   assert.ok(['bra.camp.carioca','bra.camp.paulista','bra.camp.gaucho','bra.camp.mineiro'].every(id => brasil.stateCompetitions.includes(id)));
   assert.ok(!brasil.competitions.includes('conmebol.libertadores'));
   assert.deepEqual(england.competitions,['eng.1','eng.fa','eng.league_cup']);

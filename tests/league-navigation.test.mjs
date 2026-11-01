@@ -90,6 +90,12 @@ test("team filters resolve independent links and reject leagues from another spo
 test("standings deep links choose the region, international group or state championship containing the league", () => {
   for (const [league, region] of [
     ["bra.2", "brasil"],
+    ["arg.1", "argentina"],
+    ["mex.1", "mexico"],
+    ["col.1", "colombia"],
+    ["chi.1", "chile"],
+    ["uru.1", "uruguai"],
+    ["ecu.1", "equador"],
     ["eng.1", "inglaterra"],
     ["por.1", "portugal"],
   ]) {
