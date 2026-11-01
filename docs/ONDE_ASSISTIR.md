@@ -6,7 +6,7 @@ O recurso aparece apenas quando o estado da partida é `live`: na seção de des
 
 O feed ESPN pode devolver emissoras dos EUA mesmo com `region=br`; placares sem informação de canal também não provam ausência de transmissão. Portanto `broadcast` nunca é convertido automaticamente em uma indicação brasileira. O backend usa o catálogo `server/watch.mjs` e separa opções gerais de evidências específicas da partida.
 
-A interface informa quando uma plataforma é apenas uma opção da competição e quando existe confirmação para aquele evento. O evento Boca Juniors x River Plate de 01/11/2026 tem uma página oficial própria no Disney+; o registro manual em `MATCH_BROADCASTS` é limitado ao ID ESPN dessa partida e não é generalizado para a liga argentina. Não inventamos links de vídeo nem afirmamos que toda partida está em todos os serviços listados. Direitos, planos e restrições territoriais variam.
+A interface informa quando uma plataforma é apenas uma opção da competição e quando existe confirmação para aquele evento. Para cada partida das ligas/copas adicionadas das Américas, o guia inclui uma busca oficial ESPN Brasil pelo nome dos dois clubes e links da programação ESPN/Disney+ para consulta. Esses links não confirmam transmissão; confirmação automática continua vindo de metadados brasileiros explícitos, agendas oficiais com correspondência exata de partida, ou uma página oficial do evento. O evento Boca Juniors x River Plate de 01/11/2026 tem essa página própria no Disney+; o registro em `MATCH_BROADCASTS` é limitado ao ID ESPN desse jogo e não é generalizado para a liga argentina. Direitos, planos e restrições territoriais variam.
 
 ## Fontes consultadas
 
@@ -27,7 +27,7 @@ A interface informa quando uma plataforma é apenas uma opção da competição 
 
 ## Manutenção e segurança
 
-Atualize catálogo, fontes e `WATCH_REVIEWED_AT` quando houver alteração de direitos ou revisão de temporada. O campo de atualização é exibido nos detalhes. Confirmações manuais devem apontar para uma página oficial específica e usar o ID do evento; não devem ser extrapoladas para a competição. Não usa chaves adicionais nem chamadas externas por jogo.
+Atualize catálogo, fontes e `WATCH_REVIEWED_AT` quando houver alteração de direitos ou revisão de temporada. O campo de atualização é exibido nos detalhes. O painel Admin > Transmissões permite informar manualmente um canal/plataforma e links da partida. Confirmações manuais devem apontar para uma página oficial específica e usar o ID do evento; não devem ser extrapoladas para a competição. As buscas de programação são abertas sob demanda pelo usuário, sem scraping de resultados nem fan-out de consultas externas por jogo.
 
 Destinos de navegação são HTTPS e limitados a hosts oficiais exatos. Não há embeds, proxies de vídeo, URLs M3U8/DRM ou extração de streams. A autenticação e eventual assinatura acontecem diretamente no serviço escolhido.
 

@@ -1,4 +1,4 @@
-/** Official destinations reviewed for Brazil on 2026-10-25.
+/** Official destinations reviewed for Brazil on 2026-11-01.
  * This is a competition directory, NOT a per-event TV schedule.
  * Never infer Brazilian rights from the ESPN feed's US broadcast strings.
  */
@@ -23,6 +23,37 @@ const prime = {
   sourceUrl:
     "https://www.aboutamazon.com.br/noticias/entretenimento/nba-no-modo-prime-voltou-com-nova-programacao-e-comentarista-para-a-temporada-2026-27",
 };
+const espnFootballGuide = guide(
+  "espn-football-guide",
+  "ESPN Brasil · programação",
+  "https://www.espn.com.br/watch/",
+  "Confira a programação ao vivo da ESPN Brasil; a presença no guia não confirma este jogo.",
+);
+const disneyFootballGuide = guide(
+  "disney-football-guide",
+  "Disney+ · esportes",
+  "https://www.disneyplus.com/pt-br/browse/page-15961e0d-00e3-4ff5-90b1-eb71a0f9457c",
+  "Pesquise o confronto na área de esportes e confirme a disponibilidade no Brasil.",
+);
+const AMERICAS_FOOTBALL_COMPETITIONS = new Set([
+  "arg.1",
+  "arg.copa",
+  "arg.trofeo_de_la_campeones",
+  "arg.supercopa",
+  "arg.supercopa.internacional",
+  "mex.1",
+  "mex.campeon",
+  "col.1",
+  "col.copa",
+  "col.superliga",
+  "chi.1",
+  "chi.copa_chi",
+  "chi.super_cup",
+  "uru.1",
+  "ecu.1",
+  "ecu.copa_2026",
+  "ecu.supercopa_2026",
+]);
 // Direct official event pages are scoped to one ESPN event, not league rights.
 const MATCH_BROADCASTS = {
   "soccer/arg.1/401841658": [
@@ -170,6 +201,11 @@ export const WATCH_DIRECTORY = {
     ),
   ],
 };
+for (const league of AMERICAS_FOOTBALL_COMPETITIONS)
+  WATCH_DIRECTORY[`soccer/${league}`] = [
+    espnFootballGuide,
+    disneyFootballGuide,
+  ];
 
 // Competition rights are a guide, never proof of an individual match's channel.
 const tennisSource = 'https://brazil.espnpressroom.com/press-releases/2026/03/casa-do-tenis-no-brasil-espn-e-disney-ampliam-cobertura-da-modalidade-com-novos-torneios-challenger/';
@@ -195,6 +231,23 @@ WATCH_DIRECTORY['soccer/ksa.1'] = [goat,guide('goatguide','Programação oficial
 // Tennis TV excludes Grand Slams and other tours. A tournament must be explicit.
 export function competitionWatchLinks(match) {
  const links = [...(WATCH_DIRECTORY[match.sport+'/'+match.league] || [])];
+ if (match.sport === "soccer" && AMERICAS_FOOTBALL_COMPETITIONS.has(match.league) && match.home?.name && match.away?.name) {
+  const date = Number.isFinite(Date.parse(match.date))
+   ? new Intl.DateTimeFormat("pt-BR", {
+      timeZone: "America/Sao_Paulo",
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+     }).format(new Date(match.date))
+   : "";
+  const query = `${match.home.name} ${match.away.name} ${date} onde assistir Brasil`;
+  links.unshift(guide(
+   "espn-match-guide",
+   "Buscar este jogo na ESPN Brasil",
+   `https://www.espn.com.br/search/_/q/${encodeURIComponent(query)}`,
+   "Busca oficial pelo confronto; confira a matéria/programação e o canal antes de considerar a transmissão confirmada.",
+  ));
+ }
  if(match.sport==='tennis' && /\bATP\s*(?:250|500|1000)|masters\s*1000|\bATP\s*Finals/i.test(match.tournament || '') && !/grand slam|wimbledon|roland|australian open|us open|challenger|davis|laver/i.test(match.tournament || ''))
  links.push({id:'tennistv',name:'Tennis TV · ATP',badge:'ATP',url:'https://www.tennistv.com/',access:'subscription',kind:'platform',sourceUrl:'https://www.tennistv.com/live-atp-streaming',note:'Streaming oficial ATP. Não inclui Grand Slams, Challenger, Davis Cup ou Laver Cup. Confira a disponibilidade do torneio e da quadra.'});
  return links;

@@ -103,9 +103,11 @@ export default function WhereToWatch({
                 <span className="watch-provider-action">
                   {l.id === "admin-manual"
                     ? "Abrir transmissão"
-                    : l.kind === "guide"
-                      ? "Consultar emissoras"
-                      : "Abrir plataforma"}
+                    : l.id === "espn-match-guide"
+                      ? "Buscar este jogo"
+                      : l.kind === "guide"
+                        ? "Consultar emissoras"
+                        : "Abrir plataforma"}
                   <ExternalLink size={14} />
                 </span>
               </a>

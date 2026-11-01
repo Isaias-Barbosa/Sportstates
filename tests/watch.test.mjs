@@ -41,6 +41,51 @@ test("verified Disney+ event page confirms Boca-River for Brazil only", () => {
     false,
   );
 });
+test("new Americas competitions get match-specific ESPN search and official schedule guides", () => {
+  const competitions = [
+    "arg.1",
+    "arg.copa",
+    "arg.supercopa",
+    "arg.supercopa.internacional",
+    "arg.trofeo_de_la_campeones",
+    "mex.1",
+    "mex.campeon",
+    "col.1",
+    "col.copa",
+    "col.superliga",
+    "chi.1",
+    "chi.copa_chi",
+    "chi.super_cup",
+    "uru.1",
+    "ecu.1",
+    "ecu.copa_2026",
+    "ecu.supercopa_2026",
+  ];
+  for (const league of competitions) {
+    const watch = getWatchOptions({
+      state: "scheduled",
+      sport: "soccer",
+      league,
+      id: "test",
+      date: "2026-11-01T18:00:00Z",
+      home: { name: "Time da Casa" },
+      away: { name: "Time Visitante" },
+    });
+    assert.equal(watch.confirmedForMatch, false, league);
+    const search = watch.links.find((link) => link.id === "espn-match-guide");
+    assert.ok(search, league);
+    assert.match(search.url, /espn\.com\.br\/search\/_\/q\//);
+    assert.match(
+      decodeURIComponent(search.url),
+      /Time da Casa.*Time Visitante/,
+    );
+    assert.match(decodeURIComponent(search.url), /01\/11\/2026/);
+    assert.match(decodeURIComponent(search.url), /onde assistir Brasil/);
+    assert.ok(watch.links.some((link) => link.id === "disney-football-guide"));
+    assert.ok(watch.links.every((link) => link.kind === "guide"));
+    assert.ok(watch.links.every((link) => safeWatchUrl(link.url)));
+  }
+});
 test("US feed broadcaster names never become Brazilian watch links", () => {
   const watch = getWatchOptions(match);
   assert.equal(watch.country, "BR");
@@ -112,13 +157,22 @@ test("scoreboard and summary normalize identical watch options", () => {
   assert.ok(a.watch.links.some((l) => l.id === "disney"));
 });
 
- test("channel numbers require explicit Brazilian geography and exact known names", () => {
-   assert.deepEqual(matchChannels({ geoBroadcasts: [{ region: "us", media: { shortName: "ESPN 2" } }] }), []);
-   assert.deepEqual(matchChannels({ broadcasts: [{ names: ["ESPN 2"] }] }), []);
-   const geoBroadcasts = [{ region: "br", media: { shortName: "ESPN 2" } }, { region: "br", media: { shortName: "ESPN 2" } }, { region: "br", media: { shortName: "ESPN Fake" } }];
-   const watch = getWatchOptions(match, { geoBroadcasts });
-   assert.equal(watch.links.length, 1);
-   assert.equal(watch.links[0].name, "ESPN 2");
-   assert.equal(watch.confirmedForMatch, true);
-   assert.equal(watch.scope, "match");
- });
+test("channel numbers require explicit Brazilian geography and exact known names", () => {
+  assert.deepEqual(
+    matchChannels({
+      geoBroadcasts: [{ region: "us", media: { shortName: "ESPN 2" } }],
+    }),
+    [],
+  );
+  assert.deepEqual(matchChannels({ broadcasts: [{ names: ["ESPN 2"] }] }), []);
+  const geoBroadcasts = [
+    { region: "br", media: { shortName: "ESPN 2" } },
+    { region: "br", media: { shortName: "ESPN 2" } },
+    { region: "br", media: { shortName: "ESPN Fake" } },
+  ];
+  const watch = getWatchOptions(match, { geoBroadcasts });
+  assert.equal(watch.links.length, 1);
+  assert.equal(watch.links[0].name, "ESPN 2");
+  assert.equal(watch.confirmedForMatch, true);
+  assert.equal(watch.scope, "match");
+});
