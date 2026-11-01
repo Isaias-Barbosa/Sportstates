@@ -652,6 +652,13 @@ main:has(> .home-viva) {
 .hv-match-row:hover {
   background: #2862ff08;
 }
+.hv-match-row.is-finished {
+  background: color-mix(in srgb, var(--hv-lime) 8%, var(--panel));
+  border-left: 3px solid var(--hv-lime);
+}
+.hv-match-row.is-finished:hover {
+  background: color-mix(in srgb, var(--hv-lime) 13%, var(--panel));
+}
 .hv-match-main {
   display: flex;
   flex: 1;
@@ -680,6 +687,16 @@ main:has(> .home-viva) {
 }
 .hv-match-row.is-live .hv-minute {
   color: var(--live);
+}
+.hv-minute.is-finished {
+  width: fit-content;
+  min-width: 0;
+  max-width: 100%;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: var(--hv-lime);
+  color: #17220a;
+  white-space: nowrap;
 }
 .hv-row-teams {
   display: grid;
@@ -1446,24 +1463,83 @@ main:has(> .home-viva) {
 }
 
 /* Each competition starts expanded and can be collapsed with mouse or keyboard. */
-summary.hv-league-heading { cursor: pointer; list-style: none; user-select: none; }
-summary.hv-league-heading::-webkit-details-marker { display: none; }
-summary.hv-league-heading::marker { content: ''; }
-summary.hv-league-heading:focus-visible { outline: 2px solid #57bbff; outline-offset: -3px; }
-.hv-league-chevron { flex-shrink: 0; transition: transform .18s ease; }
-details.hv-league[open] > summary .hv-league-chevron { transform: rotate(180deg); }
-details.hv-league:not([open]) > summary { border-bottom: 0; }
-@media (prefers-reduced-motion: reduce) { .hv-league-chevron { transition: none; } }
+summary.hv-league-heading {
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+}
+summary.hv-league-heading::-webkit-details-marker {
+  display: none;
+}
+summary.hv-league-heading::marker {
+  content: "";
+}
+summary.hv-league-heading:focus-visible {
+  outline: 2px solid #57bbff;
+  outline-offset: -3px;
+}
+.hv-league-chevron {
+  flex-shrink: 0;
+  transition: transform 0.18s ease;
+}
+details.hv-league[open] > summary .hv-league-chevron {
+  transform: rotate(180deg);
+}
+details.hv-league:not([open]) > summary {
+  border-bottom: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hv-league-chevron {
+    transition: none;
+  }
+}
 
 /* Compact sport controls: let long names wrap inside their own card. */
-.hv-sport-filters { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(128px, 1fr); gap: 7px; }
-.hv-sport-filters button { min-width: 0; display: grid; grid-template-columns: 17px minmax(0,1fr) auto; gap: 5px; padding: 9px 8px; min-height: 44px; white-space: normal; }
-.hv-sport-filters button strong { min-width: 0; white-space: normal; overflow-wrap: anywhere; text-align: left; line-height: 1.35; font-size: 9px; }
-.hv-sport-filters button > span { font-size: 15px; }
-.hv-sport-filters button > svg { width: 16px; height: 16px; }
-.hv-sport-filters button small { margin-left: 0; font-size: 8px; }
+.hv-sport-filters {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(128px, 1fr);
+  gap: 7px;
+}
+.hv-sport-filters button {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: 17px minmax(0, 1fr) auto;
+  gap: 5px;
+  padding: 9px 8px;
+  min-height: 44px;
+  white-space: normal;
+}
+.hv-sport-filters button strong {
+  min-width: 0;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  text-align: left;
+  line-height: 1.35;
+  font-size: 9px;
+}
+.hv-sport-filters button > span {
+  font-size: 15px;
+}
+.hv-sport-filters button > svg {
+  width: 16px;
+  height: 16px;
+}
+.hv-sport-filters button small {
+  margin-left: 0;
+  font-size: 8px;
+}
 
-.scores-loading-progress { margin: 12px 0; padding: 10px 14px; border-radius: 10px; background: var(--panel); color: var(--muted); font-size: 12px; line-height: 1.6; border: 1px solid var(--border); }
+.scores-loading-progress {
+  margin: 12px 0;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: var(--panel);
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.6;
+  border: 1px solid var(--border);
+}
 
 /* Keep intrinsic card widths from stretching the mobile page. */
 .home-viva .hv-spotlight > *,

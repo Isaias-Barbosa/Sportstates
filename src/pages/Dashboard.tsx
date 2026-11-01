@@ -837,13 +837,17 @@ const GameRow = memo(function GameRow({
 }) {
   return (
     <article className="hv-match-card">
-      <div className={"hv-match-row " + (isLiveMatch(m) ? "is-live" : "")}>
+      <div
+        className={`hv-match-row${isLiveMatch(m) ? " is-live" : ""}${m.state === "finished" ? " is-finished" : ""}`}
+      >
         <Link
           className="hv-match-main"
           to={"/partida/" + keyOf(m)}
           aria-label={`Ver partida ${m.home.name} x ${m.away.name}`}
         >
-          <span className="hv-minute">
+          <span
+            className={`hv-minute${m.state === "finished" ? " is-finished" : ""}`}
+          >
             {isLiveMatch(m) && <i className="live-dot" aria-hidden="true" />}
             {matchLabel(m)}
           </span>
