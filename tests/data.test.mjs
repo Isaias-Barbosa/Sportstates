@@ -11,6 +11,7 @@ import { route, handler } from "../server/api.mjs";
 const event = {
   id: "1",
   date: "2026-10-26T01:00:00Z",
+  week: { number: 34 },
   competitions: [
     {
       competitors: [
@@ -47,6 +48,18 @@ test("normalize home/away irrespective of array order and preserve zero", () => 
   assert.equal(m.away.score, "0");
   assert.equal(m.state, "live");
   assert.equal(m.clock, "63'");
+  assert.equal(m.round, "34");
+});
+test("normalizeEvent omits a missing or invalid round number", () => {
+  assert.equal(
+    normalizeEvent(
+      { ...event, week: { number: 0 } },
+      "soccer",
+      "eng.1",
+      "Premier",
+    ).round,
+    undefined,
+  );
 });
 test("missing competition is ignored", () =>
   assert.equal(normalizeEvent({}, "soccer", "eng.1", "Premier"), null));

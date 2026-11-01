@@ -47,11 +47,16 @@ export function normalizeEvent(e, sport, league, leagueName) {
   if (!c || !e.id || !e.date || !c.competitors?.length) return null;
   const status = c.status || e.status || {};
   const state = status.type?.state;
+  const roundNumber = Number(e.week?.number ?? c.week?.number);
   const match = {
     id: String(e.id),
     sport,
     league,
     leagueName,
+    round:
+      Number.isInteger(roundNumber) && roundNumber > 0
+        ? String(roundNumber)
+        : undefined,
     date: e.date,
     name: e.name,
     home: team(

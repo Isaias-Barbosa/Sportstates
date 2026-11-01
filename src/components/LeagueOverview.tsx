@@ -173,6 +173,11 @@ export default function LeagueOverview({
                       aria-label={`Ver partida ${m.home.name} x ${m.away.name}`}
                     >
                       <span className="league-game-status">
+                        {!!m.round && /^\d+$/.test(m.round) && (
+                          <small className="league-game-round">
+                            Rodada {m.round}
+                          </small>
+                        )}
                         {m.state === "scheduled" ? (
                           time(m.date)
                         ) : (
