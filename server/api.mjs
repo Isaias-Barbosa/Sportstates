@@ -1,4 +1,12 @@
 import { listAdminUsers, userListOptions } from "./admin-users.mjs";
+import {
+  enrichManualBroadcasts,
+  listAdminActivity,
+  listManualBroadcasts,
+  recordAdminActivitySafely,
+  removeManualBroadcast,
+  saveManualBroadcast,
+} from "./admin-operations.mjs";
 import { userIdentity } from "./user-auth.mjs";
 import {
   getPreferences,
@@ -84,6 +92,26 @@ async function json(url, headers = {}) {
   if (!response.ok)
     throw new Error(`Fonte indisponível (HTTP ${response.status}).`);
   return response.json();
+}
+
+async function requestJson(req, limit = 4096) {
+  let body = req.body;
+  if (body == null) {
+    body = "";
+    for await (const chunk of req) {
+      body += chunk;
+      if (Buffer.byteLength(body) > limit)
+        throw new Error("Dados muito grandes.");
+    }
+  }
+  if (typeof body === "string") {
+    if (Buffer.byteLength(body) > limit)
+      throw new Error("Dados muito grandes.");
+    body = JSON.parse(body);
+  }
+  if (!body || typeof body !== "object" || Array.isArray(body))
+    throw new Error("Dados inválidos.");
+  return body;
 }
 
 export async function scoreboard(date, sport = "all") {
@@ -173,8 +201,10 @@ export async function scoreboard(date, sport = "all") {
         .map((m) => [`${m.sport}:${m.league}:${m.id}`, m]),
     ).values(),
   ].sort((a, b) => a.date.localeCompare(b.date));
+  const scheduledBroadcasts = await enrichBroadcasts(matches);
+  const manualBroadcasts = await enrichManualBroadcasts(scheduledBroadcasts);
   return {
-    matches: await enrichBroadcasts(matches),
+    matches: manualBroadcasts.matches,
     sports: selectedSports.map(({ leagues, ...s }) => ({
       ...s,
       competitions: leagues.map((l) => l[1]),
@@ -185,12 +215,15 @@ export async function scoreboard(date, sport = "all") {
       Math.min(...results.filter((r) => r.at).map((r) => r.at)),
     ).toISOString(),
     stale: results.some((r) => r.stale),
-    warnings: results
-      .filter((r) => r.failed || r.stale)
-      .map(
-        (r) =>
-          `${r.name}: ${r.failed ? "cobertura incompleta" : "dados em cache; fonte indisponível"}`,
-      ),
+    warnings: [
+      ...results
+        .filter((r) => r.failed || r.stale)
+        .map(
+          (r) =>
+            `${r.name}: ${r.failed ? "cobertura incompleta" : "dados em cache; fonte indisponível"}`,
+        ),
+      ...(manualBroadcasts.warning ? [manualBroadcasts.warning] : []),
+    ],
   };
 }
 
@@ -815,6 +848,151 @@ export async function handler(req, res) {
       );
     }
   }
+  if (
+    requestUrl.pathname === "/api/admin/overview" ||
+    requestUrl.pathname === "/api/admin/broadcasts"
+  ) {
+    res.setHeader("Cache-Control", "private, no-store");
+    res.setHeader("Vercel-CDN-Cache-Control", "no-store");
+    res.setHeader("Vary", "Authorization");
+    if (!(await adminAuthorized(req.headers?.authorization))) {
+      res.statusCode = 401;
+      return res.end(
+        JSON.stringify({ error: "Acesso administrativo necessário." }),
+      );
+    }
+    if (requestUrl.pathname === "/api/admin/overview") {
+      if (req.method !== "GET") {
+        res.statusCode = 405;
+        res.setHeader("Allow", "GET");
+        return res.end(
+          JSON.stringify({ error: "Use GET para consultar o painel." }),
+        );
+      }
+      try {
+        const [users, activity] = await Promise.all([
+          listAdminUsers({ q: "", page: 1, status: "all", limit: 1 }),
+          listAdminActivity(15),
+        ]);
+        res.statusCode = 200;
+        return res.end(
+          JSON.stringify({
+            users: users.total,
+            activity,
+          }),
+        );
+      } catch (error) {
+        console.error("Falha ao carregar o painel administrativo:", error);
+        res.statusCode = 503;
+        return res.end(
+          JSON.stringify({
+            error: "Não foi possível carregar o resumo administrativo.",
+          }),
+        );
+      }
+    }
+    if (req.method === "GET") {
+      const date =
+        requestUrl.searchParams.get("date") || dayInBrazil(new Date());
+      if (!validDate(date)) {
+        res.statusCode = 400;
+        return res.end(JSON.stringify({ error: "Data inválida." }));
+      }
+      try {
+        const scores = await scoreboard(date);
+        const broadcasts = await listManualBroadcasts(scores.matches);
+        res.statusCode = 200;
+        return res.end(JSON.stringify({ date, broadcasts }));
+      } catch (error) {
+        console.error(
+          "Falha ao consultar transmissões administrativas:",
+          error,
+        );
+        res.statusCode = 503;
+        return res.end(
+          JSON.stringify({
+            error: "Não foi possível consultar as transmissões manuais.",
+          }),
+        );
+      }
+    }
+    if (req.method !== "PUT" && req.method !== "DELETE") {
+      res.statusCode = 405;
+      res.setHeader("Allow", "GET, PUT, DELETE");
+      return res.end(
+        JSON.stringify({
+          error: "Use PUT ou DELETE para editar transmissões.",
+        }),
+      );
+    }
+    try {
+      const body = await requestJson(req);
+      if (req.method === "DELETE") {
+        const warning = await removeManualBroadcast(body.key);
+        const warnings = warning ? [warning] : [];
+        try {
+          await clearAllCaches();
+        } catch {
+          warnings.push(
+            "Transmissão removida, mas o cache não foi limpo. Atualize novamente em instantes.",
+          );
+        }
+        res.statusCode = 200;
+        return res.end(JSON.stringify({ ok: true, warnings }));
+      }
+      if (!validDate(body.date)) {
+        res.statusCode = 400;
+        return res.end(JSON.stringify({ error: "Data inválida." }));
+      }
+      const scores = await scoreboard(body.date);
+      const match = scores.matches.find(
+        (item) => `${item.sport}/${item.league}/${item.id}` === body.key,
+      );
+      if (!match || match.state === "finished") {
+        res.statusCode = 400;
+        return res.end(
+          JSON.stringify({
+            error: "A partida não está disponível para edição nesta data.",
+          }),
+        );
+      }
+      const manuallyEdited = match.watch?.links.some(
+        (link) => link.id === "admin-manual",
+      );
+      if (match.watch?.confirmedForMatch && !manuallyEdited) {
+        res.statusCode = 409;
+        return res.end(
+          JSON.stringify({
+            error: "A API já confirmou a transmissão desta partida.",
+          }),
+        );
+      }
+      const warning = await saveManualBroadcast(match, body);
+      const warnings = warning ? [warning] : [];
+      try {
+        await clearAllCaches();
+      } catch {
+        warnings.push(
+          "Transmissão salva, mas o cache não foi limpo. Atualize novamente em instantes.",
+        );
+      }
+      res.statusCode = 200;
+      return res.end(JSON.stringify({ ok: true, warnings }));
+    } catch (error) {
+      console.error("Falha ao salvar transmissão administrativa:", error);
+      const validation =
+        error instanceof SyntaxError ||
+        /inválid|HTTPS|muito grandes|Informe a partida/.test(error.message);
+      res.statusCode = validation ? 400 : 503;
+      return res.end(
+        JSON.stringify({
+          error: validation
+            ? error.message
+            : "Não foi possível salvar a transmissão.",
+        }),
+      );
+    }
+  }
   if (requestUrl.pathname === "/api/admin/users") {
     res.setHeader("Cache-Control", "private, no-store");
     res.setHeader("Vercel-CDN-Cache-Control", "no-store");
@@ -865,8 +1043,12 @@ export async function handler(req, res) {
     }
     try {
       const result = await clearAllCaches();
+      const warning = await recordAdminActivitySafely(
+        "cache_cleared",
+        "Cache de dados limpo.",
+      );
       res.statusCode = 200;
-      return res.end(JSON.stringify(result));
+      return res.end(JSON.stringify({ ...result, warning }));
     } catch {
       res.statusCode = 502;
       return res.end(
@@ -1012,15 +1194,25 @@ export async function handler(req, res) {
       if (JSON.stringify(body).length > 32000)
         throw new Error("Dados muito grandes.");
       await saveTeam(body);
-      let warning;
+      const auditWarning = await recordAdminActivitySafely(
+        "team_saved",
+        `Perfil do time atualizado: ${String(body.name || "Time").slice(0, 100)}`,
+      );
       try {
         await clearAllCaches();
       } catch {
-        warning =
-          "Time salvo, mas não foi possível limpar todo o cache. Use o botão Limpar cache para tentar novamente.";
+        res.statusCode = 200;
+        return res.end(
+          JSON.stringify({
+            ok: true,
+            warning:
+              "Time salvo, mas não foi possível limpar todo o cache. Use o botão Limpar cache para tentar novamente.",
+            auditWarning,
+          }),
+        );
       }
       res.statusCode = 200;
-      return res.end(JSON.stringify({ ok: true, warning }));
+      return res.end(JSON.stringify({ ok: true, auditWarning }));
     } catch (error) {
       res.statusCode =
         error.message === "Banco Neon não configurado." ? 503 : 400;
@@ -1097,8 +1289,13 @@ export async function handler(req, res) {
         }
       }
       await saveFeatured(date, key);
+      const warning = await recordAdminActivitySafely(
+        "featured_saved",
+        key ? "Jogo do Dia atualizado." : "Destaque do dia removido.",
+        key,
+      );
       res.statusCode = 200;
-      return res.end(JSON.stringify({ date, key }));
+      return res.end(JSON.stringify({ date, key, warning }));
     } catch (error) {
       res.statusCode = 502;
       return res.end(

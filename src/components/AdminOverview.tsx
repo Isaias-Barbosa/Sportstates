@@ -1,0 +1,212 @@
+import { useEffect, useState } from "react";
+import {
+  Activity,
+  AlertTriangle,
+  CalendarDays,
+  CheckCircle2,
+  Clock3,
+  Radio,
+  RefreshCw,
+  Users,
+} from "lucide-react";
+import { Notice } from "./shared";
+import type { Scores } from "../types";
+
+type ActivityEntry = {
+  id: string;
+  action: string;
+  summary: string;
+  match_key: string | null;
+  created_at: string;
+};
+type Overview = {
+  users: number;
+  activity: ActivityEntry[];
+};
+
+function localDate(value: string) {
+  const date = new Date(value);
+  return Number.isNaN(date.getTime())
+    ? "Data indisponível"
+    : date.toLocaleString("pt-BR", {
+        timeZone: "America/Sao_Paulo",
+        dateStyle: "short",
+        timeStyle: "short",
+      });
+}
+
+export default function AdminOverview({
+  secret,
+  scores,
+  scoresLoading,
+  scoresError,
+}: {
+  secret: string;
+  scores: Scores | undefined;
+  scoresLoading: boolean;
+  scoresError?: string;
+}) {
+  const [data, setData] = useState<Overview | null>(null);
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [reload, setReload] = useState(0);
+
+  useEffect(() => {
+    const controller = new AbortController();
+    setLoading(true);
+    setError("");
+    void fetch("/api/admin/overview", {
+      headers: { Authorization: `Bearer ${secret}` },
+      cache: "no-store",
+      signal: controller.signal,
+    })
+      .then(async (response) => {
+        const body = await response.json();
+        if (!response.ok)
+          throw new Error(body.error || "Não foi possível carregar o painel.");
+        return body as Overview;
+      })
+      .then((result) => {
+        if (!controller.signal.aborted) setData(result);
+      })
+      .catch((cause) => {
+        if (!controller.signal.aborted)
+          setError(
+            cause instanceof Error
+              ? cause.message
+              : "Não foi possível carregar o painel.",
+          );
+      })
+      .finally(() => {
+        if (!controller.signal.aborted) setLoading(false);
+      });
+    return () => controller.abort();
+  }, [secret, reload]);
+
+  return (
+    <section className="admin-overview" aria-labelledby="admin-overview-title">
+      <div className="admin-section-heading">
+        <div>
+          <span className="profile-eyebrow">OPERAÇÃO DO SPORTSTATES</span>
+          <h2 id="admin-overview-title">Visão geral</h2>
+          <p>Resumo dos placares, contas e atividade administrativa.</p>
+        </div>
+        <button
+          className="broadcast-chip"
+          disabled={loading}
+          onClick={() => setReload((value) => value + 1)}
+        >
+          <RefreshCw size={15} /> Atualizar
+        </button>
+      </div>
+      {error && <Notice error>{error}</Notice>}
+      <div className="admin-overview-metrics" aria-live="polite">
+        <article>
+          <CalendarDays size={19} />
+          <span>
+            <strong>
+              {scoresLoading ? "—" : (scores?.matches.length ?? "—")}
+            </strong>
+            Jogos na data
+          </span>
+        </article>
+        <article>
+          <Radio size={19} />
+          <span>
+            <strong>
+              {scoresLoading
+                ? "—"
+                : (scores?.matches.filter((match) => match.state === "live")
+                    .length ?? "—")}
+            </strong>
+            Ao vivo
+          </span>
+        </article>
+        <article>
+          <Clock3 size={19} />
+          <span>
+            <strong>
+              {scoresLoading
+                ? "—"
+                : (scores?.matches.filter(
+                    (match) => match.state === "scheduled",
+                  ).length ?? "—")}
+            </strong>
+            Programados
+          </span>
+        </article>
+        <article>
+          <Users size={19} />
+          <span>
+            <strong>{loading ? "—" : (data?.users ?? "—")}</strong>
+            Contas cadastradas
+          </span>
+        </article>
+      </div>
+      <div className="admin-overview-panels">
+        <section
+          className="admin-overview-panel"
+          aria-labelledby="source-health-title"
+        >
+          <div className="admin-panel-title">
+            {scores?.warnings.length || scores?.stale || scoresError ? (
+              <AlertTriangle size={18} />
+            ) : (
+              <CheckCircle2 size={18} />
+            )}
+            <h3 id="source-health-title">Saúde dos placares</h3>
+          </div>
+          {scoresLoading ? (
+            <p>Consultando fontes…</p>
+          ) : scoresError ? (
+            <p>{scoresError}</p>
+          ) : scores ? (
+            <>
+              <p>
+                {scores.warnings.length || scores.stale
+                  ? "A consulta encontrou avisos ou dados desatualizados."
+                  : "Nenhum aviso foi retornado na última consulta."}
+              </p>
+              <small>Última consulta: {localDate(scores.fetchedAt)}</small>
+              {scores.warnings.length > 0 && (
+                <ul>
+                  {scores.warnings.map((warning) => (
+                    <li key={warning}>{warning}</li>
+                  ))}
+                </ul>
+              )}
+              {scores.stale && <small>Há dados em cache desatualizados.</small>}
+            </>
+          ) : (
+            <p>Não foi possível consultar a saúde dos placares.</p>
+          )}
+        </section>
+        <section
+          className="admin-overview-panel"
+          aria-labelledby="activity-title"
+        >
+          <div className="admin-panel-title">
+            <Activity size={18} />
+            <h3 id="activity-title">Atividade recente</h3>
+          </div>
+          {loading ? (
+            <p>Carregando histórico…</p>
+          ) : data?.activity.length ? (
+            <ul className="admin-activity-list">
+              {data.activity.map((entry) => (
+                <li key={entry.id}>
+                  <strong>{entry.summary}</strong>
+                  <small>{localDate(entry.created_at)}</small>
+                </li>
+              ))}
+            </ul>
+          ) : error ? (
+            <p>Histórico indisponível: {error}</p>
+          ) : (
+            <p>Nenhuma ação administrativa registrada ainda.</p>
+          )}
+        </section>
+      </div>
+    </section>
+  );
+}

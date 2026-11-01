@@ -16,6 +16,7 @@ export default function MatchBroadcasts({ match }: { match: Match }) {
   const watch = match.watch;
   const confirmed = !!watch?.confirmedForMatch;
   const links = watch?.links || [];
+  const manuallyListed = links.some((link) => link.id === "admin-manual");
   return (
     <div
       className="match-broadcasts"
@@ -23,9 +24,11 @@ export default function MatchBroadcasts({ match }: { match: Match }) {
     >
       <span className="broadcast-label">
         <Tv size={14} />
-        {confirmed
-          ? "Canais desta partida · Brasil"
-          : "Guia da competição · confirmar jogo"}
+        {manuallyListed
+          ? "Transmissão informada pela administração"
+          : confirmed
+            ? "Canais desta partida · Brasil"
+            : "Guia da competição · confirmar jogo"}
       </span>
       <div className="broadcast-chips">
         {links.map((link) => (

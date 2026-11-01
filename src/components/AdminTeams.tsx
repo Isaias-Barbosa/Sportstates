@@ -64,7 +64,10 @@ export default function AdminTeams({ secret }: { secret: string }) {
       const j = await r.json();
       if (!r.ok) throw new Error(j.error);
       setForm(null);
-      setMessage(j.warning || "Perfil salvo. Cache atualizado.");
+      setMessage(
+        [j.warning, j.auditWarning].filter(Boolean).join(" ") ||
+          "Perfil salvo. Cache atualizado.",
+      );
       if (!j.warning) notifyCacheCleared();
       await load();
     } catch (e) {

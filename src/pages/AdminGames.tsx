@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import AdminUsers from "../components/AdminUsers";
 import AdminTeams from "../components/AdminTeams";
 import AdminNeonLogin from "../components/AdminNeonLogin";
+import AdminOverview from "../components/AdminOverview";
 import { CalendarDays, Check, Pencil, X } from "lucide-react";
 import { useApi, today, time, notifyCacheCleared } from "../hooks";
 import { keyOf, sports } from "../catalog";
@@ -13,6 +14,12 @@ import {
   matchLabel,
 } from "../components/shared";
 import type { Match, Scores } from "../types";
+
+type ManualBroadcast = {
+  match_key: string;
+  channel_name: string;
+  url: string;
+};
 
 export default function AdminGames() {
   const [clearingCache, setClearingCache] = useState(false);
@@ -33,7 +40,8 @@ export default function AdminGames() {
         throw new Error(body.error || "Não foi possível limpar o cache.");
       notifyCacheCleared();
       setCacheMessage(
-        "Cache limpo. Os dados serão atualizados nas próximas consultas.",
+        body.warning ||
+          "Cache limpo. Os dados serão atualizados nas próximas consultas.",
       );
     } catch (error) {
       setCacheError(true);
@@ -47,7 +55,9 @@ export default function AdminGames() {
     }
   }
   const [secret, setSecret] = useState("");
-  const [section, setSection] = useState<"games" | "teams" | "users">("games");
+  const [section, setSection] = useState<
+    "overview" | "games" | "broadcasts" | "teams" | "users"
+  >("overview");
   const [draftSecret, setDraftSecret] = useState("");
   const [date, setDate] = useState(today());
   const [sport, setSport] = useState("all");
@@ -56,6 +66,16 @@ export default function AdminGames() {
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
+  const [broadcastEditing, setBroadcastEditing] = useState<Match | null>(null);
+  const [broadcastChannel, setBroadcastChannel] = useState("");
+  const [broadcastUrl, setBroadcastUrl] = useState("");
+  const [broadcastError, setBroadcastError] = useState("");
+  const [savingBroadcast, setSavingBroadcast] = useState(false);
+  const [manualBroadcasts, setManualBroadcasts] = useState<ManualBroadcast[]>(
+    [],
+  );
+  const [manualBroadcastsError, setManualBroadcastsError] = useState("");
+  const [manualBroadcastReload, setManualBroadcastReload] = useState(0);
   const closeButton = useRef<HTMLButtonElement>(null);
   const {
     data,
@@ -66,6 +86,38 @@ export default function AdminGames() {
     key: string | null;
     configured: boolean;
   }>("/api/featured?date=" + encodeURIComponent(date), 0);
+  useEffect(() => {
+    if (section !== "broadcasts" || !secret) return;
+    const controller = new AbortController();
+    setManualBroadcasts([]);
+    setManualBroadcastsError("");
+    const params = new URLSearchParams({ date });
+    void fetch("/api/admin/broadcasts?" + params, {
+      headers: { Authorization: `Bearer ${secret}` },
+      cache: "no-store",
+      signal: controller.signal,
+    })
+      .then(async (response) => {
+        const body = await response.json();
+        if (!response.ok)
+          throw new Error(
+            body.error || "Não foi possível consultar fontes manuais.",
+          );
+        return body.broadcasts as ManualBroadcast[];
+      })
+      .then((broadcasts) => {
+        if (!controller.signal.aborted) setManualBroadcasts(broadcasts);
+      })
+      .catch((cause) => {
+        if (!controller.signal.aborted)
+          setManualBroadcastsError(
+            cause instanceof Error
+              ? cause.message
+              : "Não foi possível consultar fontes manuais.",
+          );
+      });
+    return () => controller.abort();
+  }, [section, secret, date, manualBroadcastReload]);
   useEffect(() => {
     if (!selected) return;
     closeButton.current?.focus();
@@ -115,12 +167,97 @@ export default function AdminGames() {
       const j = await r.json();
       if (!r.ok) throw new Error(j.error);
       setSelected(null);
-      setNotice(checked ? "Jogo do Dia atualizado." : "Destaque removido.");
+      setNotice(
+        j.warning ||
+          (checked ? "Jogo do Dia atualizado." : "Destaque removido."),
+      );
       refresh();
     } catch (e) {
       setError(e instanceof Error ? e.message : "Não foi possível salvar.");
     } finally {
       setSaving(false);
+    }
+  }
+  function editBroadcast(match: Match) {
+    const key = keyOf(match);
+    const manualLink = match.watch?.links.find(
+      (link) => link.id === "admin-manual",
+    );
+    const manualRecord = manualBroadcasts.find(
+      (entry) => entry.match_key === key,
+    );
+    setBroadcastEditing(match);
+    setBroadcastChannel(manualLink?.name || manualRecord?.channel_name || "");
+    setBroadcastUrl(manualLink?.url || manualRecord?.url || "");
+    setBroadcastError("");
+  }
+  async function saveBroadcast(event: React.FormEvent) {
+    event.preventDefault();
+    if (!broadcastEditing) return;
+    setSavingBroadcast(true);
+    setBroadcastError("");
+    try {
+      const response = await fetch("/api/admin/broadcasts", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${secret}`,
+        },
+        body: JSON.stringify({
+          date,
+          key: keyOf(broadcastEditing),
+          channel: broadcastChannel,
+          url: broadcastUrl,
+        }),
+      });
+      const body = await response.json();
+      if (!response.ok)
+        throw new Error(body.error || "Não foi possível salvar a transmissão.");
+      setBroadcastEditing(null);
+      setNotice(body.warnings?.join(" ") || "Fonte de transmissão atualizada.");
+      notifyCacheCleared();
+      setManualBroadcastReload((value) => value + 1);
+    } catch (cause) {
+      setBroadcastError(
+        cause instanceof Error
+          ? cause.message
+          : "Não foi possível salvar a transmissão.",
+      );
+    } finally {
+      setSavingBroadcast(false);
+    }
+  }
+  async function deleteBroadcast() {
+    if (!broadcastEditing) return;
+    if (!window.confirm("Remover a transmissão manual desta partida?")) return;
+    setSavingBroadcast(true);
+    setBroadcastError("");
+    try {
+      const response = await fetch("/api/admin/broadcasts", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${secret}`,
+        },
+        body: JSON.stringify({ key: keyOf(broadcastEditing) }),
+      });
+      const body = await response.json();
+      if (!response.ok)
+        throw new Error(
+          body.error || "Não foi possível remover a transmissão.",
+        );
+      setBroadcastEditing(null);
+      setNotice(body.warnings?.join(" ") || "Transmissão manual removida.");
+      notifyCacheCleared();
+      setManualBroadcastReload((value) => value + 1);
+    } catch (cause) {
+      setBroadcastError(
+        cause instanceof Error
+          ? cause.message
+          : "Não foi possível remover a transmissão.",
+      );
+    } finally {
+      setSavingBroadcast(false);
     }
   }
   if (!secret)
@@ -151,7 +288,21 @@ export default function AdminGames() {
     );
   const matches = data?.matches || [];
   const available = sports.filter((s) => matches.some((m) => m.sport === s.id));
-  const visible = matches.filter((m) => sport === "all" || m.sport === sport);
+  const manualKeys = new Set(
+    manualBroadcasts.map((broadcast) => broadcast.match_key),
+  );
+  const visible = matches.filter(
+    (m) =>
+      (sport === "all" || m.sport === sport) &&
+      (section !== "broadcasts" ||
+        (m.state !== "finished" &&
+          (!m.watch?.confirmedForMatch ||
+            m.watch.links.some((link) => link.id === "admin-manual") ||
+            manualKeys.has(keyOf(m))))),
+  );
+  const broadcastConfirmedByApi =
+    !!broadcastEditing?.watch?.confirmedForMatch &&
+    !broadcastEditing.watch.links.some((link) => link.id === "admin-manual");
   return (
     <>
       <div className="page-title">
@@ -191,10 +342,22 @@ export default function AdminGames() {
       {cacheMessage && <Notice error={cacheError}>{cacheMessage}</Notice>}
       <div className="tabs detail-tabs">
         <button
+          className={section === "overview" ? "active" : ""}
+          onClick={() => setSection("overview")}
+        >
+          Visão geral
+        </button>
+        <button
           className={section === "games" ? "active" : ""}
           onClick={() => setSection("games")}
         >
           Jogos do dia
+        </button>
+        <button
+          className={section === "broadcasts" ? "active" : ""}
+          onClick={() => setSection("broadcasts")}
+        >
+          Transmissões
         </button>
         <button
           className={section === "teams" ? "active" : ""}
@@ -209,7 +372,14 @@ export default function AdminGames() {
           Usuários
         </button>
       </div>
-      {section === "users" ? (
+      {section === "overview" ? (
+        <AdminOverview
+          secret={secret}
+          scores={data}
+          scoresLoading={loading}
+          scoresError={scoreError}
+        />
+      ) : section === "users" ? (
         <AdminUsers secret={secret} />
       ) : section === "teams" ? (
         <AdminTeams secret={secret} />
@@ -230,7 +400,11 @@ export default function AdminGames() {
                 }}
               />
             </label>
-            <p>Uma partida em destaque por data.</p>
+            <p>
+              {section === "broadcasts"
+                ? "Inclua a transmissão quando a API não identificar uma fonte específica para o jogo."
+                : "Uma partida em destaque por data."}
+            </p>
           </div>
           {error && !selected && <Notice error>{error}</Notice>}
           {notice && <Notice>{notice}</Notice>}
@@ -269,11 +443,22 @@ export default function AdminGames() {
               <span>Opções</span>
             </div>
             {scoreError && <Notice error>{scoreError}</Notice>}
+            {section === "broadcasts" && manualBroadcastsError && (
+              <Notice error>{manualBroadcastsError}</Notice>
+            )}
             {loading ? (
               <Loading />
             ) : !visible.length ? (
-              <Empty title="Nenhum jogo encontrado">
-                Selecione outra data ou esporte.
+              <Empty
+                title={
+                  section === "broadcasts"
+                    ? "Nenhuma transmissão pendente"
+                    : "Nenhum jogo encontrado"
+                }
+              >
+                {section === "broadcasts"
+                  ? "Todos os jogos disponíveis já têm uma fonte específica ou não há partidas nesta data."
+                  : "Selecione outra data ou esporte."}
               </Empty>
             ) : (
               visible.map((m) => (
@@ -296,15 +481,31 @@ export default function AdminGames() {
                   </span>
                   <button
                     className="edit-game"
-                    aria-label={`Editar ${m.home.name} x ${m.away.name}`}
+                    aria-label={
+                      section === "broadcasts"
+                        ? `Informar transmissão de ${m.home.name} x ${m.away.name}`
+                        : `Editar ${m.home.name} x ${m.away.name}`
+                    }
                     onClick={() => {
                       setError("");
-                      setSelected(m);
-                      setChecked(feature?.key === keyOf(m));
+                      if (section === "broadcasts") editBroadcast(m);
+                      else {
+                        setSelected(m);
+                        setChecked(feature?.key === keyOf(m));
+                      }
                     }}
                   >
                     <Pencil size={17} />
-                    <span>Editar</span>
+                    <span>
+                      {section === "broadcasts"
+                        ? manualKeys.has(keyOf(m)) ||
+                          m.watch?.links.some(
+                            (link) => link.id === "admin-manual",
+                          )
+                          ? "Editar fonte"
+                          : "Informar fonte"
+                        : "Editar"}
+                    </span>
                   </button>
                 </div>
               ))
@@ -374,6 +575,109 @@ export default function AdminGames() {
                   </button>
                 </div>
               </div>
+            </div>
+          )}
+          {broadcastEditing && (
+            <div
+              className="admin-modal-backdrop"
+              onClick={(event) => {
+                if (event.target === event.currentTarget && !savingBroadcast)
+                  setBroadcastEditing(null);
+              }}
+            >
+              <form
+                className="admin-modal admin-broadcast-modal"
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="broadcast-edit-title"
+                onSubmit={saveBroadcast}
+              >
+                <div className="modal-head">
+                  <div>
+                    <span className="eyebrow">TRANSMISSÃO DA PARTIDA</span>
+                    <h2 id="broadcast-edit-title">
+                      {broadcastEditing.home.name} ×{" "}
+                      {broadcastEditing.away.name}
+                    </h2>
+                  </div>
+                  <button
+                    type="button"
+                    className="icon-button"
+                    aria-label="Fechar"
+                    onClick={() => setBroadcastEditing(null)}
+                    disabled={savingBroadcast}
+                  >
+                    <X />
+                  </button>
+                </div>
+                <p>
+                  {broadcastEditing.leagueName} · {time(broadcastEditing.date)}
+                </p>
+                <p>
+                  Use o nome do canal ou plataforma e um link HTTPS oficial.
+                  Essa informação só será usada quando a API não confirmar os
+                  canais da partida.
+                </p>
+                {broadcastConfirmedByApi && (
+                  <Notice>
+                    A API passou a confirmar uma transmissão para este jogo.
+                    Esta indicação manual não está ativa e só pode ser removida.
+                  </Notice>
+                )}
+                <label>
+                  Canal ou plataforma
+                  <input
+                    value={broadcastChannel}
+                    onChange={(event) =>
+                      setBroadcastChannel(event.target.value)
+                    }
+                    maxLength={80}
+                    required
+                    readOnly={broadcastConfirmedByApi}
+                    placeholder="Ex.: ESPN, Prime Video, canal oficial"
+                  />
+                </label>
+                <label>
+                  Link oficial
+                  <input
+                    type="url"
+                    value={broadcastUrl}
+                    onChange={(event) => setBroadcastUrl(event.target.value)}
+                    maxLength={500}
+                    required
+                    readOnly={broadcastConfirmedByApi}
+                    placeholder="https://..."
+                  />
+                </label>
+                {broadcastError && <Notice error>{broadcastError}</Notice>}
+                <div className="modal-actions">
+                  {manualKeys.has(keyOf(broadcastEditing)) && (
+                    <button
+                      type="button"
+                      onClick={deleteBroadcast}
+                      disabled={savingBroadcast}
+                    >
+                      Remover
+                    </button>
+                  )}
+                  <button
+                    type="button"
+                    onClick={() => setBroadcastEditing(null)}
+                    disabled={savingBroadcast}
+                  >
+                    Cancelar
+                  </button>
+                  {!broadcastConfirmedByApi && (
+                    <button
+                      className="admin-primary"
+                      type="submit"
+                      disabled={savingBroadcast}
+                    >
+                      {savingBroadcast ? "Salvando…" : "Salvar fonte"}
+                    </button>
+                  )}
+                </div>
+              </form>
             </div>
           )}
         </>
