@@ -44,7 +44,12 @@ export default function MatchBroadcasts({ match }: { match: Match }) {
                 : `Opção da competição; transmissão deste jogo ainda não confirmada. ${link.note}`
             }
           >
-            <ChannelLogo id={link.id} badge={link.badge || badges[link.id]} />
+            <ChannelLogo
+              id={link.id}
+              badge={link.badge || badges[link.id]}
+              name={link.name}
+              fallbackUrl={link.url}
+            />
             <span>{link.name}</span>
             <ExternalLink size={11} />
           </a>

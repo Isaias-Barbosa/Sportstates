@@ -83,7 +83,12 @@ export default function WhereToWatch({
               >
                 <div className="watch-provider-title">
                   <span className="watch-provider-brand">
-                    <ChannelLogo id={l.id} badge={l.badge} />
+                    <ChannelLogo
+                      id={l.id}
+                      badge={l.badge}
+                      name={l.name}
+                      fallbackUrl={l.url}
+                    />
                     <strong>{l.name}</strong>
                   </span>
                   <span className={"watch-access " + l.access}>
@@ -96,9 +101,11 @@ export default function WhereToWatch({
                 </div>
                 {!compact && <p>{l.note}</p>}
                 <span className="watch-provider-action">
-                  {l.kind === "guide"
-                    ? "Consultar emissoras"
-                    : "Abrir plataforma"}
+                  {l.id === "admin-manual"
+                    ? "Abrir transmissão"
+                    : l.kind === "guide"
+                      ? "Consultar emissoras"
+                      : "Abrir plataforma"}
                   <ExternalLink size={14} />
                 </span>
               </a>
@@ -152,7 +159,11 @@ export default function WhereToWatch({
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    {l.name} · fonte da programação ↗
+                    {l.name} ·{" "}
+                    {l.id === "admin-manual"
+                      ? "fonte de confirmação"
+                      : "fonte da programação"}{" "}
+                    ↗
                   </a>
                 </li>
               ))}

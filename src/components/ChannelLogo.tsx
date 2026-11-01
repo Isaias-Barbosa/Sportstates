@@ -48,14 +48,74 @@ const aliases: Record<string, string> = {
   tntyt: "tnt",
 };
 
+function logoForName(name: string) {
+  const normalized = name
+    .normalize("NFD")
+    .replace(/\p{Diacritic}/gu, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]/g, "");
+  const names: Record<string, string> = {
+    espn: "espn",
+    espn1: "espn",
+    espn2: "espn",
+    espn3: "espn",
+    espn4: "espn",
+    espn5: "espn",
+    espn6: "espn",
+    espnbrasil: "espn",
+    disneyplus: "disney",
+    disney: "disney",
+    amazonprime: "prime",
+    amazonprimevideo: "prime",
+    primevideo: "prime",
+    premiere: "premiere",
+    hbomax: "hbomax",
+    max: "hbomax",
+    cazetv: "cazetv",
+    canalgoat: "goat",
+    goat: "goat",
+    tnt: "tnt",
+    tntsports: "tnt",
+    sportv: "sportv",
+    sportv1: "sportv",
+    sportv2: "sportv",
+    sportv3: "sportv",
+    globo: "globo",
+    globoplay: "globoplay",
+    getv: "getv",
+    record: "record",
+    recordtv: "record",
+    sbt: "sbt",
+    band: "band",
+    xsports: "xsports",
+    mlbtv: "mlbtv",
+    dazn: "nflgp",
+  };
+  return names[normalized];
+}
+
 export default function ChannelLogo({
   id,
   badge,
+  name,
+  fallbackUrl,
 }: {
   id: string;
   badge?: string;
+  name?: string;
+  fallbackUrl?: string;
 }) {
-  const src = logos[aliases[id] || id];
+  const logoId = aliases[id] || id;
+  const nameLogo = name ? logoForName(name) : undefined;
+  const knownSrc = logos[logoId] || (nameLogo ? logos[nameLogo] : "");
+  let favicon = "";
+  try {
+    const url = new URL(fallbackUrl || "");
+    if (url.protocol === "https:") favicon = new URL("/favicon.ico", url).href;
+  } catch {
+    favicon = "";
+  }
+  const src = knownSrc || favicon;
   const [failedSrc, setFailedSrc] = useState<string>();
   return (
     <span className="channel-logo" aria-hidden="true">

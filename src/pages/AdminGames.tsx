@@ -19,6 +19,8 @@ type ManualBroadcast = {
   match_key: string;
   channel_name: string;
   url: string;
+  reference_url: string;
+  reviewed_on: string;
 };
 
 export default function AdminGames() {
@@ -69,6 +71,8 @@ export default function AdminGames() {
   const [broadcastEditing, setBroadcastEditing] = useState<Match | null>(null);
   const [broadcastChannel, setBroadcastChannel] = useState("");
   const [broadcastUrl, setBroadcastUrl] = useState("");
+  const [broadcastReferenceUrl, setBroadcastReferenceUrl] = useState("");
+  const [broadcastReviewedOn, setBroadcastReviewedOn] = useState(today());
   const [broadcastError, setBroadcastError] = useState("");
   const [savingBroadcast, setSavingBroadcast] = useState(false);
   const [manualBroadcasts, setManualBroadcasts] = useState<ManualBroadcast[]>(
@@ -189,6 +193,8 @@ export default function AdminGames() {
     setBroadcastEditing(match);
     setBroadcastChannel(manualLink?.name || manualRecord?.channel_name || "");
     setBroadcastUrl(manualLink?.url || manualRecord?.url || "");
+    setBroadcastReferenceUrl(manualRecord?.reference_url || "");
+    setBroadcastReviewedOn(manualRecord?.reviewed_on?.slice(0, 10) || today());
     setBroadcastError("");
   }
   async function saveBroadcast(event: React.FormEvent) {
@@ -208,6 +214,8 @@ export default function AdminGames() {
           key: keyOf(broadcastEditing),
           channel: broadcastChannel,
           url: broadcastUrl,
+          referenceUrl: broadcastReferenceUrl,
+          reviewedOn: broadcastReviewedOn,
         }),
       });
       const body = await response.json();
@@ -647,6 +655,31 @@ export default function AdminGames() {
                     required
                     readOnly={broadcastConfirmedByApi}
                     placeholder="https://..."
+                  />
+                </label>
+                <label>
+                  Link da confirmação (opcional)
+                  <input
+                    type="url"
+                    value={broadcastReferenceUrl}
+                    onChange={(event) =>
+                      setBroadcastReferenceUrl(event.target.value)
+                    }
+                    maxLength={500}
+                    readOnly={broadcastConfirmedByApi}
+                    placeholder="https://fonte-oficial.com/programacao"
+                  />
+                </label>
+                <label>
+                  Data da revisão
+                  <input
+                    type="date"
+                    value={broadcastReviewedOn}
+                    onChange={(event) =>
+                      setBroadcastReviewedOn(event.target.value)
+                    }
+                    required
+                    disabled={broadcastConfirmedByApi}
                   />
                 </label>
                 {broadcastError && <Notice error>{broadcastError}</Notice>}

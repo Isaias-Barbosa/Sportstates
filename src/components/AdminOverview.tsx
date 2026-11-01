@@ -10,7 +10,7 @@ import {
   Users,
 } from "lucide-react";
 import { Notice } from "./shared";
-import type { Scores } from "../types";
+import type { DataSourceStatus, Scores } from "../types";
 
 type ActivityEntry = {
   id: string;
@@ -33,6 +33,19 @@ function localDate(value: string) {
         dateStyle: "short",
         timeStyle: "short",
       });
+}
+
+function sourceStatusLabel(source: DataSourceStatus) {
+  switch (source.state) {
+    case "ok":
+      return "Atualizada";
+    case "stale":
+      return "Dados em cache";
+    case "partial":
+      return "Parcial";
+    case "unavailable":
+      return "Indisponível";
+  }
 }
 
 export default function AdminOverview({
@@ -176,6 +189,40 @@ export default function AdminOverview({
                 </ul>
               )}
               {scores.stale && <small>Há dados em cache desatualizados.</small>}
+              {scores.sources?.length ? (
+                <ul className="admin-source-list">
+                  {scores.sources.map((source) => {
+                    const sportName =
+                      scores.sports.find((sport) => sport.id === source.sport)
+                        ?.name || source.sport;
+                    return (
+                      <li
+                        key={`${source.sport}:${source.league || "all"}`}
+                        className={`source-${source.state}`}
+                      >
+                        <div>
+                          <strong>{source.competition}</strong>
+                          <small>
+                            {sportName} · {source.provider}
+                          </small>
+                        </div>
+                        <div className="admin-source-status">
+                          <span>{sourceStatusLabel(source)}</span>
+                          <small>
+                            {source.fetchedAt
+                              ? localDate(source.fetchedAt)
+                              : (source.warning ?? "Sem consulta")}
+                          </small>
+                        </div>
+                      </li>
+                    );
+                  })}
+                </ul>
+              ) : (
+                <small>
+                  A consulta atual não retornou o status individual das fontes.
+                </small>
+              )}
             </>
           ) : (
             <p>Não foi possível consultar a saúde dos placares.</p>

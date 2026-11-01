@@ -2516,6 +2516,44 @@ body.club-page-active { background:var(--club-page-bg, var(--canvas)); backgroun
 .admin-overview-panel li {
   margin: 7px 0;
 }
+.admin-overview-panel .admin-source-list {
+  max-height: 360px;
+  overflow: auto;
+  list-style: none;
+  padding: 0;
+}
+.admin-source-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px 0;
+  border-top: 1px solid var(--border);
+}
+.admin-source-list li > div {
+  min-width: 0;
+}
+.admin-source-list strong {
+  color: var(--text);
+  font-size: 13px;
+}
+.admin-source-list small {
+  font-size: 11px;
+}
+.admin-source-status {
+  flex: 0 0 auto;
+  text-align: right;
+}
+.admin-source-status > span {
+  color: var(--green);
+  font-size: 11px;
+  font-weight: 700;
+}
+.source-stale .admin-source-status > span,
+.source-partial .admin-source-status > span,
+.source-unavailable .admin-source-status > span {
+  color: #e7a12d;
+}
 .admin-activity-list {
   list-style: none;
   padding: 0 !important;

@@ -305,6 +305,24 @@ test("combined daily scoreboard exposes both new sports, deduplicates fixtures a
     );
     assert.ok(data.sports.some((s) => s.id === "tennis"));
     assert.ok(data.sports.some((s) => s.id === "volleyball"));
+    assert.ok(
+      data.sources.some(
+        (source) =>
+          source.sport === "tennis" &&
+          source.provider === "ATP" &&
+          source.state === "ok" &&
+          source.fetchedAt,
+      ),
+    );
+    assert.ok(
+      data.sources.some(
+        (source) =>
+          source.sport === "volleyball" &&
+          source.provider === "CBV" &&
+          source.state === "ok" &&
+          source.fetchedAt,
+      ),
+    );
   } finally {
     globalThis.fetch = original;
     await clearAllCaches({ shared: false });

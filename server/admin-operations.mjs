@@ -20,6 +20,16 @@ function validManualKey(key) {
   );
 }
 
+function validReviewDate(value) {
+  if (typeof value !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(value))
+    return false;
+  const parsed = new Date(`${value}T12:00:00Z`);
+  return (
+    Number.isFinite(parsed.getTime()) &&
+    parsed.toISOString().slice(0, 10) === value
+  );
+}
+
 function database() {
   if (!process.env.DATABASE_URL) throw new Error("Banco Neon não configurado.");
   if (schemaUrl !== process.env.DATABASE_URL) {
@@ -28,44 +38,58 @@ function database() {
   }
   const sql = neon(process.env.DATABASE_URL);
   if (!schemaPromise) {
-    schemaPromise = Promise.all([
-      sql`CREATE TABLE IF NOT EXISTS sport_admin_broadcasts (
+    schemaPromise = (async () => {
+      await sql`CREATE TABLE IF NOT EXISTS sport_admin_broadcasts (
         match_key text PRIMARY KEY,
         sport text NOT NULL,
         league text NOT NULL,
         match_id text NOT NULL,
         channel_name text NOT NULL,
         url text NOT NULL,
+        reference_url text NOT NULL DEFAULT '',
+        reviewed_on date NOT NULL DEFAULT current_date,
         updated_at timestamptz NOT NULL DEFAULT now()
-      )`,
-      sql`CREATE TABLE IF NOT EXISTS sport_admin_activity (
+      )`;
+      await sql`ALTER TABLE sport_admin_broadcasts
+        ADD COLUMN IF NOT EXISTS reference_url text NOT NULL DEFAULT ''`;
+      await sql`ALTER TABLE sport_admin_broadcasts
+        ADD COLUMN IF NOT EXISTS reviewed_on date NOT NULL DEFAULT current_date`;
+      await sql`CREATE TABLE IF NOT EXISTS sport_admin_activity (
         id text PRIMARY KEY,
         action text NOT NULL,
         summary text NOT NULL,
         match_key text,
         created_at timestamptz NOT NULL DEFAULT now()
-      )`,
-    ]).catch((error) => {
+      )`;
+      return sql;
+    })().catch((error) => {
       schemaPromise = null;
       throw error;
     });
   }
-  return schemaPromise.then(() => sql);
+  return schemaPromise;
 }
 
 export function validateManualBroadcast(value) {
   if (!value || typeof value !== "object" || Array.isArray(value))
     throw new Error("Transmissão inválida.");
   const { key, channel, url } = value;
+  const referenceUrl = value.referenceUrl || "";
+  const reviewedOn = value.reviewedOn;
   if (
     !validManualKey(key) ||
     typeof channel !== "string" ||
     !channel.trim() ||
     channel.trim().length > 80 ||
     typeof url !== "string" ||
-    url.length > 500
+    url.length > 500 ||
+    typeof referenceUrl !== "string" ||
+    referenceUrl.length > 500 ||
+    !validReviewDate(reviewedOn)
   )
-    throw new Error("Informe a partida, a fonte e um link HTTPS válido.");
+    throw new Error(
+      "Informe a partida, a fonte, uma data de revisão e links HTTPS válidos.",
+    );
   let parsed;
   try {
     parsed = new URL(url);
@@ -74,7 +98,27 @@ export function validateManualBroadcast(value) {
   }
   if (parsed.protocol !== "https:" || parsed.username || parsed.password)
     throw new Error("O link da transmissão deve usar HTTPS.");
-  return { key, channel: channel.trim(), url: parsed.toString() };
+  let parsedReference = null;
+  if (referenceUrl) {
+    try {
+      parsedReference = new URL(referenceUrl);
+    } catch {
+      throw new Error("O link de confirmação deve usar HTTPS.");
+    }
+    if (
+      parsedReference.protocol !== "https:" ||
+      parsedReference.username ||
+      parsedReference.password
+    )
+      throw new Error("O link de confirmação deve usar HTTPS.");
+  }
+  return {
+    key,
+    channel: channel.trim(),
+    url: parsed.toString(),
+    referenceUrl: parsedReference?.toString() || "",
+    reviewedOn,
+  };
 }
 
 export function applyManualBroadcasts(matches, records) {
@@ -89,6 +133,8 @@ export function applyManualBroadcasts(matches, records) {
       !existing.links.some((link) => link.id === "admin-manual")
     )
       return match;
+    const reviewedOn = String(record.reviewed_on).slice(0, 10);
+    const reviewedAt = new Date(`${reviewedOn}T12:00:00-03:00`).toISOString();
     const link = {
       id: "admin-manual",
       badge: "TV",
@@ -96,8 +142,8 @@ export function applyManualBroadcasts(matches, records) {
       url: record.url,
       access: "check",
       kind: "platform",
-      note: "Fonte informada manualmente pela administração. Confirme a programação oficial.",
-      sourceUrl: record.url,
+      note: `Transmissão informada manualmente e revisada em ${new Date(reviewedAt).toLocaleDateString("pt-BR")}.`,
+      sourceUrl: record.reference_url || record.url,
     };
     return {
       ...match,
@@ -107,7 +153,7 @@ export function applyManualBroadcasts(matches, records) {
         regionLabel: "Brasil",
         scope: "match",
         confirmedForMatch: true,
-        reviewedAt: new Date(record.updated_at).toISOString(),
+        reviewedAt,
         links: [link],
         message:
           "Transmissão informada manualmente para esta partida. A programação pode mudar.",
@@ -129,7 +175,7 @@ export async function enrichManualBroadcasts(matches) {
       30000,
       async () => {
         const sql = await database();
-        return sql`SELECT match_key, channel_name, url, updated_at
+        return sql`SELECT match_key, channel_name, url, reference_url, reviewed_on
           FROM sport_admin_broadcasts WHERE match_key = ANY(${keys}::text[])`;
       },
     );
@@ -154,21 +200,24 @@ export async function listManualBroadcasts(matches) {
   ];
   if (!keys.length) return [];
   const sql = await database();
-  return sql`SELECT match_key, channel_name, url
+  return sql`SELECT match_key, channel_name, url, reference_url, reviewed_on
     FROM sport_admin_broadcasts WHERE match_key = ANY(${keys}::text[])`;
 }
 
 export async function saveManualBroadcast(match, value) {
-  const { key, channel, url } = validateManualBroadcast(value);
+  const { key, channel, url, referenceUrl, reviewedOn } =
+    validateManualBroadcast(value);
   const matchKey = `${match.sport}/${match.league}/${match.id}`;
   if (key !== matchKey) throw new Error("A partida selecionada é inválida.");
   const sql = await database();
   await sql`INSERT INTO sport_admin_broadcasts
-      (match_key, sport, league, match_id, channel_name, url, updated_at)
-    VALUES (${matchKey}, ${match.sport}, ${match.league}, ${match.id}, ${channel}, ${url}, now())
+      (match_key, sport, league, match_id, channel_name, url, reference_url, reviewed_on, updated_at)
+    VALUES (${matchKey}, ${match.sport}, ${match.league}, ${match.id}, ${channel}, ${url}, ${referenceUrl}, ${reviewedOn}, now())
     ON CONFLICT (match_key) DO UPDATE SET
       channel_name = EXCLUDED.channel_name,
       url = EXCLUDED.url,
+      reference_url = EXCLUDED.reference_url,
+      reviewed_on = EXCLUDED.reviewed_on,
       updated_at = now()`;
   return recordAdminActivitySafely(
     "transmission_saved",

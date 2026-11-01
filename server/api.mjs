@@ -121,6 +121,14 @@ export async function scoreboard(date, sport = "all") {
     (s) => sport === "all" || s.id === sport,
   );
   if (!selectedSports.some((s) => s.leagues.length)) {
+    const sources = selectedSports.map((selected) => ({
+      sport: selected.id,
+      competition: selected.name,
+      provider: selected.id === "judo" ? "Fonte não integrada" : "Sem provedor",
+      state: "unavailable",
+      fetchedAt: null,
+      warning: "Ainda não há fonte de placares integrada para este esporte.",
+    }));
     return {
       matches: [],
       sports: selectedSports.map(({ leagues, ...s }) => ({
@@ -134,6 +142,7 @@ export async function scoreboard(date, sport = "all") {
       warnings: [
         "Judô está no catálogo, mas ainda não há fonte de placares integrada.",
       ],
+      sources,
     };
   }
   // BRT day crosses two UTC dates. Fetch separately to avoid upstream range regressions.
@@ -184,6 +193,8 @@ export async function scoreboard(date, sport = "all") {
           .filter((e) => dayInBrazil(e.date) === date),
         failed: parts.some((p) => p.status === "rejected"),
         stale: good.some((r) => r.stale),
+        sport: s.id,
+        league,
         name,
         at: good.length ? Math.min(...good.map((r) => r.at)) : null,
       };
@@ -215,6 +226,39 @@ export async function scoreboard(date, sport = "all") {
       Math.min(...results.filter((r) => r.at).map((r) => r.at)),
     ).toISOString(),
     stale: results.some((r) => r.stale),
+    sources: results.map((result) => {
+      const state =
+        result.at === null
+          ? "unavailable"
+          : result.failed
+            ? "partial"
+            : result.stale
+              ? "stale"
+              : "ok";
+      return {
+        sport: result.sport,
+        league: result.league,
+        competition: result.name,
+        provider:
+          result.sport === "tennis"
+            ? "ATP"
+            : result.sport === "table-tennis"
+              ? "ITTF / WTT"
+              : result.sport === "volleyball"
+                ? "CBV"
+                : "ESPN",
+        state,
+        fetchedAt: result.at ? new Date(result.at).toISOString() : null,
+        warning:
+          state === "unavailable"
+            ? "Fonte indisponível."
+            : state === "partial"
+              ? "Cobertura incompleta."
+              : state === "stale"
+                ? "Usando dados em cache; a fonte não respondeu."
+                : null,
+      };
+    }),
     warnings: [
       ...results
         .filter((r) => r.failed || r.stale)
@@ -659,14 +703,14 @@ export async function route(url) {
             source: "Cobertura por sets",
           },
         ];
-      return [
-        200,
+      const detail =
         config.sport === "table-tennis"
           ? await tableDetail(id, config.league)
           : config.sport === "tennis"
             ? await tennisDetail(id)
-            : await volleyDetail(id),
-      ];
+            : await volleyDetail(id);
+      const manual = await enrichManualBroadcasts([detail.match]);
+      return [200, { ...detail, match: manual.matches[0] }];
     }
     const result = await cached(
       `match:player-lances-v2:${config.sport}:${config.league}:${id}`,
@@ -699,11 +743,15 @@ export async function route(url) {
       enrichPlayerRatings(result.value),
       enrichBroadcasts([result.value.match]),
     ]);
+    const manual = await enrichManualBroadcasts(broadcasts);
     return [
       200,
       {
         ...rated,
-        match: broadcasts[0],
+        match: manual.matches[0],
+        ...(manual.warning
+          ? { warnings: [...(rated.warnings || []), manual.warning] }
+          : {}),
         stale: result.stale,
         fetchedAt: new Date(result.at).toISOString(),
         source: "ESPN · feed público não oficial",
@@ -886,7 +934,13 @@ export async function handler(req, res) {
         res.statusCode = 503;
         return res.end(
           JSON.stringify({
-            error: "Não foi possível carregar o resumo administrativo.",
+            error: !process.env.DATABASE_URL
+              ? "DATABASE_URL não está configurada nesta função do servidor."
+              : /permission denied|must be owner|not authorized/i.test(
+                    error instanceof Error ? error.message : "",
+                  )
+                ? "O banco está acessível, mas o usuário configurado não pode criar ou consultar as tabelas administrativas."
+                : "Não foi possível preparar ou consultar as tabelas administrativas. Verifique o banco Neon e tente novamente.",
           }),
         );
       }

@@ -49,11 +49,21 @@ export type Scores = {
   partial?: boolean;
   matches: Match[];
   sports: Sport[];
+  sources?: DataSourceStatus[];
   date: string;
   source: string;
   fetchedAt: string;
   stale: boolean;
   warnings: string[];
+};
+export type DataSourceStatus = {
+  sport: string;
+  league?: string;
+  competition: string;
+  provider: string;
+  state: "ok" | "stale" | "partial" | "unavailable";
+  fetchedAt: string | null;
+  warning: string | null;
 };
 export type BasketballData = {
   periods: { number: number; label: string }[];

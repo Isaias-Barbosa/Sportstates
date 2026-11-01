@@ -4,7 +4,7 @@ import {
   applyManualBroadcasts,
   validateManualBroadcast,
 } from "../server/admin-operations.mjs";
-import { handler } from "../server/api.mjs";
+import { handler, scoreboard } from "../server/api.mjs";
 
 const match = (overrides = {}) => ({
   sport: "soccer",
@@ -33,11 +33,15 @@ test("manual broadcast data requires a valid match, name and HTTPS URL", () => {
       key: "soccer/bra.1/12345",
       channel: "  Canal oficial ",
       url: "https://example.com/watch",
+      reviewedOn: "2026-10-31",
+      referenceUrl: "https://example.com/fixture",
     }),
     {
       key: "soccer/bra.1/12345",
       channel: "Canal oficial",
       url: "https://example.com/watch",
+      reviewedOn: "2026-10-31",
+      referenceUrl: "https://example.com/fixture",
     },
   );
   assert.equal(
@@ -45,25 +49,47 @@ test("manual broadcast data requires a valid match, name and HTTPS URL", () => {
       key: "tennis/atp/20261101999999999999",
       channel: "Canal oficial",
       url: "https://example.com/watch",
+      reviewedOn: "2026-11-01",
     }).key,
     "tennis/atp/20261101999999999999",
   );
   for (const invalid of [
-    { key: "soccer/bra.1/12345", channel: "", url: "https://example.com" },
+    {
+      key: "soccer/bra.1/12345",
+      channel: "",
+      url: "https://example.com",
+      reviewedOn: "2026-10-31",
+    },
     {
       key: "soccer/bra.1/12345",
       channel: "Fonte",
       url: "http://example.com",
+      reviewedOn: "2026-10-31",
     },
     {
       key: "soccer/bra.1/12345",
       channel: "Fonte",
       url: "https://user:pass@example.com",
+      reviewedOn: "2026-10-31",
     },
     {
       key: "soccer/invalid/12345",
       channel: "Fonte",
       url: "https://example.com",
+      reviewedOn: "2026-10-31",
+    },
+    {
+      key: "soccer/bra.1/12345",
+      channel: "Fonte",
+      url: "https://example.com",
+      reviewedOn: "2026-99-99",
+    },
+    {
+      key: "soccer/bra.1/12345",
+      channel: "Fonte",
+      url: "https://example.com",
+      reviewedOn: "2026-10-31",
+      referenceUrl: "http://example.com/source",
     },
   ])
     assert.throws(() => validateManualBroadcast(invalid));
@@ -77,7 +103,8 @@ test("manual source replaces generic competition guide only for that match", () 
         match_key: "soccer/bra.1/12345",
         channel_name: "Canal oficial",
         url: "https://example.com/watch",
-        updated_at: "2026-10-31T12:00:00.000Z",
+        reference_url: "https://example.com/fixture",
+        reviewed_on: "2026-10-31",
       },
     ],
   );
@@ -85,6 +112,11 @@ test("manual source replaces generic competition guide only for that match", () 
   assert.equal(result[0].watch.links.length, 1);
   assert.equal(result[0].watch.links[0].id, "admin-manual");
   assert.equal(result[0].watch.links[0].name, "Canal oficial");
+  assert.equal(
+    result[0].watch.links[0].sourceUrl,
+    "https://example.com/fixture",
+  );
+  assert.match(result[0].watch.links[0].note, /31\/10\/2026/);
 });
 
 test("manual source never overrides an API-confirmed channel or a finished match", () => {
@@ -100,12 +132,20 @@ test("manual source never overrides an API-confirmed channel or a finished match
       match_key: "soccer/bra.1/12345",
       channel_name: "Canal manual",
       url: "https://example.com/watch",
-      updated_at: "2026-10-31T12:00:00.000Z",
+      reference_url: "",
+      reviewed_on: "2026-10-31",
     },
   ];
   const result = applyManualBroadcasts([apiMatch, finishedMatch], records);
   assert.equal(result[0], apiMatch);
   assert.equal(result[1], finishedMatch);
+});
+
+test("scores expose source health with provider and last successful fetch", async () => {
+  const data = await scoreboard("2026-11-01", "judo");
+  assert.equal(data.sources[0].sport, "judo");
+  assert.equal(data.sources[0].state, "unavailable");
+  assert.equal(data.sources[0].fetchedAt, null);
 });
 
 test("manual broadcast routes require admin authorization and validate dates", async () => {
