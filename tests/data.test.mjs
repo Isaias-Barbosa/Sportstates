@@ -282,14 +282,14 @@ test("Portuguese commentary preserves nested event period and lineup structure",
 
 test("match provider receives Portuguese locale for details and preserves halftime", async () => {
   const original = globalThis.fetch;
-  let requested;
+  const requests = [];
   globalThis.fetch = async (url) => {
     if (
       String(url).includes("agendacazetv.com.br") ||
       String(url).includes("ge.globo.com/agenda/")
     )
       return { ok: true, text: async () => "" };
-    requested = new URL(url);
+    requests.push(new URL(url));
     return {
       ok: true,
       json: async () => ({
@@ -318,8 +318,14 @@ test("match provider receives Portuguese locale for details and preserves halfti
       new URL("http://localhost/api/match?sport=soccer&league=eng.1&id=998877"),
     );
     assert.equal(status, 200);
-    assert.equal(requested.searchParams.get("lang"), "pt");
-    assert.equal(requested.searchParams.get("region"), "br");
+    const summaryRequest = requests.find(
+      (request) =>
+        request.pathname.endsWith("/summary") &&
+        request.searchParams.get("event") === "998877",
+    );
+    assert.ok(summaryRequest, "match summary request should reach ESPN");
+    assert.equal(summaryRequest.searchParams.get("lang"), "pt");
+    assert.equal(summaryRequest.searchParams.get("region"), "br");
     assert.equal(data.match.statusName, "STATUS_HALFTIME");
     assert.equal(data.match.state, "live");
   } finally {
