@@ -19,6 +19,7 @@ export type Match = {
   tournament?: string;
   round?: string;
   sourceUrl?: string;
+  source?: "365scores";
   id: string;
   sport: string;
   league: string;

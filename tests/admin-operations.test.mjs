@@ -123,7 +123,7 @@ test("manual source replaces generic competition guide only for that match", () 
   assert.match(result[0].watch.links[0].note, /31\/10\/2026/);
 });
 
-test("manual source never overrides an API-confirmed channel or a finished match", () => {
+test("manual source supplements confirmed channels and never appears on finished matches", () => {
   const apiMatch = match({
     watch: {
       confirmedForMatch: true,
@@ -141,7 +141,12 @@ test("manual source never overrides an API-confirmed channel or a finished match
     },
   ];
   const result = applyManualBroadcasts([apiMatch, finishedMatch], records);
-  assert.equal(result[0], apiMatch);
+  assert.notEqual(result[0], apiMatch);
+  assert.equal(result[0].watch.confirmedForMatch, true);
+  assert.deepEqual(
+    result[0].watch.links.map((link) => link.id),
+    ["espn", "admin-manual"],
+  );
   assert.equal(result[1], finishedMatch);
 });
 

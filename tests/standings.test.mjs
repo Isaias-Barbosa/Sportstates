@@ -2,6 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { normalizeStandings } from "../server/standings.mjs";
 import { route } from "../server/api.mjs";
+import { clearAllCaches } from "../server/cache.mjs";
 
 test("normalizes nested groups, provider order and zero statistics", () => {
   const groups = normalizeStandings({
@@ -134,19 +135,73 @@ test("standings route requests the selected competition and normalizes its respo
   }
 });
 test("regiões locais e torneios internacionais ficam separados, sem perder competições", async () => {
+  await clearAllCaches({ shared: false });
   const original = globalThis.fetch;
   const past = new Date(Date.now() - 60_000).toISOString();
-  globalThis.fetch = async () => ({
-    ok: true,
-    json: async () => ({
-      events: [
-        {
-          date: past,
-          status: { type: { state: "post" } },
-        },
-      ],
-    }),
-  });
+  globalThis.fetch = async (input) => {
+    const url = new URL(input);
+    if (url.hostname === "webws.365scores.com")
+      return {
+        ok: true,
+        json: async () => ({
+          games: [
+            {
+              id: 123,
+              competitionId: Number(url.searchParams.get("competitions")),
+              startTime: past,
+              statusGroup: 4,
+              statusText: "Fim",
+              homeCompetitor: { id: 1, name: "Casa" },
+              awayCompetitor: { id: 2, name: "Visitante" },
+            },
+          ],
+        }),
+      };
+    if (url.hostname === "apiweb.fef.ec")
+      return {
+        ok: true,
+        json: async () => ({
+          status_code: 200,
+          success: true,
+          data: {
+            stages: [
+              {
+                dates: [
+                  {
+                    groups: [
+                      {
+                        matches: [
+                          {
+                            match_date: new Date(
+                              Date.now() - 3 * 24 * 60 * 60 * 1000,
+                            )
+                              .toISOString()
+                              .slice(0, 10),
+                            home_goals: 0,
+                            away_goals: 0,
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        }),
+      };
+    return {
+      ok: true,
+      json: async () => ({
+        events: [
+          {
+            date: past,
+            status: { type: { state: "post" } },
+          },
+        ],
+      }),
+    };
+  };
   let catalog;
   try {
     [, catalog] = await route(new URL("http://localhost/api/competitions"));
@@ -164,7 +219,21 @@ test("regiões locais e torneios internacionais ficam separados, sem perder comp
   assert.deepEqual(brasil.competitions, [
     "bra.1",
     "bra.2",
+    "bra.3",
+    "bra.4",
     "bra.copa_do_brazil",
+    "bra.copa_do_nordeste",
+    "bra.copa_verde",
+    "bra.copa_paulista",
+    "bra.copa_alagoas",
+    "bra.copa_santa_catarina",
+    "bra.copa_fares_lopes",
+    "bra.copa_rio",
+    "bra.copa_espirito_santo",
+    "bra.copa_fgf",
+    "bra.copa_governo_sergipe",
+    "bra.copa_sul_sudeste",
+    "bra.copa_parana",
   ]);
   assert.deepEqual(argentina.competitions, [
     "arg.1",

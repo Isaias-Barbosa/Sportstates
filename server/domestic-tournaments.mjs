@@ -3,6 +3,12 @@ import {
   ECUADOR_CUPS,
   ecuadorCupHasStarted,
 } from "./ecuador-cups.mjs";
+import {
+  SOCCER_365_COMPETITIONS,
+  fetch365CompetitionGames,
+  normalize365Game,
+} from "./365scores.mjs";
+import { leagueFor } from "./catalog.mjs";
 
 export async function startedDomesticTournaments(year, now, loadJson) {
   const results = await Promise.all(
@@ -10,6 +16,22 @@ export async function startedDomesticTournaments(year, now, loadJson) {
       try {
         const started = ECUADOR_CUPS[league]
           ? await ecuadorCupHasStarted(league, loadJson, now)
+          : SOCCER_365_COMPETITIONS[league]
+            ? await fetch365CompetitionGames(league, loadJson).then(
+                ({ games }) => {
+                  const name = leagueFor("soccer", league)?.name || league;
+                  return games.some((game) => {
+                    if (Date.parse(game.startTime) > now.getTime()) return false;
+                    const match = normalize365Game(
+                      game,
+                      league,
+                      name,
+                      now.getTime(),
+                    );
+                    return !!match && match.state !== "scheduled";
+                  });
+                },
+              )
           : await loadJson(
               `https://site.api.espn.com/apis/site/v2/sports/soccer/${league}/scoreboard?dates=${year}&limit=1000&lang=pt&region=br`,
             ).then((feed) =>

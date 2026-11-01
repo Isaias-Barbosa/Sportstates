@@ -128,11 +128,6 @@ export function applyManualBroadcasts(matches, records) {
     const record = byKey.get(key);
     if (!record || match.state === "finished") return match;
     const existing = match.watch;
-    if (
-      existing?.confirmedForMatch &&
-      !existing.links.some((link) => link.id === "admin-manual")
-    )
-      return match;
     const reviewedOn = String(record.reviewed_on).slice(0, 10);
     const reviewedAt = new Date(`${reviewedOn}T12:00:00-03:00`).toISOString();
     const link = {
@@ -153,10 +148,18 @@ export function applyManualBroadcasts(matches, records) {
         regionLabel: "Brasil",
         scope: "match",
         confirmedForMatch: true,
-        reviewedAt,
-        links: [link],
-        message:
-          "Transmissão informada manualmente para esta partida. A programação pode mudar.",
+        ...(existing?.confirmedForMatch ? {} : { reviewedAt }),
+        links: existing?.confirmedForMatch
+          ? [
+              ...(existing.links || []).filter(
+                (existingLink) => existingLink.id !== "admin-manual",
+              ),
+              link,
+            ]
+          : [link],
+        message: existing?.confirmedForMatch
+          ? `${existing.message || "Transmissão confirmada para esta partida."} Fonte manual complementar adicionada; os canais confirmados foram preservados.`
+          : "Transmissão informada manualmente para esta partida. A programação pode mudar.",
       },
     };
   });

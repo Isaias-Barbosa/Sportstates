@@ -5,6 +5,7 @@ import { startedDomesticTournaments } from "../server/domestic-tournaments.mjs";
 test("only domestic tournaments with a completed or live event have started", async () => {
   const now = new Date("2026-11-01T12:00:00Z");
   const result = await startedDomesticTournaments(2026, now, async (url) => {
+    if (url.includes("/web/games/results/")) return { games: [] };
     if (url.includes("apiweb.fef.ec"))
       return {
         status_code: 200,
@@ -51,6 +52,7 @@ test("unavailable ESPN feeds are reported separately from not-started tournament
     2026,
     new Date("2026-11-01T12:00:00Z"),
     async (url) => {
+      if (url.includes("/web/games/results/")) return { games: [] };
       if (url.includes("supercopa-ecuador")) throw new Error("Feed offline");
       if (url.includes("apiweb.fef.ec"))
         return {

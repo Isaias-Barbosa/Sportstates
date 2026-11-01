@@ -320,9 +320,11 @@ test("only healthy public reads receive tagged CDN caching, never private browse
   globalThis.fetch = async (url) => ({
     ok: true,
     json: async () =>
-      String(url).includes("apiweb.fef.ec")
-        ? { status_code: 200, success: true, data: { stages: [] } }
-        : { events: [] },
+      String(url).includes("webws.365scores.com")
+        ? { games: [] }
+        : String(url).includes("apiweb.fef.ec")
+          ? { status_code: 200, success: true, data: { stages: [] } }
+          : { events: [] },
   });
   async function request(url, authorization) {
     let body;

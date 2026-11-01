@@ -302,11 +302,7 @@ export default function AdminGames() {
   const visible = matches.filter(
     (m) =>
       (sport === "all" || m.sport === sport) &&
-      (section !== "broadcasts" ||
-        (m.state !== "finished" &&
-          (!m.watch?.confirmedForMatch ||
-            m.watch.links.some((link) => link.id === "admin-manual") ||
-            manualKeys.has(keyOf(m))))),
+      (section !== "broadcasts" || m.state !== "finished"),
   );
   const broadcastConfirmedByApi =
     !!broadcastEditing?.watch?.confirmedForMatch &&
@@ -410,7 +406,7 @@ export default function AdminGames() {
             </label>
             <p>
               {section === "broadcasts"
-                ? "Inclua a transmissão quando a API não identificar uma fonte específica para o jogo."
+                ? "Cadastre uma fonte manual ou complemente as opções já confirmadas para a partida."
                 : "Uma partida em destaque por data."}
             </p>
           </div>
@@ -465,7 +461,7 @@ export default function AdminGames() {
                 }
               >
                 {section === "broadcasts"
-                  ? "Todos os jogos disponíveis já têm uma fonte específica ou não há partidas nesta data."
+                  ? "Não há partidas não encerradas nesta data."
                   : "Selecione outra data ou esporte."}
               </Empty>
             ) : (
@@ -623,13 +619,13 @@ export default function AdminGames() {
                 </p>
                 <p>
                   Use o nome do canal ou plataforma e um link HTTPS oficial.
-                  Essa informação só será usada quando a API não confirmar os
-                  canais da partida.
+                  A fonte manual fica vinculada somente a esta partida.
                 </p>
                 {broadcastConfirmedByApi && (
                   <Notice>
-                    A API passou a confirmar uma transmissão para este jogo.
-                    Esta indicação manual não está ativa e só pode ser removida.
+                    Já existe transmissão confirmada automaticamente. O link
+                    manual será adicionado como opção complementar, sem
+                    substituir os canais confirmados.
                   </Notice>
                 )}
                 <label>
@@ -641,7 +637,6 @@ export default function AdminGames() {
                     }
                     maxLength={80}
                     required
-                    readOnly={broadcastConfirmedByApi}
                     placeholder="Ex.: ESPN, Prime Video, canal oficial"
                   />
                 </label>
@@ -653,7 +648,6 @@ export default function AdminGames() {
                     onChange={(event) => setBroadcastUrl(event.target.value)}
                     maxLength={500}
                     required
-                    readOnly={broadcastConfirmedByApi}
                     placeholder="https://..."
                   />
                 </label>
@@ -666,7 +660,6 @@ export default function AdminGames() {
                       setBroadcastReferenceUrl(event.target.value)
                     }
                     maxLength={500}
-                    readOnly={broadcastConfirmedByApi}
                     placeholder="https://fonte-oficial.com/programacao"
                   />
                 </label>
@@ -679,7 +672,6 @@ export default function AdminGames() {
                       setBroadcastReviewedOn(event.target.value)
                     }
                     required
-                    disabled={broadcastConfirmedByApi}
                   />
                 </label>
                 {broadcastError && <Notice error>{broadcastError}</Notice>}
@@ -700,15 +692,13 @@ export default function AdminGames() {
                   >
                     Cancelar
                   </button>
-                  {!broadcastConfirmedByApi && (
-                    <button
-                      className="admin-primary"
-                      type="submit"
-                      disabled={savingBroadcast}
-                    >
-                      {savingBroadcast ? "Salvando…" : "Salvar fonte"}
-                    </button>
-                  )}
+                  <button
+                    className="admin-primary"
+                    type="submit"
+                    disabled={savingBroadcast}
+                  >
+                    {savingBroadcast ? "Salvando…" : "Salvar fonte"}
+                  </button>
                 </div>
               </form>
             </div>

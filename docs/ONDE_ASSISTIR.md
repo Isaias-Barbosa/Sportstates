@@ -1,6 +1,6 @@
 # Onde assistir — links oficiais
 
-O recurso aparece apenas quando o estado da partida é `live`: na seção de destaque, num atalho na linha da Central de jogos e na página de detalhes. O atalho abre o bloco `#onde-assistir`; links externos abrem em nova aba com `noopener noreferrer`.
+As opções aparecem para partidas ao vivo e ainda não encerradas; partidas finalizadas não exibem links. Cards podem mostrar o guia da competição antes do início, sempre identificado como orientação e não como confirmação do jogo. Links externos abrem em nova aba com `noopener noreferrer`.
 
 ## Precisão do que é mostrado
 
@@ -8,13 +8,15 @@ O feed ESPN pode devolver emissoras dos EUA mesmo com `region=br`; placares sem 
 
 A interface informa quando uma plataforma é apenas uma opção da competição e quando existe confirmação para aquele evento. Para cada partida das ligas/copas adicionadas das Américas, o guia inclui uma busca oficial ESPN Brasil pelo nome dos dois clubes e links da programação ESPN/Disney+ para consulta. Esses links não confirmam transmissão; confirmação automática continua vindo de metadados brasileiros explícitos, agendas oficiais com correspondência exata de partida, ou uma página oficial do evento. O evento Boca Juniors x River Plate de 01/11/2026 tem essa página própria no Disney+; o registro em `MATCH_BROADCASTS` é limitado ao ID ESPN desse jogo e não é generalizado para a liga argentina. Direitos, planos e restrições territoriais variam.
 
+Para competições brasileiras cobertas pelo 365Scores, as redes declaradas no detalhe da partida só são confirmadas quando a fonte marca explicitamente o país como Brasil (`countryId=21`). A busca ESPN/Disney+ continua sendo apenas um guia. O painel Admin > Transmissões permite complementar os canais confirmados com links HTTPS específicos para aquela partida.
+
 ## Fontes consultadas
 
 | Competição                                      | Destinos / referência oficial                                                                                                                                                                    |
 | ----------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | Brasileirão A                                   | https://premiere.globo.com/ e Prime Video, conforme https://www.aboutamazon.com.br/noticias/entretenimento/nba-no-modo-prime-voltou-com-nova-programacao-e-comentarista-para-a-temporada-2026-27 |
 | Brasileirão B, Premier League, Serie A italiana | Catálogo ESPN do Disney+: https://www.disneyplus.com/pt-br/browse/page-15961e0d-00e3-4ff5-90b1-eb71a0f9457c                                                                                      |
-| Boca Juniors x River Plate (01/11/2026)         | Página do evento no Disney+: https://www.disneyplus.com/pt-br/play/aa536155-4878-4b15-be18-011382749efc                                                                                     |
+| Boca Juniors x River Plate (01/11/2026)         | Página do evento no Disney+: https://www.disneyplus.com/pt-br/play/aa536155-4878-4b15-be18-011382749efc                                                                                          |
 | LaLiga                                          | https://www.laliga.com/en-GB/where-to-watch-laliga-easports                                                                                                                                      |
 | Bundesliga                                      | https://www.bundesliga.com/en/bundesliga/info/broadcasters/                                                                                                                                      |
 | Ligue 1                                         | https://ligue1.com/en/international-broadcasters                                                                                                                                                 |

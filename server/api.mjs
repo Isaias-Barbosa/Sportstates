@@ -66,6 +66,19 @@ import { authBaseUrl, adminAuthorized } from "./admin-auth.mjs";
 import { normalizeStandings } from "./standings.mjs";
 import { KNOCKOUT_LEAGUES, fetchTournament } from "./tournaments.mjs";
 import {
+  SOCCER_365_COMPETITIONS,
+  SOCCER_365_PRIMARY_COMPETITIONS,
+  competitionStandingsUrl,
+  fetch365CompetitionGames,
+  fetch365DailyGames,
+  gameDetailUrl,
+  normalize365Game,
+  normalize365GameDetail,
+  normalize365Knockout,
+  normalize365Standings,
+  normalize365Summary,
+} from "./365scores.mjs";
+import {
   enrichBrazilSerieARounds,
   fetchGeBrazilSeasonRounds,
 } from "./ge-rounds.mjs";
@@ -111,6 +124,56 @@ async function json(url, headers = {}) {
   if (!response.ok)
     throw new Error(`Fonte indisponível (HTTP ${response.status}).`);
   return response.json();
+}
+
+function cached365Games(league) {
+  return cached(
+    `365scores:games:${league}`,
+    CACHE_TTL.standings,
+    () => fetch365CompetitionGames(league, json),
+    300000,
+  );
+}
+
+function cached365Detail(id) {
+  return cached(
+    `365scores:detail:${id}`,
+    30000,
+    () => json(gameDetailUrl(id)),
+    300000,
+  );
+}
+
+function cached365Daily() {
+  return cached(
+    "365scores:daily:brazil",
+    30000,
+    () => fetch365DailyGames(json),
+    300000,
+  );
+}
+
+async function enrich365Broadcasts(matches, games) {
+  const gamesById = new Map(games.map((game) => [String(game.id), game]));
+  const selected = matches.filter((match) => {
+    const game = gamesById.get(match.id);
+    return game?.hasTVNetworks || game?.tvNetworks?.length;
+  });
+  const details = await Promise.allSettled(
+    selected.map(async (match) => {
+      const result = await cached365Detail(match.id);
+      return [match.id, normalize365GameDetail(result.value, match)];
+    }),
+  );
+  const enriched = new Map(
+    details
+      .filter((result) => result.status === "fulfilled")
+      .map((result) => result.value),
+  );
+  return {
+    matches: matches.map((match) => enriched.get(match.id) || match),
+    failed: details.some((result) => result.status === "rejected"),
+  };
 }
 
 async function requestJson(req, limit = 4096) {
@@ -170,6 +233,52 @@ export async function scoreboard(date, sport = "all") {
   const dates = [date, next.toISOString().slice(0, 10)];
   const jobs = selectedSports.flatMap((s) =>
     s.leagues.map(async ([league, name]) => {
+      if (s.id === "soccer" && SOCCER_365_PRIMARY_COMPETITIONS.has(league)) {
+        try {
+          const today = dayInBrazil(new Date());
+          const result =
+            date === today
+              ? await cached365Daily()
+              : await cached365Games(league);
+          const expectedId = SOCCER_365_COMPETITIONS[league];
+          const games =
+            date === today
+              ? result.value.filter(
+                  (game) => Number(game.competitionId) === expectedId,
+                )
+              : result.value.games;
+          const matches = games
+            .map((game) => normalize365Game(game, league, name))
+            .filter((match) => match && dayInBrazil(match.date) === date);
+          const broadcasts = await enrich365Broadcasts(matches, games);
+          return {
+            matches: broadcasts.matches.map((match) => ({
+              ...match,
+              liveUnverified: match.state === "live" && result.stale,
+            })),
+            failed:
+              broadcasts.failed || (date !== today && result.value.partial),
+            stale: result.stale,
+            sport: s.id,
+            league,
+            name,
+            provider: "365Scores",
+            at: result.at,
+          };
+        } catch (error) {
+          console.error(`Falha ao consultar 365Scores para ${name}:`, error);
+          return {
+            matches: [],
+            failed: true,
+            stale: false,
+            sport: s.id,
+            league,
+            name,
+            provider: "365Scores",
+            at: null,
+          };
+        }
+      }
       const parts = await Promise.allSettled(
         dates.map((d) =>
           s.id === "table-tennis"
@@ -215,6 +324,14 @@ export async function scoreboard(date, sport = "all") {
         sport: s.id,
         league,
         name,
+        provider:
+          s.id === "tennis"
+            ? "ATP"
+            : s.id === "table-tennis"
+              ? "ITTF / WTT"
+              : s.id === "volleyball"
+                ? "CBV"
+                : "ESPN",
         at: good.length ? Math.min(...good.map((r) => r.at)) : null,
       };
     }),
@@ -240,7 +357,7 @@ export async function scoreboard(date, sport = "all") {
       competitions: leagues.map((l) => l[1]),
     })),
     date,
-    source: "ESPN · CBV · World Table Tennis",
+    source: "ESPN · 365Scores · CBV · World Table Tennis",
     fetchedAt: new Date(
       Math.min(...results.filter((r) => r.at).map((r) => r.at)),
     ).toISOString(),
@@ -258,14 +375,7 @@ export async function scoreboard(date, sport = "all") {
         sport: result.sport,
         league: result.league,
         competition: result.name,
-        provider:
-          result.sport === "tennis"
-            ? "ATP"
-            : result.sport === "table-tennis"
-              ? "ITTF / WTT"
-              : result.sport === "volleyball"
-                ? "CBV"
-                : "ESPN",
+        provider: result.provider,
         state,
         fetchedAt: result.at ? new Date(result.at).toISOString() : null,
         warning:
@@ -460,6 +570,105 @@ export async function route(url) {
   if (url.pathname === "/api/standings") {
     const config = leagueFor(q.get("sport"), q.get("league"));
     if (!config) return [400, { error: "Competição inválida." }];
+    if (
+      config.sport === "soccer" &&
+      SOCCER_365_PRIMARY_COMPETITIONS.has(config.league)
+    ) {
+      const seasonParam = q.get("season");
+      if (
+        seasonParam !== null &&
+        (!/^\d{4}$/.test(seasonParam) ||
+          Number(seasonParam) < 2000 ||
+          Number(seasonParam) > 2100)
+      )
+        return [400, { error: "Temporada inválida." }];
+      const year = seasonParam
+        ? Number(seasonParam)
+        : Number(dayInBrazil(new Date()).slice(0, 4));
+      const currentYear = Number(dayInBrazil(new Date()).slice(0, 4));
+      if (year !== currentYear)
+        return [
+          400,
+          {
+            error:
+              "O 365Scores disponibiliza a classificação da temporada atual para esta competição.",
+          },
+        ];
+      const hasKnockout = KNOCKOUT_LEAGUES.has(config.league);
+      const [table, tournament] = await Promise.allSettled([
+        cached(
+          `standings:365scores:${config.league}:${year}`,
+          CACHE_TTL.standings,
+          async () =>
+            normalize365Standings(
+              await json(competitionStandingsUrl(config.league)),
+              config.league,
+              config.name,
+              year,
+            ),
+          300000,
+        ),
+        hasKnockout
+          ? cached(
+              `tournament:365scores:${config.league}:${year}`,
+              CACHE_TTL.standings,
+              async () => {
+                const feed = await cached365Games(config.league);
+                return {
+                  ...normalize365Knockout(
+                    feed.value.games,
+                    config.league,
+                    config.name,
+                  ),
+                  partial: feed.value.partial,
+                };
+              },
+              300000,
+            )
+          : Promise.resolve(null),
+      ]);
+      const tableResult = table.status === "fulfilled" ? table.value : null;
+      const tournamentResult =
+        tournament.status === "fulfilled" ? tournament.value : null;
+      const tableData = tableResult?.value || null;
+      const cupData = tournamentResult?.value || null;
+      if (!tableData && !cupData)
+        return [
+          502,
+          {
+            error:
+              "Não foi possível consultar a classificação no 365Scores. Tente novamente.",
+          },
+        ];
+      const fetched = [table, tournament].filter(
+        (result) => result.status === "fulfilled" && result.value?.value,
+      );
+      const warnings = [];
+      if (hasKnockout && !cupData)
+        warnings.push("Não foi possível atualizar as fases eliminatórias.");
+      if (!tableData && cupData)
+        warnings.push(
+          "A fonte não disponibilizou tabela de pontos; exibindo as fases eliminatórias.",
+        );
+      if (cupData?.partial)
+        warnings.push("A fonte retornou uma lista parcial de partidas.");
+      return [
+        200,
+        {
+          ...config,
+          groups: tableData?.groups || [],
+          rounds: cupData?.rounds || [],
+          season: cupData?.season || tableData?.season || null,
+          currentRound: cupData?.currentRound || null,
+          warnings,
+          fetchedAt: new Date(
+            Math.min(...fetched.map((result) => result.value.at)),
+          ).toISOString(),
+          stale: fetched.some((result) => result.value.stale),
+          source: "365Scores · feed público não oficial",
+        },
+      ];
+    }
     if (ECUADOR_CUPS[config.league])
       return [200, await fetchEcuadorCupStandings(config.league, json)];
     if (config.sport === "volleyball") return [200, await volleyStandings()];
@@ -591,6 +800,42 @@ export async function route(url) {
     const month = q.get("month") || dayInBrazil(new Date()).slice(0, 7);
     if (!config || !/^(20\d{2})-(0[1-9]|1[0-2])$/.test(month))
       return [400, { error: "Competição ou mês inválido. Use AAAA-MM." }];
+    if (
+      config.sport === "soccer" &&
+      SOCCER_365_PRIMARY_COMPETITIONS.has(config.league)
+    ) {
+      const result = await cached(
+        `league-games:365scores:${config.league}:${month}`,
+        (body) => leagueGamesTtl(body, month, dayInBrazil(new Date())),
+        async () => {
+          const feed = await fetch365CompetitionGames(config.league, json);
+          const matches = feed.games
+            .map((game) => normalize365Game(game, config.league, config.name))
+            .filter(
+              (match) => match && dayInBrazil(match.date).startsWith(month),
+            );
+          const broadcasts = await enrich365Broadcasts(matches, feed.games);
+          return {
+            matches: broadcasts.matches.sort((a, b) =>
+              a.date.localeCompare(b.date),
+            ),
+            partial: feed.partial || broadcasts.failed,
+          };
+        },
+        300000,
+      );
+      return [
+        200,
+        {
+          ...config,
+          ...result.value,
+          month,
+          stale: result.stale,
+          fetchedAt: new Date(result.at).toISOString(),
+          source: "365Scores · feed público não oficial",
+        },
+      ];
+    }
     if (["volleyball", "tennis", "table-tennis"].includes(config.sport)) {
       const r =
         config.sport === "table-tennis"
@@ -763,6 +1008,38 @@ export async function route(url) {
             : await volleyDetail(id);
       const manual = await enrichManualBroadcasts([detail.match]);
       return [200, { ...detail, match: manual.matches[0] }];
+    }
+    if (
+      config.sport === "soccer" &&
+      SOCCER_365_PRIMARY_COMPETITIONS.has(config.league)
+    ) {
+      const result = await cached(
+        `match:365scores:${config.league}:${id}`,
+        (raw) => matchTtl(normalize365Summary(raw, config.league, config.name)),
+        () => json(gameDetailUrl(id)),
+        300000,
+      );
+      const detail = normalize365Summary(
+        result.value,
+        config.league,
+        config.name,
+      );
+      if (url.pathname === "/api/media")
+        return [200, await matchMedia(detail.match, detail.events)];
+      const appliedManual = await enrichManualBroadcasts([detail.match]);
+      return [
+        200,
+        {
+          ...detail,
+          match: appliedManual.matches[0],
+          ...(appliedManual.warning
+            ? { warnings: [appliedManual.warning] }
+            : {}),
+          stale: result.stale,
+          fetchedAt: new Date(result.at).toISOString(),
+          source: "365Scores · feed público não oficial",
+        },
+      ];
     }
     const result = await cached(
       `match:player-lances-v2:${config.sport}:${config.league}:${id}`,
@@ -1072,17 +1349,6 @@ export async function handler(req, res) {
         return res.end(
           JSON.stringify({
             error: "A partida não está disponível para edição nesta data.",
-          }),
-        );
-      }
-      const manuallyEdited = match.watch?.links.some(
-        (link) => link.id === "admin-manual",
-      );
-      if (match.watch?.confirmedForMatch && !manuallyEdited) {
-        res.statusCode = 409;
-        return res.end(
-          JSON.stringify({
-            error: "A API já confirmou a transmissão desta partida.",
           }),
         );
       }
