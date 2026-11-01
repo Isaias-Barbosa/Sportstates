@@ -2,7 +2,7 @@
  * This is a competition directory, NOT a per-event TV schedule.
  * Never infer Brazilian rights from the ESPN feed's US broadcast strings.
  */
-export const WATCH_REVIEWED_AT = "2026-10-29";
+export const WATCH_REVIEWED_AT = "2026-11-01";
 const disney = {
   id: "disney",
   name: "Disney+ · ESPN",
@@ -22,6 +22,21 @@ const prime = {
   note: "Jogos selecionados; confira a programação e possíveis canais adicionais.",
   sourceUrl:
     "https://www.aboutamazon.com.br/noticias/entretenimento/nba-no-modo-prime-voltou-com-nova-programacao-e-comentarista-para-a-temporada-2026-27",
+};
+// Direct official event pages are scoped to one ESPN event, not league rights.
+const MATCH_BROADCASTS = {
+  "soccer/arg.1/401841658": [
+    {
+      id: "disney-boca-river",
+      name: "Disney+ · ESPN",
+      url: "https://www.disneyplus.com/pt-br/play/aa536155-4878-4b15-be18-011382749efc",
+      access: "subscription",
+      kind: "platform",
+      note: "Página oficial Disney+ Brasil desta partida; requer assinatura elegível.",
+      sourceUrl:
+        "https://www.disneyplus.com/pt-br/play/aa536155-4878-4b15-be18-011382749efc",
+    },
+  ],
 };
 function guide(
   id,
@@ -280,6 +295,20 @@ export function getWatchOptions(match, competition = {}) {
   const channels = matchChannels(competition);
   const international = internationalChannels(competition);
   const common = { international, brazilStatus: channels.length ? 'listed' : 'unknown', brazilGuides: BRAZIL_CHANNEL_GUIDES };
+  const matchBroadcasts =
+    MATCH_BROADCASTS[`${match.sport}/${match.league}/${match.id}`] || [];
+  if (matchBroadcasts.length)
+    return {
+      ...common,
+      country: "BR",
+      regionLabel: "Brasil",
+      scope: "match",
+      confirmedForMatch: true,
+      reviewedAt: WATCH_REVIEWED_AT,
+      links: matchBroadcasts.filter((link) => safeWatchUrl(link.url)),
+      message:
+        "Transmissão confirmada na página oficial Disney+ Brasil desta partida.",
+    };
   if (channels.length) return {
     ...common, country: "BR", regionLabel: "Brasil", scope: "match", confirmedForMatch: true,
     reviewedAt: WATCH_REVIEWED_AT, links: channels,

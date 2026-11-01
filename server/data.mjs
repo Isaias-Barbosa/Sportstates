@@ -10,6 +10,11 @@ import { normalizeBasketball, basketballStatName } from "./basketball.mjs";
 import { normalizeEspnVideos } from "./match-media.mjs";
 import { formationRows } from "./formation.mjs";
 import { getWatchOptions } from "./watch.mjs";
+import {
+  redCardWasOverturned,
+  resolvedVarReview,
+  varReview,
+} from "./var-decisions.mjs";
 export const ZONE = "America/Sao_Paulo";
 export function dayInBrazil(date) {
   return new Intl.DateTimeFormat("en-CA", {
@@ -103,6 +108,7 @@ export function normalizeEvent(e, sport, league, leagueName) {
   return { ...match, watch: getWatchOptions(match, c) };
 }
 export function eventKind(p, sport) {
+  if (sport === "soccer" && varReview(p)) return "var";
   const code = String(
     p.type?.type ||
       p.type?.abbreviation ||
@@ -177,53 +183,102 @@ export function normalizeSummary(raw, sport, league, leagueName) {
       ),
     ),
   );
+  const reviewEvents = [
+    ...(raw.commentary || []),
+    ...(raw.plays || []),
+    ...(raw.keyEvents || []),
+  ];
+  const reviews = reviewEvents
+    .map((entry) => resolvedVarReview(entry, reviewEvents))
+    .filter(Boolean);
+  const reviewFor = (entry) => {
+    if (!varReview(entry)) return null;
+    const key = String(
+      entry.play?.id || entry.id || entry.sequence || "",
+    );
+    const source = reviewEvents.find(
+      (candidate) =>
+        String(candidate.play?.id || candidate.id || candidate.sequence || "") ===
+        key,
+    );
+    return source ? resolvedVarReview(source, reviewEvents) : varReview(entry);
+  };
   const events = source
-    .map((p, i) => ({
-      id: String(p.play?.id || p.id || p.sequenceNumber || i),
-      minute: p.time?.displayValue || p.clock?.displayValue || "",
-      period: p.period?.number || p.play?.period?.number || "",
-      text: p.text || p.shortText || p.type?.text || "Evento",
-      type:
-        (sport === "football"
-          ? footballPlayLabel(p)
-          : sport === "basketball"
-            ? p.shortDescription
-            : null) ||
-        p.type?.text ||
-        p.play?.type?.text ||
-        "",
-      ...(["basketball", "football", "hockey"].includes(sport) &&
-      p.homeScore != null &&
-      p.awayScore != null
-        ? { score: `${p.homeScore}–${p.awayScore}` }
-        : {}),
-      scorer:
-        eventKind(p, sport) === "goal"
-          ? p.play?.participants?.find((person) => person.type === "scorer")
-              ?.athlete?.displayName ||
-            p.participants?.find((person) => person.type === "scorer")?.athlete
-              ?.displayName ||
-            p.play?.participants?.[0]?.athlete?.displayName ||
-            p.participants?.[0]?.athlete?.displayName ||
-            ""
-          : sport === "basketball" && p.scoringPlay
-            ? playerNames.get(String(p.participants?.[0]?.athlete?.id || "")) ||
+    .filter((p) => {
+      const kind = eventKind(p, sport);
+      return (
+        !["red-card", "second-yellow"].includes(kind) ||
+        !redCardWasOverturned(p, reviews)
+      );
+    })
+    .map((p, i) => {
+      const review = reviewFor(p);
+      const kind = eventKind(p, sport);
+      const reviewLabel = review
+        ? review.redCard
+          ? review.outcome === "confirmed"
+            ? "VAR · Cartão vermelho confirmado"
+            : review.outcome === "overturned"
+              ? "VAR · Cartão vermelho anulado"
+              : "VAR · Revisão de cartão vermelho"
+          : review.outcome === "confirmed"
+            ? "VAR · Decisão confirmada"
+            : review.outcome === "overturned"
+              ? "VAR · Decisão anulada"
+              : "Revisão do VAR"
+        : "";
+      return {
+        id: String(p.play?.id || p.id || p.sequenceNumber || i),
+        minute: p.time?.displayValue || p.clock?.displayValue || "",
+        period: p.period?.number || p.play?.period?.number || "",
+        text: p.text || p.shortText || p.type?.text || "Evento",
+        type:
+          reviewLabel ||
+          (sport === "football"
+            ? footballPlayLabel(p)
+            : sport === "basketball"
+              ? p.shortDescription
+              : null) ||
+          p.type?.text ||
+          p.play?.type?.text ||
+          "",
+        ...(["basketball", "football", "hockey"].includes(sport) &&
+        p.homeScore != null &&
+        p.awayScore != null
+          ? { score: `${p.homeScore}–${p.awayScore}` }
+          : {}),
+        scorer:
+          kind === "goal"
+            ? p.play?.participants?.find((person) => person.type === "scorer")
+                ?.athlete?.displayName ||
+              p.participants?.find((person) => person.type === "scorer")
+                ?.athlete?.displayName ||
+              p.play?.participants?.[0]?.athlete?.displayName ||
+              p.participants?.[0]?.athlete?.displayName ||
               ""
-            : "",
-      ...(sport === "basketball"
-        ? {
-            scorerTeamId: String(p.team?.id || ""),
-            points: Number(p.scoreValue) || null,
-          }
-        : {}),
-      ...(sport === "hockey" ? { scorerTeamId: String(p.team?.id || "") } : {}),
-      kind: eventKind(p, sport),
-      sequence: Number(p.sequenceNumber ?? p.sequence ?? i),
-      scoring:
-        sport === "soccer"
-          ? eventKind(p, sport) === "goal"
-          : !!(p.scoringPlay || p.play?.scoringPlay),
-    }))
+            : sport === "basketball" && p.scoringPlay
+              ? playerNames.get(
+                  String(p.participants?.[0]?.athlete?.id || ""),
+                ) || ""
+              : "",
+        ...(sport === "basketball"
+          ? {
+              scorerTeamId: String(p.team?.id || ""),
+              points: Number(p.scoreValue) || null,
+            }
+          : {}),
+        ...(sport === "hockey"
+          ? { scorerTeamId: String(p.team?.id || "") }
+          : {}),
+        kind,
+        ...(review ? { reviewOutcome: review.outcome } : {}),
+        sequence: Number(p.sequenceNumber ?? p.sequence ?? i),
+        scoring:
+          sport === "soccer"
+            ? kind === "goal"
+            : !!(p.scoringPlay || p.play?.scoringPlay),
+      };
+    })
     .sort((a, b) => b.sequence - a.sequence);
   const statistics = (raw.boxscore?.teams || raw.boxscore?.players || [])
     .map((t) => ({

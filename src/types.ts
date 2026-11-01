@@ -185,7 +185,14 @@ export type Detail = {
     scorerTeamId?: string;
     points?: number | null;
     score?: string;
-    kind: "goal" | "yellow-card" | "red-card" | "second-yellow" | "other";
+    kind:
+      | "goal"
+      | "yellow-card"
+      | "red-card"
+      | "second-yellow"
+      | "var"
+      | "other";
+    reviewOutcome?: "confirmed" | "overturned" | "unknown";
   }[];
   statistics: { team: string; stats: { name: string; value: string }[] }[];
   lineups: {

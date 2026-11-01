@@ -19,6 +19,28 @@ test("watch options appear on live and upcoming games, never finished", () => {
   assert.equal(getWatchOptions({ ...match, state: "finished" }), null);
   assert.ok(getWatchOptions(match).links.length);
 });
+test("verified Disney+ event page confirms Boca-River for Brazil only", () => {
+  const watch = getWatchOptions({
+    state: "live",
+    sport: "soccer",
+    league: "arg.1",
+    id: "401841658",
+  });
+  assert.equal(watch.scope, "match");
+  assert.equal(watch.confirmedForMatch, true);
+  assert.equal(watch.country, "BR");
+  assert.equal(watch.links[0].id, "disney-boca-river");
+  assert.match(watch.links[0].url, /disneyplus\.com\/pt-br\/play/);
+  assert.equal(
+    getWatchOptions({
+      state: "live",
+      sport: "soccer",
+      league: "arg.1",
+      id: "401841645",
+    }).confirmedForMatch,
+    false,
+  );
+});
 test("US feed broadcaster names never become Brazilian watch links", () => {
   const watch = getWatchOptions(match);
   assert.equal(watch.country, "BR");

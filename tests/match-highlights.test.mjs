@@ -130,6 +130,77 @@ test("second yellow is an expulsion, and its companion red event is not duplicat
   assert.equal(result.away.length, 1);
   assert.equal(result.away[0].secondYellow, true);
 });
+test("VAR overturning a red card removes the expulsion from the match highlights", () => {
+  const red = incident("red", "red-card", "a", "Away Player", "7'");
+  red.clock.value = 420;
+  const review = {
+    sequence: 9,
+    time: { value: 480, displayValue: "8'" },
+    text: "Decisão do VAR: Cartão vermelho Away Player (Away).",
+    play: {
+      id: "var-review",
+      type: {
+        text: "VAR - Decisão do árbitro foi anulada",
+        type: "var---referee-decision-cancelled",
+      },
+      text: "Decisão do VAR: Cartão vermelho Away Player (Away).",
+      team: { displayName: "Away" },
+      participants: [{ athlete: { displayName: "Away Player" } }],
+    },
+  };
+  const cardCommentary = {
+    sequence: 8,
+    time: { value: 420, displayValue: "7'" },
+    text: red.text,
+    play: red,
+  };
+  const result = normalize(
+    raw({ events: [red], commentary: [review, cardCommentary] }),
+  );
+  assert.equal(result.highlights.away.length, 0);
+  assert.equal(result.events.length, 1);
+  assert.equal(result.events[0].kind, "var");
+  assert.equal(result.events[0].reviewOutcome, "overturned");
+  assert.match(result.events[0].type, /anulado/);
+});
+test("VAR confirming a red card keeps one dismissal and labels the review", () => {
+  const red = incident("red", "red-card", "a", "Away Player", "10'");
+  red.clock.value = 600;
+  const review = {
+    sequence: 9,
+    time: { value: 480, displayValue: "8'" },
+    text: "Decisão do VAR: Cartão vermelho Away Player (Away).",
+    play: {
+      id: "var-review",
+      type: {
+        text: "VAR - Decisão do árbitro foi anulada",
+        type: "var---referee-decision-cancelled",
+      },
+      text: "Decisão do VAR: Cartão vermelho Away Player (Away).",
+      team: { displayName: "Away" },
+      participants: [{ athlete: { displayName: "Away Player" } }],
+    },
+  };
+  const cardCommentary = {
+    sequence: 10,
+    time: { value: 600, displayValue: "10'" },
+    text: red.text,
+    play: red,
+  };
+  const result = normalize(
+    raw({ events: [red], commentary: [review, cardCommentary] }),
+  );
+  assert.equal(result.highlights.away.length, 1);
+  assert.equal(result.highlights.away[0].kind, "red-card");
+  assert.equal(
+    result.events.filter((event) => event.kind === "red-card").length,
+    1,
+  );
+  assert.equal(
+    result.events.find((event) => event.kind === "var").reviewOutcome,
+    "confirmed",
+  );
+});
 test("own goal is credited to the opposite of the player roster, independently of provider team field", () => {
   const own = incident("own", "own-goal", "h");
   const result = normalize(raw({ events: [own] })).highlights;

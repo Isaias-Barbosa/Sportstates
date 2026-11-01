@@ -1050,6 +1050,21 @@ footer a {
   border-radius: 50%;
   margin-top: 5px;
 }
+.event-var {
+  position: relative;
+  z-index: 1;
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  margin-left: -9px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: var(--panel);
+  color: var(--sport-blue);
+  font-size: 8px;
+  font-weight: 800;
+}
 .timeline strong {
   font-size: 11px;
   color: var(--text);

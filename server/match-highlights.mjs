@@ -1,3 +1,9 @@
+import {
+  redCardWasOverturned,
+  resolvedVarReview,
+  varReview,
+} from "./var-decisions.mjs";
+
 const number = (value) =>
   value != null && /^\d+(?:\.\d+)?$/.test(String(value)) ? Number(value) : null;
 const clean = (value) =>
@@ -101,6 +107,14 @@ export function matchHighlights(raw, match, classify) {
   }
   const ids = new Set(),
     signatures = new Set();
+  const reviewEvents = [
+    ...(raw.commentary || []),
+    ...(raw.plays || []),
+    ...(raw.keyEvents || []),
+  ];
+  const reviews = reviewEvents
+    .map((entry) => resolvedVarReview(entry, reviewEvents))
+    .filter(Boolean);
   function add(entry, fallback = false) {
     const p = entry.play
       ? { ...entry.play, ...entry, type: entry.play.type || entry.type }
@@ -115,6 +129,7 @@ export function matchHighlights(raw, match, classify) {
       return;
     const kind = classify(p, "soccer");
     if (!["goal", "red-card", "second-yellow"].includes(kind)) return;
+    if (redCardWasOverturned(p, reviews)) return;
     const participants = p.participants || entry.play?.participants || [];
     const athlete = (
       participants.find((p) => /scorer|scoring/i.test(p.type || "")) ||
@@ -143,7 +158,10 @@ export function matchHighlights(raw, match, classify) {
       entry.play?.clock?.displayValue ||
       "";
     const eventId = String(entry.play?.id || p.id || "");
-    const signature = `${kind === "goal" ? "goal" : "red"}:${id}:${clean(player)}:${minute}:${period || ""}`;
+    const signature =
+      kind === "goal"
+        ? `goal:${id}:${clean(player)}:${minute}:${period || ""}`
+        : `red:${id}:${clean(player)}`;
     if (
       (eventId && ids.has(eventId)) ||
       ((fallback || kind !== "goal") && signatures.has(signature))

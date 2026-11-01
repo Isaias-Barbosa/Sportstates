@@ -4,9 +4,9 @@ O recurso aparece apenas quando o estado da partida é `live`: na seção de des
 
 ## Precisão do que é mostrado
 
-O feed ESPN pode devolver emissoras dos EUA mesmo com `region=br`. Portanto `broadcast` nunca é convertido automaticamente em uma indicação de transmissão brasileira. O backend usa o catálogo `server/watch.mjs`, revisado em 25/10/2026, com `country: BR`, `scope: competition` e `confirmedForMatch: false`.
+O feed ESPN pode devolver emissoras dos EUA mesmo com `region=br`; placares sem informação de canal também não provam ausência de transmissão. Portanto `broadcast` nunca é convertido automaticamente em uma indicação brasileira. O backend usa o catálogo `server/watch.mjs` e separa opções gerais de evidências específicas da partida.
 
-A interface informa que as plataformas são opções da competição e que é necessário confirmar o jogo na programação. Não há uma API de grade brasileira por evento integrada nesta versão. Não inventamos links de vídeo nem afirmamos que toda partida está em todos os serviços listados. Direitos, planos e restrições territoriais variam. Sem destino conhecido, a interface informa a ausência. Para ligas com direitos fragmentados, usamos o diretório oficial de emissoras, sem adivinhar um detentor.
+A interface informa quando uma plataforma é apenas uma opção da competição e quando existe confirmação para aquele evento. O evento Boca Juniors x River Plate de 01/11/2026 tem uma página oficial própria no Disney+; o registro manual em `MATCH_BROADCASTS` é limitado ao ID ESPN dessa partida e não é generalizado para a liga argentina. Não inventamos links de vídeo nem afirmamos que toda partida está em todos os serviços listados. Direitos, planos e restrições territoriais variam.
 
 ## Fontes consultadas
 
@@ -14,6 +14,7 @@ A interface informa que as plataformas são opções da competição e que é ne
 | ----------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | Brasileirão A                                   | https://premiere.globo.com/ e Prime Video, conforme https://www.aboutamazon.com.br/noticias/entretenimento/nba-no-modo-prime-voltou-com-nova-programacao-e-comentarista-para-a-temporada-2026-27 |
 | Brasileirão B, Premier League, Serie A italiana | Catálogo ESPN do Disney+: https://www.disneyplus.com/pt-br/browse/page-15961e0d-00e3-4ff5-90b1-eb71a0f9457c                                                                                      |
+| Boca Juniors x River Plate (01/11/2026)         | Página do evento no Disney+: https://www.disneyplus.com/pt-br/play/aa536155-4878-4b15-be18-011382749efc                                                                                     |
 | LaLiga                                          | https://www.laliga.com/en-GB/where-to-watch-laliga-easports                                                                                                                                      |
 | Bundesliga                                      | https://www.bundesliga.com/en/bundesliga/info/broadcasters/                                                                                                                                      |
 | Ligue 1                                         | https://ligue1.com/en/international-broadcasters                                                                                                                                                 |
@@ -26,17 +27,17 @@ A interface informa que as plataformas são opções da competição e que é ne
 
 ## Manutenção e segurança
 
-Atualize catálogo, fontes e `WATCH_REVIEWED_AT` quando houver alteração de direitos ou revisão de temporada. O campo de atualização é exibido nos detalhes. O catálogo é estático; não se trata de confirmação automática da transmissão da partida. Não usa chaves adicionais nem chamadas externas por jogo.
+Atualize catálogo, fontes e `WATCH_REVIEWED_AT` quando houver alteração de direitos ou revisão de temporada. O campo de atualização é exibido nos detalhes. Confirmações manuais devem apontar para uma página oficial específica e usar o ID do evento; não devem ser extrapoladas para a competição. Não usa chaves adicionais nem chamadas externas por jogo.
 
 Destinos de navegação são HTTPS e limitados a hosts oficiais exatos. Não há embeds, proxies de vídeo, URLs M3U8/DRM ou extração de streams. A autenticação e eventual assinatura acontecem diretamente no serviço escolhido.
 
-## Canais nos cards (26/10/2026)
+## Canais nos cards (01/11/2026)
 
 Cards de jogos ao vivo e próximos exibem selos de texto e links oficiais. Selos são identificadores visuais, não logos de marcas copiados.
 
 A normalização admite canais específicos apenas se o registro de transmissão da partida declarar explicitamente região `br`, com nome reconhecido. ESPN numerada não é deduzida por competição ou idioma da consulta. A lista conhecida inclui ESPN e ESPN 2–6, Disney+, Premiere e Prime Video. Registros estrangeiros, sem país ou desconhecidos são ignorados.
 
-Sem evidência por partida, exibe-se “Guia da competição · confirmar jogo”. Essa alternativa não garante a transmissão do confronto. Nos testes reais, o feed ESPN apresentou transmissões dos EUA ou nenhuma transmissão brasileira, mesmo com `region=br`; portanto não há cobertura garantida de canais exatos para cada jogo.
+Sem evidência por partida, exibe-se “Guia da competição · confirmar jogo”. Essa alternativa não garante a transmissão do confronto. O feed ESPN pode não listar canais mesmo quando existe uma página de evento no serviço; sempre que possível, confira fontes oficiais de programação e páginas do evento antes de concluir que não há transmissão.
 
 SofaScore não foi usado como confirmação oficial: a própria [FAQ de programação](https://sofascore.helpscoutdocs.com/article/175-tv-schedule-information?lng=en) explica que os dados combinam contribuições da comunidade e outras fontes. Para cobertura completa será necessário um fornecedor de grade brasileira por evento ou integração com programação das emissoras.
 
