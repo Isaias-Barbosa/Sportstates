@@ -209,55 +209,6 @@ export type Detail = {
   fetchedAt: string;
   stale: boolean;
 };
-export type Transfers = {
-  configured: boolean;
-  message?: string;
-  source?: string;
-  clubLabel?: string;
-  clubId?: string;
-  page?: number;
-  lastPage?: number;
-  totalPlayers?: number;
-  queriedPlayers?: number;
-  failedPlayers?: number;
-  warnings?: string[];
-  coverage?: string;
-  transfers: {
-    id?: string;
-    upcoming?: boolean;
-    player: string;
-    playerId: string | number;
-    date: string | null;
-    type: string;
-    from: string;
-    to: string;
-    fee?: number | string | null;
-    marketValue?: number | string | null;
-  }[];
-  fetchedAt?: string;
-};
-
-export type ClubSearch = {
-  results: { id: string; name: string; country?: string }[];
-  page: number;
-  lastPage: number;
-};
-
-export type PlayerPhoto = {
-  url: string;
-  sourceUrl: string;
-  license: string;
-  licenseUrl: string;
-  author: string;
-  title: string;
-  source: string;
-  modified: boolean;
-};
-export type PlayerPhotos = {
-  photos: Record<string, PlayerPhoto | null>;
-  warnings: string[];
-};
-
 export type WatchLink = {
   badge?: string;
   id: string;

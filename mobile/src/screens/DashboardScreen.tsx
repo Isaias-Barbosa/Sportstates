@@ -16,7 +16,11 @@ import { SportTabs } from "../components/SportTabs";
 import { fetchScores, getTodayDateString } from "../api";
 import type { Match } from "../types";
 
-export function DashboardScreen() {
+type Props = {
+  onSelectMatch: (match: Match) => void;
+};
+
+export function DashboardScreen({ onSelectMatch }: Props) {
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
   const [matches, setMatches] = useState<Match[]>([]);
@@ -85,7 +89,10 @@ export function DashboardScreen() {
       </View>
 
       {/* Seletor de Esportes */}
-      <SportTabs selectedSport={selectedSport} onSelectSport={setSelectedSport} />
+      <SportTabs
+        selectedSport={selectedSport}
+        onSelectSport={setSelectedSport}
+      />
 
       {loading ? (
         <View style={styles.centerContainer}>
@@ -109,23 +116,29 @@ export function DashboardScreen() {
                 <Text style={styles.sectionTitle}>
                   {liveMatch ? "🔥 AO VIVO AGORA" : "⭐ DESTAQUE DO DIA"}
                 </Text>
-                <LiveHeroCard match={heroMatch} />
+                <LiveHeroCard
+                  match={heroMatch}
+                  onPress={() => onSelectMatch(heroMatch)}
+                />
                 <Text style={styles.sectionTitle}>TODOS OS JOGOS</Text>
               </View>
-            ) : null
+            ) : undefined
           }
           renderItem={({ item }) => (
             <MatchCard
               match={item}
               isFavorite={favorites.includes(item.id)}
               onToggleFavorite={() => toggleFavorite(item.id)}
+              onPress={() => onSelectMatch(item)}
             />
           )}
           ListEmptyComponent={
             <View style={styles.emptyContainer}>
               <Text style={styles.emptyTitle}>Nenhuma partida encontrada</Text>
               <Text style={styles.emptySubtitle}>
-                Tente selecionar outro esporte ou verifique a conexão.
+                {selectedSport === "judo"
+                  ? "Judô está no catálogo, mas ainda não há uma fonte de placares integrada."
+                  : "Tente selecionar outro esporte ou verifique a conexão."}
               </Text>
             </View>
           }
@@ -193,4 +206,3 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
 });
-

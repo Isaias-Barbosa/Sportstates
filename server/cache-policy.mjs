@@ -39,7 +39,7 @@ export function teamTtl(detail) {
 }
 
 // Browser responses are revalidated so an admin purge is never defeated by a
-// visitor's private HTTP cache. Only Vercel's tagged shared CDN keeps responses.
+// visitor's private HTTP cache. Public responses use the tagged Vercel CDN.
 export function responseTtl(url, body, now = Date.now()) {
   if (
     body.stale ||
@@ -70,15 +70,6 @@ export function responseTtl(url, body, now = Date.now()) {
       ttl = matchTtl(body, now);
       break;
     case "/api/scores":
-      // Live/current-day responses must not stack a CDN cache on provider caching.
-      if (
-        body.matches?.some((m) => m.state === "live") ||
-        body.date ===
-          new Intl.DateTimeFormat("en-CA", {
-            timeZone: "America/Sao_Paulo",
-          }).format(new Date(now))
-      )
-        return 0;
       ttl = scoresTtl(
         body.matches,
         body.date,

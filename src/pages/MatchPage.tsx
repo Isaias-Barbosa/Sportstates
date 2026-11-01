@@ -34,7 +34,7 @@ import {
   MapPin,
   Clock3,
 } from "lucide-react";
-import type { Scores, Detail, Transfers, MatchMedia } from "../types";
+import type { Scores, Detail, MatchMedia } from "../types";
 import { useApi, useFavorites, today, time, dateLabel } from "../hooks";
 import { sports, keyOf } from "../catalog";
 import {

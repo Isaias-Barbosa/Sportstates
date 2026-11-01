@@ -15,6 +15,8 @@ export function LiveHeroCard({ match, onPress }: Props) {
     <TouchableOpacity
       activeOpacity={0.88}
       onPress={onPress}
+      accessibilityRole="button"
+      accessibilityLabel={`Abrir partida: ${match.home.name} contra ${match.away.name}`}
       style={[styles.container, isLive && styles.liveContainer]}
     >
       {/* Topo do Card */}
@@ -35,10 +37,16 @@ export function LiveHeroCard({ match, onPress }: Props) {
         {/* Time Casa */}
         <View style={styles.teamCol}>
           {match.home.logo ? (
-            <Image source={{ uri: match.home.logo }} style={styles.teamLogo} resizeMode="contain" />
+            <Image
+              source={{ uri: match.home.logo }}
+              style={styles.teamLogo}
+              resizeMode="contain"
+            />
           ) : (
             <View style={styles.teamLogoPlaceholder}>
-              <Text style={styles.teamInitial}>{match.home.name.charAt(0)}</Text>
+              <Text style={styles.teamInitial}>
+                {match.home.name.charAt(0)}
+              </Text>
             </View>
           )}
           <Text style={styles.teamName} numberOfLines={2}>
@@ -49,11 +57,15 @@ export function LiveHeroCard({ match, onPress }: Props) {
         {/* Placar Gigante */}
         <View style={styles.scoreCol}>
           <View style={styles.scoreBox}>
-            <Text style={[styles.scoreNumber, isLive && styles.liveScoreNumber]}>
+            <Text
+              style={[styles.scoreNumber, isLive && styles.liveScoreNumber]}
+            >
               {match.home.score ?? (isLive ? "0" : "-")}
             </Text>
             <Text style={styles.scoreSeparator}>:</Text>
-            <Text style={[styles.scoreNumber, isLive && styles.liveScoreNumber]}>
+            <Text
+              style={[styles.scoreNumber, isLive && styles.liveScoreNumber]}
+            >
               {match.away.score ?? (isLive ? "0" : "-")}
             </Text>
           </View>
@@ -65,10 +77,16 @@ export function LiveHeroCard({ match, onPress }: Props) {
         {/* Time Visitante */}
         <View style={styles.teamCol}>
           {match.away.logo ? (
-            <Image source={{ uri: match.away.logo }} style={styles.teamLogo} resizeMode="contain" />
+            <Image
+              source={{ uri: match.away.logo }}
+              style={styles.teamLogo}
+              resizeMode="contain"
+            />
           ) : (
             <View style={styles.teamLogoPlaceholder}>
-              <Text style={styles.teamInitial}>{match.away.name.charAt(0)}</Text>
+              <Text style={styles.teamInitial}>
+                {match.away.name.charAt(0)}
+              </Text>
             </View>
           )}
           <Text style={styles.teamName} numberOfLines={2}>
@@ -251,4 +269,3 @@ const styles = StyleSheet.create({
     color: THEME.colors.live,
   },
 });
-

@@ -3,8 +3,8 @@
     "name": "Sportstates",
     "slug": "sportstates",
     "version": "1.0.0",
+    "sdkVersion": "58.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
     "userInterfaceStyle": "dark",
     "splash": {
       "backgroundColor": "#0d1310"
@@ -17,9 +17,8 @@
         "backgroundColor": "#0d1310"
       }
     },
-    "web": {
-      "favicon": "./assets/favicon.png"
-    }
+    "plugins": [
+      "expo-status-bar"
+    ]
   }
 }
-

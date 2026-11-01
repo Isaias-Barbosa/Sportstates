@@ -22,7 +22,6 @@ export const VALID_ROUTES = [
   /^\/noticias\/?$/,
   /^\/times\/?$/,
   /^\/times\/[a-zA-Z0-9_-]{1,100}\/?$/,
-  /^\/transferencias\/?$/,
   /^\/sobre\/?$/,
   /^\/admin(\/.*)?$/,
 ];
@@ -80,8 +79,6 @@ export async function metadata(raw, providers = {}) {
     Object.assign(m,{heading:"O ESPORTE NÃO PARA.",title:"Notícias | Sportstates",label:"NOTÍCIAS DO ESPORTE",description:"Acompanhe as notícias esportivas e acesse as matérias nas fontes originais."});
   } else if (u.pathname === "/sobre") {
     Object.assign(m,{kind:"about",heading:"SOBRE O SPORTSTATES",title:"Fontes e cobertura | Sportstates",label:"O PROJETO",description:"Conheça as fontes, competições cobertas e como o Sportstates organiza seus dados."});
-  } else if (u.pathname === "/transferencias") {
-    Object.assign(m,{kind:"transfers",heading:"MERCADO DA BOLA",title:"Transferências | Sportstates",label:"NOVAS CORES",description:"Acompanhe as transferências e movimentações do mercado no futebol."});
   } else if (u.pathname === "/" && (sport || league || u.searchParams.get("status")==="live")) {
     m.heading=league?.name || sport?.name || "O JOGO ESTÁ ROLANDO.";
     m.title=m.heading+" · Jogos | Sportstates";

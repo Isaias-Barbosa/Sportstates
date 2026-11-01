@@ -407,35 +407,12 @@ main:not(:has(.home-viva)) .sport-card:hover:not(.selected) {
   padding: 20px;
   border-radius: 12px;
 }
-.transfer-controls {
-  padding: 22px;
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  background: var(--panel);
-}
-.transfer-player-card {
-  border-radius: 14px;
-  border-color: var(--border);
-  background: var(--panel);
-}
-.transfer-player-heading {
-  background: var(--surface);
-  border-bottom: 1px solid var(--border);
-}
-.transfer-player-heading h3 {
-  font-size: 18px;
-}
-.transfer-fee {
-  color: var(--green);
-}
-.primary-button,
 .admin-primary {
   background: var(--sport-blue);
   color: #fff;
   border-radius: 8px;
   font-weight: 800;
 }
-.primary-button:hover,
 .admin-primary:hover {
   background: #1946b5;
 }
@@ -573,7 +550,6 @@ summary:focus-visible {
     gap: 10px;
     padding-inline: 0;
   }
-  .transfer-controls,
   .club-form {
     padding: 18px;
   }

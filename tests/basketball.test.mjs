@@ -9,6 +9,7 @@ import {
 import { basketballProfiles } from "../server/basketball-profiles.mjs";
 import { normalizeTeamSearch } from "../server/team-search.mjs";
 import { fetchTeamCompetitions } from "../server/team-competitions.mjs";
+import { route, scoreboard } from "../server/api.mjs";
 
 function fixture(state = "post") {
   const team = (id, name) => ({ id, displayName: name, abbreviation: name });
@@ -107,11 +108,17 @@ function fixture(state = "post") {
     },
   };
 }
-test("basketball namespaces isolate NBA, WNBA and existing soccer IDs", () => {
+test("basketball namespaces isolate NBA, WNBA, NBB and existing soccer IDs", () => {
   assert.equal(teamProfileId("1", "soccer", "eng.1"), "1");
   assert.equal(teamProfileId("1", "basketball", "nba"), "basketball-nba-1");
   assert.equal(teamProfileId("1", "basketball", "wnba"), "basketball-wnba-1");
+  assert.equal(
+    teamProfileId("125584", "basketball", "nbb"),
+    "basketball-nbb-125584",
+  );
   assert.equal(providerTeamId("basketball-wnba-1"), "1");
+  assert.equal(providerTeamId("basketball-nbb-125584"), "125584");
+  assert.equal(validProfileId("basketball-nbb-125584"), true);
   assert.equal(
     teamProfileId("basketball-nba-1", "basketball", "nba"),
     "basketball-nba-1",
@@ -132,12 +139,14 @@ test("basketball namespaces isolate NBA, WNBA and existing soccer IDs", () => {
   ])
     assert.equal(validProfileId(id), false);
 });
-test("reviewed catalog has all 30 NBA and 15 WNBA profiles with distinct keys", () => {
+test("reviewed catalog has distinct NBA, WNBA and NBB profiles", () => {
   const c = basketballProfiles.clubs;
-  assert.equal(c.length, 45);
-  assert.equal(new Set(c.map((t) => t.id)).size, 45);
+  assert.equal(c.length, 61);
+  assert.equal(new Set(c.map((t) => t.id)).size, 61);
   assert.equal(c.filter((t) => t.league === "nba").length, 30);
   assert.equal(c.filter((t) => t.league === "wnba").length, 15);
+  assert.equal(c.filter((t) => t.league === "nbb").length, 16);
+  assert.ok(c.some((t) => t.name === "Corinthians" && t.league === "nbb"));
   assert.ok(c.some((t) => t.name === "Toronto Tempo"));
   assert.ok(c.some((t) => t.name === "Portland Fire"));
   assert.equal(
@@ -148,6 +157,22 @@ test("reviewed catalog has all 30 NBA and 15 WNBA profiles with distinct keys", 
     c.find((t) => t.name === "Brooklyn Nets").stadium,
     "Barclays Center",
   );
+  assert.ok(
+    c
+      .filter((t) => t.league === "nbb")
+      .every((t) => t.references.some((r) => r.url.includes("/nbb/"))),
+  );
+});
+test("Judo is catalogued without requesting a provider for scores", async () => {
+  const data = await scoreboard("2026-10-29", "judo");
+  assert.deepEqual(data.matches, []);
+  assert.deepEqual(data.sports[0].competitions, []);
+  assert.match(data.warnings[0], /ainda não há fonte de placares integrada/i);
+  const [status, response] = await route(
+    new URL("https://sportstates.test/api/transfers"),
+  );
+  assert.equal(status, 404);
+  assert.equal(response.error, "Rota não encontrada.");
 });
 test("period scores match home/away IDs, preserve zero, and include overtime", () => {
   const d = normalizeSummary(fixture(), "basketball", "nba", "NBA");
@@ -209,6 +234,23 @@ test("admin ESPN search returns collision-safe basketball profile IDs", () => {
     { sport: "basketball", league: "nba", query: "Atlanta" },
   );
   assert.equal(results[0].id, "basketball-nba-1");
+  const nbb = normalizeTeamSearch(
+    {
+      sports: [
+        {
+          leagues: [
+            {
+              teams: [
+                { team: { id: "125584", displayName: "Basquete Cearense" } },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    { sport: "basketball", league: "nbb", query: "Cearense" },
+  );
+  assert.equal(nbb[0].id, "basketball-nbb-125584");
 });
 test("competitions use numeric provider ID while keeping the namespaced profile ID", async () => {
   const urls = [];

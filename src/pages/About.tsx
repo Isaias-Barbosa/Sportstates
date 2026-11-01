@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link, useParams, useSearchParams } from "react-router-dom";
 import {
-  ArrowDownUp,
   ArrowLeft,
   ArrowRight,
   CalendarDays,
@@ -19,7 +18,7 @@ import {
   MapPin,
   Clock3,
 } from "lucide-react";
-import type { Scores, Detail, Transfers } from "../types";
+import type { Scores, Detail } from "../types";
 import { useApi, useFavorites, today, time, dateLabel } from "../hooks";
 import { sports, keyOf } from "../catalog";
 import {
@@ -83,20 +82,19 @@ export default function About() {
           </a>
         </section>
         <section>
-          <ArrowDownUp />
-          <h2>Transferências</h2>
+          <Radio />
+          <h2>Basquete · NBB</h2>
           <p>
-            Transfermarkt integrado ao servidor com o SDK Python. A lista é
-            paginada e reúne o histórico relacionado ao clube dos jogadores do
-            elenco atual; não representa todas as saídas. API-Football continua
-            disponível como alternativa, com chave no servidor e IDs próprios.
+            Placares, calendário e dados de equipe usam o feed público não
+            oficial da ESPN. Os perfis usam páginas e escudos publicados pela
+            Liga Nacional de Basquete quando disponíveis.
           </p>
           <a
-            href="https://github.com/felipeall/transfermarkt-api"
+            href="https://lnb.com.br/nbb/equipes/"
             target="_blank"
             rel="noreferrer"
           >
-            Conhecer a fonte ↗
+            Equipes da LNB ↗
           </a>
         </section>
         <section>
@@ -127,8 +125,9 @@ export default function About() {
         <h2>Cobertura inicial</h2>
         <p>
           Futebol: Brasileirão A/B, Premier League, LaLiga, Serie A, Bundesliga,
-          Ligue 1 e Champions League. Basquete: NBA e WNBA. Também NFL, MLB e
-          NHL. Novas competições são adicionadas no catálogo do servidor.
+          Ligue 1 e Champions League. Basquete: NBA, WNBA e Novo Basquete
+          Brasil. Também NFL, MLB e NHL. Judô está no catálogo, ainda sem fonte
+          integrada de placares.
         </p>
       </div>
     </>

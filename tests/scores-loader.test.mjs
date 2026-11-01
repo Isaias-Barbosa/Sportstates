@@ -319,8 +319,9 @@ test("the public sport-specific endpoint only calls that sports providers", asyn
     assert.equal(status, 200);
     assert.equal(response.sports.length, 1);
     assert.equal(response.sports[0].id, "basketball");
-    assert.equal(calls.length, 4);
+    assert.equal(calls.length, 6);
     assert.ok(calls.every((u) => u.includes("/basketball/")));
+    assert.ok(calls.some((u) => u.includes("/basketball/nbb/scoreboard")));
     const before = calls.length;
     assert.equal(
       (

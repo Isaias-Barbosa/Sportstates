@@ -52,6 +52,7 @@ export const SPORTS = [
     leagues: [
       ["nba", "NBA"],
       ["wnba", "WNBA"],
+      ["nbb", "Novo Basquete Brasil"],
     ],
   },
   {
@@ -80,6 +81,7 @@ export const SPORTS = [
     icon: "🏐",
     leagues: [["superliga-men", "Superliga Masculina"]],
   },
+  { id: "judo", name: "Judô", icon: "🥋", leagues: [] },
 ];
 export function leagueFor(sport, league) {
   const s = SPORTS.find((s) => s.id === sport);

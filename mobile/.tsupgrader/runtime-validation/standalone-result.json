@@ -1,0 +1,110 @@
+{
+  "planHash": "7922b26c7dbb0fb6bd5d524b7eecb64bbab89ca36c4e53ce3e6343055819e820",
+  "phase": "standalone",
+  "recordedAtUtc": "2026-11-01T02:42:17.5060494Z",
+  "retryCount": 0,
+  "resetBaseline": false,
+  "complete": true,
+  "result": {
+    "setupSucceeded": true,
+    "setupDurationMs": 84693,
+    "setupFailureOutput": null,
+    "assertions": [
+      {
+        "name": "mobile-typecheck",
+        "kind": "process",
+        "verificationMethod": "exit-code",
+        "passed": true,
+        "timedOut": false,
+        "skipped": false,
+        "skippedReason": null,
+        "exitCode": 0,
+        "outputSample": "",
+        "durationMs": 3541
+      },
+      {
+        "name": "tests-pass",
+        "kind": "process",
+        "verificationMethod": "test-results",
+        "passed": true,
+        "timedOut": false,
+        "skipped": false,
+        "skippedReason": null,
+        "exitCode": 0,
+        "outputSample": "\r\n\u003E sportstates-mobile@1.0.0 test\r\n\u003E vitest run\r\n\r\n\r\n RUN  v5.0.5 D:/Isaias/ESTUDO NOVO/Sportstates/mobile\r\n\r\n\r\n Test Files  1 passed (1)\r\n      Tests  4 passed (4)\r\n   Start at  23:42:06\r\n   Duration  369ms (import 37%, tests 29%, transform 28%, worker 6%)\r\n\r\n",
+        "durationMs": 1437,
+        "testResults": {
+          "testFramework": "vitest",
+          "runnerDetectedFrom": "package_json",
+          "testsTotal": 4,
+          "testsPassed": 4,
+          "testsFailed": 0,
+          "testsSkipped": 0,
+          "parseFailed": false
+        }
+      },
+      {
+        "name": "android-bundle",
+        "kind": "process",
+        "verificationMethod": "exit-code",
+        "passed": true,
+        "timedOut": false,
+        "skipped": false,
+        "skippedReason": null,
+        "exitCode": 0,
+        "outputSample": "Node.js (v22.12.0) is outdated and unsupported. Please update to a newer Node.js LTS version (required: \u003E=22.13.0)\r\nGo to: https://nodejs.org/en/download\r\n\r\nStarting Metro Bundler\r\n\r\nError while reading cache, falling back to a full crawl:\r\n Error: Unable to deserialize cloned data.\r\n    at deserialize (node:v8:399:14)\r\n    at DiskCacheManager.read (D:\\Isaias\\ESTUDO NOVO\\Sportstates\\mobile\\node_modules\\@expo\\metro-file-map\\build\\cache\\DiskCacheManager.js:95:42)\r\n    at async FileMap.read (D:\\Isaias\\ESTUDO NOVO\\Sportstates\\mobile\\node_modules\\@expo\\metro-file-map\\build\\index.js:447:20)\r\n    at async D:\\Isaias\\ESTUDO NOVO\\Sportstates\\mobile\\node_modules\\@expo\\metro-file-map\\build\\index.js:330:35\r\n    at async DependencyGraph.ready (D:\\Isaias\\ESTUDO NOVO\\Sportstates\\mobile\\node_modules\\metro\\src\\node-haste\\DependencyGraph.js:95:5)\r\nAndroid Bundled 5339ms index.js (630 modules)\r\n\r\n\u203A android bundles (1):\r\n_expo/static/js/android/index-8bc506552aeb246b409c0c1ce7ab16fc.hbc (1.6MB)\r\n\r\n\u203A Files (1):\r\nmetadata.json (150B)\r\n\r\nExported: dist\r\n",
+        "durationMs": 10109
+      }
+    ],
+    "executions": [
+      {
+        "source": "setup[0]",
+        "resolvedExecutable": "C:\\nvm4w\\nodejs\\npm.CMD",
+        "args": [
+          "ci"
+        ],
+        "cwd": "D:\\Isaias\\ESTUDO NOVO\\Sportstates\\mobile",
+        "env": {},
+        "prependPath": [],
+        "platform": "win32"
+      },
+      {
+        "source": "mobile-typecheck",
+        "resolvedExecutable": "C:\\nvm4w\\nodejs\\npx.CMD",
+        "args": [
+          "tsc",
+          "--noEmit"
+        ],
+        "cwd": "D:\\Isaias\\ESTUDO NOVO\\Sportstates\\mobile",
+        "env": {},
+        "prependPath": [],
+        "platform": "win32"
+      },
+      {
+        "source": "tests-pass",
+        "resolvedExecutable": "C:\\nvm4w\\nodejs\\npm.CMD",
+        "args": [
+          "test"
+        ],
+        "cwd": "D:\\Isaias\\ESTUDO NOVO\\Sportstates\\mobile",
+        "env": {},
+        "prependPath": [],
+        "platform": "win32"
+      },
+      {
+        "source": "android-bundle",
+        "resolvedExecutable": "C:\\nvm4w\\nodejs\\npx.CMD",
+        "args": [
+          "expo",
+          "export",
+          "--platform",
+          "android"
+        ],
+        "cwd": "D:\\Isaias\\ESTUDO NOVO\\Sportstates\\mobile",
+        "env": {},
+        "prependPath": [],
+        "platform": "win32"
+      }
+    ]
+  }
+}

@@ -13,7 +13,11 @@ import { LiveHeroCard } from "../components/LiveHeroCard";
 import { fetchScores } from "../api";
 import type { Match } from "../types";
 
-export function LiveScreen() {
+type Props = {
+  onSelectMatch: (match: Match) => void;
+};
+
+export function LiveScreen({ onSelectMatch }: Props) {
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
   const [liveMatches, setLiveMatches] = useState<Match[]>([]);
@@ -53,7 +57,8 @@ export function LiveScreen() {
           <Text style={styles.badgeText}>RADAR EM TEMPO REAL</Text>
         </View>
         <Text style={styles.counterText}>
-          {liveMatches.length} {liveMatches.length === 1 ? "jogo acontecendo" : "jogos acontecendo"}
+          {liveMatches.length}{" "}
+          {liveMatches.length === 1 ? "jogo acontecendo" : "jogos acontecendo"}
         </Text>
       </View>
 
@@ -73,13 +78,16 @@ export function LiveScreen() {
               tintColor={THEME.colors.live}
             />
           }
-          renderItem={({ item }) => <LiveHeroCard match={item} />}
+          renderItem={({ item }) => (
+            <LiveHeroCard match={item} onPress={() => onSelectMatch(item)} />
+          )}
           ListEmptyComponent={
             <View style={styles.emptyContainer}>
               <Text style={styles.emptyIcon}>⏱️</Text>
               <Text style={styles.emptyTitle}>Nenhum jogo ao vivo agora</Text>
               <Text style={styles.emptySubtitle}>
-                As próximas partidas começarão em breve. Confira a agenda na aba Jogos!
+                As próximas partidas começarão em breve. Confira a agenda na aba
+                Jogos!
               </Text>
             </View>
           }
@@ -165,4 +173,3 @@ const styles = StyleSheet.create({
     lineHeight: 18,
   },
 });
-

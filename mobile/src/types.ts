@@ -42,24 +42,77 @@ export type ScoresResponse = {
   warnings: string[];
 };
 
-export type TransferItem = {
-  player: string;
-  playerId: number;
-  date: string;
-  type: string;
-  from: string;
-  to: string;
-  fee?: string | null;
-  marketValue?: string | null;
+export type MatchDetail = {
+  match: Match;
+  events: {
+    id: string;
+    minute: string;
+    period: string | number;
+    type: string;
+    text: string;
+    scoring: boolean;
+    scorer?: string;
+    score?: string;
+  }[];
+  statistics: {
+    team: string;
+    stats: { name: string; value: string }[];
+  }[];
+  source: string;
+  fetchedAt: string;
+  stale: boolean;
 };
 
-export type TransfersResponse = {
-  configured: boolean;
-  source?: string;
-  clubLabel?: string;
-  clubId?: string;
-  transfers: TransferItem[];
-  message?: string;
-  fetchedAt?: string;
+export type TeamProfile = {
+  id: string;
+  name: string;
+  logo: string | null;
+  description: string;
+  city: string;
+  stadium: string;
+  website: string;
+  sport: string;
+  league: string | null;
 };
 
+export type TeamDetails = {
+  team: TeamProfile;
+  athletes: {
+    id: string;
+    name: string;
+    number: string;
+    position: string;
+    image: string | null;
+  }[];
+  upcoming: Match[];
+  recent: Match[];
+  source: string;
+  stale: boolean;
+};
+
+export type CompetitionCatalog = {
+  sports: {
+    id: string;
+    name: string;
+    icon: string;
+    leagues: { id: string; name: string }[];
+  }[];
+};
+
+export type Standings = {
+  name: string;
+  sport: string;
+  league: string;
+  groups: {
+    name: string;
+    rows: {
+      id: string;
+      name: string;
+      logo: string | null;
+      rank: string;
+      stats: Record<string, string>;
+    }[];
+  }[];
+  stale: boolean;
+  source: string;
+};

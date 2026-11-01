@@ -1,4 +1,12 @@
-import type { ScoresResponse, TransfersResponse } from "./types";
+import type {
+  CompetitionCatalog,
+  Match,
+  MatchDetail,
+  ScoresResponse,
+  Standings,
+  TeamDetails,
+  TeamProfile,
+} from "./types";
 
 // URL padrão da API (produção na Vercel ou IP local se preferir)
 export const API_BASE_URL = "https://sportstates.vercel.app";
@@ -27,23 +35,54 @@ export function formatGameTime(isoDate: string): string {
 
 export async function fetchScores(date?: string): Promise<ScoresResponse> {
   const targetDate = date || getTodayDateString();
-  const res = await fetch(`${API_BASE_URL}/api/scores?date=${encodeURIComponent(targetDate)}`, {
-    headers: { Accept: "application/json" },
-  });
+  const res = await fetch(
+    `${API_BASE_URL}/api/scores?date=${encodeURIComponent(targetDate)}`,
+    {
+      headers: { Accept: "application/json" },
+    },
+  );
   if (!res.ok) {
     throw new Error(`Erro ao consultar placares (HTTP ${res.status})`);
   }
   return res.json();
 }
 
-export async function fetchTransfers(query: string, isTm = true): Promise<TransfersResponse> {
-  const param = isTm ? `club=${encodeURIComponent(query)}` : `team=${encodeURIComponent(query)}`;
-  const res = await fetch(`${API_BASE_URL}/api/transfers?${param}`, {
+async function fetchApi<T>(path: string): Promise<T> {
+  const res = await fetch(`${API_BASE_URL}${path}`, {
     headers: { Accept: "application/json" },
   });
   if (!res.ok) {
-    throw new Error(`Erro ao consultar transferências (HTTP ${res.status})`);
+    throw new Error(`Erro ao consultar dados (HTTP ${res.status})`);
   }
   return res.json();
 }
 
+export function fetchMatchDetail(match: Match): Promise<MatchDetail> {
+  const params = new URLSearchParams({
+    sport: match.sport,
+    league: match.league,
+    id: match.id,
+  });
+  return fetchApi(`/api/match?${params.toString()}`);
+}
+
+export async function fetchTeams(): Promise<TeamProfile[]> {
+  const result = await fetchApi<{ teams: TeamProfile[] }>("/api/teams");
+  return result.teams;
+}
+
+export function fetchTeamDetails(id: string): Promise<TeamDetails> {
+  return fetchApi(`/api/team?id=${encodeURIComponent(id)}`);
+}
+
+export function fetchCompetitions(): Promise<CompetitionCatalog> {
+  return fetchApi("/api/competitions");
+}
+
+export function fetchStandings(
+  sport: string,
+  league: string,
+): Promise<Standings> {
+  const params = new URLSearchParams({ sport, league });
+  return fetchApi(`/api/standings?${params.toString()}`);
+}

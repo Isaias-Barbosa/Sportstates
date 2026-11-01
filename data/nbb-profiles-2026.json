@@ -1,0 +1,401 @@
+{
+  "reviewedAt": "2026-10-29",
+  "clubs": [
+    {
+      "id": "basketball-nbb-125584",
+      "espnId": "125584",
+      "name": "Basquete Cearense",
+      "sport": "basketball",
+      "league": "nbb",
+      "logo": "https://lnb.com.br/wp-content/uploads/2015/08/logo-basquete-cearense-2015.png",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "description": "Perfil da equipe do Novo Basquete Brasil. Calendário e elenco dependem da disponibilidade da fonte ESPN.",
+      "references": [
+        {
+          "label": "Liga Nacional de Basquete · perfil da equipe",
+          "url": "https://lnb.com.br/equipes/basq-cearense/"
+        },
+        {
+          "label": "ESPN · equipe e calendário",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nbb/teams/125584/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "basketball-nbb-125118",
+      "espnId": "125118",
+      "name": "Bauru Basket",
+      "sport": "basketball",
+      "league": "nbb",
+      "logo": "https://lnb.com.br/wp-content/uploads/2016/10/bauru_basket_logotipo_cor_claro-150x150.png",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "description": "Perfil da equipe do Novo Basquete Brasil. Calendário e elenco dependem da disponibilidade da fonte ESPN.",
+      "references": [
+        {
+          "label": "Liga Nacional de Basquete · perfil da equipe",
+          "url": "https://lnb.com.br/equipes/bauru/"
+        },
+        {
+          "label": "ESPN · equipe e calendário",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nbb/teams/125118/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "basketball-nbb-125099",
+      "espnId": "125099",
+      "name": "CAIXA/Brasília Basquete",
+      "sport": "basketball",
+      "league": "nbb",
+      "logo": "https://lnb.com.br/wp-content/uploads/2021/07/Caixa-Brasilia-Masquete-1.png",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "description": "Perfil da equipe do Novo Basquete Brasil. Calendário e elenco dependem da disponibilidade da fonte ESPN.",
+      "references": [
+        {
+          "label": "Liga Nacional de Basquete · perfil da equipe",
+          "url": "https://lnb.com.br/equipes/brasilia-basquete/"
+        },
+        {
+          "label": "ESPN · equipe e calendário",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nbb/teams/125099/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "basketball-nbb-125285",
+      "espnId": "125285",
+      "name": "Caxias do Sul Basquete",
+      "sport": "basketball",
+      "league": "nbb",
+      "logo": "https://lnb.com.br/wp-content/uploads/2016/10/Caxias_1-150x150.png",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "description": "Perfil da equipe do Novo Basquete Brasil. Calendário e elenco dependem da disponibilidade da fonte ESPN.",
+      "references": [
+        {
+          "label": "Liga Nacional de Basquete · perfil da equipe",
+          "url": "https://lnb.com.br/equipes/caxias-do-sul/"
+        },
+        {
+          "label": "ESPN · equipe e calendário",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nbb/teams/125285/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "basketball-nbb-125119",
+      "espnId": "125119",
+      "name": "Corinthians",
+      "sport": "basketball",
+      "league": "nbb",
+      "logo": "https://lnb.com.br/wp-content/uploads/2018/01/Corinthians-2-150x150.png",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "description": "Perfil da equipe do Novo Basquete Brasil. Calendário e elenco dependem da disponibilidade da fonte ESPN.",
+      "references": [
+        {
+          "label": "Liga Nacional de Basquete · perfil da equipe",
+          "url": "https://lnb.com.br/equipes/corinthians/"
+        },
+        {
+          "label": "ESPN · equipe e calendário",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nbb/teams/125119/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "basketball-nbb-125098",
+      "espnId": "125098",
+      "name": "Flamengo",
+      "sport": "basketball",
+      "league": "nbb",
+      "logo": "https://lnb.com.br/wp-content/uploads/2016/10/terrestres_principal_rgb-150x150.png",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "description": "Perfil da equipe do Novo Basquete Brasil. Calendário e elenco dependem da disponibilidade da fonte ESPN.",
+      "references": [
+        {
+          "label": "Liga Nacional de Basquete · perfil da equipe",
+          "url": "https://lnb.com.br/equipes/flamengo/"
+        },
+        {
+          "label": "ESPN · equipe e calendário",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nbb/teams/125098/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "basketball-nbb-125286",
+      "espnId": "125286",
+      "name": "SESI Franca",
+      "sport": "basketball",
+      "league": "nbb",
+      "logo": "https://lnb.com.br/wp-content/uploads/2016/10/Logotipo-Sesi-Franca-Basquete--150x150.png",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "description": "Perfil da equipe do Novo Basquete Brasil. Calendário e elenco dependem da disponibilidade da fonte ESPN.",
+      "references": [
+        {
+          "label": "Liga Nacional de Basquete · perfil da equipe",
+          "url": "https://lnb.com.br/equipes/franca/"
+        },
+        {
+          "label": "ESPN · equipe e calendário",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nbb/teams/125286/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "basketball-nbb-125121",
+      "espnId": "125121",
+      "name": "Minas Storm",
+      "sport": "basketball",
+      "league": "nbb",
+      "logo": "https://lnb.com.br/wp-content/uploads/2016/10/Minas-150.png",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "description": "Perfil da equipe do Novo Basquete Brasil. Calendário e elenco dependem da disponibilidade da fonte ESPN.",
+      "references": [
+        {
+          "label": "Liga Nacional de Basquete · perfil da equipe",
+          "url": "https://lnb.com.br/equipes/minas/"
+        },
+        {
+          "label": "ESPN · equipe e calendário",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nbb/teams/125121/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "basketball-nbb-128665",
+      "espnId": "128665",
+      "name": "Mogi Basquete",
+      "sport": "basketball",
+      "league": "nbb",
+      "logo": "https://lnb.com.br/wp-content/uploads/2016/10/IMG_5241-e1752524726672-150x150.png",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "description": "Perfil da equipe do Novo Basquete Brasil. Calendário e elenco dependem da disponibilidade da fonte ESPN.",
+      "references": [
+        {
+          "label": "Liga Nacional de Basquete · perfil da equipe",
+          "url": "https://lnb.com.br/equipes/mogi/"
+        },
+        {
+          "label": "ESPN · equipe e calendário",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nbb/teams/128665/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "basketball-nbb-132730",
+      "espnId": "132730",
+      "name": "Pato Basquete",
+      "sport": "basketball",
+      "league": "nbb",
+      "logo": "https://lnb.com.br/wp-content/uploads/2019/01/logo-patobasquete-1-150x150.png",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "description": "Perfil da equipe do Novo Basquete Brasil. Calendário e elenco dependem da disponibilidade da fonte ESPN.",
+      "references": [
+        {
+          "label": "Liga Nacional de Basquete · perfil da equipe",
+          "url": "https://lnb.com.br/equipes/pato-basquete/"
+        },
+        {
+          "label": "ESPN · equipe e calendário",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nbb/teams/132730/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "basketball-nbb-125284",
+      "espnId": "125284",
+      "name": "Paulistano",
+      "sport": "basketball",
+      "league": "nbb",
+      "logo": "https://lnb.com.br/wp-content/uploads/2016/10/Logo_Paulistano-150x150.png",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "description": "Perfil da equipe do Novo Basquete Brasil. Calendário e elenco dependem da disponibilidade da fonte ESPN.",
+      "references": [
+        {
+          "label": "Liga Nacional de Basquete · perfil da equipe",
+          "url": "https://lnb.com.br/equipes/paulistano/"
+        },
+        {
+          "label": "ESPN · equipe e calendário",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nbb/teams/125284/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "basketball-nbb-125471",
+      "espnId": "125471",
+      "name": "Pinheiros",
+      "sport": "basketball",
+      "league": "nbb",
+      "logo": "https://lnb.com.br/wp-content/uploads/2016/10/logo-pinheiros-1-150x150.png",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "description": "Perfil da equipe do Novo Basquete Brasil. Calendário e elenco dependem da disponibilidade da fonte ESPN.",
+      "references": [
+        {
+          "label": "Liga Nacional de Basquete · perfil da equipe",
+          "url": "https://lnb.com.br/equipes/pinheiros/"
+        },
+        {
+          "label": "ESPN · equipe e calendário",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nbb/teams/125471/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "basketball-nbb-127151",
+      "espnId": "127151",
+      "name": "São José Basketball",
+      "sport": "basketball",
+      "league": "nbb",
+      "logo": "https://lnb.com.br/wp-content/uploads/2016/10/S%C3%A2o-Jos%C3%A9-13-14-1-150x150.png",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "description": "Perfil da equipe do Novo Basquete Brasil. Calendário e elenco dependem da disponibilidade da fonte ESPN.",
+      "references": [
+        {
+          "label": "Liga Nacional de Basquete · perfil da equipe",
+          "url": "https://lnb.com.br/equipes/sao-jose/"
+        },
+        {
+          "label": "ESPN · equipe e calendário",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nbb/teams/127151/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "basketball-nbb-125287",
+      "espnId": "125287",
+      "name": "UNIFACISA",
+      "sport": "basketball",
+      "league": "nbb",
+      "logo": "https://lnb.com.br/wp-content/uploads/2018/01/unifacisa-1.png",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "description": "Perfil da equipe do Novo Basquete Brasil. Calendário e elenco dependem da disponibilidade da fonte ESPN.",
+      "references": [
+        {
+          "label": "Liga Nacional de Basquete · perfil da equipe",
+          "url": "https://lnb.com.br/equipes/unifacisa/"
+        },
+        {
+          "label": "ESPN · equipe e calendário",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nbb/teams/125287/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "basketball-nbb-127154",
+      "espnId": "127154",
+      "name": "Ceisc/União Corinthians",
+      "sport": "basketball",
+      "league": "nbb",
+      "logo": "https://lnb.com.br/wp-content/uploads/2018/08/Escudo-Corinthians-150x150.png",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "description": "Perfil da equipe do Novo Basquete Brasil. Calendário e elenco dependem da disponibilidade da fonte ESPN.",
+      "references": [
+        {
+          "label": "Liga Nacional de Basquete · perfil da equipe",
+          "url": "https://lnb.com.br/equipes/uniao-corinthians/"
+        },
+        {
+          "label": "ESPN · equipe e calendário",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nbb/teams/127154/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "basketball-nbb-129095",
+      "espnId": "129095",
+      "name": "Vasco",
+      "sport": "basketball",
+      "league": "nbb",
+      "logo": "",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "description": "Perfil de equipe listado pela ESPN para o Novo Basquete Brasil. A fonte pode não disponibilizar calendário ou elenco atualizados.",
+      "references": [
+        {
+          "label": "ESPN · equipe e calendário",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nbb/teams/129095/schedule?lang=pt&region=br"
+        }
+      ]
+    }
+  ]
+}

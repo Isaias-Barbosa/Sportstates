@@ -9,6 +9,7 @@ export const SPORTS = [
   { id: "football", name: "F. Americano", icon: "🏈" },
   { id: "baseball", name: "Beisebol", icon: "⚾" },
   { id: "hockey", name: "Hóquei", icon: "🏒" },
+  { id: "judo", name: "Judô", icon: "🥋" },
 ];
 
 type Props = {
@@ -49,11 +50,14 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   tab: {
-    flexDirection: "row",
+    flexDirection: "column",
     alignItems: "center",
-    gap: 6,
+    justifyContent: "center",
+    gap: 4,
+    flexShrink: 0,
+    minWidth: 82,
     paddingHorizontal: 12,
-    paddingVertical: 8,
+    paddingVertical: 10,
     borderRadius: THEME.radius.full,
     backgroundColor: THEME.colors.surface,
     borderWidth: 1,
@@ -64,15 +68,16 @@ const styles = StyleSheet.create({
     borderColor: THEME.colors.green,
   },
   icon: {
-    fontSize: 13,
+    fontSize: 16,
   },
   text: {
+    flexShrink: 0,
     fontSize: 12,
     fontWeight: "600",
     color: THEME.colors.textMuted,
+    textAlign: "center",
   },
   textActive: {
     color: "#0a1a0f",
   },
 });
-

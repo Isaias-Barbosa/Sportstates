@@ -32,15 +32,17 @@ function store() {
     },
   };
 }
-test("shared cache reuses a provider response across independently created instances", async () => {
+test("runtime cache stores only the invalidation generation, not provider values", async () => {
   const backend = store();
   let calls = 0;
-  const a = createCache({ shared: true, storage: () => backend }),
-    b = createCache({ shared: true, storage: () => backend });
+  const a = createCache({ shared: true, storage: () => backend });
   const load = async () => ({ calls: ++calls });
   assert.deepEqual((await a("table", 10000, load)).value, { calls: 1 });
-  assert.deepEqual((await b("table", 10000, load)).value, { calls: 1 });
-  assert.equal(calls, 1);
+  assert.deepEqual((await a("table", 10000, load)).value, { calls: 1 });
+  assert.deepEqual(await backend.get("table"), undefined);
+  const b = createCache({ shared: true, storage: () => backend });
+  assert.deepEqual((await b("table", 10000, load)).value, { calls: 2 });
+  assert.equal(calls, 2);
 });
 test("a global purge invalidates shared values and calls the CDN purge", async () => {
   const backend = store();
@@ -342,7 +344,7 @@ test("only healthy public reads receive tagged CDN caching, never private browse
   assert.equal(invalid.headers["Vercel-CDN-Cache-Control"], "no-store");
 });
 
-test("current-day and live agendas bypass the CDN while old completed dates retain caching", () => {
+test("current-day and live agendas use short tagged CDN caching", () => {
   const now = Date.parse("2026-10-29T15:00:00Z"),
     url = new URL("https://app.test/api/scores?date=2026-10-29");
   assert.equal(
@@ -355,7 +357,7 @@ test("current-day and live agendas bypass the CDN while old completed dates reta
       },
       now,
     ),
-    0,
+    15,
   );
   assert.equal(
     responseTtl(
@@ -367,7 +369,7 @@ test("current-day and live agendas bypass the CDN while old completed dates reta
       },
       now,
     ),
-    0,
+    60,
   );
   assert.ok(
     responseTtl(

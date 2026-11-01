@@ -30,7 +30,6 @@ const AccountPage = lazy(() => import("./pages/AccountPage"));
 const DailySummaryPage = lazy(() => import("./pages/DailySummaryPage"));
 const FavoritesPage = lazy(() => import("./pages/FavoritesPage"));
 const MatchPage = lazy(() => import("./pages/MatchPage"));
-const TransfersPage = lazy(() => import("./pages/TransfersPage"));
 const About = lazy(() => import("./pages/About"));
 const AdminGames = lazy(() => import("./pages/AdminGames"));
 const StandingsPage = lazy(() => import("./pages/StandingsPage"));
@@ -256,7 +255,6 @@ function App() {
                   <Route path="/noticias" element={<NewsPage />} />
                   <Route path="/times" element={<TeamsPage />} />
                   <Route path="/times/:id" element={<TeamPage />} />
-                  <Route path="/transferencias" element={<TransfersPage />} />
                   <Route path="/admin/jogos" element={<AdminGames />} />
                   <Route path="/sobre" element={<About />} />
                   <Route

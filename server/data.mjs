@@ -96,7 +96,13 @@ export function normalizeEvent(e, sport, league, leagueName) {
   return { ...match, watch: getWatchOptions(match, c) };
 }
 export function eventKind(p, sport) {
-  const code = String(p.type?.type || p.play?.type?.type || "").toLowerCase();
+  const code = String(
+    p.type?.type ||
+      p.type?.abbreviation ||
+      p.play?.type?.type ||
+      p.play?.type?.abbreviation ||
+      "",
+  ).toLowerCase();
   const label = String(p.type?.text || p.play?.type?.text || "").toLowerCase();
   const text = String(p.text || p.shortText || "").toLowerCase();
   if (
@@ -114,6 +120,11 @@ export function eventKind(p, sport) {
     /cart[aã]o amarelo|yellow card/.test(label + " " + text)
   )
     return "yellow-card";
+  if (
+    sport === "hockey" &&
+    (p.scoringPlay || /^(goal|goal-scored)$/.test(code) || /^goal$/.test(label))
+  )
+    return "goal";
   if (
     sport === "soccer" &&
     !/anulado|disallowed|cancelled|canceled/.test(label + " " + text) &&
@@ -174,14 +185,18 @@ export function normalizeSummary(raw, sport, league, leagueName) {
         p.type?.text ||
         p.play?.type?.text ||
         "",
-      ...(["basketball", "football"].includes(sport) &&
+      ...(["basketball", "football", "hockey"].includes(sport) &&
       p.homeScore != null &&
       p.awayScore != null
         ? { score: `${p.homeScore}–${p.awayScore}` }
         : {}),
       scorer:
         eventKind(p, sport) === "goal"
-          ? p.play?.participants?.[0]?.athlete?.displayName ||
+          ? p.play?.participants?.find((person) => person.type === "scorer")
+              ?.athlete?.displayName ||
+            p.participants?.find((person) => person.type === "scorer")?.athlete
+              ?.displayName ||
+            p.play?.participants?.[0]?.athlete?.displayName ||
             p.participants?.[0]?.athlete?.displayName ||
             ""
           : sport === "basketball" && p.scoringPlay
@@ -194,6 +209,7 @@ export function normalizeSummary(raw, sport, league, leagueName) {
             points: Number(p.scoreValue) || null,
           }
         : {}),
+      ...(sport === "hockey" ? { scorerTeamId: String(p.team?.id || "") } : {}),
       kind: eventKind(p, sport),
       sequence: Number(p.sequenceNumber ?? p.sequence ?? i),
       scoring:
@@ -213,7 +229,9 @@ export function normalizeSummary(raw, sport, league, leagueName) {
               ? basketballStatName(s.name, s.label || s.displayName)
               : sport === "football"
                 ? footballStatName(s.name, s.label || s.displayName)
-                : s.label || s.displayName || s.name,
+                : sport === "hockey"
+                  ? hockeyStatName(s.name, s.label || s.displayName)
+                  : s.label || s.displayName || s.name,
           value: s.displayValue,
         })),
     }))
@@ -264,6 +282,25 @@ export function normalizeSummary(raw, sport, league, leagueName) {
           })),
       })),
     );
+  }
+  function hockeyStatName(name, label) {
+    const labels = {
+      blockedShots: "Chutes bloqueados",
+      hits: "Contatos físicos",
+      takeaways: "Recuperações de disco",
+      shotsTotal: "Finalizações",
+      powerPlayGoals: "Gols em superioridade",
+      powerPlayOpportunities: "Jogadas em superioridade",
+      powerPlayPct: "Aproveitamento em superioridade",
+      shortHandedGoals: "Gols em inferioridade",
+      shootoutGoals: "Gols no shootout",
+      faceoffsWon: "Faceoffs vencidos",
+      faceoffPercent: "Faceoffs vencidos (%)",
+      giveaways: "Perdas de disco",
+      penalties: "Penalidades",
+      penaltyMinutes: "Minutos de penalidade",
+    };
+    return labels[name] || label || name;
   }
   return {
     match: { ...match, venue: raw.gameInfo?.venue?.fullName || match.venue },

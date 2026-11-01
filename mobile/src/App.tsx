@@ -1,35 +1,73 @@
 import React, { useState } from "react";
-import { View, StyleSheet, TouchableOpacity, Text, SafeAreaView, Platform } from "react-native";
+import {
+  View,
+  StyleSheet,
+  TouchableOpacity,
+  Text,
+  SafeAreaView,
+  Platform,
+} from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { THEME } from "./theme";
 import { DashboardScreen } from "./screens/DashboardScreen";
 import { LiveScreen } from "./screens/LiveScreen";
 import { FavoritesScreen } from "./screens/FavoritesScreen";
-import { TransfersScreen } from "./screens/TransfersScreen";
+import { TeamsScreen } from "./screens/TeamsScreen";
+import { StandingsScreen } from "./screens/StandingsScreen";
+import { MatchDetailScreen } from "./screens/MatchDetailScreen";
+import { TeamProfileScreen } from "./screens/TeamProfileScreen";
+import type { Match, TeamProfile } from "./types";
 
-type TabKey = "jogos" | "live" | "favoritos" | "transferencias";
+type TabKey = "jogos" | "live" | "times" | "classificacao" | "favoritos";
 
 export default function App() {
   const [currentTab, setCurrentTab] = useState<TabKey>("jogos");
+  const [selectedMatch, setSelectedMatch] = useState<Match | null>(null);
+  const [selectedTeam, setSelectedTeam] = useState<TeamProfile | null>(null);
+
+  const selectTab = (tab: TabKey) => {
+    setCurrentTab(tab);
+    setSelectedMatch(null);
+    setSelectedTeam(null);
+  };
 
   const renderScreen = () => {
+    if (selectedMatch) {
+      return (
+        <MatchDetailScreen
+          match={selectedMatch}
+          onBack={() => setSelectedMatch(null)}
+        />
+      );
+    }
+    if (selectedTeam) {
+      return (
+        <TeamProfileScreen
+          team={selectedTeam}
+          onBack={() => setSelectedTeam(null)}
+          onSelectMatch={setSelectedMatch}
+        />
+      );
+    }
     switch (currentTab) {
       case "jogos":
-        return <DashboardScreen />;
+        return <DashboardScreen onSelectMatch={setSelectedMatch} />;
       case "live":
-        return <LiveScreen />;
+        return <LiveScreen onSelectMatch={setSelectedMatch} />;
+      case "times":
+        return <TeamsScreen onSelectTeam={setSelectedTeam} />;
+      case "classificacao":
+        return <StandingsScreen />;
       case "favoritos":
         return <FavoritesScreen />;
-      case "transferencias":
-        return <TransfersScreen />;
       default:
-        return <DashboardScreen />;
+        return <DashboardScreen onSelectMatch={setSelectedMatch} />;
     }
   };
 
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar style="light" backgroundColor={THEME.colors.background} />
+      <StatusBar style="light" />
 
       {/* Conteúdo da Tela */}
       <View style={styles.content}>{renderScreen()}</View>
@@ -38,56 +76,119 @@ export default function App() {
       <View style={styles.tabBar}>
         <TouchableOpacity
           style={styles.tabItem}
-          onPress={() => setCurrentTab("jogos")}
+          onPress={() => selectTab("jogos")}
           activeOpacity={0.7}
         >
-          <Text style={[styles.tabIcon, currentTab === "jogos" && styles.tabIconActive]}>
+          <Text
+            style={[
+              styles.tabIcon,
+              currentTab === "jogos" && styles.tabIconActive,
+            ]}
+          >
             ⚡
           </Text>
-          <Text style={[styles.tabLabel, currentTab === "jogos" && styles.tabLabelActive]}>
+          <Text
+            style={[
+              styles.tabLabel,
+              currentTab === "jogos" && styles.tabLabelActive,
+            ]}
+          >
             Jogos
           </Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.tabItem}
-          onPress={() => setCurrentTab("live")}
+          onPress={() => selectTab("live")}
           activeOpacity={0.7}
         >
           <View style={styles.liveTabIconWrapper}>
-            <Text style={[styles.tabIcon, currentTab === "live" && styles.tabIconLive]}>
+            <Text
+              style={[
+                styles.tabIcon,
+                currentTab === "live" && styles.tabIconLive,
+              ]}
+            >
               🔴
             </Text>
             <View style={styles.livePulseDot} />
           </View>
-          <Text style={[styles.tabLabel, currentTab === "live" && styles.tabLabelLive]}>
+          <Text
+            style={[
+              styles.tabLabel,
+              currentTab === "live" && styles.tabLabelLive,
+            ]}
+          >
             Ao Vivo
           </Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.tabItem}
-          onPress={() => setCurrentTab("favoritos")}
+          onPress={() => selectTab("times")}
           activeOpacity={0.7}
         >
-          <Text style={[styles.tabIcon, currentTab === "favoritos" && styles.tabIconActive]}>
-            ⭐
+          <Text
+            style={[
+              styles.tabIcon,
+              currentTab === "times" && styles.tabIconActive,
+            ]}
+          >
+            🛡️
           </Text>
-          <Text style={[styles.tabLabel, currentTab === "favoritos" && styles.tabLabelActive]}>
-            Favoritos
+          <Text
+            style={[
+              styles.tabLabel,
+              currentTab === "times" && styles.tabLabelActive,
+            ]}
+          >
+            Times
           </Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.tabItem}
-          onPress={() => setCurrentTab("transferencias")}
+          onPress={() => selectTab("classificacao")}
           activeOpacity={0.7}
         >
-          <Text style={[styles.tabIcon, currentTab === "transferencias" && styles.tabIconActive]}>
-            🔄
+          <Text
+            style={[
+              styles.tabIcon,
+              currentTab === "classificacao" && styles.tabIconActive,
+            ]}
+          >
+            🏆
           </Text>
-          <Text style={[styles.tabLabel, currentTab === "transferencias" && styles.tabLabelActive]}>
-            Mercado
+          <Text
+            style={[
+              styles.tabLabel,
+              currentTab === "classificacao" && styles.tabLabelActive,
+            ]}
+          >
+            Tabela
+          </Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.tabItem}
+          onPress={() => selectTab("favoritos")}
+          activeOpacity={0.7}
+        >
+          <Text
+            style={[
+              styles.tabIcon,
+              currentTab === "favoritos" && styles.tabIconActive,
+            ]}
+          >
+            ⭐
+          </Text>
+          <Text
+            style={[
+              styles.tabLabel,
+              currentTab === "favoritos" && styles.tabLabelActive,
+            ]}
+          >
+            Favoritos
           </Text>
         </TouchableOpacity>
       </View>
@@ -154,4 +255,3 @@ const styles = StyleSheet.create({
     fontWeight: "800",
   },
 });
-

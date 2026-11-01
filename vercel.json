@@ -31,10 +31,6 @@
       "destination": "/api/share"
     },
     {
-      "source": "/api/market",
-      "destination": "/api/transfermarkt"
-    },
-    {
       "source": "/api/:path*",
       "destination": "/api/index?path=:path*"
     },
@@ -48,10 +44,6 @@
     }
   ],
   "functions": {
-    "api/transfermarkt.py": {
-      "maxDuration": 120,
-      "excludeFiles": "{node_modules/**,dist/**,src/**,tests/**,.git/**}"
-    },
     "api/share.mjs": {
       "includeFiles": "dist/index.html",
       "maxDuration": 30

@@ -6,7 +6,6 @@ import { matchScore } from "../components/shared";
 import { memo, useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import {
-  ArrowDownUp,
   ArrowRight,
   CalendarDays,
   ChevronDown,
@@ -707,12 +706,16 @@ export default function Dashboard({
                 title={
                   favoritesOnly
                     ? "Nenhum favorito nesta data"
-                    : "Nenhuma partida encontrada"
+                    : sport === "judo"
+                      ? "Judô no catálogo"
+                      : "Nenhuma partida encontrada"
                 }
               >
                 {favoritesOnly
                   ? "Marque a estrela de uma partida para salvá-la."
-                  : "Altere o esporte, a data ou a busca. A cobertura varia por competição."}
+                  : sport === "judo"
+                    ? "Ainda não há uma fonte integrada de placares para o judô."
+                    : "Altere o esporte, a data ou a busca. A cobertura varia por competição."}
               </Empty>
             ) : (
               groups.map((group) => {
@@ -808,13 +811,6 @@ export default function Dashboard({
               </Link>
               <Link to="/times">
                 Encontre seu time
-                <ArrowRight size={16} />
-              </Link>
-              <Link to="/transferencias">
-                <span>
-                  <ArrowDownUp size={14} />
-                  Mercado da bola
-                </span>
                 <ArrowRight size={16} />
               </Link>
             </section>

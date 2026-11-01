@@ -4,7 +4,7 @@ if (
   process.env.VERCEL_ENV !== "production" &&
   !process.argv.includes("--apply")
 ) {
-  console.log("Perfis NBA/WNBA: importação reservada à produção.");
+  console.log("Perfis de basquete: importação reservada à produção.");
 } else {
   if (!process.env.DATABASE_URL)
     throw new Error("Neon não configurado para importar os times de basquete.");
@@ -14,7 +14,7 @@ if (
   const done =
     await sql`SELECT revision FROM sport_profile_imports WHERE revision=${revision}`;
   if (done.length) {
-    console.log("NBA/WNBA: revisão já aplicada; mantendo edições do painel.");
+    console.log("Basquete: revisão já aplicada; mantendo edições do painel.");
   } else {
     const existing =
       await sql`SELECT id,sport,league FROM sport_teams WHERE id=ANY(${clubs.map((c) => c.id)}::text[])`;
@@ -39,10 +39,10 @@ if (
     await sql.transaction(queries);
     const check =
       await sql`SELECT id FROM sport_teams WHERE id=ANY(${clubs.map((c) => c.id)}::text[]) AND sport='basketball'`;
-    if (check.length !== 45)
-      throw new Error("A conferência dos 45 times de basquete falhou.");
+    if (check.length !== clubs.length)
+      throw new Error("A conferência dos times de basquete falhou.");
     console.log(
-      "NBA/WNBA: 30 + 15 perfis conferidos. Todos os cadastros existentes preservados.",
+      `Basquete: ${clubs.length} perfis conferidos. Todos os cadastros existentes preservados.`,
     );
   }
 }

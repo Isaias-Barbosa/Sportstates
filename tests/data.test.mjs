@@ -77,6 +77,77 @@ test("summary uses competition date and commentary sequence, not descending bask
   assert.equal(d.events[0].text, "Later");
   assert.equal(d.statistics[0].stats[0].value, "3");
 });
+test("hockey summaries include scoring plays, current score and Portuguese team statistics", () => {
+  const d = normalizeSummary(
+    {
+      header: {
+        id: "1",
+        competitions: [{ ...event.competitions[0], date: event.date }],
+      },
+      plays: [
+        {
+          id: "period-start",
+          sequenceNumber: "1",
+          type: { text: "Period Start", abbreviation: "period-start" },
+          text: "Start of 1st Period",
+          clock: { displayValue: "0:00" },
+          period: { number: 1 },
+          scoringPlay: false,
+        },
+        {
+          id: "hockey-goal",
+          sequenceNumber: "2",
+          type: { text: "Goal", abbreviation: "goal" },
+          text: "Jogador marcou",
+          clock: { displayValue: "6:04" },
+          period: { number: 1 },
+          homeScore: 1,
+          awayScore: 0,
+          scoringPlay: true,
+          team: { id: "1" },
+          participants: [
+            { type: "scorer", athlete: { displayName: "Jogador" } },
+          ],
+        },
+      ],
+      boxscore: {
+        teams: [
+          {
+            team: { displayName: "Mandante" },
+            statistics: [
+              { name: "shotsTotal", label: "Shots", displayValue: "32" },
+            ],
+          },
+          {
+            team: { displayName: "Visitante" },
+            statistics: [
+              {
+                name: "powerPlayGoals",
+                label: "Power Play Goals",
+                displayValue: "2",
+              },
+            ],
+          },
+        ],
+      },
+    },
+    "hockey",
+    "nhl",
+    "NHL",
+  );
+
+  assert.equal(d.events.length, 2);
+  assert.equal(d.events[0].id, "hockey-goal");
+  assert.equal(d.events[0].kind, "goal");
+  assert.equal(d.events[0].scoring, true);
+  assert.equal(d.events[0].scorer, "Jogador");
+  assert.equal(d.events[0].scorerTeamId, "1");
+  assert.equal(d.events[0].score, "1–0");
+  assert.equal(d.events[0].period, 1);
+  assert.equal(d.events[0].minute, "6:04");
+  assert.equal(d.statistics[0].stats[0].name, "Finalizações");
+  assert.equal(d.statistics[1].stats[0].name, "Gols em superioridade");
+});
 test("cache deduplicates concurrent requests and honors TTL", async () => {
   let now = 0,
     calls = 0;
@@ -120,20 +191,6 @@ test("invalid provider identifiers and dates fail before network", async () => {
     400,
   );
 });
-test("missing API key returns explicit configuration state", async () => {
-  const previous = process.env.API_FOOTBALL_KEY;
-  delete process.env.API_FOOTBALL_KEY;
-  try {
-    const [status, data] = await route(
-      new URL("http://localhost/api/transfers?team=33"),
-    );
-    assert.equal(status, 200);
-    assert.equal(data.configured, false);
-    assert.deepEqual(data.transfers, []);
-  } finally {
-    if (previous) process.env.API_FOOTBALL_KEY = previous;
-  }
-});
 test("API rejects writes", async () => {
   let output;
   const res = {
@@ -147,34 +204,97 @@ test("API rejects writes", async () => {
   assert.match(output.error, /GET/);
 });
 
-test('Portuguese commentary preserves nested event period and lineup structure', () => {
-  const d = normalizeSummary({
-    header: { id: '1', competitions: [{ ...event.competitions[0], date: event.date }] },
-    commentary: [{ sequence: 3, time: { displayValue: "22'" }, text: 'Falta cometida por Diogo Dalot.', play: { period: { number: 1 }, type: { text: 'Falta' } } }],
-    rosters: [{ team: { displayName: 'Mandante' }, homeAway: 'home', formation: '4-2-3-1', roster: [{ athlete: { id: '10', displayName: 'Jogador', shortName: 'J. Nome' }, position: { displayName: 'Goleiro', abbreviation: 'G' }, starter: true, formationPlace: '1', subbedOut: true }] }],
-  }, 'soccer', 'eng.1', 'Premier');
+test("Portuguese commentary preserves nested event period and lineup structure", () => {
+  const d = normalizeSummary(
+    {
+      header: {
+        id: "1",
+        competitions: [{ ...event.competitions[0], date: event.date }],
+      },
+      commentary: [
+        {
+          sequence: 3,
+          time: { displayValue: "22'" },
+          text: "Falta cometida por Diogo Dalot.",
+          play: { period: { number: 1 }, type: { text: "Falta" } },
+        },
+      ],
+      rosters: [
+        {
+          team: { displayName: "Mandante" },
+          homeAway: "home",
+          formation: "4-2-3-1",
+          roster: [
+            {
+              athlete: {
+                id: "10",
+                displayName: "Jogador",
+                shortName: "J. Nome",
+              },
+              position: { displayName: "Goleiro", abbreviation: "G" },
+              starter: true,
+              formationPlace: "1",
+              subbedOut: true,
+            },
+          ],
+        },
+      ],
+    },
+    "soccer",
+    "eng.1",
+    "Premier",
+  );
   assert.equal(d.events[0].period, 1);
-  assert.equal(d.events[0].type, 'Falta');
-  assert.equal(d.lineups[0].formation, '4-2-3-1');
+  assert.equal(d.events[0].type, "Falta");
+  assert.equal(d.lineups[0].formation, "4-2-3-1");
   assert.equal(d.lineups[0].players[0].formationPlace, 1);
-  assert.equal(d.lineups[0].players[0].positionName, 'Goleiro');
+  assert.equal(d.lineups[0].players[0].positionName, "Goleiro");
   assert.equal(d.lineups[0].players[0].subbedOut, true);
 });
 
-test('match provider receives Portuguese locale for details and preserves halftime', async () => {
+test("match provider receives Portuguese locale for details and preserves halftime", async () => {
   const original = globalThis.fetch;
   let requested;
   globalThis.fetch = async (url) => {
-    if (String(url).includes("agendacazetv.com.br") || String(url).includes("ge.globo.com/agenda/")) return { ok: true, text: async () => "" };
+    if (
+      String(url).includes("agendacazetv.com.br") ||
+      String(url).includes("ge.globo.com/agenda/")
+    )
+      return { ok: true, text: async () => "" };
     requested = new URL(url);
-    return { ok: true, json: async () => ({ header: { id: '998877', competitions: [{ ...event.competitions[0], date: event.date, status: { type: { state: 'in', name: 'STATUS_HALFTIME', description: 'Intervalo' }, displayClock: "45'" } }] } }) };
+    return {
+      ok: true,
+      json: async () => ({
+        header: {
+          id: "998877",
+          competitions: [
+            {
+              ...event.competitions[0],
+              date: event.date,
+              status: {
+                type: {
+                  state: "in",
+                  name: "STATUS_HALFTIME",
+                  description: "Intervalo",
+                },
+                displayClock: "45'",
+              },
+            },
+          ],
+        },
+      }),
+    };
   };
   try {
-    const [status, data] = await route(new URL('http://localhost/api/match?sport=soccer&league=eng.1&id=998877'));
+    const [status, data] = await route(
+      new URL("http://localhost/api/match?sport=soccer&league=eng.1&id=998877"),
+    );
     assert.equal(status, 200);
-    assert.equal(requested.searchParams.get('lang'), 'pt');
-    assert.equal(requested.searchParams.get('region'), 'br');
-    assert.equal(data.match.statusName, 'STATUS_HALFTIME');
-    assert.equal(data.match.state, 'live');
-  } finally { globalThis.fetch = original; }
+    assert.equal(requested.searchParams.get("lang"), "pt");
+    assert.equal(requested.searchParams.get("region"), "br");
+    assert.equal(data.match.statusName, "STATUS_HALFTIME");
+    assert.equal(data.match.state, "live");
+  } finally {
+    globalThis.fetch = original;
+  }
 });

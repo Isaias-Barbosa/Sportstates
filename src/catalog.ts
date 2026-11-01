@@ -8,5 +8,6 @@ export const sports = [
   { id: "tennis", name: "Tênis masculino", icon: "🎾" },
   { id: "table-tennis", name: "Tênis de mesa masculino", icon: "🏓" },
   { id: "volleyball", name: "Vôlei masculino", icon: "🏐" },
+  { id: "judo", name: "Judô", icon: "🥋" },
 ];
 export const keyOf = (m: Match) => `${m.sport}/${m.league}/${m.id}`;

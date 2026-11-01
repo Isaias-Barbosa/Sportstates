@@ -10,13 +10,20 @@ type Props = {
   onPress?: () => void;
 };
 
-export function MatchCard({ match, isFavorite, onToggleFavorite, onPress }: Props) {
+export function MatchCard({
+  match,
+  isFavorite,
+  onToggleFavorite,
+  onPress,
+}: Props) {
   const isLive = match.state === "live";
 
   return (
     <TouchableOpacity
       activeOpacity={0.7}
       onPress={onPress}
+      accessibilityRole="button"
+      accessibilityLabel={`${match.home.name} contra ${match.away.name}, ${match.status || match.state}`}
       style={[styles.card, isLive && styles.liveCard]}
     >
       {/* Horário / Status */}
@@ -32,13 +39,19 @@ export function MatchCard({ match, isFavorite, onToggleFavorite, onPress }: Prop
         {/* Time Casa */}
         <View style={styles.teamRow}>
           {match.home.logo ? (
-            <Image source={{ uri: match.home.logo }} style={styles.crest} resizeMode="contain" />
+            <Image
+              source={{ uri: match.home.logo }}
+              style={styles.crest}
+              resizeMode="contain"
+            />
           ) : (
             <View style={styles.crestFallback}>
-              <Text style={styles.crestInitial}>{match.home.name.charAt(0)}</Text>
+              <Text style={styles.crestInitial}>
+                {match.home.name.charAt(0)}
+              </Text>
             </View>
           )}
-          <Text style={styles.teamName} numberOfLines={1}>
+          <Text style={styles.teamName} numberOfLines={2}>
             {match.home.name}
           </Text>
           <Text style={[styles.score, isLive && styles.liveScore]}>
@@ -49,13 +62,19 @@ export function MatchCard({ match, isFavorite, onToggleFavorite, onPress }: Prop
         {/* Time Fora */}
         <View style={styles.teamRow}>
           {match.away.logo ? (
-            <Image source={{ uri: match.away.logo }} style={styles.crest} resizeMode="contain" />
+            <Image
+              source={{ uri: match.away.logo }}
+              style={styles.crest}
+              resizeMode="contain"
+            />
           ) : (
             <View style={styles.crestFallback}>
-              <Text style={styles.crestInitial}>{match.away.name.charAt(0)}</Text>
+              <Text style={styles.crestInitial}>
+                {match.away.name.charAt(0)}
+              </Text>
             </View>
           )}
-          <Text style={styles.teamName} numberOfLines={1}>
+          <Text style={styles.teamName} numberOfLines={2}>
             {match.away.name}
           </Text>
           <Text style={[styles.score, isLive && styles.liveScore]}>
@@ -71,7 +90,9 @@ export function MatchCard({ match, isFavorite, onToggleFavorite, onPress }: Prop
           onPress={onToggleFavorite}
           hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
         >
-          <Text style={[styles.favoriteIcon, isFavorite && styles.favoriteActive]}>
+          <Text
+            style={[styles.favoriteIcon, isFavorite && styles.favoriteActive]}
+          >
             {isFavorite ? "★" : "☆"}
           </Text>
         </TouchableOpacity>
@@ -137,6 +158,7 @@ const styles = StyleSheet.create({
     width: 20,
     height: 20,
     marginRight: 8,
+    flexShrink: 0,
   },
   crestFallback: {
     width: 20,
@@ -146,6 +168,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     marginRight: 8,
+    flexShrink: 0,
   },
   crestInitial: {
     fontSize: 10,
@@ -154,11 +177,15 @@ const styles = StyleSheet.create({
   },
   teamName: {
     flex: 1,
+    minWidth: 0,
+    flexShrink: 1,
     fontSize: 12,
+    lineHeight: 16,
     fontWeight: "500",
     color: THEME.colors.text,
   },
   score: {
+    flexShrink: 0,
     fontSize: 14,
     fontWeight: "700",
     color: THEME.colors.text,
@@ -181,4 +208,3 @@ const styles = StyleSheet.create({
     color: THEME.colors.green,
   },
 });
-

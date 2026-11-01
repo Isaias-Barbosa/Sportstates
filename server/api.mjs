@@ -88,6 +88,22 @@ export async function scoreboard(date, sport = "all") {
   const selectedSports = SPORTS.filter(
     (s) => sport === "all" || s.id === sport,
   );
+  if (!selectedSports.some((s) => s.leagues.length)) {
+    return {
+      matches: [],
+      sports: selectedSports.map(({ leagues, ...s }) => ({
+        ...s,
+        competitions: [],
+      })),
+      date,
+      source: "Catálogo Sportstates · sem fonte de placares",
+      fetchedAt: new Date().toISOString(),
+      stale: false,
+      warnings: [
+        "Judô está no catálogo, mas ainda não há fonte de placares integrada.",
+      ],
+    };
+  }
   // BRT day crosses two UTC dates. Fetch separately to avoid upstream range regressions.
   const next = new Date(`${date}T12:00:00Z`);
   next.setUTCDate(next.getUTCDate() + 1);
@@ -174,19 +190,6 @@ export async function scoreboard(date, sport = "all") {
   };
 }
 
-async function football(path) {
-  const raw = await json(`https://v3.football.api-sports.io/${path}`, {
-    "x-apisports-key": process.env.API_FOOTBALL_KEY,
-  });
-  if (Object.keys(raw.errors || {}).length)
-    throw new Error(
-      "A API-Football recusou a consulta. Verifique a chave, a cobertura e a cota do plano.",
-    );
-  if (!Array.isArray(raw.response))
-    throw new Error("Resposta de transferências inválida.");
-  return raw.response;
-}
-
 // ─── Route handler ────────────────────────────────────────────────────────────
 export async function route(url) {
   const q = url.searchParams;
@@ -202,10 +205,8 @@ export async function route(url) {
       : [503, { error: "Neon Auth não configurado." }];
   }
   if (url.pathname === "/api/teams") {
-    const result = await cached(
-      "teams:saudi-profiles-v1",
-      CACHE_TTL.teams,
-      () => listTeams(),
+    const result = await cached("teams:catalog-v2-nbb", CACHE_TTL.teams, () =>
+      listTeams(),
     );
     return [
       200,
@@ -641,55 +642,6 @@ export async function route(url) {
         stale: result.stale,
         fetchedAt: new Date(result.at).toISOString(),
         source: "ESPN · feed público não oficial",
-      },
-    ];
-  }
-
-  // ── /api/transfers ──────────────────────────────────────────────────────────
-  if (url.pathname === "/api/transfers") {
-    if (!process.env.API_FOOTBALL_KEY)
-      return [
-        200,
-        {
-          configured: false,
-          transfers: [],
-          message:
-            "API-Football não configurada. Use a página Transfermarkt integrada em /api/market.",
-        },
-      ];
-    const team = q.get("team");
-    if (!/^\d{1,7}$/.test(team || ""))
-      return [
-        400,
-        {
-          error:
-            "Informe o ID do clube na API-Football (?team=ID) ou use ?club=Nome com Transfermarkt.",
-        },
-      ];
-    const result = await cached(`transfers:${team}`, 21600000, () =>
-      football(`transfers?team=${team}`),
-    );
-    const transfers = result.value
-      .flatMap((p) =>
-        (p.transfers || []).map((t) => ({
-          player: p.player?.name || "Jogador",
-          playerId: p.player?.id,
-          date: t.date,
-          type: t.type,
-          from: t.teams?.out?.name || "Não informado",
-          to: t.teams?.in?.name || "Não informado",
-          fee: null,
-          marketValue: null,
-        })),
-      )
-      .sort((a, b) => (b.date || "").localeCompare(a.date || ""));
-    return [
-      200,
-      {
-        configured: true,
-        transfers,
-        source: "API-Football",
-        fetchedAt: new Date(result.at).toISOString(),
       },
     ];
   }
