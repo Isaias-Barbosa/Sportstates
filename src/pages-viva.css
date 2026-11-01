@@ -680,9 +680,9 @@ summary:focus-visible {
   letter-spacing: 0.05em;
 }
 .league-game {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 10px 12px;
   padding: 17px 16px;
   border-bottom: 1px solid var(--border);
 }
@@ -693,22 +693,43 @@ summary:focus-visible {
   border-left: 3px solid var(--sport-coral);
   background: var(--live-dim);
 }
-.league-game-status {
-  flex: 0 0 63px;
+.league-game-meta {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 5px 9px;
   font-size: 10px;
   color: var(--muted);
+}
+.league-game-round {
+  color: var(--green);
+  font-size: 10px;
+  font-weight: 800;
+}
+.league-game-venue {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.league-game-meta time {
+  font-weight: 750;
+}
+.league-game-content {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 90px minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+.league-game-status {
   display: flex;
   align-items: center;
   gap: 7px;
-  flex-wrap: wrap;
+  color: var(--muted);
+  font-size: 10px;
 }
-.league-game-round {
-  flex-basis: 100%;
-  color: var(--green);
-  font-size: 9px;
-  font-weight: 800;
-}
-.league-game.is-live .league-game-status {
+.league-game-status.is-live {
   color: var(--live);
   font-weight: 800;
 }
@@ -717,7 +738,6 @@ summary:focus-visible {
   animation: pulse-live 1.5s infinite;
 }
 .league-game-teams {
-  flex: 1;
   display: grid;
   gap: 10px;
   min-width: 0;
@@ -742,9 +762,19 @@ summary:focus-visible {
   padding-left: 6px;
   font-size: 15px;
 }
-.league-game > svg {
-  flex-shrink: 0;
+.league-game-cta {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-self: end;
+  gap: 4px;
   color: var(--green);
+  font-size: 10px;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+.league-game-cta svg {
+  flex-shrink: 0;
 }
 .league-games-note {
   padding: 16px 18px;
@@ -767,6 +797,10 @@ summary:focus-visible {
   .league-game {
     gap: 8px;
     padding: 14px 12px;
+  }
+  .league-game-content {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
   }
   .league-month {
     margin-inline: 12px;

@@ -54,6 +54,10 @@ import { authBaseUrl, adminAuthorized } from "./admin-auth.mjs";
 import { normalizeStandings } from "./standings.mjs";
 import { KNOCKOUT_LEAGUES, fetchTournament } from "./tournaments.mjs";
 import {
+  enrichBrazilSerieARounds,
+  fetchGeBrazilSeasonRounds,
+} from "./ge-rounds.mjs";
+import {
   dayInBrazil,
   validDate,
   normalizeEvent,
@@ -549,11 +553,39 @@ export async function route(url) {
       },
       300000,
     );
+    let matches = result.value.matches;
+    let roundsUnavailable = false;
+    if (config.sport === "soccer" && config.league === "bra.1") {
+      const year = Number(month.slice(0, 4));
+      const currentYear = Number(dayInBrazil(new Date()).slice(0, 4));
+      if (year < 2020 || year > currentYear) {
+        roundsUnavailable = matches.some((match) => !match.round);
+      } else {
+        try {
+          const schedule = await cached(
+            `ge:bra.1:season-rounds:${year}`,
+            (value) =>
+              value.failures.length ? CACHE_TTL.standings : 30 * 60 * 1000,
+            () => fetchGeBrazilSeasonRounds(year, json),
+            300000,
+          );
+          matches = enrichBrazilSerieARounds(matches, schedule.value.rounds);
+          roundsUnavailable =
+            schedule.value.failures.length > 0 ||
+            matches.some((match) => !match.round);
+        } catch (error) {
+          roundsUnavailable = true;
+          console.error("GE Brasileirão round fallback failed:", error);
+        }
+      }
+    }
     return [
       200,
       {
         ...config,
         ...result.value,
+        matches,
+        roundsUnavailable,
         month,
         stale: result.stale,
         fetchedAt: new Date(result.at).toISOString(),

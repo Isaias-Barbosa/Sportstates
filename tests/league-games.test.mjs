@@ -1,6 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { route } from "../server/api.mjs";
+import { dayInBrazil } from "../server/data.mjs";
 
 function event(id, date, state = "pre") {
   return {
@@ -50,20 +51,28 @@ test("league month includes the last Brazilian evening, removes duplicates and p
   globalThis.fetch = async (input) => {
     const u = new URL(input);
     requests.push(u);
+    if (u.hostname === "api.globoesporte.globo.com")
+      return {
+        ok: true,
+        json: async () =>
+          u.pathname.endsWith("/classificacao/")
+            ? { rodada: { atual: 33 }, lista_jogos: [] }
+            : [],
+      };
     return {
       ok: true,
       json: async () => ({
         events:
-          u.searchParams.get("dates") === "202602"
+          u.searchParams.get("dates") === "201902"
             ? [
-                event("1", "2026-02-01T01:00Z"),
-                event("2", "2026-02-03T23:00Z", "post"),
-                event("3", "2026-02-28T22:00Z", "in"),
+                event("1", "2019-02-01T01:00Z"),
+                event("2", "2019-02-03T23:00Z", "post"),
+                event("3", "2019-02-28T22:00Z", "in"),
               ]
             : [
-                event("3", "2026-02-28T22:00Z", "in"),
-                event("4", "2026-03-01T02:00Z"),
-                event("5", "2026-03-01T04:00Z"),
+                event("3", "2019-02-28T22:00Z", "in"),
+                event("4", "2019-03-01T02:00Z"),
+                event("5", "2019-03-01T04:00Z"),
               ],
       }),
     };
@@ -71,7 +80,7 @@ test("league month includes the last Brazilian evening, removes duplicates and p
   try {
     const [status, data] = await route(
       new URL(
-        "http://localhost/api/league-games?sport=soccer&league=bra.1&month=2026-02",
+        "http://localhost/api/league-games?sport=soccer&league=bra.1&month=2019-02",
       ),
     );
     assert.equal(status, 200);
@@ -85,13 +94,105 @@ test("league month includes the last Brazilian evening, removes duplicates and p
     );
     assert.equal(data.partial, false);
     assert.deepEqual(
-      requests.map((u) => u.searchParams.get("dates")),
-      ["202602", "20260301"],
+      requests
+        .filter((u) => u.hostname === "site.api.espn.com")
+        .map((u) => u.searchParams.get("dates")),
+      ["201902", "20190301"],
     );
     assert.ok(
-      requests.every((u) => u.pathname.endsWith("/soccer/bra.1/scoreboard")),
+      requests
+        .filter((u) => u.hostname === "site.api.espn.com")
+        .every((u) => u.pathname.endsWith("/soccer/bra.1/scoreboard")),
     );
     assert.ok(data.matches.every((m) => m.league === "bra.1"));
+  } finally {
+    globalThis.fetch = original;
+  }
+});
+test("league games use the GE season schedule as a fallback for Brazilian fixtures", async () => {
+  const original = globalThis.fetch;
+  const month = dayInBrazil(new Date()).slice(0, 7);
+  const date = `${month}-15`;
+  const requests = [];
+  globalThis.fetch = async (input) => {
+    const url = new URL(input);
+    requests.push(url);
+    if (url.hostname === "api.globoesporte.globo.com") {
+      const round = Number(url.pathname.match(/rodada\/(\d+)/)?.[1]);
+      return {
+        ok: true,
+        json: async () =>
+          round === 33
+            ? [
+                {
+                  data_realizacao: `${date}T19:30`,
+                  equipes: {
+                    mandante: { sigla: "RBB", nome_popular: "Bragantino" },
+                    visitante: { sigla: "CHA", nome_popular: "Chapecoense" },
+                  },
+                  sede: { nome_popular: "Estádio de teste" },
+                },
+              ]
+            : [],
+      };
+    }
+    const dates = url.searchParams.get("dates");
+    return {
+      ok: true,
+      json: async () => ({
+        events:
+          dates === date.replaceAll("-", "").slice(0, 6)
+            ? [
+                {
+                  ...event("ge-round-match", `${date}T22:30:00Z`),
+                  competitions: [
+                    {
+                      ...event("ge-round-match", `${date}T22:30:00Z`)
+                        .competitions[0],
+                      competitors: [
+                        {
+                          homeAway: "home",
+                          team: {
+                            id: "1",
+                            displayName: "Red Bull Bragantino",
+                            abbreviation: "BRA",
+                          },
+                          score: "0",
+                        },
+                        {
+                          homeAway: "away",
+                          team: {
+                            id: "2",
+                            displayName: "Chapecoense",
+                            abbreviation: "CHA",
+                          },
+                          score: "0",
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ]
+            : [],
+      }),
+    };
+  };
+  try {
+    const [status, data] = await route(
+      new URL(
+        `http://localhost/api/league-games?sport=soccer&league=bra.1&month=${month}`,
+      ),
+    );
+    assert.equal(status, 200);
+    assert.equal(data.roundsUnavailable, false);
+    const match = data.matches.find((item) => item.id === "ge-round-match");
+    assert.equal(match.round, "33");
+    assert.equal(match.venue, "Estádio de teste");
+    assert.equal(
+      requests.filter((url) => url.hostname === "api.globoesporte.globo.com")
+        .length,
+      38,
+    );
   } finally {
     globalThis.fetch = original;
   }

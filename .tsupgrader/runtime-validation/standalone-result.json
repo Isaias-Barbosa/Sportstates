@@ -1,0 +1,138 @@
+{
+  "planHash": "60f153b372ce8692788fe07fcd89ead9920ded4e230b628fc69b40887625a1a7",
+  "phase": "standalone",
+  "recordedAtUtc": "2026-11-01T03:17:13.1382566Z",
+  "retryCount": 0,
+  "resetBaseline": false,
+  "complete": true,
+  "result": {
+    "setupSucceeded": true,
+    "setupDurationMs": 89712,
+    "setupFailureOutput": null,
+    "assertions": [
+      {
+        "name": "production-build",
+        "kind": "process",
+        "verificationMethod": "exit-code",
+        "passed": true,
+        "timedOut": false,
+        "skipped": false,
+        "skippedReason": null,
+        "exitCode": 0,
+        "outputSample": "\r\n\u003E sportstates@1.0.0 build\r\n\u003E tsc -b \u0026\u0026 vite build \u0026\u0026 node scripts/sync-premier-league.mjs \u0026\u0026 node scripts/sync-league-profiles.mjs \u0026\u0026 node scripts/sync-mls-profiles.mjs \u0026\u0026 node scripts/sync-basketball-profiles.mjs \u0026\u0026 node scripts/sync-nfl-profiles.mjs \u0026\u0026 node scripts/sync-brazil-profiles.mjs \u0026\u0026 node scripts/sync-mlb-profiles.mjs \u0026\u0026 node scripts/sync-nhl-profiles.mjs \u0026\u0026 node scripts/sync-volleyball-profiles.mjs \u0026\u0026 node scripts/sync-saudi-profiles.mjs \u0026\u0026 node scripts/setup-user-preferences.mjs\r\n\r\n\u001B[36mvite v6.4.5 \u001B[32mbuilding for production...\u001B[36m\u001B[39m\r\ntransforming...\r\n\u001B[33mnode_modules/react-router/dist/development/index.mjs (11:0): Module level directives cause errors when bundled, \u0022use client\u0022 in \u0022node_modules/react-router/dist/development/index.mjs\u0022 was ignored.\u001B[39m\r\n\u001B[33mnode_modules/react-router/dist/development/dom-export.mjs (1:0): Module level directives cause errors when bundled, \u0022use client\u0022 in \u0022node_modules/react-router/dist/development/dom-export.mjs\u0022 was ignored.\u001B[39m\r\n\u001B[33mnode_modules/@neondatabase/auth/node_modules/zod/v4/core/regexes.js (70:0): A comment\r\n\r\n\u0022/** Anchors a pattern source. The interpolation lives here rather than at the call site because\r\n * esbuild will not drop a \u0060@__PURE__\u0060 call whose own argument interpolates a variable, but it\r\n * will drop \u0060anchor(dateSource)\u0060. Keeping it inline pinned \u0060date\u0060 into every bundle. */\u0022\r\n\r\nin \u0022node_modules/@neondatabase/auth/node_modules/zod/v4/core/regexes.js\u0022 contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.\u001B[39m\r\n\u001B[33mnode_modules/@neondatabase/auth/node_modules/zod/v4/core/util.js (330:0): A comment\r\n\r\n\u0022// Wrapped in a \u0060@__PURE__\u0060 IIFE: esbuild never tree-shakes a top-level initializer that contains a member access on \u0060Number\u0060, so the bare object literal survived into every bundle.\u0022\r\n\r\nin \u0022node_modules/@neondatabase/auth/node_modules/zod/v4/core/util.js\u0022 contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.\u001B[39m\r\n\u001B[32m\u2713\u001B[39m 1910 modules transformed.\r\nrendering chunks...\r\ncomputing gzip size...\r\n\u001B[2mdist/\u001B[22m\u001B[32mindex.html                             \u001B[39m\u001B[1m\u001B[2m  2.26 kB\u001B[22m\u001B[1m\u001B[22m\u001B[2m \u2502 gzip:   0.88 kB\u001B[22m\r\n\u001B[2mdist/\u001B[22m\u001B[35massets/MatchPage-BIqudLeP.css          \u001B[39m\u001B[1m\u001B[2m  2.59 kB\u001B[22m\u001B[1m\u001B[22m\u001B[2m \u2502 gzip:   0.86 kB\u001B[22m\r\n\u001B[2mdist/\u001B[22m\u001B[35massets/index-CYZueg99.css              \u001B[39m\u001B[1m\u001B[2m142.87 kB\u001B[22m\u001B[1m\u001B[22m\u001B[2m \u2502 gzip:  26.58 kB\u001B[22m\r\n\u001B[2mdist/\u001B[22m\u001B[36massets/arrow-left-BpNHC4mi.js          \u001B[39m\u001B[1m\u001B[2m  0.33 kB\u001B[22m\u001B[1m\u001B[22m\u001B[2m \u2502 gzip:   0.27 kB\u001B[22m\r\n\u001B[2mdist/\u001B[22m\u001B[36massets/arrow-up-right-Ds_y3eN0.js      \u001B[39m\u001B[1m\u001B[2m  0.33 kB\u001B[22m\u001B[1m\u001B[22m\u001B[2m \u2502 gzip:   0.26 kB\u001B[22m\r\n\u001B[2mdist/\u001B[22m\u001B[36massets/clock-3-DZ_vNCBt.js             \u001B[39m\u001B[1m\u001B[2m  0.35 kB\u001B[22m\u001B[1m\u001B[22m\u001B[2m \u2502 gzip:   0.27 kB\u001B[22m\r\n\u001B[2mdist/\u001B[22m\u001B[36massets/eye-V1T7ETnk.js                 \u001B[39m\u001B[1m\u001B[2m  0.42 kB\u001B[22m\u001B[1m\u001B[22m\u001B[2m \u2502 gzip:   0.30 kB\u001B[22m\r\n\u001B[2mdist/\u001B[22m\u001B[36massets/trophy-B8ZRjSAr.js              \u001B[39m\u001B[1m\u001B[2m  1.20 kB\u001B[22m\u001B[1m\u001B[22m\u001B[2m \u2502 gzip:   0.48 kB\u001B[22m\r\n\u001B[2mdist/\u001B[22m\u001B[36massets/FavoritesPage-C4OtEQ_v.js       \u001B[39m\u001B[1m\u001B[2m  2.41 kB\u001B[22m\u001B[1m\u001B[22m\u001B[2m \u2502 gzip:   1.10 kB\u001B[22m\r\n\u001B[2mdist/\u001B[22m\u001B[36massets/TennisAthletesPage-CP4O-GTT.js  \u001B[39m\u001B[1m\u001B[2m  2.47 kB\u001B[22m\u001B[1m\u001B[22m\u001B[2m \u2502 gzip:   1.28 kB\u001B[22m\r\n\u001B[2mdist/\u001B[22m\u001B[36massets/About-C9bpoPRB.js               \u001B[39m\u001B[1m\u001B[2m  3.46 kB\u001B[22m\u001B[1m\u001B[22m\u001B[2m \u2502 gzip:   1.62 kB\u001B[22m\r\n\u001B[2mdist/\u001B[22m\u001B[36massets/Lineups-DxaiENHy.js             \u001B[39m\u001B[1m\u001B[2m  3.47 kB\u001B[22m\u001B[1m\u001B[22m\u001B[2m \u2502 gzip:   1.51 kB\u001B[22m\r\n\u001B[2mdist/\u001B[22m\u001B[36massets/TeamsPage-Bhdt5XYY.js           \u001B[39m\u001B[1m\u001B[2m  4.66 kB\u001B[22m\u001B[1m\u001B[22m\u001B[2m \u2502 gzip:   1.61 kB\u001B[22m\r\n\u001B[2mdist/\u001B[22m\u001B[36massets/DailySummaryPage-CQKAH8ze.js    \u001B[39m\u001B[1m\u001B[2m  4.82 kB\u001B[22m\u001B[1m\u001B[22m\u001B[2m \u2502 gzip:   1.88 kB\u001B[22m\r\n\u001B[2mdist/\u001B[22m\u001B[36massets/NewsPage-DQ5vegCo.js            \u001B[39m\u001B[1m\u001B[2m  8.28 kB\u001B[22m\u001B[1m\u001B[22m\u001B[2m \u2502 gzip:   3.11 kB\u001B[22m\r\n\u001B[2mdist/\u001B[22m\u001B[36massets/StandingsPage-DyFg5B0M.js       \u001B[39m\u001B[1m\u001B[2m 10.24 kB\u001B[22\n\u2026[truncated]",
+        "durationMs": 15141
+      },
+      {
+        "name": "tests-pass",
+        "kind": "process",
+        "verificationMethod": "test-results",
+        "passed": true,
+        "timedOut": false,
+        "skipped": false,
+        "skippedReason": null,
+        "exitCode": 0,
+        "outputSample": "\r\n\u003E sportstates@1.0.0 test\r\n\u003E node --test tests/*.test.mjs\r\n\r\nTAP version 13\r\n# Subtest: cached Neon session JWT works without set-auth-jwt (including admin users)\r\nok 1 - cached Neon session JWT works without set-auth-jwt (including admin users)\r\n  ---\r\n  duration_ms: 2.1348\r\n  ...\r\n# Subtest: opaque session token is never sent as an API bearer JWT\r\nok 2 - opaque session token is never sent as an API bearer JWT\r\n  ---\r\n  duration_ms: 2.6367\r\n  ...\r\n# Subtest: signed-out and failed sessions cannot reuse a JWT\r\nok 3 - signed-out and failed sessions cannot reuse a JWT\r\n  ---\r\n  duration_ms: 0.6251\r\n  ...\r\n# Subtest: Neon Auth rejects non-HTTPS and unrelated hosts\r\nok 4 - Neon Auth rejects non-HTTPS and unrelated hosts\r\n  ---\r\n  duration_ms: 1.6782\r\n  ...\r\n# Subtest: admin access denies arbitrary bearer strings and allows existing key during migration\r\nok 5 - admin access denies arbitrary bearer strings and allows existing key during migration\r\n  ---\r\n  duration_ms: 1.0874\r\n  ...\r\n# Subtest: admin user list bounds pagination and search and whitelists status\r\nok 6 - admin user list bounds pagination and search and whitelists status\r\n  ---\r\n  duration_ms: 4.2656\r\n  ...\r\n# Subtest: user directory requires admin authorization and cannot mutate accounts\r\nok 7 - user directory requires admin authorization and cannot mutate accounts\r\n  ---\r\n  duration_ms: 6.4934\r\n  ...\r\n# Subtest: NFL IDs never collide with NBA, WNBA or numeric soccer profiles\r\nok 8 - NFL IDs never collide with NBA, WNBA or numeric soccer profiles\r\n  ---\r\n  duration_ms: 2.0669\r\n  ...\r\n# Subtest: NFL reviewed seed has 32 distinct teams, official sites and current home venues\r\nok 9 - NFL reviewed seed has 32 distinct teams, official sites and current home venues\r\n  ---\r\n  duration_ms: 0.589\r\n  ...\r\n# Subtest: NFL quarters align by team ID, retain zero scores and include overtime\r\nok 10 - NFL quarters align by team ID, retain zero scores and include overtime\r\n  ---\r\n  duration_ms: 7.6476\r\n  ...\r\n# Subtest: NFL boxscore maps each category independently and preserves official net team totals\r\nok 11 - NFL boxscore maps each category independently and preserves official net team totals\r\n  ---\r\n  duration_ms: 1.3014\r\n  ...\r\n# Subtest: NFL timeline reads drives, deduplicates current drive plays and sorts by sequence, not countdown clock\r\nok 12 - NFL timeline reads drives, deduplicates current drive plays and sorts by sequence, not countdown clock\r\n  ---\r\n  duration_ms: 1.0527\r\n  ...\r\n# Subtest: NFL scoring preserves provider score and types, without assigning unconfirmed extra points\r\nok 13 - NFL scoring preserves provider score and types, without assigning unconfirmed extra points\r\n  ---\r\n  duration_ms: 0.6999\r\n  ...\r\n# Subtest: NFL drive zero yards and plays survive; completed games have no live possession\r\nok 14 - NFL drive zero yards and plays survive; completed games have no live possession\r\n  ---\r\n  duration_ms: 1.012\r\n  ...\r\n# Subtest: NFL scheduled games never invent player stats, scoring or drive data\r\nok 15 - NFL scheduled games never invent player stats, scoring or drive data\r\n  ---\r\n  duration_ms: 3.1672\r\n  ...\r\n# Subtest: NFL administrative lookup returns the correct scoped profile ID\r\nok 16 - NFL administrative lookup returns the correct scoped profile ID\r\n  ---\r\n  duration_ms: 2.3399\r\n  ...\r\n# Subtest: NFL competition lookup uses the numeric ESPN ID, keeping the profile key in the response\r\nok 17 - NFL competition lookup uses the numeric ESPN ID, keeping the profile key in the response\r\n  ---\r\n  duration_ms: 4.9367\r\n  ...\r\n# Subtest: NFL roster uses football positions and preserves source roster units\r\nok 18 - NFL roster uses football positions and preserves source roster units\r\n  ---\r\n  duration_ms: 0.4324\r\n  ...\r\n# Subtest: basketball namespaces isolate NBA, WNBA, NBB and existing soccer IDs\r\nok 19 - basketball namespaces isolate NBA, WNBA, NBB and existing soccer IDs\r\n  ---\r\n  duration_ms: 2.7833\r\n  ...\r\n# Subtest: reviewed catalog has distinct NBA, WNBA and NBB profiles\r\nok 20 - reviewed catalog has distinct NBA, WNBA and NBB profiles\r\n  ---\r\n  duration_\n\u2026[truncated]",
+        "durationMs": 4474,
+        "testResults": {
+          "testFramework": "unknown",
+          "runnerDetectedFrom": "none",
+          "testsTotal": 0,
+          "testsPassed": 0,
+          "testsFailed": 0,
+          "testsSkipped": 0,
+          "parseFailed": true
+        }
+      },
+      {
+        "name": "home-route-serves",
+        "kind": "http-probe",
+        "verificationMethod": "http-status",
+        "passed": true,
+        "timedOut": false,
+        "skipped": false,
+        "skippedReason": null,
+        "exitCode": null,
+        "outputSample": "HTTP 200\n\u003C!doctype html\u003E\u003Chtml lang=\u0022pt-BR\u0022 data-theme=\u0022dark\u0022\u003E\u003Chead\u003E\n  \u003Cscript type=\u0022module\u0022 src=\u0022/@vite/client\u0022\u003E\u003C/script\u003E\n\u003Cmeta charset=\u0022UTF-8\u0022/\u003E\u003Cmeta name=\u0022referrer\u0022 content=\u0022strict-origin-when-cross-origin\u0022/\u003E\u003Cmeta name=\u0022viewport\u0022 content=\u0022width=device-width, initial-scale=1.0\u0022/\u003E\u003Cmeta name=\u0022theme-color\u0022 content=\u0022#080f20\u0022/\u003E\u003Cmeta name=\u0022description\u0022 content=\u0022Da primeira bola ao \u00FAltimo segundo. Acompanhe placares, jogos do dia, times e classifica\u00E7\u00F5es em um s\u00F3 lugar.\u0022/\u003E\u003Clink rel=\u0022icon\u0022 href=\u0022data:image/svg\u002Bxml,%3Csvg xmlns=\u0027http://www.w3.org/2000/svg\u0027 viewBox=\u00270 0 40 40\u0027%3E%3Crect width=\u002740\u0027 height=\u002740\u0027 rx=\u002712\u0027 fill=\u0027%23c6f36b\u0027/%3E%3Ctext x=\u002710\u0027 y=\u002729\u0027 font-size=\u002728\u0027 font-family=\u0027Arial\u0027 font-weight=\u0027bold\u0027%3ES%3C/text%3E%3C/svg%3E\u0022/\u003E\u003Cscript\u003Etry{document.documentElement.dataset.theme=localStorage.getItem(\u0027sportstates:theme\u0027)===\u0027light\u0027?\u0027light\u0027:\u0027dark\u0027}catch(e){}\u003C/script\u003E\u003Ctitle\u003ESportstates \u00B7 O jogo acontece aqui\u003C/title\u003E\u003Clink rel=\u0022canonical\u0022 href=\u0022https://sportstates.vercel.app/\u0022/\u003E\u003Cmeta property=\u0022og:type\u0022 content=\u0022website\u0022/\u003E\u003Cmeta property=\u0022og:locale\u0022 content=\u0022pt_BR\u0022/\u003E\u003Cmeta property=\u0022og:site_name\u0022 content=\u0022Sportstates\u0022/\u003E\u003Cmeta property=\u0022og:title\u0022 content=\u0022Sportstates \u00B7 O jogo acontece aqui\u0022/\u003E\u003Cmeta property=\u0022og:description\u0022 content=\u0022Da primeira bola ao \u00FAltimo segundo. Acompanhe placares, jogos do dia, times e classifica\u00E7\u00F5es em um s\u00F3 lugar.\u0022/\u003E\u003Cmeta property=\u0022og:url\u0022 content=\u0022https://sportstates.vercel.app/\u0022/\u003E\u003Cmeta property=\u0022og:image\u0022 content=\u0022https://sportstates.vercel.app/api/share-image?page=%2F\u0022/\u003E\u003Cmeta property=\u0022og:image:width\u0022 content=\u00221200\u0022/\u003E\u003Cmeta property=\u0022og:image:height\u0022 content=\u0022630\u0022/\u003E\u003Cmeta property=\u0022og:image:type\u0022 content=\u0022image/png\u0022/\u003E\u003Cmeta property=\u0022og:image:alt\u0022 content=\u0022O jogo acontece aqui. Sportstates.\u0022/\u003E\u003Cmeta name=\u0022twitter:card\u0022 content=\u0022summary_large_image\u0022/\u003E\u003Cmeta name=\u0022twitter:title\u0022 content=\u0022Sportstates \u00B7 O jogo acontece aqui\u0022/\u003E\u003Cmeta name=\u0022twitter:description\u0022 content=\u0022Da primeira bola ao \u00FAltimo segundo. Acompanhe placares, jogos do dia, times e classifica\u00E7\u00F5es em um s\u00F3 lugar.\u0022/\u003E\u003Cmeta name=\u0022twitter:image\u0022 content=\u0022https://sportstates.vercel.app/api/share-image?page=%2F\u0022/\u003E\u003C/head\u003E\u003Cbody\u003E\u003Cdiv id=\u0022root\u0022\u003E\u003C/div\u003E\u003Cscript type=\u0022module\u0022 src=\u0022/src/main.tsx\u0022\u003E\u003C/script\u003E\u003C/body\u003E\u003C/html\u003E\r\n\n--- server output ---\n\r\n\u003E sportstates@1.0.0 dev\r\n\u003E node --env-file-if-exists=.env server/index.mjs --port 3001\r\n\r\n.env not found. Continuing without it.\r\nSportstates: http://localhost:3001\r\n",
+        "durationMs": 2115
+      },
+      {
+        "name": "standings-route-serves",
+        "kind": "http-probe",
+        "verificationMethod": "http-status",
+        "passed": true,
+        "timedOut": false,
+        "skipped": false,
+        "skippedReason": null,
+        "exitCode": null,
+        "outputSample": "HTTP 200\n\u003C!doctype html\u003E\u003Chtml lang=\u0022pt-BR\u0022 data-theme=\u0022dark\u0022\u003E\u003Chead\u003E\n  \u003Cscript type=\u0022module\u0022 src=\u0022/@vite/client\u0022\u003E\u003C/script\u003E\n\u003Cmeta charset=\u0022UTF-8\u0022/\u003E\u003Cmeta name=\u0022referrer\u0022 content=\u0022strict-origin-when-cross-origin\u0022/\u003E\u003Cmeta name=\u0022viewport\u0022 content=\u0022width=device-width, initial-scale=1.0\u0022/\u003E\u003Cmeta name=\u0022theme-color\u0022 content=\u0022#080f20\u0022/\u003E\u003Cmeta name=\u0022description\u0022 content=\u0022Da primeira bola ao \u00FAltimo segundo. Acompanhe placares, jogos do dia, times e classifica\u00E7\u00F5es em um s\u00F3 lugar.\u0022/\u003E\u003Clink rel=\u0022icon\u0022 href=\u0022data:image/svg\u002Bxml,%3Csvg xmlns=\u0027http://www.w3.org/2000/svg\u0027 viewBox=\u00270 0 40 40\u0027%3E%3Crect width=\u002740\u0027 height=\u002740\u0027 rx=\u002712\u0027 fill=\u0027%23c6f36b\u0027/%3E%3Ctext x=\u002710\u0027 y=\u002729\u0027 font-size=\u002728\u0027 font-family=\u0027Arial\u0027 font-weight=\u0027bold\u0027%3ES%3C/text%3E%3C/svg%3E\u0022/\u003E\u003Cscript\u003Etry{document.documentElement.dataset.theme=localStorage.getItem(\u0027sportstates:theme\u0027)===\u0027light\u0027?\u0027light\u0027:\u0027dark\u0027}catch(e){}\u003C/script\u003E\u003Ctitle\u003ESportstates \u00B7 O jogo acontece aqui\u003C/title\u003E\u003Clink rel=\u0022canonical\u0022 href=\u0022https://sportstates.vercel.app/\u0022/\u003E\u003Cmeta property=\u0022og:type\u0022 content=\u0022website\u0022/\u003E\u003Cmeta property=\u0022og:locale\u0022 content=\u0022pt_BR\u0022/\u003E\u003Cmeta property=\u0022og:site_name\u0022 content=\u0022Sportstates\u0022/\u003E\u003Cmeta property=\u0022og:title\u0022 content=\u0022Sportstates \u00B7 O jogo acontece aqui\u0022/\u003E\u003Cmeta property=\u0022og:description\u0022 content=\u0022Da primeira bola ao \u00FAltimo segundo. Acompanhe placares, jogos do dia, times e classifica\u00E7\u00F5es em um s\u00F3 lugar.\u0022/\u003E\u003Cmeta property=\u0022og:url\u0022 content=\u0022https://sportstates.vercel.app/\u0022/\u003E\u003Cmeta property=\u0022og:image\u0022 content=\u0022https://sportstates.vercel.app/api/share-image?page=%2F\u0022/\u003E\u003Cmeta property=\u0022og:image:width\u0022 content=\u00221200\u0022/\u003E\u003Cmeta property=\u0022og:image:height\u0022 content=\u0022630\u0022/\u003E\u003Cmeta property=\u0022og:image:type\u0022 content=\u0022image/png\u0022/\u003E\u003Cmeta property=\u0022og:image:alt\u0022 content=\u0022O jogo acontece aqui. Sportstates.\u0022/\u003E\u003Cmeta name=\u0022twitter:card\u0022 content=\u0022summary_large_image\u0022/\u003E\u003Cmeta name=\u0022twitter:title\u0022 content=\u0022Sportstates \u00B7 O jogo acontece aqui\u0022/\u003E\u003Cmeta name=\u0022twitter:description\u0022 content=\u0022Da primeira bola ao \u00FAltimo segundo. Acompanhe placares, jogos do dia, times e classifica\u00E7\u00F5es em um s\u00F3 lugar.\u0022/\u003E\u003Cmeta name=\u0022twitter:image\u0022 content=\u0022https://sportstates.vercel.app/api/share-image?page=%2F\u0022/\u003E\u003C/head\u003E\u003Cbody\u003E\u003Cdiv id=\u0022root\u0022\u003E\u003C/div\u003E\u003Cscript type=\u0022module\u0022 src=\u0022/src/main.tsx\u0022\u003E\u003C/script\u003E\u003C/body\u003E\u003C/html\u003E\r\n\n--- server output ---\n\r\n\u003E sportstates@1.0.0 dev\r\n\u003E node --env-file-if-exists=.env server/index.mjs --port 3001\r\n\r\n.env not found. Continuing without it.\r\n\u001B[31mWebSocket server error: Port 24678 is already in use\u001B[39m\r\nnode:events:502\r\n      throw er; // Unhandled \u0027error\u0027 event\r\n      ^\r\n\r\nError: listen EADDRINUSE: address already in use 0.0.0.0:3001\r\n    at Server.setupListenHandle [as _listen2] (node:net:1912:16)\r\n    at listenInCluster (node:net:1969:12)\r\n    at node:net:2178:7\r\n    at process.processTicksAndRejections (node:internal/process/task_queues:90:21)\r\nEmitted \u0027error\u0027 event on Server instance at:\r\n    at emitErrorNT (node:net:1948:8)\r\n    at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {\r\n  code: \u0027EADDRINUSE\u0027,\r\n  errno: -4091,\r\n  syscall: \u0027listen\u0027,\r\n  address: \u00270.0.0.0\u0027,\r\n  port: 3001\r\n}\r\n\r\nNode.js v22.12.0\r\n",
+        "durationMs": 2067
+      }
+    ],
+    "executions": [
+      {
+        "source": "setup[0]",
+        "resolvedExecutable": "C:\\nvm4w\\nodejs\\npm.CMD",
+        "args": [
+          "ci"
+        ],
+        "cwd": "D:\\Isaias\\ESTUDO NOVO\\Sportstates",
+        "env": {},
+        "prependPath": [],
+        "platform": "win32"
+      },
+      {
+        "source": "production-build",
+        "resolvedExecutable": "C:\\nvm4w\\nodejs\\npm.CMD",
+        "args": [
+          "run",
+          "build"
+        ],
+        "cwd": "D:\\Isaias\\ESTUDO NOVO\\Sportstates",
+        "env": {},
+        "prependPath": [],
+        "platform": "win32"
+      },
+      {
+        "source": "tests-pass",
+        "resolvedExecutable": "C:\\nvm4w\\nodejs\\npm.CMD",
+        "args": [
+          "test"
+        ],
+        "cwd": "D:\\Isaias\\ESTUDO NOVO\\Sportstates",
+        "env": {},
+        "prependPath": [],
+        "platform": "win32"
+      },
+      {
+        "source": "home-route-serves",
+        "resolvedExecutable": "C:\\nvm4w\\nodejs\\npm.CMD",
+        "args": [
+          "run",
+          "dev",
+          "--",
+          "--port",
+          "3001"
+        ],
+        "cwd": "D:\\Isaias\\ESTUDO NOVO\\Sportstates",
+        "env": {},
+        "prependPath": [],
+        "platform": "win32"
+      },
+      {
+        "source": "standings-route-serves",
+        "resolvedExecutable": "C:\\nvm4w\\nodejs\\npm.CMD",
+        "args": [
+          "run",
+          "dev",
+          "--",
+          "--port",
+          "3001"
+        ],
+        "cwd": "D:\\Isaias\\ESTUDO NOVO\\Sportstates",
+        "env": {},
+        "prependPath": [],
+        "platform": "win32"
+      }
+    ]
+  }
+}

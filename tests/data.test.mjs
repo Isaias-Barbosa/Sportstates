@@ -50,6 +50,21 @@ test("normalize home/away irrespective of array order and preserve zero", () => 
   assert.equal(m.clock, "63'");
   assert.equal(m.round, "34");
 });
+test("normalizeEvent accepts a numeric round and falls back to event venue", () => {
+  const m = normalizeEvent(
+    {
+      ...event,
+      week: 12,
+      venue: { fullName: "Estádio de teste" },
+      competitions: [{ ...event.competitions[0], week: null }],
+    },
+    "soccer",
+    "eng.1",
+    "Premier League",
+  );
+  assert.equal(m.round, "12");
+  assert.equal(m.venue, "Estádio de teste");
+});
 test("normalizeEvent omits a missing or invalid round number", () => {
   assert.equal(
     normalizeEvent(

@@ -2,7 +2,7 @@ import { teamScore } from "./shared";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { CalendarDays, ChevronLeft, ChevronRight } from "lucide-react";
-import { today, time, dateLabel, useApi } from "../hooks";
+import { today, dateLabel, useApi } from "../hooks";
 import type { Match } from "../types";
 import { Crest, Empty, Loading, Notice, matchLabel } from "./shared";
 import StandingsTable from "./StandingsTable";
@@ -12,7 +12,19 @@ type Games = {
   month: string;
   stale: boolean;
   partial: boolean;
+  roundsUnavailable?: boolean;
 };
+
+function matchDateTime(date: string) {
+  return new Intl.DateTimeFormat("pt-BR", {
+    timeZone: "America/Sao_Paulo",
+    day: "2-digit",
+    month: "2-digit",
+    weekday: "short",
+    hour: "2-digit",
+    minute: "2-digit",
+  }).format(new Date(date));
+}
 
 export default function LeagueOverview({
   sport,
@@ -137,6 +149,12 @@ export default function LeagueOverview({
             A fonte retornou uma lista parcial de jogos deste mês.
           </Notice>
         )}
+        {data?.roundsUnavailable && (
+          <Notice>
+            Não foi possível confirmar a rodada de todos os jogos; os demais
+            dados continuam disponíveis.
+          </Notice>
+        )}
         {loading ? (
           <Loading />
         ) : !data ? null : !matches.length ? (
@@ -170,42 +188,57 @@ export default function LeagueOverview({
                       key={m.id}
                       className={`league-game ${m.state === "live" ? "is-live" : ""}`}
                       to={`/partida/${m.sport}/${m.league}/${m.id}`}
-                      aria-label={`Ver partida ${m.home.name} x ${m.away.name}`}
+                      aria-label={`${m.state === "finished" ? "Saiba como foi" : "Ver partida"}: ${m.home.name} x ${m.away.name}`}
                     >
-                      <span className="league-game-status">
+                      <span className="league-game-meta">
                         {!!m.round && /^\d+$/.test(m.round) && (
-                          <small className="league-game-round">
+                          <strong className="league-game-round">
                             Rodada {m.round}
-                          </small>
+                          </strong>
                         )}
-                        {m.state === "scheduled" ? (
-                          time(m.date)
-                        ) : (
-                          <>
-                            <i
-                              className={m.state === "live" ? "live-dot" : ""}
-                            />
-                            {matchLabel(m)}
-                          </>
+                        {m.venue && (
+                          <small className="league-game-venue">{m.venue}</small>
                         )}
+                        <time dateTime={m.date}>{matchDateTime(m.date)}</time>
                       </span>
-                      <span className="league-game-teams">
-                        <span>
-                          <Crest team={m.home} />
-                          <strong>{m.home.name}</strong>
-                          <b>
-                            {m.state === "scheduled" ? "–" : teamScore(m.home)}
-                          </b>
+                      <span className="league-game-content">
+                        <span
+                          className={`league-game-status ${m.state === "live" ? "is-live" : ""}`}
+                        >
+                          {m.state === "live" && (
+                            <i className="live-dot" aria-hidden="true" />
+                          )}
+                          {m.state === "scheduled" ? "Agendado" : matchLabel(m)}
                         </span>
-                        <span>
-                          <Crest team={m.away} />
-                          <strong>{m.away.name}</strong>
-                          <b>
-                            {m.state === "scheduled" ? "–" : teamScore(m.away)}
-                          </b>
+                        <span className="league-game-teams">
+                          <span>
+                            <Crest team={m.home} />
+                            <strong>{m.home.name}</strong>
+                            <b>
+                              {m.state === "scheduled"
+                                ? "–"
+                                : teamScore(m.home)}
+                            </b>
+                          </span>
+                          <span>
+                            <Crest team={m.away} />
+                            <strong>{m.away.name}</strong>
+                            <b>
+                              {m.state === "scheduled"
+                                ? "–"
+                                : teamScore(m.away)}
+                            </b>
+                          </span>
                         </span>
                       </span>
-                      <ChevronRight size={16} />
+                      <span className="league-game-cta">
+                        {m.state === "finished"
+                          ? "Saiba como foi"
+                          : m.state === "live"
+                            ? "Acompanhar partida"
+                            : "Detalhes da partida"}
+                        <ChevronRight size={16} aria-hidden="true" />
+                      </span>
                     </Link>
                   ))}
               </div>

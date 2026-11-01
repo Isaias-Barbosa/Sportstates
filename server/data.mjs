@@ -47,7 +47,9 @@ export function normalizeEvent(e, sport, league, leagueName) {
   if (!c || !e.id || !e.date || !c.competitors?.length) return null;
   const status = c.status || e.status || {};
   const state = status.type?.state;
-  const roundNumber = Number(e.week?.number ?? c.week?.number);
+  const roundNumber = Number(
+    e.week?.number ?? c.week?.number ?? e.week ?? c.week,
+  );
   const match = {
     id: String(e.id),
     sport,
@@ -95,7 +97,7 @@ export function normalizeEvent(e, sport, league, leagueName) {
               ) || [3, 4].includes(status.period)
             ? "extra-time"
             : null,
-    venue: c.venue?.fullName || "",
+    venue: c.venue?.fullName || e.venue?.fullName || "",
     broadcast: c.broadcasts?.flatMap((b) => b.names || []).join(", ") || "",
   };
   return { ...match, watch: getWatchOptions(match, c) };
