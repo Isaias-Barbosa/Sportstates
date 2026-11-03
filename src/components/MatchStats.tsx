@@ -1,66 +1,99 @@
 import type { Detail } from "../types";
 
-function numeric(value: string) {
-  const clean = value.trim().replace("%", "").replace(",", ".");
-  if (!/^\d+(?:\.\d+)?$/.test(clean)) return null;
-  const number = Number(clean);
-  return Number.isFinite(number) ? number : null;
+type Stat = { name: string; value: string };
+type Category = { title: string; aliases: string[] };
+
+const essentialStats: Category[] = [
+  { title: "Chutes", aliases: ["chutes", "total de chutes", "finalizacoes", "total de finalizacoes", "total shots", "total shots attempted", "shots", "shots attempted", "total scoring attempts", "totalshots"] },
+  { title: "Chutes a gol", aliases: ["chutes a gol", "chutes no gol", "finalizacoes no alvo", "shots on target", "shots on goal", "shotsontarget", "shotsongoal", "ontargetscoringattempts"] },
+  { title: "Posse de bola", aliases: ["posse de bola", "possession", "ball possession", "possessionpct", "possession percentage"] },
+  { title: "Passes", aliases: ["passes", "total de passes", "total passes", "totalpasses", "passes attempted", "passesattempted", "passes totais"] },
+  { title: "Precisão de passe", aliases: ["precisao de passe", "precisao dos passes", "pass accuracy", "passing accuracy", "passaccuracy", "pass completion percentage", "passpct", "passespct"] },
+  { title: "Faltas", aliases: ["faltas", "fouls", "fouls committed", "foulscommitted", "total fouls"] },
+  { title: "Cartões amarelos", aliases: ["cartoes amarelos", "cartao amarelo", "yellow cards", "yellowcards", "yellow card"] },
+  { title: "Cartões vermelhos", aliases: ["cartoes vermelhos", "cartao vermelho", "red cards", "redcards", "red card"] },
+  { title: "Impedimentos", aliases: ["impedimentos", "impedimento", "offsides", "offside"] },
+  { title: "Escanteios", aliases: ["escanteios", "escanteio", "corners", "corner kicks", "cornerkicks", "total corners"] },
+];
+
+const clean = (value: string) =>
+  value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase()
+    .replace(/[^a-z0-9]+/g, " ").trim();
+
+const compact = (value: string) => clean(value).replace(/ /g, "");
+
+function selectStat(stats: Stat[], category: Category) {
+  return stats.find((stat) => {
+    const key = clean(stat.name), short = compact(stat.name);
+    return category.aliases.some((alias) => clean(alias) === key ||
+      compact(alias) === short);
+  })?.value;
 }
 
-const normalize = (value: string) =>
-  value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
-
-const pct = (part: number, total: number) =>
-  total ? Math.round((part / total) * 100) : 50;
+function numeric(value?: string) {
+  if (!value) return null;
+  const number = Number(value.replace("%", "").trim().replace(",", "."));
+  return Number.isFinite(number) ? number : null;
+}
 
 export default function MatchStats({ match, statistics, leaders }: {
   match: Detail["match"];
   statistics: Detail["statistics"];
   leaders?: Detail["leaders"];
 }) {
-  const first = statistics.find((t) => normalize(t.team) === normalize(match.home.name)) ||
-    statistics[0];
-  const second = statistics.find((t) => normalize(t.team) === normalize(match.away.name)) ||
-    statistics.find((t) => t !== first);
-  const rows = first && second
-    ? [...new Set([...first.stats, ...second.stats].map((s) => s.name))].map((label) => {
-        const left = first.stats.find((s) => s.name === label)?.value || "—";
-        const right = second.stats.find((s) => s.name === label)?.value || "—";
-        const a = numeric(left), b = numeric(right);
-        return { label, left, right, a, b };
-      })
-    : [];
+  const homeStats = statistics.find((team) => clean(team.team) === clean(match.home.name))
+    || statistics[0];
+  const awayStats = statistics.find((team) => clean(team.team) === clean(match.away.name))
+    || statistics.find((team) => team !== homeStats);
+  const categories = match.sport === "soccer"
+    ? essentialStats
+    : [...new Set([...homeStats?.stats || [], ...awayStats?.stats || []].map((s) => s.name))]
+        .map((name) => ({ title: name, aliases: [name] }));
+  const rows = categories.map((category) => ({
+    label: category.title,
+    home: selectStat(homeStats?.stats || [], category),
+    away: selectStat(awayStats?.stats || [], category),
+  })).filter((row) => row.home !== undefined || row.away !== undefined);
 
   return (
     <div className="match-stats-view">
-      <div className="section-heading"><h2>Estatísticas da partida</h2><span>Comparativo entre as equipes</span></div>
-      {rows.length ? (
-        <div className="match-stats-comparison">
-          <div className="match-stats-team-head">
-            <strong>{match.home.name}</strong><strong>{match.away.name}</strong>
+      <section className="match-compact-stats">
+        <div className="match-compact-stats-header">
+          <div className="match-compact-team" title={match.home.name}>
+            {match.home.logo && <img src={match.home.logo} alt="" loading="lazy" />}
+            <strong>{match.home.short || match.home.name}</strong>
           </div>
-          {rows.map((row) => {
-            const width = row.a == null || row.b == null
-              ? 50 : pct(Math.max(0, row.a), Math.max(0, row.a) + Math.max(0, row.b));
-            return (
-              <div className="match-stats-row" key={row.label}>
-                <div className="match-stats-values">
-                  <strong className={row.a != null && row.b != null && row.a > row.b ? "best" : ""}>{row.left}</strong>
-                  <span>{row.label}</span>
-                  <strong className={row.a != null && row.b != null && row.b > row.a ? "best" : ""}>{row.right}</strong>
-                </div>
-                {row.a != null && row.b != null && (
-                  <div className="match-stats-track" role="img" aria-label={row.label + ": " + row.left + " a " + row.right}>
-                    <span style={{ width: width + "%" }} />
-                  </div>
-                )}
-              </div>
-            );
-          })}
+          <h2>Estatísticas dos times</h2>
+          <div className="match-compact-team away" title={match.away.name}>
+            <strong>{match.away.short || match.away.name}</strong>
+            {match.away.logo && <img src={match.away.logo} alt="" loading="lazy" />}
+          </div>
         </div>
-      ) : <p>Estatísticas não disponíveis para esta partida.</p>}
+        {rows.length ? (
+          <div className="match-compact-stats-list">
+            {rows.map((row) => {
+              const home = numeric(row.home), away = numeric(row.away);
+              const homeLead = home !== null && away !== null && home > away;
+              const awayLead = home !== null && away !== null && away > home;
+              return (
+                <div className="match-compact-stats-row" key={row.label}>
+                  <span className={homeLead ? "match-stat-leader home" : ""}>{row.home ?? "—"}</span>
+                  <span className="match-stat-label">{row.label}</span>
+                  <span className={awayLead ? "match-stat-leader away" : ""}>{row.away ?? "—"}</span>
+                </div>
+              );
+            })}
+          </div>
+        ) : <p>As estatísticas principais ainda não foram disponibilizadas nesta partida.</p>}
+        {match.sport === "soccer" && (
+          <small>São exibidas apenas as estatísticas principais fornecidas pela fonte.</small>
+        )}
+      </section>
       <section className="match-leaders">
-        <div className="section-heading"><h2>Líderes da partida</h2><span>Atletas identificados na cobertura da fonte</span></div>
+        <div className="section-heading">
+          <h2>Líderes da partida</h2>
+          <span>Jogadores que marcaram gols</span>
+        </div>
         {leaders?.length ? (
           <div className="match-leaders-grid">
             {leaders.map((leader) => (
@@ -71,7 +104,7 @@ export default function MatchStats({ match, statistics, leaders }: {
               </article>
             ))}
           </div>
-        ) : <p>Os líderes desta partida ainda não foram disponibilizados.</p>}
+        ) : <p>Nenhum artilheiro identificado na cobertura desta partida.</p>}
       </section>
     </div>
   );
