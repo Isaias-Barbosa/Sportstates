@@ -521,6 +521,14 @@ export async function route(url) {
       () => startedDomesticTournaments(year, new Date(), json),
       60 * 60 * 1000,
     );
+    let savedLeagues = [];
+    try { savedLeagues = await leagueOverrides(); } catch { /* Catalog remains available if Neon is offline. */ }
+    const overrideByKey = new Map(savedLeagues.map((league) => [`${league.sport}:${league.id}`, league]));
+    const leagueItems = (sport) => {
+      const native = sport.leagues.map(([id,name]) => [id, overrideByKey.get(`${sport.id}:${id}`)?.name || name]);
+      const nativeIds = new Set(native.map(([id]) => id));
+      return [...native, ...savedLeagues.filter((league) => league.sport === sport.id && !nativeIds.has(league.id)).map((league) => [league.id, league.name])];
+    };
     const startedTournaments = new Set(tournamentStatus.value.started);
     const visibleLeagues = new Set(
       SOCCER_DOMESTIC_TOURNAMENTS.filter((id) => startedTournaments.has(id)),
@@ -536,11 +544,14 @@ export async function route(url) {
       {
         sports: SPORTS.map((s) => ({
           ...s,
-          leagues: s.leagues
+          leagues: leagueItems(s)
             .filter(([id]) => s.id !== "soccer" || visible(id))
             .map(([id, name]) => ({
               id,
               name,
+              logo: overrideByKey.get(`${s.id}:${id}`)?.has_upload
+                ? `/api/league-logo?sport=${encodeURIComponent(s.id)}&id=${encodeURIComponent(id)}`
+                : overrideByKey.get(`${s.id}:${id}`)?.logo_url || `/api/league-logo?sport=${encodeURIComponent(s.id)}&id=${encodeURIComponent(id)}`,
               hasKnockout: s.id === "soccer" && KNOCKOUT_LEAGUES.has(id),
               tournamentFormat:
                 s.id === "soccer" ? SOCCER_TOURNAMENT_FORMATS[id] : undefined,
