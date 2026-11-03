@@ -17,3 +17,18 @@ test("LNB calendar parses completed games without inventing future scores", () =
 test("LNB standings reject unexpected or incomplete HTML", () => {
   assert.throws(() => parseLnbStandings("<html></html>"), /não identificada/);
 });
+
+test("LNB standings parse combined position and team names", () => {
+  const headers = ["EQUIPES", "AP(%)", "JOG", "VIT", "DER", "CASA", "FORA", "PRO", "CON", "SAL", "ULT", "PON"];
+  const head = "<tr>" + headers.map((x) => "<th>" + x + "</th>").join("") + "</tr>";
+  const body = Array.from({ length: 18 }, (_, i) => {
+    const cells = [`${i + 1} ABC Time ${i + 1}`, "50", "6", "3", "3", "2-1", "1-2", "450", "440", "10", "-", "9"];
+    return "<tr>" + cells.map((x) => "<td>" + x + "</td>").join("") + "</tr>";
+  }).join("");
+  const result = parseLnbStandings("<table>" + head + body + "</table>");
+  assert.equal(result[0].rows.length, 18);
+  assert.equal(result[0].rows[0].rank, "1");
+  assert.equal(result[0].rows[0].stats.gamesPlayed, "6");
+  assert.equal(result[0].rows[0].stats.wins, "3");
+  assert.equal(result[0].rows[0].stats.points, "9");
+});
