@@ -32,6 +32,14 @@ type ExistingGoal = {
   teamName: string;
 };
 
+function normalizeMatchMinute(value: string): string {
+  const clean = value.trim().replace(/[’′]/g, "'").replace(/\s+/g, "");
+  const parsed = /^(\d{1,3})(?:\+(\d{1,2}))?'?(?::[0-5]\d)?$/.exec(clean);
+  return parsed
+    ? parsed[1] + (parsed[2] ? "+" + parsed[2] : "")
+    : "";
+}
+
 const MAX_FILE_SIZE = 2_500_000;
 
 const acceptedTypes = new Set([
@@ -106,9 +114,11 @@ export default function ManualLanceForm({
     ? "goal"
     : type;
 
-  const effectiveMinute = selectedGoal
+  const originalMinute = selectedGoal
     ? selectedGoal.goal.minute
     : minute.trim();
+
+  const effectiveMinute = normalizeMatchMinute(originalMinute);
 
   useEffect(() => {
     if (!file) {
@@ -141,8 +151,7 @@ export default function ManualLanceForm({
     setFile(selected);
   }
 
-  const validMinute =
-    /^\d{1,3}(?:\+\d{1,2})?$/.test(effectiveMinute);
+  const validMinute = Boolean(effectiveMinute);
 
   const validUrl = (() => {
     try {
@@ -341,8 +350,15 @@ export default function ManualLanceForm({
       {!validMinute && (
         <small role="alert">
           {isLinkedGoal
-            ? "A fonte não informou um minuto válido. Este caso precisará de tratamento no cadastro."
+            ? "O minuto retornado pela fonte não pôde ser interpretado. Tente outro gol ou informe o problema."
             : "Informe um minuto válido, como 45 ou 90+3."}
+        </small>
+      )}
+      {!ready && validMinute && (
+        <small role="status">
+          {source === "url"
+            ? "Adicione um link HTTPS válido para GIF, WebP ou MP4."
+            : "Selecione um arquivo GIF, WebP ou MP4 de até 2,5 MB."}
         </small>
       )}
 
