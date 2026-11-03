@@ -2081,3 +2081,53 @@ summary:focus-visible {
   .match-stats-values { gap: 6px; }
   .match-stats-values span { font-size: .8rem; }
 }
+
+
+/* Alternar entre todos os eventos e os lances principais da partida */
+.timeline-filter {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border: 1px solid var(--border, rgba(148,163,184,.35));
+  border-radius: 999px;
+  overflow: hidden;
+  margin: 16px 0 22px;
+  background: rgba(148,163,184,.08);
+}
+.timeline-filter button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-width: 0;
+  padding: 10px 12px;
+  border: 0;
+  border-radius: 999px;
+  color: inherit;
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+  font-size: .88rem;
+  font-weight: 650;
+  transition: background .2s ease, color .2s ease;
+}
+.timeline-filter button.active {
+  color: #fff;
+  background: #171717;
+}
+.timeline-filter button:focus-visible {
+  outline: 2px solid #60a5fa;
+  outline-offset: -3px;
+}
+.timeline-filter button span {
+  opacity: .75;
+  font-size: .75rem;
+  font-variant-numeric: tabular-nums;
+}
+.timeline-filter-empty {
+  margin: 12px 0;
+  opacity: .8;
+}
+@media (max-width: 520px) {
+  .timeline-filter button { font-size: .82rem; padding: 10px 7px; gap: 4px; }
+}
