@@ -823,7 +823,9 @@ export async function route(url) {
       config.sport === "soccer" &&
       SOCCER_365_PRIMARY_COMPETITIONS.has(config.league)
     ) {
-      const result = await cached(
+      let result;
+      try {
+        result = await cached(
         `league-games:365scores:${config.league}:${month}`,
         (body) => leagueGamesTtl(body, month, dayInBrazil(new Date())),
         async () => {
@@ -843,7 +845,10 @@ export async function route(url) {
         },
         300000,
       );
-      return [
+      } catch (error) {
+        result = null;
+      }
+      if (result?.value.matches.length) return [
         200,
         {
           ...config,
@@ -854,6 +859,8 @@ export async function route(url) {
           source: "365Scores · feed público não oficial",
         },
       ];
+      // 365Scores may omit archived fixtures. Fall through to ESPN for a
+      // second independent source rather than returning an empty calendar.
     }
     if (["volleyball", "tennis", "table-tennis"].includes(config.sport)) {
       const r =
