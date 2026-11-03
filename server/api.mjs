@@ -263,7 +263,7 @@ export async function scoreboard(date, sport = "all") {
             .map((game) => normalize365Game(game, league, name))
             .filter((match) => match && dayInBrazil(match.date) === date);
           const broadcasts = await enrich365Broadcasts(matches, games);
-          return {
+          if (matches.length) return {
             matches: broadcasts.matches.map((match) => ({
               ...match,
               liveUnverified: match.state === "live" && result.stale,
@@ -279,16 +279,7 @@ export async function scoreboard(date, sport = "all") {
           };
         } catch (error) {
           console.error(`Falha ao consultar 365Scores para ${name}:`, error);
-          return {
-            matches: [],
-            failed: true,
-            stale: false,
-            sport: s.id,
-            league,
-            name,
-            provider: "365Scores",
-            at: null,
-          };
+          // The ESPN branch below remains available after an upstream failure.
         }
       }
       // NBB has a dedicated feed. Share provider responses, retry alternate
