@@ -15,6 +15,10 @@ import {
   useSearchParams,
   useLocation,
 } from "react-router-dom";
+
+import { useAccount } from "../account/AccountProvider";
+import { getLancePermissions } from "../account/client";
+
 import {
   ArrowDownUp,
   ArrowLeft,
@@ -54,10 +58,47 @@ import type { ClubProfile } from "../types";
 export default function MatchPage() {
   const { hash } = useLocation();
   const { sport, league, id } = useParams();
+  const { user, loading: accountLoading } = useAccount();
+
+const [canManageLances, setCanManageLances] =
+  useState(false);
+
+const [manualLanceType, setManualLanceType] =
+  useState<"goal" | "other" | null>(null);
+
+useEffect(() => {
+  const controller = new AbortController();
+
+  setCanManageLances(false);
+  setManualLanceType(null);
+
+  if (accountLoading || !user?.emailVerified) {
+    return () => controller.abort();
+  }
+
+  void getLancePermissions(controller.signal)
+    .then((permission) => {
+      if (!controller.signal.aborted) {
+        setCanManageLances(
+          permission.authenticated &&
+          permission.canManageLances &&
+          ["admin", "moderator"].includes(permission.role)
+        );
+      }
+    })
+    .catch(() => {
+      if (!controller.signal.aborted) {
+        setCanManageLances(false);
+      }
+    });
+
+  return () => controller.abort();
+}, [user?.id, user?.emailVerified, accountLoading]);
   const { data, error, loading, refresh } = useApi<Detail>(
     `/api/match?sport=${encodeURIComponent(sport || "")}&league=${encodeURIComponent(league || "")}&id=${encodeURIComponent(id || "")}`,
     30000,
   );
+  
   const {
     data: media,
     loading: mediaLoading,
@@ -393,14 +434,58 @@ export default function MatchPage() {
                   match={data.match}
                 />
               )}
-              {tab === "videos" && (
-                <MatchVideos
-                  media={media}
-                  loading={mediaLoading}
-                  error={mediaError}
-                  finished={data.match.state === "finished"}
-                />
-              )}
+              
+{tab === "videos" && (
+  <>
+    {canManageLances && (
+      <div className="manual-lance-actions">
+        <button
+          type="button"
+          onClick={() => setManualLanceType("goal")}
+        >
+          + Adicionar Gol
+        </button>
+
+        <button
+          type="button"
+          onClick={() => setManualLanceType("other")}
+        >
+          + Adicionar Lance na Partida
+        </button>
+      </div>
+    )}
+
+    {canManageLances && manualLanceType && (
+      <section className="manual-lance-placeholder">
+        <h3>
+          {manualLanceType === "goal"
+            ? "Adicionar Gol"
+            : "Adicionar Lance na Partida"}
+        </h3>
+
+        <p>
+          O formulário para cadastrar GIFs e vídeos
+          será implementado na próxima etapa.
+        </p>
+
+        <button
+          type="button"
+          onClick={() => setManualLanceType(null)}
+        >
+          Fechar
+        </button>
+      </section>
+    )}
+
+    <MatchVideos
+      media={media}
+      loading={mediaLoading}
+      error={mediaError}
+      finished={data.match.state === "finished"}
+    />
+  </>
+)}
+
               {tab === "events" && (
                 <>
                   <MatchGoalCards
@@ -414,6 +499,7 @@ export default function MatchPage() {
                         <div className="goal-summary-heading">
                           <h2>Cestas e lances da partida</h2>
                           <span>Clipes publicados por canais oficiais</span>
+                          
                         </div>
                         <div className="goal-summary-cards">
                           {media.replays.map((video) => (

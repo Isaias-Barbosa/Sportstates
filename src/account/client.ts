@@ -38,3 +38,44 @@ export async function sessionToken(auth: Awaited<ReturnType<typeof accountClient
 export async function accountToken() {
   return sessionToken(await accountClient());
 }
+
+export type LancePermissions = {
+  authenticated: boolean;
+  role: "admin" | "moderator" | "user" | "guest";
+  canManageLances: boolean;
+};
+
+export async function getLancePermissions(
+  signal?: AbortSignal
+): Promise<LancePermissions> {
+  const token = await accountToken();
+
+  if (!token) {
+    return {
+      authenticated: false,
+      role: "guest",
+      canManageLances: false,
+    };
+  }
+
+  const response = await fetch(
+    "/api/lances/permissions",
+    {
+      method: "GET",
+      cache: "no-store",
+      signal,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error(
+      "Não foi possível consultar as permissões."
+    );
+  }
+
+  return response.json();
+}
+
