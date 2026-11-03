@@ -358,7 +358,7 @@ export async function scoreboard(date, sport = "all") {
             );
             const existing = good.flatMap((r) => r.value);
             const normalizeTeam = (name) => String(name || "")
-              .normalize("NFD").replace(/\\p{Diacritic}/gu, "")
+              .normalize("NFD").replace(/\p{Diacritic}/gu, "")
               .toLowerCase().replace(/[^a-z0-9]/g, "");
             const extra = ge.value.filter((m) =>
               dayInBrazil(m.date) === date &&
