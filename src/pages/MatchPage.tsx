@@ -63,7 +63,7 @@ import type { ClubProfile } from "../types";
 export default function MatchPage() {
   const { hash } = useLocation();
   const { sport, league, id } = useParams();
-  const { user, loading: accountLoading } = useAccount();
+  const { user } = useAccount();
 
 const [canManageLances, setCanManageLances] =
   useState(false);
@@ -79,7 +79,7 @@ useEffect(() => {
   setManualLanceType(null);
   setEditingLance(null);
 
-  if (accountLoading || !user?.emailVerified) {
+  if (!user?.emailVerified) {
     return () => controller.abort();
   }
 
@@ -100,7 +100,7 @@ useEffect(() => {
     });
 
   return () => controller.abort();
-}, [user?.id, user?.emailVerified, accountLoading]);
+}, [user?.id, user?.emailVerified]);
   const { data, error, loading, refresh } = useApi<Detail>(
     `/api/match?sport=${encodeURIComponent(sport || "")}&league=${encodeURIComponent(league || "")}&id=${encodeURIComponent(id || "")}`,
     30000,
