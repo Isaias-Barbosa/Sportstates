@@ -274,7 +274,7 @@ export function parseNewsFeed(xml, source) {
 }
 export function parseCbfNewsHtml(html, source) {
   // Use article metadata rather than treating page navigation as news.
-  const blocks = [...String(html).matchAll(/<script\\b[^>]*type=["']application\\/ld\\+json["'][^>]*>([\\s\\S]*?)<\\/script>/gi)];
+  const blocks = [...String(html).matchAll(/<script\b[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)];
   const objects = blocks.flatMap((m) => {
     try {
       const data = JSON.parse(m[1]);
