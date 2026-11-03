@@ -2,15 +2,15 @@
 // Reject unfamiliar markup instead of inventing scores or standings.
 const BASE = "https://lnb.com.br/nbb";
 const clean = (html) => String(html || "")
-  .replace(/<script\\b[^>]*>[\\s\\S]*?<\\/script>/gi, " ")
-  .replace(/<style\\b[^>]*>[\\s\\S]*?<\\/style>/gi, " ")
+  .replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, " ")
+  .replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, " ")
   .replace(/<[^>]+>/g, " ")
   .replace(/&nbsp;|&#160;/gi, " ")
   .replace(/&amp;/gi, "&")
-  .replace(/\\s+/g, " ").trim();
-const cells = (row) => [...row.matchAll(/<(?:td|th)\\b[^>]*>([\\s\\S]*?)<\\/(?:td|th)>/gi)]
+  .replace(/\s+/g, " ").trim();
+const cells = (row) => [...row.matchAll(/<(?:td|th)\b[^>]*>([\s\S]*?)<\/(?:td|th)>/gi)]
   .map((m) => clean(m[1]));
-const rows = (html) => [...html.matchAll(/<tr\\b[^>]*>([\\s\\S]*?)<\\/tr>/gi)]
+const rows = (html) => [...html.matchAll(/<tr\b[^>]*>([\s\S]*?)<\/tr>/gi)]
   .map((m) => cells(m[1])).filter((r) => r.length);
 export async function loadLnbHtml(path, fetchImpl = fetch) {
   const response = await fetchImpl(BASE + path, {
@@ -24,18 +24,18 @@ export function parseLnbGames(html, month) {
   const matches = [];
   for (const row of rows(html)) {
     const joined = row.join(" | ");
-    const date = joined.match(/(\\d{2})\\/(\\d{2})\\/(20\\d{2})\\s+(\\d{2}):(\\d{2})/);
+    const date = joined.match(/(\d{2})\/(\d{2})\/(20\d{2})\s+(\d{2}):(\d{2})/);
     if (!date) continue;
     const iso = `${date[3]}-${date[2]}-${date[1]}`;
     if (!iso.startsWith(month)) continue;
-    const dateIndex = row.findIndex((cell) => /\\d{2}\\/\\d{2}\\/20\\d{2}/.test(cell));
+    const dateIndex = row.findIndex((cell) => /\d{2}\/\d{2}\/20\d{2}/.test(cell));
     const after = row.slice(dateIndex + 1);
-    const scoreIndex = after.findIndex((cell) => /\\b\\d{1,3}\\s*[xX×-]\\s*\\d{1,3}\\b/.test(cell));
+    const scoreIndex = after.findIndex((cell) => /\b\d{1,3}\s*[xX×-]\s*\d{1,3}\b/.test(cell));
     if (scoreIndex < 1) continue;
     const homeName = after[scoreIndex - 1]?.trim();
     const awayName = after[scoreIndex + 1]?.trim();
     if (!homeName || !awayName || homeName.length > 90 || awayName.length > 90) continue;
-    const score = after[scoreIndex].match(/(\\d{1,3})\\s*[xX×-]\\s*(\\d{1,3})/);
+    const score = after[scoreIndex].match(/(\d{1,3})\s*[xX×-]\s*(\d{1,3})/);
     const gameNumber = Number(row[0]) || matches.length + 1;
     const dateIso = `${iso}T${date[4]}:${date[5]}:00-03:00`;
     const finished = !!score && Date.parse(dateIso) < Date.now();
@@ -59,7 +59,7 @@ export function parseLnbStandings(html) {
   if (headerIndex < 0) throw new Error("Tabela de classificação da LNB não identificada.");
   const result = [];
   for (const row of table.slice(headerIndex + 1)) {
-    const rank = row[0]?.match(/^\\d+$/)?.[0];
+    const rank = row[0]?.match(/^\d+$/)?.[0];
     if (!rank) { if (result.length) break; else continue; }
     const name = row[1];
     if (!name || name.length > 100) continue;
