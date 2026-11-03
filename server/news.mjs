@@ -3,6 +3,15 @@ import { createCache } from "./cache.mjs";
 
 export const NEWS_SOURCES = [
   {
+    id: "cbf",
+    name: "CBF",
+    url: "https://www.cbf.com.br/noticias",
+    format: "HTML",
+    domains: ["cbf.com.br"],
+    feeds: [{ url: "https://www.cbf.com.br/noticias" }],
+  },
+
+  {
     id: "espn",
     name: "ESPN",
     url: "https://www.espn.com.br/",
@@ -263,6 +272,27 @@ export function parseNewsFeed(xml, source) {
     })
     .filter(Boolean);
 }
+export function parseCbfNewsHtml(html, source) {
+  // Use article metadata rather than treating page navigation as news.
+  const blocks = [...String(html).matchAll(/<script\\b[^>]*type=["']application\\/ld\\+json["'][^>]*>([\\s\\S]*?)<\\/script>/gi)];
+  const objects = blocks.flatMap((m) => {
+    try {
+      const data = JSON.parse(m[1]);
+      return Array.isArray(data) ? data : [data];
+    } catch { return []; }
+  });
+  const flatten = (value) => value?.["@graph"] ? value["@graph"] : [value];
+  return objects.flatMap(flatten).filter((v) =>
+    /NewsArticle|Article/.test(String(v?.["@type"] || "")))
+    .map((v) => article(source, {
+      title: v.headline || v.name,
+      url: v.url || v.mainEntityOfPage?.["@id"] || v.mainEntityOfPage,
+      published: v.datePublished,
+      description: v.description,
+      image: typeof v.image === "string" ? v.image : v.image?.url,
+      sport: "soccer",
+    })).filter(Boolean);
+}
 async function loadFeed(feed, source, fetcher) {
   const r = await fetcher(feed.url, {
     headers: {
@@ -287,7 +317,7 @@ async function loadFeed(feed, source, fetcher) {
     : utf8.includes("\uFFFD")
       ? new TextDecoder("windows-1252").decode(bytes)
       : utf8;
-  return parseNewsFeed(text, source);
+  return source.format === "HTML" ? parseCbfNewsHtml(text, source) : parseNewsFeed(text, source);
 }
 export function createNewsService({
   fetcher = fetch,
