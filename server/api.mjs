@@ -1,3 +1,4 @@
+import { loadLnbHtml, parseLnbGames, parseLnbStandings } from "./lnb.mjs";
 import { listAdminUsers, userListOptions } from "./admin-users.mjs";
 import {
   enrichManualBroadcasts,
@@ -688,6 +689,20 @@ export async function route(url) {
         },
       ];
     }
+    if (config.sport === "basketball" && config.league === "nbb") {
+      try {
+        const result = await cached(
+          "standings:lnb:nbb:v1", CACHE_TTL.standings,
+          async () => parseLnbStandings(await loadLnbHtml("/classificacao/")),
+          300000,
+        );
+        return [200, { ...config, groups: result.value, rounds: [],
+          stale: result.stale, fetchedAt: new Date(result.at).toISOString(),
+          source: "LNB · classificação oficial", warnings: [] }];
+      } catch {
+        // The official page may change markup; retain ESPN as a fallback.
+      }
+    }
     if (ECUADOR_CUPS[config.league])
       return [200, await fetchEcuadorCupStandings(config.league, json)];
     if (config.sport === "volleyball") return [200, await volleyStandings()];
@@ -861,6 +876,21 @@ export async function route(url) {
       ];
       // 365Scores may omit archived fixtures. Fall through to ESPN for a
       // second independent source rather than returning an empty calendar.
+    }
+    if (config.sport === "basketball" && config.league === "nbb") {
+      try {
+        const result = await cached(
+          `league-games:lnb:nbb:v1:${month}`,
+          (body) => leagueGamesTtl(body, month, dayInBrazil(new Date())),
+          async () => parseLnbGames(await loadLnbHtml("/tabela-de-jogos/"), month),
+          300000,
+        );
+        return [200, { ...config, ...result.value, month,
+          stale: result.stale, fetchedAt: new Date(result.at).toISOString(),
+          source: "LNB · calendário oficial" }];
+      } catch {
+        // Use ESPN for months unavailable in the official HTML feed.
+      }
     }
     if (["volleyball", "tennis", "table-tennis"].includes(config.sport)) {
       const r =
