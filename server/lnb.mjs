@@ -55,19 +55,33 @@ export function parseLnbGames(html, month) {
 }
 export function parseLnbStandings(html) {
   const table = rows(html);
-  const headerIndex = table.findIndex((r) => r.some((v) => /equipes/i.test(v)) && r.some((v) => /vit/i.test(v)));
+  const headerIndex = table.findIndex((r) =>
+    r.some((v) => /equipes/i.test(v)) && r.some((v) => /vit/i.test(v)));
   if (headerIndex < 0) throw new Error("Tabela de classificação da LNB não identificada.");
+  const header = table[headerIndex].map((v) => v.toUpperCase().trim());
+  const statIndex = (name) => header.findIndex((v) => v === name);
   const result = [];
   for (const row of table.slice(headerIndex + 1)) {
-    const rank = row[0]?.match(/^\d+$/)?.[0];
-    if (!rank) { if (result.length) break; else continue; }
-    const name = row[1];
+    // LNB renders rank, acronym and team name inside the same EQUIPES cell.
+    const first = row[0] || "";
+    const match = first.match(/^\\s*(\\d{1,2})\\s+(.+)$/);
+    if (!match) { if (result.length) break; else continue; }
+    const rank = match[1];
+    const name = (row.length > header.length ? row[1] : match[2]).trim();
     if (!name || name.length > 100) continue;
-    result.push({ id: `lnb-${rank}`, name, rank, logo: null, stats: {
-      gamesPlayed: row[3] || "—", wins: row[4] || "—", losses: row[5] || "—",
-      pointsFor: row[8] || "—", pointsAgainst: row[9] || "—",
-      pointDifference: row[10] || "—", points: row[12] || "—",
-    } });
+    const stat = (key) => {
+      const i = statIndex(key);
+      return i >= 0 ? row[i] || "—" : "—";
+    };
+    result.push({
+      id: `lnb-${name.toLowerCase().normalize("NFD").replace(/[\\u0300-\\u036f]/g, "").replace(/[^a-z0-9]+/g, "-")}`,
+      name, rank, logo: null,
+      stats: {
+        gamesPlayed: stat("JOG"), wins: stat("VIT"), losses: stat("DER"),
+        pointsFor: stat("PRO"), pointsAgainst: stat("CON"),
+        pointDifference: stat("SAL"), points: stat("PON"),
+      },
+    });
   }
   if (result.length < 10) throw new Error("Classificação LNB incompleta.");
   return [{ name: "NBB · fase de classificação", rows: result }];
