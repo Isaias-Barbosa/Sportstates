@@ -340,6 +340,40 @@ export async function scoreboard(date, sport = "all") {
       const good = parts
         .filter((p) => p.status === "fulfilled")
         .map((p) => p.value);
+      // GE is a narrowly scoped backup for Série A. Use a round learned from
+      // ESPN itself; never scan all 38 rounds or guess the current round.
+      // Fetch only when one of the two ESPN date requests failed.
+      if (s.id === "soccer" && league === "bra.1" &&
+          parts.some((p) => p.status === "rejected")) {
+        const round = good.flatMap((r) => r.value)
+          .map((m) => Number(m.round))
+          .find((n) => Number.isInteger(n) && n >= 1 && n <= 38);
+        if (round) {
+          try {
+            const ge = await cached(
+              `ge:fixtures:v1:${date.slice(0, 4)}:${round}`,
+              15 * 60_000,
+              () => fetchGeSerieARoundFixtures(Number(date.slice(0, 4)), round, null, json),
+              60 * 60_000,
+            );
+            const existing = good.flatMap((r) => r.value);
+            const normalizeTeam = (name) => String(name || "")
+              .normalize("NFD").replace(/\\p{Diacritic}/gu, "")
+              .toLowerCase().replace(/[^a-z0-9]/g, "");
+            const extra = ge.value.filter((m) =>
+              dayInBrazil(m.date) === date &&
+              !existing.some((e) =>
+                dayInBrazil(e.date) === date &&
+                normalizeTeam(e.home?.name) === normalizeTeam(m.home?.name) &&
+                normalizeTeam(e.away?.name) === normalizeTeam(m.away?.name)
+              )
+            );
+            if (extra.length) good.push({ value: extra, at: ge.at, stale: ge.stale });
+          } catch (error) {
+            console.warn("GE fallback indisponível:", error.message);
+          }
+        }
+      }
       return {
         matches: good
           .flatMap((r) =>
