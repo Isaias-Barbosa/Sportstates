@@ -289,6 +289,31 @@ export async function scoreboard(date, sport = "all") {
           };
         }
       }
+      // The NBB standings and league calendar use 365Scores, but the daily
+      // scoreboard previously queried ESPN only, hiding scheduled NBB games.
+      if (s.id === "basketball" && league === "nbb") {
+        const attempts = await Promise.allSettled(
+          ["games/results", "games/fixtures", "games"].map(async (kind) => {
+            const raw = await json(nbb365Url(kind));
+            if (!Array.isArray(raw?.games)) throw new Error("Calendário NBB inválido");
+            return raw.games.filter((game) =>
+              Number(game.competitionId) === 5787 &&
+              dayInBrazil(game.startTime || "") === date
+            ).map((game) => normalize365Game(game, league, name))
+              .filter(Boolean).map((match) => ({ ...match, sport: "basketball" }));
+          }),
+        );
+        const matches = [...new Map(
+          attempts.filter((item) => item.status === "fulfilled")
+            .flatMap((item) => item.value)
+            .map((match) => [match.id, match]),
+        ).values()];
+        return {
+          matches, failed: attempts.every((item) => item.status === "rejected"),
+          stale: false, sport: s.id, league, name,
+          provider: "365Scores", at: attempts.some((item) => item.status === "fulfilled") ? Date.now() : null,
+        };
+      }
       const parts = await Promise.allSettled(
         dates.map((d) =>
           s.id === "table-tennis"
