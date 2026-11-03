@@ -467,3 +467,18 @@ export type TeamSearchResult = {
   website?: string;
   description?: string;
 };
+
+export type ManualLance = {
+  id: string;
+  matchId: string;
+  eventId: string | null;
+  eventSource: string | null;
+  lanceType: "goal" | "penalty" | "red_card" | "save" | "chance" | "other";
+  minute: string;
+  description: string;
+  mediaType: "gif" | "webp" | "mp4";
+  mediaSource: "url" | "upload";
+  mediaUrl: string;
+  createdAt: string;
+  updatedAt: string;
+};
