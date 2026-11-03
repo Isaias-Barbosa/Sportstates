@@ -5,6 +5,7 @@ import type {
   Match,
   MatchHighlights,
   MatchIncident,
+  ManualLance,
 } from "../types";
 
 type LanceType =
@@ -21,6 +22,7 @@ type Props = {
   highlights?: MatchHighlights;
   onClose: () => void;
   onSaved: () => void;
+  existing?: ManualLance | null;
 };
 
 type ExistingGoal = {
@@ -44,6 +46,7 @@ export default function ManualLanceForm({
   highlights,
   onClose,
   onSaved,
+  existing,
 }: Props) {
   const goals: ExistingGoal[] = [
     ...(highlights?.home || []).map((goal) => ({
@@ -73,19 +76,19 @@ export default function ManualLanceForm({
     });
 
   const [selectedGoalKey, setSelectedGoalKey] =
-    useState(goals[0]?.key || "manual");
+    useState(existing?.eventId ? (goals.find((item) => item.goal.id === existing.eventId)?.key || "manual") : goals[0]?.key || "manual");
 
   const [type, setType] = useState<LanceType>(
-    initialType === "goal" ? "goal" : "other"
+    existing?.lanceType || (initialType === "goal" ? "goal" : "other")
   );
 
-  const [minute, setMinute] = useState("");
-  const [description, setDescription] = useState("");
+  const [minute, setMinute] = useState(existing?.minute || "");
+  const [description, setDescription] = useState(existing?.description || "");
 
   const [source, setSource] =
-    useState<"url" | "upload">("url");
+    useState<"url" | "upload">(existing?.mediaSource || "url");
 
-  const [mediaUrl, setMediaUrl] = useState("");
+  const [mediaUrl, setMediaUrl] = useState(existing?.mediaSource === "url" ? existing.mediaUrl : "");
   const [file, setFile] = useState<File | null>(null);
   const [preview, setPreview] = useState("");
   const [error, setError] = useState("");
@@ -178,12 +181,13 @@ export default function ManualLanceForm({
         });
       }
       const response = await fetch("/api/lances", {
-        method: "POST",
+        method: existing ? "PUT" : "POST",
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + token,
         },
         body: JSON.stringify({
+          id: existing?.id,
           matchId: match.sport + "/" + match.league + "/" + match.id,
           eventId: selectedGoal?.goal.id || null,
           lanceType: effectiveType,
