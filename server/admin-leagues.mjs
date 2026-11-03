@@ -31,13 +31,13 @@ export async function leagueOverrides() {
 }
 export async function leagueList() {
   const overrides = await leagueOverrides();
-  const all = new Map(nativeLeagues.map((item) => [key(item.sport,item.id), { ...item, logo: "", source: "catalog" }]));
+  const all = new Map(nativeLeagues.map((item) => [key(item.sport,item.id), { ...item, logo: imagePath(item.sport,item.id), source: "catalog" }]));
   for (const item of overrides) {
     const k = key(item.sport,item.id);
     all.set(k, {
       ...all.get(k), sport: item.sport, id: item.id, name: item.name,
       native: isNative(item.sport,item.id),
-      logo: item.has_upload ? imagePath(item.sport,item.id) : item.logo_url || "",
+      logo: item.has_upload ? imagePath(item.sport,item.id) : item.logo_url || imagePath(item.sport,item.id),
       logo_url: item.logo_url || "", has_upload: item.has_upload,
       source: "neon",
     });
