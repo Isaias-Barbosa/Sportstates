@@ -1,4 +1,5 @@
-import type { Detail } from "../types";
+import { useApi } from "../hooks";
+import type { Match } from "../types";
 
 export type HeadToHeadGame = {
   id: string;
@@ -8,11 +9,19 @@ export type HeadToHeadGame = {
   away: { id: string; name: string; score: string };
 };
 
-export default function MatchHeadToHead({ data, homeId, awayId }: {
-  data?: { matches: HeadToHeadGame[]; partial: boolean; source: string };
-  homeId: string;
-  awayId: string;
-}) {
+export default function MatchHeadToHead({ match }: { match: Match }) {
+  const { data, loading, error } = useApi<{
+    matches: HeadToHeadGame[];
+    partial: boolean;
+    source: string;
+  }>(
+    "/api/head-to-head?sport=" + encodeURIComponent(match.sport) +
+      "&league=" + encodeURIComponent(match.league) +
+      "&id=" + encodeURIComponent(match.id),
+    0
+  );
+  const homeId = match.home.id;
+  const awayId = match.away.id;
   const games = data?.matches || [];
   const homeWins = games.filter((game) =>
     (game.home.id === homeId && Number(game.home.score) > Number(game.away.score)) ||
@@ -29,7 +38,7 @@ export default function MatchHeadToHead({ data, homeId, awayId }: {
         <h2>Confrontos Diretos</h2>
         <span>Últimos jogos encontrados na ESPN</span>
       </div>
-      {games.length ? (
+      {loading ? <p>Consultando histórico na ESPN…</p> : error ? <p>Histórico indisponível no momento.</p> : games.length ? (
         <>
           <div className="h2h-record">
             <div><b>{homeWins}</b><span>Vitórias mandante atual</span></div>
