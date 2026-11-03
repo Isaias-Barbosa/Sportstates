@@ -1,3 +1,4 @@
+import { fetchGeSerieARoundFixtures } from "./ge-fixtures.mjs";
 import { resolveSources } from "./source-manager.mjs";
 import { nbb365Url, normalizeNbb365Standings, normalizeNbb365Games } from "./365scores.mjs";
 import { loadLnbHtml, parseLnbGames, parseLnbStandings } from "./lnb.mjs";
@@ -1101,6 +1102,31 @@ export async function route(url) {
         source: "ESPN · feed público não oficial",
       },
     ];
+  }
+  if (url.pathname === "/api/ge-fixtures") {
+    const year = Number(q.get("year"));
+    const round = Number(q.get("round"));
+    const date = q.get("date");
+    if (!Number.isInteger(year) || year < 2020 || year > 2100 ||
+        !Number.isInteger(round) || round < 1 || round > 38 ||
+        (date !== null && !validDate(date)))
+      return [400, { error: "Informe ano, rodada (1–38) e data válida, se utilizada." }];
+    try {
+      const result = await cached(
+        `ge:fixtures:v1:${year}:${round}`,
+        15 * 60 * 1000,
+        () => fetchGeSerieARoundFixtures(year, round, null, json),
+        60 * 60 * 1000,
+      );
+      return [200, {
+        sport: "soccer", league: "bra.1", year, round,
+        matches: date ? result.value.filter((m) => dayInBrazil(m.date) === date) : result.value,
+        source: "GE", stale: result.stale,
+        fetchedAt: new Date(result.at).toISOString(),
+      }];
+    } catch (error) {
+      return [503, { error: "Calendário GE indisponível.", detail: error.message }];
+    }
   }
   if (url.pathname === "/api/scores") {
     const date = q.get("date") || dayInBrazil(new Date());
