@@ -97,6 +97,11 @@ import {
   teamTtl,
   responseTtl,
 } from "./cache-policy.mjs";
+
+import {
+  handleLancePermissionRequest,
+} from "./lance-permission-api.mjs";
+
 const cached = createCache();
 const ESPN = "https://site.api.espn.com/apis/site/v2/sports";
 
@@ -1088,8 +1093,11 @@ export async function route(url) {
     ];
   }
 
+
+
   return [404, { error: "Rota não encontrada." }];
 }
+
 
 export async function handler(req, res) {
   res.setHeader("Content-Type", "application/json; charset=utf-8");
@@ -1100,6 +1108,13 @@ export async function handler(req, res) {
     requestUrl.searchParams.has("path")
   )
     requestUrl.pathname = "/api/" + requestUrl.searchParams.get("path");
+
+     // NOVO: Verificar permissões para gerenciar lances
+  if (requestUrl.pathname === "/api/lances/permissions") {
+    await handleLancePermissionRequest(req, res);
+    return;
+  }
+  
   if (["/api/me", "/api/me/summary"].includes(requestUrl.pathname)) {
     res.setHeader("Cache-Control", "private, no-store");
     res.setHeader("Vercel-CDN-Cache-Control", "no-store");
