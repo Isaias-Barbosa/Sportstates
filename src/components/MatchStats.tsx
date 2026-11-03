@@ -47,7 +47,7 @@ export default function MatchStats({ match, statistics, leaders }: {
     || statistics.find((team) => team !== homeStats);
   const categories = match.sport === "soccer"
     ? essentialStats
-    : [...new Set([...homeStats?.stats || [], ...awayStats?.stats || []].map((s) => s.name))]
+    : [...new Set([...(homeStats?.stats || []), ...(awayStats?.stats || [])].map((s) => s.name))]
         .map((name) => ({ title: name, aliases: [name] }));
   const rows = categories.map((category) => ({
     label: category.title,
