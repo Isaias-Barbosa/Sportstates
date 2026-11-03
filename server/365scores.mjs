@@ -64,7 +64,7 @@ export function competitionGamesUrl(league) {
   return url("games/results", {
     competitions: String(competitionId),
     userCountryId: "-1",
-    limit: "100",
+    limit: "1000",
   });
 }
 
@@ -215,7 +215,7 @@ export async function fetch365CompetitionGames(league, loadJson) {
     games: raw.games.filter(
       (game) => Number(game.competitionId) === expectedId,
     ),
-    partial: raw.games.length >= 100,
+    partial: raw.games.length >= 1000,
   };
 }
 

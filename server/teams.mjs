@@ -49,7 +49,7 @@ export function validateHonours(honours) {
 }
 export async function listTeams() {
   const sql = getSql();
-  return sql`SELECT id, name, logo, description, city, stadium, stadium_image, website, sport, league, colors, honours FROM sport_teams ORDER BY name`;
+  return sql`SELECT id, name, logo, description, city, stadium, stadium_image, website, sport, league, colors, honours FROM sport_teams WHERE id <> 'basketball-nbb-129095' ORDER BY name`;
 }
 export async function deleteTeam(id) {
   if (typeof id !== "string" || !validId(id)) {
