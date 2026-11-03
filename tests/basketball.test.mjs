@@ -141,12 +141,15 @@ test("basketball namespaces isolate NBA, WNBA, NBB and existing soccer IDs", () 
 });
 test("reviewed catalog has distinct NBA, WNBA and NBB profiles", () => {
   const c = basketballProfiles.clubs;
-  assert.equal(c.length, 61);
-  assert.equal(new Set(c.map((t) => t.id)).size, 61);
+  assert.equal(c.length, 63);
+  assert.equal(new Set(c.map((t) => t.id)).size, 63);
   assert.equal(c.filter((t) => t.league === "nba").length, 30);
   assert.equal(c.filter((t) => t.league === "wnba").length, 15);
-  assert.equal(c.filter((t) => t.league === "nbb").length, 16);
+  assert.equal(c.filter((t) => t.league === "nbb").length, 18);
   assert.ok(c.some((t) => t.name === "Corinthians" && t.league === "nbb"));
+  for (const name of ["Botafogo", "Cruzeiro Basquete", "Basket Osasco"])
+    assert.ok(c.some((t) => t.name === name && t.league === "nbb"), `${name} ausente da NBB`);
+  assert.equal(c.some((t) => t.name === "Vasco" && t.league === "nbb"), false);
   assert.ok(c.some((t) => t.name === "Toronto Tempo"));
   assert.ok(c.some((t) => t.name === "Portland Fire"));
   assert.equal(
@@ -160,7 +163,7 @@ test("reviewed catalog has distinct NBA, WNBA and NBB profiles", () => {
   assert.ok(
     c
       .filter((t) => t.league === "nbb")
-      .every((t) => t.references.some((r) => r.url.includes("/nbb/"))),
+      .every((t) => t.references.some((r) => r.url.includes("/nbb/") || r.url.startsWith("https://lnb.com.br/equipes/"))),
   );
 });
 test("Judo is catalogued without requesting a provider for scores", async () => {
