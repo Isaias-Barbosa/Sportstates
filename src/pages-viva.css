@@ -2226,3 +2226,54 @@ summary:focus-visible {
   .match-stat-label { font-size: .8rem; }
   .match-stat-leader { min-width: 29px; padding: 5px 7px; }
 }
+
+
+/*
+ * Classificações e Times: o grid de esportes compartilha a classe standings-sports.
+ * No mobile, o .standings-sports .sport-card antigo usava min-width:0,
+ * encolhendo todos os cards na mesma linha e quebrando palavras letra por letra.
+ * Use cards com largura real e rolagem horizontal em vez de reduzir a largura.
+ */
+@media (max-width: 760px) {
+  main:not(:has(.home-viva)) .sport-cards.standings-sports {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    gap: 12px;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 4px 2px 14px;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x proximity;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  main:not(:has(.home-viva)) .sport-cards.standings-sports .sport-card {
+    box-sizing: border-box;
+    flex: 0 0 154px;
+    width: 154px;
+    min-width: 154px;
+    max-width: 154px;
+    min-height: 142px;
+    padding: 16px;
+    scroll-snap-align: start;
+  }
+
+  main:not(:has(.home-viva)) .sport-cards.standings-sports .sport-card strong {
+    width: 100%;
+    white-space: normal;
+    overflow-wrap: normal;
+    word-break: normal;
+    hyphens: none;
+    line-height: 1.35;
+    font-size: 13px;
+  }
+
+  main:not(:has(.home-viva)) .sport-cards.standings-sports .sport-card small {
+    white-space: normal;
+    overflow-wrap: break-word;
+    line-height: 1.4;
+  }
+}
