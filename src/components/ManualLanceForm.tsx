@@ -1,5 +1,6 @@
 
 import { useEffect, useState } from "react";
+import { accountToken } from "../account/client";
 import type {
   Match,
   MatchHighlights,
@@ -19,6 +20,7 @@ type Props = {
   match: Match;
   highlights?: MatchHighlights;
   onClose: () => void;
+  onSaved: () => void;
 };
 
 type ExistingGoal = {
@@ -28,7 +30,7 @@ type ExistingGoal = {
   teamName: string;
 };
 
-const MAX_FILE_SIZE = 4 * 1024 * 1024;
+const MAX_FILE_SIZE = 2_500_000;
 
 const acceptedTypes = new Set([
   "image/gif",
@@ -41,6 +43,7 @@ export default function ManualLanceForm({
   match,
   highlights,
   onClose,
+  onSaved,
 }: Props) {
   const goals: ExistingGoal[] = [
     ...(highlights?.home || []).map((goal) => ({
@@ -86,6 +89,7 @@ export default function ManualLanceForm({
   const [file, setFile] = useState<File | null>(null);
   const [preview, setPreview] = useState("");
   const [error, setError] = useState("");
+  const [saving, setSaving] = useState(false);
 
   const isGoalMode = initialType === "goal";
 
@@ -127,7 +131,7 @@ export default function ManualLanceForm({
     }
 
     if (selected.size > MAX_FILE_SIZE) {
-      setError("O arquivo ultrapassa o limite de 4 MB.");
+      setError("O arquivo ultrapassa o limite de 2,5 MB.");
       return;
     }
 
@@ -155,6 +159,51 @@ export default function ManualLanceForm({
     validMinute &&
     (source === "upload" ? Boolean(file) : validUrl) &&
     !error;
+
+
+  async function submit() {
+    if (!ready || saving) return;
+    setSaving(true);
+    setError("");
+    try {
+      const token = await accountToken();
+      if (!token) throw Error("Sessão expirada.");
+      let mediaBase64;
+      if (source === "upload" && file) {
+        mediaBase64 = await new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onerror = () => reject(new Error("Falha ao ler arquivo."));
+          reader.onload = () => resolve(String(reader.result).split(",")[1] || "");
+          reader.readAsDataURL(file);
+        });
+      }
+      const response = await fetch("/api/lances", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
+        },
+        body: JSON.stringify({
+          matchId: match.sport + "/" + match.league + "/" + match.id,
+          eventId: selectedGoal?.goal.id || null,
+          lanceType: effectiveType,
+          minute: effectiveMinute,
+          description,
+          mediaSource: source,
+          mediaUrl: source === "url" ? mediaUrl.trim() : null,
+          mediaBase64,
+          mediaType: file?.type,
+        }),
+      });
+      const result = await response.json();
+      if (!response.ok) throw Error(result.error || "Falha ao salvar lance.");
+      onSaved();
+    } catch (cause) {
+      setError(cause instanceof Error ? cause.message : "Falha ao salvar.");
+    } finally {
+      setSaving(false);
+    }
+  }
 
   const matchKey =
     `${match.sport}/${match.league}/${match.id}`;
@@ -386,15 +435,7 @@ export default function ManualLanceForm({
           Cancelar
         </button>
 
-        <button
-          type="button"
-          disabled
-          title={
-            ready
-              ? "A gravação será conectada no Passo 5"
-              : "Preencha os campos obrigatórios"
-          }
-        >
+        <button type="button" disabled={!ready || saving} onClick={() => void submit()}>
           {isLinkedGoal
             ? "Vincular mídia ao gol"
             : "Cadastrar lance"}
@@ -409,8 +450,7 @@ export default function ManualLanceForm({
       </small>
 
       <small>
-        O armazenamento no Neon será habilitado
-        na próxima etapa.
+        Os lances serão salvos no Neon.
       </small>
     </section>
   );
