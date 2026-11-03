@@ -41,9 +41,9 @@ export default function MatchHeadToHead({ match }: { match: Match }) {
       {loading ? <p>Consultando histórico na ESPN…</p> : error ? <p>Histórico indisponível no momento.</p> : games.length ? (
         <>
           <div className="h2h-record">
-            <div><b>{homeWins}</b><span>Vitórias mandante atual</span></div>
+            <div><b>{homeWins}</b><span>Vitórias de {match.home.name}</span></div>
             <div><b>{draws}</b><span>Empates</span></div>
-            <div><b>{awayWins}</b><span>Vitórias visitante atual</span></div>
+            <div><b>{awayWins}</b><span>Vitórias de {match.away.name}</span></div>
           </div>
           <div className="h2h-games">
             {games.map((game) => (
