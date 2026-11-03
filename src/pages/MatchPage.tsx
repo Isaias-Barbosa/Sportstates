@@ -41,7 +41,9 @@ import {
 
 import ManualLanceForm from "../components/ManualLanceForm";
 
-import type { Scores, Detail, MatchMedia } from "../types";
+import type { Scores, Detail, MatchMedia, ManualLance } from "../types";
+import { accountToken } from "../account/client";
+import ManualLanceMedia from "../components/ManualLanceMedia";
 import { useApi, useFavorites, today, time, dateLabel } from "../hooks";
 import { sports, keyOf } from "../catalog";
 import {
@@ -68,12 +70,14 @@ const [canManageLances, setCanManageLances] =
 
 const [manualLanceType, setManualLanceType] =
   useState<"goal" | "other" | null>(null);
+const [editingLance, setEditingLance] = useState<ManualLance | null>(null);
 
 useEffect(() => {
   const controller = new AbortController();
 
   setCanManageLances(false);
   setManualLanceType(null);
+  setEditingLance(null);
 
   if (accountLoading || !user?.emailVerified) {
     return () => controller.abort();
@@ -110,6 +114,38 @@ useEffect(() => {
     `/api/media?sport=${encodeURIComponent(sport || "")}&league=${encodeURIComponent(league || "")}&id=${encodeURIComponent(id || "")}`,
     120000,
   );
+  const matchKey = `${sport || ""}/${league || ""}/${id || ""}`;
+  const { data: manualData, refresh: refreshManual } =
+    useApi<{ lances: ManualLance[] }>(
+      "/api/lances?match_id=" + encodeURIComponent(matchKey),
+      0
+    );
+  const manualLances = (manualData?.lances || []).filter(
+    (lance) => lance.matchId === matchKey
+  );
+  const [manualError, setManualError] = useState("");
+
+  async function deleteManualLance(lance: ManualLance) {
+    if (!window.confirm("Excluir a mídia deste lance?")) return;
+    setManualError("");
+    try {
+      const token = await accountToken();
+      if (!token) throw Error("Entre novamente na sua conta.");
+      const response = await fetch("/api/lances", {
+        method: "DELETE",
+        headers: {
+          Authorization: "Bearer " + token,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ id: lance.id }),
+      });
+      const body = await response.json();
+      if (!response.ok) throw Error(body.error || "Não foi possível excluir.");
+      refreshManual();
+    } catch (cause) {
+      setManualError(cause instanceof Error ? cause.message : "Falha ao excluir.");
+    }
+  }
   const { data: clubs } = useApi<{ teams: ClubProfile[] }>(
     "/api/teams",
     300000,
@@ -444,14 +480,14 @@ useEffect(() => {
       <div className="manual-lance-actions">
         <button
           type="button"
-          onClick={() => setManualLanceType("goal")}
+          onClick={() => { setEditingLance(null); setManualLanceType("goal"); }}
         >
           + Adicionar Gol
         </button>
 
         <button
           type="button"
-          onClick={() => setManualLanceType("other")}
+          onClick={() => { setEditingLance(null); setManualLanceType("other"); }}
         >
           + Adicionar Lance na Partida
         </button>
@@ -462,16 +498,51 @@ useEffect(() => {
 
 {canManageLances && manualLanceType && (
   <ManualLanceForm
-    key={`${data.match.id}:${manualLanceType}`}
+    key={`${data.match.id}:${manualLanceType}:${editingLance?.id || "new"}`}
     initialType={manualLanceType}
     match={data.match}
     highlights={data.highlights}
-    onClose={() => setManualLanceType(null)}
+    existing={editingLance}
+    onClose={() => { setEditingLance(null); setManualLanceType(null); }}
+    onSaved={() => { refreshManual(); setManualLanceType(null); setEditingLance(null); }}
   />
 )}
 
 
 
+    {manualError && <p role="alert">{manualError}</p>}
+    {manualLances.length > 0 && (
+      <section className="match-videos">
+        <div className="section-heading">
+          <h2>Lances adicionados pela equipe</h2>
+          <span>GIFs e vídeos vinculados à partida</span>
+        </div>
+        <div className="highlights-grid">
+          {manualLances.map((lance) => (
+            <div key={lance.id} className="goal-summary-card">
+              <ManualLanceMedia lance={lance} />
+              {canManageLances && (
+                <button type="button"
+                  onClick={() => {
+                    setEditingLance(lance);
+                    setManualLanceType(lance.lanceType === "goal" ? "goal" : "other");
+                    setTab("videos");
+                    document.getElementById("match-tabs")?.scrollIntoView({ block: "start" });
+                  }}>
+                  Editar mídia
+                </button>
+              )}
+              {canManageLances && (
+                <button type="button"
+                  onClick={() => void deleteManualLance(lance)}>
+                  Excluir mídia
+                </button>
+              )}
+            </div>
+          ))}
+        </div>
+      </section>
+    )}
     <MatchVideos
       media={media}
       loading={mediaLoading}
@@ -487,6 +558,7 @@ useEffect(() => {
                     match={data.match}
                     highlights={data.highlights}
                     media={media}
+                    manualLances={manualLances}
                   />
                   {data.match.sport === "basketball" &&
                     !!media?.replays.length && (

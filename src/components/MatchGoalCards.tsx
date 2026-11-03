@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { OfficialVideo } from "./MatchVideos";
+import ManualLanceMedia from "./ManualLanceMedia";
 import { Crest } from "./shared";
 import type {
   Match,
@@ -8,16 +9,19 @@ import type {
   MatchMedia,
   MatchVideo,
   Team,
+  ManualLance,
 } from "../types";
 
 function GoalCard({
   goal,
   team,
   videos,
+  manualLances,
 }: {
   goal: MatchIncident;
   team: Team;
   videos: MatchVideo[];
+  manualLances: ManualLance[];
 }) {
   const [failedPhoto, setFailedPhoto] = useState("");
   const initials = goal.player
@@ -60,6 +64,9 @@ function GoalCard({
         <Crest team={team} />
         <span>{goal.ownGoal ? `A favor de ${team.name}` : team.name}</span>
       </div>
+      {manualLances.map((lance) => (
+        <ManualLanceMedia key={lance.id} lance={lance} />
+      ))}
       {videos.map((video) => (
         <OfficialVideo key={video.id} video={video} replay />
       ))}
@@ -71,10 +78,12 @@ export default function MatchGoalCards({
   match,
   highlights,
   media,
+  manualLances = [],
 }: {
   match: Match;
   highlights?: MatchHighlights;
   media?: MatchMedia;
+  manualLances?: ManualLance[];
 }) {
   if (match.sport !== "soccer" || !highlights) return null;
   const goals = [
@@ -118,6 +127,7 @@ export default function MatchGoalCards({
             key={`${team.id}:${goal.id}`}
             goal={goal}
             team={team}
+            manualLances={manualLances.filter((lance) => lance.eventId === goal.id)}
             videos={(media?.replays || [])
               .filter((v) => v.eventId === goal.id)
               .slice(0, 2)}
