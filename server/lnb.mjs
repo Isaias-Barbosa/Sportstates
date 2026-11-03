@@ -30,7 +30,9 @@ export function parseLnbGames(html, month) {
     if (!iso.startsWith(month)) continue;
     const dateIndex = row.findIndex((cell) => /\d{2}\/\d{2}\/20\d{2}/.test(cell));
     const after = row.slice(dateIndex + 1);
-    const scoreIndex = after.findIndex((cell) => /\b\d{1,3}\s*[xX×-]\s*\d{1,3}\b/.test(cell));
+    // The official calendar uses "X" alone for fixtures not yet played.
+    const scoreIndex = after.findIndex((cell) =>
+      /^(?:\d{1,3}\s*[xX×-]\s*\d{1,3}|[xX×])(?:\s|$)/.test(cell));
     if (scoreIndex < 1) continue;
     const homeName = after[scoreIndex - 1]?.trim();
     const awayName = after[scoreIndex + 1]?.trim();
