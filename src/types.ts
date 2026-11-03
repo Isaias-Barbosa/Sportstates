@@ -185,6 +185,7 @@ export type Detail = {
     scoring: boolean;
     scorer?: string;
     scorerTeamId?: string;
+    teamId?: string;
     points?: number | null;
     score?: string;
     kind:
