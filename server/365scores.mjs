@@ -421,8 +421,8 @@ export function normalize365Summary(raw, league, leagueName) {
 }
 
 export function nbb365Url(kind) {
-  if (!["standings", "games/results"].includes(kind)) throw new Error("Consulta NBB inválida");
-  return url(kind, { sports: "2", competitions: "5787", userCountryId: "21", ...(kind === "games/results" ? { limit: "1000" } : {}) });
+  if (!["standings", "games/results", "games/fixtures", "games"].includes(kind)) throw new Error("Consulta NBB inválida");
+  return url(kind, { sports: "2", competitions: "5787", userCountryId: "21", ...(kind !== "standings" ? { limit: "1000" } : {}) });
 }
 export function normalizeNbb365Standings(raw) {
   const entries = Array.isArray(raw?.standings) ? raw.standings : [];
