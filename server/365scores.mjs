@@ -419,3 +419,43 @@ export function normalize365Summary(raw, league, leagueName) {
     source: "365Scores · feed público não oficial",
   };
 }
+
+export function nbb365Url(kind) {
+  if (!["standings", "games/results"].includes(kind)) throw new Error("Consulta NBB inválida");
+  return url(kind, { sports: "2", competitions: "5787", userCountryId: "21", ...(kind === "games/results" ? { limit: "1000" } : {}) });
+}
+export function normalizeNbb365Standings(raw) {
+  const entries = Array.isArray(raw?.standings) ? raw.standings : [];
+  const groups = entries.filter((e) => Number(e.competitionId) === 5787).flatMap((e) => {
+    const rows = (e.rows || []).map((row) => {
+      const team = row.competitor || {};
+      if (!team.id) return null;
+      return {
+        id: String(team.id), name: String(team.name || "Equipe"),
+        logo: `https://imagecache.365scores.com/image/upload/f_png,w_80,h_80,c_limit,q_auto:eco,dpr_2/competitors/${team.id}`,
+        rank: String(row.position ?? "—"),
+        stats: {
+          gamesPlayed: String(row.gamePlayed ?? "—"),
+          wins: String(row.gamesWon ?? "—"),
+          losses: String(row.gamesLost ?? "—"),
+          points: String(row.points ?? row.gamesWon ?? "—"),
+          pointDifference: String(row.ratio ?? "—"),
+          pointsFor: String(row.for ?? "—"), pointsAgainst: String(row.against ?? "—"),
+        },
+      };
+    }).filter(Boolean);
+    return rows.length ? [{ name: e.displayName || "NBB 2026/27", rows }] : [];
+  });
+  if (!groups.length) throw new Error("365Scores não retornou classificação da NBB");
+  return groups;
+}
+export function normalizeNbb365Games(raw, month) {
+  if (!Array.isArray(raw?.games)) throw new Error("Resposta de jogos da NBB inválida");
+  const matches = raw.games
+    .filter((g) => Number(g.competitionId) === 5787 && String(g.startTime || "").startsWith(month))
+    .map((g) => normalize365Game(g, "nbb", "NBB"))
+    .filter(Boolean)
+    .map((g) => ({ ...g, sport: "basketball", source: "365Scores" }));
+  if (!matches.length) throw new Error("365Scores não retornou partidas da NBB neste mês");
+  return { matches, partial: false };
+}
