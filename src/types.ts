@@ -170,6 +170,7 @@ export type MatchHighlights = {
   away: MatchIncident[];
 };
 export type Detail = {
+  leaders?: { name: string; team: string; goals: number }[];
   ratingSourceUrl?: string;
   highlights?: MatchHighlights;
   basketball?: BasketballData;
