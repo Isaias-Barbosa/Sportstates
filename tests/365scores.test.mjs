@@ -360,3 +360,64 @@ test("Copa Paraná 2026 labels Athletico's alternative Sub-20 squad only in that
   assert.equal(senior.home.name, "Athletico-PR");
   assert.equal(senior.home.squad, undefined);
 });
+
+
+test("Copa Paraná postponed Athletico v Paranavaí never exposes -1 x -1", () => {
+  const match = normalize365Game(
+    game({
+      id: 4886430,
+      competitionId: 9117,
+      startTime: "2026-11-03T19:00:00-03:00",
+      statusGroup: 4,
+      statusText: "Adiado",
+      gameTimeDisplay: "Adiado",
+      homeCompetitor: {
+        id: 1210, name: "Athletico-PR", symbolicName: "CAP",
+        score: -1, isWinner: false,
+      },
+      awayCompetitor: {
+        id: 72836, name: "Paranavaí", symbolicName: "PAR",
+        score: -1, isWinner: false,
+      },
+    }),
+    "bra.copa_parana",
+    "Copa Paraná",
+  );
+  assert.equal(match.id, "4886430");
+  assert.equal(match.state, "scheduled");
+  assert.equal(match.statusName, "STATUS_UNCONFIRMED");
+  assert.equal(match.status, "Status aguardando confirmação oficial");
+  assert.equal(match.home.score, null);
+  assert.equal(match.away.score, null);
+  assert.equal(match.home.name, "Athletico-PR (Sub-20)");
+});
+
+test("negative 365Scores sentinel values are never displayed as scores", () => {
+  const sample = game({
+    statusGroup: 4,
+    statusText: "Fim",
+    homeCompetitor: { id: 9167, name: "Petrolina", score: -1 },
+    awayCompetitor: { id: 9168, name: "Náutico", score: 2 },
+  });
+  const match = normalize365Game(sample, league, "Pernambucano");
+  assert.equal(match.home.score, null);
+  assert.equal(match.away.score, "2");
+  assert.equal(match.state, "finished");
+});
+
+test("postponed status takes precedence over a misleading provider final status group", () => {
+  const match = normalize365Game(
+    game({
+      statusGroup: 4,
+      statusText: "Postponed",
+      homeCompetitor: { id: 9167, name: "Petrolina", score: 0 },
+      awayCompetitor: { id: 9168, name: "Náutico", score: 0 },
+    }),
+    league,
+    "Pernambucano",
+  );
+  assert.equal(match.statusName, "STATUS_POSTPONED");
+  assert.equal(match.state, "scheduled");
+  assert.equal(match.home.score, null);
+  assert.equal(match.away.score, null);
+});

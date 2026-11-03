@@ -100,7 +100,11 @@ export async function fetch365DailyGames(loadJson) {
 }
 
 function displayScore(value, state) {
-  return state === "scheduled" || value == null ? null : String(value);
+  // 365Scores may send -1 for unknown/not-yet-played scores. Never display
+  // these sentinel values as goals, including on finished/postponed fixtures.
+  if (state === "scheduled" || value == null || value === "") return null;
+  const score = Number(value);
+  return Number.isSafeInteger(score) && score >= 0 ? String(score) : null;
 }
 
 export function normalize365Game(game, league, leagueName, now = Date.now()) {
@@ -118,20 +122,31 @@ export function normalize365Game(game, league, leagueName, now = Date.now()) {
 
   const statusText = String(game.statusText || game.shortStatusText || "");
   const statusGroup = Number(game.statusGroup);
+  // Non-played fixtures may be marked with a final status group. Give
+  // explicit postponed/cancelled labels precedence over that numeric group.
+  const postponed = /\b(postponed|postponement|adiad[oa]s?|aplazad[oa]s?|suspended)\b/i.test(statusText);
+  const cancelled = /\b(cancelled|canceled|cancelad[oa]s?|anulad[oa]s?)\b/i.test(statusText);
+  // The FPF and ge list Athletico v Paranavaí on 03/11/2026 at 19:00,
+  // while a secondary provider marks it postponed without a valid score.
+  // Do not present an unconfirmed postponement as established fact.
+  const conflictingCopaParana = league === "bra.copa_parana" &&
+    id === "4886430" &&
+    (postponed || cancelled);
+  const notPlayed = postponed || cancelled || conflictingCopaParana;
   const finished =
-    statusGroup === 4 ||
-    /\b(final|fim|ended|finished|encerrad|cancel|postponed|adiad)\b/i.test(
-      statusText,
-    );
+    !notPlayed && (statusGroup === 4 ||
+      /\b(final|fim|ended|finished|encerrad[oa]s?)\b/i.test(statusText));
   const live =
-    !finished &&
+    !notPlayed && !finished &&
     (/\b(live|ao vivo|intervalo|1st half|2nd half|extra time|penalties)\b/i.test(
       statusText,
     ) ||
       (Number(game.gameTime) > 0 &&
         Number.isFinite(Date.parse(date)) &&
         Date.parse(date) <= now));
-  const state = finished ? "finished" : live ? "live" : "scheduled";
+  const state = conflictingCopaParana
+    ? "scheduled"
+    : finished ? "finished" : live ? "live" : "scheduled";
   const networks = Array.isArray(game.tvNetworks)
     ? game.tvNetworks.filter((network) => Number(network.countryId) === 21)
     : [];
@@ -152,7 +167,7 @@ export function normalize365Game(game, league, leagueName, now = Date.now()) {
     logo: `https://imagecache.365scores.com/image/upload/f_png,w_80,h_80,c_limit,q_auto:eco,dpr_2/competitors/${competitor.id}`,
     score: displayScore(competitor.score, state),
     penalties: null,
-    winner: !!competitor.isWinner,
+    winner: finished && !!competitor.isWinner,
   });
   const match = {
     id,
@@ -165,8 +180,12 @@ export function normalize365Game(game, league, leagueName, now = Date.now()) {
     home: toTeam(home),
     away: toTeam(away),
     state,
-    statusName: statusText,
-    status: game.gameTimeDisplay || statusText,
+    statusName: conflictingCopaParana
+      ? "STATUS_UNCONFIRMED"
+      : postponed ? "STATUS_POSTPONED"
+      : cancelled ? "STATUS_CANCELED" : statusText,
+    status: conflictingCopaParana ? "Status aguardando confirmação oficial"
+      : postponed ? "Adiado" : cancelled ? "Cancelado" : game.gameTimeDisplay || statusText,
     clock: game.gameTimeDisplay || "",
     period: 0,
     seasonType: null,
