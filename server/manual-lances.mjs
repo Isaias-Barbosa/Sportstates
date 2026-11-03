@@ -81,6 +81,14 @@ async function bodyJson(req) {
   return value;
 }
 
+function normalizedMinute(value) {
+  const clean = String(value || "").trim().replace(/[’′]/g, "'").replace(/\s+/g, "");
+  const parsed = /^(\d{1,3})(?:\+(\d{1,2}))?'?(?::[0-5]\d)?$/.exec(clean);
+  return parsed
+    ? parsed[1] + (parsed[2] ? "+" + parsed[2] : "")
+    : "";
+}
+
 async function validateEntry(body, getMatch) {
   const key = matchKey(body.matchId);
   if (!TYPES.has(body.lanceType)) throw Error("Categoria inválida.");
@@ -108,8 +116,9 @@ async function validateEntry(body, getMatch) {
     minute = String(selected.minute || "").trim();
     eventSource = detail.match.source === "365scores" ? "365scores" : "espn";
   }
-  if (!/^\d{1,3}(?:\+\d{1,2})?$/.test(minute))
-    throw Error("Informe o minuto, como 87 ou 90+3.");
+  minute = normalizedMinute(minute);
+  if (!minute)
+    throw Error("Minuto inválido. Use 87 ou 90+3.");
   return {
     key, minute, eventId, eventSource, media,
     type: body.lanceType,
