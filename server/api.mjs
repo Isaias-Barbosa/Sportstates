@@ -57,6 +57,7 @@ import {
 import { startedDomesticTournaments } from "./domestic-tournaments.mjs";
 import { ECUADOR_CUPS, fetchEcuadorCupStandings } from "./ecuador-cups.mjs";
 import { listTeams, teamDetails, saveTeam, getTeam, deleteTeam } from "./teams.mjs";
+import { leagueList, leagueOverrides, saveLeague, removeLeague, leagueLogo } from "./admin-leagues.mjs";
 import {
   fetchTeamCatalog,
   normalizeTeamSearch,
@@ -1594,6 +1595,64 @@ export async function handler(req, res) {
           "Não foi possível consultar ESPN e TheSportsDB. Tente novamente.",
       }),
     );
+  }
+  if (requestUrl.pathname === "/api/league-logo") {
+    try {
+      const result = await leagueLogo(requestUrl.searchParams.get("sport"), requestUrl.searchParams.get("id"));
+      if (!result) { res.statusCode = 404; return res.end(JSON.stringify({ error: "Logo não encontrada." })); }
+      res.statusCode = 200;
+      res.setHeader("Content-Type", result.mime);
+      res.setHeader("Cache-Control", "public, max-age=300");
+      return res.end(Buffer.from(result.data,"base64"));
+    } catch {
+      res.statusCode = 404;
+      return res.end(JSON.stringify({ error: "Logo indisponível." }));
+    }
+  }
+  if (requestUrl.pathname === "/api/admin/leagues") {
+    res.setHeader("Cache-Control","no-store");
+    if (!(await adminAuthorized(req.headers?.authorization))) {
+      res.statusCode = 401;
+      return res.end(JSON.stringify({ error: "Acesso administrativo não autorizado." }));
+    }
+    try {
+      if (req.method === "GET") {
+        return res.end(JSON.stringify({ leagues: await leagueList() }));
+      }
+      if (req.method === "DELETE") {
+        const sport = requestUrl.searchParams.get("sport");
+        const id = requestUrl.searchParams.get("id");
+        const removed = await removeLeague(sport,id);
+        if (!removed) { res.statusCode=404; return res.end(JSON.stringify({error:"Liga não encontrada."})); }
+        await recordAdminActivitySafely("league_deleted",`Liga excluída: ${sport}/${id}`);
+        try { await clearAllCaches(); } catch {}
+        return res.end(JSON.stringify({ok:true}));
+      }
+      if (req.method !== "PUT") {
+        res.statusCode=405; res.setHeader("Allow","GET, PUT, DELETE");
+        return res.end(JSON.stringify({error:"Método não permitido."}));
+      }
+      let body = req.body;
+      if (body == null) {
+        let raw = "";
+        for await (const chunk of req) {
+          raw += chunk;
+          if (raw.length > 390000) throw new Error("Imagem muito grande.");
+        }
+        body = raw;
+      }
+      if (typeof body === "string") body = JSON.parse(body);
+      if (!body || typeof body !== "object" || Array.isArray(body) || JSON.stringify(body).length > 390000)
+        throw new Error("Dados inválidos ou muito grandes.");
+      const saved = await saveLeague(body);
+      await recordAdminActivitySafely("league_saved",`Liga salva: ${saved.sport}/${saved.id}`);
+      try { await clearAllCaches(); } catch {}
+      return res.end(JSON.stringify({ok:true}));
+    } catch (error) {
+      const message = String(error?.message || "");
+      res.statusCode = /relation "sport_leagues" does not exist/.test(message) ? 503 : 400;
+      return res.end(JSON.stringify({error:res.statusCode===503?"Execute a migração scripts/setup-leagues.sql no Neon antes de cadastrar ligas.":message.slice(0,200)}));
+    }
   }
   if (requestUrl.pathname === "/api/admin/teams") {
     res.setHeader("Cache-Control", "no-store");
