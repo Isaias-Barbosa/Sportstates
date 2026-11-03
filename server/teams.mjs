@@ -51,6 +51,14 @@ export async function listTeams() {
   const sql = getSql();
   return sql`SELECT id, name, logo, description, city, stadium, stadium_image, website, sport, league, colors, honours FROM sport_teams ORDER BY name`;
 }
+export async function deleteTeam(id) {
+  if (typeof id !== "string" || !validId(id)) {
+    throw new Error("Identificador do time inválido.");
+  }
+  const sql = getSql();
+  const rows = await sql`DELETE FROM sport_teams WHERE id=${id} RETURNING id, name`;
+  return rows[0] || null;
+}
 export async function getTeam(id) {
   if (!validId(id)) return null;
   const sql = getSql();
