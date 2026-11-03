@@ -64,7 +64,7 @@ export function parseLnbStandings(html) {
   for (const row of table.slice(headerIndex + 1)) {
     // LNB renders rank, acronym and team name inside the same EQUIPES cell.
     const first = row[0] || "";
-    const match = first.match(/^\\s*(\\d{1,2})\\s+(.+)$/);
+    const match = first.match(/^\s*(\d{1,2})\s+(.+)$/);
     if (!match) { if (result.length) break; else continue; }
     const rank = match[1];
     const name = (row.length > header.length ? row[1] : match[2]).trim();
@@ -74,7 +74,7 @@ export function parseLnbStandings(html) {
       return i >= 0 ? row[i] || "—" : "—";
     };
     result.push({
-      id: `lnb-${name.toLowerCase().normalize("NFD").replace(/[\\u0300-\\u036f]/g, "").replace(/[^a-z0-9]+/g, "-")}`,
+      id: `lnb-${name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]+/g, "-")}`,
       name, rank, logo: null,
       stats: {
         gamesPlayed: stat("JOG"), wins: stat("VIT"), losses: stat("DER"),
