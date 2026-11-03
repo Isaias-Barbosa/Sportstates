@@ -229,49 +229,41 @@ export function selectMatchMedia(match, events, videos) {
   return { highlights, replays };
 }
 export function normalizeEspnVideos(videos = []) {
-  return (Array.isArray(videos) ? videos : []).slice(0, 12).flatMap((v) => {
-    const url = v.links?.web?.href;
-    const mediaUrl = v.links?.source?.href;
-    try {
-      const page = new URL(url),
-        media = new URL(mediaUrl);
-      if (
-        page.protocol !== "https:" ||
+  const unique = new Map();
+  for (const v of Array.isArray(videos) ? videos.slice(0, 40) : []) {
+    const clipId = String(v?.id || "");
+    if (!/^\d{1,15}$/.test(clipId)) continue;
+    const pageUrl = v.links?.web?.href ||
+      "https://www.espn.com.br/video/clip/_/id/" + clipId;
+    let page;
+    try { page = new URL(pageUrl); } catch { continue; }
+    if (page.protocol !== "https:" ||
         !["www.espn.com.br", "www.espn.com"].includes(page.hostname) ||
-        page.username ||
-        page.password ||
-        page.port
-      )
-        return [];
-      if (
-        media.protocol !== "https:" ||
-        ![
-          "espnmedia-cdn.akamaized.net",
-          "media.video-cdn.espn.com",
-          "a.espncdn.com",
-        ].includes(media.hostname) ||
-        media.username ||
-        media.password ||
-        media.port ||
-        !media.pathname.endsWith(".mp4")
-      )
-        return [];
-      if (!/^\d{1,15}$/.test(String(v.id))) return [];
-      return [
-        {
-          id: `espn-${v.id}`,
-          title: v.headline || "Vídeo oficial da partida",
-          channel: "ESPN",
-          provider: "espn",
-          sourceRegion: "BR",
-          url,
-          mediaUrl,
-        },
-      ];
-    } catch {
-      return [];
+        page.username || page.password || page.port) continue;
+    // The ESPN clip page remains useful even if the provider does not publish
+    // an embeddable MP4 for this clip.
+    let mediaUrl;
+    if (v.links?.source?.href) {
+      let source;
+      try { source = new URL(v.links.source.href); } catch { continue; }
+      if (source.protocol !== "https:" ||
+          !["espnmedia-cdn.akamaized.net", "media.video-cdn.espn.com",
+            "a.espncdn.com"].includes(source.hostname) ||
+          source.username || source.password || source.port ||
+          !source.pathname.endsWith(".mp4")) continue;
+      mediaUrl = source.href;
     }
-  });
+    unique.set(clipId, {
+      id: "espn-" + clipId,
+      title: v.headline || v.title || v.caption || "Clipe oficial ESPN",
+      channel: "ESPN",
+      provider: "espn",
+      sourceRegion: "BR",
+      url: page.href,
+      ...(mediaUrl ? { mediaUrl } : {}),
+    });
+  }
+  return [...unique.values()];
 }
 export async function matchMedia(match, events, associatedVideos = []) {
   const channels = channelsForMatch(match);

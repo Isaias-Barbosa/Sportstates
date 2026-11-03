@@ -2,6 +2,8 @@ import TennisMatch from "../components/TennisMatch";
 import { NotificationBell } from "../notifications/Notifications";
 import SetScoreboard from "../components/SetScoreboard";
 import MatchGoalCards from "../components/MatchGoalCards";
+import MatchStats from "../components/MatchStats";
+import MatchHeadToHead from "../components/MatchHeadToHead";
 import MatchTeamFacts from "../components/MatchTeamFacts";
 import { matchScore } from "../components/shared";
 import AmericanFootballMatch from "../components/AmericanFootballMatch";
@@ -403,6 +405,9 @@ useEffect(() => {
                             : "Escalações",
                         ],
                       ]),
+                  ...(data.match.sport === "soccer"
+                    ? [["h2h", "Confrontos Diretos"]]
+                    : []),
                   ...(data.match.sport === "tennis"
                     ? [["stats", "Estatísticas"]]
                     : []),
@@ -656,26 +661,16 @@ useEffect(() => {
                 </>
               )}
               {tab === "stats" &&
-                data.match.sport !== "tennis" &&
-                (data.statistics.length ? (
-                  <div className="stat-grid">
-                    {data.statistics.map((t) => (
-                      <section key={t.team}>
-                        <h3>{t.team}</h3>
-                        {t.stats.map((s, i) => (
-                          <div key={s.name + i}>
-                            <span>{s.name}</span>
-                            <b>{s.value}</b>
-                          </div>
-                        ))}
-                      </section>
-                    ))}
-                  </div>
-                ) : (
-                  <Empty title="Estatísticas indisponíveis">
-                    A fonte ainda não disponibilizou as estatísticas deste jogo.
-                  </Empty>
-                ))}
+                data.match.sport !== "tennis" && (
+                  <MatchStats
+                    match={data.match}
+                    statistics={data.statistics}
+                    leaders={data.leaders}
+                  />
+                )}
+              {tab === "h2h" && data.match.sport === "soccer" && (
+                <MatchHeadToHead match={data.match} />
+              )}
               {tab === "lineups" &&
                 (data.lineups.length ? (
                   <Lineups

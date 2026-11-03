@@ -364,10 +364,22 @@ export function normalizeSummary(raw, sport, league, leagueName) {
     };
     return labels[name] || label || name;
   }
+  const highlights = matchHighlights(raw, match, eventKind);
+  const scorers = new Map();
+  for (const [side, team] of [["home", match.home], ["away", match.away]]) {
+    for (const goal of highlights[side]) {
+      if (goal.kind !== "goal" || goal.ownGoal || !goal.player) continue;
+      const key = team.id + ":" + goal.player;
+      const old = scorers.get(key);
+      scorers.set(key, { name: goal.player, team: team.name, goals: (old?.goals || 0) + 1 });
+    }
+  }
+  const leaders = [...scorers.values()].sort((a, b) => b.goals - a.goals);
   return {
     match: { ...match, venue: raw.gameInfo?.venue?.fullName || match.venue },
     events,
-    highlights: matchHighlights(raw, match, eventKind),
+    highlights,
+    leaders,
     ...(sport === "basketball" ? { basketball } : {}),
     ...(sport === "football"
       ? { americanFootball: normalizeAmericanFootball(raw, match) }

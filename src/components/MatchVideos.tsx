@@ -12,6 +12,23 @@ export function OfficialVideo({
   const [opened, setOpened] = useState(false);
   const [playbackError, setPlaybackError] = useState(false);
   const isEspn = video.provider === "espn";
+  if (isEspn && !video.mediaUrl)
+    return (
+      <div className="official-video">
+        <a
+          className="video-launch"
+          href={video.url}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Play size={24} />
+          <span>Assistir ao clipe na ESPN
+            <small>{video.title} · link oficial</small>
+          </span>
+          <ExternalLink size={14} />
+        </a>
+      </div>
+    );
   if (video.provider === "globo")
     return (
       <div className="official-video globo-video">

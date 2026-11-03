@@ -42,6 +42,7 @@ import {
   authorized,
 } from "./featured.mjs";
 import { matchMedia } from "./match-media.mjs";
+import { fetchHeadToHead } from "./head-to-head.mjs";
 import { enrichBroadcasts } from "./broadcast-schedule.mjs";
 import {
   SPORTS,
@@ -981,6 +982,25 @@ export async function route(url) {
     if (sport !== "all" && !SPORTS.some((s) => s.id === sport))
       return [400, { error: "Esporte inválido." }];
     return [200, await scoreboard(date, sport)];
+  }
+  if (url.pathname === "/api/head-to-head") {
+    const config = leagueFor(q.get("sport"), q.get("league"));
+    const id = q.get("id");
+    if (!config || config.sport !== "soccer" || !/^\d{1,15}$/.test(id || ""))
+      return [400, { error: "Partida de futebol inválida." }];
+    const detailUrl = new URL("http://localhost/api/match");
+    detailUrl.searchParams.set("sport", config.sport);
+    detailUrl.searchParams.set("league", config.league);
+    detailUrl.searchParams.set("id", id);
+    const [status, detail] = await route(detailUrl);
+    if (status !== 200 || !detail?.match) return [status, detail];
+    const result = await cached(
+      "h2h:espn:v1:" + config.league + ":" + id,
+      3600000,
+      () => fetchHeadToHead(detail.match),
+      600000
+    );
+    return [200, { ...result.value, stale: result.stale }];
   }
   if (["/api/match", "/api/media"].includes(url.pathname)) {
     const config = leagueFor(q.get("sport"), q.get("league"));
