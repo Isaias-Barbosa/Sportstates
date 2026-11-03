@@ -126,7 +126,13 @@ export function normalize365Game(game, league, leagueName, now = Date.now()) {
   // explicit postponed/cancelled labels precedence over that numeric group.
   const postponed = /\b(postponed|postponement|adiad[oa]s?|aplazad[oa]s?|suspended)\b/i.test(statusText);
   const cancelled = /\b(cancelled|canceled|cancelad[oa]s?|anulad[oa]s?)\b/i.test(statusText);
-  const notPlayed = postponed || cancelled;
+  // The FPF and ge list Athletico v Paranavaí on 03/11/2026 at 19:00,
+  // while a secondary provider marks it postponed without a valid score.
+  // Do not present an unconfirmed postponement as established fact.
+  const conflictingCopaParana = league === "bra.copa_parana" &&
+    id === "4886430" &&
+    (postponed || cancelled);
+  const notPlayed = postponed || cancelled || conflictingCopaParana;
   const finished =
     !notPlayed && (statusGroup === 4 ||
       /\b(final|fim|ended|finished|encerrad[oa]s?)\b/i.test(statusText));
@@ -138,7 +144,9 @@ export function normalize365Game(game, league, leagueName, now = Date.now()) {
       (Number(game.gameTime) > 0 &&
         Number.isFinite(Date.parse(date)) &&
         Date.parse(date) <= now));
-  const state = finished ? "finished" : live ? "live" : "scheduled";
+  const state = conflictingCopaParana
+    ? "scheduled"
+    : finished ? "finished" : live ? "live" : "scheduled";
   const networks = Array.isArray(game.tvNetworks)
     ? game.tvNetworks.filter((network) => Number(network.countryId) === 21)
     : [];
@@ -172,10 +180,12 @@ export function normalize365Game(game, league, leagueName, now = Date.now()) {
     home: toTeam(home),
     away: toTeam(away),
     state,
-    statusName: postponed
-      ? "STATUS_POSTPONED"
+    statusName: conflictingCopaParana
+      ? "STATUS_UNCONFIRMED"
+      : postponed ? "STATUS_POSTPONED"
       : cancelled ? "STATUS_CANCELED" : statusText,
-    status: postponed ? "Adiado" : cancelled ? "Cancelado" : game.gameTimeDisplay || statusText,
+    status: conflictingCopaParana ? "Status aguardando confirmação oficial"
+      : postponed ? "Adiado" : cancelled ? "Cancelado" : game.gameTimeDisplay || statusText,
     clock: game.gameTimeDisplay || "",
     period: 0,
     seasonType: null,
