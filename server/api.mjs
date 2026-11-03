@@ -692,8 +692,8 @@ export async function route(url) {
     if (config.sport === "basketball" && config.league === "nbb") {
       try {
         const result = await cached(
-          "standings:lnb:nbb:v1", CACHE_TTL.standings,
-          async () => parseLnbStandings(await loadLnbHtml("/classificacao/")),
+          "standings:lnb:nbb:2026-27:v2", CACHE_TTL.standings,
+          async () => parseLnbStandings(await loadLnbHtml("/classificacao/?season=20")),
           300000,
         );
         return [200, { ...config, groups: result.value, rounds: [],
@@ -880,9 +880,9 @@ export async function route(url) {
     if (config.sport === "basketball" && config.league === "nbb") {
       try {
         const result = await cached(
-          `league-games:lnb:nbb:v1:${month}`,
+          `league-games:lnb:nbb:2026-27:v2:${month}`,
           (body) => leagueGamesTtl(body, month, dayInBrazil(new Date())),
-          async () => parseLnbGames(await loadLnbHtml("/tabela-de-jogos/"), month),
+          async () => parseLnbGames(await loadLnbHtml("/tabela-de-jogos/?season=20"), month),
           300000,
         );
         return [200, { ...config, ...result.value, month,
