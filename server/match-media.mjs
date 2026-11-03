@@ -243,15 +243,16 @@ export function normalizeEspnVideos(videos = []) {
     // The ESPN clip page remains useful even if the provider does not publish
     // an embeddable MP4 for this clip.
     let mediaUrl;
-    try {
-      const source = new URL(v.links?.source?.href || "");
-      if (source.protocol === "https:" &&
-          ["espnmedia-cdn.akamaized.net", "media.video-cdn.espn.com",
-            "a.espncdn.com"].includes(source.hostname) &&
-          !source.username && !source.password && !source.port &&
-          source.pathname.endsWith(".mp4"))
-        mediaUrl = source.href;
-    } catch { /* The ESPN clip can still be opened in a new tab. */ }
+    if (v.links?.source?.href) {
+      let source;
+      try { source = new URL(v.links.source.href); } catch { continue; }
+      if (source.protocol !== "https:" ||
+          !["espnmedia-cdn.akamaized.net", "media.video-cdn.espn.com",
+            "a.espncdn.com"].includes(source.hostname) ||
+          source.username || source.password || source.port ||
+          !source.pathname.endsWith(".mp4")) continue;
+      mediaUrl = source.href;
+    }
     unique.set(clipId, {
       id: "espn-" + clipId,
       title: v.headline || v.title || v.caption || "Clipe oficial ESPN",
