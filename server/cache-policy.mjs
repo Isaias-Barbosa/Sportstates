@@ -22,9 +22,10 @@ export function dateTtl(date, today) {
     : MINUTE;
 }
 export function scoresTtl(matches, date, today) {
-  return matches?.some((m) => m.state === "live")
-    ? 15000
-    : dateTtl(date, today);
+  if (matches?.some((m) => m.state === "live")) return 15000;
+  if (date > today) return 15 * MINUTE;
+  if (date < today) return dateTtl(date, today);
+  return MINUTE;
 }
 export function leagueGamesTtl(body, month, today) {
   if (body?.matches?.some((m) => m.state === "live")) return 30000;
