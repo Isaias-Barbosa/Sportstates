@@ -263,7 +263,7 @@ useEffect(() => {
                     team={data.match.home}
                     large
                     available={
-                      !!profileFor(
+                      !data.match.home.squad && !!profileFor(
                         clubs?.teams,
                         data.match.home.id,
                         data.match.sport,
@@ -302,7 +302,7 @@ useEffect(() => {
                     team={data.match.away}
                     large
                     available={
-                      !!profileFor(
+                      !data.match.away.squad && !!profileFor(
                         clubs?.teams,
                         data.match.away.id,
                         data.match.sport,

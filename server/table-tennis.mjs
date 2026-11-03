@@ -209,8 +209,10 @@ export function normalizeTableMatch(unit, card, event, meta = {}) {
     live = /^(LIVE|RUNNING|IN PROGRESS|IN_PROGRESS|INTERMEDIATE)$/.test(status);
   const state = finished ? "finished" : live ? "live" : "scheduled";
   const overall = String(
-    card?.overallScores || card?.resultOverallScores || "",
-  ).split("-");
+    card?.overallScores ?? card?.resultOverallScores ?? "",
+  ).trim().split(/\s*[-–:]\s*/);
+  const declaredHome = overall.length === 2 ? number(overall[0]) : null;
+  const declaredAway = overall.length === 2 ? number(overall[1]) : null;
   const rawGames = String(
     card?.gameScores || card?.resultsGameScores || "",
   ).split(",");
@@ -227,16 +229,34 @@ export function normalizeTableMatch(unit, card, event, meta = {}) {
     games.length > Number(card?.currentGameNumber || 0)
   )
     games.pop();
+  // Derive the result only from actually finished games, never from a
+  // partially populated "0-" snapshot that the WTT API marks official.
+  const completeGames = games.filter((set) => {
+    const h = Number(set.home);
+    const a = Number(set.away);
+    const max = Math.max(h, a);
+    const min = Math.min(h, a);
+    return max >= 11 && max - min >= 2;
+  });
+  const setsHome = completeGames.filter((set) => Number(set.home) > Number(set.away)).length;
+  const setsAway = completeGames.filter((set) => Number(set.away) > Number(set.home)).length;
+  const completeSetsResult = finished && completeGames.length === games.length &&
+    completeGames.length > 0 && Math.max(setsHome, setsAway) >= 3 &&
+    (setsHome === 0 || setsAway === 0 || Math.max(setsHome, setsAway) === 3);
+  const scoreboardComplete = declaredHome !== null && declaredAway !== null;
+  const scores = scoreboardComplete
+    ? [declaredHome, declaredAway]
+    : completeSetsResult
+      ? [String(setsHome), String(setsAway)]
+      : [null, null];
   const teams = sides.map((s, i) => ({
     id: String(s.competitiorId),
     name: s.competitiorName,
     short: s.competitiorName,
     logo: null,
-    score: state === "scheduled" ? null : number(overall[i]),
-    winner:
-      finished &&
-      number(overall[i]) !== null &&
-      Number(overall[i]) > Number(overall[1 - i]),
+    score: state === "scheduled" ? null : scores[i],
+    winner: finished && scores[0] !== null && scores[1] !== null &&
+      Number(scores[i]) > Number(scores[1 - i]),
   }));
   const rounds = {
     "FNL-": "Final",
@@ -262,7 +282,9 @@ export function normalizeTableMatch(unit, card, event, meta = {}) {
       : live
         ? "STATUS_IN_PROGRESS"
         : "STATUS_SCHEDULED",
-    status: finished ? "Encerrado" : live ? "Ao vivo" : "Agendado",
+    status: finished && scores.some((score) => score === null)
+      ? "Encerrado · resultado aguardando confirmação"
+      : finished ? "Encerrado" : live ? "Ao vivo" : "Agendado",
     clock: "",
     period: Number(card?.currentGameNumber) || 0,
     venue:

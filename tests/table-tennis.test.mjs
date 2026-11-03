@@ -322,3 +322,40 @@ test("official final results replace stale intermediate match cards", () => {
   assert.equal(result.away.score, "3");
   assert.equal(result.setScores.length, 3);
 });
+
+
+test("finished WTT fixtures with one missing score do not invent a final result", () => {
+  const match = normalizeTableMatch(unit, {
+    ...card,
+    overallScores: "0-",
+    gameScores: "",
+    currentGameNumber: 0,
+  }, event);
+  assert.equal(match.state, "finished");
+  assert.equal(match.home.score, null);
+  assert.equal(match.away.score, null);
+  assert.equal(match.home.winner, false);
+  assert.match(match.status, /aguardando confirmação/);
+});
+
+test("WTT final scores can be reconstructed from complete official sets", () => {
+  const match = normalizeTableMatch(unit, {
+    ...card,
+    overallScores: "0-",
+    gameScores: "7-11,10-12,5-11",
+  }, event);
+  assert.equal(match.home.score, "0");
+  assert.equal(match.away.score, "3");
+  assert.equal(match.away.winner, true);
+  assert.equal(match.status, "Encerrado");
+});
+
+test("unfinished WTT sets never generate a fabricated final score", () => {
+  const match = normalizeTableMatch(unit, {
+    ...card,
+    overallScores: "3-",
+    gameScores: "11-9,11-8,5-3",
+  }, event);
+  assert.equal(match.home.score, null);
+  assert.equal(match.away.score, null);
+});
