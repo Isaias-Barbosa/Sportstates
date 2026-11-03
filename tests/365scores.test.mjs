@@ -342,3 +342,21 @@ test("competition result normalization drops events from unrelated competitions"
     [4868431],
   );
 });
+
+
+test("Copa Paraná 2026 labels Athletico's alternative Sub-20 squad only in that competition", () => {
+  const sample = game({
+    id: 4886430,
+    competitionId: 9117,
+    startTime: "2026-11-03T20:00:00-03:00",
+    homeCompetitor: { id: 1210, name: "Athletico-PR", symbolicName: "CAP", score: null },
+    awayCompetitor: { id: 6885, name: "Paranavaí", symbolicName: "PAR", score: null },
+  });
+  const tournament = normalize365Game(sample, "bra.copa_parana", "Copa Paraná");
+  assert.equal(tournament.home.id, "1210");
+  assert.equal(tournament.home.name, "Athletico-PR (Sub-20)");
+  assert.equal(tournament.home.squad, "under20");
+  const senior = normalize365Game(sample, "bra.1", "Brasileirão Série A");
+  assert.equal(senior.home.name, "Athletico-PR");
+  assert.equal(senior.home.squad, undefined);
+});
