@@ -291,7 +291,7 @@ export async function scoreboard(date, sport = "all") {
       }
       // Share one cached NBB response across simultaneous homepage requests.
       // Query the other feeds only if the primary one has no games today.
-      if (s.id === "basketball" && league === "nbb") {
+      if (s.id === "basketball" && league === "nbb" && date === dayInBrazil(new Date())) {
         const sources = ["games", "games/fixtures", "games/results"];
         let matches = [];
         let at = null;
