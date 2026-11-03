@@ -2639,3 +2639,170 @@ body.club-page-active { background:var(--club-page-bg, var(--canvas)); backgroun
     align-items: flex-start;
   }
 }
+
+
+/* Busca global por times: atalho no cabeçalho e lista em modal */
+.topbar-search-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 9px 12px;
+  color: var(--text);
+  background: var(--panel);
+  font-weight: 650;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.topbar-search-button:hover { background: var(--surface); }
+.topbar-search-button kbd {
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 3px 5px;
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 500;
+}
+.sidebar-search-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 12px 16px;
+  color: inherit;
+  background: transparent;
+  border: 0;
+  border-radius: 8px;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.sidebar-search-link:hover { background: var(--surface); }
+.team-search-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: min(12vh, 105px) 16px 24px;
+  background: rgba(0, 0, 0, .72);
+}
+.team-search-dialog {
+  width: min(100%, 640px);
+  max-height: min(78vh, 720px);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  color: var(--text);
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  box-shadow: 0 22px 80px rgba(0,0,0,.38);
+}
+.team-search-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 20px 10px;
+}
+.team-search-header label { font-size: 16px; font-weight: 750; }
+.team-search-header button {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 8px;
+  color: inherit;
+  background: transparent;
+  cursor: pointer;
+}
+.team-search-header button:hover { background: var(--surface); }
+.team-search-field {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 4px 20px 12px;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+}
+.team-search-field:focus-within { border-color: var(--green); }
+.team-search-field svg { color: var(--muted); flex-shrink: 0; }
+.team-search-field input {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  font-size: 15px;
+}
+.team-search-results { overflow-y: auto; min-height: 90px; padding: 0 10px 12px; }
+.team-search-results ul { margin: 0; padding: 0; list-style: none; }
+.team-search-results li a {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  padding: 11px 12px;
+  border-radius: 10px;
+  color: var(--text);
+  text-decoration: none;
+}
+.team-search-results li a:hover,
+.team-search-results li a:focus-visible { background: var(--surface); }
+.team-search-results li img,
+.team-search-no-logo {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+.team-search-no-logo { display: grid; place-items: center; font-size: 25px; }
+.team-search-result-info { display: grid; flex: 1; gap: 5px; min-width: 0; }
+.team-search-result-info strong { font-size: 14px; }
+.team-search-result-info small { color: var(--muted); font-size: 12px; }
+.team-search-results li a > svg { color: var(--muted); flex-shrink: 0; }
+.team-search-message {
+  padding: 24px 15px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 13px;
+}
+.team-search-message button {
+  margin-top: 10px;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  padding: 8px 12px;
+}
+.team-search-footer {
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 11px;
+  color: var(--muted);
+  border-top: 1px solid var(--border);
+}
+.team-search-footer span { flex: 1; }
+.team-search-footer kbd {
+  padding: 3px 6px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+}
+@media (max-width: 1100px) {
+  .topbar-search-button span, .topbar-search-button kbd { display: none; }
+  .topbar-search-button { padding: 9px; }
+}
+@media (max-width: 600px) {
+  .team-search-overlay { padding: 16px 8px; }
+  .team-search-dialog { max-height: 86vh; }
+  .team-search-header { padding: 13px 15px 8px; }
+  .team-search-field { margin-inline: 14px; }
+  .team-search-footer { padding: 11px 14px; }
+}
