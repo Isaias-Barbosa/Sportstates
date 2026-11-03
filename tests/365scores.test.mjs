@@ -385,8 +385,8 @@ test("Copa Paraná postponed Athletico v Paranavaí never exposes -1 x -1", () =
   );
   assert.equal(match.id, "4886430");
   assert.equal(match.state, "scheduled");
-  assert.equal(match.statusName, "STATUS_POSTPONED");
-  assert.equal(match.status, "Adiado");
+  assert.equal(match.statusName, "STATUS_UNCONFIRMED");
+  assert.equal(match.status, "Status aguardando confirmação oficial");
   assert.equal(match.home.score, null);
   assert.equal(match.away.score, null);
   assert.equal(match.home.name, "Athletico-PR (Sub-20)");
