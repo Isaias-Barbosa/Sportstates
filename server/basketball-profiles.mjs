@@ -13,16 +13,16 @@ const nbbProfiles = JSON.parse(
   ),
 );
 export const basketballProfiles = {
-  revision: "basketball-profiles-2026-v2-nbb",
+  revision: "basketball-profiles-2026-v3-nbb-18",
   clubs: [...nbaWnbaProfiles.clubs, ...nbbProfiles.clubs],
 };
 const { clubs } = basketballProfiles;
 if (
-  clubs.length !== 61 ||
-  new Set(clubs.map((c) => c.id)).size !== 61 ||
+  clubs.length !== 63 ||
+  new Set(clubs.map((c) => c.id)).size !== 63 ||
   clubs.filter((c) => c.league === "nba").length !== 30 ||
   clubs.filter((c) => c.league === "wnba").length !== 15 ||
-  clubs.filter((c) => c.league === "nbb").length !== 16
+  clubs.filter((c) => c.league === "nbb").length !== 18
 )
   throw new Error("Catálogo de basquete incompleto.");
 for (const c of clubs) {
