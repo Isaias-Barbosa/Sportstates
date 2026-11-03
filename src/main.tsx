@@ -3,6 +3,7 @@ import NotificationsProvider, {
   NotificationSettingsButton,
 } from "./notifications/Notifications";
 import SportsNavigation from "./components/SportsNavigation";
+import TeamSearchDialog from "./components/TeamSearchDialog";
 import React, { lazy, Suspense, useState, useEffect, useRef } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Link, NavLink, Route, Routes } from "react-router-dom";
@@ -19,6 +20,7 @@ import {
   X,
   UserRound,
   Settings,
+  Search,
 } from "lucide-react";
 import { Empty, Loading } from "./components/shared";
 import "./styles.css";
@@ -57,6 +59,19 @@ function App() {
     }
   }, [theme]);
   const [menu, setMenu] = useState(false);
+  const [teamSearchOpen, setTeamSearchOpen] = useState(false);
+  const searchButton = useRef<HTMLButtonElement>(null);
+  useEffect(() => {
+    const shortcut = (event: KeyboardEvent) => {
+      if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "k") {
+        event.preventDefault();
+        setMenu(false);
+        setTeamSearchOpen(true);
+      }
+    };
+    window.addEventListener("keydown", shortcut);
+    return () => window.removeEventListener("keydown", shortcut);
+  }, []);
   const menuButton = useRef<HTMLButtonElement>(null);
   const drawer = useRef<HTMLElement>(null);
   useEffect(() => {
@@ -141,6 +156,14 @@ function App() {
                 <ListOrdered size={18} />
                 Classificações
               </NavLink>
+              <button
+                type="button"
+                className="sidebar-search-link"
+                onClick={() => { setMenu(false); setTeamSearchOpen(true); }}
+              >
+                <Search size={18} />
+                Buscar time
+              </button>
               <NavLink to="/noticias">
                 <Newspaper size={18} />
                 Notícias
@@ -208,6 +231,18 @@ function App() {
                 </nav>
               </div>
               <div className="top-right">
+                <button
+                  ref={searchButton}
+                  type="button"
+                  className="topbar-search-button"
+                  aria-label="Pesquisar times"
+                  title="Pesquisar times (Ctrl+K)"
+                  onClick={() => setTeamSearchOpen(true)}
+                >
+                  <Search size={19} aria-hidden="true" />
+                  <span>Buscar time</span>
+                  <kbd>Ctrl K</kbd>
+                </button>
                 <button
                   className="theme-toggle"
                   onClick={() =>
@@ -279,6 +314,14 @@ function App() {
               <Link to="/sobre">Sobre os dados ↗</Link>
             </footer>
           </div>
+          {teamSearchOpen && (
+            <TeamSearchDialog
+              onClose={() => {
+                setTeamSearchOpen(false);
+                searchButton.current?.focus();
+              }}
+            />
+          )}
         </div>
       </NotificationsProvider>
     </BrowserRouter>
