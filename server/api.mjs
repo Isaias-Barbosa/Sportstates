@@ -101,6 +101,7 @@ import {
 import {
   handleLancePermissionRequest,
 } from "./lance-permission-api.mjs";
+import { handleManualLances } from "./manual-lances.mjs";
 
 const cached = createCache();
 const ESPN = "https://site.api.espn.com/apis/site/v2/sports";
@@ -1115,6 +1116,23 @@ export async function handler(req, res) {
     return;
   }
   
+  if (requestUrl.pathname === "/api/lances" || requestUrl.pathname === "/api/lances/media") {
+    try {
+      return await handleManualLances(req, res, requestUrl, async (key) => {
+        const [sport, league, id] = key.split("/");
+        const detailUrl = new URL("http://localhost/api/match");
+        detailUrl.searchParams.set("sport", sport);
+        detailUrl.searchParams.set("league", league);
+        detailUrl.searchParams.set("id", id);
+        return route(detailUrl);
+      });
+    } catch (error) {
+      console.error("[manual-lances]", error);
+      res.statusCode = 503;
+      res.setHeader("Cache-Control", "no-store");
+      return res.end(JSON.stringify({ error: "Não foi possível acessar os lances no Neon." }));
+    }
+  }
   if (["/api/me", "/api/me/summary"].includes(requestUrl.pathname)) {
     res.setHeader("Cache-Control", "private, no-store");
     res.setHeader("Vercel-CDN-Cache-Control", "no-store");
