@@ -459,13 +459,17 @@ useEffect(() => {
     )}
 
    
+
 {canManageLances && manualLanceType && (
   <ManualLanceForm
-    key={manualLanceType}
+    key={`${data.match.id}:${manualLanceType}`}
     initialType={manualLanceType}
+    match={data.match}
+    highlights={data.highlights}
     onClose={() => setManualLanceType(null)}
   />
 )}
+
 
 
     <MatchVideos

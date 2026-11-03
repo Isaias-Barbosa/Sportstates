@@ -1,5 +1,10 @@
 
 import { useEffect, useState } from "react";
+import type {
+  Match,
+  MatchHighlights,
+  MatchIncident,
+} from "../types";
 
 type LanceType =
   | "goal"
@@ -11,7 +16,16 @@ type LanceType =
 
 type Props = {
   initialType: "goal" | "other";
+  match: Match;
+  highlights?: MatchHighlights;
   onClose: () => void;
+};
+
+type ExistingGoal = {
+  key: string;
+  goal: MatchIncident;
+  teamId: string;
+  teamName: string;
 };
 
 const MAX_FILE_SIZE = 4 * 1024 * 1024;
@@ -24,16 +38,70 @@ const acceptedTypes = new Set([
 
 export default function ManualLanceForm({
   initialType,
+  match,
+  highlights,
   onClose,
 }: Props) {
-  const [type, setType] = useState<LanceType>(initialType);
+  const goals: ExistingGoal[] = [
+    ...(highlights?.home || []).map((goal) => ({
+      key: `${match.home.id}:${goal.id}`,
+      goal,
+      teamId: match.home.id,
+      teamName: match.home.name,
+    })),
+    ...(highlights?.away || []).map((goal) => ({
+      key: `${match.away.id}:${goal.id}`,
+      goal,
+      teamId: match.away.id,
+      teamName: match.away.name,
+    })),
+  ]
+    .filter(({ goal }) => goal.kind === "goal")
+    .sort((a, b) => {
+      const minuteValue = (value: string) =>
+        (value.match(/\d+/g) || [])
+          .reduce((sum, part) => sum + Number(part), 0);
+
+      return (
+        (a.goal.period || 0) - (b.goal.period || 0) ||
+        (a.goal.order ?? minuteValue(a.goal.minute) * 60) -
+          (b.goal.order ?? minuteValue(b.goal.minute) * 60)
+      );
+    });
+
+  const [selectedGoalKey, setSelectedGoalKey] =
+    useState(goals[0]?.key || "manual");
+
+  const [type, setType] = useState<LanceType>(
+    initialType === "goal" ? "goal" : "other"
+  );
+
   const [minute, setMinute] = useState("");
   const [description, setDescription] = useState("");
-  const [source, setSource] = useState<"url" | "upload">("url");
+
+  const [source, setSource] =
+    useState<"url" | "upload">("url");
+
   const [mediaUrl, setMediaUrl] = useState("");
   const [file, setFile] = useState<File | null>(null);
   const [preview, setPreview] = useState("");
   const [error, setError] = useState("");
+
+  const isGoalMode = initialType === "goal";
+
+  const selectedGoal = isGoalMode
+    ? goals.find((item) => item.key === selectedGoalKey)
+    : undefined;
+
+  const isLinkedGoal = Boolean(selectedGoal);
+
+  const effectiveType: LanceType = isGoalMode
+    ? "goal"
+    : type;
+
+  const effectiveMinute = selectedGoal
+    ? selectedGoal.goal.minute
+    : minute.trim();
 
   useEffect(() => {
     if (!file) {
@@ -59,22 +127,20 @@ export default function ManualLanceForm({
     }
 
     if (selected.size > MAX_FILE_SIZE) {
-      setError("O arquivo ultrapassa o limite provisório de 4 MB.");
+      setError("O arquivo ultrapassa o limite de 4 MB.");
       return;
     }
 
     setFile(selected);
   }
 
-  const isVideo = file?.type === "video/mp4";
-
   const validMinute =
-    /^(?:\d{1,3})(?:\+\d{1,2})?$/.test(minute.trim());
+    /^\d{1,3}(?:\+\d{1,2})?$/.test(effectiveMinute);
 
   const validUrl = (() => {
-    if (!mediaUrl.trim()) return false;
     try {
-      const parsed = new URL(mediaUrl);
+      const parsed = new URL(mediaUrl.trim());
+
       return (
         parsed.protocol === "https:" &&
         !parsed.username &&
@@ -87,19 +153,22 @@ export default function ManualLanceForm({
 
   const ready =
     validMinute &&
-    (source === "upload" ? !!file : validUrl) &&
+    (source === "upload" ? Boolean(file) : validUrl) &&
     !error;
+
+  const matchKey =
+    `${match.sport}/${match.league}/${match.id}`;
 
   return (
     <section
       className="manual-lance-form"
-      aria-label="Formulário de lance"
+      aria-label="Cadastro de mídia de lance"
     >
       <div className="manual-lance-form-header">
         <h3>
-          {initialType === "goal"
-            ? "Adicionar Gol"
-            : "Adicionar Lance na Partida"}
+          {isGoalMode
+            ? "Adicionar vídeo de gol"
+            : "Adicionar lance na partida"}
         </h3>
 
         <button type="button" onClick={onClose}>
@@ -107,56 +176,136 @@ export default function ManualLanceForm({
         </button>
       </div>
 
-      <label htmlFor="manual-lance-type">
-        Tipo de lance
-      </label>
+      <p>
+        <strong>{match.home.name}</strong>
+        {" × "}
+        <strong>{match.away.name}</strong>
+      </p>
 
-      <select
-        id="manual-lance-type"
-        value={type}
-        onChange={(event) =>
-          setType(event.target.value as LanceType)
-        }
-      >
-        <option value="goal">Gol</option>
-        <option value="penalty">Pênalti</option>
-        <option value="red_card">Cartão vermelho</option>
-        <option value="save">Defesa</option>
-        <option value="chance">Chance clara</option>
-        <option value="other">Outro lance</option>
-      </select>
+      {isGoalMode && (
+        <>
+          <label htmlFor="manual-existing-goal">
+            Selecione o gol da partida
+          </label>
 
-      <label htmlFor="manual-lance-minute">
-        Minuto da partida
-      </label>
+          <select
+            id="manual-existing-goal"
+            value={selectedGoalKey}
+            onChange={(event) =>
+              setSelectedGoalKey(event.target.value)
+            }
+          >
+            {goals.map(({ key, goal, teamName }) => (
+              <option key={key} value={key}>
+                {goal.minute || "Sem minuto"} -{" "}
+                {goal.player} ({teamName})
+                {goal.ownGoal
+                  ? " - Gol contra"
+                  : goal.penalty
+                    ? " - Pênalti"
+                    : ""}
+              </option>
+            ))}
 
-      <input
-        id="manual-lance-minute"
-        value={minute}
-        onChange={(event) => setMinute(event.target.value)}
-        placeholder="Ex.: 87 ou 90+3"
-        maxLength={6}
-      />
+            <option value="manual">
+              + Gol não registrado na partida
+            </option>
+          </select>
 
-      {minute && !validMinute && (
+          {selectedGoal && (
+            <div className="manual-lance-selected-goal">
+              <strong>
+                ⚽ {selectedGoal.goal.player}
+              </strong>
+
+              <p>
+                {selectedGoal.teamName}
+                {" · "}
+                {selectedGoal.goal.minute}
+              </p>
+
+              <small>
+                O vídeo será associado a este gol.
+                Não será criado um segundo gol.
+              </small>
+            </div>
+          )}
+
+          {!goals.length && (
+            <p>
+              Nenhum gol foi identificado automaticamente.
+              Você pode cadastrar um lance manual.
+            </p>
+          )}
+        </>
+      )}
+
+      {!isGoalMode && (
+        <>
+          <label htmlFor="manual-lance-type">
+            Tipo de lance
+          </label>
+
+          <select
+            id="manual-lance-type"
+            value={type}
+            onChange={(event) =>
+              setType(event.target.value as LanceType)
+            }
+          >
+            <option value="penalty">Pênalti</option>
+            <option value="red_card">Cartão vermelho</option>
+            <option value="save">Defesa</option>
+            <option value="chance">Chance clara</option>
+            <option value="other">Outro lance</option>
+          </select>
+        </>
+      )}
+
+      {isLinkedGoal ? (
+        <p>
+          <strong>Minuto:</strong>{" "}
+          {effectiveMinute || "Não informado pela fonte"}
+        </p>
+      ) : (
+        <>
+          <label htmlFor="manual-lance-minute">
+            Minuto do lance
+          </label>
+
+          <input
+            id="manual-lance-minute"
+            value={minute}
+            maxLength={6}
+            onChange={(event) =>
+              setMinute(event.target.value)
+            }
+            placeholder="Ex.: 87 ou 90+3"
+          />
+        </>
+      )}
+
+      {!validMinute && (
         <small role="alert">
-          Informe um minuto válido, como 45 ou 90+3.
+          {isLinkedGoal
+            ? "A fonte não informou um minuto válido. Este caso precisará de tratamento no cadastro."
+            : "Informe um minuto válido, como 45 ou 90+3."}
         </small>
       )}
 
       <label htmlFor="manual-lance-description">
-        Descrição
+        Descrição (opcional)
       </label>
 
       <textarea
         id="manual-lance-description"
+        rows={3}
+        maxLength={500}
         value={description}
         onChange={(event) =>
           setDescription(event.target.value)
         }
-        placeholder="Descreva a jogada..."
-        maxLength={500}
-        rows={3}
+        placeholder="Ex.: Finalização de fora da área..."
       />
 
       <label htmlFor="manual-lance-source">
@@ -180,7 +329,7 @@ export default function ManualLanceForm({
       {source === "url" ? (
         <>
           <label htmlFor="manual-lance-url">
-            URL do GIF ou vídeo
+            Link do vídeo ou GIF
           </label>
 
           <input
@@ -196,30 +345,25 @@ export default function ManualLanceForm({
       ) : (
         <>
           <label htmlFor="manual-lance-file">
-            Selecionar arquivo
+            Selecionar GIF, WebP ou MP4
           </label>
 
           <input
-            key={source}
             id="manual-lance-file"
             type="file"
-            accept="image/gif,image/webp,video/mp4,.gif,.webp,.mp4"
+            accept=".gif,.webp,.mp4,image/gif,image/webp,video/mp4"
             onChange={(event) =>
               selectFile(event.target.files?.[0])
             }
           />
 
-          {file && (
-            <p>
-              Arquivo selecionado: {file.name}
-            </p>
-          )}
+          {file && <p>Arquivo: {file.name}</p>}
         </>
       )}
 
       {source === "upload" && preview && (
         <div className="manual-lance-preview">
-          {isVideo ? (
+          {file?.type === "video/mp4" ? (
             <video
               src={preview}
               controls
@@ -229,7 +373,7 @@ export default function ManualLanceForm({
           ) : (
             <img
               src={preview}
-              alt="Prévia do lance"
+              alt="Prévia da mídia selecionada"
             />
           )}
         </div>
@@ -247,17 +391,26 @@ export default function ManualLanceForm({
           disabled
           title={
             ready
-              ? "A gravação será implementada no Passo 5"
-              : "Preencha o minuto e a mídia"
+              ? "A gravação será conectada no Passo 5"
+              : "Preencha os campos obrigatórios"
           }
         >
-          Salvar lance
+          {isLinkedGoal
+            ? "Vincular mídia ao gol"
+            : "Cadastrar lance"}
         </button>
       </div>
 
       <small>
-        Formulário em preparação. O salvamento no Neon
-        será habilitado na próxima etapa.
+        Partida: {matchKey}
+        {selectedGoal
+          ? ` · Evento: ${selectedGoal.goal.id}`
+          : " · Novo evento manual"}
+      </small>
+
+      <small>
+        O armazenamento no Neon será habilitado
+        na próxima etapa.
       </small>
     </section>
   );
