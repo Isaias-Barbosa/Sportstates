@@ -1,3 +1,4 @@
+import { nbb365Url, normalizeNbb365Standings, normalizeNbb365Games } from "./365scores.mjs";
 import { loadLnbHtml, parseLnbGames, parseLnbStandings } from "./lnb.mjs";
 import { listAdminUsers, userListOptions } from "./admin-users.mjs";
 import {
@@ -692,6 +693,20 @@ export async function route(url) {
     if (config.sport === "basketball" && config.league === "nbb") {
       try {
         const result = await cached(
+          "standings:365:nbb:v1", CACHE_TTL.standings,
+          async () => normalizeNbb365Standings(await json(nbb365Url("standings"))),
+          300000,
+        );
+        return [200, { ...config, groups: result.value, rounds: [],
+          stale: result.stale, fetchedAt: new Date(result.at).toISOString(),
+          source: "365Scores · NBB", warnings: [] }];
+      } catch (error) {
+        console.warn("365Scores NBB classificação indisponível:", error.message);
+      }
+    }
+    if (config.sport === "basketball" && config.league === "nbb") {
+      try {
+        const result = await cached(
           "standings:lnb:nbb:2026-27:v3", CACHE_TTL.standings,
           async () => parseLnbStandings(await loadLnbHtml("/?season=80")),
           300000,
@@ -876,6 +891,21 @@ export async function route(url) {
       ];
       // 365Scores may omit archived fixtures. Fall through to ESPN for a
       // second independent source rather than returning an empty calendar.
+    }
+    if (config.sport === "basketball" && config.league === "nbb") {
+      try {
+        const result = await cached(
+          `league-games:365:nbb:v1:${month}`,
+          (body) => leagueGamesTtl(body, month, dayInBrazil(new Date())),
+          async () => normalizeNbb365Games(await json(nbb365Url("games/results")), month),
+          300000,
+        );
+        return [200, { ...config, ...result.value, month,
+          stale: result.stale, fetchedAt: new Date(result.at).toISOString(),
+          source: "365Scores · NBB" }];
+      } catch (error) {
+        console.warn("365Scores NBB jogos indisponíveis:", error.message);
+      }
     }
     if (config.sport === "basketball" && config.league === "nbb") {
       try {
