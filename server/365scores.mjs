@@ -135,9 +135,19 @@ export function normalize365Game(game, league, leagueName, now = Date.now()) {
   const networks = Array.isArray(game.tvNetworks)
     ? game.tvNetworks.filter((network) => Number(network.countryId) === 21)
     : [];
+  // In the 2026 Copa Paraná the Athletico entry uses a Sub-20-based
+  // alternative squad, although the provider reuses first-team club ID 1210.
+  // Label this *fixture* without changing the canonical club identity.
+  const alternateAthleticoSquad = league === "bra.copa_parana" &&
+    new Date(date).getUTCFullYear() === 2026;
   const toTeam = (competitor) => ({
     id: String(competitor.id),
-    name: String(competitor.name || "A definir"),
+    name: alternateAthleticoSquad && String(competitor.id) === "1210"
+      ? "Athletico-PR (Sub-20)"
+      : String(competitor.name || "A definir"),
+    ...(alternateAthleticoSquad && String(competitor.id) === "1210"
+      ? { squad: "under20" }
+      : {}),
     short: String(competitor.symbolicName || ""),
     logo: `https://imagecache.365scores.com/image/upload/f_png,w_80,h_80,c_limit,q_auto:eco,dpr_2/competitors/${competitor.id}`,
     score: displayScore(competitor.score, state),
