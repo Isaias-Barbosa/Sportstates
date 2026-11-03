@@ -62,6 +62,19 @@ import WhereToWatch from "../components/WhereToWatch";
 import StandingsTable from "../components/StandingsTable";
 import TeamCrest from "../components/TeamCrest";
 import type { ClubProfile } from "../types";
+type TimelineEvent = Detail["events"][number];
+
+function isMainTimelineEvent(event: TimelineEvent): boolean {
+  if (event.scoring || ["goal", "red-card", "second-yellow", "var"].includes(event.kind)) return true;
+  const description = (event.type + " " + event.text)
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase();
+  // Highlights with substantial match impact. Ordinary fouls, throw-ins,
+  // wide shots and blocked shots remain in the complete timeline.
+  return /substituic|substitution|yellow card|cartao amarelo|penalt|penalty|inicio do (primeiro|segundo) tempo|fim do (primeiro|segundo|tempo)|fim da partida|fim do jogo|intervalo|half.time|full.time|touchdown|field goal|intercepc|turnover|expuls/.test(description);
+}
+
 export default function MatchPage() {
   const { hash } = useLocation();
   const { sport, league, id } = useParams();
@@ -152,6 +165,7 @@ useEffect(() => {
     "/api/teams",
     300000,
   );
+  const [timelineFilter, setTimelineFilter] = useState<"all" | "main">("main");
   const [tab, setTab] = useState(
     ["basketball", "football", "tennis", "volleyball", "table-tennis"].includes(
       sport || "",
@@ -171,6 +185,7 @@ useEffect(() => {
         ? "overview"
         : "events",
     );
+    setTimelineFilter("main");
   }, [sport, league, id]);
   useEffect(() => {
     if (hash === "#videos" && data?.match) {
@@ -586,15 +601,50 @@ useEffect(() => {
                       </section>
                     )}
                   <div className="timeline-heading">
-                    <h2>Dentro da partida</h2>
+                    <h2>Lance a lance</h2>
                     <span>
-                      Mais recentes primeiro · Português quando disponível na
-                      fonte
+                      Mais recentes primeiro · Português quando disponível na fonte
                     </span>
                   </div>
+                  {data.events.length > 0 && (
+                    <div
+                      className="timeline-filter"
+                      role="group"
+                      aria-label="Filtrar lances da partida"
+                    >
+                      <button
+                        type="button"
+                        className={timelineFilter === "all" ? "active" : ""}
+                        aria-pressed={timelineFilter === "all"}
+                        onClick={() => setTimelineFilter("all")}
+                      >
+                        Todas as jogadas
+                        <span>{data.events.length}</span>
+                      </button>
+                      <button
+                        type="button"
+                        className={timelineFilter === "main" ? "active" : ""}
+                        aria-pressed={timelineFilter === "main"}
+                        onClick={() => setTimelineFilter("main")}
+                      >
+                        Principais
+                        <span>{data.events.filter(isMainTimelineEvent).length}</span>
+                      </button>
+                    </div>
+                  )}
                   {data.events.length ? (
                     <div className="timeline">
-                      {data.events.map((e, i) => (
+                      {timelineFilter === "main" &&
+                        !data.events.some(isMainTimelineEvent) && (
+                          <p className="timeline-filter-empty">
+                            Nenhum lance principal identificado nesta partida.
+                            Selecione "Todas as jogadas" para visualizar os eventos disponíveis.
+                          </p>
+                        )}
+                      {(timelineFilter === "all"
+                        ? data.events
+                        : data.events.filter(isMainTimelineEvent)
+                      ).map((e, i) => (
                         <article
                           key={e.id + "-" + i}
                           className={e.scoring ? "goal" : ""}
