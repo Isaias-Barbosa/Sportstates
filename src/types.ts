@@ -1,4 +1,5 @@
 export type Team = {
+  squad?: "under20";
   id: string;
   name: string;
   short: string;
