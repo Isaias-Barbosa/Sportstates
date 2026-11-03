@@ -1,6 +1,27 @@
 {
-  "reviewedAt": "2026-10-29",
+  "reviewedAt": "2026-11-03",
   "clubs": [
+    {
+      "id": "basketball-nbb-900003",
+      "espnId": "900003",
+      "name": "Basket Osasco",
+      "sport": "basketball",
+      "league": "nbb",
+      "logo": "",
+      "city": "Osasco",
+      "stadium": "Ginásio Geodésico",
+      "stadium_image": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "description": "Equipe participante do NBB CAIXA 2026/27. Identificador interno do Sportstates; a LNB é a fonte de referência.",
+      "references": [
+        {
+          "label": "Liga Nacional de Basquete · perfil oficial",
+          "url": "https://lnb.com.br/equipes/osasco/"
+        }
+      ]
+    },
     {
       "id": "basketball-nbb-125584",
       "espnId": "125584",
@@ -48,6 +69,27 @@
         {
           "label": "ESPN · equipe e calendário",
           "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nbb/teams/125118/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
+      "id": "basketball-nbb-900001",
+      "espnId": "900001",
+      "name": "Botafogo",
+      "sport": "basketball",
+      "league": "nbb",
+      "logo": "",
+      "city": "Rio de Janeiro",
+      "stadium": "Ginásio Oscar Zelaya",
+      "stadium_image": "",
+      "website": "https://www.botafogo.com.br",
+      "colors": [],
+      "honours": [],
+      "description": "Equipe participante do NBB CAIXA 2026/27. Identificador interno do Sportstates; a LNB é a fonte de referência.",
+      "references": [
+        {
+          "label": "Liga Nacional de Basquete · perfil oficial",
+          "url": "https://lnb.com.br/equipes/botafogo/"
         }
       ]
     },
@@ -102,6 +144,31 @@
       ]
     },
     {
+      "id": "basketball-nbb-127154",
+      "espnId": "127154",
+      "name": "Ceisc/União Corinthians",
+      "sport": "basketball",
+      "league": "nbb",
+      "logo": "https://lnb.com.br/wp-content/uploads/2018/08/Escudo-Corinthians-150x150.png",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "description": "Perfil da equipe do Novo Basquete Brasil. Calendário e elenco dependem da disponibilidade da fonte ESPN.",
+      "references": [
+        {
+          "label": "Liga Nacional de Basquete · perfil da equipe",
+          "url": "https://lnb.com.br/equipes/uniao-corinthians/"
+        },
+        {
+          "label": "ESPN · equipe e calendário",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nbb/teams/127154/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
       "id": "basketball-nbb-125119",
       "espnId": "125119",
       "name": "Corinthians",
@@ -127,6 +194,27 @@
       ]
     },
     {
+      "id": "basketball-nbb-900002",
+      "espnId": "900002",
+      "name": "Cruzeiro Basquete",
+      "sport": "basketball",
+      "league": "nbb",
+      "logo": "",
+      "city": "Belo Horizonte",
+      "stadium": "Ginásio Poliesportivo de Itatiaiuçu",
+      "stadium_image": "",
+      "website": "https://www.cruzeiro.com.br",
+      "colors": [],
+      "honours": [],
+      "description": "Equipe participante do NBB CAIXA 2026/27. Identificador interno do Sportstates; a LNB é a fonte de referência.",
+      "references": [
+        {
+          "label": "Liga Nacional de Basquete · perfil oficial",
+          "url": "https://lnb.com.br/equipes/cruzeiro/"
+        }
+      ]
+    },
+    {
       "id": "basketball-nbb-125098",
       "espnId": "125098",
       "name": "Flamengo",
@@ -148,31 +236,6 @@
         {
           "label": "ESPN · equipe e calendário",
           "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nbb/teams/125098/schedule?lang=pt&region=br"
-        }
-      ]
-    },
-    {
-      "id": "basketball-nbb-125286",
-      "espnId": "125286",
-      "name": "SESI Franca",
-      "sport": "basketball",
-      "league": "nbb",
-      "logo": "https://lnb.com.br/wp-content/uploads/2016/10/Logotipo-Sesi-Franca-Basquete--150x150.png",
-      "city": "",
-      "stadium": "",
-      "stadium_image": "",
-      "website": "",
-      "colors": [],
-      "honours": [],
-      "description": "Perfil da equipe do Novo Basquete Brasil. Calendário e elenco dependem da disponibilidade da fonte ESPN.",
-      "references": [
-        {
-          "label": "Liga Nacional de Basquete · perfil da equipe",
-          "url": "https://lnb.com.br/equipes/franca/"
-        },
-        {
-          "label": "ESPN · equipe e calendário",
-          "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nbb/teams/125286/schedule?lang=pt&region=br"
         }
       ]
     },
@@ -327,6 +390,31 @@
       ]
     },
     {
+      "id": "basketball-nbb-125286",
+      "espnId": "125286",
+      "name": "SESI Franca",
+      "sport": "basketball",
+      "league": "nbb",
+      "logo": "https://lnb.com.br/wp-content/uploads/2016/10/Logotipo-Sesi-Franca-Basquete--150x150.png",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "description": "Perfil da equipe do Novo Basquete Brasil. Calendário e elenco dependem da disponibilidade da fonte ESPN.",
+      "references": [
+        {
+          "label": "Liga Nacional de Basquete · perfil da equipe",
+          "url": "https://lnb.com.br/equipes/franca/"
+        },
+        {
+          "label": "ESPN · equipe e calendário",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nbb/teams/125286/schedule?lang=pt&region=br"
+        }
+      ]
+    },
+    {
       "id": "basketball-nbb-125287",
       "espnId": "125287",
       "name": "UNIFACISA",
@@ -348,52 +436,6 @@
         {
           "label": "ESPN · equipe e calendário",
           "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nbb/teams/125287/schedule?lang=pt&region=br"
-        }
-      ]
-    },
-    {
-      "id": "basketball-nbb-127154",
-      "espnId": "127154",
-      "name": "Ceisc/União Corinthians",
-      "sport": "basketball",
-      "league": "nbb",
-      "logo": "https://lnb.com.br/wp-content/uploads/2018/08/Escudo-Corinthians-150x150.png",
-      "city": "",
-      "stadium": "",
-      "stadium_image": "",
-      "website": "",
-      "colors": [],
-      "honours": [],
-      "description": "Perfil da equipe do Novo Basquete Brasil. Calendário e elenco dependem da disponibilidade da fonte ESPN.",
-      "references": [
-        {
-          "label": "Liga Nacional de Basquete · perfil da equipe",
-          "url": "https://lnb.com.br/equipes/uniao-corinthians/"
-        },
-        {
-          "label": "ESPN · equipe e calendário",
-          "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nbb/teams/127154/schedule?lang=pt&region=br"
-        }
-      ]
-    },
-    {
-      "id": "basketball-nbb-129095",
-      "espnId": "129095",
-      "name": "Vasco",
-      "sport": "basketball",
-      "league": "nbb",
-      "logo": "",
-      "city": "",
-      "stadium": "",
-      "stadium_image": "",
-      "website": "",
-      "colors": [],
-      "honours": [],
-      "description": "Perfil de equipe listado pela ESPN para o Novo Basquete Brasil. A fonte pode não disponibilizar calendário ou elenco atualizados.",
-      "references": [
-        {
-          "label": "ESPN · equipe e calendário",
-          "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nbb/teams/129095/schedule?lang=pt&region=br"
         }
       ]
     }
