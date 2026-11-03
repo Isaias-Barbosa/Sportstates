@@ -897,7 +897,21 @@ export async function route(url) {
         const result = await cached(
           `league-games:365:nbb:v1:${month}`,
           (body) => leagueGamesTtl(body, month, dayInBrazil(new Date())),
-          async () => normalizeNbb365Games(await json(nbb365Url("games/results")), month),
+          async () => {
+            const attempts = await Promise.allSettled(
+              ["games/results", "games/fixtures", "games"].map(async (kind) => {
+                const payload = await json(nbb365Url(kind));
+                return normalizeNbb365Games(payload, month).matches;
+              }),
+            );
+            const matches = [...new Map(
+              attempts.filter((item) => item.status === "fulfilled")
+                .flatMap((item) => item.value)
+                .map((match) => [match.id, match]),
+            ).values()].sort((a, b) => a.date.localeCompare(b.date));
+            if (!matches.length) throw new Error("365Scores não retornou jogos da NBB para o mês.");
+            return { matches, partial: attempts.some((item) => item.status === "rejected") };
+          },
           300000,
         );
         return [200, { ...config, ...result.value, month,
@@ -921,6 +935,13 @@ export async function route(url) {
       } catch {
         // Use ESPN for months unavailable in the official HTML feed.
       }
+    }
+    // Do not turn an unavailable upstream provider into a 502 on the NBB page.
+    // The frontend can display an empty month with an actionable warning.
+    if (config.sport === "basketball" && config.league === "nbb") {
+      return [200, { ...config, month, matches: [], partial: true,
+        warnings: ["As fontes de partidas da NBB estão temporariamente indisponíveis."],
+        source: "365Scores · LNB · ESPN", fetchedAt: new Date().toISOString() }];
     }
     if (["volleyball", "tennis", "table-tennis"].includes(config.sport)) {
       const r =
