@@ -1,3 +1,4 @@
+import { findGeRoundsForDate, geRoundLoader } from "./ge-date-index.mjs";
 import { fetchGeSerieARoundFixtures } from "./ge-fixtures.mjs";
 import { resolveSources } from "./source-manager.mjs";
 import { nbb365Url, normalizeNbb365Standings, normalizeNbb365Games } from "./365scores.mjs";
@@ -345,9 +346,31 @@ export async function scoreboard(date, sport = "all") {
       // Fetch only when one of the two ESPN date requests failed.
       if (s.id === "soccer" && league === "bra.1" &&
           parts.some((p) => p.status === "rejected")) {
-        const round = good.flatMap((r) => r.value)
+        let round = good.flatMap((r) => r.value)
           .map((m) => Number(m.round))
           .find((n) => Number.isInteger(n) && n >= 1 && n <= 38);
+        if (!round) {
+          try {
+            const year = Number(date.slice(0, 4));
+            const index = await cached(
+              `ge:date-index:v1:${date}`,
+              6 * 60 * 60_000,
+              () => findGeRoundsForDate(year, date, async (number) => {
+                const response = await cached(
+                  `ge:raw-round:v1:${year}:${number}`,
+                  6 * 60 * 60_000,
+                  geRoundLoader(year, json).bind(null, number),
+                  60 * 60_000,
+                );
+                return response.value;
+              }),
+              60 * 60_000,
+            );
+            round = index.value[0];
+          } catch (error) {
+            console.warn("GE date index unavailable:", error.message);
+          }
+        }
         if (round) {
           try {
             const ge = await cached(
