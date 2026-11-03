@@ -229,6 +229,7 @@ export function normalizeSummary(raw, sport, league, leagueName) {
         : "";
       return {
         id: String(p.play?.id || p.id || p.sequenceNumber || i),
+        teamId: String(p.team?.id || p.play?.team?.id || ""),
         minute: p.time?.displayValue || p.clock?.displayValue || "",
         period: p.period?.number || p.play?.period?.number || "",
         text: p.text || p.shortText || p.type?.text || "Evento",

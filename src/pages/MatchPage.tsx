@@ -166,6 +166,7 @@ useEffect(() => {
     300000,
   );
   const [timelineFilter, setTimelineFilter] = useState<"all" | "main">("main");
+  const [timelineTeam, setTimelineTeam] = useState<"all" | "home" | "away">("all");
   const [tab, setTab] = useState(
     ["basketball", "football", "tennis", "volleyball", "table-tennis"].includes(
       sport || "",
@@ -186,6 +187,7 @@ useEffect(() => {
         : "events",
     );
     setTimelineFilter("main");
+    setTimelineTeam("all");
   }, [sport, league, id]);
   useEffect(() => {
     if (hash === "#videos" && data?.match) {
@@ -202,6 +204,17 @@ useEffect(() => {
       panel?.scrollIntoView({ block: "start" });
     }
   }, [hash, data?.match.id, data?.match.state]);
+  const selectedTimelineEvents = (data?.events || []).filter((event) => {
+    if (timelineFilter === "main" && !isMainTimelineEvent(event)) return false;
+    if (data?.match.sport !== "soccer" || timelineTeam === "all") return true;
+    const targetId = timelineTeam === "home" ? data.match.home.id : data.match.away.id;
+    return event.teamId === targetId;
+  });
+  const timelineCount = (kind: "all" | "main") => (data?.events || []).filter((event) => {
+    if (kind === "main" && !isMainTimelineEvent(event)) return false;
+    if (data?.match.sport !== "soccer" || timelineTeam === "all") return true;
+    return event.teamId === (timelineTeam === "home" ? data.match.home.id : data.match.away.id);
+  }).length;
   return (
     <>
       <Link className="back-link" to="/">
@@ -619,7 +632,7 @@ useEffect(() => {
                         onClick={() => setTimelineFilter("all")}
                       >
                         Todas as jogadas
-                        <span>{data.events.length}</span>
+                        <span>{timelineCount("all")}</span>
                       </button>
                       <button
                         type="button"
@@ -628,23 +641,40 @@ useEffect(() => {
                         onClick={() => setTimelineFilter("main")}
                       >
                         Principais
-                        <span>{data.events.filter(isMainTimelineEvent).length}</span>
+                        <span>{timelineCount("main")}</span>
                       </button>
+                    </div>
+                  )}
+                  {data.match.sport === "soccer" && data.events.length > 0 && (
+                    <div className="timeline-team-filter" role="group" aria-label="Filtrar por equipe">
+                      {([
+                        { value: "all", label: "Ambos os times" },
+                        { value: "home", label: data.match.home.short || data.match.home.name },
+                        { value: "away", label: data.match.away.short || data.match.away.name },
+                      ] as const).map((option) => (
+                        <button
+                          key={option.value}
+                          type="button"
+                          className={timelineTeam === option.value ? "active" : ""}
+                          aria-pressed={timelineTeam === option.value}
+                          onClick={() => setTimelineTeam(option.value)}
+                          title={option.value === "home" ? data.match.home.name :
+                            option.value === "away" ? data.match.away.name : option.label}
+                        >
+                          {option.label}
+                        </button>
+                      ))}
                     </div>
                   )}
                   {data.events.length ? (
                     <div className="timeline">
-                      {timelineFilter === "main" &&
-                        !data.events.some(isMainTimelineEvent) && (
-                          <p className="timeline-filter-empty">
-                            Nenhum lance principal identificado nesta partida.
-                            Selecione "Todas as jogadas" para visualizar os eventos disponíveis.
-                          </p>
-                        )}
-                      {(timelineFilter === "all"
-                        ? data.events
-                        : data.events.filter(isMainTimelineEvent)
-                      ).map((e, i) => (
+                      {!selectedTimelineEvents.length && (
+                        <p className="timeline-filter-empty">
+                          Não há eventos identificados para estes filtros. Experimente
+                          "Todas as jogadas" ou "Ambos os times".
+                        </p>
+                      )}
+                      {selectedTimelineEvents.map((e, i) => (
                         <article
                           key={e.id + "-" + i}
                           className={e.scoring ? "goal" : ""}
