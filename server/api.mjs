@@ -1599,7 +1599,31 @@ export async function handler(req, res) {
   if (requestUrl.pathname === "/api/league-logo") {
     try {
       const result = await leagueLogo(requestUrl.searchParams.get("sport"), requestUrl.searchParams.get("id"));
-      if (!result) { res.statusCode = 404; return res.end(JSON.stringify({ error: "Logo não encontrada." })); }
+      if (!result) {
+        const sport = requestUrl.searchParams.get("sport");
+        const id = requestUrl.searchParams.get("id");
+        if (!SPORTS.some((s) => s.id === sport && s.leagues.some(([league]) => league === id))) {
+          res.statusCode = 404; return res.end(JSON.stringify({error:"Logo não encontrada."}));
+        }
+        try {
+          const espnSport = sport === "football" ? "football" : sport;
+          const upstream = await fetch(`https://site.api.espn.com/apis/site/v2/sports/${encodeURIComponent(espnSport)}/${encodeURIComponent(id)}/scoreboard?limit=1`, { signal: AbortSignal.timeout(3500) });
+          if (upstream.ok) {
+            const data = await upstream.json();
+            const candidate = data.leagues?.[0]?.logos?.find((logo) => logo.href)?.href;
+            if (candidate) {
+              const parsed = new URL(candidate);
+              if (parsed.protocol === "https:" && /(^|\\.)espncdn\\.com$/.test(parsed.hostname)) {
+                res.statusCode = 302;
+                res.setHeader("Location",candidate);
+                res.setHeader("Cache-Control","public, max-age=86400");
+                return res.end();
+              }
+            }
+          }
+        } catch {}
+        res.statusCode = 404; return res.end(JSON.stringify({error:"Logo não disponível na API."}));
+      }
       res.statusCode = 200;
       res.setHeader("Content-Type", result.mime);
       res.setHeader("Cache-Control", "public, max-age=300");
