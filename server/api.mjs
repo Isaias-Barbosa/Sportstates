@@ -56,7 +56,7 @@ import {
 } from "./catalog.mjs";
 import { startedDomesticTournaments } from "./domestic-tournaments.mjs";
 import { ECUADOR_CUPS, fetchEcuadorCupStandings } from "./ecuador-cups.mjs";
-import { listTeams, teamDetails, saveTeam, getTeam } from "./teams.mjs";
+import { listTeams, teamDetails, saveTeam, getTeam, deleteTeam } from "./teams.mjs";
 import {
   fetchTeamCatalog,
   normalizeTeamSearch,
@@ -1618,9 +1618,33 @@ export async function handler(req, res) {
         res.statusCode = 200;
         return res.end(JSON.stringify({ teams }));
       }
+      if (req.method === "DELETE") {
+        const id = requestUrl.searchParams.get("id");
+        if (!id) {
+          res.statusCode = 400;
+          return res.end(JSON.stringify({ error: "Informe o ID do time." }));
+        }
+        const deleted = await deleteTeam(id);
+        if (!deleted) {
+          res.statusCode = 404;
+          return res.end(JSON.stringify({ error: "Time não encontrado." }));
+        }
+        const auditWarning = await recordAdminActivitySafely(
+          "team_deleted",
+          `Time excluído: ${String(deleted.name).slice(0, 100)} (${deleted.id})`,
+        );
+        let warning = "";
+        try {
+          await clearAllCaches();
+        } catch {
+          warning = "Time excluído, mas não foi possível limpar todo o cache.";
+        }
+        res.statusCode = 200;
+        return res.end(JSON.stringify({ ok: true, deletedId: deleted.id, warning, auditWarning }));
+      }
       if (req.method !== "PUT") {
         res.statusCode = 405;
-        res.setHeader("Allow", "GET, PUT");
+        res.setHeader("Allow", "GET, PUT, DELETE");
         return res.end(JSON.stringify({ error: "Método não permitido." }));
       }
       let body = req.body;
