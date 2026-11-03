@@ -210,7 +210,7 @@ export function normalizeTableMatch(unit, card, event, meta = {}) {
   const state = finished ? "finished" : live ? "live" : "scheduled";
   const overall = String(
     card?.overallScores ?? card?.resultOverallScores ?? "",
-  ).trim().split(/\\s*[-–:]\\s*/);
+  ).trim().split(/\s*[-–:]\s*/);
   const declaredHome = overall.length === 2 ? number(overall[0]) : null;
   const declaredAway = overall.length === 2 ? number(overall[1]) : null;
   const rawGames = String(
