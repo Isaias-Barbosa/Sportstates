@@ -1,3 +1,4 @@
+import { resolveSources } from "./source-manager.mjs";
 import { nbb365Url, normalizeNbb365Standings, normalizeNbb365Games } from "./365scores.mjs";
 import { loadLnbHtml, parseLnbGames, parseLnbStandings } from "./lnb.mjs";
 import { listAdminUsers, userListOptions } from "./admin-users.mjs";
@@ -289,39 +290,32 @@ export async function scoreboard(date, sport = "all") {
           };
         }
       }
-      // Share one cached NBB response across simultaneous homepage requests.
-      // Query the other feeds only if the primary one has no games today.
+      // NBB has a dedicated feed. Share provider responses, retry alternate
+      // routes only on empty/error, and cool down failing upstream endpoints.
       if (s.id === "basketball" && league === "nbb" && date === dayInBrazil(new Date())) {
-        const sources = ["games", "games/fixtures", "games/results"];
-        let matches = [];
-        let at = null;
-        let failed = false;
-        for (const kind of sources) {
-          try {
-            const result = await cached(
-              `scores:nbb:365:v2:${kind}:${date}`,
-              60000,
-              () => json(nbb365Url(kind)),
-              300000,
-            );
-            at = result.at;
-            const games = Array.isArray(result.value?.games) ? result.value.games : [];
-            matches = games.filter((game) =>
-              Number(game.competitionId) === 5787 &&
-              dayInBrazil(game.startTime || "") === date
-            ).map((game) => normalize365Game(game, league, name))
-              .filter(Boolean).map((match) => ({ ...match, sport: "basketball" }));
-            if (matches.length) break;
-          } catch (error) {
-            failed = true;
-            console.warn("NBB scoreboard fallback:", kind, error.message);
-          }
-        }
-        if (matches.length) return {
-          matches, failed, stale: false, sport: s.id, league, name,
-          provider: "365Scores", at,
+        const result = await resolveSources({
+          key: `scores:nbb:${date}`,
+          cached,
+          providers: ["games", "games/fixtures", "games/results"].map((kind) => ({
+            name: `365Scores/${kind}`,
+            ttl: 60000,
+            load: async () => {
+              const raw = await json(nbb365Url(kind));
+              if (!Array.isArray(raw?.games)) throw new Error("Calendário NBB inválido");
+              return raw.games.filter((game) =>
+                Number(game.competitionId) === 5787 &&
+                dayInBrazil(game.startTime || "") === date
+              ).map((game) => normalize365Game(game, league, name))
+                .filter(Boolean).map((match) => ({ ...match, sport: "basketball" }));
+            },
+          })),
+        });
+        if (result.matches.length) return {
+          matches: result.matches, failed: result.warnings.length > 0,
+          stale: result.stale, sport: s.id, league, name,
+          provider: result.provider, at: result.at,
         };
-        // Fall through to ESPN if 365Scores has no games for this day.
+        // ESPN remains the final independent source.
       }
       const parts = await Promise.allSettled(
         dates.map((d) =>
