@@ -70,12 +70,14 @@ const [canManageLances, setCanManageLances] =
 
 const [manualLanceType, setManualLanceType] =
   useState<"goal" | "other" | null>(null);
+const [editingLance, setEditingLance] = useState<ManualLance | null>(null);
 
 useEffect(() => {
   const controller = new AbortController();
 
   setCanManageLances(false);
   setManualLanceType(null);
+  setEditingLance(null);
 
   if (accountLoading || !user?.emailVerified) {
     return () => controller.abort();
@@ -478,14 +480,14 @@ useEffect(() => {
       <div className="manual-lance-actions">
         <button
           type="button"
-          onClick={() => setManualLanceType("goal")}
+          onClick={() => { setEditingLance(null); setManualLanceType("goal"); }}
         >
           + Adicionar Gol
         </button>
 
         <button
           type="button"
-          onClick={() => setManualLanceType("other")}
+          onClick={() => { setEditingLance(null); setManualLanceType("other"); }}
         >
           + Adicionar Lance na Partida
         </button>
@@ -496,12 +498,13 @@ useEffect(() => {
 
 {canManageLances && manualLanceType && (
   <ManualLanceForm
-    key={`${data.match.id}:${manualLanceType}`}
+    key={`${data.match.id}:${manualLanceType}:${editingLance?.id || "new"}`}
     initialType={manualLanceType}
     match={data.match}
     highlights={data.highlights}
-    onClose={() => setManualLanceType(null)}
-    onSaved={() => { refreshManual(); setManualLanceType(null); }}
+    existing={editingLance}
+    onClose={() => { setEditingLance(null); setManualLanceType(null); }}
+    onSaved={() => { refreshManual(); setManualLanceType(null); setEditingLance(null); }}
   />
 )}
 
@@ -518,6 +521,17 @@ useEffect(() => {
           {manualLances.map((lance) => (
             <div key={lance.id} className="goal-summary-card">
               <ManualLanceMedia lance={lance} />
+              {canManageLances && (
+                <button type="button"
+                  onClick={() => {
+                    setEditingLance(lance);
+                    setManualLanceType(lance.lanceType === "goal" ? "goal" : "other");
+                    setTab("videos");
+                    document.getElementById("match-tabs")?.scrollIntoView({ block: "start" });
+                  }}>
+                  Editar mídia
+                </button>
+              )}
               {canManageLances && (
                 <button type="button"
                   onClick={() => void deleteManualLance(lance)}>
