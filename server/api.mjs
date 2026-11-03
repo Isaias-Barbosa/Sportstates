@@ -57,6 +57,7 @@ import {
 import { startedDomesticTournaments } from "./domestic-tournaments.mjs";
 import { ECUADOR_CUPS, fetchEcuadorCupStandings } from "./ecuador-cups.mjs";
 import { listTeams, teamDetails, saveTeam, getTeam, deleteTeam } from "./teams.mjs";
+import { leagueList, leagueOverrides, saveLeague, removeLeague, leagueLogo } from "./admin-leagues.mjs";
 import {
   fetchTeamCatalog,
   normalizeTeamSearch,
@@ -520,6 +521,14 @@ export async function route(url) {
       () => startedDomesticTournaments(year, new Date(), json),
       60 * 60 * 1000,
     );
+    let savedLeagues = [];
+    try { savedLeagues = await leagueOverrides(); } catch { /* Catalog remains available if Neon is offline. */ }
+    const overrideByKey = new Map(savedLeagues.map((league) => [`${league.sport}:${league.id}`, league]));
+    const leagueItems = (sport) => {
+      const native = sport.leagues.map(([id,name]) => [id, overrideByKey.get(`${sport.id}:${id}`)?.name || name]);
+      const nativeIds = new Set(native.map(([id]) => id));
+      return [...native, ...savedLeagues.filter((league) => league.sport === sport.id && !nativeIds.has(league.id)).map((league) => [league.id, league.name])];
+    };
     const startedTournaments = new Set(tournamentStatus.value.started);
     const visibleLeagues = new Set(
       SOCCER_DOMESTIC_TOURNAMENTS.filter((id) => startedTournaments.has(id)),
@@ -535,11 +544,14 @@ export async function route(url) {
       {
         sports: SPORTS.map((s) => ({
           ...s,
-          leagues: s.leagues
+          leagues: leagueItems(s)
             .filter(([id]) => s.id !== "soccer" || visible(id))
             .map(([id, name]) => ({
               id,
               name,
+              logo: overrideByKey.get(`${s.id}:${id}`)?.has_upload
+                ? `/api/league-logo?sport=${encodeURIComponent(s.id)}&id=${encodeURIComponent(id)}`
+                : overrideByKey.get(`${s.id}:${id}`)?.logo_url || `/api/league-logo?sport=${encodeURIComponent(s.id)}&id=${encodeURIComponent(id)}`,
               hasKnockout: s.id === "soccer" && KNOCKOUT_LEAGUES.has(id),
               tournamentFormat:
                 s.id === "soccer" ? SOCCER_TOURNAMENT_FORMATS[id] : undefined,
@@ -1594,6 +1606,88 @@ export async function handler(req, res) {
           "Não foi possível consultar ESPN e TheSportsDB. Tente novamente.",
       }),
     );
+  }
+  if (requestUrl.pathname === "/api/league-logo") {
+    try {
+      const result = await leagueLogo(requestUrl.searchParams.get("sport"), requestUrl.searchParams.get("id"));
+      if (!result) {
+        const sport = requestUrl.searchParams.get("sport");
+        const id = requestUrl.searchParams.get("id");
+        if (!SPORTS.some((s) => s.id === sport && s.leagues.some(([league]) => league === id))) {
+          res.statusCode = 404; return res.end(JSON.stringify({error:"Logo não encontrada."}));
+        }
+        try {
+          const espnSport = sport === "football" ? "football" : sport;
+          const upstream = await fetch(`https://site.api.espn.com/apis/site/v2/sports/${encodeURIComponent(espnSport)}/${encodeURIComponent(id)}/scoreboard?limit=1`, { signal: AbortSignal.timeout(3500) });
+          if (upstream.ok) {
+            const data = await upstream.json();
+            const candidate = data.leagues?.[0]?.logos?.find((logo) => logo.href)?.href;
+            if (candidate) {
+              const parsed = new URL(candidate);
+              if (parsed.protocol === "https:" && /(^|\\.)espncdn\\.com$/.test(parsed.hostname)) {
+                res.statusCode = 302;
+                res.setHeader("Location",candidate);
+                res.setHeader("Cache-Control","public, max-age=86400");
+                return res.end();
+              }
+            }
+          }
+        } catch {}
+        res.statusCode = 404; return res.end(JSON.stringify({error:"Logo não disponível na API."}));
+      }
+      res.statusCode = 200;
+      res.setHeader("Content-Type", result.mime);
+      res.setHeader("Cache-Control", "public, max-age=300");
+      return res.end(Buffer.from(result.data,"base64"));
+    } catch {
+      res.statusCode = 404;
+      return res.end(JSON.stringify({ error: "Logo indisponível." }));
+    }
+  }
+  if (requestUrl.pathname === "/api/admin/leagues") {
+    res.setHeader("Cache-Control","no-store");
+    if (!(await adminAuthorized(req.headers?.authorization))) {
+      res.statusCode = 401;
+      return res.end(JSON.stringify({ error: "Acesso administrativo não autorizado." }));
+    }
+    try {
+      if (req.method === "GET") {
+        return res.end(JSON.stringify({ leagues: await leagueList() }));
+      }
+      if (req.method === "DELETE") {
+        const sport = requestUrl.searchParams.get("sport");
+        const id = requestUrl.searchParams.get("id");
+        const removed = await removeLeague(sport,id);
+        if (!removed) { res.statusCode=404; return res.end(JSON.stringify({error:"Liga não encontrada."})); }
+        await recordAdminActivitySafely("league_deleted",`Liga excluída: ${sport}/${id}`);
+        try { await clearAllCaches(); } catch {}
+        return res.end(JSON.stringify({ok:true}));
+      }
+      if (req.method !== "PUT") {
+        res.statusCode=405; res.setHeader("Allow","GET, PUT, DELETE");
+        return res.end(JSON.stringify({error:"Método não permitido."}));
+      }
+      let body = req.body;
+      if (body == null) {
+        let raw = "";
+        for await (const chunk of req) {
+          raw += chunk;
+          if (raw.length > 390000) throw new Error("Imagem muito grande.");
+        }
+        body = raw;
+      }
+      if (typeof body === "string") body = JSON.parse(body);
+      if (!body || typeof body !== "object" || Array.isArray(body) || JSON.stringify(body).length > 390000)
+        throw new Error("Dados inválidos ou muito grandes.");
+      const saved = await saveLeague(body);
+      await recordAdminActivitySafely("league_saved",`Liga salva: ${saved.sport}/${saved.id}`);
+      try { await clearAllCaches(); } catch {}
+      return res.end(JSON.stringify({ok:true}));
+    } catch (error) {
+      const message = String(error?.message || "");
+      res.statusCode = /relation "sport_leagues" does not exist/.test(message) ? 503 : 400;
+      return res.end(JSON.stringify({error:res.statusCode===503?"Execute a migração scripts/setup-leagues.sql no Neon antes de cadastrar ligas.":message.slice(0,200)}));
+    }
   }
   if (requestUrl.pathname === "/api/admin/teams") {
     res.setHeader("Cache-Control", "no-store");
