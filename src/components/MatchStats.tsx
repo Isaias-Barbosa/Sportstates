@@ -6,7 +6,7 @@ type Category = { title: string; aliases: string[] };
 const essentialStats: Category[] = [
   { title: "Chutes", aliases: ["chutes", "total de chutes", "finalizacoes", "total de finalizacoes", "total shots", "total shots attempted", "shots", "shots attempted", "total scoring attempts", "totalshots"] },
   { title: "Chutes a gol", aliases: ["chutes a gol", "chutes no gol", "finalizacoes no alvo", "shots on target", "shots on goal", "shotsontarget", "shotsongoal", "ontargetscoringattempts"] },
-  { title: "Posse de bola", aliases: ["posse de bola", "possession", "ball possession", "possessionpct", "possession percentage"] },
+  { title: "Posse de bola", aliases: ["posse", "posse de bola", "posse bola", "percentual de posse", "posse de bola (%)", "posse de bola %", "possession", "ball possession", "ball possession percentage", "possessionpct", "possession percentage", "possessionpercent", "possessionpercentage", "possession time", "possessiontime", "possession percent", "possession %"] },
   { title: "Passes", aliases: ["passes", "total de passes", "total passes", "totalpasses", "passes attempted", "passesattempted", "passes totais"] },
   { title: "Precisão de passe", aliases: ["precisao de passe", "precisao dos passes", "pass accuracy", "passing accuracy", "passaccuracy", "pass completion percentage", "passpct", "passespct"] },
   { title: "Faltas", aliases: ["faltas", "fouls", "fouls committed", "foulscommitted", "total fouls"] },
@@ -14,6 +14,7 @@ const essentialStats: Category[] = [
   { title: "Cartões vermelhos", aliases: ["cartoes vermelhos", "cartao vermelho", "red cards", "redcards", "red card"] },
   { title: "Impedimentos", aliases: ["impedimentos", "impedimento", "offsides", "offside"] },
   { title: "Escanteios", aliases: ["escanteios", "escanteio", "corners", "corner kicks", "cornerkicks", "total corners"] },
+  { title: "Desarmes", aliases: ["desarmes", "desarme", "total de desarmes", "tackles", "tackle", "total tackles", "tackles total", "totaltackles", "tackles won", "tackleswon", "total tackles won"] },
 ];
 
 const clean = (value: string) =>
@@ -28,6 +29,22 @@ function selectStat(stats: Stat[], category: Category) {
     return category.aliases.some((alias) => clean(alias) === key ||
       compact(alias) === short);
   })?.value;
+}
+
+function displayStatValue(label: string, value?: string, opponent?: string) {
+  if (value === undefined) return "—";
+  if (label !== "Posse de bola") return value;
+  if (value.includes("%")) return value;
+  const number = numeric(value);
+  if (number === null) return value;
+  const other = numeric(opponent);
+  // ESPN may express possession as 0.45/0.55 rather than 45/55.
+  const fractional = other !== null &&
+    number >= 0 && number <= 1 && other >= 0 && other <= 1 &&
+    Math.abs(number + other - 1) < 0.02;
+  const percentage = fractional ? number * 100 : number;
+  return new Intl.NumberFormat("pt-BR", { maximumFractionDigits: 1 })
+    .format(percentage) + "%";
 }
 
 function numeric(value?: string) {
@@ -77,9 +94,9 @@ export default function MatchStats({ match, statistics, leaders }: {
               const awayLead = home !== null && away !== null && away > home;
               return (
                 <div className="match-compact-stats-row" key={row.label}>
-                  <span className={homeLead ? "match-stat-leader home" : ""}>{row.home ?? "—"}</span>
+                  <span className={homeLead ? "match-stat-leader home" : ""}>{displayStatValue(row.label, row.home, row.away)}</span>
                   <span className="match-stat-label">{row.label}</span>
-                  <span className={awayLead ? "match-stat-leader away" : ""}>{row.away ?? "—"}</span>
+                  <span className={awayLead ? "match-stat-leader away" : ""}>{displayStatValue(row.label, row.away, row.home)}</span>
                 </div>
               );
             })}
