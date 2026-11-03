@@ -23,6 +23,8 @@ export default function AdminTeams({ secret }: { secret: string }) {
   const [form, setForm] = useState<ClubProfile | null>(null);
   const [message, setMessage] = useState("");
   const [saving, setSaving] = useState(false);
+  const [deletingId, setDeletingId] = useState<string | null>(null);
+  const [search, setSearch] = useState("");
   const { data: catalog, error: catalogError } = useApi<CompetitionCatalog>(
     "/api/competitions",
     0,
@@ -76,6 +78,32 @@ export default function AdminTeams({ secret }: { secret: string }) {
       setSaving(false);
     }
   }
+  async function removeTeam(team: ClubProfile) {
+    if (!window.confirm(`Excluir o time "${team.name}" (ID: ${team.id})? Essa ação remove o cadastro do Neon e não pode ser desfeita.`)) return;
+    setDeletingId(team.id);
+    setMessage("");
+    try {
+      const response = await fetch(
+        `/api/admin/teams?id=${encodeURIComponent(team.id)}`,
+        { method: "DELETE", headers: { Authorization: `Bearer ${secret}` }, cache: "no-store" },
+      );
+      const result = await response.json();
+      if (!response.ok) throw new Error(result.error || "Erro ao excluir time.");
+      setMessage([result.warning, result.auditWarning].filter(Boolean).join(" ") || "Time excluído com sucesso.");
+      if (!result.warning) notifyCacheCleared();
+      await load();
+    } catch (error) {
+      setMessage(error instanceof Error ? error.message : "Erro ao excluir time.");
+    } finally {
+      setDeletingId(null);
+    }
+  }
+  const filteredTeams = teams.filter((team) => {
+    const term = search.trim().toLocaleLowerCase("pt-BR");
+    return !term || [team.id, team.name, team.league].some(
+      (value) => String(value || "").toLocaleLowerCase("pt-BR").includes(term),
+    );
+  });
   const sports = (catalog?.sports || []).filter(
     (s) => !["tennis", "table-tennis"].includes(s.id),
   );
@@ -291,36 +319,65 @@ export default function AdminTeams({ secret }: { secret: string }) {
           </div>
         </form>
       ) : (
-        <div className="club-grid">
-          {teams.map((t) => (
-            <button
-              className="club-card"
-              key={t.id}
-              onClick={() => {
-                setEditingId(t.id);
-                setForm({
-                  ...empty,
-                  ...t,
-                  colors: t.colors || [],
-                  honours: t.honours || [],
-                });
-                setMessage("");
-              }}
-            >
-              {t.logo && <img src={t.logo} alt="" />}
-              <div>
-                <strong>{t.name}</strong>
-                <small>
-                  {sports
-                    .find((s) => s.id === t.sport)
-                    ?.leagues.find((l) => l.id === t.league)?.name ||
-                    "Liga não informada"}{" "}
-                  · Editar perfil
-                </small>
-              </div>
-              <span>✎</span>
-            </button>
-          ))}
+        <div className="admin-teams-list">
+          <div className="admin-teams-filter">
+            <label htmlFor="admin-teams-search">Pesquisar times</label>
+            <input
+              id="admin-teams-search"
+              type="search"
+              value={search}
+              onChange={(event) => setSearch(event.target.value)}
+              placeholder="Nome, ID ou código da liga"
+            />
+            <small>{filteredTeams.length} de {teams.length} times</small>
+          </div>
+          <div className="admin-teams-table-scroll">
+            <table className="admin-teams-table">
+              <thead>
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Nome do time</th>
+                  <th scope="col">Liga</th>
+                  <th scope="col">Opções</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filteredTeams.map((team) => (
+                  <tr key={team.id}>
+                    <td><code>{team.id}</code></td>
+                    <td>
+                      <div className="admin-team-name">
+                        {team.logo && <img src={team.logo} alt="" loading="lazy" />}
+                        <strong>{team.name}</strong>
+                      </div>
+                    </td>
+                    <td>
+                      {sports.find((sport) => sport.id === team.sport)
+                        ?.leagues.find((league) => league.id === team.league)?.name ||
+                        team.league || "Liga não informada"}
+                    </td>
+                    <td>
+                      <div className="admin-team-actions">
+                        <button type="button" className="quiet-button" onClick={() => {
+                          setEditingId(team.id);
+                          setForm({ ...empty, ...team, colors: team.colors || [], honours: team.honours || [] });
+                          setMessage("");
+                        }}>Editar</button>
+                        <button
+                          type="button"
+                          className="admin-team-delete"
+                          disabled={deletingId !== null}
+                          onClick={() => void removeTeam(team)}
+                          aria-label={`Excluir ${team.name}`}
+                        >{deletingId === team.id ? "Excluindo…" : "Excluir"}</button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          {filteredTeams.length === 0 && <p className="admin-teams-empty">Nenhum time encontrado.</p>}
         </div>
       )}
     </>
