@@ -38,6 +38,9 @@ import {
   MapPin,
   Clock3,
 } from "lucide-react";
+
+import ManualLanceForm from "../components/ManualLanceForm";
+
 import type { Scores, Detail, MatchMedia } from "../types";
 import { useApi, useFavorites, today, time, dateLabel } from "../hooks";
 import { sports, keyOf } from "../catalog";
@@ -455,27 +458,15 @@ useEffect(() => {
       </div>
     )}
 
-    {canManageLances && manualLanceType && (
-      <section className="manual-lance-placeholder">
-        <h3>
-          {manualLanceType === "goal"
-            ? "Adicionar Gol"
-            : "Adicionar Lance na Partida"}
-        </h3>
+   
+{canManageLances && manualLanceType && (
+  <ManualLanceForm
+    key={manualLanceType}
+    initialType={manualLanceType}
+    onClose={() => setManualLanceType(null)}
+  />
+)}
 
-        <p>
-          O formulário para cadastrar GIFs e vídeos
-          será implementado na próxima etapa.
-        </p>
-
-        <button
-          type="button"
-          onClick={() => setManualLanceType(null)}
-        >
-          Fechar
-        </button>
-      </section>
-    )}
 
     <MatchVideos
       media={media}

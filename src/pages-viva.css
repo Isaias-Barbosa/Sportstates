@@ -1895,3 +1895,71 @@ summary:focus-visible {
     width: 100%;
   }
 }
+
+.manual-lance-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 22px;
+  margin: 18px 0;
+  border: 1px solid var(--border, #555);
+  border-radius: 14px;
+}
+
+.manual-lance-form-header,
+.manual-lance-form-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.manual-lance-form label {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.manual-lance-form input,
+.manual-lance-form select,
+.manual-lance-form textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px;
+  border: 1px solid #7777;
+  border-radius: 8px;
+  background: var(--surface, #222);
+  color: inherit;
+  font: inherit;
+}
+
+.manual-lance-form button {
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.manual-lance-form button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.manual-lance-preview img,
+.manual-lance-preview video {
+  display: block;
+  width: 100%;
+  max-width: 480px;
+  max-height: 320px;
+  object-fit: contain;
+  border-radius: 10px;
+}
+
+@media (max-width: 600px) {
+  .manual-lance-form {
+    padding: 15px;
+  }
+
+  .manual-lance-form-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
