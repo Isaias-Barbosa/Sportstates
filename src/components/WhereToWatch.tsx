@@ -4,15 +4,18 @@ import ChannelLogo from "./ChannelLogo";
 export default function WhereToWatch({
   match,
   compact = false,
+  initiallyOpen = false,
 }: {
   match: Match;
   compact?: boolean;
+  initiallyOpen?: boolean;
 }) {
   if (match.state === "finished") return null;
   const watch = match.watch;
   return (
     <details
       className={"where-to-watch " + (compact ? "watch-compact" : "")}
+      open={initiallyOpen || undefined}
       id={compact ? undefined : "onde-assistir"}
       aria-label={`Onde assistir: ${match.home.name} x ${match.away.name}`}
     >
@@ -39,7 +42,7 @@ export default function WhereToWatch({
           <p className="broadcast-availability" role="status">
             {watch?.brazilStatus === "unavailable"
               ? "Este jogo não está sendo televisionado para o Brasil, conforme a programação consultada."
-              : "Ainda não identificamos uma transmissão confirmada deste jogo para o Brasil. Isso não significa que não exista transmissão."}
+              : "A fonte consultada ainda não confirmou a transmissão desta partida para o Brasil."}
           </p>
         )}
         {!watch?.confirmedForMatch && !!watch?.international?.length && (

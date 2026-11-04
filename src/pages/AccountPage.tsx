@@ -28,8 +28,9 @@ export default function AccountPage() {
     mutate,
     saving,
   } = useAccount();
+  const [params] = useSearchParams();
   const [mode, setMode] = useState<"login" | "signup" | "recover" | "reset">(
-      "login",
+      () => (params.get("modo") === "cadastro" ? "signup" : "login"),
     ),
     [name, setName] = useState(""),
     [email, setEmail] = useState(""),
@@ -47,7 +48,6 @@ export default function AccountPage() {
     setCode("");
     setShowPassword(false);
   }
-  const [params] = useSearchParams();
   const { hash } = useLocation();
   useEffect(() => {
     if (user && hash === "#personalizar")

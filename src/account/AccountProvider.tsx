@@ -37,6 +37,7 @@ export const defaultNotifications: NotificationPreferences = {
 export type Preferences = {
   matches: string[];
   teams: string[];
+  homeTeams?: string[] | null;
   sports: string[];
   leagues: string[];
   notifications: NotificationPreferences;
@@ -52,6 +53,7 @@ type User = { id: string; name: string; email: string; emailVerified: boolean };
 const empty = (): Preferences => ({
   matches: [],
   teams: [],
+  homeTeams: null,
   sports: [],
   leagues: [],
   notifications: { ...defaultNotifications },

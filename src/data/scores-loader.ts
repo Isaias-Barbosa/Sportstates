@@ -39,6 +39,7 @@ export function mergeSportScores(
           valid.flatMap((r) => r.sports).map((s) => [s.id, s]),
         ).values(),
       ],
+      sources: valid.flatMap((result) => result.sources ?? []),
       date,
       source: "ESPN · CBV · World Table Tennis",
       fetchedAt: new Date(

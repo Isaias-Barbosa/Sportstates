@@ -167,28 +167,23 @@ useEffect(() => {
   );
   const [timelineFilter, setTimelineFilter] = useState<"all" | "main">("main");
   const [timelineTeam, setTimelineTeam] = useState<"all" | "home" | "away">("all");
-  const [tab, setTab] = useState(
-    ["basketball", "football", "tennis", "volleyball", "table-tennis"].includes(
-      sport || "",
-    )
-      ? "overview"
-      : "events",
-  );
+  const [selectedTab, setSelectedTab] = useState<{ key: string; tab: string }>();
+  const match = data?.match;
+  const hasVideos = !!(media?.highlights.length || media?.replays.length || media?.related?.length || manualLances.length);
+  const sets = ["tennis", "volleyball", "table-tennis"].includes(sport || "");
+  const teamOverview = ["basketball", "football"].includes(sport || "");
+  const priority = match?.state === "scheduled"
+    ? (sport === "soccer" ? ["lineups", "stats", "events"] : sets || teamOverview ? ["overview"] : ["events"])
+    : match?.state === "finished" && hasVideos && !["volleyball", "table-tennis"].includes(sport || "")
+      ? ["videos", sets || teamOverview ? "overview" : "events", "stats"]
+      : [sets ? "overview" : "events", "stats", "overview"];
+  const tab = selectedTab?.key === matchKey ? selectedTab.tab : priority[0];
+  function setTab(value: string) { setSelectedTab({ key: matchKey, tab: value }); }
+
   useEffect(() => {
-    setTab(
-      [
-        "basketball",
-        "football",
-        "tennis",
-        "volleyball",
-        "table-tennis",
-      ].includes(sport || "")
-        ? "overview"
-        : "events",
-    );
     setTimelineFilter("main");
     setTimelineTeam("all");
-  }, [sport, league, id]);
+  }, [matchKey]);
   useEffect(() => {
     if (hash === "#videos" && data?.match) {
       setTab(
@@ -203,7 +198,7 @@ useEffect(() => {
       if (panel instanceof HTMLDetailsElement) panel.open = true;
       panel?.scrollIntoView({ block: "start" });
     }
-  }, [hash, data?.match.id, data?.match.state]);
+  }, [hash, matchKey, data?.match.id, data?.match.state]);
   const selectedTimelineEvents = (data?.events || []).filter((event) => {
     if (timelineFilter === "main" && !isMainTimelineEvent(event)) return false;
     if (data?.match.sport !== "soccer" || timelineTeam === "all") return true;
@@ -375,7 +370,11 @@ useEffect(() => {
                 match={data.match}
               />
             )}
-            <WhereToWatch key={data.match.id} match={data.match} />
+            <div className="match-phase-guide">
+              <strong>{data.match.state === "scheduled" ? "Pré-jogo" : data.match.state === "live" ? "Acompanhe ao vivo" : "Pós-jogo"}</strong>
+              <span>{data.source} · {data.stale ? "Última consulta em cache" : "Consultado"} às {time(data.fetchedAt)} BRT</span>
+            </div>
+            <WhereToWatch key={data.match.id} match={data.match} initiallyOpen={data.match.state === "scheduled"} />
             {(!!media?.highlights.length ||
               !!media?.replays.length ||
               !!media?.related?.length) && (
@@ -456,7 +455,13 @@ useEffect(() => {
                           `Lances da Partida${media && media.highlights.length + media.replays.length + (media.related?.length || 0) ? ` (${media.highlights.length + media.replays.length + (media.related?.length || 0)})` : ""}`,
                         ],
                       ]),
-                ].map(([v, l]) => (
+                ].sort(([a], [b]) => {
+                  const order = (value: string) => {
+                    const index = priority.indexOf(value);
+                    return index === -1 ? priority.length : index;
+                  };
+                  return order(a) - order(b);
+                }).map(([v, l]) => (
                   <button
                     key={v}
                     className={tab === v ? "active" : ""}
@@ -764,10 +769,6 @@ useEffect(() => {
                     As escalações aparecem quando publicadas pela fonte.
                   </Empty>
                 ))}
-            </div>
-            <div className="updated">
-              {data.source} · Consultado às {time(data.fetchedAt)} · Atualiza a
-              cada 30 segundos
             </div>
           </>
         )

@@ -276,9 +276,15 @@ export default function LeagueOverview({
           ESPN · Atualização automática a cada minuto com a aba visível.
         </p>
       </details>
-      {statistics && (
+      {statistics ? (
         <LeagueStatistics sport={sport} league={league} config={statistics} />
-      )}
+      ) : ["soccer", "basketball", "football", "baseball", "hockey"].includes(
+          sport,
+        ) ? (
+        <p className="league-coverage-note">
+          Rankings de atletas sem cobertura verificada para esta competição.
+        </p>
+      ) : null}
     </div>
   );
 }

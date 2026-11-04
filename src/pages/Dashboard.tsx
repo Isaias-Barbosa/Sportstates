@@ -1,5 +1,9 @@
 import { useAccount } from "../account/AccountProvider";
-import { preferredMatch, followsTeam } from "../account/personalization";
+import {
+  preferredMatch,
+  followsTeam,
+  selectHomeTeams,
+} from "../account/personalization";
 import { useScores } from "../useScores";
 import { NotificationBell } from "../notifications/Notifications";
 import { matchScore } from "../components/shared";
@@ -20,8 +24,6 @@ import {
   RefreshCw,
   Search,
   Star,
-  SlidersHorizontal,
-  Sparkles,
   Tv,
 } from "lucide-react";
 import type { Match, Scores, CompetitionCatalog } from "../types";
@@ -35,6 +37,7 @@ import {
   matchLabel,
   isLiveMatch,
 } from "../components/shared";
+import HomeFavoriteGames from "../components/HomeFavoriteGames";
 import MatchBroadcasts from "../components/MatchBroadcasts";
 import SportAgenda, { sportAgendas } from "../components/SportAgenda";
 
@@ -65,6 +68,7 @@ function ScoresDashboard({
     preferences,
     teams: favoriteTeams,
     error: accountError,
+    loading: accountLoading,
   } = useAccount();
   const [params, setParams] = useSearchParams();
   const personal = params.get("personal") === "1";
@@ -187,6 +191,18 @@ function ScoresDashboard({
         .toLowerCase()
         .includes(normalizedSearch),
   );
+  const coverage =
+    data?.sources?.filter(
+      (source) =>
+        (sport === "all" || source.sport === sport) &&
+        (league === "all" || source.league === league),
+    ) ?? [];
+  const coverageIssues = coverage.filter((source) => source.state !== "ok");
+  const incomplete =
+    !!error ||
+    coverageIssues.length > 0 ||
+    (!coverage.length &&
+      !!(data?.stale || data?.partial || data?.warnings.length));
   const groups = [...new Set(visible.map((m) => `${m.sport}/${m.league}`))];
   function set(key: string, value: string) {
     const next = new URLSearchParams(params);
@@ -213,7 +229,7 @@ function ScoresDashboard({
           ? "Último destaque"
           : "Próximo confronto";
   return (
-    <div className="home-viva">
+    <div className={`home-viva${favoritesOnly ? " home-favorites" : ""}`}>
       <section className="hv-hero" aria-labelledby="hv-title">
         <img
           className="hv-hero-image"
@@ -278,102 +294,10 @@ function ScoresDashboard({
         <span>O jogo acontece aqui</span>
       </div>
       <div className="hv-wrap hv-main">
-        {accountError && <Notice error>{accountError}</Notice>}
-        {user && (
-          <section
-            className="home-personal personal-hub"
-            aria-labelledby="personal-hub-title"
-          >
-            <div className="personal-hub-top">
-              <div className="personal-hub-intro">
-                <span className="personal-hub-symbol" aria-hidden="true">
-                  <Star size={23} />
-                </span>
-                <div>
-                  <span className="personal-hub-eyebrow">SUA ARQUIBANCADA</span>
-                  <h2 id="personal-hub-title">
-                    Seu jogo, {user.name.split(" ")[0]}.
-                  </h2>
-                  <p>
-                    {personal
-                      ? "Sua agenda está filtrada pelos seus interesses."
-                      : "Encontre seus favoritos e acompanhe o que importa para você."}
-                  </p>
-                </div>
-              </div>
-              <Link className="personal-hub-settings" to="/conta#personalizar">
-                <SlidersHorizontal size={16} aria-hidden="true" /> Personalizar
-              </Link>
-            </div>
-            <div className="personal-hub-bottom">
-              <div className="personal-hub-favorites">
-                {favoriteTeams.length ? (
-                  <>
-                    <span className="personal-hub-label">SUA TORCIDA</span>
-                    <div className="personal-hub-teams">
-                      {favoriteTeams.slice(0, 3).map((t) => (
-                        <Link
-                          key={t.id}
-                          to={"/times/" + encodeURIComponent(t.id)}
-                        >
-                          {t.logo && (
-                            <img src={t.logo} width={22} height={22} alt="" />
-                          )}
-                          <span>{t.name}</span>
-                        </Link>
-                      ))}
-                      {favoriteTeams.length > 3 && (
-                        <Link to="/favoritos">
-                          +{favoriteTeams.length - 3} times
-                        </Link>
-                      )}
-                    </div>
-                  </>
-                ) : (
-                  <Link className="personal-hub-empty" to="/times">
-                    <Star size={17} aria-hidden="true" />
-                    <span>
-                      <strong>Qual é o seu time?</strong>Escolha um favorito
-                      para ver os jogos dele primeiro.
-                    </span>
-                    <ArrowRight size={16} aria-hidden="true" />
-                  </Link>
-                )}
-              </div>
-              <div className="personal-hub-controls">
-                <div className="personal-hub-filter">
-                  <span className="personal-hub-label">MOSTRAR JOGOS</span>
-                  <div role="group" aria-label="Filtrar agenda">
-                    <button
-                      type="button"
-                      aria-pressed={!personal}
-                      onClick={() => set("personal", "all")}
-                    >
-                      Todos
-                    </button>
-                    <button
-                      type="button"
-                      aria-pressed={personal}
-                      onClick={() => set("personal", "1")}
-                    >
-                      <Sparkles size={14} aria-hidden="true" /> Para você
-                    </button>
-                  </div>
-                </div>
-                <Link className="personal-hub-summary" to="/resumo-diario">
-                  <span>
-                    SEU DIA EM CAMPO
-                    <strong>
-                      Resumo Diário <ArrowRight size={16} aria-hidden="true" />
-                    </strong>
-                  </span>
-                </Link>
-              </div>
-            </div>
-          </section>
-        )}
-
-        <section aria-labelledby="hv-spotlight-title">
+        <section
+          className="home-spotlight"
+          aria-labelledby="hv-spotlight-title"
+        >
           <div className="hv-section-head">
             <div>
               <p className="hv-eyebrow">No centro da emoção</p>
@@ -505,6 +429,27 @@ function ScoresDashboard({
             </Empty>
           )}
         </section>
+        {!user && !accountLoading && !favoritesOnly && (
+          <p className="home-favorites-invite">
+            Quer ver os seus times favoritos aqui?{" "}
+            <Link to="/conta?modo=cadastro">Crie uma Conta</Link>
+          </p>
+        )}
+        {user && !favoritesOnly && (
+          <HomeFavoriteGames
+            teams={selectHomeTeams(favoriteTeams, preferences.homeTeams)}
+            hasFavorites={favoriteTeams.length > 0}
+            matches={date === today() ? matches : []}
+            leagues={
+              new Set(
+                catalog?.sports.flatMap((sport) =>
+                  sport.leagues.map((league) => sport.id + "/" + league.id),
+                ),
+              )
+            }
+          />
+        )}
+        {accountError && <Notice error>{accountError}</Notice>}
         <section className="hv-sports" aria-labelledby="hv-sports-title">
           <h2 id="hv-sports-title">Qual é o seu jogo?</h2>
           <div className="hv-sport-filters">
@@ -693,6 +638,12 @@ function ScoresDashboard({
                 </button>
               ))}
             </div>
+            {data?.fetchedAt && Number.isFinite(Date.parse(data.fetchedAt)) && (
+              <p className="home-agenda-freshness">
+                {data.stale ? "Última consulta em cache" : "Dados consultados"}{" "}
+                às {time(data.fetchedAt)} · horário de Brasília
+              </p>
+            )}
             {error && (
               <Notice error>
                 {error} <button onClick={refresh}>Tentar novamente</button>
@@ -705,7 +656,31 @@ function ScoresDashboard({
                 indisponível.
               </Notice>
             )}
-            {!!data?.warnings.length && (
+            {coverageIssues.length > 0 && (
+              <details className="coverage-warning">
+                <summary>
+                  Cobertura das fontes · {coverageIssues.length} com aviso
+                </summary>
+                {coverageIssues.map((source) => (
+                  <p
+                    key={
+                      source.sport + "/" + (source.league ?? source.competition)
+                    }
+                  >
+                    <strong>{source.competition}</strong> · {source.provider} ·{" "}
+                    {source.state === "unavailable"
+                      ? "Fonte indisponível"
+                      : source.state === "stale"
+                        ? "Dados em cache"
+                        : "Cobertura parcial"}
+                    {source.fetchedAt
+                      ? " · " + time(source.fetchedAt) + " BRT"
+                      : ""}
+                  </p>
+                ))}
+              </details>
+            )}
+            {!coverageIssues.length && !!data?.warnings.length && (
               <details className="coverage-warning">
                 <summary>
                   Cobertura parcial: {data.warnings.length} competições com
@@ -736,12 +711,22 @@ function ScoresDashboard({
                 title={
                   favoritesOnly
                     ? "Nenhum favorito nesta data"
-                    : "Nenhuma partida encontrada"
+                    : incomplete
+                      ? "Agenda com cobertura incompleta"
+                      : status !== "all" ||
+                          search ||
+                          personal ||
+                          confirmedWatch ||
+                          league !== "all"
+                        ? "Nenhuma partida com esses filtros"
+                        : "Sem jogos nesta data"
                 }
               >
                 {favoritesOnly
                   ? "Marque a estrela de uma partida para salvá-la."
-                  : "Altere o esporte, a data ou a busca. A cobertura varia por competição."}
+                  : incomplete
+                    ? "Algumas fontes não puderam confirmar os jogos. Atualize a agenda ou tente novamente mais tarde."
+                    : "Escolha outra data, esporte ou filtro para continuar."}
               </Empty>
             ) : (
               groups.map((group) => {
@@ -775,15 +760,6 @@ function ScoresDashboard({
                   </details>
                 );
               })
-            )}
-            {data && (
-              <p className="hv-data-note">
-                <Info size={13} />
-                <span>
-                  {data.source} · Consultado às {time(data.fetchedAt)} ·
-                  Brasília
-                </span>
-              </p>
             )}
           </section>
           <aside className="hv-content-aside">

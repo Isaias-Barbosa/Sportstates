@@ -2405,3 +2405,17 @@ summary:focus-visible {
 .f1-championship-table small { display: block; color: var(--muted); }
 .f1-championship-table a { color: inherit; }
 .standings-sports a.sport-card { text-decoration: none; }
+
+.match-phase-guide {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  margin: 12px 0;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--panel);
+}
+.match-phase-guide span, .league-coverage-note { color: var(--muted); font-size: .82rem; }
+.league-coverage-note { grid-column: 1 / -1; margin: 0; }
