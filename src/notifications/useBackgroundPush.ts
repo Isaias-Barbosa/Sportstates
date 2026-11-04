@@ -57,6 +57,7 @@ export function useBackgroundPush(
   const [publicKey, setPublicKey] = useState<string | null>();
   const [busy, setBusy] = useState(false);
   const [message, setMessage] = useState("");
+  const [testReceipt, setTestReceipt] = useState("");
   const [synced, setSynced] = useState(false);
   const queue = useRef(Promise.resolve());
   const supported =
@@ -163,11 +164,54 @@ export function useBackgroundPush(
     };
   }, [active, ready, supported, publicKey, payload, request]);
 
-  async function configure(action: "enable" | "remove" | "test") {
+  useEffect(() => {
+    if (!supported || !active) return;
+    function receiveTest(event: MessageEvent) {
+      if (event.data?.type !== "sportstates-push-test") return;
+      setTestReceipt(
+        event.data.shown === true
+          ? "O navegador recebeu o push e aceitou exibir o aviso."
+          : "O navegador recebeu o push, mas não conseguiu exibir o aviso.",
+      );
+    }
+    navigator.serviceWorker.addEventListener("message", receiveTest);
+    return () =>
+      navigator.serviceWorker.removeEventListener("message", receiveTest);
+  }, [supported, active]);
+
+  async function configure(action: "enable" | "remove" | "test" | "local") {
     if (busy || !owner || !supported) return;
     setBusy(true);
     setMessage("");
     try {
+      if (action === "local") {
+        if (Notification.permission !== "granted")
+          throw new Error(
+            "Autorize as notificações nas configurações do navegador.",
+          );
+        const registration =
+          await navigator.serviceWorker.getRegistration(WORKER);
+        if (!registration?.active)
+          throw new Error(
+            "Reabra o Sportstates para carregar o serviço de notificações.",
+          );
+        await registration.showNotification("Teste local do Sportstates", {
+          body: "Este aviso foi solicitado diretamente neste dispositivo.",
+          icon: "/brand/push-192.png",
+          tag: "sportstates-local:" + Date.now(),
+          data: { url: "/" },
+        });
+        setMessage(
+          "Aviso local solicitado. Confira a central de notificações.",
+        );
+        return;
+      }
+      if (action === "test") {
+        setTestReceipt("");
+        const registration =
+          await navigator.serviceWorker.getRegistration(WORKER);
+        await registration?.update().catch(() => {});
+      }
       if (action === "enable") {
         if (!publicKey) return;
         const permission =
@@ -258,6 +302,7 @@ export function useBackgroundPush(
     publicKey,
     busy,
     message,
+    testReceipt,
     configure,
   };
 }

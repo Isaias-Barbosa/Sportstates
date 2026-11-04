@@ -1,4 +1,4 @@
-import { createHash, timingSafeEqual } from "node:crypto";
+import { createHash, randomUUID, timingSafeEqual } from "node:crypto";
 import { neon } from "@neondatabase/serverless";
 import webPush from "web-push";
 import {
@@ -189,7 +189,7 @@ export async function testPushDevice(user, value, config) {
     await send(
       row.subscription,
       {
-        id: "sportstates-test",
+        id: "sportstates-test:" + randomUUID(),
         title: "Notificações do Sportstates",
         body: "Tudo pronto para receber alertas neste dispositivo.",
         url: "/",

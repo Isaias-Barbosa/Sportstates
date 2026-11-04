@@ -1,3 +1,7 @@
+self.addEventListener("install", (event) =>
+  event.waitUntil(self.skipWaiting()),
+);
+
 function notificationUrl(path) {
   if (
     typeof path !== "string" ||
@@ -21,14 +25,32 @@ self.addEventListener("push", (event) => {
   )
     return;
   event.waitUntil(
-    self.registration.showNotification(alert.title, {
-      body: alert.body,
-      icon: "/brand/push-192.png",
-      badge: "/brand/push-badge.png",
-      tag: typeof alert.id === "string" ? alert.id : undefined,
-      silent: alert.silent === true,
-      data: { url: notificationUrl(alert.url).pathname },
-    }),
+    (async () => {
+      const test =
+        typeof alert.id === "string" &&
+        alert.id.startsWith("sportstates-test:");
+      let shown = false;
+      try {
+        await self.registration.showNotification(alert.title, {
+          body: alert.body,
+          icon: "/brand/push-192.png",
+          badge: "/brand/push-badge.png",
+          tag: typeof alert.id === "string" ? alert.id : undefined,
+          silent: alert.silent === true,
+          data: { url: notificationUrl(alert.url).pathname },
+        });
+        shown = true;
+      } finally {
+        if (test) {
+          const windows = await self.clients.matchAll({
+            type: "window",
+            includeUncontrolled: true,
+          });
+          for (const client of windows)
+            client.postMessage({ type: "sportstates-push-test", shown });
+        }
+      }
+    })(),
   );
 });
 

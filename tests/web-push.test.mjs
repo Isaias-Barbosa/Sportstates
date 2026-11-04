@@ -149,3 +149,57 @@ test("service worker shows push notifications and confines click URLs to Sportst
   await task;
   assert.deepEqual(opened, ["https://sportstates.test/"]);
 });
+
+test("service worker acknowledges a diagnostic push only after requesting the OS notice", async () => {
+  const listeners = {};
+  const received = [];
+  let fail = false;
+  const self = {
+    location: { origin: "https://sportstates.test" },
+    addEventListener(name, callback) {
+      listeners[name] = callback;
+    },
+    registration: {
+      async showNotification() {
+        if (fail) throw new Error("Denied");
+      },
+    },
+    clients: {
+      async matchAll() {
+        return [
+          {
+            postMessage(message) {
+              received.push(message.shown);
+            },
+          },
+        ];
+      },
+    },
+  };
+  vm.runInNewContext(
+    readFileSync(
+      new URL("../public/notifications-sw.js", import.meta.url),
+      "utf8",
+    ),
+    { self, URL },
+  );
+  let task;
+  const event = {
+    data: {
+      json: () => ({
+        id: "sportstates-test:123",
+        title: "Teste",
+        body: "Aviso",
+      }),
+    },
+    waitUntil(promise) {
+      task = promise;
+    },
+  };
+  listeners.push(event);
+  await task;
+  fail = true;
+  listeners.push(event);
+  await assert.rejects(task, /Denied/);
+  assert.deepEqual(received, [true, false]);
+});
