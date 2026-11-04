@@ -1,5 +1,9 @@
 import { useAccount } from "../account/AccountProvider";
-import { preferredMatch, followsTeam } from "../account/personalization";
+import {
+  preferredMatch,
+  followsTeam,
+  selectHomeTeams,
+} from "../account/personalization";
 import { useScores } from "../useScores";
 import { NotificationBell } from "../notifications/Notifications";
 import { matchScore } from "../components/shared";
@@ -433,7 +437,8 @@ function ScoresDashboard({
         )}
         {user && !favoritesOnly && (
           <HomeFavoriteGames
-            teams={favoriteTeams}
+            teams={selectHomeTeams(favoriteTeams, preferences.homeTeams)}
+            hasFavorites={favoriteTeams.length > 0}
             matches={date === today() ? matches : []}
             leagues={
               new Set(

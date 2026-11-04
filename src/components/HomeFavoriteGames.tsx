@@ -83,10 +83,12 @@ function FavoriteSchedule({
 
 export default function HomeFavoriteGames({
   teams,
+  hasFavorites,
   matches,
   leagues,
 }: {
   teams: FavoriteTeam[];
+  hasFavorites: boolean;
   matches: Match[];
   leagues: Set<string>;
 }) {
@@ -102,7 +104,7 @@ export default function HomeFavoriteGames({
       </div>
       {teams.length ? (
         <div className="home-favorite-grid">
-          {teams.slice(0, 3).map((team) => {
+          {teams.map((team) => {
             const live = matches.find(
               (match) => followsTeam(match, [team]) && isLiveMatch(match),
             );
@@ -129,6 +131,11 @@ export default function HomeFavoriteGames({
             );
           })}
         </div>
+      ) : hasFavorites ? (
+        <p>
+          Escolha em <Link to="/favoritos">Ver favoritos</Link> quais times
+          aparecem aqui.
+        </p>
       ) : (
         <p>
           Escolha um time para ver seus próximos jogos aqui.{" "}

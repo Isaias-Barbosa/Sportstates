@@ -1,9 +1,31 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
 import { useAccount } from "../account/AccountProvider";
+import { HOME_TEAM_LIMIT, selectHomeTeams } from "../account/personalization";
 import { useDailySummary, SummaryMatch } from "./DailySummaryPage";
 import { keyOf, sports } from "../catalog";
 export default function FavoritesPage() {
   const { user, loading, teams, preferences, mutate, saving } = useAccount();
+  const [homeError, setHomeError] = useState("");
+  const homeTeams = selectHomeTeams(teams, preferences.homeTeams).map(
+    (team) => team.id,
+  );
+  async function toggleHomeTeam(id: string) {
+    const next = homeTeams.includes(id)
+      ? homeTeams.filter((team) => team !== id)
+      : [...homeTeams, id];
+    if (next.length > HOME_TEAM_LIMIT) return;
+    setHomeError("");
+    try {
+      await mutate({ action: "home-teams", teams: next });
+    } catch (error) {
+      setHomeError(
+        error instanceof Error
+          ? error.message
+          : "Não foi possível salvar a seleção.",
+      );
+    }
+  }
   const summary = useDailySummary();
   const matches = [
     ...new Map(
@@ -33,6 +55,17 @@ export default function FavoritesPage() {
         <>
           <section className="account-card">
             <h2>Times que você segue</h2>
+            {!!teams.length && (
+              <p aria-live="polite">
+                <strong>
+                  {homeTeams.length} de {HOME_TEAM_LIMIT} na Home.
+                </strong>{" "}
+                {homeTeams.length >= HOME_TEAM_LIMIT
+                  ? "Retire um da Home para escolher outro."
+                  : "Escolha quais times aparecem na Home."}
+              </p>
+            )}
+            {homeError && <p role="alert">{homeError}</p>}
             <div className="favorite-team-grid">
               {teams.map((t) => (
                 <article key={t.id}>
@@ -43,6 +76,20 @@ export default function FavoritesPage() {
                     <strong>{t.name}</strong>
                     <small>{sports.find((s) => s.id === t.sport)?.name}</small>
                   </Link>
+                  <button
+                    type="button"
+                    className="favorite-home-toggle"
+                    aria-pressed={homeTeams.includes(t.id)}
+                    aria-label={"Mostrar " + t.name + " na Home"}
+                    disabled={
+                      saving ||
+                      (!homeTeams.includes(t.id) &&
+                        homeTeams.length >= HOME_TEAM_LIMIT)
+                    }
+                    onClick={() => void toggleHomeTeam(t.id)}
+                  >
+                    {homeTeams.includes(t.id) ? "Na Home ✓" : "Mostrar na Home"}
+                  </button>
                   <button
                     disabled={saving}
                     onClick={() =>

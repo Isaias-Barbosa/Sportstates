@@ -1352,3 +1352,15 @@
     gap: 5px;
   }
 }
+
+.favorite-team-grid .favorite-home-toggle {
+  padding: 7px 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+}
+.favorite-team-grid .favorite-home-toggle[aria-pressed="true"] {
+  border-color: var(--green);
+  color: var(--green);
+}
+.favorite-team-grid .favorite-home-toggle:disabled { opacity: .65; }

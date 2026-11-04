@@ -217,3 +217,26 @@ test("concurrent writes retry against the latest row and retain the other device
   ]);
   assert.equal(result.version, 2);
 });
+
+test("home teams are limited to three followed teams and pruned when unfollowed", () => {
+  const initial = { ...emptyPreferences(), teams: ["1", "2", "3", "4"] };
+  assert.equal(initial.homeTeams, null);
+  const select = (teams) =>
+    validatePreferenceAction({ action: "home-teams", teams });
+  const selected = applyPreferenceAction(initial, select(["4", "2", "1"]));
+  assert.deepEqual(selected.homeTeams, ["4", "2", "1"]);
+  assert.deepEqual(selected.teams, initial.teams);
+  assert.throws(() => select(["1", "2", "3", "4"]), /Seleção inválida/);
+  assert.throws(
+    () => applyPreferenceAction(initial, select(["9"])),
+    /Seleção inválida/,
+  );
+  const after = applyPreferenceAction(selected, {
+    action: "favorite",
+    kind: "team",
+    id: "2",
+    selected: false,
+  });
+  assert.deepEqual(after.homeTeams, ["4", "1"]);
+  assert.deepEqual(applyPreferenceAction(after, select([])).homeTeams, []);
+});

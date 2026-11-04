@@ -1,5 +1,21 @@
 import type { Match } from "../types";
 import type { FavoriteTeam, Preferences } from "./AccountProvider";
+export const HOME_TEAM_LIMIT = 3;
+
+export function selectHomeTeams(
+  teams: FavoriteTeam[],
+  selection?: string[] | null,
+) {
+  if (selection == null) return teams.slice(0, HOME_TEAM_LIMIT);
+  const byId = new Map(teams.map((team) => [team.id, team]));
+  return [...new Set(selection)]
+    .flatMap((id) => {
+      const team = byId.get(id);
+      return team ? [team] : [];
+    })
+    .slice(0, HOME_TEAM_LIMIT);
+}
+
 export function followsTeam(match: Match, teams: FavoriteTeam[]) {
   return teams.some(
     (t) =>

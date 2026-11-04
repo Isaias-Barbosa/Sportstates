@@ -16,6 +16,7 @@ export const DEFAULT_NOTIFICATIONS = Object.freeze({
 export const emptyPreferences = () => ({
   matches: [],
   teams: [],
+  homeTeams: null,
   sports: [],
   leagues: [],
   notifications: { ...DEFAULT_NOTIFICATIONS },
@@ -47,6 +48,15 @@ export function validatePreferenceAction(value) {
       id: value.id,
       selected: value.selected,
     };
+  }
+  if (value.action === "home-teams") {
+    if (
+      !Array.isArray(value.teams) ||
+      value.teams.length > 3 ||
+      value.teams.some((id) => typeof id !== "string" || !validProfileId(id))
+    )
+      throw Error("Seleção inválida. Escolha até três times para a Home.");
+    return { action: "home-teams", teams: [...new Set(value.teams)] };
   }
   if (value.action === "interests") {
     const sports = validatePreferenceAction({
@@ -125,6 +135,12 @@ export function applyPreferenceAction(current, action) {
     if (values.size > (field === "teams" ? 50 : 200))
       throw Error("Limite de favoritos atingido.");
     next[field] = [...values];
+    if (field === "teams" && Array.isArray(next.homeTeams))
+      next.homeTeams = next.homeTeams.filter((id) => values.has(id));
+  } else if (action.action === "home-teams") {
+    if (action.teams.some((id) => !next.teams?.includes(id)))
+      throw Error("Seleção inválida. Escolha apenas times que você segue.");
+    next.homeTeams = action.teams;
   } else if (action.action === "interests") {
     next.sports = action.sports;
     next.leagues = action.leagues;
@@ -210,5 +226,11 @@ export function normalizeTeamFavorites(preferences, teams) {
       return true;
     })
     .reverse();
-  return { ...preferences, teams: ids };
+  return {
+    ...preferences,
+    teams: ids,
+    homeTeams: Array.isArray(preferences.homeTeams)
+      ? preferences.homeTeams.filter((id) => ids.includes(id))
+      : null,
+  };
 }
