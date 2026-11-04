@@ -292,6 +292,141 @@ function ScoresDashboard({
       </div>
       <div className="hv-wrap hv-main">
         <section
+          className="home-spotlight"
+          aria-labelledby="hv-spotlight-title"
+        >
+          <div className="hv-section-head">
+            <div>
+              <p className="hv-eyebrow">No centro da emoção</p>
+              <h2 id="hv-spotlight-title">
+                {featured && isLiveMatch(featured) ? (
+                  <>
+                    Agora é <em>jogo.</em>
+                  </>
+                ) : featured?.state === "finished" ? (
+                  <>
+                    Destaques do <em>dia.</em>
+                  </>
+                ) : (
+                  <>
+                    O próximo <em>capítulo.</em>
+                  </>
+                )}
+              </h2>
+            </div>
+            <a className="hv-text-link" href="#jogos">
+              Ver todas as partidas
+              <ArrowRight size={15} />
+            </a>
+          </div>
+          {loading ? (
+            <Loading />
+          ) : featured ? (
+            <div
+              className={"hv-spotlight " + (!radar.length ? "hv-no-radar" : "")}
+            >
+              <div>
+                <Link
+                  className={
+                    "hv-feature " + (isLiveMatch(featured) ? "is-live" : "")
+                  }
+                  to={"/partida/" + keyOf(featured)}
+                  aria-label={`Acompanhar partida: ${featured.home.name} x ${featured.away.name}`}
+                >
+                  <div className="hv-feature-top">
+                    <span>
+                      {sports.find((s) => s.id === featured.sport)?.icon}{" "}
+                      {featured.leagueName}
+                    </span>
+                    <strong>
+                      {isLiveMatch(featured) && (
+                        <i className="live-dot" aria-hidden="true" />
+                      )}
+                      {featuredTitle}
+                    </strong>
+                  </div>
+                  <div className="hv-feature-teams">
+                    <div className="hv-feature-team">
+                      <Crest team={featured.home} large />
+                      <h3>{featured.home.name}</h3>
+                    </div>
+                    <div
+                      className={
+                        "hv-feature-score " +
+                        (featured.state === "scheduled" ? "is-scheduled" : "")
+                      }
+                    >
+                      <b>
+                        {featured.state === "scheduled"
+                          ? time(featured.date)
+                          : matchScore(featured)}
+                      </b>
+                      <small>
+                        {isLiveMatch(featured)
+                          ? matchLabel(featured)
+                          : featured.state === "finished"
+                            ? "Encerrado"
+                            : "Horário de Brasília"}
+                      </small>
+                    </div>
+                    <div className="hv-feature-team">
+                      <Crest team={featured.away} large />
+                      <h3>{featured.away.name}</h3>
+                    </div>
+                  </div>
+                  <div className="hv-feature-footer">
+                    <span>
+                      <MapPin size={13} />
+                      {featured.venue || "Detalhes da partida"}
+                    </span>
+                    <strong>
+                      {isLiveMatch(featured)
+                        ? "Acompanhar partida"
+                        : "Ver detalhes"}
+                      <ArrowRight size={15} />
+                    </strong>
+                  </div>
+                </Link>
+                <MatchBroadcasts match={featured} />
+              </div>
+              {!!radar.length && (
+                <aside className="hv-radar" aria-label="Outros jogos ao vivo">
+                  <div className="hv-radar-heading">
+                    <h3>Também está rolando</h3>
+                    <Radio size={17} />
+                  </div>
+                  {radar.map((m) => (
+                    <Link
+                      className="hv-radar-game"
+                      key={keyOf(m)}
+                      to={"/partida/" + keyOf(m)}
+                    >
+                      <span>{m.leagueName}</span>
+                      <small>{matchLabel(m)}</small>
+                      <strong>
+                        {m.home.name} × {m.away.name}
+                      </strong>
+                      <b>{matchScore(m)}</b>
+                    </Link>
+                  ))}
+                </aside>
+              )}
+            </div>
+          ) : (
+            <Empty
+              title={
+                error
+                  ? "Não foi possível atualizar o destaque"
+                  : "Nenhuma partida nesta data"
+              }
+            >
+              {error
+                ? "Tente atualizar a agenda abaixo."
+                : "Escolha outro esporte ou dia para acompanhar os jogos disponíveis."}
+            </Empty>
+          )}
+        </section>
+        <section
           id="agenda-data"
           className="home-quick-agenda"
           aria-label="Atalhos da agenda"
@@ -769,142 +904,6 @@ function ScoresDashboard({
             </div>
           </section>
         )}
-
-        <section
-          className="home-spotlight"
-          aria-labelledby="hv-spotlight-title"
-        >
-          <div className="hv-section-head">
-            <div>
-              <p className="hv-eyebrow">No centro da emoção</p>
-              <h2 id="hv-spotlight-title">
-                {featured && isLiveMatch(featured) ? (
-                  <>
-                    Agora é <em>jogo.</em>
-                  </>
-                ) : featured?.state === "finished" ? (
-                  <>
-                    Destaques do <em>dia.</em>
-                  </>
-                ) : (
-                  <>
-                    O próximo <em>capítulo.</em>
-                  </>
-                )}
-              </h2>
-            </div>
-            <a className="hv-text-link" href="#jogos">
-              Ver todas as partidas
-              <ArrowRight size={15} />
-            </a>
-          </div>
-          {loading ? (
-            <Loading />
-          ) : featured ? (
-            <div
-              className={"hv-spotlight " + (!radar.length ? "hv-no-radar" : "")}
-            >
-              <div>
-                <Link
-                  className={
-                    "hv-feature " + (isLiveMatch(featured) ? "is-live" : "")
-                  }
-                  to={"/partida/" + keyOf(featured)}
-                  aria-label={`Acompanhar partida: ${featured.home.name} x ${featured.away.name}`}
-                >
-                  <div className="hv-feature-top">
-                    <span>
-                      {sports.find((s) => s.id === featured.sport)?.icon}{" "}
-                      {featured.leagueName}
-                    </span>
-                    <strong>
-                      {isLiveMatch(featured) && (
-                        <i className="live-dot" aria-hidden="true" />
-                      )}
-                      {featuredTitle}
-                    </strong>
-                  </div>
-                  <div className="hv-feature-teams">
-                    <div className="hv-feature-team">
-                      <Crest team={featured.home} large />
-                      <h3>{featured.home.name}</h3>
-                    </div>
-                    <div
-                      className={
-                        "hv-feature-score " +
-                        (featured.state === "scheduled" ? "is-scheduled" : "")
-                      }
-                    >
-                      <b>
-                        {featured.state === "scheduled"
-                          ? time(featured.date)
-                          : matchScore(featured)}
-                      </b>
-                      <small>
-                        {isLiveMatch(featured)
-                          ? matchLabel(featured)
-                          : featured.state === "finished"
-                            ? "Encerrado"
-                            : "Horário de Brasília"}
-                      </small>
-                    </div>
-                    <div className="hv-feature-team">
-                      <Crest team={featured.away} large />
-                      <h3>{featured.away.name}</h3>
-                    </div>
-                  </div>
-                  <div className="hv-feature-footer">
-                    <span>
-                      <MapPin size={13} />
-                      {featured.venue || "Detalhes da partida"}
-                    </span>
-                    <strong>
-                      {isLiveMatch(featured)
-                        ? "Acompanhar partida"
-                        : "Ver detalhes"}
-                      <ArrowRight size={15} />
-                    </strong>
-                  </div>
-                </Link>
-                <MatchBroadcasts match={featured} />
-              </div>
-              {!!radar.length && (
-                <aside className="hv-radar" aria-label="Outros jogos ao vivo">
-                  <div className="hv-radar-heading">
-                    <h3>Também está rolando</h3>
-                    <Radio size={17} />
-                  </div>
-                  {radar.map((m) => (
-                    <Link
-                      className="hv-radar-game"
-                      key={keyOf(m)}
-                      to={"/partida/" + keyOf(m)}
-                    >
-                      <span>{m.leagueName}</span>
-                      <small>{matchLabel(m)}</small>
-                      <strong>
-                        {m.home.name} × {m.away.name}
-                      </strong>
-                      <b>{matchScore(m)}</b>
-                    </Link>
-                  ))}
-                </aside>
-              )}
-            </div>
-          ) : (
-            <Empty
-              title={
-                error
-                  ? "Não foi possível atualizar o destaque"
-                  : "Nenhuma partida nesta data"
-              }
-            >
-              {error
-                ? "Tente atualizar a agenda abaixo."
-                : "Escolha outro esporte ou dia para acompanhar os jogos disponíveis."}
-            </Empty>
-          )}
-        </section>
       </div>
     </div>
   );

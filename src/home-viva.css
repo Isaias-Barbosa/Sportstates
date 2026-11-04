@@ -1630,7 +1630,8 @@ details.hv-league:not([open]) > summary {
 .home-favorite-fixture > div { display: grid; gap: 3px; min-width: 0; }
 .home-favorite-fixture small, .home-agenda-freshness, .home-favorite-team > small { color: var(--muted); font-size: .8rem; }
 .home-agenda-freshness { margin: 8px 0; }
-.home-viva .home-spotlight, .home-viva .personal-hub { margin-top: 20px; }
+.home-viva .home-spotlight { margin-bottom: 20px; }
+.home-viva .personal-hub { margin-top: 20px; }
 @media (max-width: 700px) {
   .home-viva:not(.home-favorites) .hv-hero, .home-viva:not(.home-favorites) .hv-energy-strip { display: none; }
   .home-viva .hv-main { padding-top: 14px; }
