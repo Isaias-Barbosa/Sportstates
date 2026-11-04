@@ -203,3 +203,35 @@ test("service worker acknowledges a diagnostic push only after requesting the OS
   await assert.rejects(task, /Denied/);
   assert.deepEqual(received, [true, false]);
 });
+
+test("personalized announcement links one match directly and groups link home", async () => {
+  const { validateAnnouncement } = await import("../server/web-push.mjs");
+  const draft = {
+    id: "d4e145f2-560b-48cd-afbd-19a2dad1fd82",
+    title: " Brasileirão ",
+    body: "Hoje às 21h.",
+  };
+  const first = "soccer/bra.1/123";
+  const second = "soccer/bra.1/456";
+  assert.equal(
+    validateAnnouncement({ ...draft, matches: [first, first] }).url,
+    "/partida/" + first,
+  );
+  assert.equal(
+    validateAnnouncement({ ...draft, matches: [first, second] }).url,
+    "/",
+  );
+  assert.equal(validateAnnouncement({ ...draft, matches: [] }).url, "/");
+  assert.throws(
+    () => validateAnnouncement({ ...draft, matches: ["https://other.test"] }),
+    /Partida inválida/,
+  );
+  for (const [url, method] of [
+    ["/api/admin/announcements", "POST"],
+    ["/api/me/announcements", "GET"],
+  ]) {
+    const response = { setHeader() {}, end() {} };
+    await handler({ url, method, headers: {} }, response);
+    assert.equal(response.statusCode, 401);
+  }
+});

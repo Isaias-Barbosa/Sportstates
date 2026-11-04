@@ -53,6 +53,11 @@ function database() {
         games jsonb NOT NULL, preferences jsonb NOT NULL, updated_at timestamptz NOT NULL DEFAULT now(),
         tested_at timestamptz
       )`,
+        sql`ALTER TABLE sport_push_devices ADD COLUMN IF NOT EXISTS announcements boolean NOT NULL DEFAULT false`,
+        sql`CREATE TABLE IF NOT EXISTS sport_announcements (
+          id uuid PRIMARY KEY, title text NOT NULL, body text NOT NULL, url text NOT NULL,
+          created_at timestamptz NOT NULL DEFAULT now()
+        )`,
         sql`CREATE INDEX IF NOT EXISTS sport_push_devices_owner ON sport_push_devices(user_id, updated_at)`,
         sql`CREATE TABLE IF NOT EXISTS sport_push_matches (
         key text PRIMARY KEY, snapshot jsonb, next_check timestamptz NOT NULL DEFAULT now(),
@@ -140,6 +145,7 @@ export function validatePushDevice(body, now = Date.now()) {
   });
   return {
     id: deviceId(endpoint),
+    announcements: body.announcements === true,
     subscription: { endpoint, keys: { p256dh, auth } },
     games,
     preferences: notifications,
@@ -149,13 +155,14 @@ export function validatePushDevice(body, now = Date.now()) {
 export async function savePushDevice(user, device) {
   const sql = await database();
   const rows =
-    await sql`INSERT INTO sport_push_devices (id, user_id, subscription, games, preferences)
+    await sql`INSERT INTO sport_push_devices (id, user_id, subscription, games, preferences, announcements)
     SELECT ${device.id}, ${user}, ${JSON.stringify(device.subscription)}::jsonb,
-      ${JSON.stringify(device.games)}::jsonb, ${JSON.stringify(device.preferences)}::jsonb
+      ${JSON.stringify(device.games)}::jsonb, ${JSON.stringify(device.preferences)}::jsonb, ${device.announcements}
     WHERE (SELECT count(*) FROM sport_push_devices WHERE user_id = ${user}
            AND updated_at > now() - interval '30 days' AND id <> ${device.id}) < 5
     ON CONFLICT (id) DO UPDATE SET games = EXCLUDED.games,
-      subscription = EXCLUDED.subscription, preferences = EXCLUDED.preferences, updated_at = now()
+      subscription = EXCLUDED.subscription, preferences = EXCLUDED.preferences,
+      announcements = EXCLUDED.announcements, updated_at = now()
     WHERE sport_push_devices.user_id = EXCLUDED.user_id
     RETURNING id`;
   return rows.length > 0;
@@ -323,8 +330,9 @@ export async function runPushMonitor(loadDetail, config) {
   const pending = await sql`WITH claimed AS (
     SELECT delivery.device_id, delivery.alert_id
     FROM sport_push_deliveries delivery JOIN sport_push_devices device ON device.id = delivery.device_id
-    WHERE delivery.due_at <= now() AND delivery.created_at > now() - interval '5 minutes'
-      AND delivery.attempts < 3 AND device.games ? delivery.match_key
+    WHERE delivery.due_at <= now() AND delivery.attempts < 3
+      AND ((delivery.match_key = '' AND device.announcements AND delivery.created_at > now() - interval '1 day')
+        OR (delivery.match_key <> '' AND device.games ? delivery.match_key AND delivery.created_at > now() - interval '5 minutes'))
       AND device.updated_at > now() - interval '30 days'
     ORDER BY delivery.due_at, delivery.device_id, delivery.alert_id LIMIT 30
     FOR UPDATE OF delivery SKIP LOCKED
@@ -349,7 +357,7 @@ export async function runPushMonitor(loadDetail, config) {
     );
   }
   await sql.transaction([
-    sql`DELETE FROM sport_push_deliveries WHERE created_at < now() - interval '5 minutes'`,
+    sql`DELETE FROM sport_push_deliveries WHERE created_at < now() - CASE WHEN match_key = '' THEN interval '1 day' ELSE interval '5 minutes' END`,
     sql`DELETE FROM sport_push_matches WHERE updated_at < now() - interval '3 days'`,
     sql`DELETE FROM sport_push_devices WHERE updated_at < now() - interval '30 days'`,
   ]);
@@ -358,4 +366,70 @@ export async function runPushMonitor(loadDetail, config) {
     failed: checked.filter((result) => result.status === "rejected").length,
     attemptedDeliveries: pending.length,
   };
+}
+
+export function validateAnnouncement(input) {
+  const title = typeof input.title === "string" ? input.title.trim() : "";
+  const body = typeof input.body === "string" ? input.body.trim() : "";
+  const id = input.id;
+  if (
+    typeof id !== "string" ||
+    !/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(
+      id,
+    ) ||
+    !title ||
+    title.length > 80 ||
+    !body ||
+    body.length > 240 ||
+    !Array.isArray(input.matches) ||
+    input.matches.length > 10
+  )
+    throw new Error("Informe um título, uma mensagem e até dez partidas.");
+  const matches = [...new Set(input.matches)];
+  for (const key of matches) {
+    const [sport, league, match, ...extra] =
+      typeof key === "string" ? key.split("/") : [];
+    if (
+      extra.length ||
+      !leagueFor(sport, league) ||
+      !/^\d{1,15}$/.test(match || "")
+    )
+      throw new Error("Partida inválida no informe.");
+  }
+  return {
+    id,
+    title,
+    body,
+    url: matches.length === 1 ? "/partida/" + matches[0] : "/",
+  };
+}
+
+export async function listAnnouncements() {
+  const sql = await database();
+  return sql`SELECT id, title, body, url, created_at AS "createdAt" FROM sport_announcements
+    WHERE created_at > now() - interval '30 days' ORDER BY created_at DESC, id LIMIT 20`;
+}
+
+export async function publishAnnouncement(announcement) {
+  const sql = await database();
+  const { id, title, body, url } = announcement;
+  const payload = JSON.stringify({
+    id: "announcement:" + id,
+    title,
+    body,
+    url,
+  });
+  const [result] = await sql`WITH published AS (
+    INSERT INTO sport_announcements (id, title, body, url)
+    VALUES (${id}::uuid, ${title}, ${body}, ${url})
+    ON CONFLICT DO NOTHING RETURNING id
+  ), enqueued AS (
+    INSERT INTO sport_push_deliveries (device_id, alert_id, match_key, payload)
+    SELECT device.id, ${"announcement:" + id}, '', ${payload}::jsonb
+    FROM published CROSS JOIN sport_push_devices device
+    WHERE device.announcements AND device.updated_at > now() - interval '30 days'
+    RETURNING device_id
+  )
+  SELECT EXISTS (SELECT 1 FROM published) AS created, (SELECT count(*)::integer FROM enqueued) AS queued`;
+  return result;
 }

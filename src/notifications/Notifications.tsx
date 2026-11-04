@@ -1,3 +1,4 @@
+import AnnouncementInbox from "./AnnouncementInbox";
 import { useBackgroundPush } from "./useBackgroundPush";
 import {
   useAccount,
@@ -552,11 +553,26 @@ export default function NotificationsProvider({
                 : "O envio em segundo plano ainda está indisponível."}
             </p>
           )}
+          {background.active && (
+            <label className="notification-announcement-optin">
+              <input
+                type="checkbox"
+                checked={background.announcements}
+                onChange={(event) =>
+                  background.setAnnouncements(event.target.checked)
+                }
+              />
+              Receber informes do Sportstates neste dispositivo
+            </label>
+          )}
           {background.message && <p role="status">{background.message}</p>}
           {background.testReceipt && (
             <p role="status">{background.testReceipt}</p>
           )}
         </section>
+        {open && user && (
+          <AnnouncementInbox key={user.id} onOpen={() => setOpen(false)} />
+        )}
         {message && (
           <p role="status" className="notice">
             {message}

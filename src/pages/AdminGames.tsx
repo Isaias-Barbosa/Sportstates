@@ -1,3 +1,4 @@
+import AdminAnnouncements from "../components/AdminAnnouncements";
 import { useEffect, useRef, useState } from "react";
 import AdminUsers from "../components/AdminUsers";
 import AdminCbfReviews from "../components/AdminCbfReviews";
@@ -60,7 +61,7 @@ export default function AdminGames() {
   }
   const [secret, setSecret] = useState("");
   const [section, setSection] = useState<
-    "overview" | "games" | "broadcasts" | "teams" | "leagues" | "users" | "cbf"
+    "overview" | "games" | "broadcasts" | "teams" | "leagues" | "users" | "cbf" | "announcements"
   >("overview");
   const [draftSecret, setDraftSecret] = useState("");
   const [date, setDate] = useState(today());
@@ -381,6 +382,7 @@ export default function AdminGames() {
         <button className={section === "cbf" ? "active" : ""} onClick={() => setSection("cbf")}>
           Revisões CBF
         </button>
+        <button className={section === "announcements" ? "active" : ""} onClick={() => setSection("announcements")}>Notificações</button>
       </div>
       {section === "overview" ? (
         <AdminOverview
@@ -389,6 +391,8 @@ export default function AdminGames() {
           scoresLoading={loading}
           scoresError={scoreError}
         />
+      ) : section === "announcements" ? (
+        <AdminAnnouncements secret={secret} date={date} setDate={setDate} matches={data?.date === date ? data.matches : []} loading={loading} error={scoreError} />
       ) : section === "cbf" ? (
         <AdminCbfReviews secret={secret} />
       ) : section === "users" ? (

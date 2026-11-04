@@ -6,6 +6,7 @@ import {
 import { matchKey } from "./events.mjs";
 
 const STORAGE = "sportstates:push-owner:v1";
+const ANNOUNCEMENTS = "sportstates:push-announcements:v1:";
 const ENDPOINT = "/api/me/push";
 const WORKER = "/notifications-sw.js";
 
@@ -54,6 +55,7 @@ export function useBackgroundPush(
   const { user, loading, request } = useAccount();
   const owner = user?.id;
   const [enabledOwner, setEnabledOwner] = useState(storedOwner);
+  const [announcementOwner, setAnnouncementOwner] = useState<string>();
   const [publicKey, setPublicKey] = useState<string | null>();
   const [busy, setBusy] = useState(false);
   const [message, setMessage] = useState("");
@@ -66,12 +68,45 @@ export function useBackgroundPush(
     "PushManager" in window &&
     "Notification" in window;
   const active = !!owner && enabledOwner === owner;
+  const announcements = !!owner && announcementOwner === owner;
   const payload = JSON.stringify({
+    announcements,
     games: games
       .filter((game) => game.system)
       .map((game) => ({ key: matchKey(game), date: game.date })),
     preferences,
   });
+
+  useEffect(() => {
+    if (!owner) return;
+    const load = () => {
+      try {
+        setAnnouncementOwner(
+          localStorage.getItem(ANNOUNCEMENTS + owner) === "yes"
+            ? owner
+            : undefined,
+        );
+      } catch {
+        setAnnouncementOwner(undefined);
+      }
+    };
+    load();
+    const sync = (event: StorageEvent) => {
+      if (event.key === ANNOUNCEMENTS + owner) load();
+    };
+    window.addEventListener("storage", sync);
+    return () => window.removeEventListener("storage", sync);
+  }, [owner]);
+
+  function setAnnouncements(enabled: boolean) {
+    if (!owner) return;
+    try {
+      localStorage.setItem(ANNOUNCEMENTS + owner, enabled ? "yes" : "no");
+    } catch {
+      /* The selection still applies during this session. */
+    }
+    setAnnouncementOwner(enabled ? owner : undefined);
+  }
 
   useEffect(() => {
     const syncOwner = (event: StorageEvent) => {
@@ -303,6 +338,8 @@ export function useBackgroundPush(
     busy,
     message,
     testReceipt,
+    announcements,
+    setAnnouncements,
     configure,
   };
 }

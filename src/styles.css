@@ -2872,3 +2872,12 @@ body.club-page-active { background:var(--club-page-bg, var(--canvas)); backgroun
 @media (prefers-reduced-motion: reduce) {
   .game-notification { animation: none; }
 }
+
+.notification-inbox { list-style: none; margin: 8px 0 0; padding: 0; max-height: 220px; overflow-y: auto; }
+.notification-inbox li + li { border-top: 1px solid #54718e; }
+.notification-inbox a { display: grid; gap: 4px; padding: 10px 0; text-decoration: none; }
+.notification-inbox a:hover strong { text-decoration: underline; }
+.notification-inbox a span { color: #edf6ff; overflow-wrap: anywhere; white-space: pre-line; }
+.notification-inbox time { color: #b9cbdf; font-size: 12px; }
+.notification-announcement-optin { display: flex; align-items: flex-start; gap: 8px; margin-top: 12px; font-size: 13px; }
+.admin-broadcast-modal textarea, .admin-broadcast-modal select { width: 100%; }
