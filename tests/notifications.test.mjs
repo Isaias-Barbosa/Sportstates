@@ -1,22 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { readFile } from "node:fs/promises";
-import ts from "typescript";
-const { outputText } = ts.transpileModule(
-  await readFile(
-    new URL("../src/notifications/events.ts", import.meta.url),
-    "utf8",
-  ),
-  {
-    compilerOptions: {
-      target: ts.ScriptTarget.ES2022,
-      module: ts.ModuleKind.ESNext,
-    },
-  },
-);
-const { detectAlerts, selectGame } = await import(
-  "data:text/javascript;base64," + Buffer.from(outputText).toString("base64")
-);
+import { detectAlerts, selectGame } from "../src/notifications/events.mjs";
 const fixture = (sport = "soccer") => ({
   match: {
     id: "1",

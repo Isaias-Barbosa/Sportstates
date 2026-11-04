@@ -1,5 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import { configuredAlerts, allowAlert } from "../src/notifications/preferences.mjs";
 import { readFile } from "node:fs/promises";
 import ts from "typescript";
 const compile = async (path) =>
@@ -11,12 +12,6 @@ const compile = async (path) =>
   }).outputText;
 const url = (code) =>
   "data:text/javascript;base64," + Buffer.from(code).toString("base64");
-const eventsUrl = url(await compile("../src/notifications/events.ts"));
-const code = (await compile("../src/notifications/preferences.ts")).replace(
-  /from ['"]\.\/events['"]/,
-  "from " + JSON.stringify(eventsUrl),
-);
-const { configuredAlerts, allowAlert } = await import(url(code));
 const p = {
   mode: "important",
   score: true,

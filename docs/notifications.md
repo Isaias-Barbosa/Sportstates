@@ -1,15 +1,50 @@
-# Notificações — primeira fase
+# Notificações do Sportstates
 
-O sino nos cards da home e no placar da partida abre a ativação. O sino da navbar gerencia os jogos. Sem conta, a escolha vale neste navegador: um esporte por vez, até 10 partidas. Trocar de esporte exige o botão explícito que substitui a seleção anterior. Clicar num sino já ativo remove a partida. As preferências são locais e sincronizadas entre abas.
+O sino de cada partida adiciona o jogo à lista de acompanhamento do navegador.
+O sino da navegação abre as preferências. Sem conta, os cards funcionam com
+até dez jogos de um esporte. Com conta, é possível acompanhar até 30 jogos
+de vários esportes e sincronizar as preferências de alerta.
 
-O monitor consulta os detalhes pela API existente a cada 30 segundos, reutilizando seu cache. Jogos futuros só começam a ser consultados cinco minutos antes do início; partidas encerradas param após a última consulta; seleções com mais de 48 horas não são consultadas. Web Locks mantém um único monitor por origem quando disponível. BroadcastChannel replica os cards entre abas, sem duplicar as notificações do sistema.
+## Alertas com o navegador minimizado
 
-A primeira resposta é uma referência: nunca dispara lances anteriores. São comparados placares e incidentes de respostas novas, descartando respostas stale. Após pausa superior a dois minutos, reconstrói a referência sem enviar um lote histórico. IDs deduplicam alertas durante a sessão; recarregar reconstrói a referência. Quedas e correções de placar não são gols.
+1. Entre na conta, abra o sino da navegação e selecione **Ativar neste dispositivo**.
+2. Autorize as notificações do navegador. Em iPhone e iPad, adicione o
+   Sportstates à Tela de Início e abra-o por esse ícone.
+3. Ao acompanhar um jogo, escolha **Ativar notificações deste jogo**.
+   **Receber apenas cards neste site** mantém esse jogo fora do envio em segundo plano.
+4. **Enviar teste** verifica o envio para este dispositivo. Para revogar a inscrição,
+   use **Desativar neste dispositivo**.
 
-Futebol: gols (nome do jogador quando informado nos incidentes), cartões vermelhos e segundo amarelo com expulsão, entrada na prorrogação e nos pênaltis. Conversões de disputa de pênaltis não são gols regulares. Basquete: aumento de pontos, com autor quando informado. Futebol americano: pontos; beisebol: corridas; hóquei: gols. Vôlei: pontos por set e sets conquistados. Tênis: games e sets; a fonte atual não oferece todos os pontos individuais. Vários lances entre duas consultas podem resultar num aviso agregado. O atraso depende do fornecedor e do intervalo do navegador.
+O Web Push usa o serviço do navegador e o sistema operacional controla a
+entrega. O som do push usa a configuração do dispositivo. Os tons escolhidos
+no Sportstates são reproduzidos pelos cards com o site aberto. A implementação
+é para o site no navegador e para sua versão instalada na Tela de Início.
 
-Desktop: cards de 18 segundos com ícone, título, jogador quando disponível, equipe e link da partida. Há no máximo quatro cards simultâneos e opção de fechar. Celulares e abas ocultas: Notification API com permissão, preferindo ServiceWorkerRegistration.showNotification. Se indisponível ou negada, os cards continuam funcionando. A permissão só é solicitada no botão de ativar notificações. O botão “Receber apenas cards neste site” ativa o acompanhamento sem solicitar permissão do sistema e não emite avisos nativos. O service worker atende cliques e abre apenas URLs da própria origem; não intercepta requisições, não recebe push e não armazena dados esportivos.
+## Configuração do ambiente
 
-**Esta fase exige o site aberto.** Não garante execução no celular com a tela bloqueada ou o navegador suspenso. No iOS a API pode exigir instalação na tela inicial; não se promete compatibilidade universal. Notificações com o site fechado exigem uma etapa separada com Web Push, inscrições persistentes, VAPID e um monitor no servidor. Não foi implementada entrega em segundo plano no servidor.
+- Use HTTPS, um banco Neon com permissão para criar as tabelas de push e as
+  variáveis da seção Web Push de `.env.example`. Gere as chaves com
+  `npx web-push generate-vapid-keys` e mantenha a chave privada no servidor.
+- Configure um agendador para chamar `GET /api/push/monitor` a cada minuto,
+  com o cabeçalho `Authorization: Bearer <CRON_SECRET>`. Para Vercel Cron,
+  o agendamento é `* * * * *` no plano Pro ou superior. O plano Hobby exige
+  um agendador externo para essa frequência. O projeto não inclui uma regra
+  automática no `vercel.json`, pois ela impediria o deploy no plano Hobby.
+- Depois da publicação, confira se o monitor responde 200 e se o campo
+  `failed` fica em zero. Use **Enviar teste** em um aparelho e, com o
+  navegador minimizado, acompanhe uma partida real para verificar a entrega
+  de lances pelo agendador. O botão de teste confirma a aceitação pelo
+  serviço de push e a confirmação visual depende do aparelho.
 
-Validação: testes de diferenças de placar, autoria, expulsões, fases, dados antigos, correções, múltiplos esportes, sets e encerramento em `tests/notifications.test.mjs`. Build TypeScript/Vite e conferência do fluxo de preferências na interface. A entrega nativa depende do dispositivo e da permissão do usuário e precisa de teste num aparelho real.
+O monitor agrupa partidas entre dispositivos, consulta até 12 partidas por
+execução e tenta entregar até 30 mensagens enfileiradas por ciclo. A primeira
+amostra é a referência. Depois de cinco minutos sem uma amostra nova, a
+referência é reconstruída. A fila evita duplicação de lances durante a janela
+de entrega, descarta inscrições expiradas e tenta reenviar falhas transitórias.
+A entrega depende da cobertura da partida, do agendamento e da capacidade
+disponível na fila. Inscrições sem atualização por 30 dias expiram.
+
+Com o site aberto, o monitor local continua consultando os detalhes a cada
+30 segundos. Os dois fluxos usam as mesmas regras para detectar gols, pontos,
+cartões, início, fim e mudanças de período. A experiência em segundo plano
+exige chaves, banco e monitor configurados no ambiente publicado.
