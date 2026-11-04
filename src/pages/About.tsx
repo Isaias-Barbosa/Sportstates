@@ -126,8 +126,8 @@ export default function About() {
         <p>
           Futebol: Brasileirão A/B, Premier League, LaLiga, Serie A, Bundesliga,
           Ligue 1 e Champions League. Basquete: NBA, WNBA e Novo Basquete
-          Brasil. Também NFL, MLB e NHL. Judô está no catálogo, ainda sem fonte
-          integrada de placares.
+          Brasil. Também NFL, MLB e NHL. A Fórmula 1 tem calendário e resultados,
+          e Outros Esportes reúne eventos com programação oficial.
         </p>
       </div>
     </>

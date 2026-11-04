@@ -1,3 +1,4 @@
+import { f1Calendar, f1Result } from "./f1.mjs";
 import { leagueStatisticsConfig, leagueRanking } from "./league-statistics.mjs";
 import { findGeRoundsForDate, geRoundLoader } from "./ge-date-index.mjs";
 import { normalizeGeSerieAFixtures } from "./ge-fixtures.mjs";
@@ -626,7 +627,7 @@ export async function route(url) {
     return [
       200,
       {
-        sports: SPORTS.map((s) => ({
+        sports: SPORTS.filter((s) => s.id !== "judo").map((s) => ({
           ...s,
           leagues: leagueItems(s)
             .filter(([id]) => s.id !== "soccer" || visible(id))
@@ -671,6 +672,30 @@ export async function route(url) {
     return [200, await tableRankings()];
   if (url.pathname === "/api/tennis-athletes")
     return [200, await atpRankings()];
+  if (url.pathname === "/api/f1") {
+    const season = Number(dayInBrazil(new Date()).slice(0, 4));
+    const round = q.get("round");
+    if (round !== null && round !== "last" && !/^(?:[1-9]|[12]\d|30)$/.test(round))
+      return [400, { error: "Etapa de Fórmula 1 inválida." }];
+    const load = (url) => json(url, {}, 5000);
+    const hour = 60 * 60_000;
+    try {
+      const result = await cached(
+        `f1:v1:${season}:${round ?? "calendar"}`,
+        (value) => value === null ? 60_000 : hour,
+        () => round === null ? f1Calendar(season, load) : f1Result(season, round, load),
+        24 * hour,
+      );
+      return [200, {
+        season,
+        ...(round === null ? { races: result.value } : { result: result.value }),
+        stale: result.stale,
+        source: "Jolpica F1",
+      }];
+    } catch {
+      return [503, { error: "A fonte de Fórmula 1 está temporariamente indisponível." }];
+    }
+  }
   if (url.pathname === "/api/league-statistics") {
     const sport = q.get("sport");
     const league = q.get("league");
