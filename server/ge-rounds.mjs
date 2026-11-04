@@ -24,7 +24,7 @@ function teamKeys(team = {}) {
     .filter(Boolean);
 }
 
-function sameTeam(first, second) {
+export function sameGeTeam(first, second) {
   const secondKeys = new Set(teamKeys(second));
   return teamKeys(first).some((key) => secondKeys.has(key));
 }
@@ -42,8 +42,8 @@ export function enrichBrazilSerieARounds(matches, rounds) {
       (game) =>
         typeof game?.data_realizacao === "string" &&
         game.data_realizacao.slice(0, 10) === matchDay &&
-        sameTeam(match.home, game.equipes?.mandante) &&
-        sameTeam(match.away, game.equipes?.visitante),
+        sameGeTeam(match.home, game.equipes?.mandante) &&
+        sameGeTeam(match.away, game.equipes?.visitante),
     );
     if (!fixture) return match;
     return {
