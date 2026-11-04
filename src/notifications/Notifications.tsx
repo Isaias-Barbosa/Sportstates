@@ -520,7 +520,14 @@ export default function NotificationsProvider({
                 disabled={background.busy || !background.publicKey}
                 onClick={() => void background.configure("test")}
               >
-                Enviar teste
+                Testar envio do servidor
+              </button>
+              <button
+                className="notification-action notification-cards-only"
+                disabled={background.busy}
+                onClick={() => void background.configure("local")}
+              >
+                Testar aviso neste dispositivo
               </button>
               <button
                 className="notification-action notification-cards-only"
@@ -546,6 +553,9 @@ export default function NotificationsProvider({
             </p>
           )}
           {background.message && <p role="status">{background.message}</p>}
+          {background.testReceipt && (
+            <p role="status">{background.testReceipt}</p>
+          )}
         </section>
         {message && (
           <p role="status" className="notice">
