@@ -73,3 +73,52 @@ test("F1 exposes the season calendar and race classification independently", asy
   assert.equal(latest.result.race.round, 2);
   assert.equal(calls.length, 2);
 });
+
+test("F1 championship standings preserve team IDs and tolerate a provider failure", async (t) => {
+  const season = dayInBrazil(new Date()).slice(0, 4);
+  const calls = [];
+  t.mock.method(globalThis, "fetch", async (input) => {
+    const url = new URL(input);
+    calls.push(url.pathname);
+    if (url.pathname.endsWith("/driverstandings/"))
+      return new Response(null, { status: 503 });
+    return Response.json({
+      MRData: {
+        StandingsTable: {
+          StandingsLists: [
+            {
+              season,
+              round: "19",
+              ConstructorStandings: [
+                {
+                  position: "2",
+                  points: "504",
+                  wins: "2",
+                  Constructor: { constructorId: "ferrari", name: "Ferrari" },
+                },
+              ],
+            },
+          ],
+        },
+      },
+    });
+  });
+  const endpoint = new URL("https://sportstates.test/api/f1-standings");
+  const [[status, championship], [duplicateStatus, duplicate]] =
+    await Promise.all([route(endpoint), route(endpoint)]);
+  assert.equal(status, 200);
+  assert.equal(duplicateStatus, 200);
+  assert.deepEqual(duplicate, championship);
+  assert.equal(championship.season, Number(season));
+  assert.equal(championship.constructors.round, 19);
+  assert.deepEqual(championship.constructors.entries[0], {
+    id: "ferrari",
+    name: "Ferrari",
+    position: 2,
+    points: 504,
+    wins: 2,
+    teams: undefined,
+  });
+  assert.equal(championship.drivers, null);
+  assert.equal(calls.length, 2);
+});

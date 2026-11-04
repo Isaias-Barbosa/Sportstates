@@ -34,7 +34,7 @@ type Race = {
   locality: string;
   country: string;
 };
-type Calendar = {
+export type F1Calendar = {
   season: number;
   races: Race[];
   stale: boolean;
@@ -64,6 +64,34 @@ function raceDate(race: Race) {
     dateStyle: "short",
     timeStyle: "short",
   }).format(new Date(race.startsAt));
+}
+
+export function upcomingF1Races(races: Race[]) {
+  const date = today();
+  return races.filter((race) =>
+    race.startsAt ? Date.parse(race.startsAt) > Date.now() : race.date >= date,
+  );
+}
+
+export function F1RaceList({ races }: { races: Race[] }) {
+  return (
+    <ol className="sport-agenda-races">
+      {races.map((race) => (
+        <li key={race.round}>
+          <span className="league-ranking-position">{race.round}</span>
+          <div>
+            <strong>{race.name}</strong>
+            <small>{raceDate(race)}</small>
+            <small>
+              {[race.circuit, race.locality, race.country]
+                .filter(Boolean)
+                .join(" · ")}
+            </small>
+          </div>
+        </li>
+      ))}
+    </ol>
+  );
 }
 
 function RaceResult({ round }: { round: string }) {
@@ -116,7 +144,7 @@ function RaceResult({ round }: { round: string }) {
 }
 
 function FormulaOne() {
-  const { data, error, loading, refresh } = useApi<Calendar>("/api/f1", 0);
+  const { data, error, loading, refresh } = useApi<F1Calendar>("/api/f1", 0);
   const [round, setRound] = useState("last");
   if (loading) return <Loading />;
   if (error)
@@ -131,13 +159,8 @@ function FormulaOne() {
         A agenda será exibida quando a fonte publicar as etapas.
       </Empty>
     );
-  const date = today();
-  const upcoming = data.races.filter((race) =>
-    race.startsAt ? Date.parse(race.startsAt) > Date.now() : race.date >= date,
-  );
-  const past = data.races
-    .filter((race) => !upcoming.includes(race))
-    .reverse();
+  const upcoming = upcomingF1Races(data.races);
+  const past = data.races.filter((race) => !upcoming.includes(race)).reverse();
   return (
     <>
       {data.stale && <Notice>Exibindo o calendário em cache.</Notice>}
@@ -147,22 +170,7 @@ function FormulaOne() {
           <h2 id="f1-calendar">Próximos Grandes Prêmios</h2>
           <p>Horários de Brasília · Fonte {data.source}</p>
           {upcoming.length ? (
-            <ol className="sport-agenda-races">
-              {upcoming.map((race) => (
-                <li key={race.round}>
-                  <span className="league-ranking-position">{race.round}</span>
-                  <div>
-                    <strong>{race.name}</strong>
-                    <small>{raceDate(race)}</small>
-                    <small>
-                      {[race.circuit, race.locality, race.country]
-                        .filter(Boolean)
-                        .join(" · ")}
-                    </small>
-                  </div>
-                </li>
-              ))}
-            </ol>
+            <F1RaceList races={upcoming} />
           ) : (
             <p>O calendário da temporada chegou ao fim.</p>
           )}
@@ -290,7 +298,22 @@ export default function SportAgenda({
           </Link>
         ))}
       </nav>
-      {sport === "f1" ? <FormulaOne /> : <OtherSports />}
+      {sport === "f1" ? (
+        <>
+          <nav
+            className="sport-agenda-nav"
+            aria-label="Campeonato de Fórmula 1"
+          >
+            <Link to="/classificacoes?sport=f1">
+              Classificação do campeonato
+            </Link>
+            <Link to="/times?sport=f1">Equipes da Fórmula 1</Link>
+          </nav>
+          <FormulaOne />
+        </>
+      ) : (
+        <OtherSports />
+      )}
     </div>
   );
 }

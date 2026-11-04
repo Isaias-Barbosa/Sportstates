@@ -1,3 +1,4 @@
+import { F1SportCard, F1TeamsPage } from "./F1Pages";
 import { AthletesContent, type AthletesData } from "./TennisAthletesPage";
 import { leagueSelection } from "../league-navigation";
 import { Link, useSearchParams } from "react-router-dom";
@@ -16,6 +17,11 @@ const teamCount = (count: number) =>
   `${count} ${count === 1 ? "time" : "times"}`;
 
 export default function TeamsPage() {
+  const [params] = useSearchParams();
+  return params.get("sport") === "f1" ? <F1TeamsPage /> : <OtherTeamsPage />;
+}
+
+function OtherTeamsPage() {
   const { data, error, loading, refresh } = useApi<{ teams: ClubProfile[] }>(
     "/api/teams",
     60000,
@@ -126,6 +132,7 @@ export default function TeamsPage() {
                 </small>
               </button>
             ))}
+            <F1SportCard teams />
           </div>
           {individual ? (
             <AthletesContent

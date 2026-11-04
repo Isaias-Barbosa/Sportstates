@@ -1,4 +1,4 @@
-import { f1Calendar, f1Result } from "./f1.mjs";
+import { f1Calendar, f1Result, f1Standings } from "./f1.mjs";
 import { leagueStatisticsConfig, leagueRanking } from "./league-statistics.mjs";
 import { findGeRoundsForDate, geRoundLoader } from "./ge-date-index.mjs";
 import { normalizeGeSerieAFixtures } from "./ge-fixtures.mjs";
@@ -672,6 +672,24 @@ export async function route(url) {
     return [200, await tableRankings()];
   if (url.pathname === "/api/tennis-athletes")
     return [200, await atpRankings()];
+  if (url.pathname === "/api/f1-standings") {
+    const season = Number(dayInBrazil(new Date()).slice(0, 4));
+    const hour = 60 * 60_000;
+    const [constructors, drivers] = await Promise.allSettled(
+      ["constructor", "driver"].map((category) => cached(
+        `f1:standings:v1:${season}:${category}`, hour,
+        () => f1Standings(season, category, (url) => json(url, {}, 5000)),
+        24 * hour,
+      )),
+    );
+    if (constructors.status === "rejected" && drivers.status === "rejected")
+      return [503, { error: "Classificações de Fórmula 1 temporariamente indisponíveis." }];
+    const standings = (result) => result.status === "fulfilled"
+      ? { ...result.value.value, stale: result.value.stale } : null;
+    return [200, {
+      season, source: "Jolpica F1", constructors: standings(constructors), drivers: standings(drivers),
+    }];
+  }
   if (url.pathname === "/api/f1") {
     const season = Number(dayInBrazil(new Date()).slice(0, 4));
     const round = q.get("round");
