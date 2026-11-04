@@ -1,4 +1,5 @@
 import { pushConfig, pushCronAuthorized, validatePushDevice, savePushDevice, removePushDevice, testPushDevice, runPushMonitor } from "./web-push.mjs";
+import { listAnnouncements, publishAnnouncement, validateAnnouncement } from "./web-push.mjs";
 import { f1Calendar, f1Result, f1Standings } from "./f1.mjs";
 import { leagueStatisticsConfig, leagueRanking } from "./league-statistics.mjs";
 import { findGeRoundsForDate, geRoundLoader } from "./ge-date-index.mjs";
@@ -1391,6 +1392,40 @@ export async function handler(req, res) {
     requestUrl.searchParams.has("path")
   )
     requestUrl.pathname = "/api/" + requestUrl.searchParams.get("path");
+
+  if (["/api/me/announcements", "/api/admin/announcements"].includes(requestUrl.pathname)) {
+    res.setHeader("Cache-Control", "private, no-store");
+    res.setHeader("Vercel-CDN-Cache-Control", "no-store");
+    res.setHeader("Vary", "Authorization");
+    const reply = (status, body) => {
+      res.statusCode = status;
+      return res.end(JSON.stringify(body));
+    };
+    const admin = requestUrl.pathname === "/api/admin/announcements";
+    const authorized = admin
+      ? await adminAuthorized(req.headers?.authorization)
+      : await userIdentity(req.headers?.authorization);
+    if (!authorized) return reply(401, { error: "Acesso restrito." });
+    if (req.method === "GET") {
+      try {
+        return reply(200, { announcements: await listAnnouncements() });
+      } catch {
+        return reply(503, { error: "Informes temporariamente indisponíveis." });
+      }
+    }
+    if (!admin || req.method !== "POST") return reply(405, { error: "Método inválido." });
+    let announcement;
+    try {
+      announcement = validateAnnouncement(await requestJson(req));
+    } catch (error) {
+      return reply(400, { error: error.message });
+    }
+    try {
+      return reply(200, await publishAnnouncement(announcement));
+    } catch {
+      return reply(503, { error: "Não foi possível publicar o informe. Tente novamente." });
+    }
+  }
 
   if (["/api/push/config", "/api/push/monitor", "/api/me/push"].includes(requestUrl.pathname)) {
     res.setHeader("Cache-Control", "private, no-store");
