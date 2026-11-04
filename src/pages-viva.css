@@ -2388,3 +2388,20 @@ summary:focus-visible {
 @media (max-width: 780px) {
   .sport-agenda-grid { grid-template-columns: minmax(0, 1fr); }
 }
+
+.f1-team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr));
+  gap: 14px;
+}
+.f1-team-card { display: grid; gap: 8px; color: var(--text); text-decoration: none; }
+.f1-team-card:hover { border-color: var(--green); }
+.f1-team-card span { color: var(--muted); font-size: .85rem; }
+.f1-team-card img, .f1-profile-car { width: 100%; aspect-ratio: 3; object-fit: contain; }
+.f1-profile-facts { display: flex; flex-wrap: wrap; gap: 12px 24px; margin-block: 12px; }
+.f1-profile-facts dt { font-size: .8rem; color: var(--muted); }
+.f1-profile-facts dd { margin: 3px 0 0; font-size: 1.15rem; font-weight: 750; }
+.f1-championship-table td:first-child { text-align: left; }
+.f1-championship-table small { display: block; color: var(--muted); }
+.f1-championship-table a { color: inherit; }
+.standings-sports a.sport-card { text-decoration: none; }

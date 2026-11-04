@@ -83,3 +83,56 @@ export async function f1Result(season, round, json) {
   });
   return { race: event, drivers };
 }
+
+export async function f1Standings(season, category, json) {
+  const payload = await json(
+    `${API}/${season}/${category}standings/?limit=${LIMIT}`,
+  );
+  const lists = payload?.MRData?.StandingsTable?.StandingsLists;
+  if (!Array.isArray(lists) || lists.length > 1)
+    throw new Error("Classificação de Fórmula 1 inválida.");
+  if (!lists.length) return { round: null, entries: [] };
+  const [list] = lists;
+  const round = Number(list.round);
+  const driver = category === "driver";
+  const rows = driver ? list.DriverStandings : list.ConstructorStandings;
+  if (
+    String(list.season) !== String(season) ||
+    !Number.isInteger(round) ||
+    round < 1 ||
+    round > LIMIT ||
+    !Array.isArray(rows) ||
+    rows.length > LIMIT
+  )
+    throw new Error("Classificação de Fórmula 1 inválida.");
+  const entries = rows.map((row) => {
+    const id = driver ? row.Driver?.driverId : row.Constructor?.constructorId;
+    const name = driver
+      ? [row.Driver?.givenName, row.Driver?.familyName]
+          .filter(Boolean)
+          .join(" ")
+      : row.Constructor?.name;
+    const position = Number(row.position);
+    const points = Number(row.points);
+    const wins = Number(row.wins);
+    if (
+      !/^[a-z0-9_]+$/.test(id || "") ||
+      !name ||
+      !Number.isInteger(position) ||
+      position < 1 ||
+      !Number.isFinite(points) ||
+      !Number.isInteger(wins) ||
+      wins < 0
+    )
+      throw new Error("Entrada inválida na classificação de Fórmula 1.");
+    const teams =
+      driver && Array.isArray(row.Constructors)
+        ? row.Constructors.map(({ constructorId, name }) => ({
+            id: constructorId,
+            name,
+          }))
+        : undefined;
+    return { id, name, position, points, wins, teams };
+  });
+  return { round, entries: entries.sort((a, b) => a.position - b.position) };
+}

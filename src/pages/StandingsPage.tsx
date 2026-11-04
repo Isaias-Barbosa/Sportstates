@@ -1,3 +1,4 @@
+import { F1SportCard, F1StandingsPage } from "./F1Pages";
 import { useSearchParams } from "react-router-dom";
 import { standingsSelection } from "../league-navigation";
 import { ChevronDown, Trophy } from "lucide-react";
@@ -8,6 +9,11 @@ import LeagueOverview from "../components/LeagueOverview";
 import StandingsTable from "../components/StandingsTable";
 
 export default function StandingsPage() {
+  const [params] = useSearchParams();
+  return params.get("sport") === "f1" ? <F1StandingsPage /> : <OtherStandingsPage />;
+}
+
+function OtherStandingsPage() {
   const { data, loading, error, refresh } = useApi<CompetitionCatalog>(
     "/api/competitions",
     0,
@@ -79,6 +85,7 @@ export default function StandingsPage() {
                 </small>
               </button>
             ))}
+            <F1SportCard />
           </div>
           {sport === "soccer" && (
             <div className="standings-filters">
