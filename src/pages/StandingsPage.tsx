@@ -241,7 +241,6 @@ export default function StandingsPage() {
                     </div>
                     <LeagueOverview
                       key={`${sport}/${league}/${currentYear}`}
-                      name={selectedName}
                       sport={sport}
                       league={league}
                       season={currentYear}
@@ -267,10 +266,28 @@ export default function StandingsPage() {
                     </p>
                   )}
                   {selectedCompetition?.provider === "fef" ? (
-                    <section
-                      className="league-table-panel"
-                      aria-label={`Fases de ${selectedName}`}
+                    <details
+                      className="league-table-panel league-disclosure"
+                      open
                     >
+                      <summary className="league-panel-heading league-panel-toggle">
+                        <span className="league-panel-icon">
+                          <Trophy size={20} aria-hidden="true" />
+                        </span>
+                        <span className="league-panel-copy">
+                          <span className="league-panel-title">
+                            Classificação e fases
+                          </span>
+                          <span className="league-panel-subtitle">
+                            {selectedName}
+                          </span>
+                        </span>
+                        <ChevronDown
+                          className="league-panel-chevron"
+                          size={19}
+                          aria-hidden="true"
+                        />
+                      </summary>
                       {selectedCompetition.tournamentSource && (
                         <a
                           className="standings-link"
@@ -286,11 +303,10 @@ export default function StandingsPage() {
                         sport={sport}
                         league={league}
                       />
-                    </section>
+                    </details>
                   ) : (
                     <LeagueOverview
                       key={`${sport}/${league}`}
-                      name={selectedName}
                       sport={sport}
                       league={league}
                       statistics={selectedCompetition?.statistics}

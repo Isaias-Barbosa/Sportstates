@@ -571,25 +571,86 @@ summary:focus-visible {
   background: var(--panel);
   overflow: hidden;
 }
-.league-panel-heading {
-  padding: 20px;
-  border-bottom: 1px solid var(--border);
+.league-panel-toggle {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  padding: clamp(12px, 2vw, 20px);
   background: var(--surface);
+  cursor: pointer;
+  list-style: none;
 }
-.league-panel-heading .eyebrow {
+.league-panel-toggle::-webkit-details-marker { display: none; }
+.league-disclosure[open] > .league-panel-toggle { border-bottom: 1px solid var(--border); }
+.league-panel-toggle:hover { background: color-mix(in srgb, var(--green) 6%, var(--surface)); }
+.league-panel-toggle:focus-visible,
+.league-ranking-metrics button:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: -2px;
+}
+.league-panel-icon {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 11px;
   color: var(--green);
-  font-size: 9px;
+  background: color-mix(in srgb, var(--green) 12%, var(--surface));
 }
-.league-panel-heading h3 {
-  font-size: 20px;
-  margin-top: 8px;
-  letter-spacing: -0.6px;
+.league-panel-copy { display: grid; gap: 4px; }
+.league-panel-title { color: var(--text); font-size: clamp(1rem, 2vw, 1.2rem); font-weight: 750; }
+.league-panel-subtitle { color: var(--muted); font-size: .8rem; line-height: 1.35; }
+.league-panel-chevron { color: var(--muted); }
+.league-disclosure[open] > .league-panel-toggle .league-panel-chevron { transform: rotate(180deg); }
+.league-statistics { grid-column: 1 / -1; }
+.league-statistics-content { padding: clamp(12px, 2vw, 20px); }
+.league-ranking-meta { display: flex; flex-wrap: wrap; gap: 6px 14px; color: var(--muted); font-size: .8rem; }
+.league-ranking-metrics { min-width: 0; margin: 16px 0; padding: 0; border: 0; }
+.league-ranking-metrics legend { margin-bottom: 8px; font-size: .85rem; font-weight: 650; }
+.league-ranking-metrics > div { display: flex; flex-wrap: wrap; gap: 8px; }
+.league-ranking-metrics button {
+  padding: 9px 13px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--text);
+  font-size: .82rem;
+  cursor: pointer;
 }
-.league-panel-heading p {
+.league-ranking-metrics button:hover,
+.league-ranking-metrics button[aria-pressed="true"] { border-color: var(--green); }
+.league-ranking-metrics button[aria-pressed="true"] {
+  background: color-mix(in srgb, var(--green) 14%, var(--surface));
+  font-weight: 700;
+}
+.league-ranking { width: 100%; border-collapse: collapse; }
+.league-ranking :is(th, td) {
+  padding: 10px 8px;
+  border-bottom: 1px solid var(--border);
+  overflow-wrap: anywhere;
+  text-align: left;
+}
+.league-ranking thead th { color: var(--muted); font-size: .76rem; }
+.league-ranking :is(td, th:last-child) { text-align: right; }
+.league-ranking tbody th { font-size: .9rem; font-weight: 600; }
+.league-ranking td { font-variant-numeric: tabular-nums; }
+.league-ranking tbody tr:first-child { background: color-mix(in srgb, var(--green) 8%, var(--panel)); }
+.league-ranking tbody tr:last-child > * { border-bottom: 0; }
+.league-ranking-athlete { display: flex; align-items: center; gap: 8px; }
+.league-ranking-position {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 7px;
+  background: var(--surface);
   color: var(--muted);
-  font-size: 11px;
-  margin-top: 7px;
+  font-size: .75rem;
+  font-variant-numeric: tabular-nums;
 }
+.league-ranking tr:first-child .league-ranking-position { color: var(--green); }
 .league-table-panel > .standings-result {
   margin: 0;
   padding: 14px;

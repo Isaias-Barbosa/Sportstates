@@ -1,3 +1,4 @@
+import { BarChart3, ChevronDown } from "lucide-react";
 import { useId, useState } from "react";
 import { useApi } from "../hooks";
 import type { LeagueStatisticsConfig } from "../types";
@@ -33,14 +34,33 @@ function RankingList({ url }: { url: string }) {
         </Notice>
       )}
       {data.leaders.length ? (
-        <ul className="league-ranking">
-          {data.leaders.map((athlete) => (
-            <li key={athlete.id}>
-              <span>{athlete.name}</span>
-              <strong>{format.format(athlete.value)}</strong>
-            </li>
-          ))}
-        </ul>
+        <table className="league-ranking">
+          <thead>
+            <tr>
+              <th scope="col">Atleta</th>
+              <th scope="col">{data.metric.label}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {data.leaders.map((athlete, index) => (
+              <tr key={athlete.id}>
+                <th scope="row">
+                  <span className="league-ranking-athlete">
+                    {!data.partial && (
+                      <span className="league-ranking-position">
+                        {index + 1}
+                      </span>
+                    )}
+                    <span>{athlete.name}</span>
+                  </span>
+                </th>
+                <td>
+                  <strong>{format.format(athlete.value)}</strong>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       ) : (
         <p>Nenhum atleta disponível para este ranking.</p>
       )}
@@ -57,50 +77,59 @@ export default function LeagueStatistics({
   league: string;
   config: LeagueStatisticsConfig;
 }) {
-  const heading = useId();
-  const select = useId();
+  const content = useId();
   const [open, setOpen] = useState(false);
   const [metric, setMetric] = useState(config.metrics[0].id);
   const params = new URLSearchParams({ sport, league, metric });
   const url = "/api/league-statistics?" + params.toString();
   return (
-    <section
-      className="league-statistics league-table-panel"
-      aria-labelledby={heading}
+    <details
+      className="league-statistics league-table-panel league-disclosure"
+      onToggle={(event) => setOpen(event.currentTarget.open)}
     >
-      <div className="league-panel-heading">
-        <h3 id={heading}>Estatísticas</h3>
-        <p>
-          Edição {config.season} · {config.scope} · Fonte {config.source}
-        </p>
-      </div>
-      <button
-        type="button"
-        className="quiet-button"
-        aria-expanded={open}
-        onClick={() => setOpen(!open)}
-      >
-        {open ? "Ocultar rankings" : "Ver rankings"}
-      </button>
+      <summary className="league-panel-heading league-panel-toggle">
+        <span className="league-panel-icon">
+          <BarChart3 size={20} aria-hidden="true" />
+        </span>
+        <span className="league-panel-copy">
+          <span className="league-panel-title">Estatísticas</span>
+          <span className="league-panel-subtitle">
+            Rankings de atletas · Edição {config.season}
+          </span>
+        </span>
+        <ChevronDown
+          className="league-panel-chevron"
+          size={19}
+          aria-hidden="true"
+        />
+      </summary>
       {open && (
-        <>
-          <div className="standings-filter">
-            <label htmlFor={select}>Ranking de atletas</label>
-            <select
-              id={select}
-              value={metric}
-              onChange={(event) => setMetric(event.target.value)}
-            >
-              {config.metrics.map(({ id, label }) => (
-                <option key={id} value={id}>
-                  {label}
-                </option>
-              ))}
-            </select>
+        <div className="league-statistics-content">
+          <div className="league-ranking-meta">
+            <span>{config.scope}</span>
+            <span>Fonte {config.source}</span>
           </div>
-          <RankingList key={url} url={url} />
-        </>
+          <fieldset className="league-ranking-metrics">
+            <legend>Escolha uma estatística</legend>
+            <div>
+              {config.metrics.map(({ id, label }) => (
+                <button
+                  key={id}
+                  type="button"
+                  aria-pressed={id === metric}
+                  aria-controls={content}
+                  onClick={() => setMetric(id)}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+          </fieldset>
+          <div id={content} aria-live="polite">
+            <RankingList key={url} url={url} />
+          </div>
+        </div>
       )}
-    </section>
+    </details>
   );
 }
