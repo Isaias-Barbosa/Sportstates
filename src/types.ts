@@ -280,6 +280,14 @@ export type MatchMedia = {
   source: string;
 };
 
+export type LeagueStatisticsConfig = {
+  season: number;
+  phase: number;
+  scope: string;
+  source: string;
+  metrics: { id: string; label: string; decimals: number }[];
+};
+
 export type CompetitionCatalog = {
   sports: {
     id: string;
@@ -294,6 +302,7 @@ export type CompetitionCatalog = {
       tournamentStarted?: boolean;
       provider?: "fef";
       tournamentSource?: string;
+      statistics?: LeagueStatisticsConfig;
     }[];
   }[];
   soccerRegions?: {

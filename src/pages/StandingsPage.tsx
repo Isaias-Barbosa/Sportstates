@@ -245,6 +245,7 @@ export default function StandingsPage() {
                       sport={sport}
                       league={league}
                       season={currentYear}
+                      statistics={selectedCompetition?.statistics}
                     />
                   </div>
                 )}
@@ -292,6 +293,7 @@ export default function StandingsPage() {
                       name={selectedName}
                       sport={sport}
                       league={league}
+                      statistics={selectedCompetition?.statistics}
                     />
                   )}
                 </>

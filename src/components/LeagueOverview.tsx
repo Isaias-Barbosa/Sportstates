@@ -3,9 +3,10 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { CalendarDays, ChevronLeft, ChevronRight } from "lucide-react";
 import { today, dateLabel, useApi } from "../hooks";
-import type { Match } from "../types";
+import type { LeagueStatisticsConfig, Match } from "../types";
 import { Crest, Empty, Loading, Notice, matchLabel } from "./shared";
 import StandingsTable from "./StandingsTable";
+import LeagueStatistics from "./LeagueStatistics";
 
 type Games = {
   matches: Match[];
@@ -31,11 +32,13 @@ export default function LeagueOverview({
   league,
   name,
   season,
+  statistics,
 }: {
   sport: string;
   league: string;
   name: string;
   season?: number;
+  statistics?: LeagueStatisticsConfig;
 }) {
   const [month, setMonth] = useState(today().slice(0, 7));
   const [filter, setFilter] = useState<"next" | "previous">("next");
@@ -249,6 +252,9 @@ export default function LeagueOverview({
           ESPN · Atualização automática a cada minuto com a aba visível.
         </p>
       </section>
+      {statistics && (
+        <LeagueStatistics sport={sport} league={league} config={statistics} />
+      )}
     </div>
   );
 }

@@ -2850,3 +2850,16 @@ body.club-page-active { background:var(--club-page-bg, var(--canvas)); backgroun
   min-height: 0;
   margin-top: 3px;
 }
+
+.league-statistics { grid-column: 1 / -1; }
+.league-statistics .standings-filter { margin-top: 1rem; max-width: 28rem; }
+.league-ranking { list-style: none; padding: 0; margin-bottom: 0; }
+.league-ranking li {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .65rem 0;
+  border-bottom: 1px solid var(--border);
+  overflow-wrap: anywhere;
+}
+.league-ranking li strong { font-variant-numeric: tabular-nums; }
