@@ -35,6 +35,7 @@ import {
   matchLabel,
   isLiveMatch,
 } from "../components/shared";
+import HomeFavoriteGames from "../components/HomeFavoriteGames";
 import MatchBroadcasts from "../components/MatchBroadcasts";
 import SportAgenda, { sportAgendas } from "../components/SportAgenda";
 
@@ -187,6 +188,18 @@ function ScoresDashboard({
         .toLowerCase()
         .includes(normalizedSearch),
   );
+  const coverage =
+    data?.sources?.filter(
+      (source) =>
+        (sport === "all" || source.sport === sport) &&
+        (league === "all" || source.league === league),
+    ) ?? [];
+  const coverageIssues = coverage.filter((source) => source.state !== "ok");
+  const incomplete =
+    !!error ||
+    coverageIssues.length > 0 ||
+    (!coverage.length &&
+      !!(data?.stale || data?.partial || data?.warnings.length));
   const groups = [...new Set(visible.map((m) => `${m.sport}/${m.league}`))];
   function set(key: string, value: string) {
     const next = new URLSearchParams(params);
@@ -213,7 +226,7 @@ function ScoresDashboard({
           ? "Último destaque"
           : "Próximo confronto";
   return (
-    <div className="home-viva">
+    <div className={`home-viva${favoritesOnly ? " home-favorites" : ""}`}>
       <section className="hv-hero" aria-labelledby="hv-title">
         <img
           className="hv-hero-image"
@@ -278,7 +291,425 @@ function ScoresDashboard({
         <span>O jogo acontece aqui</span>
       </div>
       <div className="hv-wrap hv-main">
+        <section
+          id="agenda-data"
+          className="home-quick-agenda"
+          aria-label="Atalhos da agenda"
+        >
+          <div>
+            <span className="hv-eyebrow">AGENDA ESPORTIVA</span>
+            <h2>O que vamos acompanhar?</h2>
+          </div>
+          <div className="date-control">
+            <button
+              type="button"
+              aria-label="Dia anterior"
+              onClick={() => moveDate(-1)}
+            >
+              <ChevronLeft size={17} />
+            </button>
+            <label>
+              <CalendarDays size={15} />
+              <input
+                aria-label="Data dos jogos"
+                type="date"
+                value={date}
+                onChange={(e) => e.target.value && set("date", e.target.value)}
+              />
+            </label>
+            <button
+              type="button"
+              aria-label="Próximo dia"
+              onClick={() => moveDate(1)}
+            >
+              <ChevronRight size={17} />
+            </button>
+          </div>
+
+          <div className="hv-status-filters" aria-label="Atalhos para jogos">
+            {[
+              ["all", "Todos"],
+              ["live", "Ao vivo"],
+              ["scheduled", "Próximos"],
+            ].map(([value, label]) => (
+              <button
+                type="button"
+                key={value}
+                aria-pressed={status === value}
+                onClick={() => {
+                  set("status", value);
+                  document.getElementById("jogos")?.scrollIntoView();
+                }}
+              >
+                {label}
+              </button>
+            ))}
+            <a href={user ? "#meus-times" : "/conta"}>Meus times</a>
+          </div>
+        </section>
+        {user && !favoritesOnly && (
+          <HomeFavoriteGames
+            teams={favoriteTeams}
+            matches={date === today() ? matches : []}
+            leagues={
+              new Set(
+                catalog?.sports.flatMap((sport) =>
+                  sport.leagues.map((league) => sport.id + "/" + league.id),
+                ),
+              )
+            }
+          />
+        )}
         {accountError && <Notice error>{accountError}</Notice>}
+        <section className="hv-sports" aria-labelledby="hv-sports-title">
+          <h2 id="hv-sports-title">Qual é o seu jogo?</h2>
+          <div className="hv-sport-filters">
+            <button
+              type="button"
+              aria-pressed={sport === "all"}
+              onClick={() => set("sport", "all")}
+            >
+              <LayoutGrid size={19} />
+              <strong>Todos os esportes</strong>
+              <small>{matches.length}</small>
+            </button>
+            {available.map((s) => (
+              <button
+                type="button"
+                key={s.id}
+                aria-pressed={sport === s.id}
+                onClick={() => set("sport", s.id)}
+              >
+                <span aria-hidden="true">{s.icon}</span>
+                <strong>{s.name}</strong>
+                <small>{matches.filter((m) => m.sport === s.id).length}</small>
+              </button>
+            ))}
+            {!favoritesOnly &&
+              sportAgendas.map(({ id, label, caption, icon: Icon }) => (
+                <Link
+                  key={id}
+                  className="hv-sport-agenda-link"
+                  to={`/?sport=${id}`}
+                >
+                  <Icon size={19} aria-hidden="true" />
+                  <strong>{label}</strong>
+                  <small>{caption}</small>
+                </Link>
+              ))}
+          </div>
+        </section>
+        {sport !== "all" && (
+          <section
+            className="hv-league-selection"
+            aria-label="Filtrar jogos por competição"
+          >
+            <label htmlFor="games-league">
+              Competição de {sports.find((s) => s.id === sport)?.name}
+              <select
+                id="games-league"
+                value={league}
+                onChange={(e) => set("league", e.target.value)}
+                disabled={
+                  !catalog ||
+                  loading ||
+                  data?.date !== date ||
+                  !dayLeagues.length
+                }
+              >
+                <option value="all">
+                  {!catalog || loading || data?.date !== date
+                    ? "Carregando competições…"
+                    : !dayLeagues.length
+                      ? "Nenhuma competição com jogos nesta data"
+                      : "Todas as competições do dia"}
+                </option>
+                {dayLeagues.map((l) => (
+                  <option key={l.id} value={l.id}>
+                    {l.name}
+                  </option>
+                ))}
+              </select>
+            </label>
+            {catalog &&
+              !loading &&
+              data?.date === date &&
+              !dayLeagues.length && (
+                <p>
+                  Nenhuma competição deste esporte tem jogos disponíveis na data
+                  selecionada.
+                </p>
+              )}
+            {leagueName && (
+              <p>
+                Jogos de <strong>{leagueName}</strong> · escolha a data abaixo
+                para consultar a agenda.
+              </p>
+            )}
+          </section>
+        )}
+        <div className="hv-content-grid" id="jogos">
+          <section aria-labelledby="hv-games-title">
+            <div className="hv-games-heading">
+              <h2 id="hv-games-title">
+                {favoritesOnly ? "Partidas salvas" : "Seu dia de esporte"}
+                <em>.</em>
+              </h2>
+              <a className="home-date-shortcut" href="#agenda-data">
+                Trocar data
+              </a>
+              <button
+                className="hv-refresh"
+                onClick={refresh}
+                disabled={loading}
+              >
+                <RefreshCw size={14} />
+                <span>Atualizar</span>
+              </button>
+            </div>
+            <div className="hv-agenda-toolbar">
+              <label className="hv-search">
+                <Search size={15} />
+                <input
+                  type="search"
+                  placeholder="Buscar time ou competição"
+                  aria-label="Buscar time ou competição"
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                />
+              </label>
+            </div>
+            <div className="account-actions home-watch-filter">
+              <button
+                className="broadcast-chip"
+                aria-pressed={confirmedWatch}
+                onClick={() =>
+                  set("watch", confirmedWatch ? "all" : "confirmed")
+                }
+              >
+                <Tv size={15} />
+                Com transmissão confirmada
+              </button>
+              {confirmedWatch && (
+                <span className="muted">
+                  Somente anúncios por partida. Guias de competição não contam
+                  como confirmação.
+                </span>
+              )}
+            </div>
+            <div className="hv-status-filters" aria-label="Situação da partida">
+              {[
+                ["all", "Todos"],
+                ["live", "Ao vivo"],
+                ["scheduled", "Próximos"],
+                ["finished", "Encerrados"],
+              ].map(([value, label]) => (
+                <button
+                  type="button"
+                  key={value}
+                  aria-pressed={status === value}
+                  onClick={() => set("status", value)}
+                >
+                  {label}
+                  <span>
+                    {
+                      scoped.filter(
+                        (m) =>
+                          value === "all" ||
+                          (value === "live"
+                            ? isLiveMatch(m)
+                            : m.state === value),
+                      ).length
+                    }
+                  </span>
+                </button>
+              ))}
+            </div>
+            {data?.fetchedAt && Number.isFinite(Date.parse(data.fetchedAt)) && (
+              <p className="home-agenda-freshness">
+                {data.stale ? "Última consulta em cache" : "Dados consultados"}{" "}
+                às {time(data.fetchedAt)} · horário de Brasília
+              </p>
+            )}
+            {error && (
+              <Notice error>
+                {error} <button onClick={refresh}>Tentar novamente</button>
+                {data && " Exibindo a última consulta disponível."}
+              </Notice>
+            )}
+            {data?.stale && (
+              <Notice>
+                Exibindo dados em cache; a fonte está temporariamente
+                indisponível.
+              </Notice>
+            )}
+            {coverageIssues.length > 0 && (
+              <details className="coverage-warning">
+                <summary>
+                  Cobertura das fontes · {coverageIssues.length} com aviso
+                </summary>
+                {coverageIssues.map((source) => (
+                  <p
+                    key={
+                      source.sport + "/" + (source.league ?? source.competition)
+                    }
+                  >
+                    <strong>{source.competition}</strong> · {source.provider} ·{" "}
+                    {source.state === "unavailable"
+                      ? "Fonte indisponível"
+                      : source.state === "stale"
+                        ? "Dados em cache"
+                        : "Cobertura parcial"}
+                    {source.fetchedAt
+                      ? " · " + time(source.fetchedAt) + " BRT"
+                      : ""}
+                  </p>
+                ))}
+              </details>
+            )}
+            {!coverageIssues.length && !!data?.warnings.length && (
+              <details className="coverage-warning">
+                <summary>
+                  Cobertura parcial: {data.warnings.length} competições com
+                  avisos
+                </summary>
+                {data.warnings.map((w) => (
+                  <p key={w}>{w}</p>
+                ))}
+              </details>
+            )}
+            {!!pending.length && (
+              <p className="scores-loading-progress" role="status">
+                Carregando esportes:{" "}
+                {sports
+                  .filter((s) => pending.includes(s.id))
+                  .map((s) => s.name)
+                  .join(", ")}
+                . Os jogos disponíveis já aparecem abaixo.
+              </p>
+            )}
+            {loading ||
+            (!visible.length &&
+              pending.length > 0 &&
+              (sport === "all" || pending.includes(sport))) ? (
+              <Loading />
+            ) : !visible.length ? (
+              <Empty
+                title={
+                  favoritesOnly
+                    ? "Nenhum favorito nesta data"
+                    : incomplete
+                      ? "Agenda com cobertura incompleta"
+                      : status !== "all" ||
+                          search ||
+                          personal ||
+                          confirmedWatch ||
+                          league !== "all"
+                        ? "Nenhuma partida com esses filtros"
+                        : "Sem jogos nesta data"
+                }
+              >
+                {favoritesOnly
+                  ? "Marque a estrela de uma partida para salvá-la."
+                  : incomplete
+                    ? "Algumas fontes não puderam confirmar os jogos. Atualize a agenda ou tente novamente mais tarde."
+                    : "Escolha outra data, esporte ou filtro para continuar."}
+              </Empty>
+            ) : (
+              groups.map((group) => {
+                const items = visible.filter(
+                  (m) => `${m.sport}/${m.league}` === group,
+                );
+                return (
+                  <details className="hv-league" key={group} open>
+                    <summary className="hv-league-heading">
+                      <span aria-hidden="true">
+                        {sports.find((s) => s.id === items[0].sport)?.icon}
+                      </span>
+                      <h3>{items[0].leagueName}</h3>
+                      <small>
+                        {items.length} {items.length === 1 ? "jogo" : "jogos"}
+                      </small>
+                      <ChevronDown
+                        className="hv-league-chevron"
+                        size={19}
+                        aria-hidden="true"
+                      />
+                    </summary>
+                    {items.map((m) => (
+                      <GameRow
+                        key={keyOf(m)}
+                        match={m}
+                        saved={ids.includes(keyOf(m))}
+                        onFavorite={toggle}
+                      />
+                    ))}
+                  </details>
+                );
+              })
+            )}
+          </section>
+          <aside className="hv-content-aside">
+            <section className="hv-schedule">
+              <h3>A bola vai rolar</h3>
+              <p>
+                {/^\d{4}-\d{2}-\d{2}$/.test(date) &&
+                !Number.isNaN(Date.parse(date))
+                  ? dateLabel(date)
+                  : "Agenda do dia"}{" "}
+                · Horário de Brasília
+              </p>
+              {upcoming.length ? (
+                upcoming.slice(0, 4).map((m) => (
+                  <Link
+                    key={keyOf(m)}
+                    className="hv-upcoming"
+                    to={"/partida/" + keyOf(m)}
+                  >
+                    <time dateTime={m.date}>{time(m.date)}</time>
+                    <div>
+                      <small>{m.leagueName}</small>
+                      <span>
+                        <Crest team={m.home} />
+                        <strong>{m.home.name}</strong>
+                        <b>×</b>
+                        <Crest team={m.away} />
+                        <strong>{m.away.name}</strong>
+                      </span>
+                    </div>
+                  </Link>
+                ))
+              ) : (
+                <p className="hv-schedule-empty">
+                  {loading
+                    ? "Consultando os próximos jogos…"
+                    : "Nenhum próximo confronto disponível neste filtro."}
+                </p>
+              )}
+            </section>
+            <section className="hv-explore">
+              <p className="hv-eyebrow">Muito além do placar</p>
+              <h3>
+                Conheça o jogo.
+                <br />
+                <span>Por inteiro.</span>
+              </h3>
+              <Link to="/classificacoes">
+                Explore as classificações
+                <ArrowRight size={16} />
+              </Link>
+              <Link to="/times">
+                Encontre seu time
+                <ArrowRight size={16} />
+              </Link>
+            </section>
+            <p className="hv-rail-note">
+              <Info size={15} />
+              Horários de Brasília. A disponibilidade de dados e lances varia
+              por partida.
+            </p>
+          </aside>
+        </div>
         {user && (
           <section
             className="home-personal personal-hub"
@@ -306,40 +737,6 @@ function ScoresDashboard({
               </Link>
             </div>
             <div className="personal-hub-bottom">
-              <div className="personal-hub-favorites">
-                {favoriteTeams.length ? (
-                  <>
-                    <span className="personal-hub-label">SUA TORCIDA</span>
-                    <div className="personal-hub-teams">
-                      {favoriteTeams.slice(0, 3).map((t) => (
-                        <Link
-                          key={t.id}
-                          to={"/times/" + encodeURIComponent(t.id)}
-                        >
-                          {t.logo && (
-                            <img src={t.logo} width={22} height={22} alt="" />
-                          )}
-                          <span>{t.name}</span>
-                        </Link>
-                      ))}
-                      {favoriteTeams.length > 3 && (
-                        <Link to="/favoritos">
-                          +{favoriteTeams.length - 3} times
-                        </Link>
-                      )}
-                    </div>
-                  </>
-                ) : (
-                  <Link className="personal-hub-empty" to="/times">
-                    <Star size={17} aria-hidden="true" />
-                    <span>
-                      <strong>Qual é o seu time?</strong>Escolha um favorito
-                      para ver os jogos dele primeiro.
-                    </span>
-                    <ArrowRight size={16} aria-hidden="true" />
-                  </Link>
-                )}
-              </div>
               <div className="personal-hub-controls">
                 <div className="personal-hub-filter">
                   <span className="personal-hub-label">MOSTRAR JOGOS</span>
@@ -373,7 +770,10 @@ function ScoresDashboard({
           </section>
         )}
 
-        <section aria-labelledby="hv-spotlight-title">
+        <section
+          className="home-spotlight"
+          aria-labelledby="hv-spotlight-title"
+        >
           <div className="hv-section-head">
             <div>
               <p className="hv-eyebrow">No centro da emoção</p>
@@ -505,348 +905,6 @@ function ScoresDashboard({
             </Empty>
           )}
         </section>
-        <section className="hv-sports" aria-labelledby="hv-sports-title">
-          <h2 id="hv-sports-title">Qual é o seu jogo?</h2>
-          <div className="hv-sport-filters">
-            <button
-              type="button"
-              aria-pressed={sport === "all"}
-              onClick={() => set("sport", "all")}
-            >
-              <LayoutGrid size={19} />
-              <strong>Todos os esportes</strong>
-              <small>{matches.length}</small>
-            </button>
-            {available.map((s) => (
-              <button
-                type="button"
-                key={s.id}
-                aria-pressed={sport === s.id}
-                onClick={() => set("sport", s.id)}
-              >
-                <span aria-hidden="true">{s.icon}</span>
-                <strong>{s.name}</strong>
-                <small>{matches.filter((m) => m.sport === s.id).length}</small>
-              </button>
-            ))}
-            {!favoritesOnly &&
-              sportAgendas.map(({ id, label, caption, icon: Icon }) => (
-                <Link
-                  key={id}
-                  className="hv-sport-agenda-link"
-                  to={`/?sport=${id}`}
-                >
-                  <Icon size={19} aria-hidden="true" />
-                  <strong>{label}</strong>
-                  <small>{caption}</small>
-                </Link>
-              ))}
-          </div>
-        </section>
-        {sport !== "all" && (
-          <section
-            className="hv-league-selection"
-            aria-label="Filtrar jogos por competição"
-          >
-            <label htmlFor="games-league">
-              Competição de {sports.find((s) => s.id === sport)?.name}
-              <select
-                id="games-league"
-                value={league}
-                onChange={(e) => set("league", e.target.value)}
-                disabled={
-                  !catalog ||
-                  loading ||
-                  data?.date !== date ||
-                  !dayLeagues.length
-                }
-              >
-                <option value="all">
-                  {!catalog || loading || data?.date !== date
-                    ? "Carregando competições…"
-                    : !dayLeagues.length
-                      ? "Nenhuma competição com jogos nesta data"
-                      : "Todas as competições do dia"}
-                </option>
-                {dayLeagues.map((l) => (
-                  <option key={l.id} value={l.id}>
-                    {l.name}
-                  </option>
-                ))}
-              </select>
-            </label>
-            {catalog &&
-              !loading &&
-              data?.date === date &&
-              !dayLeagues.length && (
-                <p>
-                  Nenhuma competição deste esporte tem jogos disponíveis na data
-                  selecionada.
-                </p>
-              )}
-            {leagueName && (
-              <p>
-                Jogos de <strong>{leagueName}</strong> · escolha a data abaixo
-                para consultar a agenda.
-              </p>
-            )}
-          </section>
-        )}
-        <div className="hv-content-grid" id="jogos">
-          <section aria-labelledby="hv-games-title">
-            <div className="hv-games-heading">
-              <h2 id="hv-games-title">
-                {favoritesOnly ? "Partidas salvas" : "Seu dia de esporte"}
-                <em>.</em>
-              </h2>
-              <button
-                className="hv-refresh"
-                onClick={refresh}
-                disabled={loading}
-              >
-                <RefreshCw size={14} />
-                <span>Atualizar</span>
-              </button>
-            </div>
-            <div className="hv-agenda-toolbar">
-              <div className="date-control">
-                <button
-                  type="button"
-                  aria-label="Dia anterior"
-                  onClick={() => moveDate(-1)}
-                >
-                  <ChevronLeft size={17} />
-                </button>
-                <label>
-                  <CalendarDays size={15} />
-                  <input
-                    aria-label="Data dos jogos"
-                    type="date"
-                    value={date}
-                    onChange={(e) =>
-                      e.target.value && set("date", e.target.value)
-                    }
-                  />
-                </label>
-                <button
-                  type="button"
-                  aria-label="Próximo dia"
-                  onClick={() => moveDate(1)}
-                >
-                  <ChevronRight size={17} />
-                </button>
-              </div>
-              <label className="hv-search">
-                <Search size={15} />
-                <input
-                  type="search"
-                  placeholder="Buscar time ou competição"
-                  aria-label="Buscar time ou competição"
-                  value={search}
-                  onChange={(e) => setSearch(e.target.value)}
-                />
-              </label>
-            </div>
-            <div className="account-actions home-watch-filter">
-              <button
-                className="broadcast-chip"
-                aria-pressed={confirmedWatch}
-                onClick={() =>
-                  set("watch", confirmedWatch ? "all" : "confirmed")
-                }
-              >
-                <Tv size={15} />
-                Com transmissão confirmada
-              </button>
-              {confirmedWatch && (
-                <span className="muted">
-                  Somente anúncios por partida. Guias de competição não contam
-                  como confirmação.
-                </span>
-              )}
-            </div>
-            <div className="hv-status-filters" aria-label="Situação da partida">
-              {[
-                ["all", "Todos"],
-                ["live", "Ao vivo"],
-                ["scheduled", "Próximos"],
-                ["finished", "Encerrados"],
-              ].map(([value, label]) => (
-                <button
-                  type="button"
-                  key={value}
-                  aria-pressed={status === value}
-                  onClick={() => set("status", value)}
-                >
-                  {label}
-                  <span>
-                    {
-                      scoped.filter(
-                        (m) =>
-                          value === "all" ||
-                          (value === "live"
-                            ? isLiveMatch(m)
-                            : m.state === value),
-                      ).length
-                    }
-                  </span>
-                </button>
-              ))}
-            </div>
-            {error && (
-              <Notice error>
-                {error} <button onClick={refresh}>Tentar novamente</button>
-                {data && " Exibindo a última consulta disponível."}
-              </Notice>
-            )}
-            {data?.stale && (
-              <Notice>
-                Exibindo dados em cache; a fonte está temporariamente
-                indisponível.
-              </Notice>
-            )}
-            {!!data?.warnings.length && (
-              <details className="coverage-warning">
-                <summary>
-                  Cobertura parcial: {data.warnings.length} competições com
-                  avisos
-                </summary>
-                {data.warnings.map((w) => (
-                  <p key={w}>{w}</p>
-                ))}
-              </details>
-            )}
-            {!!pending.length && (
-              <p className="scores-loading-progress" role="status">
-                Carregando esportes:{" "}
-                {sports
-                  .filter((s) => pending.includes(s.id))
-                  .map((s) => s.name)
-                  .join(", ")}
-                . Os jogos disponíveis já aparecem abaixo.
-              </p>
-            )}
-            {loading ||
-            (!visible.length &&
-              pending.length > 0 &&
-              (sport === "all" || pending.includes(sport))) ? (
-              <Loading />
-            ) : !visible.length ? (
-              <Empty
-                title={
-                  favoritesOnly
-                    ? "Nenhum favorito nesta data"
-                    : "Nenhuma partida encontrada"
-                }
-              >
-                {favoritesOnly
-                  ? "Marque a estrela de uma partida para salvá-la."
-                  : "Altere o esporte, a data ou a busca. A cobertura varia por competição."}
-              </Empty>
-            ) : (
-              groups.map((group) => {
-                const items = visible.filter(
-                  (m) => `${m.sport}/${m.league}` === group,
-                );
-                return (
-                  <details className="hv-league" key={group} open>
-                    <summary className="hv-league-heading">
-                      <span aria-hidden="true">
-                        {sports.find((s) => s.id === items[0].sport)?.icon}
-                      </span>
-                      <h3>{items[0].leagueName}</h3>
-                      <small>
-                        {items.length} {items.length === 1 ? "jogo" : "jogos"}
-                      </small>
-                      <ChevronDown
-                        className="hv-league-chevron"
-                        size={19}
-                        aria-hidden="true"
-                      />
-                    </summary>
-                    {items.map((m) => (
-                      <GameRow
-                        key={keyOf(m)}
-                        match={m}
-                        saved={ids.includes(keyOf(m))}
-                        onFavorite={toggle}
-                      />
-                    ))}
-                  </details>
-                );
-              })
-            )}
-            {data && (
-              <p className="hv-data-note">
-                <Info size={13} />
-                <span>
-                  {data.source} · Consultado às {time(data.fetchedAt)} ·
-                  Brasília
-                </span>
-              </p>
-            )}
-          </section>
-          <aside className="hv-content-aside">
-            <section className="hv-schedule">
-              <h3>A bola vai rolar</h3>
-              <p>
-                {/^\d{4}-\d{2}-\d{2}$/.test(date) &&
-                !Number.isNaN(Date.parse(date))
-                  ? dateLabel(date)
-                  : "Agenda do dia"}{" "}
-                · Horário de Brasília
-              </p>
-              {upcoming.length ? (
-                upcoming.slice(0, 4).map((m) => (
-                  <Link
-                    key={keyOf(m)}
-                    className="hv-upcoming"
-                    to={"/partida/" + keyOf(m)}
-                  >
-                    <time dateTime={m.date}>{time(m.date)}</time>
-                    <div>
-                      <small>{m.leagueName}</small>
-                      <span>
-                        <Crest team={m.home} />
-                        <strong>{m.home.name}</strong>
-                        <b>×</b>
-                        <Crest team={m.away} />
-                        <strong>{m.away.name}</strong>
-                      </span>
-                    </div>
-                  </Link>
-                ))
-              ) : (
-                <p className="hv-schedule-empty">
-                  {loading
-                    ? "Consultando os próximos jogos…"
-                    : "Nenhum próximo confronto disponível neste filtro."}
-                </p>
-              )}
-            </section>
-            <section className="hv-explore">
-              <p className="hv-eyebrow">Muito além do placar</p>
-              <h3>
-                Conheça o jogo.
-                <br />
-                <span>Por inteiro.</span>
-              </h3>
-              <Link to="/classificacoes">
-                Explore as classificações
-                <ArrowRight size={16} />
-              </Link>
-              <Link to="/times">
-                Encontre seu time
-                <ArrowRight size={16} />
-              </Link>
-            </section>
-            <p className="hv-rail-note">
-              <Info size={15} />
-              Horários de Brasília. A disponibilidade de dados e lances varia
-              por partida.
-            </p>
-          </aside>
-        </div>
       </div>
     </div>
   );

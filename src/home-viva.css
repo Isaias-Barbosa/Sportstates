@@ -1599,3 +1599,41 @@ details.hv-league:not([open]) > summary {
     width: 100%;
   }
 }
+
+.home-quick-agenda, .home-favorite-games {
+  margin-bottom: 18px;
+  padding: clamp(14px, 2.5vw, 22px);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--panel);
+}
+.home-quick-agenda {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: center;
+}
+.home-quick-agenda h2 { margin: 4px 0 0; }
+.home-quick-agenda .hv-status-filters { grid-column: 1 / -1; margin: 0; flex-wrap: wrap; }
+.home-quick-agenda .hv-status-filters a, .home-date-shortcut {
+  color: var(--text);
+  align-self: center;
+  font-size: .82rem;
+}
+.home-quick-agenda .hv-status-filters a { padding: 9px 12px; }
+.home-favorite-games .hv-section-head { align-items: center; margin-bottom: 10px; }
+.home-favorite-games a { color: var(--text); }
+.home-favorite-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 210px), 1fr)); gap: 10px; }
+.home-favorite-team { min-width: 0; padding: 12px; border: 1px solid var(--border); border-radius: 10px; background: var(--surface); }
+.home-favorite-team-name { display: flex; gap: 8px; align-items: center; margin-bottom: 10px; font-weight: 700; text-decoration: none; }
+.home-favorite-fixture { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.home-favorite-fixture > div { display: grid; gap: 3px; min-width: 0; }
+.home-favorite-fixture small, .home-agenda-freshness, .home-favorite-team > small { color: var(--muted); font-size: .8rem; }
+.home-agenda-freshness { margin: 8px 0; }
+.home-viva .home-spotlight, .home-viva .personal-hub { margin-top: 20px; }
+@media (max-width: 700px) {
+  .home-viva:not(.home-favorites) .hv-hero, .home-viva:not(.home-favorites) .hv-energy-strip { display: none; }
+  .home-viva .hv-main { padding-top: 14px; }
+  .home-quick-agenda { grid-template-columns: minmax(0, 1fr); }
+  .home-quick-agenda .date-control { justify-self: start; }
+}
