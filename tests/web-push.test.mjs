@@ -226,10 +226,7 @@ test("personalized announcement links one match directly and groups link home", 
     () => validateAnnouncement({ ...draft, matches: ["https://other.test"] }),
     /Partida inválida/,
   );
-  for (const [url, method] of [
-    ["/api/admin/announcements", "POST"],
-    ["/api/me/announcements", "GET"],
-  ]) {
+  for (const [url, method] of [["/api/admin/announcements", "POST"]]) {
     const response = { setHeader() {}, end() {} };
     await handler({ url, method, headers: {} }, response);
     assert.equal(response.statusCode, 401);

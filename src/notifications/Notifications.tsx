@@ -1,4 +1,3 @@
-import AnnouncementInbox from "./AnnouncementInbox";
 import { useBackgroundPush } from "./useBackgroundPush";
 import {
   useAccount,
@@ -444,6 +443,39 @@ export default function NotificationsProvider({
   return (
     <Context.Provider value={{ games, choose }}>
       {children}
+      {background.invite && !open && (
+        <aside
+          className="notification-invite"
+          aria-labelledby="notification-invite-title"
+        >
+          <strong id="notification-invite-title">
+            Receber notificações do Sportstates?
+          </strong>
+          <p>
+            Receba informes e alertas dos jogos que você acompanha, mesmo com o
+            navegador minimizado.
+          </p>
+          <div className="notification-background-actions">
+            <button
+              type="button"
+              className="notification-action"
+              disabled={background.busy}
+              onClick={() => void background.configure("enable")}
+            >
+              Permitir notificações
+            </button>
+            <button
+              type="button"
+              className="notification-action notification-cards-only"
+              disabled={background.busy}
+              onClick={background.dismissPrompt}
+            >
+              Agora não
+            </button>
+          </div>
+          {background.message && <p role="status">{background.message}</p>}
+        </aside>
+      )}
       <section
         className="notification-stack"
         aria-label="Lances notificados"
@@ -553,26 +585,11 @@ export default function NotificationsProvider({
                 : "O envio em segundo plano ainda está indisponível."}
             </p>
           )}
-          {background.active && (
-            <label className="notification-announcement-optin">
-              <input
-                type="checkbox"
-                checked={background.announcements}
-                onChange={(event) =>
-                  background.setAnnouncements(event.target.checked)
-                }
-              />
-              Receber informes do Sportstates neste dispositivo
-            </label>
-          )}
           {background.message && <p role="status">{background.message}</p>}
           {background.testReceipt && (
             <p role="status">{background.testReceipt}</p>
           )}
         </section>
-        {open && user && (
-          <AnnouncementInbox key={user.id} onOpen={() => setOpen(false)} />
-        )}
         {message && (
           <p role="status" className="notice">
             {message}
