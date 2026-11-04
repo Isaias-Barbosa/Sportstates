@@ -266,3 +266,74 @@ export async function listAdminActivity(limit = 20) {
   return sql`SELECT id, action, summary, match_key, created_at
     FROM sport_admin_activity ORDER BY created_at DESC LIMIT ${limit}`;
 }
+
+const cbfDocumentUrl = /^https:\/\/stcbfsiteprdimgbrs\.blob\.core\.windows\.net\/img-site\/cdn\/[A-Za-z0-9_%-]+\.pdf$/;
+
+export function validateCbfReview(input) {
+  const { reference, file, url, sha256, publishedAt, confirmed } = input ?? {};
+  if (
+    confirmed !== true || !Number.isInteger(reference) || reference < 1 || reference > 380 ||
+    typeof file !== "string" || !/^[A-Za-z0-9][A-Za-z0-9_.-]{0,119}\.pdf$/i.test(file) ||
+    typeof url !== "string" || url.length > 500 || !cbfDocumentUrl.test(url) ||
+    typeof sha256 !== "string" || !/^[0-9a-f]{64}$/i.test(sha256) ||
+    typeof publishedAt !== "string" ||
+    !/^2026-\d{2}-\d{2}T(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d-03:00$/.test(publishedAt) ||
+    !validReviewDate(publishedAt.slice(0, 10))
+  ) throw new Error("Confira a referência, a data da publicação, o PDF oficial, o SHA-256 e a confirmação.");
+  return { kind: "postponement", reference, file, url, sha256: sha256.toLowerCase(),
+    publishedAt: new Date(publishedAt).toISOString() };
+}
+
+function cbfReviewFromRow(row) {
+  return { kind: "postponement", reference: row.reference, file: row.filename,
+    url: row.url, sha256: row.sha256, publishedAt: new Date(row.published_at).toISOString() };
+}
+
+let cbfSchema;
+
+function cbfDatabase() {
+  const url = process.env.DATABASE_URL;
+  if (!url) throw new Error("Banco Neon não configurado.");
+  if (cbfSchema?.url !== url) {
+    const sql = neon(url);
+    const ready = (async () => {
+      await sql`CREATE TABLE IF NOT EXISTS sport_admin_cbf_reviews (
+        reference integer NOT NULL CHECK (reference BETWEEN 1 AND 380),
+        published_at timestamptz NOT NULL,
+        filename text NOT NULL,
+        url text NOT NULL,
+        sha256 text NOT NULL,
+        reviewed_at timestamptz NOT NULL DEFAULT now(),
+        PRIMARY KEY (reference, published_at)
+      )`;
+      return sql;
+    })();
+    const schema = { url, ready };
+    cbfSchema = schema;
+    void ready.catch(() => {
+      if (cbfSchema === schema) cbfSchema = undefined;
+    });
+  }
+  return cbfSchema.ready;
+}
+
+export async function listCbfReviews(reference) {
+  const sql = await cbfDatabase();
+  const rows = await sql`SELECT reference, published_at, filename, url, sha256
+    FROM sport_admin_cbf_reviews WHERE reference = ${reference}
+    ORDER BY published_at DESC LIMIT 30`;
+  return rows.map(cbfReviewFromRow);
+}
+
+export async function saveCbfReview(review) {
+  const sql = await cbfDatabase();
+  const rows = await sql`INSERT INTO sport_admin_cbf_reviews
+    (reference, published_at, filename, url, sha256)
+    VALUES (${review.reference}, ${review.publishedAt}, ${review.file}, ${review.url}, ${review.sha256})
+    ON CONFLICT (reference, published_at) DO UPDATE SET filename = EXCLUDED.filename
+    WHERE sport_admin_cbf_reviews.filename = EXCLUDED.filename
+      AND sport_admin_cbf_reviews.url = EXCLUDED.url
+      AND sport_admin_cbf_reviews.sha256 = EXCLUDED.sha256
+    RETURNING reference, published_at, filename, url, sha256`;
+  return rows.length ? cbfReviewFromRow(rows[0]) : null;
+}

@@ -220,8 +220,49 @@ test("manual broadcast routes require admin authorization and validate dates", a
     );
     assert.equal(invalid.statusCode, 400);
     assert.equal(invalid.body.error, "Data inválida.");
+
+    const cbf = "/api/admin/cbf-reviews";
+    const deniedCbf = makeResponse();
+    await handler({ method: "GET", url: cbf + "?reference=340", headers: {} }, deniedCbf);
+    assert.equal(deniedCbf.statusCode, 401);
+    assert.equal(deniedCbf.headers["Cache-Control"], "private, no-store");
+
+    const invalidCbf = makeResponse();
+    await handler({
+      method: "POST", url: cbf, body: { reference: 340 },
+      headers: { authorization: "Bearer " + secret },
+    }, invalidCbf);
+    assert.equal(invalidCbf.statusCode, 400);
   } finally {
     if (previous === undefined) delete process.env.ADMIN_ACCESS_KEY;
     else process.env.ADMIN_ACCESS_KEY = previous;
   }
+});
+
+test("CBF review requires confirmation and exports a normalized importer entry", async () => {
+  const { validateCbfReview } = await import("../server/admin-operations.mjs");
+  const source = {
+    reference: 340,
+    file: "imt-340.pdf",
+    url: "https://stcbfsiteprdimgbrs.blob.core.windows.net/img-site/cdn/imt-340.pdf",
+    sha256: "A".repeat(64),
+    publishedAt: "2026-11-03T14:00:00-03:00",
+    confirmed: true,
+  };
+  assert.deepEqual(validateCbfReview(source), {
+    kind: "postponement",
+    reference: 340,
+    file: source.file,
+    url: source.url,
+    sha256: "a".repeat(64),
+    publishedAt: "2026-11-03T17:00:00.000Z",
+  });
+  for (const invalid of [
+    { confirmed: false },
+    { reference: 381 },
+    { file: "../imt-340.pdf" },
+    { url: "https://cbf-hml.cbf.com.br/imt.pdf" },
+    { publishedAt: "2026-02-30T14:00:00-03:00" },
+    { sha256: "a".repeat(63) },
+  ]) assert.throws(() => validateCbfReview({ ...source, ...invalid }), /Confira/);
 });

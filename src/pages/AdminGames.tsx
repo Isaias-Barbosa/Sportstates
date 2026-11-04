@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import AdminUsers from "../components/AdminUsers";
+import AdminCbfReviews from "../components/AdminCbfReviews";
 import AdminTeams from "../components/AdminTeams";
 import AdminLeagues from "../components/AdminLeagues";
 import AdminNeonLogin from "../components/AdminNeonLogin";
@@ -59,7 +60,7 @@ export default function AdminGames() {
   }
   const [secret, setSecret] = useState("");
   const [section, setSection] = useState<
-    "overview" | "games" | "broadcasts" | "teams" | "leagues" | "users"
+    "overview" | "games" | "broadcasts" | "teams" | "leagues" | "users" | "cbf"
   >("overview");
   const [draftSecret, setDraftSecret] = useState("");
   const [date, setDate] = useState(today());
@@ -377,6 +378,9 @@ export default function AdminGames() {
         >
           Usuários
         </button>
+        <button className={section === "cbf" ? "active" : ""} onClick={() => setSection("cbf")}>
+          Revisões CBF
+        </button>
       </div>
       {section === "overview" ? (
         <AdminOverview
@@ -385,6 +389,8 @@ export default function AdminGames() {
           scoresLoading={loading}
           scoresError={scoreError}
         />
+      ) : section === "cbf" ? (
+        <AdminCbfReviews secret={secret} />
       ) : section === "users" ? (
         <AdminUsers secret={secret} />
       ) : section === "teams" ? (

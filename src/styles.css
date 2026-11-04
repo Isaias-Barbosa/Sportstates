@@ -2839,3 +2839,14 @@ body.club-page-active { background:var(--club-page-bg, var(--canvas)); backgroun
 .admin-leagues .admin-modal { display: grid; gap: 14px; max-height: min(90vh,800px); overflow-y: auto; }
 .admin-leagues .admin-modal label { display: grid; gap: 5px; }
 .admin-leagues .admin-modal label input, .admin-leagues .admin-modal label select { width: 100%; min-width: 0; }
+
+.admin-cbf-form label.admin-check {
+  display: flex;
+  align-items: flex-start;
+}
+
+.admin-cbf-form .admin-check input {
+  width: auto;
+  min-height: 0;
+  margin-top: 3px;
+}

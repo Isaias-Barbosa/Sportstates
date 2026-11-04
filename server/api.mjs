@@ -12,6 +12,7 @@ import {
   recordAdminActivitySafely,
   removeManualBroadcast,
   saveManualBroadcast,
+  listCbfReviews, saveCbfReview, validateCbfReview,
 } from "./admin-operations.mjs";
 import { userIdentity } from "./user-auth.mjs";
 import {
@@ -1480,7 +1481,8 @@ export async function handler(req, res) {
   }
   if (
     requestUrl.pathname === "/api/admin/overview" ||
-    requestUrl.pathname === "/api/admin/broadcasts"
+    requestUrl.pathname === "/api/admin/broadcasts" ||
+    requestUrl.pathname === "/api/admin/cbf-reviews"
   ) {
     res.setHeader("Cache-Control", "private, no-store");
     res.setHeader("Vercel-CDN-Cache-Control", "no-store");
@@ -1490,6 +1492,38 @@ export async function handler(req, res) {
       return res.end(
         JSON.stringify({ error: "Acesso administrativo necessário." }),
       );
+    }
+    if (requestUrl.pathname === "/api/admin/cbf-reviews") {
+      if (req.method !== "GET" && req.method !== "POST") {
+        res.statusCode = 405;
+        res.setHeader("Allow", "GET, POST");
+        return res.end(JSON.stringify({ error: "Use GET ou POST." }));
+      }
+      let reference, review;
+      try {
+        if (req.method === "POST") review = validateCbfReview(await requestJson(req));
+        else {
+          reference = Number(requestUrl.searchParams.get("reference"));
+          if (!Number.isInteger(reference) || reference < 1 || reference > 380)
+            throw new Error("Informe uma referência de 1 a 380.");
+        }
+      } catch (error) {
+        res.statusCode = 400;
+        return res.end(JSON.stringify({ error: error.message }));
+      }
+      try {
+        if (req.method === "GET")
+          return res.end(JSON.stringify({ reviews: await listCbfReviews(reference) }));
+        const saved = await saveCbfReview(review);
+        res.statusCode = saved ? 200 : 409;
+        return res.end(JSON.stringify(saved ? { review: saved } : {
+          error: "Já existe uma revisão diferente para esta referência e publicação.",
+        }));
+      } catch (error) {
+        console.error("Falha ao acessar revisões da CBF:", error.message);
+        res.statusCode = 503;
+        return res.end(JSON.stringify({ error: "Não foi possível acessar as revisões no Neon." }));
+      }
     }
     if (requestUrl.pathname === "/api/admin/overview") {
       if (req.method !== "GET") {

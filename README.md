@@ -105,3 +105,9 @@ O processo é manual e executado fora da aplicação. As páginas de resultados
 usam o formato atual do site da CBF. Mudanças de formato exigem revisão
 do importador. Teste as regras de importação com
 `python -B -m unittest discover -s tests -p test_cbf_calendar.py`.
+
+No painel administrativo, abra **Revisões CBF** para registrar a conferência de
+uma IMT. Após salvar no Neon, baixe o JSON pela referência da partida e
+acrescente os itens de `documents` ao manifesto local, junto com os PDFs
+revisados. O campo de data e hora no painel usa o horário de Brasília. O
+painel exporta os metadados, e o importador confere o SHA-256 do arquivo local.
