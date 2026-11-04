@@ -1,5 +1,6 @@
 import { findGeRoundsForDate, geRoundLoader } from "./ge-date-index.mjs";
-import { fetchGeSerieARoundFixtures } from "./ge-fixtures.mjs";
+import { normalizeGeSerieAFixtures } from "./ge-fixtures.mjs";
+import { sameGeTeam } from "./ge-rounds.mjs";
 import { resolveSources } from "./source-manager.mjs";
 import { nbb365Url, normalizeNbb365Standings, normalizeNbb365Games } from "./365scores.mjs";
 import { loadLnbHtml, parseLnbGames, parseLnbStandings } from "./lnb.mjs";
@@ -128,15 +129,34 @@ export function adminDatabaseErrorMessage(error) {
   return "Não foi possível preparar ou gravar no Neon. Confira os logs da função Vercel para identificar o erro sem compartilhar a URL do banco.";
 }
 
-async function json(url, headers = {}) {
+async function json(url, headers = {}, timeout = 12000) {
   const response = await fetch(url, {
     cache: "no-store",
     headers: { Accept: "application/json", ...headers },
-    signal: AbortSignal.timeout(12000),
+    signal: AbortSignal.timeout(timeout),
   });
-  if (!response.ok)
-    throw new Error(`Fonte indisponível (HTTP ${response.status}).`);
+  if (!response.ok) {
+    const error = new Error(`Fonte indisponível (HTTP ${response.status}).`);
+    error.status = response.status;
+    throw error;
+  }
   return response.json();
+}
+
+let geRetryAt = 0;
+
+function cachedGeRound(year, round) {
+  return cached(`ge:raw-round:v2:${year}:${round}`, 15 * 60_000, async () => {
+    if (Date.now() < geRetryAt) throw new Error("GE temporariamente indisponível.");
+    try {
+      const games = await geRoundLoader(year, (url) => json(url, {}, 2500))(round);
+      if (!Array.isArray(games)) throw new Error("Rodada GE inválida.");
+      return games;
+    } catch (error) {
+      if (error.status !== 404) geRetryAt = Date.now() + 60_000;
+      throw error;
+    }
+  }, 60 * 60_000);
 }
 
 function cached365Games(league) {
@@ -341,60 +361,42 @@ export async function scoreboard(date, sport = "all") {
       const good = parts
         .filter((p) => p.status === "fulfilled")
         .map((p) => p.value);
-      // GE is a narrowly scoped backup for Série A. Use a round learned from
-      // ESPN itself; never scan all 38 rounds or guess the current round.
-      // Fetch only when one of the two ESPN date requests failed.
+      let geRecovered = false;
+      const hasEspnData = good.length > 0;
       if (s.id === "soccer" && league === "bra.1" &&
-          parts.some((p) => p.status === "rejected")) {
-        let round = good.flatMap((r) => r.value)
-          .map((m) => Number(m.round))
-          .find((n) => Number.isInteger(n) && n >= 1 && n <= 38);
-        if (!round) {
-          try {
-            const year = Number(date.slice(0, 4));
+          parts.some((part) => part.status === "rejected")) {
+        const year = Number(date.slice(0, 4));
+        const existing = good.flatMap((result) => result.value)
+          .filter((match) => dayInBrazil(match.date) === date);
+        const rounds = new Set(existing.map((match) => Number(match.round))
+          .filter((round) => Number.isInteger(round) && round >= 1 && round <= 38));
+        try {
+          if (!rounds.size) {
             const index = await cached(
-              `ge:date-index:v1:${date}`,
-              6 * 60 * 60_000,
-              () => findGeRoundsForDate(year, date, async (number) => {
-                const response = await cached(
-                  `ge:raw-round:v1:${year}:${number}`,
-                  6 * 60 * 60_000,
-                  geRoundLoader(year, json).bind(null, number),
-                  60 * 60_000,
-                );
-                return response.value;
-              }),
-              60 * 60_000,
+              `ge:date-index:v2:${date}`,
+              (value) => value.length ? 15 * 60_000 : 60_000,
+              () => findGeRoundsForDate(year, date, async (round) =>
+                (await cachedGeRound(year, round)).value),
             );
-            round = index.value[0];
-          } catch (error) {
-            console.warn("GE date index unavailable:", error.message);
+            for (const round of index.value) rounds.add(round);
           }
-        }
-        if (round) {
-          try {
-            const ge = await cached(
-              `ge:fixtures:v1:${date.slice(0, 4)}:${round}`,
-              15 * 60_000,
-              () => fetchGeSerieARoundFixtures(Number(date.slice(0, 4)), round, null, json),
-              60 * 60_000,
-            );
-            const existing = good.flatMap((r) => r.value);
-            const normalizeTeam = (name) => String(name || "")
-              .normalize("NFD").replace(/\p{Diacritic}/gu, "")
-              .toLowerCase().replace(/[^a-z0-9]/g, "");
-            const extra = ge.value.filter((m) =>
-              dayInBrazil(m.date) === date &&
-              !existing.some((e) =>
-                dayInBrazil(e.date) === date &&
-                normalizeTeam(e.home?.name) === normalizeTeam(m.home?.name) &&
-                normalizeTeam(e.away?.name) === normalizeTeam(m.away?.name)
-              )
-            );
-            if (extra.length) good.push({ value: extra, at: ge.at, stale: ge.stale });
-          } catch (error) {
-            console.warn("GE fallback indisponível:", error.message);
+          for (const round of rounds) {
+            const ge = await cachedGeRound(year, round);
+            const extra = normalizeGeSerieAFixtures(ge.value, { year, round, date })
+              .filter((match) => {
+                if (existing.some((other) =>
+                  sameGeTeam(other.home, match.home) && sameGeTeam(other.away, match.away)))
+                  return false;
+                existing.push(match);
+                return true;
+              });
+            if (extra.length) {
+              good.push({ ...ge, value: extra });
+              geRecovered = true;
+            }
           }
+        } catch (error) {
+          console.warn("GE fallback indisponível:", error.message);
         }
       }
       return {
@@ -418,7 +420,7 @@ export async function scoreboard(date, sport = "all") {
               ? "ITTF / WTT"
               : s.id === "volleyball"
                 ? "CBV"
-                : "ESPN",
+                : geRecovered ? (hasEspnData ? "ESPN / GE" : "GE") : "ESPN",
         at: good.length ? Math.min(...good.map((r) => r.at)) : null,
       };
     }),
@@ -444,7 +446,8 @@ export async function scoreboard(date, sport = "all") {
       competitions: leagues.map((l) => l[1]),
     })),
     date,
-    source: "ESPN · 365Scores · CBV · World Table Tennis",
+    source: "ESPN · 365Scores · CBV · World Table Tennis" +
+      (results.some((result) => result.provider?.includes("GE")) ? " · GE" : ""),
     fetchedAt: new Date(
       Math.min(...results.filter((r) => r.at).map((r) => r.at)),
     ).toISOString(),
@@ -1160,15 +1163,10 @@ export async function route(url) {
         (date !== null && !validDate(date)))
       return [400, { error: "Informe ano, rodada (1–38) e data válida, se utilizada." }];
     try {
-      const result = await cached(
-        `ge:fixtures:v1:${year}:${round}`,
-        15 * 60 * 1000,
-        () => fetchGeSerieARoundFixtures(year, round, null, json),
-        60 * 60 * 1000,
-      );
+      const result = await cachedGeRound(year, round);
       return [200, {
         sport: "soccer", league: "bra.1", year, round,
-        matches: date ? result.value.filter((m) => dayInBrazil(m.date) === date) : result.value,
+        matches: normalizeGeSerieAFixtures(result.value, { year, round, date }),
         source: "GE", stale: result.stale,
         fetchedAt: new Date(result.at).toISOString(),
       }];
