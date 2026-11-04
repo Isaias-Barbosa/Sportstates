@@ -1600,27 +1600,22 @@ details.hv-league:not([open]) > summary {
   }
 }
 
-.home-quick-agenda, .home-favorite-games {
+.home-favorite-games {
   margin-bottom: 18px;
   padding: clamp(14px, 2.5vw, 22px);
   border: 1px solid var(--border);
   border-radius: 14px;
   background: var(--panel);
 }
-.home-quick-agenda {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 12px;
-  align-items: center;
+.home-favorites-invite {
+  margin: 0 0 18px;
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--panel);
+  color: var(--muted);
 }
-.home-quick-agenda h2 { margin: 4px 0 0; }
-.home-quick-agenda .hv-status-filters { grid-column: 1 / -1; margin: 0; flex-wrap: wrap; }
-.home-quick-agenda .hv-status-filters a, .home-date-shortcut {
-  color: var(--text);
-  align-self: center;
-  font-size: .82rem;
-}
-.home-quick-agenda .hv-status-filters a { padding: 9px 12px; }
+.home-favorites-invite a { color: var(--text); font-weight: 700; }
 .home-favorite-games .hv-section-head { align-items: center; margin-bottom: 10px; }
 .home-favorite-games a { color: var(--text); }
 .home-favorite-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 210px), 1fr)); gap: 10px; }
@@ -1631,10 +1626,7 @@ details.hv-league:not([open]) > summary {
 .home-favorite-fixture small, .home-agenda-freshness, .home-favorite-team > small { color: var(--muted); font-size: .8rem; }
 .home-agenda-freshness { margin: 8px 0; }
 .home-viva .home-spotlight { margin-bottom: 20px; }
-.home-viva .personal-hub { margin-top: 20px; }
 @media (max-width: 700px) {
   .home-viva:not(.home-favorites) .hv-hero, .home-viva:not(.home-favorites) .hv-energy-strip { display: none; }
   .home-viva .hv-main { padding-top: 14px; }
-  .home-quick-agenda { grid-template-columns: minmax(0, 1fr); }
-  .home-quick-agenda .date-control { justify-self: start; }
 }

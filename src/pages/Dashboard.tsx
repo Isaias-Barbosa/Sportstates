@@ -20,8 +20,6 @@ import {
   RefreshCw,
   Search,
   Star,
-  SlidersHorizontal,
-  Sparkles,
   Tv,
 } from "lucide-react";
 import type { Match, Scores, CompetitionCatalog } from "../types";
@@ -66,6 +64,7 @@ function ScoresDashboard({
     preferences,
     teams: favoriteTeams,
     error: accountError,
+    loading: accountLoading,
   } = useAccount();
   const [params, setParams] = useSearchParams();
   const personal = params.get("personal") === "1";
@@ -426,62 +425,12 @@ function ScoresDashboard({
             </Empty>
           )}
         </section>
-        <section
-          id="agenda-data"
-          className="home-quick-agenda"
-          aria-label="Atalhos da agenda"
-        >
-          <div>
-            <span className="hv-eyebrow">AGENDA ESPORTIVA</span>
-            <h2>O que vamos acompanhar?</h2>
-          </div>
-          <div className="date-control">
-            <button
-              type="button"
-              aria-label="Dia anterior"
-              onClick={() => moveDate(-1)}
-            >
-              <ChevronLeft size={17} />
-            </button>
-            <label>
-              <CalendarDays size={15} />
-              <input
-                aria-label="Data dos jogos"
-                type="date"
-                value={date}
-                onChange={(e) => e.target.value && set("date", e.target.value)}
-              />
-            </label>
-            <button
-              type="button"
-              aria-label="Próximo dia"
-              onClick={() => moveDate(1)}
-            >
-              <ChevronRight size={17} />
-            </button>
-          </div>
-
-          <div className="hv-status-filters" aria-label="Atalhos para jogos">
-            {[
-              ["all", "Todos"],
-              ["live", "Ao vivo"],
-              ["scheduled", "Próximos"],
-            ].map(([value, label]) => (
-              <button
-                type="button"
-                key={value}
-                aria-pressed={status === value}
-                onClick={() => {
-                  set("status", value);
-                  document.getElementById("jogos")?.scrollIntoView();
-                }}
-              >
-                {label}
-              </button>
-            ))}
-            <a href={user ? "#meus-times" : "/conta"}>Meus times</a>
-          </div>
-        </section>
+        {!user && !accountLoading && !favoritesOnly && (
+          <p className="home-favorites-invite">
+            Quer ver os seus times favoritos aqui?{" "}
+            <Link to="/conta?modo=cadastro">Crie uma Conta</Link>
+          </p>
+        )}
         {user && !favoritesOnly && (
           <HomeFavoriteGames
             teams={favoriteTeams}
@@ -590,9 +539,6 @@ function ScoresDashboard({
                 {favoritesOnly ? "Partidas salvas" : "Seu dia de esporte"}
                 <em>.</em>
               </h2>
-              <a className="home-date-shortcut" href="#agenda-data">
-                Trocar data
-              </a>
               <button
                 className="hv-refresh"
                 onClick={refresh}
@@ -603,6 +549,33 @@ function ScoresDashboard({
               </button>
             </div>
             <div className="hv-agenda-toolbar">
+              <div className="date-control">
+                <button
+                  type="button"
+                  aria-label="Dia anterior"
+                  onClick={() => moveDate(-1)}
+                >
+                  <ChevronLeft size={17} />
+                </button>
+                <label>
+                  <CalendarDays size={15} />
+                  <input
+                    aria-label="Data dos jogos"
+                    type="date"
+                    value={date}
+                    onChange={(e) =>
+                      e.target.value && set("date", e.target.value)
+                    }
+                  />
+                </label>
+                <button
+                  type="button"
+                  aria-label="Próximo dia"
+                  onClick={() => moveDate(1)}
+                >
+                  <ChevronRight size={17} />
+                </button>
+              </div>
               <label className="hv-search">
                 <Search size={15} />
                 <input
@@ -845,65 +818,6 @@ function ScoresDashboard({
             </p>
           </aside>
         </div>
-        {user && (
-          <section
-            className="home-personal personal-hub"
-            aria-labelledby="personal-hub-title"
-          >
-            <div className="personal-hub-top">
-              <div className="personal-hub-intro">
-                <span className="personal-hub-symbol" aria-hidden="true">
-                  <Star size={23} />
-                </span>
-                <div>
-                  <span className="personal-hub-eyebrow">SUA ARQUIBANCADA</span>
-                  <h2 id="personal-hub-title">
-                    Seu jogo, {user.name.split(" ")[0]}.
-                  </h2>
-                  <p>
-                    {personal
-                      ? "Sua agenda está filtrada pelos seus interesses."
-                      : "Encontre seus favoritos e acompanhe o que importa para você."}
-                  </p>
-                </div>
-              </div>
-              <Link className="personal-hub-settings" to="/conta#personalizar">
-                <SlidersHorizontal size={16} aria-hidden="true" /> Personalizar
-              </Link>
-            </div>
-            <div className="personal-hub-bottom">
-              <div className="personal-hub-controls">
-                <div className="personal-hub-filter">
-                  <span className="personal-hub-label">MOSTRAR JOGOS</span>
-                  <div role="group" aria-label="Filtrar agenda">
-                    <button
-                      type="button"
-                      aria-pressed={!personal}
-                      onClick={() => set("personal", "all")}
-                    >
-                      Todos
-                    </button>
-                    <button
-                      type="button"
-                      aria-pressed={personal}
-                      onClick={() => set("personal", "1")}
-                    >
-                      <Sparkles size={14} aria-hidden="true" /> Para você
-                    </button>
-                  </div>
-                </div>
-                <Link className="personal-hub-summary" to="/resumo-diario">
-                  <span>
-                    SEU DIA EM CAMPO
-                    <strong>
-                      Resumo Diário <ArrowRight size={16} aria-hidden="true" />
-                    </strong>
-                  </span>
-                </Link>
-              </div>
-            </div>
-          </section>
-        )}
       </div>
     </div>
   );
