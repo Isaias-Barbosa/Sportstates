@@ -1,7 +1,13 @@
 import { teamScore } from "./shared";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { CalendarDays, ChevronLeft, ChevronRight } from "lucide-react";
+import {
+  CalendarDays,
+  ChevronDown,
+  ChevronLeft,
+  ChevronRight,
+  Trophy,
+} from "lucide-react";
 import { today, dateLabel, useApi } from "../hooks";
 import type { LeagueStatisticsConfig, Match } from "../types";
 import { Crest, Empty, Loading, Notice, matchLabel } from "./shared";
@@ -30,13 +36,11 @@ function matchDateTime(date: string) {
 export default function LeagueOverview({
   sport,
   league,
-  name,
   season,
   statistics,
 }: {
   sport: string;
   league: string;
-  name: string;
   season?: number;
   statistics?: LeagueStatisticsConfig;
 }) {
@@ -77,22 +81,42 @@ export default function LeagueOverview({
   }
   return (
     <div className="league-overview">
-      <section
-        className="league-table-panel"
-        aria-label={`Classificação de ${name}`}
-      >
-        <div className="league-panel-heading">
-          <span className="eyebrow">NA DISPUTA</span>
-          <h3>Classificação e fases</h3>
-        </div>
+      <details className="league-table-panel league-disclosure" open>
+        <summary className="league-panel-heading league-panel-toggle">
+          <span className="league-panel-icon">
+            <Trophy size={20} aria-hidden="true" />
+          </span>
+          <span className="league-panel-copy">
+            <span className="league-panel-title">Classificação e fases</span>
+            <span className="league-panel-subtitle">
+              Tabela e etapas da competição
+            </span>
+          </span>
+          <ChevronDown
+            className="league-panel-chevron"
+            size={19}
+            aria-hidden="true"
+          />
+        </summary>
         <StandingsTable sport={sport} league={league} season={season} />
-      </section>
-      <section className="league-games-panel" aria-label={`Jogos de ${name}`}>
-        <div className="league-panel-heading">
-          <span className="eyebrow">DENTRO DE CAMPO</span>
-          <h3>Jogos da competição</h3>
-          <p>{name} · Horário de Brasília</p>
-        </div>
+      </details>
+      <details className="league-games-panel league-disclosure" open>
+        <summary className="league-panel-heading league-panel-toggle">
+          <span className="league-panel-icon">
+            <CalendarDays size={20} aria-hidden="true" />
+          </span>
+          <span className="league-panel-copy">
+            <span className="league-panel-title">Jogos da competição</span>
+            <span className="league-panel-subtitle">
+              Agenda e resultados · Horário de Brasília
+            </span>
+          </span>
+          <ChevronDown
+            className="league-panel-chevron"
+            size={19}
+            aria-hidden="true"
+          />
+        </summary>
         <div className="league-game-filters" aria-label="Filtrar jogos">
           <button
             type="button"
@@ -251,7 +275,7 @@ export default function LeagueOverview({
         <p className="league-games-note">
           ESPN · Atualização automática a cada minuto com a aba visível.
         </p>
-      </section>
+      </details>
       {statistics && (
         <LeagueStatistics sport={sport} league={league} config={statistics} />
       )}
