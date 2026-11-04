@@ -1,3 +1,4 @@
+import { pushConfig, pushCronAuthorized, validatePushDevice, savePushDevice, removePushDevice, testPushDevice, runPushMonitor } from "./web-push.mjs";
 import { f1Calendar, f1Result, f1Standings } from "./f1.mjs";
 import { leagueStatisticsConfig, leagueRanking } from "./league-statistics.mjs";
 import { findGeRoundsForDate, geRoundLoader } from "./ge-date-index.mjs";
@@ -1390,6 +1391,65 @@ export async function handler(req, res) {
     requestUrl.searchParams.has("path")
   )
     requestUrl.pathname = "/api/" + requestUrl.searchParams.get("path");
+
+  if (["/api/push/config", "/api/push/monitor", "/api/me/push"].includes(requestUrl.pathname)) {
+    res.setHeader("Cache-Control", "private, no-store");
+    res.setHeader("Vercel-CDN-Cache-Control", "no-store");
+    const reply = (status, body) => {
+      res.statusCode = status;
+      return res.end(JSON.stringify(body));
+    };
+    const config = pushConfig();
+    if (requestUrl.pathname === "/api/push/config")
+      return req.method === "GET"
+        ? reply(200, { publicKey: config?.publicKey ?? null })
+        : reply(405, { error: "Use GET." });
+    if (requestUrl.pathname === "/api/push/monitor") {
+      if (!pushCronAuthorized(req.headers?.authorization))
+        return reply(401, { error: "Acesso restrito ao monitor." });
+      if (!["GET", "POST"].includes(req.method)) return reply(405, { error: "Use GET ou POST." });
+      if (!config) return reply(503, { error: "Web Push indisponível." });
+      try {
+        return reply(200, await runPushMonitor((key) => {
+          const [sport, league, id] = key.split("/");
+          const url = new URL("http://localhost/api/match");
+          url.search = new URLSearchParams({ sport, league, id }).toString();
+          return route(url);
+        }, config));
+      } catch {
+        return reply(503, { error: "O monitor de notificações está indisponível." });
+      }
+    }
+    const user = await userIdentity(req.headers?.authorization);
+    if (!user) return reply(401, { error: "Entre na sua conta para continuar." });
+    if (req.method !== "POST") return reply(405, { error: "Use POST." });
+    let body, device;
+    try {
+      body = await requestJson(req, 8192);
+      if (body.action === "save") device = validatePushDevice(body);
+      else if (!["remove", "test"].includes(body.action) || typeof body.endpoint !== "string")
+        throw new Error("Ação inválida.");
+    } catch (error) {
+      return reply(400, { error: error.message });
+    }
+    try {
+      if (body.action === "remove") {
+        await removePushDevice(user.id, body.endpoint);
+        return reply(200, { ok: true });
+      }
+      if (!config) return reply(503, { error: "Notificações em segundo plano ainda indisponíveis." });
+      if (body.action === "test") {
+        return await testPushDevice(user.id, body.endpoint, config)
+          ? reply(200, { ok: true })
+          : reply(409, { error: "Ative o dispositivo ou aguarde um minuto para repetir o teste." });
+      }
+      return await savePushDevice(user.id, device)
+        ? reply(200, { ok: true })
+        : reply(409, { error: "Este dispositivo já está associado a outra conta ou o limite de dispositivos foi atingido." });
+    } catch {
+      return reply(503, { error: "Não foi possível atualizar as notificações deste dispositivo." });
+    }
+  }
 
      // NOVO: Verificar permissões para gerenciar lances
   if (requestUrl.pathname === "/api/lances/permissions") {

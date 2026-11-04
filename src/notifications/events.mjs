@@ -1,25 +1,13 @@
-import type { Detail, Match } from "../types";
-
-export type GameAlert = {
-  id: string;
-  icon: string;
-  title: string;
-  body: string;
-  url: string;
-};
-export const matchKey = (m: Pick<Match, "sport" | "league" | "id">) =>
-  `${m.sport}/${m.league}/${m.id}`;
-const number = (v: string | null | undefined) =>
-  v != null && /^\d+$/.test(v) ? Number(v) : null;
-function phase(m: Match) {
+export const matchKey = (m) => `${m.sport}/${m.league}/${m.id}`;
+const number = (v) => (v != null && /^\d+$/.test(v) ? Number(v) : null);
+function phase(m) {
   if (m.soccerPhase) return m.soccerPhase;
   if (/SHOOTOUT|PENALT/i.test(m.statusName) || m.period === 5)
     return "penalties";
   return [3, 4].includes(m.period) ? "extra-time" : "";
 }
-
 // Compare consecutive fresh snapshots only. The first snapshot is always a baseline.
-export function detectAlerts(previous: Detail, current: Detail): GameAlert[] {
+export function detectAlerts(previous, current) {
   const m = current.match;
   if (
     matchKey(previous.match) !== matchKey(m) ||
@@ -28,8 +16,8 @@ export function detectAlerts(previous: Detail, current: Detail): GameAlert[] {
     previous.stale
   )
     return [];
-  const out: GameAlert[] = [];
-  const add = (id: string, icon: string, title: string, body: string) =>
+  const out = [];
+  const add = (id, icon, title, body) =>
     out.push({
       id: `${matchKey(m)}:${id}`,
       icon,
@@ -50,7 +38,7 @@ export function detectAlerts(previous: Detail, current: Detail): GameAlert[] {
           : "VAI PARA A PRORROGAÇÃO",
         fixture,
       );
-    for (const side of ["home", "away"] as const) {
+    for (const side of ["home", "away"]) {
       const old = new Set((previous.highlights?.[side] || []).map((e) => e.id));
       for (const e of current.highlights?.[side] || []) {
         if (e.kind === "red-card" && previous.highlights && !old.has(e.id))
@@ -63,7 +51,7 @@ export function detectAlerts(previous: Detail, current: Detail): GameAlert[] {
       }
     }
   }
-  for (const side of ["home", "away"] as const) {
+  for (const side of ["home", "away"]) {
     let before = number(previous.match[side].score),
       after = number(m[side].score);
     let label =
@@ -175,10 +163,7 @@ export function detectAlerts(previous: Detail, current: Detail): GameAlert[] {
   }
   return out;
 }
-
-export function selectGame<
-  T extends { sport: string; league: string; id: string },
->(games: T[], candidate: T, limit = 10): T[] {
+export function selectGame(games, candidate, limit = 10) {
   const sameSport = games.filter(
     (g) => g.sport === candidate.sport && matchKey(g) !== matchKey(candidate),
   );

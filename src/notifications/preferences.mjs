@@ -1,13 +1,5 @@
-import { detectAlerts, matchKey, type GameAlert } from "./events";
-import type { Detail } from "../types";
-import type { NotificationPreferences } from "../account/AccountProvider";
-export type ConfigurableAlert = GameAlert & {
-  kind: "score" | "red" | "phase" | "start" | "finish" | "period";
-};
-export function configuredAlerts(
-  previous: Detail,
-  current: Detail,
-): ConfigurableAlert[] {
+import { detectAlerts, matchKey } from "./events.mjs";
+export function configuredAlerts(previous, current) {
   if (
     matchKey(previous.match) !== matchKey(current.match) ||
     previous.stale ||
@@ -18,11 +10,11 @@ export function configuredAlerts(
   const m = current.match,
     base = detectAlerts(previous, current).map((a) => ({
       ...a,
-      kind: (a.id.includes(":red:")
+      kind: a.id.includes(":red:")
         ? "red"
         : a.id.includes(":phase:")
           ? "phase"
-          : "score") as ConfigurableAlert["kind"],
+          : "score",
     }));
   const fixture = `${m.home.name} × ${m.away.name}`;
   if (previous.match.state === "scheduled" && m.state === "live")
@@ -63,11 +55,7 @@ export function configuredAlerts(
     });
   return base;
 }
-export function allowAlert(
-  alert: ConfigurableAlert,
-  sport: string,
-  p: NotificationPreferences,
-) {
+export function allowAlert(alert, sport, p) {
   if (!p[alert.kind]) return false;
   if (p.mode === "results") return ["start", "finish"].includes(alert.kind);
   if (

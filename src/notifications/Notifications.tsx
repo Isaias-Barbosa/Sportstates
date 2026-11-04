@@ -1,10 +1,11 @@
+import { useBackgroundPush } from "./useBackgroundPush";
 import {
   useAccount,
   defaultNotifications,
   type NotificationPreferences,
 } from "../account/AccountProvider";
 import { NotificationPreferencesForm } from "../account/PreferencesForm";
-import { configuredAlerts, allowAlert } from "./preferences";
+import { configuredAlerts, allowAlert } from "./preferences.mjs";
 import { playOnceForAlert, unlockSound } from "./sound";
 import {
   createContext,
@@ -18,7 +19,7 @@ import { Bell, BellRing, X } from "lucide-react";
 import { Link } from "react-router-dom";
 import type { Detail, Match } from "../types";
 import { sports } from "../catalog";
-import { matchKey, selectGame, type GameAlert } from "./events";
+import { matchKey, selectGame, type GameAlert } from "./events.mjs";
 
 type Followed = Pick<Match, "sport" | "league" | "id" | "name" | "date"> & {
   system?: boolean;
@@ -138,6 +139,13 @@ export default function NotificationsProvider({
   const notificationPreferences = user
     ? preferences.notifications
     : guestPreferences;
+  const background = useBackgroundPush(
+    games,
+    notificationPreferences,
+    gamesOwner === owner,
+  );
+  const backgroundRef = useRef(false);
+  backgroundRef.current = background.delivering;
   const preferencesRef = useRef(notificationPreferences);
   preferencesRef.current = notificationPreferences;
   useEffect(() => {
@@ -280,7 +288,7 @@ export default function NotificationsProvider({
     setCandidate(undefined);
     setMessage(
       permission === "granted"
-        ? "Ativado! Acompanhe os alertas com o site aberto. O sistema pode limitar avisos em segundo plano."
+        ? "Jogo acompanhado. Ative os alertas neste dispositivo para receber avisos com o navegador minimizado."
         : "Ativado para os cards do site. As notificações do sistema não estão disponíveis ou não foram autorizadas.",
     );
   };
@@ -308,6 +316,7 @@ export default function NotificationsProvider({
       timers.current.push(timer);
       const mobile = window.matchMedia("(max-width: 700px)").matches;
       if (
+        !backgroundRef.current &&
         games.some(
           (g) => g.system && `/partida/${matchKey(g)}` === alert.url,
         ) &&
@@ -486,16 +495,58 @@ export default function NotificationsProvider({
           {user
             ? "Conta conectada: até 30 jogos de vários esportes neste navegador. Preferências sincronizadas com sua conta."
             : "Sem login: um esporte por vez, até 10 jogos neste navegador."}{" "}
-          Mantenha o site aberto. A atualização ocorre a cada 30 segundos e
-          depende da cobertura da API. Com o site fechado, esta versão não envia
-          avisos.
+          Os cards do site são atualizados enquanto você acompanha a agenda.
         </p>
-        <p className="notification-limit">
-          No computador, os lances aparecem como cards. No celular, o aviso do
-          sistema depende da permissão e do suporte do navegador; no iPhone,
-          pode exigir instalar o site na tela inicial. No tênis, informamos
-          games e sets disponíveis na fonte.
-        </p>
+        <section
+          className="notification-background"
+          aria-label="Notificações do dispositivo"
+        >
+          <strong>Alertas com o navegador minimizado</strong>
+          <p className="notification-limit">
+            Ative neste dispositivo para receber avisos dos jogos marcados com
+            notificações do sistema. No iPhone ou iPad, adicione o Sportstates à
+            Tela de Início e abra o site por lá.
+          </p>
+          {!user ? (
+            <Link to="/conta" onClick={() => setOpen(false)}>
+              Entre para ativar alertas em segundo plano
+            </Link>
+          ) : !background.supported ? (
+            <p>O Web Push está indisponível neste navegador.</p>
+          ) : background.active ? (
+            <div className="notification-background-actions">
+              <button
+                className="notification-action"
+                disabled={background.busy || !background.publicKey}
+                onClick={() => void background.configure("test")}
+              >
+                Enviar teste
+              </button>
+              <button
+                className="notification-action notification-cards-only"
+                disabled={background.busy}
+                onClick={() => void background.configure("remove")}
+              >
+                Desativar neste dispositivo
+              </button>
+            </div>
+          ) : background.publicKey ? (
+            <button
+              className="notification-action"
+              disabled={background.busy}
+              onClick={() => void background.configure("enable")}
+            >
+              Ativar neste dispositivo
+            </button>
+          ) : (
+            <p>
+              {background.publicKey === undefined
+                ? "Verificando disponibilidade…"
+                : "O envio em segundo plano ainda está indisponível."}
+            </p>
+          )}
+          {background.message && <p role="status">{background.message}</p>}
+        </section>
         {message && (
           <p role="status" className="notice">
             {message}

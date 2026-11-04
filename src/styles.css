@@ -2850,3 +2850,25 @@ body.club-page-active { background:var(--club-page-bg, var(--canvas)); backgroun
   min-height: 0;
   margin-top: 3px;
 }
+
+.notification-background {
+  margin: 16px 0;
+  padding: 15px;
+  border: 1px solid #54718e;
+  border-radius: 12px;
+  background: #0b1e36;
+}
+.notification-background p { margin: 7px 0 12px; }
+.notification-background-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.notification-background a { color: #70f0cb; }
+.notification-action:focus-visible, .notification-background a:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+@media (max-width: 700px) {
+  .notification-stack { bottom: calc(16px + env(safe-area-inset-bottom, 0px)); }
+  .notification-background-actions > button { flex: 1 1 170px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .game-notification { animation: none; }
+}

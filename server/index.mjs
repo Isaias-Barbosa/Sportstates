@@ -33,6 +33,8 @@ http
         ".css": "text/css",
         ".svg": "image/svg+xml",
         ".html": "text/html",
+        ".webmanifest": "application/manifest+json",
+        ".png": "image/png",
       };
       const data = await readFile(ext ? file : path.join(root, "index.html"));
       res.setHeader("Content-Type", types[ext] || "text/html");
