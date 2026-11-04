@@ -2338,3 +2338,53 @@ summary:focus-visible {
     line-height: 1.4;
   }
 }
+
+.hv-sport-filters .hv-sport-agenda-link { text-decoration: none; }
+.sport-agenda > .standings-link,
+.sport-agenda-panel .standings-link,
+.sport-agenda-nav a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.sport-agenda-nav { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 18px; }
+.sport-agenda-nav a {
+  padding: 9px 14px;
+  color: var(--text);
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  text-decoration: none;
+}
+.sport-agenda-nav a[aria-current="page"] { border-color: var(--green); color: var(--green); }
+.sport-agenda-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  align-items: start;
+}
+.sport-agenda-panel {
+  min-width: 0;
+  padding: clamp(14px, 3vw, 24px);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--panel);
+}
+.sport-agenda-panel h2 { margin: 6px 0 8px; }
+.sport-agenda-panel p, .sport-agenda-panel small { color: var(--muted); }
+.sport-agenda-panel .standings-filter { margin: 12px 0; }
+.sport-agenda-event-date { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.sport-agenda-races { list-style: none; padding: 0; margin-block: 12px; }
+.sport-agenda-races li {
+  display: flex;
+  gap: 12px;
+  align-items: start;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+.sport-agenda-races li:first-child strong { color: var(--green); }
+.sport-agenda-races small, .sport-agenda-table small { display: block; margin-top: 3px; }
+.sport-agenda-table td:first-child { text-align: left; }
+@media (max-width: 780px) {
+  .sport-agenda-grid { grid-template-columns: minmax(0, 1fr); }
+}

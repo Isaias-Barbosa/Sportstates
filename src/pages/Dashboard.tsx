@@ -36,8 +36,26 @@ import {
   isLiveMatch,
 } from "../components/shared";
 import MatchBroadcasts from "../components/MatchBroadcasts";
+import SportAgenda, { sportAgendas } from "../components/SportAgenda";
 
 export default function Dashboard({
+  favoritesOnly = false,
+}: {
+  favoritesOnly?: boolean;
+}) {
+  const [params] = useSearchParams();
+  const sport = params.get("sport");
+  const agenda = sportAgendas.find(
+    ({ id }) => id === sport || (id === "outros" && sport === "judo"),
+  );
+  return agenda && !favoritesOnly ? (
+    <SportAgenda sport={agenda.id} />
+  ) : (
+    <ScoresDashboard favoritesOnly={favoritesOnly} />
+  );
+}
+
+function ScoresDashboard({
   favoritesOnly = false,
 }: {
   favoritesOnly?: boolean;
@@ -511,6 +529,18 @@ export default function Dashboard({
                 <small>{matches.filter((m) => m.sport === s.id).length}</small>
               </button>
             ))}
+            {!favoritesOnly &&
+              sportAgendas.map(({ id, label, caption, icon: Icon }) => (
+                <Link
+                  key={id}
+                  className="hv-sport-agenda-link"
+                  to={`/?sport=${id}`}
+                >
+                  <Icon size={19} aria-hidden="true" />
+                  <strong>{label}</strong>
+                  <small>{caption}</small>
+                </Link>
+              ))}
           </div>
         </section>
         {sport !== "all" && (
@@ -706,16 +736,12 @@ export default function Dashboard({
                 title={
                   favoritesOnly
                     ? "Nenhum favorito nesta data"
-                    : sport === "judo"
-                      ? "Judô no catálogo"
-                      : "Nenhuma partida encontrada"
+                    : "Nenhuma partida encontrada"
                 }
               >
                 {favoritesOnly
                   ? "Marque a estrela de uma partida para salvá-la."
-                  : sport === "judo"
-                    ? "Ainda não há uma fonte integrada de placares para o judô."
-                    : "Altere o esporte, a data ou a busca. A cobertura varia por competição."}
+                  : "Altere o esporte, a data ou a busca. A cobertura varia por competição."}
               </Empty>
             ) : (
               groups.map((group) => {
