@@ -66,7 +66,7 @@ export default function AdminAnnouncements({
         throw new Error(result.error || "Não foi possível publicar.");
       setMessage(
         result.created
-          ? `Informe publicado no sino. Dispositivos na fila de envio: ${result.queued}.`
+          ? `Informe publicado. Dispositivos na fila de envio: ${result.queued}.`
           : "Este informe já foi publicado.",
       );
       setTitle("");
@@ -87,8 +87,8 @@ export default function AdminAnnouncements({
     <section aria-labelledby="admin-announcements">
       <h2 id="admin-announcements">Notificações personalizadas</h2>
       <p>
-        Publique um informe no sino das contas cadastradas. Dispositivos que
-        aceitam informes também recebem um aviso do sistema.
+        Envie um aviso do sistema aos dispositivos em que usuários cadastrados
+        ativaram as notificações.
       </p>
       {message && <Notice error={failed}>{message}</Notice>}
       {publicationId ? (
