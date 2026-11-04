@@ -1,3 +1,4 @@
+import { leagueStatisticsConfig, leagueRanking } from "./league-statistics.mjs";
 import { findGeRoundsForDate, geRoundLoader } from "./ge-date-index.mjs";
 import { normalizeGeSerieAFixtures } from "./ge-fixtures.mjs";
 import { sameGeTeam } from "./ge-rounds.mjs";
@@ -635,6 +636,7 @@ export async function route(url) {
               logo: overrideByKey.get(`${s.id}:${id}`)?.has_upload
                 ? `/api/league-logo?sport=${encodeURIComponent(s.id)}&id=${encodeURIComponent(id)}`
                 : overrideByKey.get(`${s.id}:${id}`)?.logo_url || `/api/league-logo?sport=${encodeURIComponent(s.id)}&id=${encodeURIComponent(id)}`,
+              statistics: leagueStatisticsConfig(s.id, id) || undefined,
               hasKnockout: s.id === "soccer" && KNOCKOUT_LEAGUES.has(id),
               tournamentFormat:
                 s.id === "soccer" ? SOCCER_TOURNAMENT_FORMATS[id] : undefined,
@@ -669,6 +671,21 @@ export async function route(url) {
     return [200, await tableRankings()];
   if (url.pathname === "/api/tennis-athletes")
     return [200, await atpRankings()];
+  if (url.pathname === "/api/league-statistics") {
+    const sport = q.get("sport");
+    const league = q.get("league");
+    const config = leagueStatisticsConfig(sport, league);
+    if (!config) return [404, { error: "Estatísticas sem cobertura verificada." }];
+    const metric = config.metrics.find(({ id }) => id === q.get("metric"));
+    if (!metric) return [400, { error: "Ranking inválido para esta competição." }];
+    try {
+      return [200, await leagueRanking({
+        sport, league, config, metric, cached, loadJson: (url) => json(url, {}, 4000),
+      })];
+    } catch {
+      return [503, { error: "Estatísticas temporariamente indisponíveis." }];
+    }
+  }
   if (url.pathname === "/api/standings") {
     const config = leagueFor(q.get("sport"), q.get("league"));
     if (!config) return [400, { error: "Competição inválida." }];
