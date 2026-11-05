@@ -586,14 +586,35 @@ export async function route(url) {
   if (url.pathname === "/api/team-player-stats" || url.pathname === "/api/player") {
     const id = q.get("id");
     if (!validPlayerId(id)) return [400, { error: "Identificador inválido." }];
-    if (url.pathname === "/api/player") {
-      const player = await readBrazilPlayer(id);
-      return player ? [200, player] : [404, { error: "Jogador ainda não cadastrado." }];
-    }
+    const isPlayer = url.pathname === "/api/player";
     const league = q.get("league");
-    if (!Object.hasOwn(brazilPlayerLeagues, league)) return [400, { error: "Competição inválida." }];
-    const season = Number(dayInBrazil(new Date()).slice(0, 4));
-    return [200, await readBrazilTeamPlayers(league, id, season)];
+    if (!isPlayer && !Object.hasOwn(brazilPlayerLeagues, league))
+      return [400, { error: "Competição inválida." }];
+    try {
+      if (isPlayer) {
+        const player = await readBrazilPlayer(id);
+        return player ? [200, player] : [404, { error: "Jogador ainda não cadastrado." }];
+      }
+      const season = Number(dayInBrazil(new Date()).slice(0, 4));
+      return [200, await readBrazilTeamPlayers(league, id, season)];
+    } catch (error) {
+      if (process.env.VERCEL_ENV === "preview" && error.code === "42P01") {
+        const production = new URL(url.pathname, "https://sportstates.vercel.app");
+        production.searchParams.set("id", id);
+        if (!isPlayer) production.searchParams.set("league", league);
+        try {
+          const response = await fetch(production, {
+            redirect: "error",
+            signal: AbortSignal.timeout(5000),
+          });
+          if (response.ok || response.status === 404)
+            return [response.status, await response.json()];
+        } catch {
+          // The preview remains unavailable if the public endpoint is offline.
+        }
+      }
+      return [503, { error: "Estatísticas de jogadores temporariamente indisponíveis." }];
+    }
   }
   if (url.pathname === "/api/team") {
     const id = q.get("id");
