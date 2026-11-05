@@ -31,7 +31,7 @@ export function useApi<T>(url: string, interval = 60000) {
       inFlight = true;
       controller = new AbortController();
       try {
-        const res = await fetch(url, { signal: controller.signal });
+        const res = await fetch(url, { signal: controller.signal, ...(url.startsWith("/api/featured?") ? { cache: "no-store" as const } : {}) });
         const body = await res.json();
         if (!res.ok) throw new Error(body.error || "Falha na consulta.");
         if (active) {
