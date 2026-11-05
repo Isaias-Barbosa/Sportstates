@@ -57,7 +57,8 @@ import { fetchHeadToHead } from "./head-to-head.mjs";
 import { enrichBroadcasts } from "./broadcast-schedule.mjs";
 import { applyCbfBroadcasts } from "./cbf-broadcasts.mjs";
 import { isCbfLowerDivision, cbfLowerDivisionGames, cbfLowerDivisionTimestamp,
-  cbfLowerDivisionDetail, cbfLowerDivisionHeadToHead, cbfLowerDivisionTeamCompetitions } from "./cbf-lower-divisions.mjs";
+  cbfLowerDivisionDetail, cbfLowerDivisionDetailedMatch, cbfLowerDivisionStandings, cbfLowerDivisionRanking,
+  cbfLowerDivisionHeadToHead, cbfLowerDivisionTeamCompetitions } from "./cbf-lower-divisions.mjs";
 import { cbfRegisteredPlayer, validPublicPlayerId } from "./cbf-player-register.mjs";
 import { enrichPlayerProfile, playerCompetitions, playerLeagues, playerSeason, validPlayerId, readBrazilTeamPlayers, readBrazilPlayer,
   syncBrazilPlayerDay } from "./brazil-players.mjs";
@@ -775,6 +776,7 @@ export async function route(url) {
     if (!config) return [404, { error: "Estatísticas sem cobertura verificada." }];
     const metric = config.metrics.find(({ id }) => id === q.get("metric"));
     if (!metric) return [400, { error: "Ranking inválido para esta competição." }];
+    if (sport === 'soccer' && isCbfLowerDivision(league)) return [200, cbfLowerDivisionRanking(league, metric.id)];
     try {
       return [200, await leagueRanking({
         sport, league, config, metric, cached, loadJson: (url) => json(url, {}, 4000),
@@ -787,7 +789,9 @@ export async function route(url) {
     const config = leagueFor(q.get("sport"), q.get("league"));
     if (!config) return [400, { error: "Competição inválida." }];
     if (config.sport === "soccer" && isCbfLowerDivision(config.league))
-      return [503, { error: "Classificação das Séries C e D ainda não disponível. Consulte os resultados na aba Jogos." }];
+      return q.has('season') && q.get('season') !== '2026'
+        ? [400,{error:'Classificação da CBF disponível apenas para 2026.'}]
+        : [200, cbfLowerDivisionStandings(config.league)];
     if (
       config.sport === "soccer" &&
       SOCCER_365_PRIMARY_COMPETITIONS.has(config.league)
@@ -1339,7 +1343,7 @@ export async function route(url) {
       if (!detail) return [404, { error: "Partida não encontrada." }];
       return url.pathname === "/api/media"
         ? [200, { highlights: [], replays: [], related: [], searchLinks: [], partial: false, message: "Vídeos não disponíveis nesta fonte.", source: "CBF" }]
-        : [200, detail];
+        : [200, await cbfLowerDivisionDetailedMatch(config.league, id)];
     }
     if (["tennis", "volleyball", "table-tennis"].includes(config.sport)) {
       if (url.pathname === "/api/media" && config.sport === "tennis") {

@@ -4,6 +4,9 @@ type Stat = { name: string; value: string };
 type Category = { title: string; aliases: string[] };
 
 const essentialStats: Category[] = [
+  { title: "Gols", aliases: ["gols"] },
+  { title: "Cartões amarelos (atletas)", aliases: ["cartões amarelos (atletas)"] },
+  { title: "Cartões vermelhos (atletas)", aliases: ["cartões vermelhos (atletas)"] },
   { title: "Chutes", aliases: ["chutes", "total de chutes", "finalizacoes", "total de finalizacoes", "total shots", "total shots attempted", "shots", "shots attempted", "total scoring attempts", "totalshots"] },
   { title: "Chutes a gol", aliases: ["chutes a gol", "chutes no gol", "finalizacoes no alvo", "shots on target", "shots on goal", "shotsontarget", "shotsongoal", "ontargetscoringattempts"] },
   { title: "Posse de bola", aliases: ["posse", "posse de bola", "posse bola", "percentual de posse", "posse de bola (%)", "posse de bola %", "possession", "ball possession", "ball possession percentage", "possessionpct", "possession percentage", "possessionpercent", "possessionpercentage", "possession time", "possessiontime", "possession percent", "possession %"] },

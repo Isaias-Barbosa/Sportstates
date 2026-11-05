@@ -34,7 +34,7 @@ test("official lower-division snapshots cover all participants and unique fixtur
   }
 });
 
-test("league, fixture, media and head-to-head routes use official snapshots without upstream queries", async (t) => {
+test("snapshots serve league, standings and media; match details safely fall back on upstream failure", async (t) => {
   const original = globalThis.fetch;
   t.after(() => {
     globalThis.fetch = original;
@@ -75,7 +75,7 @@ test("league, fixture, media and head-to-head routes use official snapshots with
     assert.deepEqual(media.replays, []);
     assert.deepEqual(media.highlights, []);
     const [standingsStatus] = await route(new URL(`http://localhost/api/standings?sport=soccer&league=${season.league}`));
-    assert.equal(standingsStatus, 503);
+    assert.equal(standingsStatus, 200);
     const [futureStatus] = await route(
       new URL(
         `http://localhost/api/league-games?sport=soccer&league=${season.league}&month=2027-04`,

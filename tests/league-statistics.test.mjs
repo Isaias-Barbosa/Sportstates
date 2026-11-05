@@ -42,7 +42,7 @@ test("rankings only query verified league/metric pairs and share provider result
 
   for (const [query, expected] of [
     ["sport=soccer&league=bra.copa_verde&metric=goals", 404],
-    ["sport=soccer&league=bra.3&metric=goals", 404],
+    ["sport=soccer&league=bra.3&metric=goals", 200],
     ["sport=basketball&league=nbb&metric=PER", 404],
     [lib + "&metric=unknown", 400],
   ])

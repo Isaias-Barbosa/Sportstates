@@ -1,0 +1,3966 @@
+{
+  "league": "bra.4",
+  "season": 2026,
+  "collectedAt": "2026-11-05T12:22:25.194073+00:00",
+  "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/tabelas/campeonato-brasileiro/serie-d/2026",
+  "sources": [
+    {
+      "url": "https://www.cbf.com.br/futebol-brasileiro/tabelas/campeonato-brasileiro/serie-d/2026/2040",
+      "sha256": "6024bbe7a95bc2ddade0ca0c155ba5086d319743d861a63f2ee3d6fe47f29d44"
+    },
+    {
+      "url": "https://www.cbf.com.br/api/cbf/jogos/campeonato/1260635/rodada/1/fase/2066",
+      "sha256": "bd8ac1e96d8c9415a4676a051e6bbb7bad8316a7f50173de8e596a61743bceb3"
+    },
+    {
+      "url": "https://www.cbf.com.br/api/cbf/jogos/campeonato/1260635/rodada/2/fase/2066",
+      "sha256": "8df99ef75fb81e9b7474d154b00eb03b740f819eedf5c0b91ec8be475be916b7"
+    },
+    {
+      "url": "https://www.cbf.com.br/api/cbf/jogos/campeonato/1260635/rodada/1/fase/2068",
+      "sha256": "95334e16d3622ffca719ff82d5874e8784b4f359cdb5f7102493f04e163023bf"
+    },
+    {
+      "url": "https://www.cbf.com.br/api/cbf/jogos/campeonato/1260635/rodada/2/fase/2068",
+      "sha256": "a325fe682b2e592ddcae4d097ce05300e3026a62bdf66915407e3ddd541a3833"
+    },
+    {
+      "url": "https://www.cbf.com.br/api/cbf/jogos/campeonato/1260635/rodada/1/fase/2075",
+      "sha256": "ad0d46c913572f25e79269404205fbb44a6064c51fb17044b1f04e4a1003d8d0"
+    },
+    {
+      "url": "https://www.cbf.com.br/api/cbf/jogos/campeonato/1260635/rodada/2/fase/2075",
+      "sha256": "a3338787cb3ddb8e1c5b9dbcb238bc63b7246438adf2fdc64d1c66f7c4c1190c"
+    },
+    {
+      "url": "https://www.cbf.com.br/api/cbf/jogos/campeonato/1260635/rodada/1/fase/2080",
+      "sha256": "055b5a5b0f7efbab80c02ff1a3e3d2e2744caa298e99c75fc36784e12a7648f4"
+    },
+    {
+      "url": "https://www.cbf.com.br/api/cbf/jogos/campeonato/1260635/rodada/2/fase/2080",
+      "sha256": "815e91b45102addbe5a58393e68b59a5672387b17625df7a9b1c229d29082211"
+    },
+    {
+      "url": "https://www.cbf.com.br/api/cbf/jogos/campeonato/1260635/rodada/1/fase/2089",
+      "sha256": "9de6f87094193c300f94deca8b9d44e471960c46c462b5506aadedd2a5786780"
+    },
+    {
+      "url": "https://www.cbf.com.br/api/cbf/jogos/campeonato/1260635/rodada/2/fase/2089",
+      "sha256": "7deacae6cf43b74fc93c3815cd671de4773328815383b176502940d56aa86a4d"
+    },
+    {
+      "url": "https://www.cbf.com.br/api/cbf/jogos/campeonato/1260635/rodada/1/fase/2090",
+      "sha256": "e13ced16025c9e116a8e02257e69e3fb1d32685c56200cdc91093d19056cef4a"
+    },
+    {
+      "url": "https://www.cbf.com.br/api/cbf/jogos/campeonato/1260635/rodada/2/fase/2090",
+      "sha256": "404ad459afcc7895131c8903af217ade792f8f6021fb7d6c04c26f0cdbb489f2"
+    },
+    {
+      "url": "https://www.cbf.com.br/api/cbf/jogos/campeonato/1260635/rodada/1/fase/2099",
+      "sha256": "f1789e63bbd583a60bf9c3873edc9f42a3cd92504269c7f3a02aa6640a1ec9cb"
+    },
+    {
+      "url": "https://www.cbf.com.br/api/cbf/jogos/campeonato/1260635/rodada/2/fase/2099",
+      "sha256": "90177e374bbf70cf3b853e05ffdd1f5c89635e210412942d146d11dddb52963a"
+    },
+    {
+      "url": "https://www.cbf.com.br/api/cbf/artilheiros/42/5/2026/1",
+      "sha256": "ccbf170503145f2807e4a09ed2a15cc03fa58f5f8073c8d9294c0ab730de5799"
+    },
+    {
+      "url": "https://www.cbf.com.br/api/cbf/artilheiros/42/5/2026/2",
+      "sha256": "ac1fe7fb70fb15a338706d7c65ea6470bb894407f3005f440722ce39367e2956"
+    },
+    {
+      "url": "https://www.cbf.com.br/api/cbf/artilheiros/42/5/2026/3",
+      "sha256": "0f5049fc083e466af7929fe2a4db073ec7d859fec6b452f81582a51743db1c16"
+    },
+    {
+      "url": "https://www.cbf.com.br/api/cbf/artilheiros/42/5/2026/4",
+      "sha256": "9d900d87794ba324fbb32faf40640a737730361a5d57a34431e463f741028af9"
+    },
+    {
+      "url": "https://www.cbf.com.br/api/cbf/artilheiros/42/5/2026/5",
+      "sha256": "2cc164f4b4936c24abd71eeeba7ab2f7701ad0f6582d8e62baa70338e75e7418"
+    },
+    {
+      "url": "https://www.cbf.com.br/api/cbf/artilheiros/42/5/2026/6",
+      "sha256": "4cd517e497291fb309e48b5477381edafcfeb92b0c318c516df2d49ae6382332"
+    },
+    {
+      "url": "https://www.cbf.com.br/api/cbf/artilheiros/42/5/2026/7",
+      "sha256": "89c2f7f14a6a7397b112b303ba86609b35b21b702096f8ce8486d1aebb2a961e"
+    },
+    {
+      "url": "https://www.cbf.com.br/api/cbf/artilheiros/42/5/2026/8",
+      "sha256": "464f12855953cf8db2e2c51596948e3fbcf6bf5eb4bdd1ead47f3a553cacf0e6"
+    },
+    {
+      "url": "https://www.cbf.com.br/api/cbf/artilheiros/42/5/2026/9",
+      "sha256": "f153dc6fc4e85812490099366418036a1d46d35fed9fe8e8847b57f1a7e7c195"
+    },
+    {
+      "url": "https://www.cbf.com.br/api/cbf/artilheiros/42/5/2026/10",
+      "sha256": "23abeba9f7c9d62af292c279b021ed23a4b3dbc420ad3784b627f6d31db1e748"
+    },
+    {
+      "url": "https://www.cbf.com.br/api/cbf/artilheiros/42/5/2026/11",
+      "sha256": "ce9e3d07f58d83ab0c680646e1e09c9c3a19521f9e37796d70f699594ddffcc7"
+    },
+    {
+      "url": "https://www.cbf.com.br/api/cbf/artilheiros/42/5/2026/12",
+      "sha256": "c7c70f1c1b844213df025fb3f8da7487d18560a98c364abf1db6ab3725037cca"
+    },
+    {
+      "url": "https://www.cbf.com.br/api/cbf/artilheiros/42/5/2026/13",
+      "sha256": "c6975765f5dbc8919788d4249d67ebcb9ec7b374f91fc78ba2d2b89fde12aa14"
+    },
+    {
+      "url": "https://www.cbf.com.br/api/cbf/artilheiros/42/5/2026/14",
+      "sha256": "d478a6b6e27ce8106dc5384c9e02dd2e73fc0cc61ffa8843e23248d46aedabd5"
+    },
+    {
+      "url": "https://www.cbf.com.br/api/cbf/artilheiros/42/5/2026/15",
+      "sha256": "b2ad2f988bbc5f064aa75579ed74384ee7e286b610de8eb4f225ab08ea747bb9"
+    },
+    {
+      "url": "https://www.cbf.com.br/api/cbf/artilheiros/42/5/2026/16",
+      "sha256": "0dd708899d63770469a70c678828f15665de687c6036e170f23d5094f3ceb006"
+    },
+    {
+      "url": "https://www.cbf.com.br/api/cbf/artilheiros/42/5/2026/17",
+      "sha256": "252ca5c808e009298f4e303fb43b42a3dcae1148cf676730a443543e0940ea01"
+    }
+  ],
+  "groups": [
+    {
+      "name": "1ª Fase · Grupo A1",
+      "phaseId": "2040",
+      "rows": [
+        {
+          "id": "cbf-59102",
+          "name": "Manauara",
+          "logo": "https://conteudo.cbf.com.br/clubes/59102/escudo.jpg",
+          "rank": "1",
+          "stats": {
+            "points": "22",
+            "gamesPlayed": "10",
+            "wins": "6",
+            "ties": "4",
+            "losses": "0",
+            "goalsFor": "13",
+            "goalsAgainst": "5",
+            "goalDifference": "8",
+            "yellowCards": "28",
+            "redCards": "1",
+            "winPercent": "73"
+          }
+        },
+        {
+          "id": "cbf-20050",
+          "name": "Nacional-AM",
+          "logo": "https://conteudo.cbf.com.br/clubes/20050/escudo.jpg",
+          "rank": "2",
+          "stats": {
+            "points": "20",
+            "gamesPlayed": "10",
+            "wins": "6",
+            "ties": "2",
+            "losses": "2",
+            "goalsFor": "15",
+            "goalsAgainst": "9",
+            "goalDifference": "6",
+            "yellowCards": "24",
+            "redCards": "5",
+            "winPercent": "66"
+          }
+        },
+        {
+          "id": "cbf-21638",
+          "name": "São Raimundo-RR",
+          "logo": "https://conteudo.cbf.com.br/clubes/21638/escudo.jpg",
+          "rank": "3",
+          "stats": {
+            "points": "13",
+            "gamesPlayed": "10",
+            "wins": "3",
+            "ties": "4",
+            "losses": "3",
+            "goalsFor": "10",
+            "goalsAgainst": "7",
+            "goalDifference": "3",
+            "yellowCards": "16",
+            "redCards": "3",
+            "winPercent": "43"
+          }
+        },
+        {
+          "id": "cbf-62190",
+          "name": "Monte Roraima",
+          "logo": "https://conteudo.cbf.com.br/clubes/62190/escudo.jpg",
+          "rank": "4",
+          "stats": {
+            "points": "10",
+            "gamesPlayed": "10",
+            "wins": "2",
+            "ties": "4",
+            "losses": "4",
+            "goalsFor": "11",
+            "goalsAgainst": "14",
+            "goalDifference": "-3",
+            "yellowCards": "33",
+            "redCards": "2",
+            "winPercent": "33"
+          }
+        },
+        {
+          "id": "cbf-52844",
+          "name": "Manaus",
+          "logo": "https://conteudo.cbf.com.br/clubes/52844/escudo.jpg",
+          "rank": "5",
+          "stats": {
+            "points": "10",
+            "gamesPlayed": "10",
+            "wins": "2",
+            "ties": "4",
+            "losses": "4",
+            "goalsFor": "8",
+            "goalsAgainst": "13",
+            "goalDifference": "-5",
+            "yellowCards": "31",
+            "redCards": "2",
+            "winPercent": "33"
+          }
+        },
+        {
+          "id": "cbf-20353",
+          "name": "GAS",
+          "logo": "https://conteudo.cbf.com.br/clubes/20353/escudo.jpg",
+          "rank": "6",
+          "stats": {
+            "points": "5",
+            "gamesPlayed": "10",
+            "wins": "1",
+            "ties": "2",
+            "losses": "7",
+            "goalsFor": "8",
+            "goalsAgainst": "17",
+            "goalDifference": "-9",
+            "yellowCards": "22",
+            "redCards": "0",
+            "winPercent": "16"
+          }
+        }
+      ]
+    },
+    {
+      "name": "1ª Fase · Grupo A2",
+      "phaseId": "2040",
+      "rows": [
+        {
+          "id": "cbf-53757",
+          "name": "Guaporé",
+          "logo": "https://conteudo.cbf.com.br/clubes/53757/escudo.jpg",
+          "rank": "1",
+          "stats": {
+            "points": "22",
+            "gamesPlayed": "10",
+            "wins": "6",
+            "ties": "4",
+            "losses": "0",
+            "goalsFor": "19",
+            "goalsAgainst": "9",
+            "goalDifference": "10",
+            "yellowCards": "32",
+            "redCards": "5",
+            "winPercent": "73"
+          }
+        },
+        {
+          "id": "cbf-56220",
+          "name": "Gazin Porto Velho",
+          "logo": "https://conteudo.cbf.com.br/clubes/56220/escudo.jpg",
+          "rank": "2",
+          "stats": {
+            "points": "18",
+            "gamesPlayed": "10",
+            "wins": "5",
+            "ties": "3",
+            "losses": "2",
+            "goalsFor": "33",
+            "goalsAgainst": "9",
+            "goalDifference": "24",
+            "yellowCards": "30",
+            "redCards": "2",
+            "winPercent": "60"
+          }
+        },
+        {
+          "id": "cbf-21745",
+          "name": "Araguaína",
+          "logo": "https://conteudo.cbf.com.br/clubes/21745/escudo.jpg",
+          "rank": "3",
+          "stats": {
+            "points": "18",
+            "gamesPlayed": "10",
+            "wins": "5",
+            "ties": "3",
+            "losses": "2",
+            "goalsFor": "31",
+            "goalsAgainst": "9",
+            "goalDifference": "22",
+            "yellowCards": "25",
+            "redCards": "1",
+            "winPercent": "60"
+          }
+        },
+        {
+          "id": "cbf-20380",
+          "name": "Independência",
+          "logo": "https://conteudo.cbf.com.br/clubes/20380/escudo.jpg",
+          "rank": "4",
+          "stats": {
+            "points": "15",
+            "gamesPlayed": "10",
+            "wins": "4",
+            "ties": "3",
+            "losses": "3",
+            "goalsFor": "17",
+            "goalsAgainst": "10",
+            "goalDifference": "7",
+            "yellowCards": "30",
+            "redCards": "1",
+            "winPercent": "50"
+          }
+        },
+        {
+          "id": "cbf-32816",
+          "name": "Galvez",
+          "logo": "https://conteudo.cbf.com.br/clubes/32816/escudo.jpg",
+          "rank": "5",
+          "stats": {
+            "points": "10",
+            "gamesPlayed": "10",
+            "wins": "3",
+            "ties": "1",
+            "losses": "6",
+            "goalsFor": "14",
+            "goalsAgainst": "31",
+            "goalDifference": "-17",
+            "yellowCards": "23",
+            "redCards": "1",
+            "winPercent": "33"
+          }
+        },
+        {
+          "id": "cbf-54133",
+          "name": "Humaitá",
+          "logo": "https://conteudo.cbf.com.br/clubes/54133/escudo.jpg",
+          "rank": "6",
+          "stats": {
+            "points": "0",
+            "gamesPlayed": "10",
+            "wins": "0",
+            "ties": "0",
+            "losses": "10",
+            "goalsFor": "4",
+            "goalsAgainst": "50",
+            "goalDifference": "-46",
+            "yellowCards": "16",
+            "redCards": "1",
+            "winPercent": "0"
+          }
+        }
+      ]
+    },
+    {
+      "name": "1ª Fase · Grupo A3",
+      "phaseId": "2040",
+      "rows": [
+        {
+          "id": "cbf-20098",
+          "name": "Gama",
+          "logo": "https://conteudo.cbf.com.br/clubes/20098/escudo.jpg",
+          "rank": "1",
+          "stats": {
+            "points": "26",
+            "gamesPlayed": "10",
+            "wins": "8",
+            "ties": "2",
+            "losses": "0",
+            "goalsFor": "23",
+            "goalsAgainst": "6",
+            "goalDifference": "17",
+            "yellowCards": "32",
+            "redCards": "1",
+            "winPercent": "86"
+          }
+        },
+        {
+          "id": "cbf-21725",
+          "name": "Luverdense",
+          "logo": "https://conteudo.cbf.com.br/clubes/21725/escudo.jpg",
+          "rank": "2",
+          "stats": {
+            "points": "15",
+            "gamesPlayed": "10",
+            "wins": "4",
+            "ties": "3",
+            "losses": "3",
+            "goalsFor": "11",
+            "goalsAgainst": "10",
+            "goalDifference": "1",
+            "yellowCards": "34",
+            "redCards": "2",
+            "winPercent": "50"
+          }
+        },
+        {
+          "id": "cbf-62652",
+          "name": "Brasiliense",
+          "logo": "https://conteudo.cbf.com.br/clubes/62652/escudo.jpg",
+          "rank": "3",
+          "stats": {
+            "points": "14",
+            "gamesPlayed": "10",
+            "wins": "3",
+            "ties": "5",
+            "losses": "2",
+            "goalsFor": "11",
+            "goalsAgainst": "10",
+            "goalDifference": "1",
+            "yellowCards": "31",
+            "redCards": "3",
+            "winPercent": "46"
+          }
+        },
+        {
+          "id": "cbf-21889",
+          "name": "Aparecidense",
+          "logo": "https://conteudo.cbf.com.br/clubes/21889/escudo.jpg",
+          "rank": "4",
+          "stats": {
+            "points": "13",
+            "gamesPlayed": "10",
+            "wins": "3",
+            "ties": "4",
+            "losses": "3",
+            "goalsFor": "13",
+            "goalsAgainst": "12",
+            "goalDifference": "1",
+            "yellowCards": "27",
+            "redCards": "2",
+            "winPercent": "43"
+          }
+        },
+        {
+          "id": "cbf-59905",
+          "name": "Primavera-MT",
+          "logo": "https://conteudo.cbf.com.br/clubes/59905/escudo.jpg",
+          "rank": "5",
+          "stats": {
+            "points": "12",
+            "gamesPlayed": "10",
+            "wins": "3",
+            "ties": "3",
+            "losses": "4",
+            "goalsFor": "10",
+            "goalsAgainst": "13",
+            "goalDifference": "-3",
+            "yellowCards": "30",
+            "redCards": "1",
+            "winPercent": "40"
+          }
+        },
+        {
+          "id": "cbf-37539",
+          "name": "Inhumas",
+          "logo": "https://conteudo.cbf.com.br/clubes/37539/escudo.jpg",
+          "rank": "6",
+          "stats": {
+            "points": "1",
+            "gamesPlayed": "10",
+            "wins": "0",
+            "ties": "1",
+            "losses": "9",
+            "goalsFor": "3",
+            "goalsAgainst": "20",
+            "goalDifference": "-17",
+            "yellowCards": "35",
+            "redCards": "0",
+            "winPercent": "3"
+          }
+        }
+      ]
+    },
+    {
+      "name": "1ª Fase · Grupo A4",
+      "phaseId": "2040",
+      "rows": [
+        {
+          "id": "cbf-37743",
+          "name": "Capital-DF",
+          "logo": "https://conteudo.cbf.com.br/clubes/37743/escudo.jpg",
+          "rank": "1",
+          "stats": {
+            "points": "23",
+            "gamesPlayed": "10",
+            "wins": "7",
+            "ties": "2",
+            "losses": "1",
+            "goalsFor": "16",
+            "goalsAgainst": "6",
+            "goalDifference": "10",
+            "yellowCards": "32",
+            "redCards": "1",
+            "winPercent": "76"
+          }
+        },
+        {
+          "id": "cbf-20101",
+          "name": "Goiatuba",
+          "logo": "https://conteudo.cbf.com.br/clubes/20101/escudo.jpg",
+          "rank": "2",
+          "stats": {
+            "points": "19",
+            "gamesPlayed": "10",
+            "wins": "5",
+            "ties": "4",
+            "losses": "1",
+            "goalsFor": "13",
+            "goalsAgainst": "7",
+            "goalDifference": "6",
+            "yellowCards": "24",
+            "redCards": "0",
+            "winPercent": "63"
+          }
+        },
+        {
+          "id": "cbf-63519",
+          "name": "Ceilândia",
+          "logo": "https://conteudo.cbf.com.br/clubes/63519/escudo.jpg",
+          "rank": "3",
+          "stats": {
+            "points": "12",
+            "gamesPlayed": "10",
+            "wins": "3",
+            "ties": "3",
+            "losses": "4",
+            "goalsFor": "9",
+            "goalsAgainst": "10",
+            "goalDifference": "-1",
+            "yellowCards": "34",
+            "redCards": "0",
+            "winPercent": "40"
+          }
+        },
+        {
+          "id": "cbf-20064",
+          "name": "Mixto",
+          "logo": "https://conteudo.cbf.com.br/clubes/20064/escudo.jpg",
+          "rank": "4",
+          "stats": {
+            "points": "12",
+            "gamesPlayed": "10",
+            "wins": "2",
+            "ties": "6",
+            "losses": "2",
+            "goalsFor": "10",
+            "goalsAgainst": "9",
+            "goalDifference": "1",
+            "yellowCards": "30",
+            "redCards": "2",
+            "winPercent": "40"
+          }
+        },
+        {
+          "id": "cbf-20287",
+          "name": "União Rondonópolis",
+          "logo": "https://conteudo.cbf.com.br/clubes/20287/escudo.jpg",
+          "rank": "5",
+          "stats": {
+            "points": "9",
+            "gamesPlayed": "10",
+            "wins": "2",
+            "ties": "3",
+            "losses": "5",
+            "goalsFor": "11",
+            "goalsAgainst": "18",
+            "goalDifference": "-7",
+            "yellowCards": "34",
+            "redCards": "2",
+            "winPercent": "30"
+          }
+        },
+        {
+          "id": "cbf-35079",
+          "name": "Operário VG",
+          "logo": "https://conteudo.cbf.com.br/clubes/35079/escudo.jpg",
+          "rank": "6",
+          "stats": {
+            "points": "5",
+            "gamesPlayed": "10",
+            "wins": "1",
+            "ties": "2",
+            "losses": "7",
+            "goalsFor": "7",
+            "goalsAgainst": "16",
+            "goalDifference": "-9",
+            "yellowCards": "36",
+            "redCards": "4",
+            "winPercent": "16"
+          }
+        }
+      ]
+    },
+    {
+      "name": "1ª Fase · Grupo A5",
+      "phaseId": "2040",
+      "rows": [
+        {
+          "id": "cbf-20810",
+          "name": "Trem",
+          "logo": "https://conteudo.cbf.com.br/clubes/20810/escudo.jpg",
+          "rank": "1",
+          "stats": {
+            "points": "20",
+            "gamesPlayed": "10",
+            "wins": "6",
+            "ties": "2",
+            "losses": "2",
+            "goalsFor": "19",
+            "goalsAgainst": "13",
+            "goalDifference": "6",
+            "yellowCards": "36",
+            "redCards": "1",
+            "winPercent": "66"
+          }
+        },
+        {
+          "id": "cbf-20782",
+          "name": "Águia de Marabá",
+          "logo": "https://conteudo.cbf.com.br/clubes/20782/escudo.jpg",
+          "rank": "2",
+          "stats": {
+            "points": "18",
+            "gamesPlayed": "10",
+            "wins": "5",
+            "ties": "3",
+            "losses": "2",
+            "goalsFor": "20",
+            "goalsAgainst": "11",
+            "goalDifference": "9",
+            "yellowCards": "18",
+            "redCards": "1",
+            "winPercent": "60"
+          }
+        },
+        {
+          "id": "cbf-20372",
+          "name": "Imperatriz",
+          "logo": "https://conteudo.cbf.com.br/clubes/20372/escudo.jpg",
+          "rank": "3",
+          "stats": {
+            "points": "15",
+            "gamesPlayed": "10",
+            "wins": "4",
+            "ties": "3",
+            "losses": "3",
+            "goalsFor": "15",
+            "goalsAgainst": "10",
+            "goalDifference": "5",
+            "yellowCards": "18",
+            "redCards": "2",
+            "winPercent": "50"
+          }
+        },
+        {
+          "id": "cbf-20100",
+          "name": "Tuna Luso",
+          "logo": "https://conteudo.cbf.com.br/clubes/20100/escudo.jpg",
+          "rank": "4",
+          "stats": {
+            "points": "13",
+            "gamesPlayed": "10",
+            "wins": "3",
+            "ties": "4",
+            "losses": "3",
+            "goalsFor": "14",
+            "goalsAgainst": "17",
+            "goalDifference": "-3",
+            "yellowCards": "38",
+            "redCards": "0",
+            "winPercent": "43"
+          }
+        },
+        {
+          "id": "cbf-20288",
+          "name": "Tocantinópolis",
+          "logo": "https://conteudo.cbf.com.br/clubes/20288/escudo.jpg",
+          "rank": "5",
+          "stats": {
+            "points": "12",
+            "gamesPlayed": "10",
+            "wins": "3",
+            "ties": "3",
+            "losses": "4",
+            "goalsFor": "18",
+            "goalsAgainst": "18",
+            "goalDifference": "0",
+            "yellowCards": "30",
+            "redCards": "3",
+            "winPercent": "40"
+          }
+        },
+        {
+          "id": "cbf-21829",
+          "name": "Oratório",
+          "logo": "https://conteudo.cbf.com.br/clubes/21829/escudo.jpg",
+          "rank": "6",
+          "stats": {
+            "points": "4",
+            "gamesPlayed": "10",
+            "wins": "1",
+            "ties": "1",
+            "losses": "8",
+            "goalsFor": "12",
+            "goalsAgainst": "29",
+            "goalDifference": "-17",
+            "yellowCards": "29",
+            "redCards": "1",
+            "winPercent": "13"
+          }
+        }
+      ]
+    },
+    {
+      "name": "1ª Fase · Grupo A6",
+      "phaseId": "2040",
+      "rows": [
+        {
+          "id": "cbf-35361",
+          "name": "Iguatu",
+          "logo": "https://conteudo.cbf.com.br/clubes/35361/escudo.jpg",
+          "rank": "1",
+          "stats": {
+            "points": "20",
+            "gamesPlayed": "10",
+            "wins": "5",
+            "ties": "5",
+            "losses": "0",
+            "goalsFor": "14",
+            "goalsAgainst": "7",
+            "goalDifference": "7",
+            "yellowCards": "41",
+            "redCards": "4",
+            "winPercent": "66"
+          }
+        },
+        {
+          "id": "cbf-35330",
+          "name": "Maracanã-CE",
+          "logo": "https://conteudo.cbf.com.br/clubes/35330/escudo.jpg",
+          "rank": "2",
+          "stats": {
+            "points": "19",
+            "gamesPlayed": "10",
+            "wins": "5",
+            "ties": "4",
+            "losses": "1",
+            "goalsFor": "12",
+            "goalsAgainst": "6",
+            "goalDifference": "6",
+            "yellowCards": "31",
+            "redCards": "2",
+            "winPercent": "63"
+          }
+        },
+        {
+          "id": "cbf-20429",
+          "name": "Parnahyba",
+          "logo": "https://conteudo.cbf.com.br/clubes/20429/escudo.jpg",
+          "rank": "3",
+          "stats": {
+            "points": "14",
+            "gamesPlayed": "10",
+            "wins": "4",
+            "ties": "2",
+            "losses": "4",
+            "goalsFor": "11",
+            "goalsAgainst": "13",
+            "goalDifference": "-2",
+            "yellowCards": "32",
+            "redCards": "1",
+            "winPercent": "46"
+          }
+        },
+        {
+          "id": "cbf-20056",
+          "name": "Sampaio Corrêa",
+          "logo": "https://conteudo.cbf.com.br/clubes/20056/escudo.jpg",
+          "rank": "4",
+          "stats": {
+            "points": "13",
+            "gamesPlayed": "10",
+            "wins": "3",
+            "ties": "4",
+            "losses": "3",
+            "goalsFor": "12",
+            "goalsAgainst": "6",
+            "goalDifference": "6",
+            "yellowCards": "21",
+            "redCards": "2",
+            "winPercent": "43"
+          }
+        },
+        {
+          "id": "cbf-20029",
+          "name": "Moto Club",
+          "logo": "https://conteudo.cbf.com.br/clubes/20029/escudo.jpg",
+          "rank": "5",
+          "stats": {
+            "points": "9",
+            "gamesPlayed": "10",
+            "wins": "2",
+            "ties": "3",
+            "losses": "5",
+            "goalsFor": "8",
+            "goalsAgainst": "15",
+            "goalDifference": "-7",
+            "yellowCards": "33",
+            "redCards": "1",
+            "winPercent": "30"
+          }
+        },
+        {
+          "id": "cbf-21894",
+          "name": "IAPE",
+          "logo": "https://conteudo.cbf.com.br/clubes/21894/escudo.jpg",
+          "rank": "6",
+          "stats": {
+            "points": "4",
+            "gamesPlayed": "10",
+            "wins": "0",
+            "ties": "4",
+            "losses": "6",
+            "goalsFor": "10",
+            "goalsAgainst": "20",
+            "goalDifference": "-10",
+            "yellowCards": "31",
+            "redCards": "6",
+            "winPercent": "13"
+          }
+        }
+      ]
+    },
+    {
+      "name": "1ª Fase · Grupo A7",
+      "phaseId": "2040",
+      "rows": [
+        {
+          "id": "cbf-20091",
+          "name": "Ferroviário",
+          "logo": "https://conteudo.cbf.com.br/clubes/20091/escudo.jpg",
+          "rank": "1",
+          "stats": {
+            "points": "21",
+            "gamesPlayed": "10",
+            "wins": "6",
+            "ties": "3",
+            "losses": "1",
+            "goalsFor": "15",
+            "goalsAgainst": "7",
+            "goalDifference": "8",
+            "yellowCards": "23",
+            "redCards": "3",
+            "winPercent": "70"
+          }
+        },
+        {
+          "id": "cbf-20111",
+          "name": "Piauí",
+          "logo": "https://conteudo.cbf.com.br/clubes/20111/escudo.jpg",
+          "rank": "2",
+          "stats": {
+            "points": "17",
+            "gamesPlayed": "10",
+            "wins": "5",
+            "ties": "2",
+            "losses": "3",
+            "goalsFor": "14",
+            "goalsAgainst": "11",
+            "goalDifference": "3",
+            "yellowCards": "31",
+            "redCards": "0",
+            "winPercent": "56"
+          }
+        },
+        {
+          "id": "cbf-35775",
+          "name": "Fluminense-PI",
+          "logo": "https://conteudo.cbf.com.br/clubes/35775/escudo.jpg",
+          "rank": "3",
+          "stats": {
+            "points": "14",
+            "gamesPlayed": "10",
+            "wins": "3",
+            "ties": "5",
+            "losses": "2",
+            "goalsFor": "12",
+            "goalsAgainst": "9",
+            "goalDifference": "3",
+            "yellowCards": "29",
+            "redCards": "3",
+            "winPercent": "46"
+          }
+        },
+        {
+          "id": "cbf-53914",
+          "name": "Altos",
+          "logo": "https://conteudo.cbf.com.br/clubes/53914/escudo.jpg",
+          "rank": "4",
+          "stats": {
+            "points": "11",
+            "gamesPlayed": "10",
+            "wins": "3",
+            "ties": "2",
+            "losses": "5",
+            "goalsFor": "9",
+            "goalsAgainst": "15",
+            "goalDifference": "-6",
+            "yellowCards": "22",
+            "redCards": "2",
+            "winPercent": "36"
+          }
+        },
+        {
+          "id": "cbf-62217",
+          "name": "Tirol",
+          "logo": "https://conteudo.cbf.com.br/clubes/62217/escudo.jpg",
+          "rank": "5",
+          "stats": {
+            "points": "10",
+            "gamesPlayed": "10",
+            "wins": "2",
+            "ties": "4",
+            "losses": "4",
+            "goalsFor": "10",
+            "goalsAgainst": "10",
+            "goalDifference": "0",
+            "yellowCards": "27",
+            "redCards": "2",
+            "winPercent": "33"
+          }
+        },
+        {
+          "id": "cbf-35316",
+          "name": "Atlético Cearense",
+          "logo": "https://conteudo.cbf.com.br/clubes/35316/escudo.jpg",
+          "rank": "6",
+          "stats": {
+            "points": "7",
+            "gamesPlayed": "10",
+            "wins": "1",
+            "ties": "4",
+            "losses": "5",
+            "goalsFor": "6",
+            "goalsAgainst": "14",
+            "goalDifference": "-8",
+            "yellowCards": "24",
+            "redCards": "2",
+            "winPercent": "23"
+          }
+        }
+      ]
+    },
+    {
+      "name": "1ª Fase · Grupo A8",
+      "phaseId": "2040",
+      "rows": [
+        {
+          "id": "cbf-20042",
+          "name": "ABC",
+          "logo": "https://conteudo.cbf.com.br/clubes/20042/escudo.jpg",
+          "rank": "1",
+          "stats": {
+            "points": "23",
+            "gamesPlayed": "10",
+            "wins": "7",
+            "ties": "2",
+            "losses": "1",
+            "goalsFor": "15",
+            "goalsAgainst": "6",
+            "goalDifference": "9",
+            "yellowCards": "26",
+            "redCards": "2",
+            "winPercent": "76"
+          }
+        },
+        {
+          "id": "cbf-62025",
+          "name": "América de Natal",
+          "logo": "https://conteudo.cbf.com.br/clubes/62025/escudo.jpg",
+          "rank": "2",
+          "stats": {
+            "points": "21",
+            "gamesPlayed": "10",
+            "wins": "6",
+            "ties": "3",
+            "losses": "1",
+            "goalsFor": "14",
+            "goalsAgainst": "3",
+            "goalDifference": "11",
+            "yellowCards": "25",
+            "redCards": "3",
+            "winPercent": "70"
+          }
+        },
+        {
+          "id": "131681",
+          "name": "Maguary",
+          "logo": "https://conteudo.cbf.com.br/clubes/59116/escudo.jpg",
+          "rank": "3",
+          "stats": {
+            "points": "13",
+            "gamesPlayed": "10",
+            "wins": "3",
+            "ties": "4",
+            "losses": "3",
+            "goalsFor": "8",
+            "goalsAgainst": "5",
+            "goalDifference": "3",
+            "yellowCards": "29",
+            "redCards": "3",
+            "winPercent": "43"
+          }
+        },
+        {
+          "id": "cbf-20112",
+          "name": "Central",
+          "logo": "https://conteudo.cbf.com.br/clubes/20112/escudo.jpg",
+          "rank": "4",
+          "stats": {
+            "points": "13",
+            "gamesPlayed": "10",
+            "wins": "3",
+            "ties": "4",
+            "losses": "3",
+            "goalsFor": "8",
+            "goalsAgainst": "7",
+            "goalDifference": "1",
+            "yellowCards": "22",
+            "redCards": "0",
+            "winPercent": "43"
+          }
+        },
+        {
+          "id": "cbf-20390",
+          "name": "Sousa",
+          "logo": "https://conteudo.cbf.com.br/clubes/20390/escudo.jpg",
+          "rank": "5",
+          "stats": {
+            "points": "10",
+            "gamesPlayed": "10",
+            "wins": "3",
+            "ties": "1",
+            "losses": "6",
+            "goalsFor": "4",
+            "goalsAgainst": "11",
+            "goalDifference": "-7",
+            "yellowCards": "32",
+            "redCards": "4",
+            "winPercent": "33"
+          }
+        },
+        {
+          "id": "131672",
+          "name": "Laguna",
+          "logo": "https://conteudo.cbf.com.br/clubes/60415/escudo.jpg",
+          "rank": "6",
+          "stats": {
+            "points": "2",
+            "gamesPlayed": "10",
+            "wins": "0",
+            "ties": "2",
+            "losses": "8",
+            "goalsFor": "3",
+            "goalsAgainst": "20",
+            "goalDifference": "-17",
+            "yellowCards": "34",
+            "redCards": "4",
+            "winPercent": "6"
+          }
+        }
+      ]
+    },
+    {
+      "name": "1ª Fase · Grupo A9",
+      "phaseId": "2040",
+      "rows": [
+        {
+          "id": "cbf-20071",
+          "name": "Treze",
+          "logo": "https://conteudo.cbf.com.br/clubes/20071/escudo.jpg",
+          "rank": "1",
+          "stats": {
+            "points": "17",
+            "gamesPlayed": "10",
+            "wins": "5",
+            "ties": "2",
+            "losses": "3",
+            "goalsFor": "18",
+            "goalsAgainst": "14",
+            "goalDifference": "4",
+            "yellowCards": "25",
+            "redCards": "1",
+            "winPercent": "56"
+          }
+        },
+        {
+          "id": "cbf-20034",
+          "name": "Sergipe",
+          "logo": "https://conteudo.cbf.com.br/clubes/20034/escudo.jpg",
+          "rank": "2",
+          "stats": {
+            "points": "15",
+            "gamesPlayed": "10",
+            "wins": "4",
+            "ties": "3",
+            "losses": "3",
+            "goalsFor": "15",
+            "goalsAgainst": "13",
+            "goalDifference": "2",
+            "yellowCards": "37",
+            "redCards": "3",
+            "winPercent": "50"
+          }
+        },
+        {
+          "id": "131680",
+          "name": "Serra Branca",
+          "logo": "https://conteudo.cbf.com.br/clubes/37846/escudo.jpg",
+          "rank": "3",
+          "stats": {
+            "points": "15",
+            "gamesPlayed": "10",
+            "wins": "3",
+            "ties": "6",
+            "losses": "1",
+            "goalsFor": "12",
+            "goalsAgainst": "8",
+            "goalDifference": "4",
+            "yellowCards": "26",
+            "redCards": "3",
+            "winPercent": "50"
+          }
+        },
+        {
+          "id": "cbf-35680",
+          "name": "Lagarto",
+          "logo": "https://conteudo.cbf.com.br/clubes/35680/escudo.jpg",
+          "rank": "4",
+          "stats": {
+            "points": "13",
+            "gamesPlayed": "10",
+            "wins": "3",
+            "ties": "4",
+            "losses": "3",
+            "goalsFor": "14",
+            "goalsAgainst": "15",
+            "goalDifference": "-1",
+            "yellowCards": "33",
+            "redCards": "1",
+            "winPercent": "43"
+          }
+        },
+        {
+          "id": "cbf-55531",
+          "name": "Retrô",
+          "logo": "https://conteudo.cbf.com.br/clubes/55531/escudo.jpg",
+          "rank": "5",
+          "stats": {
+            "points": "12",
+            "gamesPlayed": "10",
+            "wins": "3",
+            "ties": "3",
+            "losses": "4",
+            "goalsFor": "13",
+            "goalsAgainst": "15",
+            "goalDifference": "-2",
+            "yellowCards": "38",
+            "redCards": "2",
+            "winPercent": "40"
+          }
+        },
+        {
+          "id": "cbf-35768",
+          "name": "Decisão Goiana",
+          "logo": "https://conteudo.cbf.com.br/clubes/35768/escudo.jpg",
+          "rank": "6",
+          "stats": {
+            "points": "8",
+            "gamesPlayed": "10",
+            "wins": "2",
+            "ties": "2",
+            "losses": "6",
+            "goalsFor": "10",
+            "goalsAgainst": "17",
+            "goalDifference": "-7",
+            "yellowCards": "37",
+            "redCards": "0",
+            "winPercent": "26"
+          }
+        }
+      ]
+    },
+    {
+      "name": "1ª Fase · Grupo A10",
+      "phaseId": "2040",
+      "rows": [
+        {
+          "id": "cbf-20045",
+          "name": "CSA",
+          "logo": "https://conteudo.cbf.com.br/clubes/20045/escudo.jpg",
+          "rank": "1",
+          "stats": {
+            "points": "21",
+            "gamesPlayed": "10",
+            "wins": "6",
+            "ties": "3",
+            "losses": "1",
+            "goalsFor": "25",
+            "goalsAgainst": "8",
+            "goalDifference": "17",
+            "yellowCards": "29",
+            "redCards": "1",
+            "winPercent": "70"
+          }
+        },
+        {
+          "id": "cbf-35212",
+          "name": "Juazeirense",
+          "logo": "https://conteudo.cbf.com.br/clubes/35212/escudo.jpg",
+          "rank": "2",
+          "stats": {
+            "points": "17",
+            "gamesPlayed": "10",
+            "wins": "5",
+            "ties": "2",
+            "losses": "3",
+            "goalsFor": "12",
+            "goalsAgainst": "9",
+            "goalDifference": "3",
+            "yellowCards": "33",
+            "redCards": "0",
+            "winPercent": "56"
+          }
+        },
+        {
+          "id": "cbf-20108",
+          "name": "ASA",
+          "logo": "https://conteudo.cbf.com.br/clubes/20108/escudo.jpg",
+          "rank": "3",
+          "stats": {
+            "points": "16",
+            "gamesPlayed": "10",
+            "wins": "4",
+            "ties": "4",
+            "losses": "2",
+            "goalsFor": "11",
+            "goalsAgainst": "7",
+            "goalDifference": "4",
+            "yellowCards": "29",
+            "redCards": "1",
+            "winPercent": "53"
+          }
+        },
+        {
+          "id": "cbf-35152",
+          "name": "Jacuipense",
+          "logo": "https://conteudo.cbf.com.br/clubes/35152/escudo.jpg",
+          "rank": "4",
+          "stats": {
+            "points": "13",
+            "gamesPlayed": "10",
+            "wins": "3",
+            "ties": "4",
+            "losses": "3",
+            "goalsFor": "12",
+            "goalsAgainst": "14",
+            "goalDifference": "-2",
+            "yellowCards": "22",
+            "redCards": "2",
+            "winPercent": "43"
+          }
+        },
+        {
+          "id": "cbf-35522",
+          "name": "CSE",
+          "logo": "https://conteudo.cbf.com.br/clubes/35522/escudo.jpg",
+          "rank": "5",
+          "stats": {
+            "points": "9",
+            "gamesPlayed": "10",
+            "wins": "2",
+            "ties": "3",
+            "losses": "5",
+            "goalsFor": "10",
+            "goalsAgainst": "17",
+            "goalDifference": "-7",
+            "yellowCards": "25",
+            "redCards": "2",
+            "winPercent": "30"
+          }
+        },
+        {
+          "id": "cbf-20236",
+          "name": "Atlético de Alagoinhas",
+          "logo": "https://conteudo.cbf.com.br/clubes/20236/escudo.jpg",
+          "rank": "6",
+          "stats": {
+            "points": "5",
+            "gamesPlayed": "10",
+            "wins": "1",
+            "ties": "2",
+            "losses": "7",
+            "goalsFor": "5",
+            "goalsAgainst": "20",
+            "goalDifference": "-15",
+            "yellowCards": "31",
+            "redCards": "1",
+            "winPercent": "16"
+          }
+        }
+      ]
+    },
+    {
+      "name": "1ª Fase · Grupo A11",
+      "phaseId": "2040",
+      "rows": [
+        {
+          "id": "cbf-64223",
+          "name": "Uberlândia",
+          "logo": "https://conteudo.cbf.com.br/clubes/64223/escudo.jpg",
+          "rank": "1",
+          "stats": {
+            "points": "18",
+            "gamesPlayed": "10",
+            "wins": "5",
+            "ties": "3",
+            "losses": "2",
+            "goalsFor": "12",
+            "goalsAgainst": "8",
+            "goalDifference": "4",
+            "yellowCards": "42",
+            "redCards": "2",
+            "winPercent": "60"
+          }
+        },
+        {
+          "id": "cbf-34709",
+          "name": "Betim Futebol",
+          "logo": "https://conteudo.cbf.com.br/clubes/34709/escudo.jpg",
+          "rank": "2",
+          "stats": {
+            "points": "15",
+            "gamesPlayed": "10",
+            "wins": "4",
+            "ties": "3",
+            "losses": "3",
+            "goalsFor": "12",
+            "goalsAgainst": "9",
+            "goalDifference": "3",
+            "yellowCards": "25",
+            "redCards": "1",
+            "winPercent": "50"
+          }
+        },
+        {
+          "id": "cbf-64669",
+          "name": "CRAC",
+          "logo": "https://conteudo.cbf.com.br/clubes/64669/escudo.jpg",
+          "rank": "3",
+          "stats": {
+            "points": "13",
+            "gamesPlayed": "10",
+            "wins": "3",
+            "ties": "4",
+            "losses": "3",
+            "goalsFor": "7",
+            "goalsAgainst": "7",
+            "goalDifference": "0",
+            "yellowCards": "22",
+            "redCards": "7",
+            "winPercent": "43"
+          }
+        },
+        {
+          "id": "cbf-21817",
+          "name": "Ivinhema",
+          "logo": "https://conteudo.cbf.com.br/clubes/21817/escudo.jpg",
+          "rank": "4",
+          "stats": {
+            "points": "13",
+            "gamesPlayed": "10",
+            "wins": "3",
+            "ties": "4",
+            "losses": "3",
+            "goalsFor": "9",
+            "goalsAgainst": "12",
+            "goalDifference": "-3",
+            "yellowCards": "28",
+            "redCards": "1",
+            "winPercent": "43"
+          }
+        },
+        {
+          "id": "cbf-63665",
+          "name": "ABECAT",
+          "logo": "https://conteudo.cbf.com.br/clubes/63665/escudo.jpg",
+          "rank": "5",
+          "stats": {
+            "points": "12",
+            "gamesPlayed": "10",
+            "wins": "3",
+            "ties": "3",
+            "losses": "4",
+            "goalsFor": "8",
+            "goalsAgainst": "9",
+            "goalDifference": "-1",
+            "yellowCards": "32",
+            "redCards": "7",
+            "winPercent": "40"
+          }
+        },
+        {
+          "id": "cbf-20041",
+          "name": "Operário-MS",
+          "logo": "https://conteudo.cbf.com.br/clubes/20041/escudo.jpg",
+          "rank": "6",
+          "stats": {
+            "points": "9",
+            "gamesPlayed": "10",
+            "wins": "2",
+            "ties": "3",
+            "losses": "5",
+            "goalsFor": "9",
+            "goalsAgainst": "12",
+            "goalDifference": "-3",
+            "yellowCards": "33",
+            "redCards": "2",
+            "winPercent": "30"
+          }
+        }
+      ]
+    },
+    {
+      "name": "1ª Fase · Grupo A12",
+      "phaseId": "2040",
+      "rows": [
+        {
+          "id": "cbf-20432",
+          "name": "Democrata GV",
+          "logo": "https://conteudo.cbf.com.br/clubes/20432/escudo.jpg",
+          "rank": "1",
+          "stats": {
+            "points": "17",
+            "gamesPlayed": "10",
+            "wins": "5",
+            "ties": "2",
+            "losses": "3",
+            "goalsFor": "13",
+            "goalsAgainst": "9",
+            "goalDifference": "4",
+            "yellowCards": "35",
+            "redCards": "1",
+            "winPercent": "56"
+          }
+        },
+        {
+          "id": "cbf-34027",
+          "name": "Tombense",
+          "logo": "https://conteudo.cbf.com.br/clubes/34027/escudo.jpg",
+          "rank": "2",
+          "stats": {
+            "points": "17",
+            "gamesPlayed": "10",
+            "wins": "4",
+            "ties": "5",
+            "losses": "1",
+            "goalsFor": "13",
+            "goalsAgainst": "6",
+            "goalDifference": "7",
+            "yellowCards": "26",
+            "redCards": "1",
+            "winPercent": "56"
+          }
+        },
+        {
+          "id": "cbf-20081",
+          "name": "Vitória-ES",
+          "logo": "https://conteudo.cbf.com.br/clubes/20081/escudo.jpg",
+          "rank": "3",
+          "stats": {
+            "points": "15",
+            "gamesPlayed": "10",
+            "wins": "4",
+            "ties": "3",
+            "losses": "3",
+            "goalsFor": "12",
+            "goalsAgainst": "8",
+            "goalDifference": "4",
+            "yellowCards": "24",
+            "redCards": "6",
+            "winPercent": "50"
+          }
+        },
+        {
+          "id": "cbf-62546",
+          "name": "Rio Branco-ES",
+          "logo": "https://conteudo.cbf.com.br/clubes/62546/escudo.jpg",
+          "rank": "4",
+          "stats": {
+            "points": "13",
+            "gamesPlayed": "10",
+            "wins": "3",
+            "ties": "4",
+            "losses": "3",
+            "goalsFor": "14",
+            "goalsAgainst": "12",
+            "goalDifference": "2",
+            "yellowCards": "39",
+            "redCards": "4",
+            "winPercent": "43"
+          }
+        },
+        {
+          "id": "131673",
+          "name": "Porto-BA",
+          "logo": "https://conteudo.cbf.com.br/clubes/62328/escudo.jpg",
+          "rank": "5",
+          "stats": {
+            "points": "10",
+            "gamesPlayed": "10",
+            "wins": "3",
+            "ties": "1",
+            "losses": "6",
+            "goalsFor": "9",
+            "goalsAgainst": "21",
+            "goalDifference": "-12",
+            "yellowCards": "44",
+            "redCards": "2",
+            "winPercent": "33"
+          }
+        },
+        {
+          "id": "cbf-21942",
+          "name": "Real Noroeste",
+          "logo": "https://conteudo.cbf.com.br/clubes/21942/escudo.jpg",
+          "rank": "6",
+          "stats": {
+            "points": "8",
+            "gamesPlayed": "10",
+            "wins": "1",
+            "ties": "5",
+            "losses": "4",
+            "goalsFor": "6",
+            "goalsAgainst": "11",
+            "goalDifference": "-5",
+            "yellowCards": "38",
+            "redCards": "4",
+            "winPercent": "26"
+          }
+        }
+      ]
+    },
+    {
+      "name": "1ª Fase · Grupo A13",
+      "phaseId": "2040",
+      "rows": [
+        {
+          "id": "cbf-63521",
+          "name": "Portuguesa",
+          "logo": "https://conteudo.cbf.com.br/clubes/63521/escudo.jpg",
+          "rank": "1",
+          "stats": {
+            "points": "21",
+            "gamesPlayed": "10",
+            "wins": "6",
+            "ties": "3",
+            "losses": "1",
+            "goalsFor": "16",
+            "goalsAgainst": "6",
+            "goalDifference": "10",
+            "yellowCards": "28",
+            "redCards": "0",
+            "winPercent": "70"
+          }
+        },
+        {
+          "id": "cbf-31399",
+          "name": "Água Santa",
+          "logo": "https://conteudo.cbf.com.br/clubes/31399/escudo.jpg",
+          "rank": "2",
+          "stats": {
+            "points": "17",
+            "gamesPlayed": "10",
+            "wins": "5",
+            "ties": "2",
+            "losses": "3",
+            "goalsFor": "16",
+            "goalsAgainst": "8",
+            "goalDifference": "8",
+            "yellowCards": "31",
+            "redCards": "1",
+            "winPercent": "56"
+          }
+        },
+        {
+          "id": "cbf-20805",
+          "name": "Portuguesa-RJ",
+          "logo": "https://conteudo.cbf.com.br/clubes/20805/escudo.jpg",
+          "rank": "3",
+          "stats": {
+            "points": "14",
+            "gamesPlayed": "10",
+            "wins": "3",
+            "ties": "5",
+            "losses": "2",
+            "goalsFor": "14",
+            "goalsAgainst": "9",
+            "goalDifference": "5",
+            "yellowCards": "37",
+            "redCards": "4",
+            "winPercent": "46"
+          }
+        },
+        {
+          "id": "cbf-20046",
+          "name": "America",
+          "logo": "https://conteudo.cbf.com.br/clubes/20046/escudo.jpg",
+          "rank": "4",
+          "stats": {
+            "points": "12",
+            "gamesPlayed": "10",
+            "wins": "3",
+            "ties": "3",
+            "losses": "4",
+            "goalsFor": "11",
+            "goalsAgainst": "21",
+            "goalDifference": "-10",
+            "yellowCards": "37",
+            "redCards": "2",
+            "winPercent": "40"
+          }
+        },
+        {
+          "id": "cbf-20249",
+          "name": "Madureira",
+          "logo": "https://conteudo.cbf.com.br/clubes/20249/escudo.jpg",
+          "rank": "5",
+          "stats": {
+            "points": "11",
+            "gamesPlayed": "10",
+            "wins": "3",
+            "ties": "2",
+            "losses": "5",
+            "goalsFor": "11",
+            "goalsAgainst": "16",
+            "goalDifference": "-5",
+            "yellowCards": "30",
+            "redCards": "2",
+            "winPercent": "36"
+          }
+        },
+        {
+          "id": "cbf-63322",
+          "name": "Pouso Alegre",
+          "logo": "https://conteudo.cbf.com.br/clubes/63322/escudo.jpg",
+          "rank": "6",
+          "stats": {
+            "points": "7",
+            "gamesPlayed": "10",
+            "wins": "2",
+            "ties": "1",
+            "losses": "7",
+            "goalsFor": "6",
+            "goalsAgainst": "14",
+            "goalDifference": "-8",
+            "yellowCards": "28",
+            "redCards": "0",
+            "winPercent": "23"
+          }
+        }
+      ]
+    },
+    {
+      "name": "1ª Fase · Grupo A14",
+      "phaseId": "2040",
+      "rows": [
+        {
+          "id": "cbf-20072",
+          "name": "XV de Piracicaba",
+          "logo": "https://conteudo.cbf.com.br/clubes/20072/escudo.jpg",
+          "rank": "1",
+          "stats": {
+            "points": "17",
+            "gamesPlayed": "10",
+            "wins": "4",
+            "ties": "5",
+            "losses": "1",
+            "goalsFor": "14",
+            "goalsAgainst": "9",
+            "goalDifference": "5",
+            "yellowCards": "21",
+            "redCards": "1",
+            "winPercent": "56"
+          }
+        },
+        {
+          "id": "cbf-20082",
+          "name": "Noroeste",
+          "logo": "https://conteudo.cbf.com.br/clubes/20082/escudo.jpg",
+          "rank": "2",
+          "stats": {
+            "points": "15",
+            "gamesPlayed": "10",
+            "wins": "4",
+            "ties": "3",
+            "losses": "3",
+            "goalsFor": "12",
+            "goalsAgainst": "7",
+            "goalDifference": "5",
+            "yellowCards": "37",
+            "redCards": "2",
+            "winPercent": "50"
+          }
+        },
+        {
+          "id": "cbf-31535",
+          "name": "Velo Clube",
+          "logo": "https://conteudo.cbf.com.br/clubes/31535/escudo.jpg",
+          "rank": "3",
+          "stats": {
+            "points": "13",
+            "gamesPlayed": "10",
+            "wins": "3",
+            "ties": "4",
+            "losses": "3",
+            "goalsFor": "10",
+            "goalsAgainst": "10",
+            "goalDifference": "0",
+            "yellowCards": "26",
+            "redCards": "3",
+            "winPercent": "43"
+          }
+        },
+        {
+          "id": "cbf-32387",
+          "name": "Sampaio Corrêa-RJ",
+          "logo": "https://conteudo.cbf.com.br/clubes/32387/escudo.jpg",
+          "rank": "4",
+          "stats": {
+            "points": "12",
+            "gamesPlayed": "10",
+            "wins": "3",
+            "ties": "3",
+            "losses": "4",
+            "goalsFor": "8",
+            "goalsAgainst": "10",
+            "goalDifference": "-2",
+            "yellowCards": "24",
+            "redCards": "8",
+            "winPercent": "40"
+          }
+        },
+        {
+          "id": "cbf-64287",
+          "name": "Nova Iguaçu",
+          "logo": "https://conteudo.cbf.com.br/clubes/64287/escudo.jpg",
+          "rank": "5",
+          "stats": {
+            "points": "12",
+            "gamesPlayed": "10",
+            "wins": "3",
+            "ties": "3",
+            "losses": "4",
+            "goalsFor": "7",
+            "goalsAgainst": "10",
+            "goalDifference": "-3",
+            "yellowCards": "32",
+            "redCards": "1",
+            "winPercent": "40"
+          }
+        },
+        {
+          "id": "cbf-32036",
+          "name": "Maricá",
+          "logo": "https://conteudo.cbf.com.br/clubes/32036/escudo.jpg",
+          "rank": "6",
+          "stats": {
+            "points": "11",
+            "gamesPlayed": "10",
+            "wins": "3",
+            "ties": "2",
+            "losses": "5",
+            "goalsFor": "9",
+            "goalsAgainst": "14",
+            "goalDifference": "-5",
+            "yellowCards": "27",
+            "redCards": "1",
+            "winPercent": "36"
+          }
+        }
+      ]
+    },
+    {
+      "name": "1ª Fase · Grupo A15",
+      "phaseId": "2040",
+      "rows": [
+        {
+          "id": "cbf-39727",
+          "name": "Santa Catarina",
+          "logo": "https://conteudo.cbf.com.br/clubes/39727/escudo.jpg",
+          "rank": "1",
+          "stats": {
+            "points": "19",
+            "gamesPlayed": "10",
+            "wins": "6",
+            "ties": "1",
+            "losses": "3",
+            "goalsFor": "15",
+            "goalsAgainst": "9",
+            "goalDifference": "6",
+            "yellowCards": "35",
+            "redCards": "0",
+            "winPercent": "63"
+          }
+        },
+        {
+          "id": "cbf-20816",
+          "name": "Cianorte",
+          "logo": "https://conteudo.cbf.com.br/clubes/20816/escudo.jpg",
+          "rank": "2",
+          "stats": {
+            "points": "16",
+            "gamesPlayed": "10",
+            "wins": "5",
+            "ties": "1",
+            "losses": "4",
+            "goalsFor": "9",
+            "goalsAgainst": "8",
+            "goalDifference": "1",
+            "yellowCards": "32",
+            "redCards": "2",
+            "winPercent": "53"
+          }
+        },
+        {
+          "id": "cbf-21922",
+          "name": "FC Cascavel",
+          "logo": "https://conteudo.cbf.com.br/clubes/21922/escudo.jpg",
+          "rank": "3",
+          "stats": {
+            "points": "15",
+            "gamesPlayed": "10",
+            "wins": "4",
+            "ties": "3",
+            "losses": "3",
+            "goalsFor": "9",
+            "goalsAgainst": "4",
+            "goalDifference": "5",
+            "yellowCards": "29",
+            "redCards": "0",
+            "winPercent": "50"
+          }
+        },
+        {
+          "id": "cbf-33061",
+          "name": "São Luiz",
+          "logo": "https://conteudo.cbf.com.br/clubes/33061/escudo.jpg",
+          "rank": "4",
+          "stats": {
+            "points": "15",
+            "gamesPlayed": "10",
+            "wins": "4",
+            "ties": "3",
+            "losses": "3",
+            "goalsFor": "11",
+            "goalsAgainst": "9",
+            "goalDifference": "2",
+            "yellowCards": "30",
+            "redCards": "1",
+            "winPercent": "50"
+          }
+        },
+        {
+          "id": "cbf-20076",
+          "name": "Joinville",
+          "logo": "https://conteudo.cbf.com.br/clubes/20076/escudo.jpg",
+          "rank": "5",
+          "stats": {
+            "points": "15",
+            "gamesPlayed": "10",
+            "wins": "4",
+            "ties": "3",
+            "losses": "3",
+            "goalsFor": "10",
+            "goalsAgainst": "8",
+            "goalDifference": "2",
+            "yellowCards": "33",
+            "redCards": "0",
+            "winPercent": "50"
+          }
+        },
+        {
+          "id": "cbf-20225",
+          "name": "Guarany de Bagé",
+          "logo": "https://conteudo.cbf.com.br/clubes/20225/escudo.jpg",
+          "rank": "6",
+          "stats": {
+            "points": "4",
+            "gamesPlayed": "10",
+            "wins": "1",
+            "ties": "1",
+            "losses": "8",
+            "goalsFor": "2",
+            "goalsAgainst": "18",
+            "goalDifference": "-16",
+            "yellowCards": "32",
+            "redCards": "6",
+            "winPercent": "13"
+          }
+        }
+      ]
+    },
+    {
+      "name": "1ª Fase · Grupo A16",
+      "phaseId": "2040",
+      "rows": [
+        {
+          "id": "cbf-63571",
+          "name": "Blumenau",
+          "logo": "https://conteudo.cbf.com.br/clubes/63571/escudo.jpg",
+          "rank": "1",
+          "stats": {
+            "points": "19",
+            "gamesPlayed": "10",
+            "wins": "6",
+            "ties": "1",
+            "losses": "3",
+            "goalsFor": "14",
+            "goalsAgainst": "8",
+            "goalDifference": "6",
+            "yellowCards": "28",
+            "redCards": "3",
+            "winPercent": "63"
+          }
+        },
+        {
+          "id": "cbf-20207",
+          "name": "Marcílio Dias",
+          "logo": "https://conteudo.cbf.com.br/clubes/20207/escudo.jpg",
+          "rank": "2",
+          "stats": {
+            "points": "16",
+            "gamesPlayed": "10",
+            "wins": "4",
+            "ties": "4",
+            "losses": "2",
+            "goalsFor": "9",
+            "goalsAgainst": "5",
+            "goalDifference": "4",
+            "yellowCards": "19",
+            "redCards": "1",
+            "winPercent": "53"
+          }
+        },
+        {
+          "id": "cbf-54488",
+          "name": "São Joseense",
+          "logo": "https://conteudo.cbf.com.br/clubes/54488/escudo.jpg",
+          "rank": "3",
+          "stats": {
+            "points": "13",
+            "gamesPlayed": "10",
+            "wins": "3",
+            "ties": "4",
+            "losses": "3",
+            "goalsFor": "3",
+            "goalsAgainst": "4",
+            "goalDifference": "-1",
+            "yellowCards": "22",
+            "redCards": "1",
+            "winPercent": "43"
+          }
+        },
+        {
+          "id": "cbf-20319",
+          "name": "São José-RS",
+          "logo": "https://conteudo.cbf.com.br/clubes/20319/escudo.jpg",
+          "rank": "4",
+          "stats": {
+            "points": "13",
+            "gamesPlayed": "10",
+            "wins": "3",
+            "ties": "4",
+            "losses": "3",
+            "goalsFor": "6",
+            "goalsAgainst": "8",
+            "goalDifference": "-2",
+            "yellowCards": "33",
+            "redCards": "2",
+            "winPercent": "43"
+          }
+        },
+        {
+          "id": "cbf-64810",
+          "name": "Brasil de Pelotas",
+          "logo": "https://conteudo.cbf.com.br/clubes/64810/escudo.jpg",
+          "rank": "5",
+          "stats": {
+            "points": "10",
+            "gamesPlayed": "10",
+            "wins": "2",
+            "ties": "4",
+            "losses": "4",
+            "goalsFor": "9",
+            "goalsAgainst": "12",
+            "goalDifference": "-3",
+            "yellowCards": "29",
+            "redCards": "2",
+            "winPercent": "33"
+          }
+        },
+        {
+          "id": "cbf-56804",
+          "name": "Azuriz",
+          "logo": "https://conteudo.cbf.com.br/clubes/56804/escudo.jpg",
+          "rank": "6",
+          "stats": {
+            "points": "9",
+            "gamesPlayed": "10",
+            "wins": "2",
+            "ties": "3",
+            "losses": "5",
+            "goalsFor": "7",
+            "goalsAgainst": "11",
+            "goalDifference": "-4",
+            "yellowCards": "24",
+            "redCards": "6",
+            "winPercent": "30"
+          }
+        }
+      ]
+    }
+  ],
+  "rounds": [
+    {
+      "id": "cbf-2066",
+      "name": "2ª Fase",
+      "matches": [
+        {
+          "id": "834886",
+          "leg": "Ida"
+        },
+        {
+          "id": "834887",
+          "leg": "Ida"
+        },
+        {
+          "id": "834888",
+          "leg": "Ida"
+        },
+        {
+          "id": "834889",
+          "leg": "Ida"
+        },
+        {
+          "id": "834890",
+          "leg": "Ida"
+        },
+        {
+          "id": "834891",
+          "leg": "Ida"
+        },
+        {
+          "id": "834892",
+          "leg": "Ida"
+        },
+        {
+          "id": "834893",
+          "leg": "Ida"
+        },
+        {
+          "id": "834894",
+          "leg": "Ida"
+        },
+        {
+          "id": "834895",
+          "leg": "Ida"
+        },
+        {
+          "id": "834896",
+          "leg": "Ida"
+        },
+        {
+          "id": "834897",
+          "leg": "Ida"
+        },
+        {
+          "id": "834898",
+          "leg": "Ida"
+        },
+        {
+          "id": "834899",
+          "leg": "Ida"
+        },
+        {
+          "id": "834900",
+          "leg": "Ida"
+        },
+        {
+          "id": "834901",
+          "leg": "Ida"
+        },
+        {
+          "id": "834902",
+          "leg": "Ida"
+        },
+        {
+          "id": "834903",
+          "leg": "Ida"
+        },
+        {
+          "id": "834904",
+          "leg": "Ida"
+        },
+        {
+          "id": "834905",
+          "leg": "Ida"
+        },
+        {
+          "id": "834906",
+          "leg": "Ida"
+        },
+        {
+          "id": "834907",
+          "leg": "Ida"
+        },
+        {
+          "id": "834908",
+          "leg": "Ida"
+        },
+        {
+          "id": "834909",
+          "leg": "Ida"
+        },
+        {
+          "id": "834911",
+          "leg": "Ida"
+        },
+        {
+          "id": "834912",
+          "leg": "Ida"
+        },
+        {
+          "id": "834913",
+          "leg": "Ida"
+        },
+        {
+          "id": "834914",
+          "leg": "Ida"
+        },
+        {
+          "id": "834915",
+          "leg": "Ida"
+        },
+        {
+          "id": "834916",
+          "leg": "Ida"
+        },
+        {
+          "id": "834917",
+          "leg": "Ida"
+        },
+        {
+          "id": "834918",
+          "leg": "Ida"
+        },
+        {
+          "id": "834919",
+          "leg": "Volta"
+        },
+        {
+          "id": "834920",
+          "leg": "Volta"
+        },
+        {
+          "id": "834921",
+          "leg": "Volta"
+        },
+        {
+          "id": "834922",
+          "leg": "Volta"
+        },
+        {
+          "id": "834923",
+          "leg": "Volta"
+        },
+        {
+          "id": "834924",
+          "leg": "Volta"
+        },
+        {
+          "id": "834925",
+          "leg": "Volta"
+        },
+        {
+          "id": "834926",
+          "leg": "Volta"
+        },
+        {
+          "id": "834927",
+          "leg": "Volta"
+        },
+        {
+          "id": "834928",
+          "leg": "Volta"
+        },
+        {
+          "id": "834929",
+          "leg": "Volta"
+        },
+        {
+          "id": "834930",
+          "leg": "Volta"
+        },
+        {
+          "id": "834931",
+          "leg": "Volta"
+        },
+        {
+          "id": "834932",
+          "leg": "Volta"
+        },
+        {
+          "id": "834933",
+          "leg": "Volta"
+        },
+        {
+          "id": "834934",
+          "leg": "Volta"
+        },
+        {
+          "id": "834935",
+          "leg": "Volta"
+        },
+        {
+          "id": "834936",
+          "leg": "Volta"
+        },
+        {
+          "id": "834937",
+          "leg": "Volta"
+        },
+        {
+          "id": "834938",
+          "leg": "Volta"
+        },
+        {
+          "id": "834939",
+          "leg": "Volta"
+        },
+        {
+          "id": "834940",
+          "leg": "Volta"
+        },
+        {
+          "id": "834941",
+          "leg": "Volta"
+        },
+        {
+          "id": "834942",
+          "leg": "Volta"
+        },
+        {
+          "id": "834943",
+          "leg": "Volta"
+        },
+        {
+          "id": "834944",
+          "leg": "Volta"
+        },
+        {
+          "id": "834945",
+          "leg": "Volta"
+        },
+        {
+          "id": "834946",
+          "leg": "Volta"
+        },
+        {
+          "id": "834947",
+          "leg": "Volta"
+        },
+        {
+          "id": "834948",
+          "leg": "Volta"
+        },
+        {
+          "id": "834949",
+          "leg": "Volta"
+        },
+        {
+          "id": "834950",
+          "leg": "Volta"
+        }
+      ]
+    },
+    {
+      "id": "cbf-2068",
+      "name": "3ª Fase",
+      "matches": [
+        {
+          "id": "834953",
+          "leg": "Ida"
+        },
+        {
+          "id": "834954",
+          "leg": "Ida"
+        },
+        {
+          "id": "834955",
+          "leg": "Ida"
+        },
+        {
+          "id": "834959",
+          "leg": "Ida"
+        },
+        {
+          "id": "834962",
+          "leg": "Ida"
+        },
+        {
+          "id": "834963",
+          "leg": "Ida"
+        },
+        {
+          "id": "834964",
+          "leg": "Ida"
+        },
+        {
+          "id": "834965",
+          "leg": "Ida"
+        },
+        {
+          "id": "834966",
+          "leg": "Ida"
+        },
+        {
+          "id": "834967",
+          "leg": "Ida"
+        },
+        {
+          "id": "834968",
+          "leg": "Ida"
+        },
+        {
+          "id": "834969",
+          "leg": "Ida"
+        },
+        {
+          "id": "834973",
+          "leg": "Ida"
+        },
+        {
+          "id": "834974",
+          "leg": "Ida"
+        },
+        {
+          "id": "834975",
+          "leg": "Ida"
+        },
+        {
+          "id": "834976",
+          "leg": "Ida"
+        },
+        {
+          "id": "834977",
+          "leg": "Volta"
+        },
+        {
+          "id": "834978",
+          "leg": "Volta"
+        },
+        {
+          "id": "834979",
+          "leg": "Volta"
+        },
+        {
+          "id": "834980",
+          "leg": "Volta"
+        },
+        {
+          "id": "834981",
+          "leg": "Volta"
+        },
+        {
+          "id": "834982",
+          "leg": "Volta"
+        },
+        {
+          "id": "834983",
+          "leg": "Volta"
+        },
+        {
+          "id": "834984",
+          "leg": "Volta"
+        },
+        {
+          "id": "834985",
+          "leg": "Volta"
+        },
+        {
+          "id": "834986",
+          "leg": "Volta"
+        },
+        {
+          "id": "834987",
+          "leg": "Volta"
+        },
+        {
+          "id": "834988",
+          "leg": "Volta"
+        },
+        {
+          "id": "834989",
+          "leg": "Volta"
+        },
+        {
+          "id": "834990",
+          "leg": "Volta"
+        },
+        {
+          "id": "834991",
+          "leg": "Volta"
+        },
+        {
+          "id": "834992",
+          "leg": "Volta"
+        }
+      ]
+    },
+    {
+      "id": "cbf-2075",
+      "name": "4ª Fase",
+      "matches": [
+        {
+          "id": "835058",
+          "leg": "Ida"
+        },
+        {
+          "id": "835059",
+          "leg": "Ida"
+        },
+        {
+          "id": "835060",
+          "leg": "Ida"
+        },
+        {
+          "id": "835061",
+          "leg": "Ida"
+        },
+        {
+          "id": "835062",
+          "leg": "Ida"
+        },
+        {
+          "id": "835063",
+          "leg": "Ida"
+        },
+        {
+          "id": "835064",
+          "leg": "Ida"
+        },
+        {
+          "id": "835065",
+          "leg": "Ida"
+        },
+        {
+          "id": "835066",
+          "leg": "Volta"
+        },
+        {
+          "id": "835067",
+          "leg": "Volta"
+        },
+        {
+          "id": "835068",
+          "leg": "Volta"
+        },
+        {
+          "id": "835069",
+          "leg": "Volta"
+        },
+        {
+          "id": "835070",
+          "leg": "Volta"
+        },
+        {
+          "id": "835071",
+          "leg": "Volta"
+        },
+        {
+          "id": "835072",
+          "leg": "Volta"
+        },
+        {
+          "id": "835073",
+          "leg": "Volta"
+        }
+      ]
+    },
+    {
+      "id": "cbf-2080",
+      "name": "Quartas de final",
+      "matches": [
+        {
+          "id": "835097",
+          "leg": "Ida"
+        },
+        {
+          "id": "835098",
+          "leg": "Ida"
+        },
+        {
+          "id": "835099",
+          "leg": "Ida"
+        },
+        {
+          "id": "835100",
+          "leg": "Ida"
+        },
+        {
+          "id": "835101",
+          "leg": "Volta"
+        },
+        {
+          "id": "835102",
+          "leg": "Volta"
+        },
+        {
+          "id": "835103",
+          "leg": "Volta"
+        },
+        {
+          "id": "835104",
+          "leg": "Volta"
+        }
+      ]
+    },
+    {
+      "id": "cbf-2089",
+      "name": "Semifinais",
+      "matches": [
+        {
+          "id": "835168",
+          "leg": "Ida"
+        },
+        {
+          "id": "835169",
+          "leg": "Ida"
+        },
+        {
+          "id": "835170",
+          "leg": "Volta"
+        },
+        {
+          "id": "835171",
+          "leg": "Volta"
+        }
+      ]
+    },
+    {
+      "id": "cbf-2090",
+      "name": "Playoff de acesso",
+      "matches": [
+        {
+          "id": "835172",
+          "leg": "Ida"
+        },
+        {
+          "id": "835173",
+          "leg": "Ida"
+        },
+        {
+          "id": "835174",
+          "leg": "Volta"
+        },
+        {
+          "id": "835175",
+          "leg": "Volta"
+        }
+      ]
+    },
+    {
+      "id": "cbf-2099",
+      "name": "Final",
+      "matches": [
+        {
+          "id": "835294",
+          "leg": "Ida"
+        },
+        {
+          "id": "835295",
+          "leg": "Volta"
+        }
+      ]
+    }
+  ],
+  "scorers": [
+    {
+      "id": "cbf-634506",
+      "name": "RAMON",
+      "fullName": "Ramon de Araujo Silva Moutinho",
+      "value": 9,
+      "teamId": "cbf-20098",
+      "teamName": "Gama"
+    },
+    {
+      "id": "cbf-309584",
+      "name": "Tomas Bastos",
+      "fullName": "Tomas Almino Bastos da Silva",
+      "value": 9,
+      "teamId": "cbf-64223",
+      "teamName": "Uberlândia"
+    },
+    {
+      "id": "cbf-393565",
+      "name": "Levi",
+      "fullName": "Levi Araujo Oliveira",
+      "value": 6,
+      "teamId": "cbf-31399",
+      "teamName": "Água Santa"
+    },
+    {
+      "id": "cbf-430440",
+      "name": "Lohan",
+      "fullName": "Lohan dos Santos Freire",
+      "value": 6,
+      "teamId": "cbf-20805",
+      "teamName": "Portuguesa-RJ"
+    },
+    {
+      "id": "cbf-154961",
+      "name": "Ciel 99",
+      "fullName": "Jociel Ferreira da Silva",
+      "value": 6,
+      "teamId": "cbf-62217",
+      "teamName": "Tirol"
+    },
+    {
+      "id": "cbf-296884",
+      "name": "Vanilson",
+      "fullName": "Vanilson de Lima Silva",
+      "value": 5,
+      "teamId": "cbf-20353",
+      "teamName": "GAS"
+    },
+    {
+      "id": "cbf-442425",
+      "name": "Otacilio Marcos",
+      "fullName": "Otacilio Marcos Pereira da Silva",
+      "value": 5,
+      "teamId": "cbf-35361",
+      "teamName": "Iguatu"
+    },
+    {
+      "id": "cbf-671056",
+      "name": "Diki Santos",
+      "fullName": "Cleiton Santana Santos",
+      "value": 5,
+      "teamId": "cbf-35212",
+      "teamName": "Juazeirense"
+    },
+    {
+      "id": "cbf-317502",
+      "name": "Buba",
+      "fullName": "Wesley Danilo Morais dos Santos",
+      "value": 5,
+      "teamId": "cbf-20071",
+      "teamName": "Treze"
+    },
+    {
+      "id": "cbf-369409",
+      "name": "Jayme",
+      "fullName": "Jayme Juan Alves da Silva",
+      "value": 5,
+      "teamId": "cbf-20100",
+      "teamName": "Tuna Luso"
+    },
+    {
+      "id": "cbf-419133",
+      "name": "Marquinhos",
+      "fullName": "Marcos Antonio de Sousa Junior",
+      "value": 4,
+      "teamId": "cbf-20071",
+      "teamName": "Treze"
+    },
+    {
+      "id": "cbf-427770",
+      "name": "Luan",
+      "fullName": "Luan Rodrigues Azambuja",
+      "value": 4,
+      "teamId": "cbf-35152",
+      "teamName": "Jacuipense"
+    },
+    {
+      "id": "cbf-178303",
+      "name": "H. Almeida",
+      "fullName": "Henrique Almeida Caixeta Nascentes",
+      "value": 4,
+      "teamId": "cbf-20098",
+      "teamName": "Gama"
+    },
+    {
+      "id": "cbf-428831",
+      "name": "Thalles",
+      "fullName": "Thalles Gabriel Morais dos Reis",
+      "value": 4,
+      "teamId": "cbf-20101",
+      "teamName": "Goiatuba"
+    },
+    {
+      "id": "cbf-361450",
+      "name": "Wallace",
+      "fullName": "Wallace Souza Ferreira",
+      "value": 4,
+      "teamId": "cbf-62652",
+      "teamName": "Brasiliense"
+    },
+    {
+      "id": "cbf-185531",
+      "name": "Alex",
+      "fullName": "Alex dos Santos Goncalves",
+      "value": 4,
+      "teamId": "cbf-39727",
+      "teamName": "Santa Catarina"
+    },
+    {
+      "id": "cbf-384905",
+      "name": "Radsley",
+      "fullName": "Radsley Eduardo Goncalves Ramos",
+      "value": 4,
+      "teamId": "cbf-55531",
+      "teamName": "Retrô"
+    },
+    {
+      "id": "cbf-463627",
+      "name": "Vinicius Alves",
+      "fullName": "Vinicius Rodrigues Alves",
+      "value": 4,
+      "teamId": "cbf-62217",
+      "teamName": "Tirol"
+    },
+    {
+      "id": "cbf-703808",
+      "name": "kanu",
+      "fullName": "Vinicius Mendonça Santa Rosa",
+      "value": 4,
+      "teamId": "131681",
+      "teamName": "Maguary"
+    },
+    {
+      "id": "cbf-896942",
+      "name": "MICHAEL",
+      "fullName": "Michael Ifeoluwa Fashanu",
+      "value": 3,
+      "teamId": "cbf-20249",
+      "teamName": "Madureira"
+    },
+    {
+      "id": "cbf-652687",
+      "name": "Igor Torres",
+      "fullName": "Igor Torres da Silva",
+      "value": 3,
+      "teamId": "cbf-63521",
+      "teamName": "Portuguesa"
+    },
+    {
+      "id": "cbf-705955",
+      "name": "ELICLEY",
+      "fullName": "Elicley Soares",
+      "value": 3,
+      "teamId": "cbf-20082",
+      "teamName": "Noroeste"
+    },
+    {
+      "id": "cbf-393831",
+      "name": "Jeffinho",
+      "fullName": "Jefferson Riguimar da Silva Santos",
+      "value": 3,
+      "teamId": "cbf-62217",
+      "teamName": "Tirol"
+    },
+    {
+      "id": "cbf-606130",
+      "name": "Bruno Marques",
+      "fullName": "Bruno Henrique Marques Torres",
+      "value": 3,
+      "teamId": "cbf-55531",
+      "teamName": "Retrô"
+    },
+    {
+      "id": "cbf-546130",
+      "name": "Felipinho",
+      "fullName": "Felipe dos Santos Freitas",
+      "value": 3,
+      "teamId": "cbf-20056",
+      "teamName": "Sampaio Corrêa"
+    },
+    {
+      "id": "cbf-379134",
+      "name": "Robinho",
+      "fullName": "Robson Ferreira de Azevedo",
+      "value": 3,
+      "teamId": "cbf-21922",
+      "teamName": "FC Cascavel"
+    },
+    {
+      "id": "cbf-515964",
+      "name": "Caio Vinicius",
+      "fullName": "Caio Vinicius Rodrigues de Freitas",
+      "value": 3,
+      "teamId": "cbf-20112",
+      "teamName": "Central"
+    },
+    {
+      "id": "cbf-501733",
+      "name": "Josué",
+      "fullName": "Josue Silva de Freitas",
+      "value": 3,
+      "teamId": "cbf-63571",
+      "teamName": "Blumenau"
+    },
+    {
+      "id": "cbf-707906",
+      "name": "GUSTAVO",
+      "fullName": "Gustavo Antonio Oliveira da Silva",
+      "value": 3,
+      "teamId": "cbf-20045",
+      "teamName": "CSA"
+    },
+    {
+      "id": "cbf-660073",
+      "name": "KAUA",
+      "fullName": "Kaua Giancler Machado da Silva",
+      "value": 3,
+      "teamId": "cbf-56804",
+      "teamName": "Azuriz"
+    },
+    {
+      "id": "cbf-525810",
+      "name": "Wellisson",
+      "fullName": "Wellisson Almeida Nunes",
+      "value": 3,
+      "teamId": "cbf-63571",
+      "teamName": "Blumenau"
+    },
+    {
+      "id": "cbf-667296",
+      "name": "Richarles",
+      "fullName": "Richarles Ferreira Baldez",
+      "value": 3,
+      "teamId": "cbf-21894",
+      "teamName": "IAPE"
+    },
+    {
+      "id": "cbf-437184",
+      "name": "Erik",
+      "fullName": "Erik Gabriel Oliveira Ribeiro",
+      "value": 3,
+      "teamId": "cbf-20071",
+      "teamName": "Treze"
+    },
+    {
+      "id": "cbf-542761",
+      "name": "Max",
+      "fullName": "Max Miller Araujo Loiola",
+      "value": 3,
+      "teamId": "cbf-64223",
+      "teamName": "Uberlândia"
+    },
+    {
+      "id": "cbf-408877",
+      "name": "Marcos Calazans",
+      "fullName": "Marcos Vinicius Silva Rocha Calazans",
+      "value": 3,
+      "teamId": "cbf-64223",
+      "teamName": "Uberlândia"
+    },
+    {
+      "id": "cbf-463153",
+      "name": "Pablo Thomaz",
+      "fullName": "Pablo Thiago Ferreira Thomaz",
+      "value": 3,
+      "teamId": "cbf-64223",
+      "teamName": "Uberlândia"
+    },
+    {
+      "id": "cbf-532696",
+      "name": "Patrick",
+      "fullName": "Patrick Cruz de Moura Daniel",
+      "value": 3,
+      "teamId": "cbf-64223",
+      "teamName": "Uberlândia"
+    },
+    {
+      "id": "cbf-177071",
+      "name": "Kayke",
+      "fullName": "Kayke Moreno de Andrade Rodrigues",
+      "value": 3,
+      "teamId": "cbf-64223",
+      "teamName": "Uberlândia"
+    },
+    {
+      "id": "cbf-350088",
+      "name": "Felipe",
+      "fullName": "Felipe Alysson Batista da Silva",
+      "value": 2,
+      "teamId": "cbf-31535",
+      "teamName": "Velo Clube"
+    },
+    {
+      "id": "cbf-346555",
+      "name": "Araujo",
+      "fullName": "Teodoro Junio Barbosa de Araujo",
+      "value": 2,
+      "teamId": "cbf-20081",
+      "teamName": "Vitória-ES"
+    },
+    {
+      "id": "cbf-500479",
+      "name": "Almeida",
+      "fullName": "Vinicius Henrique da Costa Almeida",
+      "value": 2,
+      "teamId": "cbf-21894",
+      "teamName": "IAPE"
+    },
+    {
+      "id": "cbf-291429",
+      "name": "Yann Rolim",
+      "fullName": "Yann Del Pino Rolim",
+      "value": 2,
+      "teamId": "cbf-20076",
+      "teamName": "Joinville"
+    },
+    {
+      "id": "cbf-448862",
+      "name": "Renato",
+      "fullName": "Renato Luis de Moura Soares",
+      "value": 2,
+      "teamId": "cbf-20098",
+      "teamName": "Gama"
+    },
+    {
+      "id": "cbf-183873",
+      "name": "Camacho",
+      "fullName": "Guilherme de Aguiar Camacho",
+      "value": 2,
+      "teamId": "cbf-20045",
+      "teamName": "CSA"
+    },
+    {
+      "id": "cbf-745566",
+      "name": "THALISSON",
+      "fullName": "Thalisson Souza Alves",
+      "value": 2,
+      "teamId": "cbf-20091",
+      "teamName": "Ferroviário"
+    },
+    {
+      "id": "cbf-542451",
+      "name": "Alex",
+      "fullName": "Alex Honorio Junior",
+      "value": 2,
+      "teamId": "cbf-20076",
+      "teamName": "Joinville"
+    },
+    {
+      "id": "cbf-384163",
+      "name": "Joao Guilherme",
+      "fullName": "Joao Guilherme Barcelos Neto Nogueira",
+      "value": 2,
+      "teamId": "cbf-59102",
+      "teamName": "Manauara"
+    },
+    {
+      "id": "cbf-615309",
+      "name": "PEDRO HENRIQUE",
+      "fullName": "Pedro Henrique da Silva Ferreira",
+      "value": 2,
+      "teamId": "cbf-34709",
+      "teamName": "Betim Futebol"
+    },
+    {
+      "id": "cbf-744246",
+      "name": "Gabriel",
+      "fullName": "Gabriel Alves Mineiro Galdino dos Santos",
+      "value": 2,
+      "teamId": "cbf-56804",
+      "teamName": "Azuriz"
+    },
+    {
+      "id": "cbf-622605",
+      "name": "Lucas Matheus",
+      "fullName": "Lucas Matheus Ferreira dos Santos",
+      "value": 2,
+      "teamId": "cbf-56804",
+      "teamName": "Azuriz"
+    },
+    {
+      "id": "cbf-291843",
+      "name": "Edson Felipe",
+      "fullName": "Edson Felipe da Cruz",
+      "value": 2,
+      "teamId": "cbf-20042",
+      "teamName": "ABC"
+    },
+    {
+      "id": "cbf-873411",
+      "name": "Kevin Chaves",
+      "fullName": "Kevin Chaves Silva",
+      "value": 2,
+      "teamId": "cbf-20236",
+      "teamName": "Atlético de Alagoinhas"
+    },
+    {
+      "id": "cbf-717987",
+      "name": "EMERSON",
+      "fullName": "Emerson Silva dos Santos",
+      "value": 2,
+      "teamId": "cbf-63571",
+      "teamName": "Blumenau"
+    },
+    {
+      "id": "cbf-411958",
+      "name": "Romulo",
+      "fullName": "Romulo Sousa da Costa",
+      "value": 2,
+      "teamId": "cbf-20112",
+      "teamName": "Central"
+    },
+    {
+      "id": "cbf-344517",
+      "name": "Matheus Bossa",
+      "fullName": "Matheus Cotulio Bossa",
+      "value": 2,
+      "teamId": "cbf-62652",
+      "teamName": "Brasiliense"
+    },
+    {
+      "id": "cbf-317006",
+      "name": "Ivan",
+      "fullName": "Ivan Aparecido Martins",
+      "value": 2,
+      "teamId": "cbf-62652",
+      "teamName": "Brasiliense"
+    },
+    {
+      "id": "cbf-430256",
+      "name": "Zé Leandro",
+      "fullName": "Jose Leandro Bento Costa",
+      "value": 2,
+      "teamId": "cbf-39727",
+      "teamName": "Santa Catarina"
+    },
+    {
+      "id": "cbf-647298",
+      "name": "PIAUÍ",
+      "fullName": "Wanderson Felipe Assunção Ivo",
+      "value": 2,
+      "teamId": "cbf-39727",
+      "teamName": "Santa Catarina"
+    },
+    {
+      "id": "cbf-732110",
+      "name": "Luiz",
+      "fullName": "Luiz Felipe de Souza",
+      "value": 2,
+      "teamId": "cbf-34027",
+      "teamName": "Tombense"
+    },
+    {
+      "id": "cbf-378253",
+      "name": "Lucas Oliveira",
+      "fullName": "Lucas Oliveira dos Santos",
+      "value": 2,
+      "teamId": "cbf-20071",
+      "teamName": "Treze"
+    },
+    {
+      "id": "cbf-605972",
+      "name": "Di Maria",
+      "fullName": "Jeferson Carvalho da Silva",
+      "value": 2,
+      "teamId": "cbf-20071",
+      "teamName": "Treze"
+    },
+    {
+      "id": "cbf-607516",
+      "name": "Bruninho",
+      "fullName": "Bruno Martins",
+      "value": 2,
+      "teamId": "cbf-20071",
+      "teamName": "Treze"
+    },
+    {
+      "id": "cbf-446698",
+      "name": "Clayton Monteiro",
+      "fullName": "Clayton Monteiro Alves",
+      "value": 2,
+      "teamId": "131680",
+      "teamName": "Serra Branca"
+    },
+    {
+      "id": "cbf-183707",
+      "name": "Rodolfo",
+      "fullName": "Gerson Rodolfo da Silva",
+      "value": 2,
+      "teamId": "131680",
+      "teamName": "Serra Branca"
+    },
+    {
+      "id": "cbf-350039",
+      "name": "Ronaldo Mendes",
+      "fullName": "Ronaldo Cesar Mendes de Medeiros",
+      "value": 2,
+      "teamId": "131680",
+      "teamName": "Serra Branca"
+    },
+    {
+      "id": "cbf-412581",
+      "name": "Luã",
+      "fullName": "Luã Niger Silva de Souza",
+      "value": 2,
+      "teamId": "cbf-20390",
+      "teamName": "Sousa"
+    },
+    {
+      "id": "cbf-427516",
+      "name": "Dedé",
+      "fullName": "Diney Silva da Costa",
+      "value": 2,
+      "teamId": "cbf-20390",
+      "teamName": "Sousa"
+    },
+    {
+      "id": "cbf-340936",
+      "name": "Jailson",
+      "fullName": "Edjailson Nascimento da Silva",
+      "value": 2,
+      "teamId": "cbf-20390",
+      "teamName": "Sousa"
+    },
+    {
+      "id": "cbf-726198",
+      "name": "walace",
+      "fullName": "Wallace Camilo dos Santos Leandro",
+      "value": 2,
+      "teamId": "cbf-20249",
+      "teamName": "Madureira"
+    },
+    {
+      "id": "cbf-415985",
+      "name": "Alexandre",
+      "fullName": "Alexandre Junio Santos da Silva",
+      "value": 2,
+      "teamId": "cbf-64287",
+      "teamName": "Nova Iguaçu"
+    },
+    {
+      "id": "cbf-660396",
+      "name": "27 - Ibson",
+      "fullName": "Ibson dos Santos Ribeiro",
+      "value": 2,
+      "teamId": "cbf-20816",
+      "teamName": "Cianorte"
+    },
+    {
+      "id": "cbf-524246",
+      "name": "Cesar",
+      "fullName": "Cesar Coelho Campos Junior",
+      "value": 2,
+      "teamId": "cbf-20207",
+      "teamName": "Marcílio Dias"
+    },
+    {
+      "id": "cbf-615540",
+      "name": "Gabriel Lyra",
+      "fullName": "Gabriel Rosa Lyra",
+      "value": 2,
+      "teamId": "cbf-20207",
+      "teamName": "Marcílio Dias"
+    },
+    {
+      "id": "cbf-565236",
+      "name": "Jackson",
+      "fullName": "Jackson Bernardo da Silva",
+      "value": 2,
+      "teamId": "cbf-20207",
+      "teamName": "Marcílio Dias"
+    },
+    {
+      "id": "cbf-433682",
+      "name": "Erick Varao",
+      "fullName": "Erick de Souza Miranda",
+      "value": 2,
+      "teamId": "cbf-20050",
+      "teamName": "Nacional-AM"
+    },
+    {
+      "id": "cbf-716563",
+      "name": "Nildo",
+      "fullName": "Francinildo Pinheiro Bezerra",
+      "value": 1,
+      "teamId": "cbf-20050",
+      "teamName": "Nacional-AM"
+    },
+    {
+      "id": "cbf-402630",
+      "name": "Rafael Silva",
+      "fullName": "Rafael Aparecido da Silva",
+      "value": 1,
+      "teamId": "cbf-20082",
+      "teamName": "Noroeste"
+    },
+    {
+      "id": "cbf-317446",
+      "name": "Bruno Boca",
+      "fullName": "Bruno Cavalcanti Correa",
+      "value": 1,
+      "teamId": "cbf-20207",
+      "teamName": "Marcílio Dias"
+    },
+    {
+      "id": "cbf-412758",
+      "name": "Victor Pereira",
+      "fullName": "Victor Santos Pereira",
+      "value": 1,
+      "teamId": "cbf-32036",
+      "teamName": "Maricá"
+    },
+    {
+      "id": "cbf-455566",
+      "name": "Heltton",
+      "fullName": "Heltton Matheus Cardoso Rodrigues",
+      "value": 1,
+      "teamId": "cbf-32036",
+      "teamName": "Maricá"
+    },
+    {
+      "id": "cbf-344972",
+      "name": "Robson",
+      "fullName": "Robson Luiz Lopes",
+      "value": 1,
+      "teamId": "cbf-20064",
+      "teamName": "Mixto"
+    },
+    {
+      "id": "cbf-837701",
+      "name": "Germano",
+      "fullName": "Leandro Germano Franco da Silva",
+      "value": 1,
+      "teamId": "cbf-62190",
+      "teamName": "Monte Roraima"
+    },
+    {
+      "id": "cbf-704575",
+      "name": "Garrinsha",
+      "fullName": "Garrinsha Estinphile",
+      "value": 1,
+      "teamId": "cbf-20207",
+      "teamName": "Marcílio Dias"
+    },
+    {
+      "id": "cbf-452742",
+      "name": "Caio",
+      "fullName": "Caio Ribeiro de Carvalho",
+      "value": 1,
+      "teamId": "cbf-59102",
+      "teamName": "Manauara"
+    },
+    {
+      "id": "cbf-605776",
+      "name": "Hitalo",
+      "fullName": "Hitalo Teixeira Mota",
+      "value": 1,
+      "teamId": "cbf-21725",
+      "teamName": "Luverdense"
+    },
+    {
+      "id": "cbf-717031",
+      "name": "Coutinho",
+      "fullName": "Cauã Coutinho da Silva",
+      "value": 1,
+      "teamId": "cbf-20249",
+      "teamName": "Madureira"
+    },
+    {
+      "id": "cbf-725443",
+      "name": "Welington Kauan",
+      "fullName": "Welington Kauan da Silva Cardoso",
+      "value": 1,
+      "teamId": "cbf-20249",
+      "teamName": "Madureira"
+    },
+    {
+      "id": "cbf-613249",
+      "name": "Lucas Cruz",
+      "fullName": "Lucas Cruz Siqueira da Silva",
+      "value": 1,
+      "teamId": "cbf-64287",
+      "teamName": "Nova Iguaçu"
+    },
+    {
+      "id": "cbf-615889",
+      "name": "Daniel Zavoli",
+      "fullName": "Daniel Zavoli de Andrade",
+      "value": 1,
+      "teamId": "cbf-64287",
+      "teamName": "Nova Iguaçu"
+    },
+    {
+      "id": "cbf-611218",
+      "name": "João Pedro",
+      "fullName": "João Pedro de Souza Correa",
+      "value": 1,
+      "teamId": "cbf-64287",
+      "teamName": "Nova Iguaçu"
+    },
+    {
+      "id": "cbf-565310",
+      "name": "Eduardo Tanque",
+      "fullName": "Jose Eduardo Bitencourt da Silva",
+      "value": 1,
+      "teamId": "cbf-20041",
+      "teamName": "Operário-MS"
+    },
+    {
+      "id": "cbf-527373",
+      "name": "Einstein",
+      "fullName": "Einstein Dias Santos",
+      "value": 1,
+      "teamId": "cbf-20041",
+      "teamName": "Operário-MS"
+    },
+    {
+      "id": "cbf-465349",
+      "name": "Joao Diogo",
+      "fullName": "Joao Diogo Jennings",
+      "value": 1,
+      "teamId": "cbf-63521",
+      "teamName": "Portuguesa"
+    },
+    {
+      "id": "cbf-522679",
+      "name": "Biazus",
+      "fullName": "Eduardo Henrique Biazus",
+      "value": 1,
+      "teamId": "cbf-63521",
+      "teamName": "Portuguesa"
+    },
+    {
+      "id": "cbf-551154",
+      "name": "Jonas Toró",
+      "fullName": "Jonas Gabriel da Silva Nunes",
+      "value": 1,
+      "teamId": "cbf-63521",
+      "teamName": "Portuguesa"
+    },
+    {
+      "id": "cbf-170635",
+      "name": "Eric",
+      "fullName": "Eric Fernando Botteghin",
+      "value": 1,
+      "teamId": "cbf-63521",
+      "teamName": "Portuguesa"
+    },
+    {
+      "id": "cbf-466651",
+      "name": "Thiago Rubim",
+      "fullName": "Thiago Canavez Rubim",
+      "value": 1,
+      "teamId": "cbf-63521",
+      "teamName": "Portuguesa"
+    },
+    {
+      "id": "cbf-650773",
+      "name": "Sciencia",
+      "fullName": "Gustavo Sciencia Paula Silva",
+      "value": 1,
+      "teamId": "cbf-63521",
+      "teamName": "Portuguesa"
+    },
+    {
+      "id": "cbf-173277",
+      "name": "Fernandinho",
+      "fullName": "Luiz Fernando Pereira da Silva",
+      "value": 1,
+      "teamId": "cbf-55531",
+      "teamName": "Retrô"
+    },
+    {
+      "id": "cbf-565197",
+      "name": "Pedro Felipe",
+      "fullName": "Pedro Felipe dos Santos Santana",
+      "value": 1,
+      "teamId": "cbf-20082",
+      "teamName": "Noroeste"
+    },
+    {
+      "id": "cbf-375729",
+      "name": "Thiago Lopes",
+      "fullName": "Thiago Ferreira Lopes",
+      "value": 1,
+      "teamId": "cbf-20082",
+      "teamName": "Noroeste"
+    },
+    {
+      "id": "cbf-552180",
+      "name": "Caua",
+      "fullName": "Caua Santos Aguiar",
+      "value": 1,
+      "teamId": "cbf-20082",
+      "teamName": "Noroeste"
+    },
+    {
+      "id": "cbf-577163",
+      "name": "Leonardo",
+      "fullName": "Leonardo Ferreira Goncalves",
+      "value": 1,
+      "teamId": "cbf-64287",
+      "teamName": "Nova Iguaçu"
+    },
+    {
+      "id": "cbf-432301",
+      "name": "Carlinhos",
+      "fullName": "Carlos Roberto da Silva Lopes",
+      "value": 1,
+      "teamId": "cbf-20390",
+      "teamName": "Sousa"
+    },
+    {
+      "id": "cbf-607790",
+      "name": "Ronny",
+      "fullName": "Ronny Cley Gama de Sousa",
+      "value": 1,
+      "teamId": "cbf-62217",
+      "teamName": "Tirol"
+    },
+    {
+      "id": "cbf-319009",
+      "name": "Charles Maceio",
+      "fullName": "Charles da Silva Ferreira",
+      "value": 1,
+      "teamId": "131680",
+      "teamName": "Serra Branca"
+    },
+    {
+      "id": "cbf-521780",
+      "name": "Orlando Junior",
+      "fullName": "Orlando Jose dos Santos Junior",
+      "value": 1,
+      "teamId": "131680",
+      "teamName": "Serra Branca"
+    },
+    {
+      "id": "cbf-947322",
+      "name": "MOLANO",
+      "fullName": "Juan Diego Molano Segura",
+      "value": 1,
+      "teamId": "cbf-62217",
+      "teamName": "Tirol"
+    },
+    {
+      "id": "cbf-648677",
+      "name": "chudo",
+      "fullName": "Keliton da Conceição",
+      "value": 1,
+      "teamId": "cbf-34027",
+      "teamName": "Tombense"
+    },
+    {
+      "id": "cbf-591650",
+      "name": "Diney",
+      "fullName": "Diney Carlos Albuquerque do Nascimento",
+      "value": 1,
+      "teamId": "cbf-62217",
+      "teamName": "Tirol"
+    },
+    {
+      "id": "cbf-577317",
+      "name": "Gui Nascimento",
+      "fullName": "Guilherme Rodrigues Nascimento",
+      "value": 1,
+      "teamId": "cbf-39727",
+      "teamName": "Santa Catarina"
+    },
+    {
+      "id": "cbf-758415",
+      "name": "RENAN",
+      "fullName": "Renan Nunes dos Santos",
+      "value": 1,
+      "teamId": "cbf-39727",
+      "teamName": "Santa Catarina"
+    },
+    {
+      "id": "cbf-439369",
+      "name": "Pedro",
+      "fullName": "Pedro Henrique de Souza Correa",
+      "value": 1,
+      "teamId": "cbf-54488",
+      "teamName": "São Joseense"
+    },
+    {
+      "id": "cbf-346222",
+      "name": "Coppetti",
+      "fullName": "Carlos Afonso Coppetti",
+      "value": 1,
+      "teamId": "131680",
+      "teamName": "Serra Branca"
+    },
+    {
+      "id": "cbf-356543",
+      "name": "Paulo",
+      "fullName": "Paulo Victor Costa Soares",
+      "value": 1,
+      "teamId": "cbf-32387",
+      "teamName": "Sampaio Corrêa-RJ"
+    },
+    {
+      "id": "cbf-307409",
+      "name": "Walber",
+      "fullName": "Walber Correa de Barros",
+      "value": 1,
+      "teamId": "cbf-32387",
+      "teamName": "Sampaio Corrêa-RJ"
+    },
+    {
+      "id": "cbf-846572",
+      "name": "GUSTAVO",
+      "fullName": "Gustavo Nunes Migueis",
+      "value": 1,
+      "teamId": "cbf-32387",
+      "teamName": "Sampaio Corrêa-RJ"
+    },
+    {
+      "id": "cbf-559120",
+      "name": "LUCAS   B",
+      "fullName": "Lucas Dorneles Martins",
+      "value": 1,
+      "teamId": "cbf-20353",
+      "teamName": "GAS"
+    },
+    {
+      "id": "cbf-795446",
+      "name": "JACARE  B",
+      "fullName": "Raylson Miranda Castro",
+      "value": 1,
+      "teamId": "cbf-20353",
+      "teamName": "GAS"
+    },
+    {
+      "id": "cbf-449227",
+      "name": "Kadi",
+      "fullName": "Lucas Henrique da Silva",
+      "value": 1,
+      "teamId": "cbf-55531",
+      "teamName": "Retrô"
+    },
+    {
+      "id": "cbf-453326",
+      "name": "Israel",
+      "fullName": "Israel Neves de Souza",
+      "value": 1,
+      "teamId": "cbf-55531",
+      "teamName": "Retrô"
+    },
+    {
+      "id": "cbf-296240",
+      "name": "Geovane",
+      "fullName": "Geovane Henrique Pereira de Souza",
+      "value": 1,
+      "teamId": "cbf-21922",
+      "teamName": "FC Cascavel"
+    },
+    {
+      "id": "cbf-748019",
+      "name": "TAPIOCA",
+      "fullName": "Gustavo Silva do Espirito Santo",
+      "value": 1,
+      "teamId": "cbf-21922",
+      "teamName": "FC Cascavel"
+    },
+    {
+      "id": "cbf-457553",
+      "name": "Regino Nascimento",
+      "fullName": "Regino Nascimento de Sousa",
+      "value": 1,
+      "teamId": "cbf-62652",
+      "teamName": "Brasiliense"
+    },
+    {
+      "id": "cbf-300768",
+      "name": "Netinho",
+      "fullName": "Evaldo Nascimento Lamaur Neto",
+      "value": 1,
+      "teamId": "cbf-62652",
+      "teamName": "Brasiliense"
+    },
+    {
+      "id": "cbf-510367",
+      "name": "Rene",
+      "fullName": "Rene da Silva",
+      "value": 1,
+      "teamId": "cbf-62652",
+      "teamName": "Brasiliense"
+    },
+    {
+      "id": "cbf-510745",
+      "name": "Léo Carvalho",
+      "fullName": "Leonardo da Silva de Carvalho",
+      "value": 1,
+      "teamId": "cbf-20112",
+      "teamName": "Central"
+    },
+    {
+      "id": "cbf-422351",
+      "name": "Jean Pyerre",
+      "fullName": "Jean Pyerre Casagrande Silveira Correa",
+      "value": 1,
+      "teamId": "cbf-62652",
+      "teamName": "Brasiliense"
+    },
+    {
+      "id": "cbf-783675",
+      "name": "LEO",
+      "fullName": "Leonardo Ferreira Soares",
+      "value": 1,
+      "teamId": "cbf-35316",
+      "teamName": "Atlético Cearense"
+    },
+    {
+      "id": "cbf-913377",
+      "name": "Pelé",
+      "fullName": "Carlos André Carneiro de Melo",
+      "value": 1,
+      "teamId": "cbf-35316",
+      "teamName": "Atlético Cearense"
+    },
+    {
+      "id": "cbf-410702",
+      "name": "Bruno",
+      "fullName": "Bruno Gonçalves do Prado",
+      "value": 1,
+      "teamId": "cbf-56804",
+      "teamName": "Azuriz"
+    },
+    {
+      "id": "cbf-670729",
+      "name": "Dionatan",
+      "fullName": "Dionatan Augusto Barbosa",
+      "value": 1,
+      "teamId": "cbf-63665",
+      "teamName": "ABECAT"
+    },
+    {
+      "id": "cbf-525354",
+      "name": "Daniel",
+      "fullName": "Daniel Pedro Moura E Silva",
+      "value": 1,
+      "teamId": "cbf-31399",
+      "teamName": "Água Santa"
+    },
+    {
+      "id": "cbf-376679",
+      "name": "Mario Cesar",
+      "fullName": "Mario Cesar Belli",
+      "value": 1,
+      "teamId": "cbf-31399",
+      "teamName": "Água Santa"
+    },
+    {
+      "id": "cbf-577493",
+      "name": "Villian",
+      "fullName": "Villian Guilherme Goncalves Vieira",
+      "value": 1,
+      "teamId": "cbf-31399",
+      "teamName": "Água Santa"
+    },
+    {
+      "id": "cbf-368444",
+      "name": "Guilherme Paraíba",
+      "fullName": "Guilherme Mendes da Silva",
+      "value": 1,
+      "teamId": "cbf-62025",
+      "teamName": "América de Natal"
+    },
+    {
+      "id": "cbf-515497",
+      "name": "Sammuel",
+      "fullName": "Sammuel Queiroz de Freitas",
+      "value": 1,
+      "teamId": "cbf-20108",
+      "teamName": "ASA"
+    },
+    {
+      "id": "cbf-672105",
+      "name": "Marcão",
+      "fullName": "Marcos Henrique Tavares da Cruz",
+      "value": 1,
+      "teamId": "cbf-56804",
+      "teamName": "Azuriz"
+    },
+    {
+      "id": "cbf-611196",
+      "name": "Victor Michell",
+      "fullName": "Victor Michell Mendonca Costa",
+      "value": 1,
+      "teamId": "cbf-34709",
+      "teamName": "Betim Futebol"
+    },
+    {
+      "id": "cbf-602781",
+      "name": "Matheus Almeida",
+      "fullName": "Matheus Joaquim Almeida",
+      "value": 1,
+      "teamId": "cbf-63571",
+      "teamName": "Blumenau"
+    },
+    {
+      "id": "cbf-184860",
+      "name": "Marcão",
+      "fullName": "Marcos Eduardo Costa",
+      "value": 1,
+      "teamId": "cbf-63571",
+      "teamName": "Blumenau"
+    },
+    {
+      "id": "cbf-321991",
+      "name": "Vinicius Jaú",
+      "fullName": "Vinicius de Lima Ferreira",
+      "value": 1,
+      "teamId": "cbf-63571",
+      "teamName": "Blumenau"
+    },
+    {
+      "id": "cbf-513871",
+      "name": "Paulinho",
+      "fullName": "Paulo Ricardo Valadao de Sena",
+      "value": 1,
+      "teamId": "cbf-59102",
+      "teamName": "Manauara"
+    },
+    {
+      "id": "cbf-543013",
+      "name": "Erivan",
+      "fullName": "Erivan Pedro da Silva Junior",
+      "value": 1,
+      "teamId": "cbf-59102",
+      "teamName": "Manauara"
+    },
+    {
+      "id": "cbf-508732",
+      "name": "Pardal",
+      "fullName": "Pablo Silva de Lara",
+      "value": 1,
+      "teamId": "cbf-59102",
+      "teamName": "Manauara"
+    },
+    {
+      "id": "cbf-721826",
+      "name": "Marinho",
+      "fullName": "Mario Augusto da Silva Tristao",
+      "value": 1,
+      "teamId": "cbf-59102",
+      "teamName": "Manauara"
+    },
+    {
+      "id": "cbf-451402",
+      "name": "Fabricio",
+      "fullName": "Fabricio Conceicao Silva",
+      "value": 1,
+      "teamId": "cbf-59102",
+      "teamName": "Manauara"
+    },
+    {
+      "id": "cbf-607687",
+      "name": "ADRIANO",
+      "fullName": "Adriano Felipe Klein",
+      "value": 1,
+      "teamId": "cbf-59102",
+      "teamName": "Manauara"
+    },
+    {
+      "id": "cbf-308008",
+      "name": "Claudinho",
+      "fullName": "Claudio de Souza",
+      "value": 1,
+      "teamId": "cbf-20207",
+      "teamName": "Marcílio Dias"
+    },
+    {
+      "id": "cbf-710995",
+      "name": "Jupi",
+      "fullName": "Jadson do Nascimento Jupi",
+      "value": 1,
+      "teamId": "cbf-20076",
+      "teamName": "Joinville"
+    },
+    {
+      "id": "cbf-658707",
+      "name": "Luis",
+      "fullName": "Luis Otavio dos Santos Netto",
+      "value": 1,
+      "teamId": "cbf-20076",
+      "teamName": "Joinville"
+    },
+    {
+      "id": "cbf-392794",
+      "name": "Romario",
+      "fullName": "Jose Romario Barbosa de Oliveira",
+      "value": 1,
+      "teamId": "cbf-35212",
+      "teamName": "Juazeirense"
+    },
+    {
+      "id": "cbf-188472",
+      "name": "2 - Cristovam",
+      "fullName": "Cristovam Roberto Ribeiro da Silva",
+      "value": 1,
+      "teamId": "cbf-20816",
+      "teamName": "Cianorte"
+    },
+    {
+      "id": "cbf-527566",
+      "name": "Gustavo",
+      "fullName": "Gustavo da Silveira Victorio",
+      "value": 1,
+      "teamId": "cbf-20816",
+      "teamName": "Cianorte"
+    },
+    {
+      "id": "cbf-648840",
+      "name": "IAGO MOTTA",
+      "fullName": "Iago Motta",
+      "value": 1,
+      "teamId": "cbf-20816",
+      "teamName": "Cianorte"
+    },
+    {
+      "id": "cbf-434417",
+      "name": "David Coelho",
+      "fullName": "David Lucas Coelho Ferreira",
+      "value": 1,
+      "teamId": "cbf-20098",
+      "teamName": "Gama"
+    },
+    {
+      "id": "cbf-341334",
+      "name": "Mano",
+      "fullName": "Antonio Luis dos Santos",
+      "value": 1,
+      "teamId": "cbf-53757",
+      "teamName": "Guaporé"
+    },
+    {
+      "id": "cbf-320929",
+      "name": "Michael",
+      "fullName": "Michael Heberth Alves de Oliveira",
+      "value": 1,
+      "teamId": "cbf-21894",
+      "teamName": "IAPE"
+    },
+    {
+      "id": "cbf-702299",
+      "name": "DIEGO",
+      "fullName": "Diego Leandro de Lima Ferreira",
+      "value": 1,
+      "teamId": "cbf-20076",
+      "teamName": "Joinville"
+    },
+    {
+      "id": "cbf-718346",
+      "name": "William",
+      "fullName": "William dos Anjos Nascimento",
+      "value": 1,
+      "teamId": "cbf-35152",
+      "teamName": "Jacuipense"
+    },
+    {
+      "id": "cbf-506575",
+      "name": "Alison Daniel",
+      "fullName": "Alison Daniel Marques Ribeiro",
+      "value": 1,
+      "teamId": "cbf-35152",
+      "teamName": "Jacuipense"
+    },
+    {
+      "id": "cbf-341344",
+      "name": "Diego",
+      "fullName": "Diego Guerra Taixeirão",
+      "value": 1,
+      "teamId": "cbf-20081",
+      "teamName": "Vitória-ES"
+    },
+    {
+      "id": "cbf-380640",
+      "name": "Dudu Vieira",
+      "fullName": "Carlos Eduardo de Souza Vieira",
+      "value": 1,
+      "teamId": "cbf-20072",
+      "teamName": "XV de Piracicaba"
+    },
+    {
+      "id": "cbf-409868",
+      "name": "Sillas",
+      "fullName": "Sillas da Silva Vital Gomes",
+      "value": 1,
+      "teamId": "cbf-31535",
+      "teamName": "Velo Clube"
+    },
+    {
+      "id": "cbf-676167",
+      "name": "Alex",
+      "fullName": "Alexander Oliveira Gil",
+      "value": 1,
+      "teamId": "cbf-20287",
+      "teamName": "União Rondonópolis"
+    },
+    {
+      "id": "cbf-614370",
+      "name": "Dioran",
+      "fullName": "Dioran Peterson Nogueira Soares",
+      "value": 1,
+      "teamId": "cbf-20071",
+      "teamName": "Treze"
+    },
+    {
+      "id": "cbf-522951",
+      "name": "Barbosa",
+      "fullName": "Matheus Barbosa Vasconcelos",
+      "value": 1,
+      "teamId": "cbf-20071",
+      "teamName": "Treze"
+    }
+  ],
+  "coverage": {
+    "publishedScorers": 167,
+    "publishedGoals": 320,
+    "fixtureGoals": 1389,
+    "scorersCompleteForFixtures": false
+  }
+}

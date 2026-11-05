@@ -1,0 +1,654 @@
+{
+  "id_jogo": "835438",
+  "num_jogo": "215",
+  "ano": "2026",
+  "etapa": "Final",
+  "rodada": "1",
+  "mandante": {
+    "id": "21918",
+    "nome": "Maringá FC SAF",
+    "gols": "1",
+    "panaltis": "0",
+    "atletas": [
+      {
+        "id": "562306",
+        "numero_camisa": "1",
+        "reserva": "true",
+        "goleiro": "true",
+        "entrou_jogando": "false",
+        "nome": "01 - Gabriel Affonso de Jesus",
+        "apelido": "01 - 1 - Gabriel Affonso"
+      },
+      {
+        "id": "678962",
+        "numero_camisa": "2",
+        "reserva": "true",
+        "goleiro": "false",
+        "entrou_jogando": "false",
+        "nome": "02 - Gabriel Souza dos Santos",
+        "apelido": "02 - Gabriel - 2"
+      },
+      {
+        "id": "683780",
+        "numero_camisa": "3",
+        "reserva": "true",
+        "goleiro": "false",
+        "entrou_jogando": "false",
+        "nome": "03 - Gabriel Santos Queiroz Travassos",
+        "apelido": "03 - Gabriel - 3"
+      },
+      {
+        "id": "350435",
+        "numero_camisa": "4",
+        "reserva": "false",
+        "goleiro": "false",
+        "entrou_jogando": "true",
+        "nome": "04 - Wendel Lomar da Cruz",
+        "apelido": "04 - Wendel Lomar - 4"
+      },
+      {
+        "id": "589019",
+        "numero_camisa": "5",
+        "reserva": "true",
+        "goleiro": "false",
+        "entrou_jogando": "false",
+        "nome": "05 - Kelvi Chiesa Gomes",
+        "apelido": "05 - Kelvi - 5"
+      },
+      {
+        "id": "520878",
+        "numero_camisa": "6",
+        "reserva": "false",
+        "goleiro": "false",
+        "entrou_jogando": "true",
+        "nome": "06 - Thiago Rosa da Conceicao",
+        "apelido": "06 - Thiago Rosa - 6"
+      },
+      {
+        "id": "692783",
+        "numero_camisa": "7",
+        "reserva": "false",
+        "goleiro": "false",
+        "entrou_jogando": "true",
+        "nome": "07 - Edison Custodio dos Santos",
+        "apelido": "07 - Negueba - 7"
+      },
+      {
+        "id": "582108",
+        "numero_camisa": "8",
+        "reserva": "false",
+        "goleiro": "false",
+        "entrou_jogando": "true",
+        "nome": "08 - Adeilson Mendes",
+        "apelido": "08 - Adeilson - 8"
+      },
+      {
+        "id": "384666",
+        "numero_camisa": "9",
+        "reserva": "true",
+        "goleiro": "false",
+        "entrou_jogando": "false",
+        "nome": "09 - Giovane Gomes da Silva",
+        "apelido": "09 - Giovane Gomes - 9"
+      },
+      {
+        "id": "442672",
+        "numero_camisa": "10",
+        "reserva": "true",
+        "goleiro": "false",
+        "entrou_jogando": "false",
+        "nome": "10 - Guilherme Henrique Silva Goncalves",
+        "apelido": "10 - Guilherme Pira - 10"
+      },
+      {
+        "id": "559150",
+        "numero_camisa": "17",
+        "reserva": "true",
+        "goleiro": "false",
+        "entrou_jogando": "false",
+        "nome": "17 - Iago Santana Lima",
+        "apelido": "17 - Iago - 17"
+      },
+      {
+        "id": "583117",
+        "numero_camisa": "18",
+        "reserva": "false",
+        "goleiro": "false",
+        "entrou_jogando": "true",
+        "nome": "18 - Jonathan Alecxander da Silva Valerio",
+        "apelido": "18 - Jhow - 18"
+      },
+      {
+        "id": "621112",
+        "numero_camisa": "19",
+        "reserva": "true",
+        "goleiro": "false",
+        "entrou_jogando": "false",
+        "nome": "19 - Julio Rodrigues de Albuquerque",
+        "apelido": "19 - 19 - Júlio"
+      },
+      {
+        "id": "615369",
+        "numero_camisa": "20",
+        "reserva": "true",
+        "goleiro": "false",
+        "entrou_jogando": "false",
+        "nome": "20 - Bruno Fortuna Cheron",
+        "apelido": "20 - Bruno Cheron - 20"
+      },
+      {
+        "id": "630365",
+        "numero_camisa": "21",
+        "reserva": "false",
+        "goleiro": "false",
+        "entrou_jogando": "true",
+        "nome": "21 - Ronald dos Santos dos Reis",
+        "apelido": "21 - Ronald Camarão - 21"
+      },
+      {
+        "id": "389351",
+        "numero_camisa": "25",
+        "reserva": "false",
+        "goleiro": "true",
+        "entrou_jogando": "true",
+        "nome": "25 - Guilherme da Roza Neto",
+        "apelido": "25 - Guilherme Neto - 25"
+      },
+      {
+        "id": "544910",
+        "numero_camisa": "28",
+        "reserva": "false",
+        "goleiro": "false",
+        "entrou_jogando": "true",
+        "nome": "28 - Lucas Oliveira Gomes Bonifacio",
+        "apelido": "28 - Lucas- Bonifácio - 28"
+      },
+      {
+        "id": "727646",
+        "numero_camisa": "29",
+        "reserva": "true",
+        "goleiro": "false",
+        "entrou_jogando": "false",
+        "nome": "29 - Rai Natalino da Silva Ramos",
+        "apelido": "29 - Rai Natalino - 29"
+      },
+      {
+        "id": "419566",
+        "numero_camisa": "30",
+        "reserva": "false",
+        "goleiro": "false",
+        "entrou_jogando": "true",
+        "nome": "30 - Ronald Eugenio de Carvalho",
+        "apelido": "30 - 30 - Ronald Carvalho"
+      },
+      {
+        "id": "305977",
+        "numero_camisa": "37",
+        "reserva": "false",
+        "goleiro": "false",
+        "entrou_jogando": "true",
+        "nome": "37 - Sergio Ricardo dos Santos Junior",
+        "apelido": "37 - 37 - Serginho"
+      },
+      {
+        "id": "353826",
+        "numero_camisa": "44",
+        "reserva": "true",
+        "goleiro": "false",
+        "entrou_jogando": "false",
+        "nome": "44 - Jesiel Cardoso Miranda",
+        "apelido": "44 - Jesiel"
+      },
+      {
+        "id": "440615",
+        "numero_camisa": "77",
+        "reserva": "true",
+        "goleiro": "false",
+        "entrou_jogando": "false",
+        "nome": "77 - Rafael Barbosa Silva",
+        "apelido": "77 - Rafinha - 77"
+      },
+      {
+        "id": "641030",
+        "numero_camisa": "99",
+        "reserva": "false",
+        "goleiro": "false",
+        "entrou_jogando": "true",
+        "nome": "99 - Caique Calito Fernandes Costa",
+        "apelido": "99 - Caique Calito - 99"
+      }
+    ],
+    "alteracoes": [
+      {
+        "codigo_jogador_saiu": "305977",
+        "codigo_jogador_entrou": "559150",
+        "tempo_jogo": "32:00",
+        "tempo_subs": "TN2",
+        "tempo_acrescimo": "32:00"
+      },
+      {
+        "codigo_jogador_saiu": "582108",
+        "codigo_jogador_entrou": "589019",
+        "tempo_jogo": "42:00",
+        "tempo_subs": "TN2",
+        "tempo_acrescimo": "42:00"
+      },
+      {
+        "codigo_jogador_saiu": "583117",
+        "codigo_jogador_entrou": "678962",
+        "tempo_jogo": "16:00",
+        "tempo_subs": "TN2",
+        "tempo_acrescimo": "16:00"
+      },
+      {
+        "codigo_jogador_saiu": "630365",
+        "codigo_jogador_entrou": "442672",
+        "tempo_jogo": "42:00",
+        "tempo_subs": "TN2",
+        "tempo_acrescimo": "42:00"
+      },
+      {
+        "codigo_jogador_saiu": "641030",
+        "codigo_jogador_entrou": "727646",
+        "tempo_jogo": "32:00",
+        "tempo_subs": "TN2",
+        "tempo_acrescimo": "32:00"
+      }
+    ]
+  },
+  "visitante": {
+    "id": "20038",
+    "nome": "Ferroviária",
+    "gols": "1",
+    "panaltis": "0",
+    "atletas": [
+      {
+        "id": "505081",
+        "numero_camisa": "2",
+        "reserva": "false",
+        "goleiro": "false",
+        "entrou_jogando": "true",
+        "nome": "02 - Lucas Silva Rodrigues",
+        "apelido": "02 - Lucas Rodrigues"
+      },
+      {
+        "id": "439167",
+        "numero_camisa": "4",
+        "reserva": "true",
+        "goleiro": "false",
+        "entrou_jogando": "false",
+        "nome": "04 - Guilherme Ferreira da Costa",
+        "apelido": "04 - Guilherme"
+      },
+      {
+        "id": "179100",
+        "numero_camisa": "5",
+        "reserva": "false",
+        "goleiro": "false",
+        "entrou_jogando": "true",
+        "nome": "05 - Ricardo Ribeiro de Lima",
+        "apelido": "05 - Ricardo"
+      },
+      {
+        "id": "432146",
+        "numero_camisa": "6",
+        "reserva": "false",
+        "goleiro": "false",
+        "entrou_jogando": "true",
+        "nome": "06 - Rhuan Ferreira Ramos",
+        "apelido": "06 - Rhuan"
+      },
+      {
+        "id": "707096",
+        "numero_camisa": "7",
+        "reserva": "true",
+        "goleiro": "false",
+        "entrou_jogando": "false",
+        "nome": "07 - Fábio Soares dos Santos",
+        "apelido": "07 - FAU"
+      },
+      {
+        "id": "620776",
+        "numero_camisa": "8",
+        "reserva": "false",
+        "goleiro": "false",
+        "entrou_jogando": "true",
+        "nome": "08 - Rodrigo Souza Santos",
+        "apelido": "08 - Alencar"
+      },
+      {
+        "id": "530666",
+        "numero_camisa": "9",
+        "reserva": "true",
+        "goleiro": "false",
+        "entrou_jogando": "false",
+        "nome": "09 - Denilson da Silva dos Santos",
+        "apelido": "09 - Denilson"
+      },
+      {
+        "id": "500736",
+        "numero_camisa": "10",
+        "reserva": "false",
+        "goleiro": "false",
+        "entrou_jogando": "true",
+        "nome": "10 - Albano Sehn Neto",
+        "apelido": "10 - Albano"
+      },
+      {
+        "id": "630422",
+        "numero_camisa": "11",
+        "reserva": "false",
+        "goleiro": "false",
+        "entrou_jogando": "true",
+        "nome": "11 - Vitor Prado Barreto",
+        "apelido": "11 - Vitor Barreto"
+      },
+      {
+        "id": "181804",
+        "numero_camisa": "12",
+        "reserva": "true",
+        "goleiro": "true",
+        "entrou_jogando": "false",
+        "nome": "12 - Fabio Jose Rampi",
+        "apelido": "12 - Fábio"
+      },
+      {
+        "id": "722362",
+        "numero_camisa": "15",
+        "reserva": "true",
+        "goleiro": "false",
+        "entrou_jogando": "false",
+        "nome": "15 - Fernando Cesar Alves da Conceição",
+        "apelido": "15 - Fernando"
+      },
+      {
+        "id": "347208",
+        "numero_camisa": "18",
+        "reserva": "true",
+        "goleiro": "false",
+        "entrou_jogando": "false",
+        "nome": "18 - Rafael Carrilho Delvaux",
+        "apelido": "18 - Carrilho"
+      },
+      {
+        "id": "721882",
+        "numero_camisa": "19",
+        "reserva": "true",
+        "goleiro": "false",
+        "entrou_jogando": "false",
+        "nome": "19 - Thiago Montelo Pereira",
+        "apelido": "19 - Thiago"
+      },
+      {
+        "id": "668800",
+        "numero_camisa": "21",
+        "reserva": "true",
+        "goleiro": "false",
+        "entrou_jogando": "false",
+        "nome": "21 - Alan Matheus Stence",
+        "apelido": "21 - Alan Stence"
+      },
+      {
+        "id": "619322",
+        "numero_camisa": "23",
+        "reserva": "true",
+        "goleiro": "false",
+        "entrou_jogando": "false",
+        "nome": "23 - Arthur Nether Schilling",
+        "apelido": "23 - ARTHUR"
+      },
+      {
+        "id": "567420",
+        "numero_camisa": "26",
+        "reserva": "true",
+        "goleiro": "false",
+        "entrou_jogando": "false",
+        "nome": "26 - Vinicius Kaue Ribeiro Ferreira",
+        "apelido": "26 - Vinícius Kauê"
+      },
+      {
+        "id": "743140",
+        "numero_camisa": "30",
+        "reserva": "true",
+        "goleiro": "false",
+        "entrou_jogando": "false",
+        "nome": "30 - Raoni dos Santos Ramos",
+        "apelido": "30 - Raoni"
+      },
+      {
+        "id": "451683",
+        "numero_camisa": "31",
+        "reserva": "false",
+        "goleiro": "true",
+        "entrou_jogando": "true",
+        "nome": "31 - Denis de Oliveira Aguiar Junior",
+        "apelido": "31 - Denis Junior"
+      },
+      {
+        "id": "425718",
+        "numero_camisa": "36",
+        "reserva": "true",
+        "goleiro": "false",
+        "entrou_jogando": "false",
+        "nome": "36 - Douglas Pires da Rosa",
+        "apelido": "36 - Skilo"
+      },
+      {
+        "id": "553871",
+        "numero_camisa": "40",
+        "reserva": "false",
+        "goleiro": "false",
+        "entrou_jogando": "true",
+        "nome": "40 - Jose Vitor Geminiano Cavalieri",
+        "apelido": "40 - Zé Vitor"
+      },
+      {
+        "id": "410034",
+        "numero_camisa": "44",
+        "reserva": "false",
+        "goleiro": "false",
+        "entrou_jogando": "true",
+        "nome": "44 - Carlos Eduardo Barbosa da Silva",
+        "apelido": "44 - Carlos"
+      },
+      {
+        "id": "321012",
+        "numero_camisa": "77",
+        "reserva": "false",
+        "goleiro": "false",
+        "entrou_jogando": "true",
+        "nome": "77 - Eduardo Jose Barbosa da Silva Junior",
+        "apelido": "77 - Juninho"
+      },
+      {
+        "id": "517451",
+        "numero_camisa": "99",
+        "reserva": "false",
+        "goleiro": "false",
+        "entrou_jogando": "true",
+        "nome": "99 - Guilherme da Silva Barbosa",
+        "apelido": "99 - Maranhão"
+      }
+    ],
+    "alteracoes": [
+      {
+        "codigo_jogador_saiu": "179100",
+        "codigo_jogador_entrou": "619322",
+        "tempo_jogo": "30:00",
+        "tempo_subs": "TN2",
+        "tempo_acrescimo": "30:00"
+      },
+      {
+        "codigo_jogador_saiu": "321012",
+        "codigo_jogador_entrou": "721882",
+        "tempo_jogo": "16:00",
+        "tempo_subs": "TN2",
+        "tempo_acrescimo": "16:00"
+      },
+      {
+        "codigo_jogador_saiu": "432146",
+        "codigo_jogador_entrou": "668800",
+        "tempo_jogo": "36:00",
+        "tempo_subs": "TN2",
+        "tempo_acrescimo": "36:00"
+      },
+      {
+        "codigo_jogador_saiu": "517451",
+        "codigo_jogador_entrou": "530666",
+        "tempo_jogo": "16:00",
+        "tempo_subs": "TN2",
+        "tempo_acrescimo": "16:00"
+      },
+      {
+        "codigo_jogador_saiu": "630422",
+        "codigo_jogador_entrou": "707096",
+        "tempo_jogo": "30:00",
+        "tempo_subs": "TN2",
+        "tempo_acrescimo": "30:00"
+      }
+    ]
+  },
+  "local": "Willie Davids - Maringa - PR",
+  "campeonato": {
+    "nome": "Campeonato Brasileiro",
+    "id": "1260613",
+    "nome_categoria": "Série C",
+    "ano": "2026"
+  },
+  "data": " 17/10/2026",
+  "hora": "17:00",
+  "qtd_alteracoes_jogo": 0,
+  "registros": [
+    {
+      "id": "93695",
+      "tipo": "GOL",
+      "resultado": "NR",
+      "clube": "Maringá FC SAF - PR",
+      "clube_id": "21918",
+      "atleta_nome": "Ronald dos Santos dos Reis",
+      "atleta_apelido": "Ronald Camarão - 21",
+      "atleta_camisa": "21",
+      "atleta_id": "630365",
+      "tempo_jogo": "2",
+      "minutos": "25:00"
+    },
+    {
+      "id": "93696",
+      "tipo": "GOL",
+      "resultado": "NR",
+      "clube": "Ferroviária - SP",
+      "clube_id": "20038",
+      "atleta_nome": "Fábio Soares dos Santos",
+      "atleta_apelido": "FAU",
+      "atleta_camisa": "7",
+      "atleta_id": "707096",
+      "tempo_jogo": "2",
+      "minutos": "45:00"
+    },
+    {
+      "id": "437071",
+      "tipo": "PENALIDADE",
+      "resultado": "AMARELO",
+      "clube": "Maringá FC SAF - PR",
+      "clube_id": "21918",
+      "atleta_nome": "Jose Ivan Doreto Campanari Junior",
+      "atleta_apelido": "Jose",
+      "atleta_camisa": null,
+      "atleta_id": "338104",
+      "tempo_jogo": "AC1",
+      "minutos": "45:002:00"
+    },
+    {
+      "id": "437079",
+      "tipo": "PENALIDADE",
+      "resultado": "AMARELO",
+      "clube": "Ferroviária - SP",
+      "clube_id": "20038",
+      "atleta_nome": "Rafael Carrilho Delvaux",
+      "atleta_apelido": "Carrilho",
+      "atleta_camisa": "18",
+      "atleta_id": "347208",
+      "tempo_jogo": "AC2",
+      "minutos": "45:003:00"
+    },
+    {
+      "id": "437067",
+      "tipo": "PENALIDADE",
+      "resultado": "AMARELO",
+      "clube": "Maringá FC SAF - PR",
+      "clube_id": "21918",
+      "atleta_nome": "Adeilson Mendes",
+      "atleta_apelido": "Adeilson - 8",
+      "atleta_camisa": "8",
+      "atleta_id": "582108",
+      "tempo_jogo": "TN1",
+      "minutos": "38:00"
+    },
+    {
+      "id": "437069",
+      "tipo": "PENALIDADE",
+      "resultado": "AMARELO",
+      "clube": "Maringá FC SAF - PR",
+      "clube_id": "21918",
+      "atleta_nome": "Caique Calito Fernandes Costa",
+      "atleta_apelido": "Caique Calito - 99",
+      "atleta_camisa": "99",
+      "atleta_id": "641030",
+      "tempo_jogo": "TN1",
+      "minutos": "38:00"
+    },
+    {
+      "id": "437073",
+      "tipo": "PENALIDADE",
+      "resultado": "AMARELO",
+      "clube": "Maringá FC SAF - PR",
+      "clube_id": "21918",
+      "atleta_nome": "Sergio Ricardo dos Santos Junior",
+      "atleta_apelido": "37 - Serginho",
+      "atleta_camisa": "37",
+      "atleta_id": "305977",
+      "tempo_jogo": "TN2",
+      "minutos": "31:00"
+    },
+    {
+      "id": "437075",
+      "tipo": "PENALIDADE",
+      "resultado": "AMARELO",
+      "clube": "Maringá FC SAF - PR",
+      "clube_id": "21918",
+      "atleta_nome": "Wendel Lomar da Cruz",
+      "atleta_apelido": "Wendel Lomar - 4",
+      "atleta_camisa": "4",
+      "atleta_id": "350435",
+      "tempo_jogo": "TN2",
+      "minutos": "34:00"
+    },
+    {
+      "id": "437077",
+      "tipo": "PENALIDADE",
+      "resultado": "AMARELO",
+      "clube": "Maringá FC SAF - PR",
+      "clube_id": "21918",
+      "atleta_nome": "Edison Custodio dos Santos",
+      "atleta_apelido": "Negueba - 7",
+      "atleta_camisa": "7",
+      "atleta_id": "692783",
+      "tempo_jogo": "TN2",
+      "minutos": "44:00"
+    }
+  ],
+  "documentos": [
+    {
+      "url": "https://conteudo.cbf.com.br/sumulas/2026/342215se.pdf",
+      "title": "Súmula"
+    },
+    {
+      "url": "https://conteudo.cbf.com.br/sumulas/2026/342215b.pdf",
+      "title": "Boletim Financeiro"
+    },
+    {
+      "url": "https://conteudo.cbf.com.br/sumulas/2026/342215rdj.pdf",
+      "title": "Relatório de Jogo"
+    }
+  ]
+}

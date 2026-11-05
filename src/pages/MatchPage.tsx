@@ -345,6 +345,7 @@ useEffect(() => {
                 Dados em cache: não foi possível atualizar esta partida.
               </Notice>
             )}
+            {!!data.warnings?.length && <Notice>{data.warnings.join(" ")}</Notice>}
             {matchLabel(data.match).startsWith("Intervalo") && (
               <div className="interval-banner" role="status">
                 <Clock3 size={22} />

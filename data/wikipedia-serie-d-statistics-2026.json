@@ -1,0 +1,1721 @@
+{
+  "league": "bra.4",
+  "season": 2026,
+  "provider": "Wikipédia",
+  "sourceUrl": "https://pt.wikipedia.org/wiki/Campeonato_Brasileiro_de_Futebol_de_2026_-_S%C3%A9rie_D",
+  "collectedAt": "2026-11-05T12:41:01.126858+00:00",
+  "sha256": "fee01b7fbfbfaf044774dde59fe0f9ce66f2e1e8593bdcbfef7e9f775fdc66a9",
+  "groups": [
+    {
+      "name": "1ª Fase · Grupo A1",
+      "phaseId": "2040",
+      "rows": [
+        {
+          "id": "cbf-59102",
+          "name": "Manauara",
+          "logo": "https://conteudo.cbf.com.br/clubes/59102/escudo.jpg",
+          "rank": "1",
+          "stats": {
+            "points": "22",
+            "gamesPlayed": "10",
+            "wins": "6",
+            "ties": "4",
+            "losses": "0",
+            "goalsFor": "13",
+            "goalsAgainst": "5",
+            "goalDifference": "8"
+          }
+        },
+        {
+          "id": "cbf-20050",
+          "name": "Nacional-AM",
+          "logo": "https://conteudo.cbf.com.br/clubes/20050/escudo.jpg",
+          "rank": "2",
+          "stats": {
+            "points": "20",
+            "gamesPlayed": "10",
+            "wins": "6",
+            "ties": "2",
+            "losses": "2",
+            "goalsFor": "15",
+            "goalsAgainst": "9",
+            "goalDifference": "6"
+          }
+        },
+        {
+          "id": "cbf-21638",
+          "name": "São Raimundo-RR",
+          "logo": "https://conteudo.cbf.com.br/clubes/21638/escudo.jpg",
+          "rank": "3",
+          "stats": {
+            "points": "13",
+            "gamesPlayed": "10",
+            "wins": "3",
+            "ties": "4",
+            "losses": "3",
+            "goalsFor": "10",
+            "goalsAgainst": "7",
+            "goalDifference": "3"
+          }
+        },
+        {
+          "id": "cbf-62190",
+          "name": "Monte Roraima",
+          "logo": "https://conteudo.cbf.com.br/clubes/62190/escudo.jpg",
+          "rank": "4",
+          "stats": {
+            "points": "10",
+            "gamesPlayed": "10",
+            "wins": "2",
+            "ties": "4",
+            "losses": "4",
+            "goalsFor": "11",
+            "goalsAgainst": "14",
+            "goalDifference": "-3"
+          }
+        },
+        {
+          "id": "cbf-52844",
+          "name": "Manaus",
+          "logo": "https://conteudo.cbf.com.br/clubes/52844/escudo.jpg",
+          "rank": "5",
+          "stats": {
+            "points": "10",
+            "gamesPlayed": "10",
+            "wins": "2",
+            "ties": "4",
+            "losses": "4",
+            "goalsFor": "8",
+            "goalsAgainst": "13",
+            "goalDifference": "-5"
+          }
+        },
+        {
+          "id": "cbf-20353",
+          "name": "GAS",
+          "logo": "https://conteudo.cbf.com.br/clubes/20353/escudo.jpg",
+          "rank": "6",
+          "stats": {
+            "points": "5",
+            "gamesPlayed": "10",
+            "wins": "1",
+            "ties": "2",
+            "losses": "7",
+            "goalsFor": "8",
+            "goalsAgainst": "17",
+            "goalDifference": "-9"
+          }
+        }
+      ]
+    },
+    {
+      "name": "1ª Fase · Grupo A2",
+      "phaseId": "2040",
+      "rows": [
+        {
+          "id": "cbf-53757",
+          "name": "Guaporé",
+          "logo": "https://conteudo.cbf.com.br/clubes/53757/escudo.jpg",
+          "rank": "1",
+          "stats": {
+            "points": "22",
+            "gamesPlayed": "10",
+            "wins": "6",
+            "ties": "4",
+            "losses": "0",
+            "goalsFor": "19",
+            "goalsAgainst": "9",
+            "goalDifference": "10"
+          }
+        },
+        {
+          "id": "cbf-56220",
+          "name": "Gazin Porto Velho",
+          "logo": "https://conteudo.cbf.com.br/clubes/56220/escudo.jpg",
+          "rank": "2",
+          "stats": {
+            "points": "18",
+            "gamesPlayed": "10",
+            "wins": "5",
+            "ties": "3",
+            "losses": "2",
+            "goalsFor": "33",
+            "goalsAgainst": "9",
+            "goalDifference": "24"
+          }
+        },
+        {
+          "id": "cbf-21745",
+          "name": "Araguaína",
+          "logo": "https://conteudo.cbf.com.br/clubes/21745/escudo.jpg",
+          "rank": "3",
+          "stats": {
+            "points": "18",
+            "gamesPlayed": "10",
+            "wins": "5",
+            "ties": "3",
+            "losses": "2",
+            "goalsFor": "31",
+            "goalsAgainst": "9",
+            "goalDifference": "22"
+          }
+        },
+        {
+          "id": "cbf-20380",
+          "name": "Independência",
+          "logo": "https://conteudo.cbf.com.br/clubes/20380/escudo.jpg",
+          "rank": "4",
+          "stats": {
+            "points": "15",
+            "gamesPlayed": "10",
+            "wins": "4",
+            "ties": "3",
+            "losses": "3",
+            "goalsFor": "17",
+            "goalsAgainst": "10",
+            "goalDifference": "7"
+          }
+        },
+        {
+          "id": "cbf-32816",
+          "name": "Galvez",
+          "logo": "https://conteudo.cbf.com.br/clubes/32816/escudo.jpg",
+          "rank": "5",
+          "stats": {
+            "points": "10",
+            "gamesPlayed": "10",
+            "wins": "3",
+            "ties": "1",
+            "losses": "6",
+            "goalsFor": "14",
+            "goalsAgainst": "31",
+            "goalDifference": "-17"
+          }
+        },
+        {
+          "id": "cbf-54133",
+          "name": "Humaitá",
+          "logo": "https://conteudo.cbf.com.br/clubes/54133/escudo.jpg",
+          "rank": "6",
+          "stats": {
+            "points": "0",
+            "gamesPlayed": "10",
+            "wins": "0",
+            "ties": "0",
+            "losses": "10",
+            "goalsFor": "4",
+            "goalsAgainst": "50",
+            "goalDifference": "-46"
+          }
+        }
+      ]
+    },
+    {
+      "name": "1ª Fase · Grupo A3",
+      "phaseId": "2040",
+      "rows": [
+        {
+          "id": "cbf-20098",
+          "name": "Gama",
+          "logo": "https://conteudo.cbf.com.br/clubes/20098/escudo.jpg",
+          "rank": "1",
+          "stats": {
+            "points": "26",
+            "gamesPlayed": "10",
+            "wins": "8",
+            "ties": "2",
+            "losses": "0",
+            "goalsFor": "23",
+            "goalsAgainst": "6",
+            "goalDifference": "17"
+          }
+        },
+        {
+          "id": "cbf-21725",
+          "name": "Luverdense",
+          "logo": "https://conteudo.cbf.com.br/clubes/21725/escudo.jpg",
+          "rank": "2",
+          "stats": {
+            "points": "15",
+            "gamesPlayed": "10",
+            "wins": "4",
+            "ties": "3",
+            "losses": "3",
+            "goalsFor": "11",
+            "goalsAgainst": "10",
+            "goalDifference": "1"
+          }
+        },
+        {
+          "id": "cbf-62652",
+          "name": "Brasiliense",
+          "logo": "https://conteudo.cbf.com.br/clubes/62652/escudo.jpg",
+          "rank": "3",
+          "stats": {
+            "points": "14",
+            "gamesPlayed": "10",
+            "wins": "3",
+            "ties": "5",
+            "losses": "2",
+            "goalsFor": "11",
+            "goalsAgainst": "10",
+            "goalDifference": "1"
+          }
+        },
+        {
+          "id": "cbf-21889",
+          "name": "Aparecidense",
+          "logo": "https://conteudo.cbf.com.br/clubes/21889/escudo.jpg",
+          "rank": "4",
+          "stats": {
+            "points": "13",
+            "gamesPlayed": "10",
+            "wins": "3",
+            "ties": "4",
+            "losses": "3",
+            "goalsFor": "13",
+            "goalsAgainst": "12",
+            "goalDifference": "1"
+          }
+        },
+        {
+          "id": "cbf-59905",
+          "name": "Primavera-MT",
+          "logo": "https://conteudo.cbf.com.br/clubes/59905/escudo.jpg",
+          "rank": "5",
+          "stats": {
+            "points": "12",
+            "gamesPlayed": "10",
+            "wins": "3",
+            "ties": "3",
+            "losses": "4",
+            "goalsFor": "10",
+            "goalsAgainst": "13",
+            "goalDifference": "-3"
+          }
+        },
+        {
+          "id": "cbf-37539",
+          "name": "Inhumas",
+          "logo": "https://conteudo.cbf.com.br/clubes/37539/escudo.jpg",
+          "rank": "6",
+          "stats": {
+            "points": "1",
+            "gamesPlayed": "10",
+            "wins": "0",
+            "ties": "1",
+            "losses": "9",
+            "goalsFor": "3",
+            "goalsAgainst": "20",
+            "goalDifference": "-17"
+          }
+        }
+      ]
+    },
+    {
+      "name": "1ª Fase · Grupo A4",
+      "phaseId": "2040",
+      "rows": [
+        {
+          "id": "cbf-37743",
+          "name": "Capital-DF",
+          "logo": "https://conteudo.cbf.com.br/clubes/37743/escudo.jpg",
+          "rank": "1",
+          "stats": {
+            "points": "23",
+            "gamesPlayed": "10",
+            "wins": "7",
+            "ties": "2",
+            "losses": "1",
+            "goalsFor": "16",
+            "goalsAgainst": "6",
+            "goalDifference": "10"
+          }
+        },
+        {
+          "id": "cbf-20101",
+          "name": "Goiatuba",
+          "logo": "https://conteudo.cbf.com.br/clubes/20101/escudo.jpg",
+          "rank": "2",
+          "stats": {
+            "points": "19",
+            "gamesPlayed": "10",
+            "wins": "5",
+            "ties": "4",
+            "losses": "1",
+            "goalsFor": "13",
+            "goalsAgainst": "7",
+            "goalDifference": "6"
+          }
+        },
+        {
+          "id": "cbf-63519",
+          "name": "Ceilândia",
+          "logo": "https://conteudo.cbf.com.br/clubes/63519/escudo.jpg",
+          "rank": "3",
+          "stats": {
+            "points": "12",
+            "gamesPlayed": "10",
+            "wins": "3",
+            "ties": "3",
+            "losses": "4",
+            "goalsFor": "9",
+            "goalsAgainst": "10",
+            "goalDifference": "-1"
+          }
+        },
+        {
+          "id": "cbf-20064",
+          "name": "Mixto",
+          "logo": "https://conteudo.cbf.com.br/clubes/20064/escudo.jpg",
+          "rank": "4",
+          "stats": {
+            "points": "12",
+            "gamesPlayed": "10",
+            "wins": "2",
+            "ties": "6",
+            "losses": "2",
+            "goalsFor": "10",
+            "goalsAgainst": "9",
+            "goalDifference": "1"
+          }
+        },
+        {
+          "id": "cbf-20287",
+          "name": "União Rondonópolis",
+          "logo": "https://conteudo.cbf.com.br/clubes/20287/escudo.jpg",
+          "rank": "5",
+          "stats": {
+            "points": "9",
+            "gamesPlayed": "10",
+            "wins": "2",
+            "ties": "3",
+            "losses": "5",
+            "goalsFor": "11",
+            "goalsAgainst": "18",
+            "goalDifference": "-7"
+          }
+        },
+        {
+          "id": "cbf-35079",
+          "name": "Operário VG",
+          "logo": "https://conteudo.cbf.com.br/clubes/35079/escudo.jpg",
+          "rank": "6",
+          "stats": {
+            "points": "5",
+            "gamesPlayed": "10",
+            "wins": "1",
+            "ties": "2",
+            "losses": "7",
+            "goalsFor": "7",
+            "goalsAgainst": "16",
+            "goalDifference": "-9"
+          }
+        }
+      ]
+    },
+    {
+      "name": "1ª Fase · Grupo A5",
+      "phaseId": "2040",
+      "rows": [
+        {
+          "id": "cbf-20810",
+          "name": "Trem",
+          "logo": "https://conteudo.cbf.com.br/clubes/20810/escudo.jpg",
+          "rank": "1",
+          "stats": {
+            "points": "20",
+            "gamesPlayed": "10",
+            "wins": "6",
+            "ties": "2",
+            "losses": "2",
+            "goalsFor": "19",
+            "goalsAgainst": "13",
+            "goalDifference": "6"
+          }
+        },
+        {
+          "id": "cbf-20782",
+          "name": "Águia de Marabá",
+          "logo": "https://conteudo.cbf.com.br/clubes/20782/escudo.jpg",
+          "rank": "2",
+          "stats": {
+            "points": "18",
+            "gamesPlayed": "10",
+            "wins": "5",
+            "ties": "3",
+            "losses": "2",
+            "goalsFor": "20",
+            "goalsAgainst": "11",
+            "goalDifference": "9"
+          }
+        },
+        {
+          "id": "cbf-20372",
+          "name": "Imperatriz",
+          "logo": "https://conteudo.cbf.com.br/clubes/20372/escudo.jpg",
+          "rank": "3",
+          "stats": {
+            "points": "15",
+            "gamesPlayed": "10",
+            "wins": "4",
+            "ties": "3",
+            "losses": "3",
+            "goalsFor": "15",
+            "goalsAgainst": "10",
+            "goalDifference": "5"
+          }
+        },
+        {
+          "id": "cbf-20100",
+          "name": "Tuna Luso",
+          "logo": "https://conteudo.cbf.com.br/clubes/20100/escudo.jpg",
+          "rank": "4",
+          "stats": {
+            "points": "13",
+            "gamesPlayed": "10",
+            "wins": "3",
+            "ties": "4",
+            "losses": "3",
+            "goalsFor": "14",
+            "goalsAgainst": "17",
+            "goalDifference": "-3"
+          }
+        },
+        {
+          "id": "cbf-20288",
+          "name": "Tocantinópolis",
+          "logo": "https://conteudo.cbf.com.br/clubes/20288/escudo.jpg",
+          "rank": "5",
+          "stats": {
+            "points": "12",
+            "gamesPlayed": "10",
+            "wins": "3",
+            "ties": "3",
+            "losses": "4",
+            "goalsFor": "18",
+            "goalsAgainst": "18",
+            "goalDifference": "0"
+          }
+        },
+        {
+          "id": "cbf-21829",
+          "name": "Oratório",
+          "logo": "https://conteudo.cbf.com.br/clubes/21829/escudo.jpg",
+          "rank": "6",
+          "stats": {
+            "points": "4",
+            "gamesPlayed": "10",
+            "wins": "1",
+            "ties": "1",
+            "losses": "8",
+            "goalsFor": "12",
+            "goalsAgainst": "29",
+            "goalDifference": "-17"
+          }
+        }
+      ]
+    },
+    {
+      "name": "1ª Fase · Grupo A6",
+      "phaseId": "2040",
+      "rows": [
+        {
+          "id": "cbf-35361",
+          "name": "Iguatu",
+          "logo": "https://conteudo.cbf.com.br/clubes/35361/escudo.jpg",
+          "rank": "1",
+          "stats": {
+            "points": "20",
+            "gamesPlayed": "10",
+            "wins": "5",
+            "ties": "5",
+            "losses": "0",
+            "goalsFor": "14",
+            "goalsAgainst": "7",
+            "goalDifference": "7"
+          }
+        },
+        {
+          "id": "cbf-35330",
+          "name": "Maracanã-CE",
+          "logo": "https://conteudo.cbf.com.br/clubes/35330/escudo.jpg",
+          "rank": "2",
+          "stats": {
+            "points": "19",
+            "gamesPlayed": "10",
+            "wins": "5",
+            "ties": "4",
+            "losses": "1",
+            "goalsFor": "12",
+            "goalsAgainst": "6",
+            "goalDifference": "6"
+          }
+        },
+        {
+          "id": "cbf-20429",
+          "name": "Parnahyba",
+          "logo": "https://conteudo.cbf.com.br/clubes/20429/escudo.jpg",
+          "rank": "3",
+          "stats": {
+            "points": "14",
+            "gamesPlayed": "10",
+            "wins": "4",
+            "ties": "2",
+            "losses": "4",
+            "goalsFor": "11",
+            "goalsAgainst": "13",
+            "goalDifference": "-2"
+          }
+        },
+        {
+          "id": "cbf-20056",
+          "name": "Sampaio Corrêa",
+          "logo": "https://conteudo.cbf.com.br/clubes/20056/escudo.jpg",
+          "rank": "4",
+          "stats": {
+            "points": "13",
+            "gamesPlayed": "10",
+            "wins": "3",
+            "ties": "4",
+            "losses": "3",
+            "goalsFor": "12",
+            "goalsAgainst": "6",
+            "goalDifference": "6"
+          }
+        },
+        {
+          "id": "cbf-20029",
+          "name": "Moto Club",
+          "logo": "https://conteudo.cbf.com.br/clubes/20029/escudo.jpg",
+          "rank": "5",
+          "stats": {
+            "points": "9",
+            "gamesPlayed": "10",
+            "wins": "2",
+            "ties": "3",
+            "losses": "5",
+            "goalsFor": "8",
+            "goalsAgainst": "15",
+            "goalDifference": "-7"
+          }
+        },
+        {
+          "id": "cbf-21894",
+          "name": "IAPE",
+          "logo": "https://conteudo.cbf.com.br/clubes/21894/escudo.jpg",
+          "rank": "6",
+          "stats": {
+            "points": "4",
+            "gamesPlayed": "10",
+            "wins": "0",
+            "ties": "4",
+            "losses": "6",
+            "goalsFor": "10",
+            "goalsAgainst": "20",
+            "goalDifference": "-10"
+          }
+        }
+      ]
+    },
+    {
+      "name": "1ª Fase · Grupo A7",
+      "phaseId": "2040",
+      "rows": [
+        {
+          "id": "cbf-20091",
+          "name": "Ferroviário",
+          "logo": "https://conteudo.cbf.com.br/clubes/20091/escudo.jpg",
+          "rank": "1",
+          "stats": {
+            "points": "21",
+            "gamesPlayed": "10",
+            "wins": "6",
+            "ties": "3",
+            "losses": "1",
+            "goalsFor": "15",
+            "goalsAgainst": "7",
+            "goalDifference": "8"
+          }
+        },
+        {
+          "id": "cbf-20111",
+          "name": "Piauí",
+          "logo": "https://conteudo.cbf.com.br/clubes/20111/escudo.jpg",
+          "rank": "2",
+          "stats": {
+            "points": "17",
+            "gamesPlayed": "10",
+            "wins": "5",
+            "ties": "2",
+            "losses": "3",
+            "goalsFor": "14",
+            "goalsAgainst": "11",
+            "goalDifference": "3"
+          }
+        },
+        {
+          "id": "cbf-35775",
+          "name": "Fluminense-PI",
+          "logo": "https://conteudo.cbf.com.br/clubes/35775/escudo.jpg",
+          "rank": "3",
+          "stats": {
+            "points": "14",
+            "gamesPlayed": "10",
+            "wins": "3",
+            "ties": "5",
+            "losses": "2",
+            "goalsFor": "12",
+            "goalsAgainst": "9",
+            "goalDifference": "3"
+          }
+        },
+        {
+          "id": "cbf-53914",
+          "name": "Altos",
+          "logo": "https://conteudo.cbf.com.br/clubes/53914/escudo.jpg",
+          "rank": "4",
+          "stats": {
+            "points": "11",
+            "gamesPlayed": "10",
+            "wins": "3",
+            "ties": "2",
+            "losses": "5",
+            "goalsFor": "9",
+            "goalsAgainst": "15",
+            "goalDifference": "-6"
+          }
+        },
+        {
+          "id": "cbf-62217",
+          "name": "Tirol",
+          "logo": "https://conteudo.cbf.com.br/clubes/62217/escudo.jpg",
+          "rank": "5",
+          "stats": {
+            "points": "10",
+            "gamesPlayed": "10",
+            "wins": "2",
+            "ties": "4",
+            "losses": "4",
+            "goalsFor": "10",
+            "goalsAgainst": "10",
+            "goalDifference": "0"
+          }
+        },
+        {
+          "id": "cbf-35316",
+          "name": "Atlético Cearense",
+          "logo": "https://conteudo.cbf.com.br/clubes/35316/escudo.jpg",
+          "rank": "6",
+          "stats": {
+            "points": "7",
+            "gamesPlayed": "10",
+            "wins": "1",
+            "ties": "4",
+            "losses": "5",
+            "goalsFor": "6",
+            "goalsAgainst": "14",
+            "goalDifference": "-8"
+          }
+        }
+      ]
+    },
+    {
+      "name": "1ª Fase · Grupo A8",
+      "phaseId": "2040",
+      "rows": [
+        {
+          "id": "cbf-20042",
+          "name": "ABC",
+          "logo": "https://conteudo.cbf.com.br/clubes/20042/escudo.jpg",
+          "rank": "1",
+          "stats": {
+            "points": "23",
+            "gamesPlayed": "10",
+            "wins": "7",
+            "ties": "2",
+            "losses": "1",
+            "goalsFor": "15",
+            "goalsAgainst": "6",
+            "goalDifference": "9"
+          }
+        },
+        {
+          "id": "cbf-62025",
+          "name": "América de Natal",
+          "logo": "https://conteudo.cbf.com.br/clubes/62025/escudo.jpg",
+          "rank": "2",
+          "stats": {
+            "points": "21",
+            "gamesPlayed": "10",
+            "wins": "6",
+            "ties": "3",
+            "losses": "1",
+            "goalsFor": "14",
+            "goalsAgainst": "3",
+            "goalDifference": "11"
+          }
+        },
+        {
+          "id": "131681",
+          "name": "Maguary",
+          "logo": "https://conteudo.cbf.com.br/clubes/59116/escudo.jpg",
+          "rank": "3",
+          "stats": {
+            "points": "13",
+            "gamesPlayed": "10",
+            "wins": "3",
+            "ties": "4",
+            "losses": "3",
+            "goalsFor": "8",
+            "goalsAgainst": "5",
+            "goalDifference": "3"
+          }
+        },
+        {
+          "id": "cbf-20112",
+          "name": "Central",
+          "logo": "https://conteudo.cbf.com.br/clubes/20112/escudo.jpg",
+          "rank": "4",
+          "stats": {
+            "points": "13",
+            "gamesPlayed": "10",
+            "wins": "3",
+            "ties": "4",
+            "losses": "3",
+            "goalsFor": "8",
+            "goalsAgainst": "7",
+            "goalDifference": "1"
+          }
+        },
+        {
+          "id": "cbf-20390",
+          "name": "Sousa",
+          "logo": "https://conteudo.cbf.com.br/clubes/20390/escudo.jpg",
+          "rank": "5",
+          "stats": {
+            "points": "10",
+            "gamesPlayed": "10",
+            "wins": "3",
+            "ties": "1",
+            "losses": "6",
+            "goalsFor": "4",
+            "goalsAgainst": "11",
+            "goalDifference": "-7"
+          }
+        },
+        {
+          "id": "131672",
+          "name": "Laguna",
+          "logo": "https://conteudo.cbf.com.br/clubes/60415/escudo.jpg",
+          "rank": "6",
+          "stats": {
+            "points": "2",
+            "gamesPlayed": "10",
+            "wins": "0",
+            "ties": "2",
+            "losses": "8",
+            "goalsFor": "3",
+            "goalsAgainst": "20",
+            "goalDifference": "-17"
+          }
+        }
+      ]
+    },
+    {
+      "name": "1ª Fase · Grupo A9",
+      "phaseId": "2040",
+      "rows": [
+        {
+          "id": "cbf-20071",
+          "name": "Treze",
+          "logo": "https://conteudo.cbf.com.br/clubes/20071/escudo.jpg",
+          "rank": "1",
+          "stats": {
+            "points": "17",
+            "gamesPlayed": "10",
+            "wins": "5",
+            "ties": "2",
+            "losses": "3",
+            "goalsFor": "18",
+            "goalsAgainst": "14",
+            "goalDifference": "4"
+          }
+        },
+        {
+          "id": "cbf-20034",
+          "name": "Sergipe",
+          "logo": "https://conteudo.cbf.com.br/clubes/20034/escudo.jpg",
+          "rank": "2",
+          "stats": {
+            "points": "15",
+            "gamesPlayed": "10",
+            "wins": "4",
+            "ties": "3",
+            "losses": "3",
+            "goalsFor": "15",
+            "goalsAgainst": "13",
+            "goalDifference": "2"
+          }
+        },
+        {
+          "id": "131680",
+          "name": "Serra Branca",
+          "logo": "https://conteudo.cbf.com.br/clubes/37846/escudo.jpg",
+          "rank": "3",
+          "stats": {
+            "points": "15",
+            "gamesPlayed": "10",
+            "wins": "3",
+            "ties": "6",
+            "losses": "1",
+            "goalsFor": "12",
+            "goalsAgainst": "8",
+            "goalDifference": "4"
+          }
+        },
+        {
+          "id": "cbf-35680",
+          "name": "Lagarto",
+          "logo": "https://conteudo.cbf.com.br/clubes/35680/escudo.jpg",
+          "rank": "4",
+          "stats": {
+            "points": "13",
+            "gamesPlayed": "10",
+            "wins": "3",
+            "ties": "4",
+            "losses": "3",
+            "goalsFor": "14",
+            "goalsAgainst": "15",
+            "goalDifference": "-1"
+          }
+        },
+        {
+          "id": "cbf-55531",
+          "name": "Retrô",
+          "logo": "https://conteudo.cbf.com.br/clubes/55531/escudo.jpg",
+          "rank": "5",
+          "stats": {
+            "points": "12",
+            "gamesPlayed": "10",
+            "wins": "3",
+            "ties": "3",
+            "losses": "4",
+            "goalsFor": "13",
+            "goalsAgainst": "15",
+            "goalDifference": "-2"
+          }
+        },
+        {
+          "id": "cbf-35768",
+          "name": "Decisão Goiana",
+          "logo": "https://conteudo.cbf.com.br/clubes/35768/escudo.jpg",
+          "rank": "6",
+          "stats": {
+            "points": "8",
+            "gamesPlayed": "10",
+            "wins": "2",
+            "ties": "2",
+            "losses": "6",
+            "goalsFor": "10",
+            "goalsAgainst": "17",
+            "goalDifference": "-7"
+          }
+        }
+      ]
+    },
+    {
+      "name": "1ª Fase · Grupo A10",
+      "phaseId": "2040",
+      "rows": [
+        {
+          "id": "cbf-20045",
+          "name": "CSA",
+          "logo": "https://conteudo.cbf.com.br/clubes/20045/escudo.jpg",
+          "rank": "1",
+          "stats": {
+            "points": "21",
+            "gamesPlayed": "10",
+            "wins": "6",
+            "ties": "3",
+            "losses": "1",
+            "goalsFor": "25",
+            "goalsAgainst": "8",
+            "goalDifference": "17"
+          }
+        },
+        {
+          "id": "cbf-35212",
+          "name": "Juazeirense",
+          "logo": "https://conteudo.cbf.com.br/clubes/35212/escudo.jpg",
+          "rank": "2",
+          "stats": {
+            "points": "17",
+            "gamesPlayed": "10",
+            "wins": "5",
+            "ties": "2",
+            "losses": "3",
+            "goalsFor": "12",
+            "goalsAgainst": "9",
+            "goalDifference": "3"
+          }
+        },
+        {
+          "id": "cbf-20108",
+          "name": "ASA",
+          "logo": "https://conteudo.cbf.com.br/clubes/20108/escudo.jpg",
+          "rank": "3",
+          "stats": {
+            "points": "16",
+            "gamesPlayed": "10",
+            "wins": "4",
+            "ties": "4",
+            "losses": "2",
+            "goalsFor": "11",
+            "goalsAgainst": "7",
+            "goalDifference": "4"
+          }
+        },
+        {
+          "id": "cbf-35152",
+          "name": "Jacuipense",
+          "logo": "https://conteudo.cbf.com.br/clubes/35152/escudo.jpg",
+          "rank": "4",
+          "stats": {
+            "points": "13",
+            "gamesPlayed": "10",
+            "wins": "3",
+            "ties": "4",
+            "losses": "3",
+            "goalsFor": "12",
+            "goalsAgainst": "14",
+            "goalDifference": "-2"
+          }
+        },
+        {
+          "id": "cbf-35522",
+          "name": "CSE",
+          "logo": "https://conteudo.cbf.com.br/clubes/35522/escudo.jpg",
+          "rank": "5",
+          "stats": {
+            "points": "9",
+            "gamesPlayed": "10",
+            "wins": "2",
+            "ties": "3",
+            "losses": "5",
+            "goalsFor": "10",
+            "goalsAgainst": "17",
+            "goalDifference": "-7"
+          }
+        },
+        {
+          "id": "cbf-20236",
+          "name": "Atlético de Alagoinhas",
+          "logo": "https://conteudo.cbf.com.br/clubes/20236/escudo.jpg",
+          "rank": "6",
+          "stats": {
+            "points": "5",
+            "gamesPlayed": "10",
+            "wins": "1",
+            "ties": "2",
+            "losses": "7",
+            "goalsFor": "5",
+            "goalsAgainst": "20",
+            "goalDifference": "-15"
+          }
+        }
+      ]
+    },
+    {
+      "name": "1ª Fase · Grupo A11",
+      "phaseId": "2040",
+      "rows": [
+        {
+          "id": "cbf-64223",
+          "name": "Uberlândia",
+          "logo": "https://conteudo.cbf.com.br/clubes/64223/escudo.jpg",
+          "rank": "1",
+          "stats": {
+            "points": "18",
+            "gamesPlayed": "10",
+            "wins": "5",
+            "ties": "3",
+            "losses": "2",
+            "goalsFor": "12",
+            "goalsAgainst": "8",
+            "goalDifference": "4"
+          }
+        },
+        {
+          "id": "cbf-34709",
+          "name": "Betim Futebol",
+          "logo": "https://conteudo.cbf.com.br/clubes/34709/escudo.jpg",
+          "rank": "2",
+          "stats": {
+            "points": "15",
+            "gamesPlayed": "10",
+            "wins": "4",
+            "ties": "3",
+            "losses": "3",
+            "goalsFor": "12",
+            "goalsAgainst": "9",
+            "goalDifference": "3"
+          }
+        },
+        {
+          "id": "cbf-64669",
+          "name": "CRAC",
+          "logo": "https://conteudo.cbf.com.br/clubes/64669/escudo.jpg",
+          "rank": "3",
+          "stats": {
+            "points": "13",
+            "gamesPlayed": "10",
+            "wins": "3",
+            "ties": "4",
+            "losses": "3",
+            "goalsFor": "7",
+            "goalsAgainst": "7",
+            "goalDifference": "0"
+          }
+        },
+        {
+          "id": "cbf-21817",
+          "name": "Ivinhema",
+          "logo": "https://conteudo.cbf.com.br/clubes/21817/escudo.jpg",
+          "rank": "4",
+          "stats": {
+            "points": "13",
+            "gamesPlayed": "10",
+            "wins": "3",
+            "ties": "4",
+            "losses": "3",
+            "goalsFor": "9",
+            "goalsAgainst": "12",
+            "goalDifference": "-3"
+          }
+        },
+        {
+          "id": "cbf-63665",
+          "name": "ABECAT",
+          "logo": "https://conteudo.cbf.com.br/clubes/63665/escudo.jpg",
+          "rank": "5",
+          "stats": {
+            "points": "12",
+            "gamesPlayed": "10",
+            "wins": "3",
+            "ties": "3",
+            "losses": "4",
+            "goalsFor": "8",
+            "goalsAgainst": "9",
+            "goalDifference": "-1"
+          }
+        },
+        {
+          "id": "cbf-20041",
+          "name": "Operário-MS",
+          "logo": "https://conteudo.cbf.com.br/clubes/20041/escudo.jpg",
+          "rank": "6",
+          "stats": {
+            "points": "9",
+            "gamesPlayed": "10",
+            "wins": "2",
+            "ties": "3",
+            "losses": "5",
+            "goalsFor": "9",
+            "goalsAgainst": "12",
+            "goalDifference": "-3"
+          }
+        }
+      ]
+    },
+    {
+      "name": "1ª Fase · Grupo A12",
+      "phaseId": "2040",
+      "rows": [
+        {
+          "id": "cbf-20432",
+          "name": "Democrata GV",
+          "logo": "https://conteudo.cbf.com.br/clubes/20432/escudo.jpg",
+          "rank": "1",
+          "stats": {
+            "points": "17",
+            "gamesPlayed": "10",
+            "wins": "5",
+            "ties": "2",
+            "losses": "3",
+            "goalsFor": "13",
+            "goalsAgainst": "9",
+            "goalDifference": "4"
+          }
+        },
+        {
+          "id": "cbf-34027",
+          "name": "Tombense",
+          "logo": "https://conteudo.cbf.com.br/clubes/34027/escudo.jpg",
+          "rank": "2",
+          "stats": {
+            "points": "17",
+            "gamesPlayed": "10",
+            "wins": "4",
+            "ties": "5",
+            "losses": "1",
+            "goalsFor": "13",
+            "goalsAgainst": "6",
+            "goalDifference": "7"
+          }
+        },
+        {
+          "id": "cbf-20081",
+          "name": "Vitória-ES",
+          "logo": "https://conteudo.cbf.com.br/clubes/20081/escudo.jpg",
+          "rank": "3",
+          "stats": {
+            "points": "15",
+            "gamesPlayed": "10",
+            "wins": "4",
+            "ties": "3",
+            "losses": "3",
+            "goalsFor": "12",
+            "goalsAgainst": "8",
+            "goalDifference": "4"
+          }
+        },
+        {
+          "id": "cbf-62546",
+          "name": "Rio Branco-ES",
+          "logo": "https://conteudo.cbf.com.br/clubes/62546/escudo.jpg",
+          "rank": "4",
+          "stats": {
+            "points": "13",
+            "gamesPlayed": "10",
+            "wins": "3",
+            "ties": "4",
+            "losses": "3",
+            "goalsFor": "14",
+            "goalsAgainst": "12",
+            "goalDifference": "2"
+          }
+        },
+        {
+          "id": "131673",
+          "name": "Porto-BA",
+          "logo": "https://conteudo.cbf.com.br/clubes/62328/escudo.jpg",
+          "rank": "5",
+          "stats": {
+            "points": "10",
+            "gamesPlayed": "10",
+            "wins": "3",
+            "ties": "1",
+            "losses": "6",
+            "goalsFor": "9",
+            "goalsAgainst": "21",
+            "goalDifference": "-12"
+          }
+        },
+        {
+          "id": "cbf-21942",
+          "name": "Real Noroeste",
+          "logo": "https://conteudo.cbf.com.br/clubes/21942/escudo.jpg",
+          "rank": "6",
+          "stats": {
+            "points": "8",
+            "gamesPlayed": "10",
+            "wins": "1",
+            "ties": "5",
+            "losses": "4",
+            "goalsFor": "6",
+            "goalsAgainst": "11",
+            "goalDifference": "-5"
+          }
+        }
+      ]
+    },
+    {
+      "name": "1ª Fase · Grupo A13",
+      "phaseId": "2040",
+      "rows": [
+        {
+          "id": "cbf-63521",
+          "name": "Portuguesa",
+          "logo": "https://conteudo.cbf.com.br/clubes/63521/escudo.jpg",
+          "rank": "1",
+          "stats": {
+            "points": "21",
+            "gamesPlayed": "10",
+            "wins": "6",
+            "ties": "3",
+            "losses": "1",
+            "goalsFor": "16",
+            "goalsAgainst": "6",
+            "goalDifference": "10"
+          }
+        },
+        {
+          "id": "cbf-31399",
+          "name": "Água Santa",
+          "logo": "https://conteudo.cbf.com.br/clubes/31399/escudo.jpg",
+          "rank": "2",
+          "stats": {
+            "points": "17",
+            "gamesPlayed": "10",
+            "wins": "5",
+            "ties": "2",
+            "losses": "3",
+            "goalsFor": "16",
+            "goalsAgainst": "8",
+            "goalDifference": "8"
+          }
+        },
+        {
+          "id": "cbf-20805",
+          "name": "Portuguesa-RJ",
+          "logo": "https://conteudo.cbf.com.br/clubes/20805/escudo.jpg",
+          "rank": "3",
+          "stats": {
+            "points": "14",
+            "gamesPlayed": "10",
+            "wins": "3",
+            "ties": "5",
+            "losses": "2",
+            "goalsFor": "14",
+            "goalsAgainst": "9",
+            "goalDifference": "5"
+          }
+        },
+        {
+          "id": "cbf-20046",
+          "name": "America",
+          "logo": "https://conteudo.cbf.com.br/clubes/20046/escudo.jpg",
+          "rank": "4",
+          "stats": {
+            "points": "12",
+            "gamesPlayed": "10",
+            "wins": "3",
+            "ties": "3",
+            "losses": "4",
+            "goalsFor": "11",
+            "goalsAgainst": "21",
+            "goalDifference": "-10"
+          }
+        },
+        {
+          "id": "cbf-20249",
+          "name": "Madureira",
+          "logo": "https://conteudo.cbf.com.br/clubes/20249/escudo.jpg",
+          "rank": "5",
+          "stats": {
+            "points": "11",
+            "gamesPlayed": "10",
+            "wins": "3",
+            "ties": "2",
+            "losses": "5",
+            "goalsFor": "11",
+            "goalsAgainst": "16",
+            "goalDifference": "-5"
+          }
+        },
+        {
+          "id": "cbf-63322",
+          "name": "Pouso Alegre",
+          "logo": "https://conteudo.cbf.com.br/clubes/63322/escudo.jpg",
+          "rank": "6",
+          "stats": {
+            "points": "7",
+            "gamesPlayed": "10",
+            "wins": "2",
+            "ties": "1",
+            "losses": "7",
+            "goalsFor": "6",
+            "goalsAgainst": "14",
+            "goalDifference": "-8"
+          }
+        }
+      ]
+    },
+    {
+      "name": "1ª Fase · Grupo A14",
+      "phaseId": "2040",
+      "rows": [
+        {
+          "id": "cbf-20072",
+          "name": "XV de Piracicaba",
+          "logo": "https://conteudo.cbf.com.br/clubes/20072/escudo.jpg",
+          "rank": "1",
+          "stats": {
+            "points": "17",
+            "gamesPlayed": "10",
+            "wins": "4",
+            "ties": "5",
+            "losses": "1",
+            "goalsFor": "14",
+            "goalsAgainst": "9",
+            "goalDifference": "5"
+          }
+        },
+        {
+          "id": "cbf-20082",
+          "name": "Noroeste",
+          "logo": "https://conteudo.cbf.com.br/clubes/20082/escudo.jpg",
+          "rank": "2",
+          "stats": {
+            "points": "15",
+            "gamesPlayed": "10",
+            "wins": "4",
+            "ties": "3",
+            "losses": "3",
+            "goalsFor": "12",
+            "goalsAgainst": "7",
+            "goalDifference": "5"
+          }
+        },
+        {
+          "id": "cbf-31535",
+          "name": "Velo Clube",
+          "logo": "https://conteudo.cbf.com.br/clubes/31535/escudo.jpg",
+          "rank": "3",
+          "stats": {
+            "points": "13",
+            "gamesPlayed": "10",
+            "wins": "3",
+            "ties": "4",
+            "losses": "3",
+            "goalsFor": "10",
+            "goalsAgainst": "10",
+            "goalDifference": "0"
+          }
+        },
+        {
+          "id": "cbf-32387",
+          "name": "Sampaio Corrêa-RJ",
+          "logo": "https://conteudo.cbf.com.br/clubes/32387/escudo.jpg",
+          "rank": "4",
+          "stats": {
+            "points": "12",
+            "gamesPlayed": "10",
+            "wins": "3",
+            "ties": "3",
+            "losses": "4",
+            "goalsFor": "8",
+            "goalsAgainst": "10",
+            "goalDifference": "-2"
+          }
+        },
+        {
+          "id": "cbf-64287",
+          "name": "Nova Iguaçu",
+          "logo": "https://conteudo.cbf.com.br/clubes/64287/escudo.jpg",
+          "rank": "5",
+          "stats": {
+            "points": "12",
+            "gamesPlayed": "10",
+            "wins": "3",
+            "ties": "3",
+            "losses": "4",
+            "goalsFor": "7",
+            "goalsAgainst": "10",
+            "goalDifference": "-3"
+          }
+        },
+        {
+          "id": "cbf-32036",
+          "name": "Maricá",
+          "logo": "https://conteudo.cbf.com.br/clubes/32036/escudo.jpg",
+          "rank": "6",
+          "stats": {
+            "points": "11",
+            "gamesPlayed": "10",
+            "wins": "3",
+            "ties": "2",
+            "losses": "5",
+            "goalsFor": "9",
+            "goalsAgainst": "14",
+            "goalDifference": "-5"
+          }
+        }
+      ]
+    },
+    {
+      "name": "1ª Fase · Grupo A15",
+      "phaseId": "2040",
+      "rows": [
+        {
+          "id": "cbf-39727",
+          "name": "Santa Catarina",
+          "logo": "https://conteudo.cbf.com.br/clubes/39727/escudo.jpg",
+          "rank": "1",
+          "stats": {
+            "points": "19",
+            "gamesPlayed": "10",
+            "wins": "6",
+            "ties": "1",
+            "losses": "3",
+            "goalsFor": "15",
+            "goalsAgainst": "9",
+            "goalDifference": "6"
+          }
+        },
+        {
+          "id": "cbf-20816",
+          "name": "Cianorte",
+          "logo": "https://conteudo.cbf.com.br/clubes/20816/escudo.jpg",
+          "rank": "2",
+          "stats": {
+            "points": "16",
+            "gamesPlayed": "10",
+            "wins": "5",
+            "ties": "1",
+            "losses": "4",
+            "goalsFor": "9",
+            "goalsAgainst": "8",
+            "goalDifference": "1"
+          }
+        },
+        {
+          "id": "cbf-21922",
+          "name": "FC Cascavel",
+          "logo": "https://conteudo.cbf.com.br/clubes/21922/escudo.jpg",
+          "rank": "3",
+          "stats": {
+            "points": "15",
+            "gamesPlayed": "10",
+            "wins": "4",
+            "ties": "3",
+            "losses": "3",
+            "goalsFor": "9",
+            "goalsAgainst": "4",
+            "goalDifference": "5"
+          }
+        },
+        {
+          "id": "cbf-33061",
+          "name": "São Luiz",
+          "logo": "https://conteudo.cbf.com.br/clubes/33061/escudo.jpg",
+          "rank": "4",
+          "stats": {
+            "points": "15",
+            "gamesPlayed": "10",
+            "wins": "4",
+            "ties": "3",
+            "losses": "3",
+            "goalsFor": "11",
+            "goalsAgainst": "9",
+            "goalDifference": "2"
+          }
+        },
+        {
+          "id": "cbf-20076",
+          "name": "Joinville",
+          "logo": "https://conteudo.cbf.com.br/clubes/20076/escudo.jpg",
+          "rank": "5",
+          "stats": {
+            "points": "15",
+            "gamesPlayed": "10",
+            "wins": "4",
+            "ties": "3",
+            "losses": "3",
+            "goalsFor": "10",
+            "goalsAgainst": "8",
+            "goalDifference": "2"
+          }
+        },
+        {
+          "id": "cbf-20225",
+          "name": "Guarany de Bagé",
+          "logo": "https://conteudo.cbf.com.br/clubes/20225/escudo.jpg",
+          "rank": "6",
+          "stats": {
+            "points": "4",
+            "gamesPlayed": "10",
+            "wins": "1",
+            "ties": "1",
+            "losses": "8",
+            "goalsFor": "2",
+            "goalsAgainst": "18",
+            "goalDifference": "-16"
+          }
+        }
+      ]
+    },
+    {
+      "name": "1ª Fase · Grupo A16",
+      "phaseId": "2040",
+      "rows": [
+        {
+          "id": "cbf-63571",
+          "name": "Blumenau",
+          "logo": "https://conteudo.cbf.com.br/clubes/63571/escudo.jpg",
+          "rank": "1",
+          "stats": {
+            "points": "19",
+            "gamesPlayed": "10",
+            "wins": "6",
+            "ties": "1",
+            "losses": "3",
+            "goalsFor": "14",
+            "goalsAgainst": "8",
+            "goalDifference": "6"
+          }
+        },
+        {
+          "id": "cbf-20207",
+          "name": "Marcílio Dias",
+          "logo": "https://conteudo.cbf.com.br/clubes/20207/escudo.jpg",
+          "rank": "2",
+          "stats": {
+            "points": "16",
+            "gamesPlayed": "10",
+            "wins": "4",
+            "ties": "4",
+            "losses": "2",
+            "goalsFor": "9",
+            "goalsAgainst": "5",
+            "goalDifference": "4"
+          }
+        },
+        {
+          "id": "cbf-54488",
+          "name": "São Joseense",
+          "logo": "https://conteudo.cbf.com.br/clubes/54488/escudo.jpg",
+          "rank": "3",
+          "stats": {
+            "points": "13",
+            "gamesPlayed": "10",
+            "wins": "3",
+            "ties": "4",
+            "losses": "3",
+            "goalsFor": "3",
+            "goalsAgainst": "4",
+            "goalDifference": "-1"
+          }
+        },
+        {
+          "id": "cbf-20319",
+          "name": "São José-RS",
+          "logo": "https://conteudo.cbf.com.br/clubes/20319/escudo.jpg",
+          "rank": "4",
+          "stats": {
+            "points": "13",
+            "gamesPlayed": "10",
+            "wins": "3",
+            "ties": "4",
+            "losses": "3",
+            "goalsFor": "6",
+            "goalsAgainst": "8",
+            "goalDifference": "-2"
+          }
+        },
+        {
+          "id": "cbf-64810",
+          "name": "Brasil de Pelotas",
+          "logo": "https://conteudo.cbf.com.br/clubes/64810/escudo.jpg",
+          "rank": "5",
+          "stats": {
+            "points": "10",
+            "gamesPlayed": "10",
+            "wins": "2",
+            "ties": "4",
+            "losses": "4",
+            "goalsFor": "9",
+            "goalsAgainst": "12",
+            "goalDifference": "-3"
+          }
+        },
+        {
+          "id": "cbf-56804",
+          "name": "Azuriz",
+          "logo": "https://conteudo.cbf.com.br/clubes/56804/escudo.jpg",
+          "rank": "6",
+          "stats": {
+            "points": "9",
+            "gamesPlayed": "10",
+            "wins": "2",
+            "ties": "3",
+            "losses": "5",
+            "goalsFor": "7",
+            "goalsAgainst": "11",
+            "goalDifference": "-4"
+          }
+        }
+      ]
+    }
+  ],
+  "scorers": [
+    {
+      "id": "wikipedia-97b8692cadd4a0dc",
+      "name": "Felipe Clemente",
+      "value": 11,
+      "teamId": "cbf-20098",
+      "teamName": "Gama"
+    },
+    {
+      "id": "wikipedia-d85538ff9b425333",
+      "name": "Rian Santana",
+      "value": 11,
+      "teamId": "cbf-20045",
+      "teamName": "CSA"
+    },
+    {
+      "id": "wikipedia-c5736e2cd53ffd84",
+      "name": "Kauan Maranhão",
+      "value": 10,
+      "teamId": "cbf-20111",
+      "teamName": "Piauí"
+    },
+    {
+      "id": "wikipedia-e42206bd2de6cddc",
+      "name": "Matheus Lima",
+      "value": 10,
+      "teamId": "cbf-35361",
+      "teamName": "Iguatu"
+    },
+    {
+      "id": "wikipedia-c9ccc2d340666740",
+      "name": "Michel Douglas",
+      "value": 10,
+      "teamId": "cbf-20108",
+      "teamName": "ASA"
+    },
+    {
+      "id": "wikipedia-8a462b448e413803",
+      "name": "Alex Bruno",
+      "value": 9,
+      "teamId": "cbf-20108",
+      "teamName": "ASA"
+    },
+    {
+      "id": "wikipedia-79adf0c1eb3f2ee3",
+      "name": "Alex Silva",
+      "value": 9,
+      "teamId": "cbf-20782",
+      "teamName": "Águia de Marabá"
+    },
+    {
+      "id": "wikipedia-1451af68e930c293",
+      "name": "Ramon",
+      "value": 9,
+      "teamId": "cbf-20098",
+      "teamName": "Gama"
+    },
+    {
+      "id": "wikipedia-6258e3dd68241679",
+      "name": "Ruan Costa",
+      "value": 9,
+      "teamId": "cbf-56220",
+      "teamName": "Gazin Porto Velho"
+    },
+    {
+      "id": "wikipedia-4f2505d5fac31ce9",
+      "name": "Tomas Bastos",
+      "value": 9,
+      "teamId": "cbf-64223",
+      "teamName": "Uberlândia"
+    }
+  ],
+  "partial": true,
+  "attribution": "Wikipédia · colaboradores · CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "warnings": [
+    "Fonte alternativa: Wikipédia. A ordem é a publicada nessa fonte; cartões individuais, assistências e escalações não são cobertos.",
+    "A artilharia da Wikipédia é um recorte dos principais goleadores, não a lista completa de atletas."
+  ]
+}
