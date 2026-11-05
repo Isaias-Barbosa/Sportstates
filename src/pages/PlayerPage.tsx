@@ -1,3 +1,14 @@
+import { useState } from "react";
+import {
+  ArrowLeft,
+  ArrowRight,
+  BarChart3,
+  Shield,
+  ExternalLink,
+  Trophy,
+  UserRound,
+  Wallet,
+} from "lucide-react";
 import { Link, useParams } from "react-router-dom";
 import { Empty, Loading, Notice } from "../components/shared";
 import {
@@ -8,6 +19,12 @@ import {
 } from "../components/BrazilPlayerStats";
 import { useApi } from "../hooks";
 
+type Competition = {
+  league: string;
+  name: string;
+  season: number;
+  stats: PlayerTotals;
+};
 type Player = {
   name: string;
   image: string | null;
@@ -22,13 +39,98 @@ type Player = {
   clubs: { id: string; name: string }[];
   previousClubs: { name: string; source: string }[];
   awards: { name: string; source: string }[];
-  competitions: {
-    league: string;
-    name: string;
-    season: number;
-    stats: PlayerTotals;
-  }[];
+  competitions: Competition[];
 };
+
+const competitionKey = (competition: Competition) =>
+  `${competition.league}:${competition.season}`;
+
+function PlayerPortrait({ name, image }: Pick<Player, "name" | "image">) {
+  const [failed, setFailed] = useState(false);
+  const initials = name
+    .trim()
+    .split(/\s+/)
+    .slice(0, 2)
+    .map((part) => Array.from(part)[0])
+    .join("")
+    .toUpperCase();
+  return (
+    <div className="player-portrait" aria-hidden="true">
+      {image && !failed ? (
+        <img
+          src={image}
+          alt=""
+          width="112"
+          height="112"
+          onError={() => setFailed(true)}
+        />
+      ) : (
+        initials || <UserRound size={38} />
+      )}
+    </div>
+  );
+}
+
+function CompetitionStats({ data }: { data: Player }) {
+  const [selection, setSelection] = useState("");
+  const competition =
+    data.competitions.find((item) => competitionKey(item) === selection) ??
+    data.competitions.find((item) =>
+      data.memberships.some(
+        (team) => team.season === item.season && team.competition === item.name,
+      ),
+    ) ??
+    data.competitions[0];
+  return (
+    <section className="panel player-card" aria-labelledby="player-stats-title">
+      <div className="player-card-heading">
+        <div>
+          <p className="eyebrow">Desempenho</p>
+          <h2 id="player-stats-title">
+            <BarChart3 aria-hidden="true" /> Estatísticas por competição
+          </h2>
+        </div>
+        {data.competitions.length > 1 && competition && (
+          <label className="player-competition-filter">
+            Competição e temporada
+            <select
+              value={competitionKey(competition)}
+              onChange={(event) => setSelection(event.target.value)}
+            >
+              {data.competitions.map((item) => (
+                <option key={competitionKey(item)} value={competitionKey(item)}>
+                  {item.name} · {item.season}
+                </option>
+              ))}
+            </select>
+          </label>
+        )}
+      </div>
+      {competition ? (
+        <>
+          <p className="player-competition-name">
+            {competition.name} · {competition.season}
+          </p>
+          <dl className="player-profile-metrics">
+            {playerMetrics.map(([key, label]) => (
+              <div key={key} data-metric={key}>
+                <dt>{label}</dt>
+                <dd>{competition.stats[key] ?? "—"}</dd>
+              </div>
+            ))}
+          </dl>
+          <p className="player-card-note">
+            Totais das partidas importadas. O traço indica dado indisponível.
+          </p>
+        </>
+      ) : (
+        <Empty title="Estatísticas em preparação">
+          Os números aparecem após a importação dos jogos.
+        </Empty>
+      )}
+    </section>
+  );
+}
 
 export default function PlayerPage() {
   const { id = "" } = useParams();
@@ -36,110 +138,140 @@ export default function PlayerPage() {
     "/api/player?id=" + encodeURIComponent(id),
     0,
   );
-  if (loading) return <Loading />;
-  if (!data || error)
-    return (
-      <Notice error>
-        {error || "Jogador indisponível."}{" "}
-        <button onClick={refresh}>Tentar novamente</button>
-      </Notice>
-    );
+  const team = data?.memberships.length === 1 ? data.memberships[0] : null;
+
   return (
-    <>
-      <Link className="back-link" to="/times">
-        ← Todos os times
+    <div className="player-profile">
+      <Link
+        className="back-link player-back"
+        to={team ? `/times/${team.id}` : "/times"}
+      >
+        <ArrowLeft size={16} aria-hidden="true" />{" "}
+        {team ? `Voltar para ${team.name}` : "Todos os times"}
       </Link>
-      <section className="panel player-profile">
-        <header className="player-profile-hero">
-          {data.image && <img src={data.image} alt="" width="96" height="96" />}
-          <div>
-            <h1>{data.name}</h1>
-            <p>{data.position}</p>
-            {data.memberships.map((team) => (
-              <p key={team.id + team.competition}>
-                <Link to={`/times/${team.id}`}>{team.name}</Link> ·{" "}
-                {team.competition} · {team.season}
-              </p>
-            ))}
+      {loading ? (
+        <Loading />
+      ) : !data || error ? (
+        <Notice error>
+          {error || "Jogador indisponível."}{" "}
+          <button onClick={refresh}>Tentar novamente</button>
+        </Notice>
+      ) : (
+        <>
+          <header className="player-profile-hero">
+            <PlayerPortrait
+              key={data.image || id}
+              name={data.name}
+              image={data.image}
+            />
+            <div className="player-identity">
+              <p className="eyebrow">Perfil do jogador</p>
+              <h1>{data.name}</h1>
+              {data.position && (
+                <p className="player-position">{data.position}</p>
+              )}
+              {data.memberships.length > 0 && (
+                <ul className="player-memberships">
+                  {data.memberships.map((club) => (
+                    <li key={club.id + club.competition}>
+                      <Link to={`/times/${club.id}`}>
+                        {club.name} <ArrowRight size={14} aria-hidden="true" />
+                      </Link>
+                      <span>
+                        {club.competition} · {club.season}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          </header>
+
+          <CompetitionStats key={id} data={data} />
+
+          <div className="player-profile-grid">
+            <section
+              className="panel player-card"
+              aria-labelledby="player-clubs-title"
+            >
+              <h2 id="player-clubs-title">
+                <Shield aria-hidden="true" /> Clubes recentes
+              </h2>
+              {data.clubs.length || data.previousClubs.length ? (
+                <ul className="player-profile-links">
+                  {data.clubs.map((club) => (
+                    <li key={club.id}>
+                      <Link to={`/times/${club.id}`}>
+                        {club.name}
+                        <ArrowRight size={16} aria-hidden="true" />
+                      </Link>
+                    </li>
+                  ))}
+                  {data.previousClubs.map((club) => (
+                    <li key={club.name + club.source}>
+                      <a href={club.source} target="_blank" rel="noreferrer">
+                        {club.name}
+                        <ExternalLink size={16} aria-hidden="true" />
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p className="player-card-note">Histórico em preparação.</p>
+              )}
+            </section>
+            <section
+              className="panel player-card"
+              aria-labelledby="player-awards-title"
+            >
+              <h2 id="player-awards-title">
+                <Trophy aria-hidden="true" /> Prêmios individuais
+              </h2>
+              {data.awards.length ? (
+                <ul className="player-profile-links">
+                  {data.awards.map((award) => (
+                    <li key={award.name + award.source}>
+                      <a href={award.source} target="_blank" rel="noreferrer">
+                        {award.name}
+                        <ExternalLink size={16} aria-hidden="true" />
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p className="player-card-note">Sem prêmios cadastrados.</p>
+              )}
+            </section>
+            <section
+              className="panel player-card"
+              aria-labelledby="player-value-title"
+            >
+              <h2 id="player-value-title">
+                <Wallet aria-hidden="true" /> Valor de mercado
+              </h2>
+              {data.marketValue ? (
+                <>
+                  <p className="player-market-value">
+                    {marketLabel(data.marketValue)}
+                  </p>
+                  <a
+                    className="player-market-source"
+                    href={data.marketValue.source}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Fonte ·{" "}
+                    {data.marketValue.date.split("-").reverse().join("/")}{" "}
+                    <ExternalLink size={14} aria-hidden="true" />
+                  </a>
+                </>
+              ) : (
+                <p className="player-card-note">Sem valor verificado.</p>
+              )}
+            </section>
           </div>
-        </header>
-        <div className="player-profile-grid">
-          <section>
-            <h2>Por competição</h2>
-            {data.competitions.length ? (
-              data.competitions.map((competition) => (
-                <article key={competition.league + competition.season}>
-                  <h3>
-                    {competition.name} · {competition.season}
-                  </h3>
-                  <dl className="player-profile-metrics">
-                    {playerMetrics.map(([key, label]) => (
-                      <div key={key}>
-                        <dt>{label}</dt>
-                        <dd>{competition.stats[key] ?? "—"}</dd>
-                      </div>
-                    ))}
-                  </dl>
-                </article>
-              ))
-            ) : (
-              <Empty title="Estatísticas em preparação">
-                Os números aparecem após a importação dos jogos.
-              </Empty>
-            )}
-          </section>
-          <section>
-            <h2>Valor de mercado</h2>
-            {data.marketValue ? (
-              <p>
-                <strong>{marketLabel(data.marketValue)}</strong> ·{" "}
-                <a
-                  href={data.marketValue.source}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Fonte de {data.marketValue.date}
-                </a>
-              </p>
-            ) : (
-              <p>Sem valor verificado.</p>
-            )}
-            <h2>Prêmios individuais</h2>
-            {data.awards.length ? (
-              <ul>
-                {data.awards.map((award) => (
-                  <li key={award.name + award.source}>
-                    <a href={award.source} target="_blank" rel="noreferrer">
-                      {award.name}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <p>Sem prêmios cadastrados.</p>
-            )}
-            <h2>Clubes recentes</h2>
-            {data.clubs.length || data.previousClubs.length ? (
-              <ul>
-                {data.clubs.map((club) => (
-                  <li key={club.id}>
-                    <Link to={`/times/${club.id}`}>{club.name}</Link>
-                  </li>
-                ))}
-                {data.previousClubs.map((club) => (
-                  <li key={club.name + club.source}>
-                    <a href={club.source} target="_blank" rel="noreferrer">
-                      {club.name}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <p>Histórico em preparação.</p>
-            )}
-          </section>
-        </div>
-      </section>
-    </>
+        </>
+      )}
+    </div>
   );
 }
