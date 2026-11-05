@@ -7,7 +7,9 @@
   object-fit: cover;
   pointer-events: none;
 }
-.home-viva:not(.home-favorites) .hv-hero.hv-showcase { display: block; }
+.home-viva:not(.home-favorites) .hv-hero.hv-showcase {
+  display: block;
+}
 .hv-showcase-poster {
   z-index: -4;
   opacity: 0.65;
@@ -45,11 +47,89 @@
   color: #eef4ff;
 }
 .hv-hero.hv-showcase h1 {
-  font-size: clamp(36px, 5vw, 68px);
+  font-size: clamp(
+    var(--showcase-font-min, 36px),
+    var(--showcase-font-fluid, 5vw),
+    var(--showcase-font-max, 68px)
+  );
   line-height: 1.08;
   letter-spacing: -0.6px;
   overflow-wrap: break-word;
   margin-block: 18px 12px;
+  text-wrap: balance;
+}
+.hv-showcase[data-title-size="small"],
+.admin-showcase-title-preview[data-title-size="small"] {
+  --showcase-font-min: 28px;
+  --showcase-font-fluid: 3vw;
+  --showcase-font-max: 40px;
+  --showcase-mobile-min: 24px;
+  --showcase-mobile-fluid: 6vw;
+  --showcase-mobile-max: 28px;
+}
+.hv-showcase[data-title-size="medium"],
+.admin-showcase-title-preview[data-title-size="medium"] {
+  --showcase-font-min: 32px;
+  --showcase-font-fluid: 4vw;
+  --showcase-font-max: 52px;
+  --showcase-mobile-min: 28px;
+  --showcase-mobile-fluid: 7vw;
+  --showcase-mobile-max: 36px;
+}
+.hv-showcase[data-title-size="large"],
+.admin-showcase-title-preview[data-title-size="large"] {
+  --showcase-font-min: 36px;
+  --showcase-font-fluid: 5vw;
+  --showcase-font-max: 68px;
+  --showcase-mobile-min: 30px;
+  --showcase-mobile-fluid: 8vw;
+  --showcase-mobile-max: 46px;
+}
+.admin-showcase-typography {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.admin-showcase-typography > label {
+  display: grid;
+  gap: 6px;
+  font-weight: 600;
+}
+.admin-showcase-counter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.admin-showcase-counter.is-over-limit small {
+  color: var(--live, #ff936e);
+  font-weight: 700;
+}
+.admin-showcase-counter button {
+  font-size: 12px;
+  padding: 6px 10px;
+}
+.admin-showcase-title-preview {
+  min-width: 0;
+  border-radius: 10px;
+  padding: 16px;
+  background: #071428;
+  color: white;
+}
+.admin-showcase-title-preview > span {
+  color: #b7c7e0;
+  font-size: 11px;
+}
+.admin-showcase-title-preview h3 {
+  font-family: "Sportstates Display", Impact, sans-serif;
+  font-size: calc(var(--showcase-font-max, 68px) * 0.7);
+  font-style: italic;
+  font-weight: 800;
+  line-height: 1.08;
+  margin: 14px 0 0;
+  text-transform: uppercase;
+  overflow-wrap: break-word;
+  text-wrap: balance;
 }
 .hv-showcase .hv-hero-copy > .hv-showcase-match {
   max-width: none;
@@ -149,7 +229,11 @@
     padding-block: 28px 84px;
   }
   .hv-hero.hv-showcase h1 {
-    font-size: clamp(30px, 8vw, 46px);
+    font-size: clamp(
+      var(--showcase-mobile-min, 30px),
+      var(--showcase-mobile-fluid, 8vw),
+      var(--showcase-mobile-max, 46px)
+    );
   }
   .hv-showcase .hv-hero-copy > .hv-showcase-match {
     font-size: 15px;
@@ -160,5 +244,10 @@
   }
   .admin-showcase-fields {
     padding: 12px;
+  }
+}
+@media (max-width: 420px) {
+  .admin-showcase-typography {
+    grid-template-columns: 1fr;
   }
 }

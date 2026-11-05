@@ -2,6 +2,7 @@ import { get, put } from "@vercel/blob";
 import { timingSafeEqual, createHash } from "node:crypto";
 import { validDate } from "./data.mjs";
 import { leagueFor } from "./catalog.mjs";
+import {showcaseFontSizes,showcaseCharacterLimits,countShowcaseCharacters} from '../src/showcase-text.mjs';
 const pathFor = (date) => `featured/${date}.json`;
 export function authorized(header, secret = process.env.ADMIN_ACCESS_KEY) {
   if (
@@ -46,9 +47,12 @@ export function validateShowcase(value) {
       "Use um link direto HTTPS público terminado em .mp4 ou .webm; links de páginas do YouTube não funcionam neste campo.",
     );
   const title = typeof value.title === "string" ? value.title.trim() : "";
-  if (title.length > 88 || /[\u0000-\u001f]/.test(title))
-    throw new Error("A chamada pode ter até 88 caracteres.");
-  return { videoUrl: url.href, kind: value.kind, title };
+  const fontSize=value.fontSize??'large',characterLimit=value.characterLimit??88;
+  if(!showcaseFontSizes.includes(fontSize))throw new Error('Escolha um tamanho de fonte válido.');
+  if(!showcaseCharacterLimits.includes(characterLimit))throw new Error('Escolha um limite de 40, 60 ou 88 caracteres.');
+  if (countShowcaseCharacters(title) > characterLimit || /[\u0000-\u001f]/.test(title))
+    throw new Error(`A chamada pode ter até ${characterLimit} caracteres.`);
+  return { videoUrl: url.href, kind: value.kind, title, fontSize, characterLimit };
 }
 export function showcaseForMatch(value, match) {
   const video = validateShowcase(value);

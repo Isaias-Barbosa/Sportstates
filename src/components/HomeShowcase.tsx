@@ -79,6 +79,7 @@ export default function HomeShowcase({
     <section
       ref={section}
       className="hv-hero hv-showcase"
+      data-title-size={showcase.fontSize||'large'}
       aria-labelledby="hv-title"
     >
       <img

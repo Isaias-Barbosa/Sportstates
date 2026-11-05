@@ -18,6 +18,7 @@ import {
 } from "../components/shared";
 import type { Match, Scores, FeaturedSelection } from "../types";
 import AdminShowcaseFields, {type ShowcaseDraft} from '../components/AdminShowcaseFields';
+import {countShowcaseCharacters} from '../showcase-text.mjs';
 
 type ManualBroadcast = {
   match_key: string;
@@ -69,7 +70,7 @@ export default function AdminGames() {
   const [sport, setSport] = useState("all");
   const [selected, setSelected] = useState<Match | null>(null);
   const [checked, setChecked] = useState(false);
-  const [showcase,setShowcase]=useState<ShowcaseDraft>({enabled:false,videoUrl:'',kind:'replay',title:''});
+  const [showcase,setShowcase]=useState<ShowcaseDraft>({enabled:false,videoUrl:'',kind:'replay',title:'',fontSize:'medium',characterLimit:60});
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
@@ -156,6 +157,7 @@ export default function AdminGames() {
     try {
       const key = keyOf(selected);
       if(checked&&showcase.enabled&&!showcase.videoUrl.trim())throw new Error('Informe o link do vídeo ou desative a vitrine com vídeo.');
+      if(checked&&showcase.enabled&&countShowcaseCharacters(showcase.title)>showcase.characterLimit)throw new Error(`Reduza a chamada para até ${showcase.characterLimit} caracteres ou escolha um limite maior.`);
       const r = await fetch("/api/admin/featured", {
         method: "PUT",
         headers: {
@@ -169,7 +171,7 @@ export default function AdminGames() {
             : feature?.key === key
               ? null
               : feature?.key || null,
-          showcase:checked?(showcase.enabled?{videoUrl:showcase.videoUrl,kind:showcase.kind,title:showcase.title}:null)
+          showcase:checked?(showcase.enabled?{videoUrl:showcase.videoUrl,kind:showcase.kind,title:showcase.title,fontSize:showcase.fontSize,characterLimit:showcase.characterLimit}:null)
             : feature?.key===key?null:feature?.showcase??null,
         }),
       });
@@ -514,7 +516,7 @@ export default function AdminGames() {
                         setSelected(m);
                         setChecked(feature?.key === keyOf(m));
                         const current=feature?.key===keyOf(m)?feature.showcase:undefined;
-                        setShowcase({enabled:!!current,videoUrl:current?.videoUrl||'',kind:current?.kind||'replay',title:current?.title||''});
+                        setShowcase({enabled:!!current,videoUrl:current?.videoUrl||'',kind:current?.kind||'replay',title:current?.title||'',fontSize:current?.fontSize||(current?'large':'medium'),characterLimit:current?.characterLimit||(current?88:60)});
                       }
                     }}
                   >
