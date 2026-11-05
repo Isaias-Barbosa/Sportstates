@@ -441,12 +441,13 @@ export function getWatchOptions(match, competition = {}) {
     regionLabel: "Brasil",
     scope: "competition",
     confirmedForMatch: false,
+    competitionPartnersConfirmed: isUefa2026(match),
     reviewedAt: isUefa2026(match) ? EUROPA_REVIEWED_AT : WATCH_REVIEWED_AT,
     links,
-    message: isEuropa2026(match) ? 'CazéTV é a parceira listada pela UEFA no Brasil. CNN Esportes e Itatiaia anunciam confrontos selecionados. Consulte a programação: esses links não confirmam este jogo.'
+    message: isEuropa2026(match) ? 'Parceiros confirmados da competição no Brasil: CazéTV, com jogos selecionados anunciados por CNN Esportes e Itatiaia. Consulte a programação para localizar a emissora deste confronto.'
       : isUefa2026(match) ? (match.league==='uefa.champions'
-        ? 'TNT Sports/HBO Max e SBT são os parceiros listados pela UEFA no Brasil em 2026/27. Confirme este jogo na programação de cada emissora.'
-        : 'CazéTV é a parceira listada pela UEFA no Brasil em 2026/27. Confirme este jogo na programação; este guia não confirma a transmissão individual.') : links.length
+        ? 'Parceiros confirmados da Champions League no Brasil em 2026/27: TNT Sports/HBO Max e SBT. Consulte a programação para escolher o canal deste jogo.'
+        : 'Parceira confirmada da Conference League no Brasil em 2026/27: CazéTV. Consulte a programação para acompanhar este confronto.') : links.length
       ? "Opções oficiais da competição no Brasil. Confirme este jogo na programação; a transmissão pode exigir assinatura e variar por região."
       : "Ainda não temos uma opção oficial verificada para esta competição no Brasil.",
   };

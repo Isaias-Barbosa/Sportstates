@@ -265,6 +265,7 @@ export type WatchOptions = {
   regionLabel: string;
   scope: "competition" | "match";
   confirmedForMatch: boolean;
+  competitionPartnersConfirmed?: boolean;
   reviewedAt: string;
   links: WatchLink[];
   message: string;

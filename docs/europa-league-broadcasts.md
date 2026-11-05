@@ -10,6 +10,8 @@ Para a Conference League, a UEFA lista CazéTV. O diretório acrescenta a agenda
 
 As três competições têm escopo de edição 2026/27. Fora desse período ou sem data válida, são mantidos apenas seus guias UEFA, sem projetar os parceiros atuais para outras temporadas. As classificações de emissoras estrangeiras continuam separadas das brasileiras. A revisão de outras competições não foi alterada.
 
+A interface identifica essas listas como “Parceiros confirmados” e deixa de exibir o aviso genérico de transmissão desconhecida. O campo `competitionPartnersConfirmed` sinaliza a verificação dos parceiros da edição; `confirmedForMatch` continua reservado à confirmação específica da emissora para o confronto. Uma informação explícita de jogo não televisionado mantém seu aviso. Assim, a confirmação de direitos não promete que todos os parceiros exibirão todas as partidas.
+
 - Champions: https://pt.uefa.com/uefachampionsleague/news/0257-0e9532e6bd9d-f0435ad3b137-1000--onde-ver-os-jogos/
 - Conference: https://pt.uefa.com/uefaconferenceleague/news/0285-18f7d75f0a98-0bffb619ddd9-1000--onde-ver-a-uefa-conference-league-parceiros-de-tv-streams-/
 
