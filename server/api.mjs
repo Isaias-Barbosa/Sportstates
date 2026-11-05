@@ -56,6 +56,7 @@ import { matchMedia } from "./match-media.mjs";
 import { fetchHeadToHead } from "./head-to-head.mjs";
 import { enrichBroadcasts } from "./broadcast-schedule.mjs";
 import { applyCbfBroadcasts } from "./cbf-broadcasts.mjs";
+import { cbfRegisteredPlayer, validPublicPlayerId } from "./cbf-player-register.mjs";
 import { enrichPlayerProfile, playerCompetitions, playerLeagues, playerSeason, validPlayerId, readBrazilTeamPlayers, readBrazilPlayer,
   syncBrazilPlayerDay } from "./brazil-players.mjs";
 import {
@@ -585,8 +586,9 @@ export async function route(url) {
   }
   if (url.pathname === "/api/team-player-stats" || url.pathname === "/api/player") {
     const id = q.get("id");
-    if (!validPlayerId(id)) return [400, { error: "Identificador inválido." }];
     const isPlayer = url.pathname === "/api/player";
+    if (!(isPlayer ? validPublicPlayerId(id) : validPlayerId(id)))
+      return [400, { error: "Identificador inválido." }];
     const league = q.get("league");
     if (!isPlayer && !Object.hasOwn(playerLeagues, league))
       return [400, { error: "Competição inválida." }];
@@ -599,6 +601,8 @@ export async function route(url) {
       return [200, await readBrazilTeamPlayers(league, id, season)];
     } catch (error) {
       if (process.env.VERCEL_ENV === "preview" && error.code === "42P01") {
+        const registered = isPlayer ? cbfRegisteredPlayer(id) : null;
+        if (registered) return [200, registered];
         const production = new URL(url.pathname, "https://sportstates.vercel.app");
         production.searchParams.set("id", id);
         if (!isPlayer) production.searchParams.set("league", league);

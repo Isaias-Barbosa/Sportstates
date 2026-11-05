@@ -1,0 +1,646 @@
+[
+  {
+    "cbfTeamId": "62328",
+    "sourceSha256": "862f897a23a78e562d40b090c085b0a124a5f05f8a3719bbe0d5388ea82d402c",
+    "players": [
+      {
+        "id": "cbf-351870",
+        "cbfId": "351870",
+        "name": "Pedro Henrique Peixoto Silva",
+        "alias": "PEU",
+        "registrationTeamId": "62328",
+        "season": 2026,
+        "competition": "Copa do Brasil",
+        "source": "https://www.cbf.com.br/futebol-brasileiro/times/copa-do-brasil/masculino/2026/62328"
+      },
+      {
+        "id": "cbf-518717",
+        "cbfId": "518717",
+        "name": "Italo Barbosa de Andrade",
+        "alias": "Italo",
+        "registrationTeamId": "62328",
+        "season": 2026,
+        "competition": "Copa do Brasil",
+        "source": "https://www.cbf.com.br/futebol-brasileiro/times/copa-do-brasil/masculino/2026/62328"
+      },
+      {
+        "id": "cbf-582000",
+        "cbfId": "582000",
+        "name": "Adriano Brandão Valcácer de Lima",
+        "alias": "Napão",
+        "registrationTeamId": "62328",
+        "season": 2026,
+        "competition": "Copa do Brasil",
+        "source": "https://www.cbf.com.br/futebol-brasileiro/times/copa-do-brasil/masculino/2026/62328"
+      },
+      {
+        "id": "cbf-508082",
+        "cbfId": "508082",
+        "name": "Cesar Velez da Silva",
+        "alias": "CESINHA",
+        "registrationTeamId": "62328",
+        "season": 2026,
+        "competition": "Copa do Brasil",
+        "source": "https://www.cbf.com.br/futebol-brasileiro/times/copa-do-brasil/masculino/2026/62328"
+      },
+      {
+        "id": "cbf-801821",
+        "cbfId": "801821",
+        "name": "Daniel Costa Capichaba",
+        "alias": "Daniel Capichaba",
+        "registrationTeamId": "62328",
+        "season": 2026,
+        "competition": "Copa do Brasil",
+        "source": "https://www.cbf.com.br/futebol-brasileiro/times/copa-do-brasil/masculino/2026/62328"
+      },
+      {
+        "id": "cbf-671056",
+        "cbfId": "671056",
+        "name": "Cleiton Santana Santos",
+        "alias": "Diki Santos",
+        "registrationTeamId": "62328",
+        "season": 2026,
+        "competition": "Copa do Brasil",
+        "source": "https://www.cbf.com.br/futebol-brasileiro/times/copa-do-brasil/masculino/2026/62328"
+      },
+      {
+        "id": "cbf-786114",
+        "cbfId": "786114",
+        "name": "Arthur Carvalho Fracalossi",
+        "alias": "ARTHUR.FRACALOSSI",
+        "registrationTeamId": "62328",
+        "season": 2026,
+        "competition": "Copa do Brasil",
+        "source": "https://www.cbf.com.br/futebol-brasileiro/times/copa-do-brasil/masculino/2026/62328"
+      },
+      {
+        "id": "cbf-756251",
+        "cbfId": "756251",
+        "name": "Kauan de Jesus Santos",
+        "alias": "Kauan Jesus",
+        "registrationTeamId": "62328",
+        "season": 2026,
+        "competition": "Copa do Brasil",
+        "source": "https://www.cbf.com.br/futebol-brasileiro/times/copa-do-brasil/masculino/2026/62328"
+      },
+      {
+        "id": "cbf-427770",
+        "cbfId": "427770",
+        "name": "Luan Rodrigues Azambuja",
+        "alias": "Luan",
+        "registrationTeamId": "62328",
+        "season": 2026,
+        "competition": "Copa do Brasil",
+        "source": "https://www.cbf.com.br/futebol-brasileiro/times/copa-do-brasil/masculino/2026/62328"
+      },
+      {
+        "id": "cbf-651627",
+        "cbfId": "651627",
+        "name": "Breno Eduardo Liborge",
+        "alias": "LIBORGE",
+        "registrationTeamId": "62328",
+        "season": 2026,
+        "competition": "Copa do Brasil",
+        "source": "https://www.cbf.com.br/futebol-brasileiro/times/copa-do-brasil/masculino/2026/62328"
+      },
+      {
+        "id": "cbf-901873",
+        "cbfId": "901873",
+        "name": "Diogo Vieira Neris",
+        "alias": "DIOGO",
+        "registrationTeamId": "62328",
+        "season": 2026,
+        "competition": "Copa do Brasil",
+        "source": "https://www.cbf.com.br/futebol-brasileiro/times/copa-do-brasil/masculino/2026/62328"
+      },
+      {
+        "id": "cbf-333059",
+        "cbfId": "333059",
+        "name": "Joao Gabriel Ramos de Souza",
+        "alias": "Joao",
+        "registrationTeamId": "62328",
+        "season": 2026,
+        "competition": "Copa do Brasil",
+        "source": "https://www.cbf.com.br/futebol-brasileiro/times/copa-do-brasil/masculino/2026/62328"
+      }
+    ]
+  },
+  {
+    "cbfTeamId": "37846",
+    "sourceSha256": "aba7dc092a96d3e248a3ae95680b8b7878251a83ad87bf8965ccb83bd84fc1e9",
+    "players": [
+      {
+        "id": "cbf-522131",
+        "cbfId": "522131",
+        "name": "Maicon Henrique Silva de Carvalho",
+        "alias": "Maicon",
+        "registrationTeamId": "37846",
+        "season": 2026,
+        "competition": "Copa do Brasil",
+        "source": "https://www.cbf.com.br/futebol-brasileiro/times/copa-do-brasil/masculino/2026/37846"
+      },
+      {
+        "id": "cbf-356238",
+        "cbfId": "356238",
+        "name": "Jose Elenilton de Freitas Junior",
+        "alias": "Junior Dinde",
+        "registrationTeamId": "37846",
+        "season": 2026,
+        "competition": "Copa do Brasil",
+        "source": "https://www.cbf.com.br/futebol-brasileiro/times/copa-do-brasil/masculino/2026/37846"
+      },
+      {
+        "id": "cbf-378939",
+        "cbfId": "378939",
+        "name": "Wender Jadson Silva dos Santos",
+        "alias": "Jadson",
+        "registrationTeamId": "37846",
+        "season": 2026,
+        "competition": "Copa do Brasil",
+        "source": "https://www.cbf.com.br/futebol-brasileiro/times/copa-do-brasil/masculino/2026/37846"
+      },
+      {
+        "id": "cbf-540814",
+        "cbfId": "540814",
+        "name": "Ian Augusto de Almeida Ribeiro",
+        "alias": "Ian Augusto",
+        "registrationTeamId": "37846",
+        "season": 2026,
+        "competition": "Copa do Brasil",
+        "source": "https://www.cbf.com.br/futebol-brasileiro/times/copa-do-brasil/masculino/2026/37846"
+      },
+      {
+        "id": "cbf-170272",
+        "cbfId": "170272",
+        "name": "Victor Ferraz Macedo",
+        "alias": "Victor Ferraz",
+        "registrationTeamId": "37846",
+        "season": 2026,
+        "competition": "Copa do Brasil",
+        "source": "https://www.cbf.com.br/futebol-brasileiro/times/copa-do-brasil/masculino/2026/37846"
+      },
+      {
+        "id": "cbf-169747",
+        "cbfId": "169747",
+        "name": "Marcelo Aparecido Toscano",
+        "alias": "Marcelo Toscano",
+        "registrationTeamId": "37846",
+        "season": 2026,
+        "competition": "Copa do Brasil",
+        "source": "https://www.cbf.com.br/futebol-brasileiro/times/copa-do-brasil/masculino/2026/37846"
+      },
+      {
+        "id": "cbf-776157",
+        "cbfId": "776157",
+        "name": "José Diogo Moura Barbosa",
+        "alias": "Diogo Moura",
+        "registrationTeamId": "37846",
+        "season": 2026,
+        "competition": "Copa do Brasil",
+        "source": "https://www.cbf.com.br/futebol-brasileiro/times/copa-do-brasil/masculino/2026/37846"
+      },
+      {
+        "id": "cbf-370739",
+        "cbfId": "370739",
+        "name": "David Lustosa de Oliveira",
+        "alias": "David Peninha",
+        "registrationTeamId": "37846",
+        "season": 2026,
+        "competition": "Copa do Brasil",
+        "source": "https://www.cbf.com.br/futebol-brasileiro/times/copa-do-brasil/masculino/2026/37846"
+      },
+      {
+        "id": "cbf-742251",
+        "cbfId": "742251",
+        "name": "Ezequiel Daniel Balbino Neto",
+        "alias": "Ezequiel Neto",
+        "registrationTeamId": "37846",
+        "season": 2026,
+        "competition": "Copa do Brasil",
+        "source": "https://www.cbf.com.br/futebol-brasileiro/times/copa-do-brasil/masculino/2026/37846"
+      },
+      {
+        "id": "cbf-401870",
+        "cbfId": "401870",
+        "name": "Uesles Queiroz de Moura",
+        "alias": "Uesles",
+        "registrationTeamId": "37846",
+        "season": 2026,
+        "competition": "Copa do Brasil",
+        "source": "https://www.cbf.com.br/futebol-brasileiro/times/copa-do-brasil/masculino/2026/37846"
+      },
+      {
+        "id": "cbf-404823",
+        "cbfId": "404823",
+        "name": "Jefferson Victor Machado Ambrosio",
+        "alias": "Jefferson",
+        "registrationTeamId": "37846",
+        "season": 2026,
+        "competition": "Copa do Brasil",
+        "source": "https://www.cbf.com.br/futebol-brasileiro/times/copa-do-brasil/masculino/2026/37846"
+      },
+      {
+        "id": "cbf-529193",
+        "cbfId": "529193",
+        "name": "Bruno de Oliveira Martins",
+        "alias": "Bruno Martins",
+        "registrationTeamId": "37846",
+        "season": 2026,
+        "competition": "Copa do Brasil",
+        "source": "https://www.cbf.com.br/futebol-brasileiro/times/copa-do-brasil/masculino/2026/37846"
+      },
+      {
+        "id": "cbf-532660",
+        "cbfId": "532660",
+        "name": "Jose Charles Pereira Barbosa",
+        "alias": "Charles",
+        "registrationTeamId": "37846",
+        "season": 2026,
+        "competition": "Copa do Brasil",
+        "source": "https://www.cbf.com.br/futebol-brasileiro/times/copa-do-brasil/masculino/2026/37846"
+      }
+    ]
+  },
+  {
+    "cbfTeamId": "59116",
+    "sourceSha256": "e221fa60d82c7b4b95d8ee611fb4716b48c44dc0edc5475ee46a1100917636eb",
+    "players": [
+      {
+        "id": "cbf-717442",
+        "cbfId": "717442",
+        "name": "Davi Medeiros Serrano Lira",
+        "alias": "DAVI",
+        "registrationTeamId": "59116",
+        "season": 2026,
+        "competition": "Copa do Brasil",
+        "source": "https://www.cbf.com.br/futebol-brasileiro/times/copa-do-brasil/masculino/2026/59116"
+      },
+      {
+        "id": "cbf-703808",
+        "cbfId": "703808",
+        "name": "Vinicius Mendonça Santa Rosa",
+        "alias": "kanu",
+        "registrationTeamId": "59116",
+        "season": 2026,
+        "competition": "Copa do Brasil",
+        "source": "https://www.cbf.com.br/futebol-brasileiro/times/copa-do-brasil/masculino/2026/59116"
+      },
+      {
+        "id": "cbf-894368",
+        "cbfId": "894368",
+        "name": "Matias Nicolas Verdun Alonso",
+        "alias": "MATIAS VERDUN",
+        "registrationTeamId": "59116",
+        "season": 2026,
+        "competition": "Copa do Brasil",
+        "source": "https://www.cbf.com.br/futebol-brasileiro/times/copa-do-brasil/masculino/2026/59116"
+      },
+      {
+        "id": "cbf-595323",
+        "cbfId": "595323",
+        "name": "Carlos Gabriel Goncalves Cardoso",
+        "alias": "Gabriel",
+        "registrationTeamId": "59116",
+        "season": 2026,
+        "competition": "Copa do Brasil",
+        "source": "https://www.cbf.com.br/futebol-brasileiro/times/copa-do-brasil/masculino/2026/59116"
+      },
+      {
+        "id": "cbf-577268",
+        "cbfId": "577268",
+        "name": "Bruno Vinicius Simão Elesbão",
+        "alias": "Bruno",
+        "registrationTeamId": "59116",
+        "season": 2026,
+        "competition": "Copa do Brasil",
+        "source": "https://www.cbf.com.br/futebol-brasileiro/times/copa-do-brasil/masculino/2026/59116"
+      },
+      {
+        "id": "cbf-633319",
+        "cbfId": "633319",
+        "name": "Julio Cesar de Souza Silva",
+        "alias": "Julio César",
+        "registrationTeamId": "59116",
+        "season": 2026,
+        "competition": "Copa do Brasil",
+        "source": "https://www.cbf.com.br/futebol-brasileiro/times/copa-do-brasil/masculino/2026/59116"
+      },
+      {
+        "id": "cbf-647668",
+        "cbfId": "647668",
+        "name": "Rychelmy Rocha Santos Silva",
+        "alias": "Rychelmy",
+        "registrationTeamId": "59116",
+        "season": 2026,
+        "competition": "Copa do Brasil",
+        "source": "https://www.cbf.com.br/futebol-brasileiro/times/copa-do-brasil/masculino/2026/59116"
+      },
+      {
+        "id": "cbf-766666",
+        "cbfId": "766666",
+        "name": "Felype Gabriel Alencar Carvalho",
+        "alias": "FELYPE",
+        "registrationTeamId": "59116",
+        "season": 2026,
+        "competition": "Copa do Brasil",
+        "source": "https://www.cbf.com.br/futebol-brasileiro/times/copa-do-brasil/masculino/2026/59116"
+      },
+      {
+        "id": "cbf-622284",
+        "cbfId": "622284",
+        "name": "Nathan Vitor de Almeida Silva",
+        "alias": "Nathan",
+        "registrationTeamId": "59116",
+        "season": 2026,
+        "competition": "Copa do Brasil",
+        "source": "https://www.cbf.com.br/futebol-brasileiro/times/copa-do-brasil/masculino/2026/59116"
+      },
+      {
+        "id": "cbf-776306",
+        "cbfId": "776306",
+        "name": "Richardson Silva Santos",
+        "alias": "Richardson",
+        "registrationTeamId": "59116",
+        "season": 2026,
+        "competition": "Copa do Brasil",
+        "source": "https://www.cbf.com.br/futebol-brasileiro/times/copa-do-brasil/masculino/2026/59116"
+      },
+      {
+        "id": "cbf-682691",
+        "cbfId": "682691",
+        "name": "Francisco das Chagas Araujo Filho",
+        "alias": "Francisco",
+        "registrationTeamId": "59116",
+        "season": 2026,
+        "competition": "Copa do Brasil",
+        "source": "https://www.cbf.com.br/futebol-brasileiro/times/copa-do-brasil/masculino/2026/59116"
+      },
+      {
+        "id": "cbf-555397",
+        "cbfId": "555397",
+        "name": "Helber Italo dos Santos",
+        "alias": "Italo",
+        "registrationTeamId": "59116",
+        "season": 2026,
+        "competition": "Copa do Brasil",
+        "source": "https://www.cbf.com.br/futebol-brasileiro/times/copa-do-brasil/masculino/2026/59116"
+      },
+      {
+        "id": "cbf-597155",
+        "cbfId": "597155",
+        "name": "Bruno D Lucas Nascimento Lopes",
+        "alias": "BRUNO",
+        "registrationTeamId": "59116",
+        "season": 2026,
+        "competition": "Copa do Brasil",
+        "source": "https://www.cbf.com.br/futebol-brasileiro/times/copa-do-brasil/masculino/2026/59116"
+      },
+      {
+        "id": "cbf-590529",
+        "cbfId": "590529",
+        "name": "Sued Kleiton de Lima",
+        "alias": "SUED",
+        "registrationTeamId": "59116",
+        "season": 2026,
+        "competition": "Copa do Brasil",
+        "source": "https://www.cbf.com.br/futebol-brasileiro/times/copa-do-brasil/masculino/2026/59116"
+      },
+      {
+        "id": "cbf-608577",
+        "cbfId": "608577",
+        "name": "Marcos Andre de Menezes Diniz",
+        "alias": "Marquinhos",
+        "registrationTeamId": "59116",
+        "season": 2026,
+        "competition": "Copa do Brasil",
+        "source": "https://www.cbf.com.br/futebol-brasileiro/times/copa-do-brasil/masculino/2026/59116"
+      },
+      {
+        "id": "cbf-463940",
+        "cbfId": "463940",
+        "name": "Eduardo de Sousa Ribeiro",
+        "alias": "Eduardo de Sousa Ribeiro",
+        "registrationTeamId": "59116",
+        "season": 2026,
+        "competition": "Copa do Brasil",
+        "source": "https://www.cbf.com.br/futebol-brasileiro/times/copa-do-brasil/masculino/2026/59116"
+      },
+      {
+        "id": "cbf-699318",
+        "cbfId": "699318",
+        "name": "Jordan Gabriel da Silva Furtado",
+        "alias": "Gabriel Furtado",
+        "registrationTeamId": "59116",
+        "season": 2026,
+        "competition": "Copa do Brasil",
+        "source": "https://www.cbf.com.br/futebol-brasileiro/times/copa-do-brasil/masculino/2026/59116"
+      }
+    ]
+  },
+  {
+    "cbfTeamId": "60415",
+    "sourceSha256": "53c3a1877528e258d62ed15841d63f2540dd2ff749b729bf1db0fff8c7620491",
+    "players": [
+      {
+        "id": "cbf-184704",
+        "cbfId": "184704",
+        "name": "Adalberto dos Santos Rodrigues",
+        "alias": "Adalberto",
+        "registrationTeamId": "60415",
+        "season": 2026,
+        "competition": "Copa do Brasil",
+        "source": "https://www.cbf.com.br/futebol-brasileiro/times/copa-do-brasil/masculino/2026/60415"
+      },
+      {
+        "id": "cbf-313930",
+        "cbfId": "313930",
+        "name": "Marcos Erivelton Araújo de Farias",
+        "alias": "Erivelton",
+        "registrationTeamId": "60415",
+        "season": 2026,
+        "competition": "Copa do Brasil",
+        "source": "https://www.cbf.com.br/futebol-brasileiro/times/copa-do-brasil/masculino/2026/60415"
+      },
+      {
+        "id": "cbf-819624",
+        "cbfId": "819624",
+        "name": "Samuel Filipi Fidelis Peixoto",
+        "alias": "Samuel",
+        "registrationTeamId": "60415",
+        "season": 2026,
+        "competition": "Copa do Brasil",
+        "source": "https://www.cbf.com.br/futebol-brasileiro/times/copa-do-brasil/masculino/2026/60415"
+      },
+      {
+        "id": "cbf-796589",
+        "cbfId": "796589",
+        "name": "Luiz Eduardo de Lima Araújo",
+        "alias": "Dudu",
+        "registrationTeamId": "60415",
+        "season": 2026,
+        "competition": "Copa do Brasil",
+        "source": "https://www.cbf.com.br/futebol-brasileiro/times/copa-do-brasil/masculino/2026/60415"
+      },
+      {
+        "id": "cbf-533165",
+        "cbfId": "533165",
+        "name": "Jonathan Rafael Batista Floriano",
+        "alias": "Noninha",
+        "registrationTeamId": "60415",
+        "season": 2026,
+        "competition": "Copa do Brasil",
+        "source": "https://www.cbf.com.br/futebol-brasileiro/times/copa-do-brasil/masculino/2026/60415"
+      },
+      {
+        "id": "cbf-753173",
+        "cbfId": "753173",
+        "name": "Kaiky Silva Alcantara de Souza",
+        "alias": "Kaiky",
+        "registrationTeamId": "60415",
+        "season": 2026,
+        "competition": "Copa do Brasil",
+        "source": "https://www.cbf.com.br/futebol-brasileiro/times/copa-do-brasil/masculino/2026/60415"
+      },
+      {
+        "id": "cbf-682160",
+        "cbfId": "682160",
+        "name": "Breno Ferreira Aguiar",
+        "alias": "Breninho",
+        "registrationTeamId": "60415",
+        "season": 2026,
+        "competition": "Copa do Brasil",
+        "source": "https://www.cbf.com.br/futebol-brasileiro/times/copa-do-brasil/masculino/2026/60415"
+      },
+      {
+        "id": "cbf-842098",
+        "cbfId": "842098",
+        "name": "Natan Aguiar da Silva",
+        "alias": "Natan",
+        "registrationTeamId": "60415",
+        "season": 2026,
+        "competition": "Copa do Brasil",
+        "source": "https://www.cbf.com.br/futebol-brasileiro/times/copa-do-brasil/masculino/2026/60415"
+      },
+      {
+        "id": "cbf-767644",
+        "cbfId": "767644",
+        "name": "Joao Carlos Andrade Dantas",
+        "alias": "João Andrade",
+        "registrationTeamId": "60415",
+        "season": 2026,
+        "competition": "Copa do Brasil",
+        "source": "https://www.cbf.com.br/futebol-brasileiro/times/copa-do-brasil/masculino/2026/60415"
+      },
+      {
+        "id": "cbf-620084",
+        "cbfId": "620084",
+        "name": "Emmanuel Fernando Vieira Santos",
+        "alias": "Emmanuel",
+        "registrationTeamId": "60415",
+        "season": 2026,
+        "competition": "Copa do Brasil",
+        "source": "https://www.cbf.com.br/futebol-brasileiro/times/copa-do-brasil/masculino/2026/60415"
+      },
+      {
+        "id": "cbf-544544",
+        "cbfId": "544544",
+        "name": "Ifeanyi Valentine Onwudiwe",
+        "alias": "Ifeanyi",
+        "registrationTeamId": "60415",
+        "season": 2026,
+        "competition": "Copa do Brasil",
+        "source": "https://www.cbf.com.br/futebol-brasileiro/times/copa-do-brasil/masculino/2026/60415"
+      },
+      {
+        "id": "cbf-544372",
+        "cbfId": "544372",
+        "name": "Dã Moroni Bravo de Souza",
+        "alias": "Dã Moroni",
+        "registrationTeamId": "60415",
+        "season": 2026,
+        "competition": "Copa do Brasil",
+        "source": "https://www.cbf.com.br/futebol-brasileiro/times/copa-do-brasil/masculino/2026/60415"
+      },
+      {
+        "id": "cbf-677480",
+        "cbfId": "677480",
+        "name": "Mateus Pereira Rodrigues",
+        "alias": "Mateus",
+        "registrationTeamId": "60415",
+        "season": 2026,
+        "competition": "Copa do Brasil",
+        "source": "https://www.cbf.com.br/futebol-brasileiro/times/copa-do-brasil/masculino/2026/60415"
+      },
+      {
+        "id": "cbf-682100",
+        "cbfId": "682100",
+        "name": "João Vitor de Oliveira Dreger",
+        "alias": "JV",
+        "registrationTeamId": "60415",
+        "season": 2026,
+        "competition": "Copa do Brasil",
+        "source": "https://www.cbf.com.br/futebol-brasileiro/times/copa-do-brasil/masculino/2026/60415"
+      },
+      {
+        "id": "cbf-721967",
+        "cbfId": "721967",
+        "name": "João Vitor Soares",
+        "alias": "João Vítor",
+        "registrationTeamId": "60415",
+        "season": 2026,
+        "competition": "Copa do Brasil",
+        "source": "https://www.cbf.com.br/futebol-brasileiro/times/copa-do-brasil/masculino/2026/60415"
+      },
+      {
+        "id": "cbf-730942",
+        "cbfId": "730942",
+        "name": "Kayky da Conceição Silva Viana",
+        "alias": "Café",
+        "registrationTeamId": "60415",
+        "season": 2026,
+        "competition": "Copa do Brasil",
+        "source": "https://www.cbf.com.br/futebol-brasileiro/times/copa-do-brasil/masculino/2026/60415"
+      },
+      {
+        "id": "cbf-924105",
+        "cbfId": "924105",
+        "name": "Guilherme Sampaio dos Santos",
+        "alias": "Guilherme Sampaio",
+        "registrationTeamId": "60415",
+        "season": 2026,
+        "competition": "Copa do Brasil",
+        "source": "https://www.cbf.com.br/futebol-brasileiro/times/copa-do-brasil/masculino/2026/60415"
+      },
+      {
+        "id": "cbf-795947",
+        "cbfId": "795947",
+        "name": "Danilo de Sales",
+        "alias": "Danilinho",
+        "registrationTeamId": "60415",
+        "season": 2026,
+        "competition": "Copa do Brasil",
+        "source": "https://www.cbf.com.br/futebol-brasileiro/times/copa-do-brasil/masculino/2026/60415"
+      },
+      {
+        "id": "cbf-820162",
+        "cbfId": "820162",
+        "name": "Ryan de Freitas Pereira",
+        "alias": "Ryan",
+        "registrationTeamId": "60415",
+        "season": 2026,
+        "competition": "Copa do Brasil",
+        "source": "https://www.cbf.com.br/futebol-brasileiro/times/copa-do-brasil/masculino/2026/60415"
+      },
+      {
+        "id": "cbf-612989",
+        "cbfId": "612989",
+        "name": "Kaike Wallace da Silva",
+        "alias": "Kaike Wallace",
+        "registrationTeamId": "60415",
+        "season": 2026,
+        "competition": "Copa do Brasil",
+        "source": "https://www.cbf.com.br/futebol-brasileiro/times/copa-do-brasil/masculino/2026/60415"
+      }
+    ]
+  }
+]

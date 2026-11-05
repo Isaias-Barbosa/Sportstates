@@ -30,6 +30,13 @@ type Competition = {
 };
 type Player = {
   name: string;
+  fullName?: string;
+  registrations?: {
+    team: string;
+    competition: string;
+    season: number;
+    source: string;
+  }[];
   image: string | null;
   portrait?: { credit: string; source: string; licenseUrl: string } | null;
   position: string;
@@ -221,6 +228,9 @@ export default function PlayerPage() {
             <div className="player-identity">
               <p className="eyebrow">Perfil do jogador</p>
               <h1>{data.name}</h1>
+              {data.fullName && data.fullName !== data.name && (
+                <p className="player-position">{data.fullName}</p>
+              )}
               {data.position && (
                 <p className="player-position">{data.position}</p>
               )}
@@ -242,6 +252,36 @@ export default function PlayerPage() {
           </header>
 
           <CompetitionStats key={id} data={data} />
+
+          {!!data.registrations?.length && (
+            <section
+              className="panel player-card"
+              aria-labelledby="player-registration-title"
+            >
+              <h2 id="player-registration-title">
+                <Shield aria-hidden="true" /> Inscrições na CBF
+              </h2>
+              <ul className="player-profile-links">
+                {data.registrations.map((registration) => (
+                  <li key={registration.source}>
+                    <a
+                      href={registration.source}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <span className="player-honour">
+                        <strong>{registration.team}</strong>
+                        <small>
+                          {registration.competition} · {registration.season}
+                        </small>
+                      </span>
+                      <ExternalLink size={16} aria-hidden="true" />
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
 
           <section
             className="panel player-card"

@@ -42,6 +42,9 @@ def normalize(game, match_id):
                if doc["title"] == "Súmula" and REPORT.fullmatch(doc["url"])]
     if len(reports) != 1:
         raise ValueError("Súmula oficial ausente ou ambígua")
+    documents = [doc for doc in game["documentos"]
+                 if doc["title"] in ("Súmula", "Adendo do Jogo") and
+                 re.fullmatch(r"https://conteudo\.cbf\.com\.br/sumulas/2026/[0-9]+(?:se|ad)\.pdf", doc["url"])]
     kickoff = datetime.strptime(game["data"].strip() + " " + game["hora"], "%d/%m/%Y %H:%M")
     if kickoff.year != 2026:
         raise ValueError("Data fora da temporada")
@@ -107,7 +110,7 @@ def normalize(game, match_id):
         raise ValueError("Gols registrados divergem do placar")
     return {"cbfMatchId": match_id, "reference": int(game["num_jogo"]), "league": "bra.copa_do_brazil",
             "kickoff": kickoff.replace(tzinfo=ZoneInfo("America/Sao_Paulo")).isoformat(),
-            "sourceUrl": MATCH_BASE + match_id, "reportUrl": reports[0], "teams": teams,
+            "sourceUrl": MATCH_BASE + match_id, "reportUrl": reports[0], "documents": documents, "teams": teams,
             "players": list(athletes.values()), "cards": cards, "unmappedCards": unmapped_cards,
             "requiresReview": True, "identityNamespace": "cbf",
             "warnings": ["Conferir atletas, substituições e cartões com a súmula antes da publicação.",
