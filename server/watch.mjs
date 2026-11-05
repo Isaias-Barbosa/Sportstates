@@ -122,7 +122,23 @@ function guide(
     sourceUrl: url,
   };
 }
+const EUROPA_REVIEWED_AT = '2026-11-05';
+const EUROPA_UEFA_SOURCE = 'https://pt.uefa.com/uefaeuropaleague/news/028d-1af12a520f8c-171f98d1c49a-1000--onde-ver-a-europa-league-parceiros-de-tv-streams-em-directo/';
+const europaUefaGuide = guide('uefa-europa-guide','UEFA · parceiros de transmissão',EUROPA_UEFA_SOURCE,'Consulte os parceiros brasileiros e a edição da competição no guia oficial da UEFA.');
+const europaCaze = {id:'cazetv',name:'CazéTV · YouTube',badge:'CAZÉ',url:'https://www.youtube.com/@CazeTV/streams',access:'free',kind:'platform',sourceUrl:EUROPA_UEFA_SOURCE,note:'Parceira da Europa League no Brasil em 2026/27. Jogos selecionados podem estar em canais parceiros; confirme o confronto na programação.'};
+const cnnEuropa = {...guide('cnnesportes','CNN Esportes · programação','https://www.cnnbrasil.com.br/tudo-sobre/europa-league/','CNN Esportes e Itatiaia anunciam jogos selecionados com imagens no YouTube. Consulte a programação deste confronto.'),badge:'CNN',access:'free',sourceUrl:'https://www.cnnbrasil.com.br/esportes/futebol/futebol-internacional/cnn-brasil-e-itatiaia-transmitem-bayer-leverkusen-x-marseille-saiba-mais/'};
+const itatiaiaEuropa = {...guide('itatiaia','Itatiaia · programação','https://www.itatiaia.com.br/esportes/futebol/futebol-internacional/liga-europa/','Transmissões selecionadas com imagens em parceria com CNN Esportes. Confira a partida anunciada, a data e o canal no YouTube.'),badge:'ITA',access:'free',sourceUrl:'https://www.itatiaia.com.br/esportes/futebol/futebol-internacional/liga-europa/omonia-nicosia-x-benfica-assista-ao-vivo-e-com-imagens-a-transmissao-da-itatiaia/'};
+const bandSportsGuide={id:'bandsports',name:'BandSports',badge:'BAND',url:'https://www.band.com.br/programacao',access:'check',kind:'guide',note:'Confira a grade do BandSports na sua operadora. O link abre a programação geral do grupo Band.',sourceUrl:'https://www.band.com.br/programacao'};
+const isEuropa2026 = match => match.sport==='soccer'&&match.league==='uefa.europa'&&Date.parse(match.date)>=Date.UTC(2026,6,1)&&Date.parse(match.date)<Date.UTC(2027,6,1);
+const CHAMPIONS_UEFA_SOURCE='https://pt.uefa.com/uefachampionsleague/news/0257-0e9532e6bd9d-f0435ad3b137-1000--onde-ver-os-jogos/';
+const CONFERENCE_UEFA_SOURCE='https://pt.uefa.com/uefaconferenceleague/news/0285-18f7d75f0a98-0bffb619ddd9-1000--onde-ver-a-uefa-conference-league-parceiros-de-tv-streams-/';
+const championsUefaGuide=guide('uefa-champions-guide','UEFA · parceiros de transmissão',CHAMPIONS_UEFA_SOURCE,'Consulte os parceiros brasileiros e a edição da Champions League no guia oficial da UEFA.');
+const conferenceUefaGuide=guide('uefa-conference-guide','UEFA · parceiros de transmissão',CONFERENCE_UEFA_SOURCE,'Consulte os parceiros brasileiros e a edição da Conference League no guia oficial da UEFA.');
+const UEFA_GUIDES={'uefa.europa':europaUefaGuide,'uefa.champions':championsUefaGuide,'uefa.europa.conf':conferenceUefaGuide};
+const isUefa2026=match=>match.sport==='soccer'&&Object.hasOwn(UEFA_GUIDES,match.league)&&Date.parse(match.date)>=Date.UTC(2026,6,1)&&Date.parse(match.date)<Date.UTC(2027,6,1);
 export const WATCH_DIRECTORY = {
+  'soccer/uefa.europa':[europaCaze,cnnEuropa,itatiaiaEuropa,europaUefaGuide],
+  'soccer/uefa.europa.conf':[{...europaCaze,sourceUrl:CONFERENCE_UEFA_SOURCE,note:'Parceira da Conference League no Brasil em 2026/27. Confira o confronto anunciado na programação da CazéTV; este guia não confirma um jogo individual.'},conferenceUefaGuide],
   "soccer/bra.1": [
     {
       id: "premiere",
@@ -166,9 +182,12 @@ export const WATCH_DIRECTORY = {
       url: "https://www.hbomax.com/br/pt",
       access: "subscription",
       kind: "platform",
-      note: "Abra a área de esportes e confirme a partida disponível.",
-      sourceUrl: "https://help.hbomax.com/br/Answer/Detail/000002560",
+      note: "TNT Sports/HBO Max consta no guia da UEFA para o Brasil em 2026/27. Abra a área de esportes e confirme a partida e o plano disponível.",
+      sourceUrl: CHAMPIONS_UEFA_SOURCE,
     },
+    {...guide('tnt','TNT Sports · programação','https://tntsports.com.br/','Confira qual canal e plataforma da TNT Sports exibirá este confronto. O guia da competição não confirma a partida.'),badge:'TNT',access:'check',sourceUrl:CHAMPIONS_UEFA_SOURCE},
+    {id:'sbt',name:'SBT',url:'https://www.sbt.com.br/',badge:'SBT',access:'free',kind:'platform',sourceUrl:CHAMPIONS_UEFA_SOURCE,note:'Parceiro da Champions League no Brasil em 2026/27. Jogos selecionados na TV aberta; confirme a partida na programação do SBT.'},
+    championsUefaGuide,
   ],
   "basketball/nba": [
     {
@@ -268,6 +287,7 @@ const goat = {id:'goat',name:'Canal GOAT · YouTube',badge:'GOAT',url:'https://w
 WATCH_DIRECTORY['soccer/ksa.1'] = [goat,guide('goatguide','Programação oficial GOAT','https://canalgoat.com.br/transmissoes/')];
 // Tennis TV excludes Grand Slams and other tours. A tournament must be explicit.
 export function competitionWatchLinks(match) {
+ if(match.sport==='soccer'&&Object.hasOwn(UEFA_GUIDES,match.league)&&!isUefa2026(match))return [UEFA_GUIDES[match.league]];
  const links = [...(WATCH_DIRECTORY[match.sport+'/'+match.league] || [])];
  if (match.sport === "soccer" && AMERICAS_FOOTBALL_COMPETITIONS.has(match.league) && match.home?.name && match.away?.name) {
   const date = Number.isFinite(Date.parse(match.date))
@@ -292,6 +312,7 @@ export function competitionWatchLinks(match) {
 }
 
 const HOSTS = new Set([
+  'pt.uefa.com','www.cnnbrasil.com.br','www.itatiaia.com.br','www.band.com.br',
   "www.atptour.com", "www.tennistv.com", "www.worldtabletennis.com", "canalgoat.com.br",
   "www.xsports.com.br", "www.espn.com.br", "www.espn.com", "www.youtube.com", "ge.globo.com", "globoplay.globo.com", "www.band.uol.com.br", "www.sbt.com.br", "record.r7.com", "tntsports.com.br", "qazsporttv.kz", "www.peacocktv.com", "www.cbssports.com",
   "www.disneyplus.com",
@@ -324,6 +345,9 @@ export function safeWatchUrl(value) {
   }
 }
 export const BRAZIL_CHANNEL_GUIDES = [
+  {...cnnEuropa,name:'CNN Esportes',url:'https://www.cnnbrasil.com.br/esportes/'},
+  {...itatiaiaEuropa,name:'Itatiaia',url:'https://www.itatiaia.com.br/esportes/'},
+  bandSportsGuide,
   { ...WATCH_DIRECTORY["soccer/uefa.champions"][0], badge: "HBO" },
   ...[1, 2, 3, 4, 5, 6].map(n => ({ id: n === 1 ? 'espn' : `espn${n}`, name: n === 1 ? 'ESPN' : `ESPN ${n}`, url: 'https://www.espn.com.br/watch/', badge: n === 1 ? 'ESPN' : `E${n}` })),
   ...[1, 2, 3].map(n => ({ id: `sportv${n}`, name: n === 1 ? 'sportv' : `sportv ${n}`, url: 'https://ge.globo.com/sportv/', badge: `S${n}` })),
@@ -339,6 +363,9 @@ export const BRAZIL_CHANNEL_GUIDES = [
   { id: 'tnt', name: 'TNT Sports', url: 'https://tntsports.com.br/', badge: 'TNT' },
 ].map(l => ({ access: 'subscription', ...l, country: 'BR', kind: 'guide', note: 'Consulte a programação oficial. A presença neste guia não confirma a transmissão deste jogo.', sourceUrl: l.url }));
 const CHANNELS = [
+  {pattern:/^CNN(?:\s*(?:Brasil|Esportes))?$/i,...BRAZIL_CHANNEL_GUIDES.find(link=>link.id==='cnnesportes'),name:'CNN Esportes'},
+  {pattern:/^(?:R[aá]dio\s+)?Itatiaia(?:\s+Esportes?)?$/i,...BRAZIL_CHANNEL_GUIDES.find(link=>link.id==='itatiaia'),name:'Itatiaia'},
+  {pattern:/^Band\s*Sports$/i,...bandSportsGuide},
   {pattern: /^GOAT$/i, ...goat},
   ...[1,2,3].map(n => ({pattern:new RegExp(`^sportv\\s*${n === 1 ? '1?' : n}$`,'i'),id:`sportv${n}`,name:n===1?'sportv':`sportv ${n}`,badge:`S${n}`,url:'https://globoplay.globo.com/',access:'subscription'})),
   { pattern: /^globoplay$/i, id: 'globoplay', name: 'Globoplay', url: 'https://globoplay.globo.com/', badge: 'Gplay', access: 'check' },
@@ -402,7 +429,7 @@ export function getWatchOptions(match, competition = {}) {
     };
   if (channels.length) return {
     ...common, country: "BR", regionLabel: "Brasil", scope: "match", confirmedForMatch: true,
-    reviewedAt: WATCH_REVIEWED_AT, links: channels,
+    reviewedAt: isUefa2026(match) ? EUROPA_REVIEWED_AT : WATCH_REVIEWED_AT, links: channels,
     message: "Canais informados pela fonte para esta partida no Brasil. A programação pode mudar e exigir assinatura.",
   };
   const links = competitionWatchLinks(match)
@@ -414,9 +441,12 @@ export function getWatchOptions(match, competition = {}) {
     regionLabel: "Brasil",
     scope: "competition",
     confirmedForMatch: false,
-    reviewedAt: WATCH_REVIEWED_AT,
+    reviewedAt: isUefa2026(match) ? EUROPA_REVIEWED_AT : WATCH_REVIEWED_AT,
     links,
-    message: links.length
+    message: isEuropa2026(match) ? 'CazéTV é a parceira listada pela UEFA no Brasil. CNN Esportes e Itatiaia anunciam confrontos selecionados. Consulte a programação: esses links não confirmam este jogo.'
+      : isUefa2026(match) ? (match.league==='uefa.champions'
+        ? 'TNT Sports/HBO Max e SBT são os parceiros listados pela UEFA no Brasil em 2026/27. Confirme este jogo na programação de cada emissora.'
+        : 'CazéTV é a parceira listada pela UEFA no Brasil em 2026/27. Confirme este jogo na programação; este guia não confirma a transmissão individual.') : links.length
       ? "Opções oficiais da competição no Brasil. Confirme este jogo na programação; a transmissão pode exigir assinatura e variar por região."
       : "Ainda não temos uma opção oficial verificada para esta competição no Brasil.",
   };
