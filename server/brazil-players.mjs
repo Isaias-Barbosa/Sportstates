@@ -1,4 +1,5 @@
 import { neon } from "@neondatabase/serverless";
+import profileReferences from "../data/player-profile-references.json" with { type: "json" };
 import { dayInBrazil } from "./data.mjs";
 
 export const playerLeagues = {
@@ -8,6 +9,16 @@ export const playerLeagues = {
   "esp.1": "LaLiga",
   "ger.1": "Bundesliga",
 };
+export const playerCompetitions = {
+  ...playerLeagues,
+  "bra.copa_do_brazil": "Copa do Brasil",
+  "conmebol.libertadores": "Copa Libertadores",
+};
+const completedMatch = (type) =>
+  type?.completed === true &&
+  ["STATUS_FULL_TIME", "STATUS_FINAL_PEN", "STATUS_FINAL_AET"].includes(
+    type.name,
+  );
 const europeanLeagues = new Set(["eng.1", "esp.1", "ger.1"]);
 
 export function playerSeason(league, date = new Date()) {
@@ -65,8 +76,7 @@ export function parseBrazilPlayerMatch(raw, league, event) {
     String(header?.id) !== event ||
     header?.league?.slug !== league ||
     !Number.isInteger(header?.season?.year) ||
-    match?.status?.type?.completed !== true ||
-    match.status.type.name !== "STATUS_FULL_TIME" ||
+    !completedMatch(match?.status?.type) ||
     !Number.isFinite(Date.parse(match.date)) ||
     rosters?.length !== 2
   )
@@ -171,9 +181,7 @@ export async function syncBrazilPlayerDay(
     throw new Error("Agenda da ESPN indisponível.");
   const events = scoreboard.events
     .filter(
-      (event) =>
-        validPlayerId(event.id) &&
-        event.status?.type?.name === "STATUS_FULL_TIME",
+      (event) => validPlayerId(event.id) && completedMatch(event.status?.type),
     )
     .map((event) => event.id);
   const saved = force
@@ -267,6 +275,23 @@ export async function readBrazilTeamPlayers(league, team, season) {
   };
 }
 
+export function enrichPlayerProfile(player, id) {
+  const reference = profileReferences[id];
+  if (!reference) return player;
+  const portrait = player.portrait ?? reference.portrait ?? null;
+  return {
+    ...player,
+    portrait,
+    image: portrait?.url ?? player.image ?? null,
+    previousClubs: player.previousClubs?.length
+      ? player.previousClubs
+      : (reference.previousClubs ?? []),
+    awards: player.awards?.length ? player.awards : (reference.awards ?? []),
+    teamHonours: player.teamHonours ?? reference.teamHonours ?? [],
+    transfers: player.transfers ?? reference.transfers ?? [],
+  };
+}
+
 export async function readBrazilPlayer(id) {
   const sql = store();
   const filter = JSON.stringify([{ id }]);
@@ -282,6 +307,9 @@ export async function readBrazilPlayer(id) {
   );
   if (!player) return null;
   const details = profiles[0]?.details ?? {};
+  const savedImage = rosters
+    .find((row) => row.players.some((entry) => entry.id === id && entry.image))
+    ?.players.find((entry) => entry.id === id && entry.image)?.image;
   const clubs = new Map();
   const competitions = new Map();
   for (const match of matches) {
@@ -301,42 +329,57 @@ export async function readBrazilPlayer(id) {
       });
     competitions.get(key).rows.push(entry);
   }
-  return {
+  return enrichPlayerProfile(
+    {
+      id,
+      name: player.name,
+      image: details.portrait?.url ?? player.image ?? savedImage ?? null,
+      portrait: details.portrait ?? null,
+      position: player.position,
+      memberships: rosters
+        .filter((row) => row.season === playerSeason(row.league))
+        .map((row) => ({
+          id: row.team,
+          name: row.name,
+          competition: playerLeagues[row.league],
+          season: row.season,
+          seasonLabel: seasonLabel(row.league, row.season),
+        })),
+      clubs: [...clubs.values()].slice(0, 8),
+      previousClubs: details.previousClubs ?? [],
+      awards: details.awards ?? [],
+      teamHonours: details.teamHonours,
+      transfers: details.transfers,
+      marketValue: details.marketValue ?? null,
+      competitions: [...competitions.values()].map(
+        ({ league, season, rows }) => ({
+          league,
+          name: playerCompetitions[league],
+          season,
+          seasonLabel: seasonLabel(league, season),
+          stats: total(rows),
+        }),
+      ),
+    },
     id,
-    name: player.name,
-    image: player.image,
-    position: player.position,
-    memberships: rosters
-      .filter((row) => row.season === playerSeason(row.league))
-      .map((row) => ({
-        id: row.team,
-        name: row.name,
-        competition: playerLeagues[row.league],
-        season: row.season,
-        seasonLabel: seasonLabel(row.league, row.season),
-      })),
-    clubs: [...clubs.values()].slice(0, 8),
-    previousClubs: details.previousClubs ?? [],
-    awards: details.awards ?? [],
-    marketValue: details.marketValue ?? null,
-    competitions: [...competitions.values()].map(
-      ({ league, season, rows }) => ({
-        league,
-        name: playerLeagues[league],
-        season,
-        seasonLabel: seasonLabel(league, season),
-        stats: total(rows),
-      }),
-    ),
-  };
+  );
 }
 
 export async function saveBrazilPlayerProfile(
   id,
-  { marketValue = null, awards = [], previousClubs = [] },
+  {
+    marketValue = null,
+    awards = [],
+    previousClubs = [],
+    teamHonours,
+    transfers,
+    portrait,
+  },
 ) {
   const source = (value) =>
     typeof value === "string" && /^https:\/\/[^\s]+$/.test(value);
+  const nonempty = (value) =>
+    typeof value === "string" && value.trim().length > 0;
   if (
     !validPlayerId(id) ||
     (marketValue &&
@@ -349,6 +392,34 @@ export async function saveBrazilPlayerProfile(
     awards.length > 40 ||
     !Array.isArray(previousClubs) ||
     previousClubs.length > 20 ||
+    (teamHonours !== undefined &&
+      (!Array.isArray(teamHonours) ||
+        teamHonours.length > 60 ||
+        teamHonours.some(
+          (item) =>
+            !nonempty(item?.name) ||
+            !nonempty(item.team) ||
+            !nonempty(item.season) ||
+            !source(item.source),
+        ))) ||
+    (portrait != null &&
+      (!source(portrait.url) ||
+        !source(portrait.source) ||
+        !source(portrait.licenseUrl) ||
+        !nonempty(portrait.credit))) ||
+    (transfers !== undefined &&
+      (!Array.isArray(transfers) ||
+        transfers.length > 60 ||
+        transfers.some(
+          (entry) =>
+            !/^\d{4}-\d{2}-\d{2}$/.test(entry?.date) ||
+            !Number.isFinite(Date.parse(entry.date)) ||
+            new Date(entry.date).toISOString().slice(0, 10) !== entry.date ||
+            !nonempty(entry.from) ||
+            !nonempty(entry.to) ||
+            !["transfer", "loan", "return"].includes(entry.kind) ||
+            !source(entry.source),
+        ))) ||
     [...awards, ...previousClubs].some(
       (item) =>
         typeof item?.name !== "string" ||
@@ -361,6 +432,6 @@ export async function saveBrazilPlayerProfile(
     );
   const sql = store();
   await sql`INSERT INTO sport_brazil_player_profiles (id,details)
-    VALUES (${id},${JSON.stringify({ marketValue, awards, previousClubs })}::jsonb)
-    ON CONFLICT (id) DO UPDATE SET details=EXCLUDED.details`;
+    VALUES (${id},${JSON.stringify({ marketValue, awards, previousClubs, teamHonours, portrait, transfers })}::jsonb)
+    ON CONFLICT (id) DO UPDATE SET details=sport_brazil_player_profiles.details || EXCLUDED.details`;
 }

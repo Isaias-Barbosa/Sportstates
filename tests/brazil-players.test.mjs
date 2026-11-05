@@ -1,6 +1,9 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { parseBrazilPlayerMatch, playerSeason } from "../server/brazil-players.mjs";
+import {
+  parseBrazilPlayerMatch,
+  playerSeason,
+} from "../server/brazil-players.mjs";
 
 const stats = (fields) =>
   Object.entries(fields).map(([name, value]) => ({ name, value }));
@@ -62,6 +65,22 @@ test("European player seasons cross the calendar year", () => {
     assert.equal(playerSeason(league, "2027-07-01T12:00:00Z"), 2027);
   }
   assert.equal(playerSeason("bra.1", "2027-01-01T12:00:00Z"), 2027);
+});
+
+test("cup statistics accept completed extra time and shootouts, but exclude forfeits", () => {
+  for (const league of ["bra.copa_do_brazil", "conmebol.libertadores"]) {
+    for (const status of [
+      "STATUS_FINAL_AET",
+      "STATUS_FINAL_PEN",
+      "STATUS_FORFEIT",
+    ]) {
+      const raw = fixture(league);
+      raw.header.competitions[0].status.type.name = status;
+      const result = parseBrazilPlayerMatch(raw, league, "100");
+      assert.equal(Boolean(result), status !== "STATUS_FORFEIT");
+      if (result) assert.equal(result.players[0].stats.goals, 1);
+    }
+  }
 });
 
 test("rejects unfinished, foreign, incomplete and duplicated match data", () => {

@@ -16,23 +16,47 @@ test("only preview can use public player data when the database tables are missi
     neonConfig.fetchFunction = originalNeonFetch;
   });
   process.env.DATABASE_URL = "postgresql://test:test@isolated.invalid/test";
-  neonConfig.fetchFunction = async () => Response.json({
-    code: "42P01", message: 'relation "sport_brazil_rosters" does not exist',
-  }, { status: 400 });
+  neonConfig.fetchFunction = async () =>
+    Response.json(
+      {
+        code: "42P01",
+        message: 'relation "sport_brazil_rosters" does not exist',
+      },
+      { status: 400 },
+    );
   const calls = [];
   globalThis.fetch = async (url) => {
     calls.push(url.href);
     return Response.json({ sample: true });
   };
   process.env.VERCEL_ENV = "preview";
-  assert.deepEqual(await route(new URL("http://localhost/api/player?id=268476")), [200, { sample: true }]);
-  assert.deepEqual(await route(new URL("http://localhost/api/team-player-stats?id=3458&league=bra.1")), [200, { sample: true }]);
+  assert.deepEqual(
+    await route(new URL("http://localhost/api/player?id=268476")),
+    [200, { sample: true }],
+  );
+  const [kaioStatus, kaio] = await route(
+    new URL("http://localhost/api/player?id=280978"),
+  );
+  assert.equal(kaioStatus, 200);
+  assert.equal(kaio.transfers.length, 3);
+  assert.equal(kaio.teamHonours.length, 2);
+  assert.deepEqual(
+    await route(
+      new URL("http://localhost/api/team-player-stats?id=3458&league=bra.1"),
+    ),
+    [200, { sample: true }],
+  );
   process.env.VERCEL_ENV = "production";
-  assert.deepEqual(await route(new URL("http://localhost/api/player?id=268476")), [
-    503, { error: "Estatísticas de jogadores temporariamente indisponíveis." },
-  ]);
+  assert.deepEqual(
+    await route(new URL("http://localhost/api/player?id=268476")),
+    [
+      503,
+      { error: "Estatísticas de jogadores temporariamente indisponíveis." },
+    ],
+  );
   assert.deepEqual(calls, [
     "https://sportstates.vercel.app/api/player?id=268476",
+    "https://sportstates.vercel.app/api/player?id=280978",
     "https://sportstates.vercel.app/api/team-player-stats?id=3458&league=bra.1",
   ]);
 });

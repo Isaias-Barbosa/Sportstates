@@ -1,0 +1,69 @@
+{
+  "280978": {
+    "transfers": [
+      {
+        "date": "2024-07-01",
+        "from": "Juventus",
+        "to": "Cruzeiro",
+        "kind": "transfer",
+        "source": "https://www.juventus.com/images/image/private/fl_attachment/dev/dkhkn5fs0onmy2zr4nbd.pdf"
+      },
+      {
+        "date": "2023-08-29",
+        "from": "Juventus",
+        "to": "Frosinone",
+        "kind": "loan",
+        "source": "https://www.juventus.com/en/news/articles/kaio-jorge-joins-frosinone-on-loan"
+      },
+      {
+        "date": "2021-08-16",
+        "from": "Santos",
+        "to": "Juventus",
+        "kind": "transfer",
+        "source": "https://www.juventus.com/images/image/private/fl_attachment/dev/aslmtw7v9fizztbvf5l8.pdf"
+      }
+    ],
+    "teamHonours": [
+      {
+        "name": "Campeonato Mineiro",
+        "team": "Cruzeiro",
+        "season": "2026",
+        "source": "https://atletico.com.br/atletico-perde-a-final-do-mineiro-de-2026/"
+      },
+      {
+        "name": "Copa do Mundo FIFA Sub-17",
+        "team": "Brasil Sub-17",
+        "season": "2019",
+        "source": "https://www.fifa.com/en/articles/kaio-jorge-brazil-senior-selection-carlo-ancelotti"
+      }
+    ],
+    "awards": [
+      {
+        "name": "Troféu Roberto Dinamite · artilheiro do Brasileirão 2025",
+        "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/copa-verde/profissional/brasileirao-betano-confira-os-vencedores-do-premio-brasileirao-2025"
+      },
+      {
+        "name": "Artilheiro da Copa do Brasil 2025 (empatado)",
+        "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/noticias-supercopa/a/kaio-jorge-e-artilheiro-do-brasileirao-e-da-copa-do-brasil-e-repete-marca-historica"
+      },
+      {
+        "name": "Chuteira de Bronze · Copa do Mundo FIFA Sub-17 2019",
+        "source": "https://inside.fifa.com/news/brazilians-headline-the-award-winners-3057636"
+      }
+    ],
+    "previousClubs": [
+      {
+        "name": "Frosinone",
+        "source": "https://jacademy.juventus.com/en/news/articles/kaio-jorge-joins-cruzeiro"
+      },
+      {
+        "name": "Juventus",
+        "source": "https://jacademy.juventus.com/en/news/articles/kaio-jorge-joins-cruzeiro"
+      },
+      {
+        "name": "Santos",
+        "source": "https://www.cbf.com.br/selecao-brasileira/noticias/copa-do-brasil/sub-17/kaio-jorge-comemora-convocacao-para-a-selecao-sempre-sonhei-com-esse-momento"
+      }
+    ]
+  }
+}
