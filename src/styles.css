@@ -2937,6 +2937,9 @@ body.club-page-active { background:var(--club-page-bg, var(--canvas)); backgroun
   font-weight: 800;
 }
 .player-portrait img { width: 100%; height: 100%; object-fit: cover; }
+.player-portrait-frame { flex: none; margin: 0; width: clamp(4.5rem, 14vw, 8rem); }
+.player-portrait-credit { color: var(--muted); font-size: .75rem; margin-top: .35rem; overflow-wrap: anywhere; }
+.player-portrait-credit a { text-decoration: underline; }
 .player-identity { min-width: 0; }
 .player-identity h1 { margin: .3rem 0; font-size: clamp(1.75rem, 5vw, 3.5rem); line-height: 1.06; overflow-wrap: anywhere; }
 .player-position, .player-card-note { color: var(--muted); }
@@ -2949,16 +2952,20 @@ body.club-page-active { background:var(--club-page-bg, var(--canvas)); backgroun
 .player-card-heading { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: .75rem; }
 .player-card h2 { display: flex; align-items: center; gap: .55rem; margin: 0; font-size: clamp(1.12rem, 2.5vw, 1.4rem); }
 .player-card h2 svg { flex: none; width: 1.15em; height: 1.15em; color: var(--green); }
-.player-competition-filter { display: grid; gap: .3rem; max-width: 100%; color: var(--muted); font-size: .85rem; }
-.player-competition-filter select {
-  width: 100%;
-  padding: .6rem;
+.player-competition-options { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr)); gap: .55rem; margin-top: 1rem; }
+.player-competition-options button {
+  display: grid;
+  gap: .35rem;
+  text-align: left;
+  padding: .7rem;
   border: 1px solid var(--border);
   border-radius: .5rem;
   background: var(--panel);
   color: var(--text);
   font: inherit;
 }
+.player-competition-options button[aria-pressed="true"] { border-color: var(--green); background: var(--green-glow); }
+.player-competition-options small { color: var(--muted); }
 .player-competition-name { margin: .8rem 0; color: var(--muted); }
 .player-profile-metrics { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: .55rem; margin: 0; }
 .player-profile-metrics > div { display: grid; gap: .4rem; padding: .75rem; border: 1px solid var(--border); border-radius: .65rem; background: var(--surface); }
@@ -2976,6 +2983,8 @@ body.club-page-active { background:var(--club-page-bg, var(--canvas)); backgroun
 .player-profile-links a { display: flex; align-items: center; justify-content: space-between; gap: .5rem; padding: .65rem 0; }
 .player-profile-links a:hover { color: var(--green); }
 .player-profile-links svg { flex: none; }
+.player-honour { display: grid; gap: .2rem; }
+.player-honour small { color: var(--muted); }
 .player-market-value { margin: .75rem 0 .35rem; font-size: 1.65rem; font-weight: 800; }
 @media (max-width: 640px) {
   .player-profile-hero { align-items: flex-start; }

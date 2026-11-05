@@ -1,6 +1,7 @@
 import { readFile } from "node:fs/promises";
 import {
   playerLeagues,
+  playerCompetitions,
   registerBrazilSquads,
   saveBrazilPlayerProfile,
   syncBrazilPlayerDay,
@@ -22,7 +23,7 @@ if (action === "profile" && league && from) {
   console.log({ league, teams: await registerBrazilSquads(league) });
 } else if (
   action === "matches" &&
-  Object.hasOwn(playerLeagues, league) &&
+  Object.hasOwn(playerCompetitions, league) &&
   day(from) &&
   day(to) &&
   Date.parse(to) >= Date.parse(from) &&
@@ -43,7 +44,7 @@ if (action === "profile" && league && from) {
   }
 } else {
   console.error(
-    `Use rosters <liga>, matches <liga> <início> [fim] [--force] ou profile <id> <arquivo.json>. Ligas: ${Object.keys(playerLeagues).join(", ")}.`,
+    `Use rosters <liga>, matches <competição> <início> [fim] [--force] ou profile <id> <arquivo.json>. Competições: ${Object.keys(playerCompetitions).join(", ")}.`,
   );
   process.exitCode = 1;
 }
