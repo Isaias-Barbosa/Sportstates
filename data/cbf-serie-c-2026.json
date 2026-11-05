@@ -1,0 +1,5533 @@
+{
+  "season": 2026,
+  "league": "bra.3",
+  "collectedAt": "2026-11-05T11:48:27.647055+00:00",
+  "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/tabelas/campeonato-brasileiro/serie-c/2026",
+  "wikipedia": {
+    "url": "https://pt.wikipedia.org/wiki/Campeonato_Brasileiro_de_Futebol_de_2026_-_S%C3%A9rie_C",
+    "sha256": "9925caef597846ce5f62851e416817f5071bc5d0ad4b30a642a3bb8bc647be92"
+  },
+  "clubs": [
+    {
+      "id": "cbf-20043",
+      "cbfId": "20043",
+      "name": "Maranhão",
+      "sport": "soccer",
+      "league": "bra.3",
+      "logo": "https://conteudo.cbf.com.br/clubes/20043/escudo.jpg",
+      "source": "https://www.cbf.com.br/futebol-brasileiro/tabelas/campeonato-brasileiro/serie-c/2026",
+      "venues": [
+        "Castelão - Sao Luis - MA",
+        "Arena Barra FC - Itajai - SC",
+        "Carlos Zamith - Manaus - AM",
+        "Domingão - Horizonte - CE",
+        "Batistão - Aracaju - SE",
+        "Jonas Duarte - Anapolis - GO",
+        "Willie Davids - Maringa - PR",
+        "Novelli Junior - Itu - SP",
+        "Fonte Luminosa - Araraquara - SP",
+        "Arena Pernambuco - São Lourenço da Mata - PE",
+        "Orlando Scarpelli - Florianopolis - SC"
+      ],
+      "displayName": "Maranhão",
+      "city": "São Luís",
+      "state": "MA",
+      "stadium": "Castelão",
+      "wikiUrl": "https://pt.wikipedia.org/wiki/Maranhão_Atlético_Clube"
+    },
+    {
+      "id": "cbf-20024",
+      "cbfId": "20024",
+      "name": "Guarani",
+      "sport": "soccer",
+      "league": "bra.3",
+      "logo": "https://conteudo.cbf.com.br/clubes/20024/escudo.jpg",
+      "source": "https://www.cbf.com.br/futebol-brasileiro/tabelas/campeonato-brasileiro/serie-c/2026",
+      "venues": [
+        "Castelão - Sao Luis - MA",
+        "Brinco de Ouro - Campinas - SP",
+        "Fonte Luminosa - Araraquara - SP",
+        "Willie Davids - Maringa - PR",
+        "Arena Barra FC - Itajai - SC",
+        "Batistão - Aracaju - SE",
+        "Orlando Scarpelli - Florianopolis - SC",
+        "Curuzu - Belem - PA",
+        "Jonas Duarte - Anapolis - GO",
+        "Almeidão - Joao Pessoa - PB"
+      ],
+      "displayName": "Guarani",
+      "city": "Campinas",
+      "state": "SP",
+      "stadium": "Brinco de Ouro",
+      "wikiUrl": "https://pt.wikipedia.org/wiki/Guarani_Futebol_Clube"
+    },
+    {
+      "id": "cbf-63843",
+      "cbfId": "63843",
+      "name": "Brusque",
+      "sport": "soccer",
+      "league": "bra.3",
+      "logo": "https://conteudo.cbf.com.br/clubes/63843/escudo.jpg",
+      "source": "https://www.cbf.com.br/futebol-brasileiro/tabelas/campeonato-brasileiro/serie-c/2026",
+      "venues": [
+        "Augusto Bauer - Brusque - SC",
+        "Mangueirão - Belem - PA",
+        "Curuzu - Belem - PA",
+        "Willie Davids - Maringa - PR",
+        "Fonte Luminosa - Araraquara - SP",
+        "Raulino de Oliveira - Volta Redonda - RJ",
+        "Major Levy Sobrinho - Limeira - SP",
+        "Arena Barra FC - Itajai - SC",
+        "Almeidão - Joao Pessoa - PB",
+        "Etelvino Mendonça - Itabaiana - SE",
+        "Castelão - Sao Luis - MA",
+        "Brinco de Ouro - Campinas - SP"
+      ],
+      "displayName": "Brusque",
+      "city": "Brusque",
+      "state": "SC",
+      "stadium": "Arena Simon",
+      "wikiUrl": "https://pt.wikipedia.org/wiki/Brusque_Futebol_Clube"
+    },
+    {
+      "id": "cbf-20062",
+      "cbfId": "20062",
+      "name": "Caxias",
+      "sport": "soccer",
+      "league": "bra.3",
+      "logo": "https://conteudo.cbf.com.br/clubes/20062/escudo.jpg",
+      "source": "https://www.cbf.com.br/futebol-brasileiro/tabelas/campeonato-brasileiro/serie-c/2026",
+      "venues": [
+        "Augusto Bauer - Brusque - SC",
+        "Centenário - Caxias do Sul - RS",
+        "Raulino de Oliveira - Volta Redonda - RJ",
+        "Carlos Zamith - Manaus - AM",
+        "Arena Barra FC - Itajai - SC",
+        "Castelão - Sao Luis - MA",
+        "Brinco de Ouro - Campinas - SP",
+        "Fonte Luminosa - Araraquara - SP",
+        "Etelvino Mendonça - Itabaiana - SE",
+        "Arena Pernambuco - São Lourenço da Mata - PE"
+      ],
+      "displayName": "Caxias",
+      "city": "Caxias do Sul",
+      "state": "RS",
+      "stadium": "Centenário",
+      "wikiUrl": "https://pt.wikipedia.org/wiki/Sociedade_Esportiva_e_Recreativa_Caxias_do_Sul"
+    },
+    {
+      "id": "17715",
+      "cbfId": "21918",
+      "name": "Maringá FC SAF",
+      "sport": "soccer",
+      "league": "bra.3",
+      "logo": "https://conteudo.cbf.com.br/clubes/21918/escudo.jpg",
+      "source": "https://www.cbf.com.br/futebol-brasileiro/tabelas/campeonato-brasileiro/serie-c/2026",
+      "venues": [
+        "Willie Davids - Maringa - PR",
+        "Presidente Vargas - Fortaleza - CE",
+        "Orlando Scarpelli - Florianopolis - SC",
+        "Fonte Luminosa - Araraquara - SP",
+        "Novelli Junior - Itu - SP",
+        "Almeidão - Joao Pessoa - PB",
+        "Arena Pernambuco - São Lourenço da Mata - PE",
+        "Colosso da Lagoa - Erechim - RS",
+        "Centenário - Caxias do Sul - RS",
+        "Major Levy Sobrinho - Limeira - SP",
+        "Jonas Duarte - Anapolis - GO",
+        "Batistão - Aracaju - SE",
+        "Mangueirão - Belem - PA"
+      ],
+      "displayName": "Maringá",
+      "city": "Maringá",
+      "state": "PR",
+      "stadium": "Willie Davids",
+      "wikiUrl": "https://pt.wikipedia.org/wiki/Maringá_Futebol_Clube_(2010)"
+    },
+    {
+      "id": "cbf-20038",
+      "cbfId": "20038",
+      "name": "Ferroviária",
+      "sport": "soccer",
+      "league": "bra.3",
+      "logo": "https://conteudo.cbf.com.br/clubes/20038/escudo.jpg",
+      "source": "https://www.cbf.com.br/futebol-brasileiro/tabelas/campeonato-brasileiro/serie-c/2026",
+      "venues": [
+        "Willie Davids - Maringa - PR",
+        "Major Levy Sobrinho - Limeira - SP",
+        "Fonte Luminosa - Araraquara - SP",
+        "Domingão - Horizonte - CE",
+        "Augusto Bauer - Brusque - SC",
+        "Curuzu - Belem - PA",
+        "Raulino de Oliveira - Volta Redonda - RJ",
+        "Carlos Zamith - Manaus - AM",
+        "Arena Pernambuco - São Lourenço da Mata - PE",
+        "Carlos Colnaghi - Capivari - SP",
+        "Etelvino Mendonça - Itabaiana - SE",
+        "Novelli Junior - Itu - SP",
+        "Orlando Scarpelli - Florianopolis - SC",
+        "Colosso da Lagoa - Erechim - RS"
+      ],
+      "displayName": "Ferroviária",
+      "city": "Araraquara",
+      "state": "SP",
+      "stadium": "Fonte Luminosa",
+      "wikiUrl": "https://pt.wikipedia.org/wiki/Associação_Ferroviária_de_Esportes"
+    },
+    {
+      "id": "cbf-63524",
+      "cbfId": "63524",
+      "name": "Botafogo Pb Saf",
+      "sport": "soccer",
+      "league": "bra.3",
+      "logo": "https://conteudo.cbf.com.br/clubes/63524/escudo.jpg",
+      "source": "https://www.cbf.com.br/futebol-brasileiro/tabelas/campeonato-brasileiro/serie-c/2026",
+      "venues": [
+        "Almeidão - Joao Pessoa - PB",
+        "Arena Pernambuco - São Lourenço da Mata - PE",
+        "Fonte Luminosa - Araraquara - SP",
+        "Orlando Scarpelli - Florianopolis - SC",
+        "Willie Davids - Maringa - PR",
+        "Curuzu - Belem - PA",
+        "Presidente Vargas - Fortaleza - CE",
+        "Castelão - Sao Luis - MA",
+        "Novelli Junior - Itu - SP",
+        "Colosso da Lagoa - Erechim - RS",
+        "Jonas Duarte - Anapolis - GO",
+        "Centenário - Caxias do Sul - RS",
+        "Carlos Zamith - Manaus - AM",
+        "Etelvino Mendonça - Itabaiana - SE"
+      ],
+      "displayName": "Botafogo-PB",
+      "city": "João Pessoa",
+      "state": "PB",
+      "stadium": "Almeidão (PB)",
+      "wikiUrl": "https://pt.wikipedia.org/wiki/Botafogo_Futebol_Clube_(João_Pessoa)"
+    },
+    {
+      "id": "cbf-40387",
+      "cbfId": "40387",
+      "name": "Barra Futebol Clube",
+      "sport": "soccer",
+      "league": "bra.3",
+      "logo": "https://conteudo.cbf.com.br/clubes/40387/escudo.jpg",
+      "source": "https://www.cbf.com.br/futebol-brasileiro/tabelas/campeonato-brasileiro/serie-c/2026",
+      "venues": [
+        "Almeidão - Joao Pessoa - PB",
+        "Arena Barra FC - Itajai - SC",
+        "Curuzu - Belem - PA",
+        "Orlando Scarpelli - Florianopolis - SC",
+        "Jonas Duarte - Anapolis - GO",
+        "Carlos Colnaghi - Capivari - SP",
+        "Presidente Vargas - Fortaleza - CE",
+        "Batistão - Aracaju - SE",
+        "Colosso da Lagoa - Erechim - RS",
+        "Novelli Junior - Itu - SP",
+        "Willie Davids - Maringa - PR"
+      ],
+      "displayName": "Barra-SC",
+      "city": "Balneário Camboriú",
+      "state": "SC",
+      "stadium": "Arena Barra FC",
+      "wikiUrl": "https://pt.wikipedia.org/wiki/Barra_Futebol_Clube_(Santa_Catarina)"
+    },
+    {
+      "id": "cbf-20107",
+      "cbfId": "20107",
+      "name": "Inter de Limeira",
+      "sport": "soccer",
+      "league": "bra.3",
+      "logo": "https://conteudo.cbf.com.br/clubes/20107/escudo.jpg",
+      "source": "https://www.cbf.com.br/futebol-brasileiro/tabelas/campeonato-brasileiro/serie-c/2026",
+      "venues": [
+        "Major Levy Sobrinho - Limeira - SP",
+        "Jonas Duarte - Anapolis - GO",
+        "Augusto Bauer - Brusque - SC",
+        "Curuzu - Belem - PA",
+        "Arena Barra FC - Itajai - SC",
+        "Batistão - Aracaju - SE",
+        "Fonte Luminosa - Araraquara - SP",
+        "Almeidão - Joao Pessoa - PB",
+        "Castelão - Sao Luis - MA",
+        "Brinco de Ouro - Campinas - SP",
+        "Centenário - Caxias do Sul - RS"
+      ],
+      "displayName": "Inter de Limeira",
+      "city": "Limeira",
+      "state": "SP",
+      "stadium": "Limeirão",
+      "wikiUrl": "https://pt.wikipedia.org/wiki/Associação_Atlética_Internacional_(Limeira)"
+    },
+    {
+      "id": "cbf-35322",
+      "cbfId": "35322",
+      "name": "Floresta",
+      "sport": "soccer",
+      "league": "bra.3",
+      "logo": "https://conteudo.cbf.com.br/clubes/35322/escudo.jpg",
+      "source": "https://www.cbf.com.br/futebol-brasileiro/tabelas/campeonato-brasileiro/serie-c/2026",
+      "venues": [
+        "Major Levy Sobrinho - Limeira - SP",
+        "Presidente Vargas - Fortaleza - CE",
+        "Domingão - Horizonte - CE",
+        "Almeidão - Joao Pessoa - PB",
+        "Arena Pernambuco - São Lourenço da Mata - PE",
+        "Etelvino Mendonça - Itabaiana - SE",
+        "Willie Davids - Maringa - PR",
+        "Curuzu - Belem - PA",
+        "Augusto Bauer - Brusque - SC",
+        "Brinco de Ouro - Campinas - SP",
+        "Centenário - Caxias do Sul - RS",
+        "Colosso da Lagoa - Erechim - RS",
+        "Raulino de Oliveira - Volta Redonda - RJ"
+      ],
+      "displayName": "Floresta",
+      "city": "Fortaleza",
+      "state": "CE",
+      "stadium": "Domingão",
+      "wikiUrl": "https://pt.wikipedia.org/wiki/Floresta_Esporte_Clube"
+    },
+    {
+      "id": "cbf-64742",
+      "cbfId": "64742",
+      "name": "ITUANO FC SAF",
+      "sport": "soccer",
+      "league": "bra.3",
+      "logo": "https://conteudo.cbf.com.br/clubes/64742/escudo.jpg",
+      "source": "https://www.cbf.com.br/futebol-brasileiro/tabelas/campeonato-brasileiro/serie-c/2026",
+      "venues": [
+        "Novelli Junior - Itu - SP",
+        "Carlos Zamith - Manaus - AM",
+        "Major Levy Sobrinho - Limeira - SP",
+        "Colosso da Lagoa - Erechim - RS",
+        "Brinco de Ouro - Campinas - SP",
+        "Centenário - Caxias do Sul - RS",
+        "Etelvino Mendonça - Itabaiana - SE",
+        "Arena Pernambuco - São Lourenço da Mata - PE",
+        "Augusto Bauer - Brusque - SC",
+        "Raulino de Oliveira - Volta Redonda - RJ",
+        "Presidente Vargas - Fortaleza - CE"
+      ],
+      "displayName": "Ituano",
+      "city": "Itu",
+      "state": "SP",
+      "stadium": "Novelli Junior",
+      "wikiUrl": "https://pt.wikipedia.org/wiki/Ituano_Futebol_Clube"
+    },
+    {
+      "id": "cbf-20164",
+      "cbfId": "20164",
+      "name": "Anápolis",
+      "sport": "soccer",
+      "league": "bra.3",
+      "logo": "https://conteudo.cbf.com.br/clubes/20164/escudo.jpg",
+      "source": "https://www.cbf.com.br/futebol-brasileiro/tabelas/campeonato-brasileiro/serie-c/2026",
+      "venues": [
+        "Novelli Junior - Itu - SP",
+        "Jonas Duarte - Anapolis - GO",
+        "Colosso da Lagoa - Erechim - RS",
+        "Fonte Luminosa - Araraquara - SP",
+        "Curuzu - Belem - PA",
+        "Augusto Bauer - Brusque - SC",
+        "Ismael Benigno - Manaus - AM",
+        "Centenário - Caxias do Sul - RS",
+        "Raulino de Oliveira - Volta Redonda - RJ",
+        "Presidente Vargas - Fortaleza - CE",
+        "Batistão - Aracaju - SE"
+      ],
+      "displayName": "Anápolis",
+      "city": "Anápolis",
+      "state": "GO",
+      "stadium": "Jonas Duarte",
+      "wikiUrl": "https://pt.wikipedia.org/wiki/Anápolis_Futebol_Clube"
+    },
+    {
+      "id": "cbf-64368",
+      "cbfId": "64368",
+      "name": "Confiança",
+      "sport": "soccer",
+      "league": "bra.3",
+      "logo": "https://conteudo.cbf.com.br/clubes/64368/escudo.jpg",
+      "source": "https://www.cbf.com.br/futebol-brasileiro/tabelas/campeonato-brasileiro/serie-c/2026",
+      "venues": [
+        "Batistão - Aracaju - SE",
+        "Centenário - Caxias do Sul - RS",
+        "Augusto Bauer - Brusque - SC",
+        "Novelli Junior - Itu - SP",
+        "Presidente Vargas - Fortaleza - CE",
+        "Raulino de Oliveira - Volta Redonda - RJ",
+        "Colosso da Lagoa - Erechim - RS",
+        "Almeidão - Joao Pessoa - PB",
+        "Curuzu - Belem - PA",
+        "Fonte Luminosa - Araraquara - SP"
+      ],
+      "displayName": "Confiança",
+      "city": "Aracaju",
+      "state": "SE",
+      "stadium": "Batistão",
+      "wikiUrl": "https://pt.wikipedia.org/wiki/Associação_Desportiva_Confiança"
+    },
+    {
+      "id": "cbf-64052",
+      "cbfId": "64052",
+      "name": "Amazonas SAF",
+      "sport": "soccer",
+      "league": "bra.3",
+      "logo": "https://conteudo.cbf.com.br/clubes/64052/escudo.jpg",
+      "source": "https://www.cbf.com.br/futebol-brasileiro/tabelas/campeonato-brasileiro/serie-c/2026",
+      "venues": [
+        "Batistão - Aracaju - SE",
+        "Carlos Zamith - Manaus - AM",
+        "Arena Pernambuco - São Lourenço da Mata - PE",
+        "Domingão - Horizonte - CE",
+        "Brinco de Ouro - Campinas - SP",
+        "Ismael Benigno - Manaus - AM",
+        "Arena Barra FC - Itajai - SC",
+        "Raulino de Oliveira - Volta Redonda - RJ",
+        "Major Levy Sobrinho - Limeira - SP",
+        "Willie Davids - Maringa - PR",
+        "Augusto Bauer - Brusque - SC"
+      ],
+      "displayName": "Amazonas",
+      "city": "Manaus",
+      "state": "AM",
+      "stadium": "Carlos Zamith",
+      "wikiUrl": "https://pt.wikipedia.org/wiki/Amazonas_Futebol_Clube"
+    },
+    {
+      "id": "cbf-20065",
+      "cbfId": "20065",
+      "name": "Volta Redonda",
+      "sport": "soccer",
+      "league": "bra.3",
+      "logo": "https://conteudo.cbf.com.br/clubes/20065/escudo.jpg",
+      "source": "https://www.cbf.com.br/futebol-brasileiro/tabelas/campeonato-brasileiro/serie-c/2026",
+      "venues": [
+        "Raulino de Oliveira - Volta Redonda - RJ",
+        "Brinco de Ouro - Campinas - SP",
+        "Castelão - Sao Luis - MA",
+        "Arena Pernambuco - São Lourenço da Mata - PE",
+        "Etelvino Mendonça - Itabaiana - SE",
+        "Almeidão - Joao Pessoa - PB",
+        "Willie Davids - Maringa - PR",
+        "Orlando Scarpelli - Florianopolis - SC",
+        "Major Levy Sobrinho - Limeira - SP",
+        "Arena Barra FC - Itajai - SC"
+      ],
+      "displayName": "Volta Redonda",
+      "city": "Volta Redonda",
+      "state": "RJ",
+      "stadium": "Raulino de Oliveira",
+      "wikiUrl": "https://pt.wikipedia.org/wiki/Volta_Redonda_Futebol_Clube"
+    },
+    {
+      "id": "cbf-20017",
+      "cbfId": "20017",
+      "name": "Paysandu",
+      "sport": "soccer",
+      "league": "bra.3",
+      "logo": "https://conteudo.cbf.com.br/clubes/20017/escudo.jpg",
+      "source": "https://www.cbf.com.br/futebol-brasileiro/tabelas/campeonato-brasileiro/serie-c/2026",
+      "venues": [
+        "Raulino de Oliveira - Volta Redonda - RJ",
+        "Mangueirão - Belem - PA",
+        "Curuzu - Belem - PA",
+        "Fonte Luminosa - Araraquara - SP",
+        "Etelvino Mendonça - Itabaiana - SE",
+        "Major Levy Sobrinho - Limeira - SP",
+        "Augusto Bauer - Brusque - SC",
+        "Centenário - Caxias do Sul - RS",
+        "Orlando Scarpelli - Florianopolis - SC",
+        "Castelão - Sao Luis - MA",
+        "Colosso da Lagoa - Erechim - RS",
+        "Carlos Zamith - Manaus - AM",
+        "Novelli Junior - Itu - SP"
+      ],
+      "displayName": "Paysandu",
+      "city": "Belém",
+      "state": "PA",
+      "stadium": "Curuzu",
+      "wikiUrl": "https://pt.wikipedia.org/wiki/Paysandu_Sport_Club"
+    },
+    {
+      "id": "cbf-20379",
+      "cbfId": "20379",
+      "name": "Ypiranga",
+      "sport": "soccer",
+      "league": "bra.3",
+      "logo": "https://conteudo.cbf.com.br/clubes/20379/escudo.jpg",
+      "source": "https://www.cbf.com.br/futebol-brasileiro/tabelas/campeonato-brasileiro/serie-c/2026",
+      "venues": [
+        "Colosso da Lagoa - Erechim - RS",
+        "Etelvino Mendonça - Itabaiana - SE",
+        "Centenário - Caxias do Sul - RS",
+        "Augusto Bauer - Brusque - SC",
+        "Raulino de Oliveira - Volta Redonda - RJ",
+        "Major Levy Sobrinho - Limeira - SP",
+        "Arena Pernambuco - São Lourenço da Mata - PE",
+        "Castelão - Sao Luis - MA",
+        "Brinco de Ouro - Campinas - SP",
+        "Carlos Zamith - Manaus - AM"
+      ],
+      "displayName": "Ypiranga de Erechim",
+      "city": "Erechim",
+      "state": "RS",
+      "stadium": "Colosso da Lagoa",
+      "wikiUrl": "https://pt.wikipedia.org/wiki/Ypiranga_Futebol_Clube_(Erechim)"
+    },
+    {
+      "id": "cbf-59879",
+      "cbfId": "59879",
+      "name": "Figueirense",
+      "sport": "soccer",
+      "league": "bra.3",
+      "logo": "https://conteudo.cbf.com.br/clubes/59879/escudo.jpg",
+      "source": "https://www.cbf.com.br/futebol-brasileiro/tabelas/campeonato-brasileiro/serie-c/2026",
+      "venues": [
+        "Colosso da Lagoa - Erechim - RS",
+        "Orlando Scarpelli - Florianopolis - SC",
+        "Jonas Duarte - Anapolis - GO",
+        "Carlos Zamith - Manaus - AM",
+        "Batistão - Aracaju - SE",
+        "Presidente Vargas - Fortaleza - CE",
+        "Novelli Junior - Itu - SP",
+        "Augusto Bauer - Brusque - SC",
+        "Arena Pernambuco - São Lourenço da Mata - PE",
+        "Centenário - Caxias do Sul - RS",
+        "Major Levy Sobrinho - Limeira - SP"
+      ],
+      "displayName": "Figueirense",
+      "city": "Florianópolis",
+      "state": "SC",
+      "stadium": "Orlando Scarpelli",
+      "wikiUrl": "https://pt.wikipedia.org/wiki/Figueirense_Futebol_Clube"
+    },
+    {
+      "id": "cbf-20039",
+      "cbfId": "20039",
+      "name": "Santa Cruz",
+      "sport": "soccer",
+      "league": "bra.3",
+      "logo": "https://conteudo.cbf.com.br/clubes/20039/escudo.jpg",
+      "source": "https://www.cbf.com.br/futebol-brasileiro/tabelas/campeonato-brasileiro/serie-c/2026",
+      "venues": [
+        "Arena Pernambuco - São Lourenço da Mata - PE",
+        "Domingão - Horizonte - CE",
+        "Willie Davids - Maringa - PR",
+        "Batistão - Aracaju - SE",
+        "Presidente Vargas - Fortaleza - CE",
+        "Brinco de Ouro - Campinas - SP",
+        "Major Levy Sobrinho - Limeira - SP",
+        "Almeidão - Joao Pessoa - PB",
+        "Augusto Bauer - Brusque - SC",
+        "Curuzu - Belem - PA",
+        "Arena Barra FC - Itajai - SC",
+        "Jonas Duarte - Anapolis - GO"
+      ],
+      "displayName": "Santa Cruz",
+      "city": "Recife",
+      "state": "PE",
+      "stadium": "Arena de Pernambuco [ 17 ]",
+      "wikiUrl": "https://pt.wikipedia.org/wiki/Santa_Cruz_Futebol_Clube"
+    },
+    {
+      "id": "cbf-20057",
+      "cbfId": "20057",
+      "name": "Itabaiana",
+      "sport": "soccer",
+      "league": "bra.3",
+      "logo": "https://conteudo.cbf.com.br/clubes/20057/escudo.jpg",
+      "source": "https://www.cbf.com.br/futebol-brasileiro/tabelas/campeonato-brasileiro/serie-c/2026",
+      "venues": [
+        "Arena Pernambuco - São Lourenço da Mata - PE",
+        "Etelvino Mendonça - Itabaiana - SE",
+        "Brinco de Ouro - Campinas - SP",
+        "Willie Davids - Maringa - PR",
+        "Orlando Scarpelli - Florianopolis - SC",
+        "Major Levy Sobrinho - Limeira - SP",
+        "Jonas Duarte - Anapolis - GO",
+        "Carlos Zamith - Manaus - AM",
+        "Batistão - Aracaju - SE",
+        "Arena Barra FC - Itajai - SC",
+        "Castelão - Sao Luis - MA"
+      ],
+      "displayName": "Itabaiana",
+      "city": "Itabaiana",
+      "state": "SE",
+      "stadium": "Etelvino Mendonça",
+      "wikiUrl": "https://pt.wikipedia.org/wiki/Associação_Olímpica_de_Itabaiana"
+    }
+  ],
+  "matches": [
+    {
+      "id": "833176",
+      "cbfId": "833176",
+      "league": "bra.3",
+      "reference": 5,
+      "round": 1,
+      "group": "GRUPO A",
+      "date": "2026-04-04T17:00:00-03:00",
+      "home": {
+        "id": "cbf-20043",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20024",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Castelão - Sao Luis - MA",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/3425se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/833176"
+    },
+    {
+      "id": "833164",
+      "cbfId": "833164",
+      "league": "bra.3",
+      "reference": 3,
+      "round": 1,
+      "group": "GRUPO A",
+      "date": "2026-04-04T18:00:00-03:00",
+      "home": {
+        "id": "cbf-63843",
+        "score": "2",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20062",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Augusto Bauer - Brusque - SC",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/3423se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/833164"
+    },
+    {
+      "id": "833178",
+      "cbfId": "833178",
+      "league": "bra.3",
+      "reference": 7,
+      "round": 1,
+      "group": "GRUPO A",
+      "date": "2026-04-04T19:30:00-03:00",
+      "home": {
+        "id": "17715",
+        "score": "3",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20038",
+        "score": "2",
+        "penalties": "0"
+      },
+      "venue": "Willie Davids - Maringa - PR",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/3427se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/833178"
+    },
+    {
+      "id": "833181",
+      "cbfId": "833181",
+      "league": "bra.3",
+      "reference": 10,
+      "round": 1,
+      "group": "GRUPO A",
+      "date": "2026-04-04T19:30:00-03:00",
+      "home": {
+        "id": "cbf-63524",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-40387",
+        "score": "0",
+        "penalties": "0"
+      },
+      "venue": "Almeidão - Joao Pessoa - PB",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34210se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/833181"
+    },
+    {
+      "id": "833158",
+      "cbfId": "833158",
+      "league": "bra.3",
+      "reference": 1,
+      "round": 1,
+      "group": "GRUPO A",
+      "date": "2026-04-05T17:00:00-03:00",
+      "home": {
+        "id": "cbf-20107",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-35322",
+        "score": "2",
+        "penalties": "0"
+      },
+      "venue": "Major Levy Sobrinho - Limeira - SP",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/3421se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/833158"
+    },
+    {
+      "id": "833161",
+      "cbfId": "833161",
+      "league": "bra.3",
+      "reference": 2,
+      "round": 1,
+      "group": "GRUPO A",
+      "date": "2026-04-05T17:00:00-03:00",
+      "home": {
+        "id": "cbf-64742",
+        "score": "2",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20164",
+        "score": "0",
+        "penalties": "0"
+      },
+      "venue": "Novelli Junior - Itu - SP",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/3422se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/833161"
+    },
+    {
+      "id": "833165",
+      "cbfId": "833165",
+      "league": "bra.3",
+      "reference": 4,
+      "round": 1,
+      "group": "GRUPO A",
+      "date": "2026-04-05T19:00:00-03:00",
+      "home": {
+        "id": "cbf-64368",
+        "score": "0",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-64052",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Batistão - Aracaju - SE",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/3424se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/833165"
+    },
+    {
+      "id": "833177",
+      "cbfId": "833177",
+      "league": "bra.3",
+      "reference": 6,
+      "round": 1,
+      "group": "GRUPO A",
+      "date": "2026-04-05T19:00:00-03:00",
+      "home": {
+        "id": "cbf-20065",
+        "score": "0",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20017",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Raulino de Oliveira - Volta Redonda - RJ",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/3426se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/833177"
+    },
+    {
+      "id": "833179",
+      "cbfId": "833179",
+      "league": "bra.3",
+      "reference": 8,
+      "round": 1,
+      "group": "GRUPO A",
+      "date": "2026-04-06T20:00:00-03:00",
+      "home": {
+        "id": "cbf-20379",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-59879",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Colosso da Lagoa - Erechim - RS",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/3428se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/833179"
+    },
+    {
+      "id": "833180",
+      "cbfId": "833180",
+      "league": "bra.3",
+      "reference": 9,
+      "round": 1,
+      "group": "GRUPO A",
+      "date": "2026-04-06T20:00:00-03:00",
+      "home": {
+        "id": "cbf-20039",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20057",
+        "score": "0",
+        "penalties": "0"
+      },
+      "venue": "Arena Pernambuco - São Lourenço da Mata - PE",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/3429se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/833180"
+    },
+    {
+      "id": "833226",
+      "cbfId": "833226",
+      "league": "bra.3",
+      "reference": 15,
+      "round": 2,
+      "group": "GRUPO A",
+      "date": "2026-04-11T17:00:00-03:00",
+      "home": {
+        "id": "cbf-35322",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20039",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Domingão - Horizonte - CE",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34215se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/833226"
+    },
+    {
+      "id": "833222",
+      "cbfId": "833222",
+      "league": "bra.3",
+      "reference": 11,
+      "round": 2,
+      "group": "GRUPO A",
+      "date": "2026-04-11T20:00:00-03:00",
+      "home": {
+        "id": "cbf-20038",
+        "score": "0",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-63524",
+        "score": "2",
+        "penalties": "0"
+      },
+      "venue": "Fonte Luminosa - Araraquara - SP",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34211se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/833222"
+    },
+    {
+      "id": "833229",
+      "cbfId": "833229",
+      "league": "bra.3",
+      "reference": 18,
+      "round": 2,
+      "group": "GRUPO A",
+      "date": "2026-04-11T20:00:00-03:00",
+      "home": {
+        "id": "cbf-40387",
+        "score": "3",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20043",
+        "score": "0",
+        "penalties": "0"
+      },
+      "venue": "Arena Barra FC - Itajai - SC",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34218se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/833229"
+    },
+    {
+      "id": "833227",
+      "cbfId": "833227",
+      "league": "bra.3",
+      "reference": 16,
+      "round": 2,
+      "group": "GRUPO A",
+      "date": "2026-04-12T17:00:00-03:00",
+      "home": {
+        "id": "cbf-20164",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20107",
+        "score": "2",
+        "penalties": "0"
+      },
+      "venue": "Jonas Duarte - Anapolis - GO",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34216se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/833227"
+    },
+    {
+      "id": "833228",
+      "cbfId": "833228",
+      "league": "bra.3",
+      "reference": 17,
+      "round": 2,
+      "group": "GRUPO A",
+      "date": "2026-04-12T17:00:00-03:00",
+      "home": {
+        "id": "cbf-20062",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-64368",
+        "score": "0",
+        "penalties": "0"
+      },
+      "venue": "Centenário - Caxias do Sul - RS",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34217se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/833228"
+    },
+    {
+      "id": "833230",
+      "cbfId": "833230",
+      "league": "bra.3",
+      "reference": 19,
+      "round": 2,
+      "group": "GRUPO A",
+      "date": "2026-04-12T17:00:00-03:00",
+      "home": {
+        "id": "cbf-20017",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-63843",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Curuzu - Belem - PA",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34219se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/833230"
+    },
+    {
+      "id": "833223",
+      "cbfId": "833223",
+      "league": "bra.3",
+      "reference": 12,
+      "round": 2,
+      "group": "GRUPO A",
+      "date": "2026-04-12T18:30:00-03:00",
+      "home": {
+        "id": "cbf-20024",
+        "score": "2",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20065",
+        "score": "0",
+        "penalties": "0"
+      },
+      "venue": "Brinco de Ouro - Campinas - SP",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34212se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/833223"
+    },
+    {
+      "id": "833225",
+      "cbfId": "833225",
+      "league": "bra.3",
+      "reference": 14,
+      "round": 2,
+      "group": "GRUPO A",
+      "date": "2026-04-12T19:00:00-03:00",
+      "home": {
+        "id": "cbf-20057",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20379",
+        "score": "2",
+        "penalties": "0"
+      },
+      "venue": "Etelvino Mendonça - Itabaiana - SE",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34214se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/833225"
+    },
+    {
+      "id": "833231",
+      "cbfId": "833231",
+      "league": "bra.3",
+      "reference": 20,
+      "round": 2,
+      "group": "GRUPO A",
+      "date": "2026-04-12T19:00:00-03:00",
+      "home": {
+        "id": "cbf-64052",
+        "score": "3",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-64742",
+        "score": "0",
+        "penalties": "0"
+      },
+      "venue": "Carlos Zamith - Manaus - AM",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34220se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/833231"
+    },
+    {
+      "id": "833224",
+      "cbfId": "833224",
+      "league": "bra.3",
+      "reference": 13,
+      "round": 2,
+      "group": "GRUPO A",
+      "date": "2026-04-13T20:00:00-03:00",
+      "home": {
+        "id": "cbf-59879",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "17715",
+        "score": "3",
+        "penalties": "0"
+      },
+      "venue": "Orlando Scarpelli - Florianopolis - SC",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34213se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/833224"
+    },
+    {
+      "id": "833235",
+      "cbfId": "833235",
+      "league": "bra.3",
+      "reference": 24,
+      "round": 3,
+      "group": "GRUPO A",
+      "date": "2026-04-18T16:00:00-03:00",
+      "home": {
+        "id": "cbf-64368",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20039",
+        "score": "0",
+        "penalties": "0"
+      },
+      "venue": "Batistão - Aracaju - SE",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34224se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/833235"
+    },
+    {
+      "id": "833232",
+      "cbfId": "833232",
+      "league": "bra.3",
+      "reference": 21,
+      "round": 3,
+      "group": "GRUPO A",
+      "date": "2026-04-18T17:00:00-03:00",
+      "home": {
+        "id": "cbf-20107",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-64742",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Major Levy Sobrinho - Limeira - SP",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34221se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/833232"
+    },
+    {
+      "id": "833237",
+      "cbfId": "833237",
+      "league": "bra.3",
+      "reference": 26,
+      "round": 3,
+      "group": "GRUPO A",
+      "date": "2026-04-18T18:15:00-03:00",
+      "home": {
+        "id": "cbf-20065",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20062",
+        "score": "0",
+        "penalties": "0"
+      },
+      "venue": "Raulino de Oliveira - Volta Redonda - RJ",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34226se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/833237"
+    },
+    {
+      "id": "833240",
+      "cbfId": "833240",
+      "league": "bra.3",
+      "reference": 29,
+      "round": 3,
+      "group": "GRUPO A",
+      "date": "2026-04-18T18:30:00-03:00",
+      "home": {
+        "id": "cbf-20017",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-40387",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Curuzu - Belem - PA",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34229se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/833240"
+    },
+    {
+      "id": "833239",
+      "cbfId": "833239",
+      "league": "bra.3",
+      "reference": 28,
+      "round": 3,
+      "group": "GRUPO A",
+      "date": "2026-04-18T19:30:00-03:00",
+      "home": {
+        "id": "cbf-20379",
+        "score": "3",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20164",
+        "score": "0",
+        "penalties": "0"
+      },
+      "venue": "Colosso da Lagoa - Erechim - RS",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34228se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/833239"
+    },
+    {
+      "id": "833241",
+      "cbfId": "833241",
+      "league": "bra.3",
+      "reference": 30,
+      "round": 3,
+      "group": "GRUPO A",
+      "date": "2026-04-18T20:30:00-03:00",
+      "home": {
+        "id": "cbf-64052",
+        "score": "2",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20043",
+        "score": "0",
+        "penalties": "0"
+      },
+      "venue": "Carlos Zamith - Manaus - AM",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34230se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/833241"
+    },
+    {
+      "id": "833233",
+      "cbfId": "833233",
+      "league": "bra.3",
+      "reference": 22,
+      "round": 3,
+      "group": "GRUPO A",
+      "date": "2026-04-19T16:30:00-03:00",
+      "home": {
+        "id": "cbf-20024",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20057",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Brinco de Ouro - Campinas - SP",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34222se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/833233"
+    },
+    {
+      "id": "833234",
+      "cbfId": "833234",
+      "league": "bra.3",
+      "reference": 23,
+      "round": 3,
+      "group": "GRUPO A",
+      "date": "2026-04-19T18:30:00-03:00",
+      "home": {
+        "id": "cbf-59879",
+        "score": "2",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-63524",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Orlando Scarpelli - Florianopolis - SC",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34223se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/833234"
+    },
+    {
+      "id": "833236",
+      "cbfId": "833236",
+      "league": "bra.3",
+      "reference": 25,
+      "round": 3,
+      "group": "GRUPO A",
+      "date": "2026-04-20T20:00:00-03:00",
+      "home": {
+        "id": "cbf-35322",
+        "score": "0",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20038",
+        "score": "0",
+        "penalties": "0"
+      },
+      "venue": "Domingão - Horizonte - CE",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34225se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/833236"
+    },
+    {
+      "id": "833238",
+      "cbfId": "833238",
+      "league": "bra.3",
+      "reference": 27,
+      "round": 3,
+      "group": "GRUPO A",
+      "date": "2026-04-20T20:00:00-03:00",
+      "home": {
+        "id": "17715",
+        "score": "2",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-63843",
+        "score": "3",
+        "penalties": "0"
+      },
+      "venue": "Willie Davids - Maringa - PR",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34227se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/833238"
+    },
+    {
+      "id": "833679",
+      "cbfId": "833679",
+      "league": "bra.3",
+      "reference": 33,
+      "round": 4,
+      "group": "GRUPO A",
+      "date": "2026-04-25T17:00:00-03:00",
+      "home": {
+        "id": "cbf-63843",
+        "score": "2",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-64368",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Augusto Bauer - Brusque - SC",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34233se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/833679"
+    },
+    {
+      "id": "833680",
+      "cbfId": "833680",
+      "league": "bra.3",
+      "reference": 34,
+      "round": 4,
+      "group": "GRUPO A",
+      "date": "2026-04-25T17:00:00-03:00",
+      "home": {
+        "id": "cbf-20057",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20017",
+        "score": "4",
+        "penalties": "0"
+      },
+      "venue": "Etelvino Mendonça - Itabaiana - SE",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34234se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/833680"
+    },
+    {
+      "id": "833681",
+      "cbfId": "833681",
+      "league": "bra.3",
+      "reference": 35,
+      "round": 4,
+      "group": "GRUPO A",
+      "date": "2026-04-25T19:30:00-03:00",
+      "home": {
+        "id": "cbf-20043",
+        "score": "2",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20065",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Castelão - Sao Luis - MA",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34235se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/833681"
+    },
+    {
+      "id": "833686",
+      "cbfId": "833686",
+      "league": "bra.3",
+      "reference": 40,
+      "round": 4,
+      "group": "GRUPO A",
+      "date": "2026-04-25T19:30:00-03:00",
+      "home": {
+        "id": "cbf-63524",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-35322",
+        "score": "2",
+        "penalties": "0"
+      },
+      "venue": "Almeidão - Joao Pessoa - PB",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34240se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/833686"
+    },
+    {
+      "id": "833685",
+      "cbfId": "833685",
+      "league": "bra.3",
+      "reference": 39,
+      "round": 4,
+      "group": "GRUPO A",
+      "date": "2026-04-26T16:00:00-03:00",
+      "home": {
+        "id": "cbf-20039",
+        "score": "0",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-64052",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Arena Pernambuco - São Lourenço da Mata - PE",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34239se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/833685"
+    },
+    {
+      "id": "833682",
+      "cbfId": "833682",
+      "league": "bra.3",
+      "reference": 36,
+      "round": 4,
+      "group": "GRUPO A",
+      "date": "2026-04-26T17:00:00-03:00",
+      "home": {
+        "id": "cbf-20164",
+        "score": "3",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-59879",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Jonas Duarte - Anapolis - GO",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34236se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/833682"
+    },
+    {
+      "id": "833684",
+      "cbfId": "833684",
+      "league": "bra.3",
+      "reference": 38,
+      "round": 4,
+      "group": "GRUPO A",
+      "date": "2026-04-26T17:00:00-03:00",
+      "home": {
+        "id": "cbf-40387",
+        "score": "2",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20107",
+        "score": "2",
+        "penalties": "0"
+      },
+      "venue": "Arena Barra FC - Itajai - SC",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34238se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/833684"
+    },
+    {
+      "id": "833678",
+      "cbfId": "833678",
+      "league": "bra.3",
+      "reference": 32,
+      "round": 4,
+      "group": "GRUPO A",
+      "date": "2026-04-26T19:00:00-03:00",
+      "home": {
+        "id": "cbf-64742",
+        "score": "4",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "17715",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Novelli Junior - Itu - SP",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34232se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/833678"
+    },
+    {
+      "id": "833677",
+      "cbfId": "833677",
+      "league": "bra.3",
+      "reference": 31,
+      "round": 4,
+      "group": "GRUPO A",
+      "date": "2026-04-27T20:00:00-03:00",
+      "home": {
+        "id": "cbf-20038",
+        "score": "2",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20024",
+        "score": "2",
+        "penalties": "0"
+      },
+      "venue": "Fonte Luminosa - Araraquara - SP",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34231se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/833677"
+    },
+    {
+      "id": "833683",
+      "cbfId": "833683",
+      "league": "bra.3",
+      "reference": 37,
+      "round": 4,
+      "group": "GRUPO A",
+      "date": "2026-04-27T20:00:00-03:00",
+      "home": {
+        "id": "cbf-20062",
+        "score": "2",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20379",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Centenário - Caxias do Sul - RS",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34237se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/833683"
+    },
+    {
+      "id": "833688",
+      "cbfId": "833688",
+      "league": "bra.3",
+      "reference": 42,
+      "round": 5,
+      "group": "GRUPO A",
+      "date": "2026-05-02T17:00:00-03:00",
+      "home": {
+        "id": "cbf-20024",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20039",
+        "score": "0",
+        "penalties": "0"
+      },
+      "venue": "Brinco de Ouro - Campinas - SP",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34242se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/833688"
+    },
+    {
+      "id": "833690",
+      "cbfId": "833690",
+      "league": "bra.3",
+      "reference": 44,
+      "round": 5,
+      "group": "GRUPO A",
+      "date": "2026-05-02T19:00:00-03:00",
+      "home": {
+        "id": "cbf-64368",
+        "score": "0",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20107",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Batistão - Aracaju - SE",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34244se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/833690"
+    },
+    {
+      "id": "833687",
+      "cbfId": "833687",
+      "league": "bra.3",
+      "reference": 41,
+      "round": 5,
+      "group": "GRUPO A",
+      "date": "2026-05-03T17:00:00-03:00",
+      "home": {
+        "id": "cbf-20038",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20164",
+        "score": "0",
+        "penalties": "0"
+      },
+      "venue": "Fonte Luminosa - Araraquara - SP",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34241se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/833687"
+    },
+    {
+      "id": "833692",
+      "cbfId": "833692",
+      "league": "bra.3",
+      "reference": 46,
+      "round": 5,
+      "group": "GRUPO A",
+      "date": "2026-05-03T17:00:00-03:00",
+      "home": {
+        "id": "cbf-20065",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-63843",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Raulino de Oliveira - Volta Redonda - RJ",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34246se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/833692"
+    },
+    {
+      "id": "833696",
+      "cbfId": "833696",
+      "league": "bra.3",
+      "reference": 50,
+      "round": 5,
+      "group": "GRUPO A",
+      "date": "2026-05-03T17:00:00-03:00",
+      "home": {
+        "id": "cbf-64052",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20062",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Carlos Zamith - Manaus - AM",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34250se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/833696"
+    },
+    {
+      "id": "833693",
+      "cbfId": "833693",
+      "league": "bra.3",
+      "reference": 47,
+      "round": 5,
+      "group": "GRUPO A",
+      "date": "2026-05-03T19:00:00-03:00",
+      "home": {
+        "id": "17715",
+        "score": "4",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20057",
+        "score": "2",
+        "penalties": "0"
+      },
+      "venue": "Willie Davids - Maringa - PR",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34247se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/833693"
+    },
+    {
+      "id": "833695",
+      "cbfId": "833695",
+      "league": "bra.3",
+      "reference": 49,
+      "round": 5,
+      "group": "GRUPO A",
+      "date": "2026-05-03T19:00:00-03:00",
+      "home": {
+        "id": "cbf-20017",
+        "score": "4",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-63524",
+        "score": "2",
+        "penalties": "0"
+      },
+      "venue": "Curuzu - Belem - PA",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34249se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/833695"
+    },
+    {
+      "id": "833689",
+      "cbfId": "833689",
+      "league": "bra.3",
+      "reference": 43,
+      "round": 5,
+      "group": "GRUPO A",
+      "date": "2026-05-04T20:00:00-03:00",
+      "home": {
+        "id": "cbf-59879",
+        "score": "0",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-40387",
+        "score": "3",
+        "penalties": "0"
+      },
+      "venue": "Orlando Scarpelli - Florianopolis - SC",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34243se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/833689"
+    },
+    {
+      "id": "833691",
+      "cbfId": "833691",
+      "league": "bra.3",
+      "reference": 45,
+      "round": 5,
+      "group": "GRUPO A",
+      "date": "2026-05-04T20:00:00-03:00",
+      "home": {
+        "id": "cbf-35322",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20043",
+        "score": "2",
+        "penalties": "0"
+      },
+      "venue": "Domingão - Horizonte - CE",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34245se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/833691"
+    },
+    {
+      "id": "833694",
+      "cbfId": "833694",
+      "league": "bra.3",
+      "reference": 48,
+      "round": 5,
+      "group": "GRUPO A",
+      "date": "2026-05-05T15:00:00-03:00",
+      "home": {
+        "id": "cbf-20379",
+        "score": "2",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-64742",
+        "score": "0",
+        "penalties": "0"
+      },
+      "venue": "Colosso da Lagoa - Erechim - RS",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34248se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/833694"
+    },
+    {
+      "id": "834117",
+      "cbfId": "834117",
+      "league": "bra.3",
+      "reference": 54,
+      "round": 6,
+      "group": "GRUPO A",
+      "date": "2026-05-09T17:00:00-03:00",
+      "home": {
+        "id": "cbf-20057",
+        "score": "0",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-35322",
+        "score": "0",
+        "penalties": "0"
+      },
+      "venue": "Etelvino Mendonça - Itabaiana - SE",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34254se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834117"
+    },
+    {
+      "id": "834122",
+      "cbfId": "834122",
+      "league": "bra.3",
+      "reference": 59,
+      "round": 6,
+      "group": "GRUPO A",
+      "date": "2026-05-09T17:00:00-03:00",
+      "home": {
+        "id": "cbf-20017",
+        "score": "2",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20164",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Curuzu - Belem - PA",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34259se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834122"
+    },
+    {
+      "id": "834118",
+      "cbfId": "834118",
+      "league": "bra.3",
+      "reference": 55,
+      "round": 6,
+      "group": "GRUPO A",
+      "date": "2026-05-09T18:00:00-03:00",
+      "home": {
+        "id": "cbf-20043",
+        "score": "3",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-63524",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Castelão - Sao Luis - MA",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34255se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834118"
+    },
+    {
+      "id": "834119",
+      "cbfId": "834119",
+      "league": "bra.3",
+      "reference": 56,
+      "round": 6,
+      "group": "GRUPO A",
+      "date": "2026-05-10T17:00:00-03:00",
+      "home": {
+        "id": "cbf-20065",
+        "score": "0",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20038",
+        "score": "0",
+        "penalties": "0"
+      },
+      "venue": "Raulino de Oliveira - Volta Redonda - RJ",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34256se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834119"
+    },
+    {
+      "id": "834121",
+      "cbfId": "834121",
+      "league": "bra.3",
+      "reference": 58,
+      "round": 6,
+      "group": "GRUPO A",
+      "date": "2026-05-10T17:00:00-03:00",
+      "home": {
+        "id": "cbf-40387",
+        "score": "0",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20062",
+        "score": "0",
+        "penalties": "0"
+      },
+      "venue": "Arena Barra FC - Itajai - SC",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34258se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834121"
+    },
+    {
+      "id": "834123",
+      "cbfId": "834123",
+      "league": "bra.3",
+      "reference": 60,
+      "round": 6,
+      "group": "GRUPO A",
+      "date": "2026-05-10T17:00:00-03:00",
+      "home": {
+        "id": "cbf-64052",
+        "score": "0",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-59879",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Carlos Zamith - Manaus - AM",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34260se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834123"
+    },
+    {
+      "id": "834115",
+      "cbfId": "834115",
+      "league": "bra.3",
+      "reference": 52,
+      "round": 6,
+      "group": "GRUPO A",
+      "date": "2026-05-10T19:30:00-03:00",
+      "home": {
+        "id": "cbf-64742",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-64368",
+        "score": "0",
+        "penalties": "0"
+      },
+      "venue": "Novelli Junior - Itu - SP",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34252se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834115"
+    },
+    {
+      "id": "834116",
+      "cbfId": "834116",
+      "league": "bra.3",
+      "reference": 53,
+      "round": 6,
+      "group": "GRUPO A",
+      "date": "2026-05-10T19:30:00-03:00",
+      "home": {
+        "id": "cbf-63843",
+        "score": "3",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20379",
+        "score": "0",
+        "penalties": "0"
+      },
+      "venue": "Augusto Bauer - Brusque - SC",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34253se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834116"
+    },
+    {
+      "id": "834114",
+      "cbfId": "834114",
+      "league": "bra.3",
+      "reference": 51,
+      "round": 6,
+      "group": "GRUPO A",
+      "date": "2026-05-11T20:00:00-03:00",
+      "home": {
+        "id": "cbf-20107",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20039",
+        "score": "2",
+        "penalties": "0"
+      },
+      "venue": "Major Levy Sobrinho - Limeira - SP",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34251se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834114"
+    },
+    {
+      "id": "834120",
+      "cbfId": "834120",
+      "league": "bra.3",
+      "reference": 57,
+      "round": 6,
+      "group": "GRUPO A",
+      "date": "2026-05-11T20:00:00-03:00",
+      "home": {
+        "id": "17715",
+        "score": "0",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20024",
+        "score": "5",
+        "penalties": "0"
+      },
+      "venue": "Willie Davids - Maringa - PR",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34257se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834120"
+    },
+    {
+      "id": "834131",
+      "cbfId": "834131",
+      "league": "bra.3",
+      "reference": 68,
+      "round": 7,
+      "group": "GRUPO A",
+      "date": "2026-05-16T17:00:00-03:00",
+      "home": {
+        "id": "cbf-20379",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "17715",
+        "score": "4",
+        "penalties": "0"
+      },
+      "venue": "Colosso da Lagoa - Erechim - RS",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34268se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834131"
+    },
+    {
+      "id": "834132",
+      "cbfId": "834132",
+      "league": "bra.3",
+      "reference": 69,
+      "round": 7,
+      "group": "GRUPO A",
+      "date": "2026-05-16T17:00:00-03:00",
+      "home": {
+        "id": "cbf-20039",
+        "score": "2",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20065",
+        "score": "0",
+        "penalties": "0"
+      },
+      "venue": "Arena Pernambuco - São Lourenço da Mata - PE",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34269se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834132"
+    },
+    {
+      "id": "834126",
+      "cbfId": "834126",
+      "league": "bra.3",
+      "reference": 63,
+      "round": 7,
+      "group": "GRUPO A",
+      "date": "2026-05-16T19:30:00-03:00",
+      "home": {
+        "id": "cbf-59879",
+        "score": "0",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20057",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Orlando Scarpelli - Florianopolis - SC",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34263se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834126"
+    },
+    {
+      "id": "834128",
+      "cbfId": "834128",
+      "league": "bra.3",
+      "reference": 65,
+      "round": 7,
+      "group": "GRUPO A",
+      "date": "2026-05-16T19:30:00-03:00",
+      "home": {
+        "id": "cbf-35322",
+        "score": "3",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-64052",
+        "score": "2",
+        "penalties": "0"
+      },
+      "venue": "Domingão - Horizonte - CE",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34265se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834128"
+    },
+    {
+      "id": "834124",
+      "cbfId": "834124",
+      "league": "bra.3",
+      "reference": 61,
+      "round": 7,
+      "group": "GRUPO A",
+      "date": "2026-05-17T16:00:00-03:00",
+      "home": {
+        "id": "cbf-20038",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-63843",
+        "score": "0",
+        "penalties": "0"
+      },
+      "venue": "Fonte Luminosa - Araraquara - SP",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34261se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834124"
+    },
+    {
+      "id": "834130",
+      "cbfId": "834130",
+      "league": "bra.3",
+      "reference": 67,
+      "round": 7,
+      "group": "GRUPO A",
+      "date": "2026-05-17T16:00:00-03:00",
+      "home": {
+        "id": "cbf-20062",
+        "score": "2",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20017",
+        "score": "0",
+        "penalties": "0"
+      },
+      "venue": "Centenário - Caxias do Sul - RS",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34267se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834130"
+    },
+    {
+      "id": "834129",
+      "cbfId": "834129",
+      "league": "bra.3",
+      "reference": 66,
+      "round": 7,
+      "group": "GRUPO A",
+      "date": "2026-05-17T18:00:00-03:00",
+      "home": {
+        "id": "cbf-20164",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-40387",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Jonas Duarte - Anapolis - GO",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34266se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834129"
+    },
+    {
+      "id": "834125",
+      "cbfId": "834125",
+      "league": "bra.3",
+      "reference": 62,
+      "round": 7,
+      "group": "GRUPO A",
+      "date": "2026-05-17T18:30:00-03:00",
+      "home": {
+        "id": "cbf-20024",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-64742",
+        "score": "3",
+        "penalties": "0"
+      },
+      "venue": "Brinco de Ouro - Campinas - SP",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34262se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834125"
+    },
+    {
+      "id": "834127",
+      "cbfId": "834127",
+      "league": "bra.3",
+      "reference": 64,
+      "round": 7,
+      "group": "GRUPO A",
+      "date": "2026-05-18T20:00:00-03:00",
+      "home": {
+        "id": "cbf-64368",
+        "score": "2",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20043",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Batistão - Aracaju - SE",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34264se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834127"
+    },
+    {
+      "id": "834133",
+      "cbfId": "834133",
+      "league": "bra.3",
+      "reference": 70,
+      "round": 7,
+      "group": "GRUPO A",
+      "date": "2026-05-18T20:00:00-03:00",
+      "home": {
+        "id": "cbf-63524",
+        "score": "0",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20107",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Almeidão - Joao Pessoa - PB",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34270se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834133"
+    },
+    {
+      "id": "834141",
+      "cbfId": "834141",
+      "league": "bra.3",
+      "reference": 78,
+      "round": 8,
+      "group": "GRUPO A",
+      "date": "2026-05-23T17:00:00-03:00",
+      "home": {
+        "id": "cbf-40387",
+        "score": "0",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20024",
+        "score": "2",
+        "penalties": "0"
+      },
+      "venue": "Arena Barra FC - Itajai - SC",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34278se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834141"
+    },
+    {
+      "id": "834138",
+      "cbfId": "834138",
+      "league": "bra.3",
+      "reference": 75,
+      "round": 8,
+      "group": "GRUPO A",
+      "date": "2026-05-23T19:30:00-03:00",
+      "home": {
+        "id": "cbf-20043",
+        "score": "0",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20062",
+        "score": "0",
+        "penalties": "0"
+      },
+      "venue": "Castelão - Sao Luis - MA",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34275se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834138"
+    },
+    {
+      "id": "834140",
+      "cbfId": "834140",
+      "league": "bra.3",
+      "reference": 77,
+      "round": 8,
+      "group": "GRUPO A",
+      "date": "2026-05-23T19:30:00-03:00",
+      "home": {
+        "id": "17715",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20039",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Willie Davids - Maringa - PR",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34277se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834140"
+    },
+    {
+      "id": "834134",
+      "cbfId": "834134",
+      "league": "bra.3",
+      "reference": 71,
+      "round": 8,
+      "group": "GRUPO A",
+      "date": "2026-05-24T16:30:00-03:00",
+      "home": {
+        "id": "cbf-20107",
+        "score": "0",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20057",
+        "score": "0",
+        "penalties": "0"
+      },
+      "venue": "Major Levy Sobrinho - Limeira - SP",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34271se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834134"
+    },
+    {
+      "id": "834136",
+      "cbfId": "834136",
+      "league": "bra.3",
+      "reference": 73,
+      "round": 8,
+      "group": "GRUPO A",
+      "date": "2026-05-24T16:30:00-03:00",
+      "home": {
+        "id": "cbf-63843",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20164",
+        "score": "0",
+        "penalties": "0"
+      },
+      "venue": "Augusto Bauer - Brusque - SC",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34273se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834136"
+    },
+    {
+      "id": "834143",
+      "cbfId": "834143",
+      "league": "bra.3",
+      "reference": 80,
+      "round": 8,
+      "group": "GRUPO A",
+      "date": "2026-05-24T16:30:00-03:00",
+      "home": {
+        "id": "cbf-64052",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20038",
+        "score": "2",
+        "penalties": "0"
+      },
+      "venue": "Carlos Zamith - Manaus - AM",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34280se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834143"
+    },
+    {
+      "id": "834137",
+      "cbfId": "834137",
+      "league": "bra.3",
+      "reference": 74,
+      "round": 8,
+      "group": "GRUPO A",
+      "date": "2026-05-24T18:00:00-03:00",
+      "home": {
+        "id": "cbf-64368",
+        "score": "0",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-59879",
+        "score": "0",
+        "penalties": "0"
+      },
+      "venue": "Batistão - Aracaju - SE",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34274se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834137"
+    },
+    {
+      "id": "834139",
+      "cbfId": "834139",
+      "league": "bra.3",
+      "reference": 76,
+      "round": 8,
+      "group": "GRUPO A",
+      "date": "2026-05-24T19:00:00-03:00",
+      "home": {
+        "id": "cbf-20065",
+        "score": "2",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20379",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Raulino de Oliveira - Volta Redonda - RJ",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34276se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834139"
+    },
+    {
+      "id": "834135",
+      "cbfId": "834135",
+      "league": "bra.3",
+      "reference": 72,
+      "round": 8,
+      "group": "GRUPO A",
+      "date": "2026-05-25T20:00:00-03:00",
+      "home": {
+        "id": "cbf-64742",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-63524",
+        "score": "0",
+        "penalties": "0"
+      },
+      "venue": "Novelli Junior - Itu - SP",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34272se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834135"
+    },
+    {
+      "id": "834142",
+      "cbfId": "834142",
+      "league": "bra.3",
+      "reference": 79,
+      "round": 8,
+      "group": "GRUPO A",
+      "date": "2026-05-25T20:00:00-03:00",
+      "home": {
+        "id": "cbf-20017",
+        "score": "2",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-35322",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Curuzu - Belem - PA",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34279se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834142"
+    },
+    {
+      "id": "834147",
+      "cbfId": "834147",
+      "league": "bra.3",
+      "reference": 84,
+      "round": 9,
+      "group": "GRUPO A",
+      "date": "2026-05-30T17:00:00-03:00",
+      "home": {
+        "id": "cbf-20057",
+        "score": "0",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20065",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Etelvino Mendonça - Itabaiana - SE",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34284se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834147"
+    },
+    {
+      "id": "834148",
+      "cbfId": "834148",
+      "league": "bra.3",
+      "reference": 85,
+      "round": 9,
+      "group": "GRUPO A",
+      "date": "2026-05-30T17:00:00-03:00",
+      "home": {
+        "id": "cbf-35322",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-64368",
+        "score": "0",
+        "penalties": "0"
+      },
+      "venue": "Presidente Vargas - Fortaleza - CE",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34285se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834148"
+    },
+    {
+      "id": "834153",
+      "cbfId": "834153",
+      "league": "bra.3",
+      "reference": 90,
+      "round": 9,
+      "group": "GRUPO A",
+      "date": "2026-05-30T18:00:00-03:00",
+      "home": {
+        "id": "cbf-63524",
+        "score": "2",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "17715",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Almeidão - Joao Pessoa - PB",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34290se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834153"
+    },
+    {
+      "id": "834150",
+      "cbfId": "834150",
+      "league": "bra.3",
+      "reference": 87,
+      "round": 9,
+      "group": "GRUPO A",
+      "date": "2026-05-30T19:30:00-03:00",
+      "home": {
+        "id": "cbf-20062",
+        "score": "2",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-64742",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Centenário - Caxias do Sul - RS",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34287se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834150"
+    },
+    {
+      "id": "834144",
+      "cbfId": "834144",
+      "league": "bra.3",
+      "reference": 81,
+      "round": 9,
+      "group": "GRUPO A",
+      "date": "2026-05-31T16:00:00-03:00",
+      "home": {
+        "id": "cbf-20107",
+        "score": "2",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20379",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Major Levy Sobrinho - Limeira - SP",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34281se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834144"
+    },
+    {
+      "id": "834145",
+      "cbfId": "834145",
+      "league": "bra.3",
+      "reference": 82,
+      "round": 9,
+      "group": "GRUPO A",
+      "date": "2026-05-31T16:00:00-03:00",
+      "home": {
+        "id": "cbf-20024",
+        "score": "5",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-64052",
+        "score": "0",
+        "penalties": "0"
+      },
+      "venue": "Brinco de Ouro - Campinas - SP",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34282se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834145"
+    },
+    {
+      "id": "834152",
+      "cbfId": "834152",
+      "league": "bra.3",
+      "reference": 89,
+      "round": 9,
+      "group": "GRUPO A",
+      "date": "2026-05-31T16:00:00-03:00",
+      "home": {
+        "id": "cbf-20039",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20038",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Arena Pernambuco - São Lourenço da Mata - PE",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34289se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834152"
+    },
+    {
+      "id": "834149",
+      "cbfId": "834149",
+      "league": "bra.3",
+      "reference": 86,
+      "round": 9,
+      "group": "GRUPO A",
+      "date": "2026-05-31T18:30:00-03:00",
+      "home": {
+        "id": "cbf-20164",
+        "score": "0",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20043",
+        "score": "0",
+        "penalties": "0"
+      },
+      "venue": "Jonas Duarte - Anapolis - GO",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34286se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834149"
+    },
+    {
+      "id": "834146",
+      "cbfId": "834146",
+      "league": "bra.3",
+      "reference": 83,
+      "round": 9,
+      "group": "GRUPO A",
+      "date": "2026-05-31T20:30:00-03:00",
+      "home": {
+        "id": "cbf-59879",
+        "score": "2",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20017",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Orlando Scarpelli - Florianopolis - SC",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34283se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834146"
+    },
+    {
+      "id": "834151",
+      "cbfId": "834151",
+      "league": "bra.3",
+      "reference": 88,
+      "round": 9,
+      "group": "GRUPO A",
+      "date": "2026-06-01T20:00:00-03:00",
+      "home": {
+        "id": "cbf-40387",
+        "score": "2",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-63843",
+        "score": "2",
+        "penalties": "0"
+      },
+      "venue": "Arena Barra FC - Itajai - SC",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34288se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834151"
+    },
+    {
+      "id": "834715",
+      "cbfId": "834715",
+      "league": "bra.3",
+      "reference": 92,
+      "round": 10,
+      "group": "GRUPO A",
+      "date": "2026-06-13T11:00:00-03:00",
+      "home": {
+        "id": "cbf-20024",
+        "score": "2",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20062",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Brinco de Ouro - Campinas - SP",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34292se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834715"
+    },
+    {
+      "id": "834733",
+      "cbfId": "834733",
+      "league": "bra.3",
+      "reference": 100,
+      "round": 10,
+      "group": "GRUPO A",
+      "date": "2026-06-13T16:00:00-03:00",
+      "home": {
+        "id": "cbf-64052",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20164",
+        "score": "0",
+        "penalties": "0"
+      },
+      "venue": "Ismael Benigno - Manaus - AM",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342100se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834733"
+    },
+    {
+      "id": "834716",
+      "cbfId": "834716",
+      "league": "bra.3",
+      "reference": 93,
+      "round": 10,
+      "group": "GRUPO A",
+      "date": "2026-06-14T11:00:00-03:00",
+      "home": {
+        "id": "cbf-63843",
+        "score": "0",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20039",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Augusto Bauer - Brusque - SC",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34293se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834716"
+    },
+    {
+      "id": "834732",
+      "cbfId": "834732",
+      "league": "bra.3",
+      "reference": 99,
+      "round": 10,
+      "group": "GRUPO A",
+      "date": "2026-06-14T16:00:00-03:00",
+      "home": {
+        "id": "cbf-20017",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20107",
+        "score": "2",
+        "penalties": "0"
+      },
+      "venue": "Curuzu - Belem - PA",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34299se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834732"
+    },
+    {
+      "id": "834727",
+      "cbfId": "834727",
+      "league": "bra.3",
+      "reference": 94,
+      "round": 10,
+      "group": "GRUPO A",
+      "date": "2026-06-14T16:30:00-03:00",
+      "home": {
+        "id": "cbf-20057",
+        "score": "2",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-64742",
+        "score": "2",
+        "penalties": "0"
+      },
+      "venue": "Etelvino Mendonça - Itabaiana - SE",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34294se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834727"
+    },
+    {
+      "id": "834728",
+      "cbfId": "834728",
+      "league": "bra.3",
+      "reference": 95,
+      "round": 10,
+      "group": "GRUPO A",
+      "date": "2026-06-14T19:30:00-03:00",
+      "home": {
+        "id": "cbf-35322",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-59879",
+        "score": "2",
+        "penalties": "0"
+      },
+      "venue": "Presidente Vargas - Fortaleza - CE",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34295se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834728"
+    },
+    {
+      "id": "834729",
+      "cbfId": "834729",
+      "league": "bra.3",
+      "reference": 96,
+      "round": 10,
+      "group": "GRUPO A",
+      "date": "2026-06-14T19:30:00-03:00",
+      "home": {
+        "id": "cbf-20065",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-64368",
+        "score": "0",
+        "penalties": "0"
+      },
+      "venue": "Raulino de Oliveira - Volta Redonda - RJ",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34296se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834729"
+    },
+    {
+      "id": "834730",
+      "cbfId": "834730",
+      "league": "bra.3",
+      "reference": 97,
+      "round": 10,
+      "group": "GRUPO A",
+      "date": "2026-06-15T19:30:00-03:00",
+      "home": {
+        "id": "17715",
+        "score": "0",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20043",
+        "score": "0",
+        "penalties": "0"
+      },
+      "venue": "Willie Davids - Maringa - PR",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34297se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834730"
+    },
+    {
+      "id": "834714",
+      "cbfId": "834714",
+      "league": "bra.3",
+      "reference": 91,
+      "round": 10,
+      "group": "GRUPO A",
+      "date": "2026-06-15T20:30:00-03:00",
+      "home": {
+        "id": "cbf-20038",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-40387",
+        "score": "0",
+        "penalties": "0"
+      },
+      "venue": "Carlos Colnaghi - Capivari - SP",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34291se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834714"
+    },
+    {
+      "id": "834731",
+      "cbfId": "834731",
+      "league": "bra.3",
+      "reference": 98,
+      "round": 10,
+      "group": "GRUPO A",
+      "date": "2026-06-15T20:30:00-03:00",
+      "home": {
+        "id": "cbf-20379",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-63524",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Colosso da Lagoa - Erechim - RS",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/34298se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834731"
+    },
+    {
+      "id": "834796",
+      "cbfId": "834796",
+      "league": "bra.3",
+      "reference": 106,
+      "round": 11,
+      "group": "GRUPO A",
+      "date": "2026-06-20T16:30:00-03:00",
+      "home": {
+        "id": "cbf-20164",
+        "score": "2",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20057",
+        "score": "0",
+        "penalties": "0"
+      },
+      "venue": "Jonas Duarte - Anapolis - GO",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342106se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834796"
+    },
+    {
+      "id": "834800",
+      "cbfId": "834800",
+      "league": "bra.3",
+      "reference": 110,
+      "round": 11,
+      "group": "GRUPO A",
+      "date": "2026-06-20T17:00:00-03:00",
+      "home": {
+        "id": "cbf-63524",
+        "score": "2",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20065",
+        "score": "0",
+        "penalties": "0"
+      },
+      "venue": "Almeidão - Joao Pessoa - PB",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342110se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834800"
+    },
+    {
+      "id": "834799",
+      "cbfId": "834799",
+      "league": "bra.3",
+      "reference": 109,
+      "round": 11,
+      "group": "GRUPO A",
+      "date": "2026-06-20T19:00:00-03:00",
+      "home": {
+        "id": "cbf-20039",
+        "score": "0",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20379",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Arena Pernambuco - São Lourenço da Mata - PE",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342109se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834799"
+    },
+    {
+      "id": "834792",
+      "cbfId": "834792",
+      "league": "bra.3",
+      "reference": 102,
+      "round": 11,
+      "group": "GRUPO A",
+      "date": "2026-06-20T20:30:00-03:00",
+      "home": {
+        "id": "cbf-64742",
+        "score": "0",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-59879",
+        "score": "0",
+        "penalties": "0"
+      },
+      "venue": "Novelli Junior - Itu - SP",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342102se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834792"
+    },
+    {
+      "id": "834795",
+      "cbfId": "834795",
+      "league": "bra.3",
+      "reference": 105,
+      "round": 11,
+      "group": "GRUPO A",
+      "date": "2026-06-20T21:00:00-03:00",
+      "home": {
+        "id": "cbf-20043",
+        "score": "0",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20017",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Castelão - Sao Luis - MA",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342105se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834795"
+    },
+    {
+      "id": "834797",
+      "cbfId": "834797",
+      "league": "bra.3",
+      "reference": 107,
+      "round": 11,
+      "group": "GRUPO A",
+      "date": "2026-06-21T11:00:00-03:00",
+      "home": {
+        "id": "cbf-20062",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "17715",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Centenário - Caxias do Sul - RS",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342107se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834797"
+    },
+    {
+      "id": "834793",
+      "cbfId": "834793",
+      "league": "bra.3",
+      "reference": 103,
+      "round": 11,
+      "group": "GRUPO A",
+      "date": "2026-06-21T16:00:00-03:00",
+      "home": {
+        "id": "cbf-63843",
+        "score": "2",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-35322",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Augusto Bauer - Brusque - SC",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342103se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834793"
+    },
+    {
+      "id": "834782",
+      "cbfId": "834782",
+      "league": "bra.3",
+      "reference": 101,
+      "round": 11,
+      "group": "GRUPO A",
+      "date": "2026-06-21T18:30:00-03:00",
+      "home": {
+        "id": "cbf-20038",
+        "score": "2",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20107",
+        "score": "0",
+        "penalties": "0"
+      },
+      "venue": "Fonte Luminosa - Araraquara - SP",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342101se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834782"
+    },
+    {
+      "id": "834798",
+      "cbfId": "834798",
+      "league": "bra.3",
+      "reference": 108,
+      "round": 11,
+      "group": "GRUPO A",
+      "date": "2026-06-21T18:30:00-03:00",
+      "home": {
+        "id": "cbf-40387",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-64052",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Arena Barra FC - Itajai - SC",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342108se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834798"
+    },
+    {
+      "id": "834794",
+      "cbfId": "834794",
+      "league": "bra.3",
+      "reference": 104,
+      "round": 11,
+      "group": "GRUPO A",
+      "date": "2026-06-22T19:30:00-03:00",
+      "home": {
+        "id": "cbf-64368",
+        "score": "2",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20024",
+        "score": "0",
+        "penalties": "0"
+      },
+      "venue": "Batistão - Aracaju - SE",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342104se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834794"
+    },
+    {
+      "id": "834805",
+      "cbfId": "834805",
+      "league": "bra.3",
+      "reference": 111,
+      "round": 12,
+      "group": "GRUPO A",
+      "date": "2026-06-27T11:00:00-03:00",
+      "home": {
+        "id": "cbf-20107",
+        "score": "2",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "17715",
+        "score": "2",
+        "penalties": "0"
+      },
+      "venue": "Major Levy Sobrinho - Limeira - SP",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342111se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834805"
+    },
+    {
+      "id": "834809",
+      "cbfId": "834809",
+      "league": "bra.3",
+      "reference": 115,
+      "round": 12,
+      "group": "GRUPO A",
+      "date": "2026-06-27T16:00:00-03:00",
+      "home": {
+        "id": "cbf-35322",
+        "score": "2",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-40387",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Presidente Vargas - Fortaleza - CE",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342115se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834809"
+    },
+    {
+      "id": "834813",
+      "cbfId": "834813",
+      "league": "bra.3",
+      "reference": 119,
+      "round": 12,
+      "group": "GRUPO A",
+      "date": "2026-06-27T17:00:00-03:00",
+      "home": {
+        "id": "cbf-20017",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20039",
+        "score": "3",
+        "penalties": "0"
+      },
+      "venue": "Curuzu - Belem - PA",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342119se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834813"
+    },
+    {
+      "id": "834808",
+      "cbfId": "834808",
+      "league": "bra.3",
+      "reference": 114,
+      "round": 12,
+      "group": "GRUPO A",
+      "date": "2026-06-27T19:00:00-03:00",
+      "home": {
+        "id": "cbf-20057",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20038",
+        "score": "0",
+        "penalties": "0"
+      },
+      "venue": "Etelvino Mendonça - Itabaiana - SE",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342114se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834808"
+    },
+    {
+      "id": "834807",
+      "cbfId": "834807",
+      "league": "bra.3",
+      "reference": 113,
+      "round": 12,
+      "group": "GRUPO A",
+      "date": "2026-06-28T11:00:00-03:00",
+      "home": {
+        "id": "cbf-59879",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20024",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Orlando Scarpelli - Florianopolis - SC",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342113se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834807"
+    },
+    {
+      "id": "834806",
+      "cbfId": "834806",
+      "league": "bra.3",
+      "reference": 112,
+      "round": 12,
+      "group": "GRUPO A",
+      "date": "2026-06-28T20:30:00-03:00",
+      "home": {
+        "id": "cbf-64742",
+        "score": "0",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20043",
+        "score": "0",
+        "penalties": "0"
+      },
+      "venue": "Novelli Junior - Itu - SP",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342112se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834806"
+    },
+    {
+      "id": "834812",
+      "cbfId": "834812",
+      "league": "bra.3",
+      "reference": 118,
+      "round": 12,
+      "group": "GRUPO A",
+      "date": "2026-06-28T20:30:00-03:00",
+      "home": {
+        "id": "cbf-20379",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-64368",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Colosso da Lagoa - Erechim - RS",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342118se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834812"
+    },
+    {
+      "id": "834811",
+      "cbfId": "834811",
+      "league": "bra.3",
+      "reference": 117,
+      "round": 12,
+      "group": "GRUPO A",
+      "date": "2026-06-30T19:30:00-03:00",
+      "home": {
+        "id": "cbf-20062",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20164",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Centenário - Caxias do Sul - RS",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342117se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834811"
+    },
+    {
+      "id": "834810",
+      "cbfId": "834810",
+      "league": "bra.3",
+      "reference": 116,
+      "round": 12,
+      "group": "GRUPO A",
+      "date": "2026-06-30T20:30:00-03:00",
+      "home": {
+        "id": "cbf-20065",
+        "score": "3",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-64052",
+        "score": "0",
+        "penalties": "0"
+      },
+      "venue": "Raulino de Oliveira - Volta Redonda - RJ",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342116se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834810"
+    },
+    {
+      "id": "834814",
+      "cbfId": "834814",
+      "league": "bra.3",
+      "reference": 120,
+      "round": 12,
+      "group": "GRUPO A",
+      "date": "2026-06-30T20:30:00-03:00",
+      "home": {
+        "id": "cbf-63524",
+        "score": "2",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-63843",
+        "score": "0",
+        "penalties": "0"
+      },
+      "venue": "Almeidão - Joao Pessoa - PB",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342120se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834814"
+    },
+    {
+      "id": "834819",
+      "cbfId": "834819",
+      "league": "bra.3",
+      "reference": 125,
+      "round": 13,
+      "group": "GRUPO A",
+      "date": "2026-07-04T17:00:00-03:00",
+      "home": {
+        "id": "cbf-20043",
+        "score": "0",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20107",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Castelão - Sao Luis - MA",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342125se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834819"
+    },
+    {
+      "id": "834818",
+      "cbfId": "834818",
+      "league": "bra.3",
+      "reference": 124,
+      "round": 13,
+      "group": "GRUPO A",
+      "date": "2026-07-04T19:00:00-03:00",
+      "home": {
+        "id": "cbf-64368",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-40387",
+        "score": "2",
+        "penalties": "0"
+      },
+      "venue": "Batistão - Aracaju - SE",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342124se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834818"
+    },
+    {
+      "id": "834821",
+      "cbfId": "834821",
+      "league": "bra.3",
+      "reference": 127,
+      "round": 13,
+      "group": "GRUPO A",
+      "date": "2026-07-04T19:00:00-03:00",
+      "home": {
+        "id": "17715",
+        "score": "4",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20065",
+        "score": "0",
+        "penalties": "0"
+      },
+      "venue": "Willie Davids - Maringa - PR",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342127se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834821"
+    },
+    {
+      "id": "834823",
+      "cbfId": "834823",
+      "league": "bra.3",
+      "reference": 129,
+      "round": 13,
+      "group": "GRUPO A",
+      "date": "2026-07-04T19:30:00-03:00",
+      "home": {
+        "id": "cbf-20039",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-64742",
+        "score": "0",
+        "penalties": "0"
+      },
+      "venue": "Arena Pernambuco - São Lourenço da Mata - PE",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342129se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834823"
+    },
+    {
+      "id": "834815",
+      "cbfId": "834815",
+      "league": "bra.3",
+      "reference": 121,
+      "round": 13,
+      "group": "GRUPO A",
+      "date": "2026-07-04T20:30:00-03:00",
+      "home": {
+        "id": "cbf-20038",
+        "score": "0",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20062",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Fonte Luminosa - Araraquara - SP",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342121se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834815"
+    },
+    {
+      "id": "834816",
+      "cbfId": "834816",
+      "league": "bra.3",
+      "reference": 122,
+      "round": 13,
+      "group": "GRUPO A",
+      "date": "2026-07-04T20:30:00-03:00",
+      "home": {
+        "id": "cbf-20024",
+        "score": "0",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-35322",
+        "score": "0",
+        "penalties": "0"
+      },
+      "venue": "Brinco de Ouro - Campinas - SP",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342122se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834816"
+    },
+    {
+      "id": "834822",
+      "cbfId": "834822",
+      "league": "bra.3",
+      "reference": 128,
+      "round": 13,
+      "group": "GRUPO A",
+      "date": "2026-07-05T11:00:00-03:00",
+      "home": {
+        "id": "cbf-20379",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20017",
+        "score": "0",
+        "penalties": "0"
+      },
+      "venue": "Colosso da Lagoa - Erechim - RS",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342128se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834822"
+    },
+    {
+      "id": "834820",
+      "cbfId": "834820",
+      "league": "bra.3",
+      "reference": 126,
+      "round": 13,
+      "group": "GRUPO A",
+      "date": "2026-07-05T21:00:00-03:00",
+      "home": {
+        "id": "cbf-20164",
+        "score": "0",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-63524",
+        "score": "2",
+        "penalties": "0"
+      },
+      "venue": "Jonas Duarte - Anapolis - GO",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342126se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834820"
+    },
+    {
+      "id": "834817",
+      "cbfId": "834817",
+      "league": "bra.3",
+      "reference": 123,
+      "round": 13,
+      "group": "GRUPO A",
+      "date": "2026-07-06T19:00:00-03:00",
+      "home": {
+        "id": "cbf-63843",
+        "score": "3",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-59879",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Augusto Bauer - Brusque - SC",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342123se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834817"
+    },
+    {
+      "id": "834824",
+      "cbfId": "834824",
+      "league": "bra.3",
+      "reference": 130,
+      "round": 13,
+      "group": "GRUPO A",
+      "date": "2026-07-06T21:00:00-03:00",
+      "home": {
+        "id": "cbf-64052",
+        "score": "0",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20057",
+        "score": "2",
+        "penalties": "0"
+      },
+      "venue": "Carlos Zamith - Manaus - AM",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342130se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834824"
+    },
+    {
+      "id": "834831",
+      "cbfId": "834831",
+      "league": "bra.3",
+      "reference": 137,
+      "round": 14,
+      "group": "GRUPO A",
+      "date": "2026-07-11T11:00:00-03:00",
+      "home": {
+        "id": "cbf-20062",
+        "score": "0",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-35322",
+        "score": "0",
+        "penalties": "0"
+      },
+      "venue": "Centenário - Caxias do Sul - RS",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342137se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834831"
+    },
+    {
+      "id": "834825",
+      "cbfId": "834825",
+      "league": "bra.3",
+      "reference": 131,
+      "round": 14,
+      "group": "GRUPO A",
+      "date": "2026-07-12T11:00:00-03:00",
+      "home": {
+        "id": "cbf-20107",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-64052",
+        "score": "0",
+        "penalties": "0"
+      },
+      "venue": "Major Levy Sobrinho - Limeira - SP",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342131se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834825"
+    },
+    {
+      "id": "834832",
+      "cbfId": "834832",
+      "league": "bra.3",
+      "reference": 138,
+      "round": 14,
+      "group": "GRUPO A",
+      "date": "2026-07-12T11:00:00-03:00",
+      "home": {
+        "id": "cbf-40387",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20039",
+        "score": "2",
+        "penalties": "0"
+      },
+      "venue": "Arena Barra FC - Itajai - SC",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342138se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834832"
+    },
+    {
+      "id": "834826",
+      "cbfId": "834826",
+      "league": "bra.3",
+      "reference": 132,
+      "round": 14,
+      "group": "GRUPO A",
+      "date": "2026-07-12T16:00:00-03:00",
+      "home": {
+        "id": "cbf-64742",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20038",
+        "score": "3",
+        "penalties": "0"
+      },
+      "venue": "Novelli Junior - Itu - SP",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342132se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834826"
+    },
+    {
+      "id": "834829",
+      "cbfId": "834829",
+      "league": "bra.3",
+      "reference": 135,
+      "round": 14,
+      "group": "GRUPO A",
+      "date": "2026-07-12T16:00:00-03:00",
+      "home": {
+        "id": "cbf-20043",
+        "score": "2",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20379",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Castelão - Sao Luis - MA",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342135se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834829"
+    },
+    {
+      "id": "834830",
+      "cbfId": "834830",
+      "league": "bra.3",
+      "reference": 136,
+      "round": 14,
+      "group": "GRUPO A",
+      "date": "2026-07-12T16:00:00-03:00",
+      "home": {
+        "id": "cbf-20164",
+        "score": "0",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "17715",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Jonas Duarte - Anapolis - GO",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342136se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834830"
+    },
+    {
+      "id": "834833",
+      "cbfId": "834833",
+      "league": "bra.3",
+      "reference": 139,
+      "round": 14,
+      "group": "GRUPO A",
+      "date": "2026-07-12T16:00:00-03:00",
+      "home": {
+        "id": "cbf-20017",
+        "score": "3",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20024",
+        "score": "2",
+        "penalties": "0"
+      },
+      "venue": "Curuzu - Belem - PA",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342139se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834833"
+    },
+    {
+      "id": "834834",
+      "cbfId": "834834",
+      "league": "bra.3",
+      "reference": 140,
+      "round": 14,
+      "group": "GRUPO A",
+      "date": "2026-07-12T19:30:00-03:00",
+      "home": {
+        "id": "cbf-63524",
+        "score": "2",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-64368",
+        "score": "0",
+        "penalties": "0"
+      },
+      "venue": "Almeidão - Joao Pessoa - PB",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342140se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834834"
+    },
+    {
+      "id": "834828",
+      "cbfId": "834828",
+      "league": "bra.3",
+      "reference": 134,
+      "round": 14,
+      "group": "GRUPO A",
+      "date": "2026-07-13T19:30:00-03:00",
+      "home": {
+        "id": "cbf-20057",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-63843",
+        "score": "0",
+        "penalties": "0"
+      },
+      "venue": "Etelvino Mendonça - Itabaiana - SE",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342134se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834828"
+    },
+    {
+      "id": "834827",
+      "cbfId": "834827",
+      "league": "bra.3",
+      "reference": 133,
+      "round": 14,
+      "group": "GRUPO A",
+      "date": "2026-07-13T20:30:00-03:00",
+      "home": {
+        "id": "cbf-59879",
+        "score": "0",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20065",
+        "score": "0",
+        "penalties": "0"
+      },
+      "venue": "Orlando Scarpelli - Florianopolis - SC",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342133se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834827"
+    },
+    {
+      "id": "834835",
+      "cbfId": "834835",
+      "league": "bra.3",
+      "reference": 141,
+      "round": 15,
+      "group": "GRUPO A",
+      "date": "2026-07-25T17:00:00-03:00",
+      "home": {
+        "id": "cbf-20038",
+        "score": "0",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20043",
+        "score": "0",
+        "penalties": "0"
+      },
+      "venue": "Fonte Luminosa - Araraquara - SP",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342141se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834835"
+    },
+    {
+      "id": "834843",
+      "cbfId": "834843",
+      "league": "bra.3",
+      "reference": 149,
+      "round": 15,
+      "group": "GRUPO A",
+      "date": "2026-07-25T17:00:00-03:00",
+      "home": {
+        "id": "cbf-20039",
+        "score": "0",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-59879",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Arena Pernambuco - São Lourenço da Mata - PE",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342149se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834843"
+    },
+    {
+      "id": "834838",
+      "cbfId": "834838",
+      "league": "bra.3",
+      "reference": 144,
+      "round": 15,
+      "group": "GRUPO A",
+      "date": "2026-07-25T18:30:00-03:00",
+      "home": {
+        "id": "cbf-64368",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20057",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Batistão - Aracaju - SE",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342144se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834838"
+    },
+    {
+      "id": "834840",
+      "cbfId": "834840",
+      "league": "bra.3",
+      "reference": 146,
+      "round": 15,
+      "group": "GRUPO A",
+      "date": "2026-07-25T19:00:00-03:00",
+      "home": {
+        "id": "cbf-20065",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20164",
+        "score": "4",
+        "penalties": "0"
+      },
+      "venue": "Raulino de Oliveira - Volta Redonda - RJ",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342146se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834840"
+    },
+    {
+      "id": "834837",
+      "cbfId": "834837",
+      "league": "bra.3",
+      "reference": 143,
+      "round": 15,
+      "group": "GRUPO A",
+      "date": "2026-07-26T16:00:00-03:00",
+      "home": {
+        "id": "cbf-63843",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-64742",
+        "score": "0",
+        "penalties": "0"
+      },
+      "venue": "Augusto Bauer - Brusque - SC",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342143se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834837"
+    },
+    {
+      "id": "834842",
+      "cbfId": "834842",
+      "league": "bra.3",
+      "reference": 148,
+      "round": 15,
+      "group": "GRUPO A",
+      "date": "2026-07-26T16:00:00-03:00",
+      "home": {
+        "id": "cbf-20379",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-40387",
+        "score": "0",
+        "penalties": "0"
+      },
+      "venue": "Colosso da Lagoa - Erechim - RS",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342148se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834842"
+    },
+    {
+      "id": "834841",
+      "cbfId": "834841",
+      "league": "bra.3",
+      "reference": 147,
+      "round": 15,
+      "group": "GRUPO A",
+      "date": "2026-07-26T18:30:00-03:00",
+      "home": {
+        "id": "cbf-20062",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-63524",
+        "score": "2",
+        "penalties": "0"
+      },
+      "venue": "Centenário - Caxias do Sul - RS",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342147se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834841"
+    },
+    {
+      "id": "834844",
+      "cbfId": "834844",
+      "league": "bra.3",
+      "reference": 150,
+      "round": 15,
+      "group": "GRUPO A",
+      "date": "2026-07-26T20:30:00-03:00",
+      "home": {
+        "id": "cbf-64052",
+        "score": "2",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20017",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Carlos Zamith - Manaus - AM",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342150se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834844"
+    },
+    {
+      "id": "834836",
+      "cbfId": "834836",
+      "league": "bra.3",
+      "reference": 142,
+      "round": 15,
+      "group": "GRUPO A",
+      "date": "2026-07-27T20:00:00-03:00",
+      "home": {
+        "id": "cbf-20024",
+        "score": "3",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20107",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Brinco de Ouro - Campinas - SP",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342142se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834836"
+    },
+    {
+      "id": "834839",
+      "cbfId": "834839",
+      "league": "bra.3",
+      "reference": 145,
+      "round": 15,
+      "group": "GRUPO A",
+      "date": "2026-07-27T20:00:00-03:00",
+      "home": {
+        "id": "cbf-35322",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "17715",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Presidente Vargas - Fortaleza - CE",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342145se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/834839"
+    },
+    {
+      "id": "835019",
+      "cbfId": "835019",
+      "league": "bra.3",
+      "reference": 153,
+      "round": 16,
+      "group": "GRUPO A",
+      "date": "2026-08-08T17:00:00-03:00",
+      "home": {
+        "id": "cbf-59879",
+        "score": "2",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20038",
+        "score": "2",
+        "penalties": "0"
+      },
+      "venue": "Orlando Scarpelli - Florianopolis - SC",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342153se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/835019"
+    },
+    {
+      "id": "835026",
+      "cbfId": "835026",
+      "league": "bra.3",
+      "reference": 160,
+      "round": 16,
+      "group": "GRUPO A",
+      "date": "2026-08-08T17:00:00-03:00",
+      "home": {
+        "id": "cbf-63524",
+        "score": "2",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20039",
+        "score": "2",
+        "penalties": "0"
+      },
+      "venue": "Almeidão - Joao Pessoa - PB",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342160se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/835026"
+    },
+    {
+      "id": "835013",
+      "cbfId": "835013",
+      "league": "bra.3",
+      "reference": 151,
+      "round": 16,
+      "group": "GRUPO A",
+      "date": "2026-08-08T19:30:00-03:00",
+      "home": {
+        "id": "cbf-20107",
+        "score": "2",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20065",
+        "score": "0",
+        "penalties": "0"
+      },
+      "venue": "Major Levy Sobrinho - Limeira - SP",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342151se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/835013"
+    },
+    {
+      "id": "835018",
+      "cbfId": "835018",
+      "league": "bra.3",
+      "reference": 152,
+      "round": 16,
+      "group": "GRUPO A",
+      "date": "2026-08-08T19:30:00-03:00",
+      "home": {
+        "id": "cbf-64742",
+        "score": "2",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-40387",
+        "score": "0",
+        "penalties": "0"
+      },
+      "venue": "Novelli Junior - Itu - SP",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342152se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/835018"
+    },
+    {
+      "id": "835023",
+      "cbfId": "835023",
+      "league": "bra.3",
+      "reference": 157,
+      "round": 16,
+      "group": "GRUPO A",
+      "date": "2026-08-09T16:00:00-03:00",
+      "home": {
+        "id": "17715",
+        "score": "0",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-64052",
+        "score": "3",
+        "penalties": "0"
+      },
+      "venue": "Willie Davids - Maringa - PR",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342157se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/835023"
+    },
+    {
+      "id": "835024",
+      "cbfId": "835024",
+      "league": "bra.3",
+      "reference": 158,
+      "round": 16,
+      "group": "GRUPO A",
+      "date": "2026-08-09T16:00:00-03:00",
+      "home": {
+        "id": "cbf-20379",
+        "score": "4",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-35322",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Colosso da Lagoa - Erechim - RS",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342158se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/835024"
+    },
+    {
+      "id": "835020",
+      "cbfId": "835020",
+      "league": "bra.3",
+      "reference": 154,
+      "round": 16,
+      "group": "GRUPO A",
+      "date": "2026-08-09T18:30:00-03:00",
+      "home": {
+        "id": "cbf-20057",
+        "score": "0",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20062",
+        "score": "2",
+        "penalties": "0"
+      },
+      "venue": "Etelvino Mendonça - Itabaiana - SE",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342154se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/835020"
+    },
+    {
+      "id": "835021",
+      "cbfId": "835021",
+      "league": "bra.3",
+      "reference": 155,
+      "round": 16,
+      "group": "GRUPO A",
+      "date": "2026-08-09T18:30:00-03:00",
+      "home": {
+        "id": "cbf-20043",
+        "score": "2",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-63843",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Castelão - Sao Luis - MA",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342155se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/835021"
+    },
+    {
+      "id": "835022",
+      "cbfId": "835022",
+      "league": "bra.3",
+      "reference": 156,
+      "round": 16,
+      "group": "GRUPO A",
+      "date": "2026-08-10T20:00:00-03:00",
+      "home": {
+        "id": "cbf-20164",
+        "score": "2",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20024",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Jonas Duarte - Anapolis - GO",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342156se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/835022"
+    },
+    {
+      "id": "835025",
+      "cbfId": "835025",
+      "league": "bra.3",
+      "reference": 159,
+      "round": 16,
+      "group": "GRUPO A",
+      "date": "2026-08-10T20:00:00-03:00",
+      "home": {
+        "id": "cbf-20017",
+        "score": "2",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-64368",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Curuzu - Belem - PA",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342159se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/835025"
+    },
+    {
+      "id": "835032",
+      "cbfId": "835032",
+      "league": "bra.3",
+      "reference": 166,
+      "round": 17,
+      "group": "GRUPO A",
+      "date": "2026-08-15T17:00:00-03:00",
+      "home": {
+        "id": "cbf-20065",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-64742",
+        "score": "0",
+        "penalties": "0"
+      },
+      "venue": "Raulino de Oliveira - Volta Redonda - RJ",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342166se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/835032"
+    },
+    {
+      "id": "835036",
+      "cbfId": "835036",
+      "league": "bra.3",
+      "reference": 170,
+      "round": 17,
+      "group": "GRUPO A",
+      "date": "2026-08-15T17:00:00-03:00",
+      "home": {
+        "id": "cbf-64052",
+        "score": "0",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-63524",
+        "score": "0",
+        "penalties": "0"
+      },
+      "venue": "Carlos Zamith - Manaus - AM",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342170se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/835036"
+    },
+    {
+      "id": "835029",
+      "cbfId": "835029",
+      "league": "bra.3",
+      "reference": 163,
+      "round": 17,
+      "group": "GRUPO A",
+      "date": "2026-08-15T19:30:00-03:00",
+      "home": {
+        "id": "cbf-63843",
+        "score": "3",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20107",
+        "score": "2",
+        "penalties": "0"
+      },
+      "venue": "Augusto Bauer - Brusque - SC",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342163se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/835029"
+    },
+    {
+      "id": "835035",
+      "cbfId": "835035",
+      "league": "bra.3",
+      "reference": 169,
+      "round": 17,
+      "group": "GRUPO A",
+      "date": "2026-08-15T19:30:00-03:00",
+      "home": {
+        "id": "cbf-20039",
+        "score": "0",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20043",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Arena Pernambuco - São Lourenço da Mata - PE",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342169se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/835035"
+    },
+    {
+      "id": "835031",
+      "cbfId": "835031",
+      "league": "bra.3",
+      "reference": 165,
+      "round": 17,
+      "group": "GRUPO A",
+      "date": "2026-08-16T16:00:00-03:00",
+      "home": {
+        "id": "cbf-35322",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20164",
+        "score": "0",
+        "penalties": "0"
+      },
+      "venue": "Presidente Vargas - Fortaleza - CE",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342165se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/835031"
+    },
+    {
+      "id": "835033",
+      "cbfId": "835033",
+      "league": "bra.3",
+      "reference": 167,
+      "round": 17,
+      "group": "GRUPO A",
+      "date": "2026-08-16T16:00:00-03:00",
+      "home": {
+        "id": "cbf-20062",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-59879",
+        "score": "2",
+        "penalties": "0"
+      },
+      "venue": "Centenário - Caxias do Sul - RS",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342167se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/835033"
+    },
+    {
+      "id": "835030",
+      "cbfId": "835030",
+      "league": "bra.3",
+      "reference": 164,
+      "round": 17,
+      "group": "GRUPO A",
+      "date": "2026-08-16T18:30:00-03:00",
+      "home": {
+        "id": "cbf-64368",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "17715",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Batistão - Aracaju - SE",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342164se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/835030"
+    },
+    {
+      "id": "835034",
+      "cbfId": "835034",
+      "league": "bra.3",
+      "reference": 168,
+      "round": 17,
+      "group": "GRUPO A",
+      "date": "2026-08-16T18:30:00-03:00",
+      "home": {
+        "id": "cbf-40387",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20057",
+        "score": "0",
+        "penalties": "0"
+      },
+      "venue": "Arena Barra FC - Itajai - SC",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342168se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/835034"
+    },
+    {
+      "id": "835027",
+      "cbfId": "835027",
+      "league": "bra.3",
+      "reference": 161,
+      "round": 17,
+      "group": "GRUPO A",
+      "date": "2026-08-17T20:00:00-03:00",
+      "home": {
+        "id": "cbf-20038",
+        "score": "4",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20017",
+        "score": "0",
+        "penalties": "0"
+      },
+      "venue": "Fonte Luminosa - Araraquara - SP",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342161se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/835027"
+    },
+    {
+      "id": "835028",
+      "cbfId": "835028",
+      "league": "bra.3",
+      "reference": 162,
+      "round": 17,
+      "group": "GRUPO A",
+      "date": "2026-08-17T20:00:00-03:00",
+      "home": {
+        "id": "cbf-20024",
+        "score": "2",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20379",
+        "score": "2",
+        "penalties": "0"
+      },
+      "venue": "Brinco de Ouro - Campinas - SP",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342162se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/835028"
+    },
+    {
+      "id": "835038",
+      "cbfId": "835038",
+      "league": "bra.3",
+      "reference": 172,
+      "round": 18,
+      "group": "GRUPO A",
+      "date": "2026-08-22T17:00:00-03:00",
+      "home": {
+        "id": "cbf-64742",
+        "score": "0",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20017",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Novelli Junior - Itu - SP",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342172se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/835038"
+    },
+    {
+      "id": "835042",
+      "cbfId": "835042",
+      "league": "bra.3",
+      "reference": 176,
+      "round": 18,
+      "group": "GRUPO A",
+      "date": "2026-08-22T17:00:00-03:00",
+      "home": {
+        "id": "cbf-20065",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-35322",
+        "score": "2",
+        "penalties": "0"
+      },
+      "venue": "Raulino de Oliveira - Volta Redonda - RJ",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342176se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/835042"
+    },
+    {
+      "id": "835046",
+      "cbfId": "835046",
+      "league": "bra.3",
+      "reference": 180,
+      "round": 18,
+      "group": "GRUPO A",
+      "date": "2026-08-22T17:00:00-03:00",
+      "home": {
+        "id": "cbf-63524",
+        "score": "3",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20024",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Almeidão - Joao Pessoa - PB",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342180se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/835046"
+    },
+    {
+      "id": "835040",
+      "cbfId": "835040",
+      "league": "bra.3",
+      "reference": 174,
+      "round": 18,
+      "group": "GRUPO A",
+      "date": "2026-08-22T19:30:00-03:00",
+      "home": {
+        "id": "cbf-64368",
+        "score": "0",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20164",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Batistão - Aracaju - SE",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342174se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/835040"
+    },
+    {
+      "id": "835045",
+      "cbfId": "835045",
+      "league": "bra.3",
+      "reference": 179,
+      "round": 18,
+      "group": "GRUPO A",
+      "date": "2026-08-22T19:30:00-03:00",
+      "home": {
+        "id": "cbf-20039",
+        "score": "2",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20062",
+        "score": "0",
+        "penalties": "0"
+      },
+      "venue": "Arena Pernambuco - São Lourenço da Mata - PE",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342179se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/835045"
+    },
+    {
+      "id": "835037",
+      "cbfId": "835037",
+      "league": "bra.3",
+      "reference": 171,
+      "round": 18,
+      "group": "GRUPO A",
+      "date": "2026-08-23T16:00:00-03:00",
+      "home": {
+        "id": "cbf-20107",
+        "score": "0",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-59879",
+        "score": "0",
+        "penalties": "0"
+      },
+      "venue": "Major Levy Sobrinho - Limeira - SP",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342171se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/835037"
+    },
+    {
+      "id": "835039",
+      "cbfId": "835039",
+      "league": "bra.3",
+      "reference": 173,
+      "round": 18,
+      "group": "GRUPO A",
+      "date": "2026-08-23T16:00:00-03:00",
+      "home": {
+        "id": "cbf-63843",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-64052",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Augusto Bauer - Brusque - SC",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342173se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/835039"
+    },
+    {
+      "id": "835043",
+      "cbfId": "835043",
+      "league": "bra.3",
+      "reference": 177,
+      "round": 18,
+      "group": "GRUPO A",
+      "date": "2026-08-23T16:00:00-03:00",
+      "home": {
+        "id": "17715",
+        "score": "2",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-40387",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Willie Davids - Maringa - PR",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342177se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/835043"
+    },
+    {
+      "id": "835041",
+      "cbfId": "835041",
+      "league": "bra.3",
+      "reference": 175,
+      "round": 18,
+      "group": "GRUPO A",
+      "date": "2026-08-23T18:30:00-03:00",
+      "home": {
+        "id": "cbf-20043",
+        "score": "4",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20057",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Castelão - Sao Luis - MA",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342175se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/835041"
+    },
+    {
+      "id": "835044",
+      "cbfId": "835044",
+      "league": "bra.3",
+      "reference": 178,
+      "round": 18,
+      "group": "GRUPO A",
+      "date": "2026-08-23T18:30:00-03:00",
+      "home": {
+        "id": "cbf-20379",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20038",
+        "score": "0",
+        "penalties": "0"
+      },
+      "venue": "Colosso da Lagoa - Erechim - RS",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342178se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/835044"
+    },
+    {
+      "id": "835047",
+      "cbfId": "835047",
+      "league": "bra.3",
+      "reference": 181,
+      "round": 19,
+      "group": "GRUPO A",
+      "date": "2026-08-29T17:00:00-03:00",
+      "home": {
+        "id": "cbf-20038",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-64368",
+        "score": "0",
+        "penalties": "0"
+      },
+      "venue": "Fonte Luminosa - Araraquara - SP",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342181se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/835047"
+    },
+    {
+      "id": "835048",
+      "cbfId": "835048",
+      "league": "bra.3",
+      "reference": 182,
+      "round": 19,
+      "group": "GRUPO A",
+      "date": "2026-08-29T17:00:00-03:00",
+      "home": {
+        "id": "cbf-20024",
+        "score": "2",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-63843",
+        "score": "2",
+        "penalties": "0"
+      },
+      "venue": "Brinco de Ouro - Campinas - SP",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342182se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/835048"
+    },
+    {
+      "id": "835049",
+      "cbfId": "835049",
+      "league": "bra.3",
+      "reference": 183,
+      "round": 19,
+      "group": "GRUPO A",
+      "date": "2026-08-29T17:00:00-03:00",
+      "home": {
+        "id": "cbf-59879",
+        "score": "2",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20043",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Orlando Scarpelli - Florianopolis - SC",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342183se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/835049"
+    },
+    {
+      "id": "835050",
+      "cbfId": "835050",
+      "league": "bra.3",
+      "reference": 184,
+      "round": 19,
+      "group": "GRUPO A",
+      "date": "2026-08-29T17:00:00-03:00",
+      "home": {
+        "id": "cbf-20057",
+        "score": "0",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-63524",
+        "score": "2",
+        "penalties": "0"
+      },
+      "venue": "Etelvino Mendonça - Itabaiana - SE",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342184se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/835050"
+    },
+    {
+      "id": "835051",
+      "cbfId": "835051",
+      "league": "bra.3",
+      "reference": 185,
+      "round": 19,
+      "group": "GRUPO A",
+      "date": "2026-08-29T17:00:00-03:00",
+      "home": {
+        "id": "cbf-35322",
+        "score": "2",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-64742",
+        "score": "0",
+        "penalties": "0"
+      },
+      "venue": "Presidente Vargas - Fortaleza - CE",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342185se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/835051"
+    },
+    {
+      "id": "835052",
+      "cbfId": "835052",
+      "league": "bra.3",
+      "reference": 186,
+      "round": 19,
+      "group": "GRUPO A",
+      "date": "2026-08-29T17:00:00-03:00",
+      "home": {
+        "id": "cbf-20164",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20039",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Jonas Duarte - Anapolis - GO",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342186se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/835052"
+    },
+    {
+      "id": "835053",
+      "cbfId": "835053",
+      "league": "bra.3",
+      "reference": 187,
+      "round": 19,
+      "group": "GRUPO A",
+      "date": "2026-08-29T17:00:00-03:00",
+      "home": {
+        "id": "cbf-20062",
+        "score": "0",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20107",
+        "score": "0",
+        "penalties": "0"
+      },
+      "venue": "Centenário - Caxias do Sul - RS",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342187se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/835053"
+    },
+    {
+      "id": "835054",
+      "cbfId": "835054",
+      "league": "bra.3",
+      "reference": 188,
+      "round": 19,
+      "group": "GRUPO A",
+      "date": "2026-08-29T17:00:00-03:00",
+      "home": {
+        "id": "cbf-40387",
+        "score": "2",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20065",
+        "score": "0",
+        "penalties": "0"
+      },
+      "venue": "Arena Barra FC - Itajai - SC",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342188se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/835054"
+    },
+    {
+      "id": "835055",
+      "cbfId": "835055",
+      "league": "bra.3",
+      "reference": 189,
+      "round": 19,
+      "group": "GRUPO A",
+      "date": "2026-08-29T17:00:00-03:00",
+      "home": {
+        "id": "cbf-20017",
+        "score": "0",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "17715",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Mangueirão - Belem - PA",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342189se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/835055"
+    },
+    {
+      "id": "835056",
+      "cbfId": "835056",
+      "league": "bra.3",
+      "reference": 190,
+      "round": 19,
+      "group": "GRUPO A",
+      "date": "2026-08-29T17:00:00-03:00",
+      "home": {
+        "id": "cbf-64052",
+        "score": "2",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20379",
+        "score": "2",
+        "penalties": "0"
+      },
+      "venue": "Carlos Zamith - Manaus - AM",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342190se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/835056"
+    },
+    {
+      "id": "835273",
+      "cbfId": "835273",
+      "league": "bra.3",
+      "reference": 194,
+      "round": 1,
+      "group": "GRUPO C",
+      "date": "2026-09-05T17:00:00-03:00",
+      "home": {
+        "id": "cbf-20107",
+        "score": "3",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20038",
+        "score": "3",
+        "penalties": "0"
+      },
+      "venue": "Major Levy Sobrinho - Limeira - SP",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342194se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/835273"
+    },
+    {
+      "id": "835271",
+      "cbfId": "835271",
+      "league": "bra.3",
+      "reference": 192,
+      "round": 1,
+      "group": "GRUPO B",
+      "date": "2026-09-06T16:00:00-03:00",
+      "home": {
+        "id": "cbf-35322",
+        "score": "0",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "17715",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Presidente Vargas - Fortaleza - CE",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342192se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/835271"
+    },
+    {
+      "id": "835270",
+      "cbfId": "835270",
+      "league": "bra.3",
+      "reference": 191,
+      "round": 1,
+      "group": "GRUPO B",
+      "date": "2026-09-06T18:30:00-03:00",
+      "home": {
+        "id": "cbf-20039",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-63524",
+        "score": "0",
+        "penalties": "0"
+      },
+      "venue": "Arena Pernambuco - São Lourenço da Mata - PE",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342191se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/835270"
+    },
+    {
+      "id": "835272",
+      "cbfId": "835272",
+      "league": "bra.3",
+      "reference": 193,
+      "round": 1,
+      "group": "GRUPO C",
+      "date": "2026-09-07T18:00:00-03:00",
+      "home": {
+        "id": "cbf-20017",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-63843",
+        "score": "2",
+        "penalties": "0"
+      },
+      "venue": "Mangueirão - Belem - PA",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342193se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/835272"
+    },
+    {
+      "id": "835274",
+      "cbfId": "835274",
+      "league": "bra.3",
+      "reference": 195,
+      "round": 2,
+      "group": "GRUPO B",
+      "date": "2026-09-12T17:00:00-03:00",
+      "home": {
+        "id": "cbf-63524",
+        "score": "0",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-35322",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Almeidão - Joao Pessoa - PB",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342195se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/835274"
+    },
+    {
+      "id": "835275",
+      "cbfId": "835275",
+      "league": "bra.3",
+      "reference": 196,
+      "round": 2,
+      "group": "GRUPO B",
+      "date": "2026-09-12T19:30:00-03:00",
+      "home": {
+        "id": "17715",
+        "score": "0",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20039",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Willie Davids - Maringa - PR",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342196se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/835275"
+    },
+    {
+      "id": "835277",
+      "cbfId": "835277",
+      "league": "bra.3",
+      "reference": 198,
+      "round": 2,
+      "group": "GRUPO C",
+      "date": "2026-09-13T16:00:00-03:00",
+      "home": {
+        "id": "cbf-20038",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20017",
+        "score": "0",
+        "penalties": "0"
+      },
+      "venue": "Fonte Luminosa - Araraquara - SP",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342198se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/835277"
+    },
+    {
+      "id": "835276",
+      "cbfId": "835276",
+      "league": "bra.3",
+      "reference": 197,
+      "round": 2,
+      "group": "GRUPO C",
+      "date": "2026-09-13T18:30:00-03:00",
+      "home": {
+        "id": "cbf-63843",
+        "score": "2",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20107",
+        "score": "2",
+        "penalties": "0"
+      },
+      "venue": "Augusto Bauer - Brusque - SC",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342197se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/835276"
+    },
+    {
+      "id": "835278",
+      "cbfId": "835278",
+      "league": "bra.3",
+      "reference": 199,
+      "round": 3,
+      "group": "GRUPO B",
+      "date": "2026-09-19T17:00:00-03:00",
+      "home": {
+        "id": "17715",
+        "score": "2",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-63524",
+        "score": "0",
+        "penalties": "0"
+      },
+      "venue": "Willie Davids - Maringa - PR",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342199se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/835278"
+    },
+    {
+      "id": "835279",
+      "cbfId": "835279",
+      "league": "bra.3",
+      "reference": 200,
+      "round": 3,
+      "group": "GRUPO B",
+      "date": "2026-09-20T16:00:00-03:00",
+      "home": {
+        "id": "cbf-20039",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-35322",
+        "score": "0",
+        "penalties": "0"
+      },
+      "venue": "Arena Pernambuco - São Lourenço da Mata - PE",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342200se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/835279"
+    },
+    {
+      "id": "835280",
+      "cbfId": "835280",
+      "league": "bra.3",
+      "reference": 201,
+      "round": 3,
+      "group": "GRUPO C",
+      "date": "2026-09-20T18:30:00-03:00",
+      "home": {
+        "id": "cbf-20038",
+        "score": "3",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-63843",
+        "score": "2",
+        "penalties": "0"
+      },
+      "venue": "Fonte Luminosa - Araraquara - SP",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342201se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/835280"
+    },
+    {
+      "id": "835281",
+      "cbfId": "835281",
+      "league": "bra.3",
+      "reference": 202,
+      "round": 3,
+      "group": "GRUPO C",
+      "date": "2026-09-20T18:30:00-03:00",
+      "home": {
+        "id": "cbf-20017",
+        "score": "2",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20107",
+        "score": "2",
+        "penalties": "0"
+      },
+      "venue": "Curuzu - Belem - PA",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342202se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/835281"
+    },
+    {
+      "id": "835282",
+      "cbfId": "835282",
+      "league": "bra.3",
+      "reference": 203,
+      "round": 4,
+      "group": "GRUPO B",
+      "date": "2026-09-26T17:00:00-03:00",
+      "home": {
+        "id": "cbf-63524",
+        "score": "0",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "17715",
+        "score": "0",
+        "penalties": "0"
+      },
+      "venue": "Almeidão - Joao Pessoa - PB",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342203se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/835282"
+    },
+    {
+      "id": "835283",
+      "cbfId": "835283",
+      "league": "bra.3",
+      "reference": 204,
+      "round": 4,
+      "group": "GRUPO B",
+      "date": "2026-09-26T17:00:00-03:00",
+      "home": {
+        "id": "cbf-35322",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20039",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Presidente Vargas - Fortaleza - CE",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342204se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/835283"
+    },
+    {
+      "id": "835285",
+      "cbfId": "835285",
+      "league": "bra.3",
+      "reference": 206,
+      "round": 4,
+      "group": "GRUPO C",
+      "date": "2026-09-26T19:30:00-03:00",
+      "home": {
+        "id": "cbf-20107",
+        "score": "2",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20017",
+        "score": "0",
+        "penalties": "0"
+      },
+      "venue": "Major Levy Sobrinho - Limeira - SP",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342206se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/835285"
+    },
+    {
+      "id": "835284",
+      "cbfId": "835284",
+      "league": "bra.3",
+      "reference": 205,
+      "round": 4,
+      "group": "GRUPO C",
+      "date": "2026-09-27T18:30:00-03:00",
+      "home": {
+        "id": "cbf-63843",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20038",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Augusto Bauer - Brusque - SC",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342205se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/835284"
+    },
+    {
+      "id": "835286",
+      "cbfId": "835286",
+      "league": "bra.3",
+      "reference": 207,
+      "round": 5,
+      "group": "GRUPO B",
+      "date": "2026-10-03T17:00:00-03:00",
+      "home": {
+        "id": "cbf-35322",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-63524",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Presidente Vargas - Fortaleza - CE",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342207se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/835286"
+    },
+    {
+      "id": "835287",
+      "cbfId": "835287",
+      "league": "bra.3",
+      "reference": 208,
+      "round": 5,
+      "group": "GRUPO B",
+      "date": "2026-10-03T17:00:00-03:00",
+      "home": {
+        "id": "cbf-20039",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "17715",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Arena Pernambuco - São Lourenço da Mata - PE",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342208se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/835287"
+    },
+    {
+      "id": "835288",
+      "cbfId": "835288",
+      "league": "bra.3",
+      "reference": 209,
+      "round": 5,
+      "group": "GRUPO C",
+      "date": "2026-10-03T19:30:00-03:00",
+      "home": {
+        "id": "cbf-20107",
+        "score": "2",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-63843",
+        "score": "2",
+        "penalties": "0"
+      },
+      "venue": "Major Levy Sobrinho - Limeira - SP",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342209se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/835288"
+    },
+    {
+      "id": "835289",
+      "cbfId": "835289",
+      "league": "bra.3",
+      "reference": 210,
+      "round": 5,
+      "group": "GRUPO C",
+      "date": "2026-10-03T19:30:00-03:00",
+      "home": {
+        "id": "cbf-20017",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20038",
+        "score": "0",
+        "penalties": "0"
+      },
+      "venue": "Curuzu - Belem - PA",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342210se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/835289"
+    },
+    {
+      "id": "835290",
+      "cbfId": "835290",
+      "league": "bra.3",
+      "reference": 211,
+      "round": 6,
+      "group": "GRUPO B",
+      "date": "2026-10-10T17:00:00-03:00",
+      "home": {
+        "id": "cbf-63524",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20039",
+        "score": "0",
+        "penalties": "0"
+      },
+      "venue": "Almeidão - Joao Pessoa - PB",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342211se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/835290"
+    },
+    {
+      "id": "835291",
+      "cbfId": "835291",
+      "league": "bra.3",
+      "reference": 212,
+      "round": 6,
+      "group": "GRUPO B",
+      "date": "2026-10-10T17:00:00-03:00",
+      "home": {
+        "id": "17715",
+        "score": "2",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-35322",
+        "score": "0",
+        "penalties": "0"
+      },
+      "venue": "Willie Davids - Maringa - PR",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342212se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/835291"
+    },
+    {
+      "id": "835292",
+      "cbfId": "835292",
+      "league": "bra.3",
+      "reference": 213,
+      "round": 6,
+      "group": "GRUPO C",
+      "date": "2026-10-11T15:00:00-03:00",
+      "home": {
+        "id": "cbf-63843",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20017",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Augusto Bauer - Brusque - SC",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342213se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/835292"
+    },
+    {
+      "id": "835293",
+      "cbfId": "835293",
+      "league": "bra.3",
+      "reference": 214,
+      "round": 6,
+      "group": "GRUPO C",
+      "date": "2026-10-11T15:20:00-03:00",
+      "home": {
+        "id": "cbf-20038",
+        "score": "2",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20107",
+        "score": "0",
+        "penalties": "0"
+      },
+      "venue": "Fonte Luminosa - Araraquara - SP",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342214se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/835293"
+    },
+    {
+      "id": "835438",
+      "cbfId": "835438",
+      "league": "bra.3",
+      "reference": 215,
+      "round": 1,
+      "group": "GRUPO D",
+      "date": "2026-10-17T17:00:00-03:00",
+      "home": {
+        "id": "17715",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "cbf-20038",
+        "score": "1",
+        "penalties": "0"
+      },
+      "venue": "Willie Davids - Maringa - PR",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342215se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/835438"
+    },
+    {
+      "id": "835439",
+      "cbfId": "835439",
+      "league": "bra.3",
+      "reference": 216,
+      "round": 2,
+      "group": "GRUPO D",
+      "date": "2026-10-24T17:00:00-03:00",
+      "home": {
+        "id": "cbf-20038",
+        "score": "1",
+        "penalties": "0"
+      },
+      "away": {
+        "id": "17715",
+        "score": "2",
+        "penalties": "0"
+      },
+      "venue": "Fonte Luminosa - Araraquara - SP",
+      "finished": true,
+      "reportUrl": "https://conteudo.cbf.com.br/sumulas/2026/342216se.pdf",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-c/2026/a-x-b/835439"
+    }
+  ],
+  "unresolved": [],
+  "unmatchedWikipedia": []
+}

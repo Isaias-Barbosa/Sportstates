@@ -1,5 +1,5 @@
 import { neon } from "@neondatabase/serverless";
-import { cbfRegisteredPlayer } from "./cbf-player-register.mjs";
+import { cbfRegisteredPlayer, resolveCbfPlayerId } from "./cbf-player-register.mjs";
 import profileReferences from "../data/player-profile-references.json" with { type: "json" };
 import { dayInBrazil } from "./data.mjs";
 
@@ -294,6 +294,7 @@ export function enrichPlayerProfile(player, id) {
 }
 
 export async function readBrazilPlayer(id) {
+  id = resolveCbfPlayerId(id);
   const sql = store();
   const filter = JSON.stringify([{ id }]);
   const [rosters, matches, profiles] = await Promise.all([

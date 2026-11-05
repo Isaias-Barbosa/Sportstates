@@ -282,6 +282,8 @@ export const SOCCER_INTERNATIONAL_GROUPS = [
 export const SOCCER_TEAM_LEAGUES = new Set([
   "bra.1",
   "bra.2",
+  "bra.3",
+  "bra.4",
   "arg.1",
   "mex.1",
   "col.1",

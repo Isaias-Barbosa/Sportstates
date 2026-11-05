@@ -56,6 +56,8 @@ import { matchMedia } from "./match-media.mjs";
 import { fetchHeadToHead } from "./head-to-head.mjs";
 import { enrichBroadcasts } from "./broadcast-schedule.mjs";
 import { applyCbfBroadcasts } from "./cbf-broadcasts.mjs";
+import { isCbfLowerDivision, cbfLowerDivisionGames, cbfLowerDivisionTimestamp,
+  cbfLowerDivisionDetail, cbfLowerDivisionHeadToHead, cbfLowerDivisionTeamCompetitions } from "./cbf-lower-divisions.mjs";
 import { cbfRegisteredPlayer, validPublicPlayerId } from "./cbf-player-register.mjs";
 import { enrichPlayerProfile, playerCompetitions, playerLeagues, playerSeason, validPlayerId, readBrazilTeamPlayers, readBrazilPlayer,
   syncBrazilPlayerDay } from "./brazil-players.mjs";
@@ -275,6 +277,11 @@ export async function scoreboard(date, sport = "all") {
   const dates = [date, next.toISOString().slice(0, 10)];
   const jobs = selectedSports.flatMap((s) =>
     s.leagues.map(async ([league, name]) => {
+      if (s.id === "soccer" && isCbfLowerDivision(league)) return {
+        matches: cbfLowerDivisionGames(league, { date }), failed: !date.startsWith("2026-"),
+        stale: false, sport: s.id, league, name, provider: "CBF · temporada 2026",
+        at: Date.parse(cbfLowerDivisionTimestamp(league)),
+      };
       if (s.id === "soccer" && SOCCER_365_PRIMARY_COMPETITIONS.has(league)) {
         try {
           const today = dayInBrazil(new Date());
@@ -456,7 +463,8 @@ export async function scoreboard(date, sport = "all") {
     })),
     date,
     source: "ESPN · 365Scores · CBV · World Table Tennis" +
-      (results.some((result) => result.provider?.includes("GE")) ? " · GE" : ""),
+      (results.some((result) => result.provider?.includes("GE")) ? " · GE" : "") +
+      (results.some((result) => result.provider?.includes("CBF")) ? " · CBF" : ""),
     fetchedAt: new Date(
       Math.min(...results.filter((r) => r.at).map((r) => r.at)),
     ).toISOString(),
@@ -514,7 +522,7 @@ export async function route(url) {
       : [503, { error: "Neon Auth não configurado." }];
   }
   if (url.pathname === "/api/teams") {
-    const result = await cached("teams:catalog-v2-nbb", CACHE_TTL.teams, () =>
+    const result = await cached("teams:catalog-v3-cbf", CACHE_TTL.teams, () =>
       listTeams(),
     );
     return [
@@ -525,6 +533,8 @@ export async function route(url) {
   if (url.pathname === "/api/team-competitions") {
     const id = q.get("id");
     if (!validProfileId(id)) return [400, { error: "Time inválido." }];
+    const lowerDivision = cbfLowerDivisionTeamCompetitions(id);
+    if (lowerDivision) return [200, lowerDivision];
     const team = await getTeam(id);
     if (!team) return [404, { error: "Time não encontrado." }];
     if (team.sport === "volleyball") {
@@ -626,7 +636,7 @@ export async function route(url) {
     const id = q.get("id");
     if (!validProfileId(id)) return [400, { error: "Time inválido." }];
     const result = await cached(
-      `${id.startsWith("volleyball-") ? "team:volleyball-roles-v2" : "team:brazil-profiles-v1"}:${id}`,
+      `${id.startsWith("volleyball-") ? "team:volleyball-roles-v2" : "team:cbf-profiles-v2"}:${id}`,
       teamTtl,
       () => teamDetails(id),
       300000,
@@ -776,6 +786,8 @@ export async function route(url) {
   if (url.pathname === "/api/standings") {
     const config = leagueFor(q.get("sport"), q.get("league"));
     if (!config) return [400, { error: "Competição inválida." }];
+    if (config.sport === "soccer" && isCbfLowerDivision(config.league))
+      return [503, { error: "Classificação das Séries C e D ainda não disponível. Consulte os resultados na aba Jogos." }];
     if (
       config.sport === "soccer" &&
       SOCCER_365_PRIMARY_COMPETITIONS.has(config.league)
@@ -1034,6 +1046,12 @@ export async function route(url) {
     const month = q.get("month") || dayInBrazil(new Date()).slice(0, 7);
     if (!config || !/^(20\d{2})-(0[1-9]|1[0-2])$/.test(month))
       return [400, { error: "Competição ou mês inválido. Use AAAA-MM." }];
+    if (config.sport === "soccer" && isCbfLowerDivision(config.league)) {
+      if (!month.startsWith("2026-")) return [503, { error: "A cobertura da CBF disponível é da temporada 2026." }];
+      return [200, { ...config, month, matches: cbfLowerDivisionGames(config.league, { month }),
+        partial: false, stale: false, fetchedAt: cbfLowerDivisionTimestamp(config.league),
+        source: "CBF · calendário e resultados oficiais de 2026" }];
+    }
     if (
       config.sport === "soccer" &&
       SOCCER_365_PRIMARY_COMPETITIONS.has(config.league)
@@ -1293,6 +1311,10 @@ export async function route(url) {
     const id = q.get("id");
     if (!config || config.sport !== "soccer" || !/^\d{1,15}$/.test(id || ""))
       return [400, { error: "Partida de futebol inválida." }];
+    if (isCbfLowerDivision(config.league)) {
+      const history = cbfLowerDivisionHeadToHead(config.league, id);
+      return history ? [200, history] : [404, { error: "Partida não encontrada." }];
+    }
     const detailUrl = new URL("http://localhost/api/match");
     detailUrl.searchParams.set("sport", config.sport);
     detailUrl.searchParams.set("league", config.league);
@@ -1312,6 +1334,13 @@ export async function route(url) {
     const id = q.get("id");
     if (!config || !/^\d{1,15}$/.test(id || ""))
       return [400, { error: "Partida ou competição inválida." }];
+    if (config.sport === "soccer" && isCbfLowerDivision(config.league)) {
+      const detail = cbfLowerDivisionDetail(config.league, id);
+      if (!detail) return [404, { error: "Partida não encontrada." }];
+      return url.pathname === "/api/media"
+        ? [200, { highlights: [], replays: [], related: [], searchLinks: [], partial: false, message: "Vídeos não disponíveis nesta fonte.", source: "CBF" }]
+        : [200, detail];
+    }
     if (["tennis", "volleyball", "table-tennis"].includes(config.sport)) {
       if (url.pathname === "/api/media" && config.sport === "tennis") {
         const detail = await tennisDetail(id);
