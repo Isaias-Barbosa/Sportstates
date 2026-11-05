@@ -451,16 +451,19 @@ function ScoresDashboard({
         )}
         {accountError && <Notice error>{accountError}</Notice>}
         <section className="hv-sports" aria-labelledby="hv-sports-title">
-          <h2 id="hv-sports-title">Qual é o seu jogo?</h2>
-          <div className="hv-sport-filters">
+          <div className="hv-sports-heading">
+            <h2 id="hv-sports-title">Qual é o seu jogo?</h2>
+            <small className="hv-sports-hint">Deslize para ver mais esportes →</small>
+          </div>
+          <div className="hv-sport-filters" role="group" aria-labelledby="hv-sports-title">
             <button
               type="button"
               aria-pressed={sport === "all"}
               onClick={() => set("sport", "all")}
             >
-              <LayoutGrid size={19} />
-              <strong>Todos os esportes</strong>
-              <small>{matches.length}</small>
+              <LayoutGrid size={19} aria-hidden="true" />
+              <span className="hv-sport-copy"><strong>Todos os esportes</strong></span>
+              <small className="hv-sport-count">{matches.length}</small>
             </button>
             {available.map((s) => (
               <button
@@ -470,8 +473,8 @@ function ScoresDashboard({
                 onClick={() => set("sport", s.id)}
               >
                 <span aria-hidden="true">{s.icon}</span>
-                <strong>{s.name}</strong>
-                <small>{matches.filter((m) => m.sport === s.id).length}</small>
+                <span className="hv-sport-copy"><strong>{s.name}</strong></span>
+                <small className="hv-sport-count">{matches.filter((m) => m.sport === s.id).length}</small>
               </button>
             ))}
             {!favoritesOnly &&
@@ -482,8 +485,10 @@ function ScoresDashboard({
                   to={`/?sport=${id}`}
                 >
                   <Icon size={19} aria-hidden="true" />
-                  <strong>{label}</strong>
-                  <small>{caption}</small>
+                  <span className="hv-sport-copy">
+                    <strong>{label}</strong>
+                    <small>{caption}</small>
+                  </span>
                 </Link>
               ))}
           </div>

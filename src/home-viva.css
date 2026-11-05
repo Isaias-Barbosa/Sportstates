@@ -1494,29 +1494,48 @@ details.hv-league:not([open]) > summary {
   }
 }
 
-/* Compact sport controls: let long names wrap inside their own card. */
+/* Separate the label, count and agenda caption so long names stay readable. */
+.hv-sports-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+.hv-sports-hint { display: none; }
 .hv-sport-filters {
   display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: minmax(128px, 1fr);
-  gap: 7px;
+  grid-auto-flow: row;
+  grid-auto-columns: auto;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 8px;
+  overflow: visible;
 }
 .hv-sport-filters :is(button, .hv-sport-agenda-link) {
   min-width: 0;
   display: grid;
-  grid-template-columns: 17px minmax(0, 1fr) auto;
-  gap: 5px;
-  padding: 9px 8px;
-  min-height: 44px;
+  grid-template-columns: 20px minmax(0, 1fr) auto;
+  gap: 9px;
+  padding: 12px;
+  min-height: 66px;
+  align-items: center;
   white-space: normal;
+}
+.hv-sport-filters .hv-sport-agenda-link {
+  grid-template-columns: 20px minmax(0, 1fr);
+}
+.hv-sport-filters :is(button, .hv-sport-agenda-link) > .hv-sport-copy {
+  display: grid;
+  min-width: 0;
+  gap: 3px;
 }
 .hv-sport-filters :is(button, .hv-sport-agenda-link) strong {
   min-width: 0;
   white-space: normal;
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
+  word-break: normal;
   text-align: left;
   line-height: 1.35;
-  font-size: 9px;
+  font-size: 12px;
 }
 .hv-sport-filters :is(button, .hv-sport-agenda-link) > span {
   font-size: 15px;
@@ -1527,7 +1546,23 @@ details.hv-league:not([open]) > summary {
 }
 .hv-sport-filters :is(button, .hv-sport-agenda-link) small {
   margin-left: 0;
-  font-size: 8px;
+  font-size: 10px;
+  line-height: 1.35;
+  text-align: left;
+}
+.hv-sport-filters button .hv-sport-count {
+  min-width: 26px;
+  padding: 3px 6px;
+  border-radius: 6px;
+  background: color-mix(in srgb, currentColor 10%, transparent);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+  white-space: nowrap;
+}
+.hv-sport-filters :is(button, .hv-sport-agenda-link):focus-visible {
+  outline: 2px solid var(--hv-lime);
+  outline-offset: 2px;
 }
 
 .scores-loading-progress {
@@ -1574,14 +1609,28 @@ details.hv-league:not([open]) > summary {
   }
 }
 @media (max-width: 480px) {
+  .hv-sports-heading { flex-wrap: wrap; gap: 0 10px; }
+  .hv-sports-hint { display: block; color: var(--muted); font-size: 10px; margin-bottom: 10px; }
   .hv-sport-filters {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    display: flex;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x proximity;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
   }
   .hv-sport-filters :is(button, .hv-sport-agenda-link) {
-    min-height: 48px;
+    flex: 0 0 auto;
+    width: max-content;
+    min-height: 62px;
+    scroll-snap-align: start;
   }
   .hv-sport-filters :is(button, .hv-sport-agenda-link) strong {
-    font-size: 11px;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+  .hv-sport-filters .hv-sport-copy small {
+    white-space: nowrap;
   }
   .hv-feature-top,
   .hv-feature-footer {
