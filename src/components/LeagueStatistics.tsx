@@ -6,13 +6,20 @@ import { Loading, Notice } from "./shared";
 
 type Ranking = {
   metric: LeagueStatisticsConfig["metrics"][number];
-  leaders: { id: string; name: string; value: number }[];
+  leaders: { id: string; name: string; value: number; teamName?: string }[];
+  message?: string;
+  attribution?: string;
+  sourceUrl?: string;
+  licenseUrl?: string;
+  source?: string;
+  scope?: string;
   partial: boolean;
   stale: boolean;
 };
 
 function RankingList({ url }: { url: string }) {
   const { data, loading, error, refresh } = useApi<Ranking>(url, 0);
+  const [limit, setLimit] = useState(20);
   if (loading) return <Loading />;
   if (error)
     return (
@@ -28,9 +35,12 @@ function RankingList({ url }: { url: string }) {
   return (
     <>
       {data.stale && <Notice>Exibindo dados em cache.</Notice>}
+      {data.source && <div className="league-ranking-meta"><span>{data.scope}</span><span>Fonte {data.source}</span></div>}
+      {data.attribution && data.sourceUrl && <p className="standings-note"><a href={data.sourceUrl} target="_blank" rel="noopener noreferrer">{data.attribution}</a>{data.licenseUrl && <>{' · '}<a href={data.licenseUrl} target="_blank" rel="noopener noreferrer">Licença</a></>}</p>}
       {data.partial && (
         <Notice>
-          Alguns atletas do ranking estão temporariamente indisponíveis.
+          {data.message ||
+            "Alguns atletas do ranking estão temporariamente indisponíveis."}
         </Notice>
       )}
       {data.leaders.length ? (
@@ -42,7 +52,7 @@ function RankingList({ url }: { url: string }) {
             </tr>
           </thead>
           <tbody>
-            {data.leaders.map((athlete, index) => (
+            {data.leaders.slice(0, limit).map((athlete, index) => (
               <tr key={athlete.id}>
                 <th scope="row">
                   <span className="league-ranking-athlete">
@@ -51,7 +61,15 @@ function RankingList({ url }: { url: string }) {
                         {index + 1}
                       </span>
                     )}
-                    <span>{athlete.name}</span>
+                    <span>
+                      {athlete.name}
+                      {athlete.teamName && (
+                        <small className="standings-note">
+                          {" "}
+                          · {athlete.teamName}
+                        </small>
+                      )}
+                    </span>
                   </span>
                 </th>
                 <td>
@@ -64,6 +82,11 @@ function RankingList({ url }: { url: string }) {
       ) : (
         <p>Nenhum atleta disponível para este ranking.</p>
       )}
+      {data.leaders.length > 20 && <div className="league-ranking-meta">
+        <span>Mostrando {Math.min(limit, data.leaders.length)} de {data.leaders.length} atletas</span>
+        {limit < data.leaders.length && <button type="button" onClick={() => setLimit(count => count + 20)}>Ver mais atletas</button>}
+        {limit > 20 && <button type="button" onClick={() => setLimit(20)}>Mostrar menos</button>}
+      </div>}
     </>
   );
 }
@@ -105,10 +128,6 @@ export default function LeagueStatistics({
       </summary>
       {open && (
         <div className="league-statistics-content">
-          <div className="league-ranking-meta">
-            <span>{config.scope}</span>
-            <span>Fonte {config.source}</span>
-          </div>
           <fieldset className="league-ranking-metrics">
             <legend>Escolha uma estatística</legend>
             <div>

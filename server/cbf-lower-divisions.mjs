@@ -2,6 +2,16 @@ import serieC from "../data/cbf-serie-c-2026.json" with { type: "json" };
 import serieD from "../data/cbf-serie-d-2026.json" with { type: "json" };
 import { dayInBrazil, normalizeEvent, normalizeSummary } from "./data.mjs";
 import { selectHeadToHead } from "./head-to-head.mjs";
+import statsC from "../data/cbf-serie-c-statistics-2026.json" with { type: "json" };
+import statsD from "../data/cbf-serie-d-statistics-2026.json" with { type: "json" };
+import { createCbfMatchLoader } from "./cbf-match-details.mjs";
+import { selectLowerStatistics, archivedLowerRounds } from './lower-statistics-fallback.mjs';
+
+const statistics = new Map([
+  ["bra.3", statsC],
+  ["bra.4", statsD],
+]);
+const loadMatchDetails = createCbfMatchLoader();
 
 const seasons = new Map([
   ["bra.3", serieC],
@@ -123,6 +133,113 @@ export function cbfLowerDivisionDetail(league, id) {
   };
 }
 
+export async function cbfLowerDivisionDetailedMatch(
+  league,
+  id,
+  load = loadMatchDetails,
+) {
+  const detail = cbfLowerDivisionDetail(league, id);
+  if (!detail) return null;
+  const season = seasons.get(league),
+    fixture = season.matches.find((match) => match.id === id);
+  try {
+    const result = await load(
+      fixture,
+      new Map(season.clubs.map((club) => [club.cbfId, club.id])),
+    );
+    return {
+      ...detail,
+      ...result.value,
+      stale: result.stale,
+      source: "CBF · escalações, gols e cartões publicados",
+      fetchedAt: new Date(result.at).toISOString(),
+    };
+  } catch {
+    return {
+      ...detail,
+      warnings: [
+        "Resultado oficial preservado. Os detalhes da CBF estão temporariamente indisponíveis ou exigem revisão.",
+      ],
+    };
+  }
+}
+
+export function cbfLowerDivisionStandings(league, primary = statistics.get(league)) {
+  if (!statistics.has(league)) return null;
+  const {data,provider,fallback} = selectLowerStatistics(league,'groups',primary);
+  const games = new Map(
+    cbfLowerDivisionGames(league).map((game) => [game.id, game]),
+  );
+  const rounds = archivedLowerRounds(league,primary).map((round) => ({
+    id: round.id,
+    name: round.name,
+    fixtures: round.matches.map(({ id, leg }) => {
+      const game = games.get(id);
+      return {
+        id,
+        date: game.date,
+        timeConfirmed: true,
+        home: game.home,
+        away: game.away,
+        state: game.state,
+        statusName: "STATUS_FULL_TIME",
+        clock: "",
+        leg,
+      };
+    }),
+  }));
+  return {
+    sport: "soccer",
+    league,
+    name: names[league],
+    groups: data.groups,
+    rounds,
+    currentRound: rounds.at(-1)?.id,
+    season: { year: 2026, name: "2026" },
+    stale: !!data.stale,
+    fetchedAt: data.collectedAt,
+    warnings: provider === 'CBF' ? [
+      'Classificação oficial de 2026 por fase. Os pontos e a ordem dos clubes são os publicados pela CBF.', ...(data.warnings||[])
+    ] : [...(data.warnings||[]), ...(fallback ? ['Classificação alternativa recuperada da Wikipédia; fases eliminatórias preservam os dados arquivados da CBF.'] : [])],
+    source: provider + (provider === 'CBF' ? ' · classificação oficial de 2026' : ' · classificação alternativa de 2026'),
+    sourceUrl:data.sourceUrl,
+    attribution:data.attribution,
+    licenseUrl:data.licenseUrl,
+  };
+}
+
+export function cbfLowerDivisionStatisticsConfig(league) {
+  if (!statistics.has(league)) return null;
+  const {provider}=selectLowerStatistics(league,'scorers',statistics.get(league));
+  return {
+    season: 2026,
+    phase: 0,
+    scope: 'Artilharia publicada pela '+provider+' · temporada 2026',
+    source: provider,
+    metrics: [{ id: "goals", label: "Gols", decimals: 0 }],
+  };
+}
+
+export function cbfLowerDivisionRanking(league, metric, primary = statistics.get(league)) {
+  if (!statistics.has(league) || metric !== 'goals') return null;
+  const {data,provider}=selectLowerStatistics(league,'scorers',primary);
+  const config={...cbfLowerDivisionStatisticsConfig(league),source:provider,scope:'Artilharia publicada pela '+provider+' · temporada 2026'};
+  return {
+    ...config,
+    metric: config.metrics[0],
+    leaders: data.scorers,
+    stale: !!data.stale,
+    partial: !data.coverage?.scorersCompleteForFixtures,
+    message: provider === 'Wikipédia' ? 'Fonte alternativa: Wikipédia. Recorte dos principais artilheiros; não é a lista completa da competição.' : data.coverage?.scorersCompleteForFixtures
+      ? "Ranking oficial publicado pela CBF."
+      : "A artilharia publicada pela CBF não cobre todos os gols dos resultados cadastrados. Os valores abaixo preservam esse recorte oficial.",
+    sourceUrl: data.sourceUrl,
+    fetchedAt: data.collectedAt,
+    attribution:data.attribution,
+    licenseUrl:data.licenseUrl,
+  };
+}
+
 export function cbfLowerDivisionHeadToHead(league, id) {
   const match = matches.get(league)?.find((match) => match.id === id);
   if (!match) return null;
@@ -171,6 +288,8 @@ export function cbfLowerDivisionTeamCompetitions(id) {
   const games = cbfLowerDivisionGames(club.league).filter(
     (match) => match.home.id === id || match.away.id === id,
   );
+  const group = selectLowerStatistics(club.league,'groups',statistics.get(club.league)).data.groups.findLast((group) => group.rows.some((row) => row.id === id));
+  const row = group?.rows.find((row) => row.id === id);
   return {
     teamId: id,
     competitions: [
@@ -184,11 +303,11 @@ export function cbfLowerDivisionTeamCompetitions(id) {
         year: 2026,
         active: false,
         status: "completed",
-        rank: null,
-        group: null,
-        points: null,
-        played: String(games.length),
-        phase: null,
+        rank: row?.rank ?? null,
+        group: group?.name ?? null,
+        points: row?.stats.points ?? null,
+        played: row?.stats.gamesPlayed ?? String(games.length),
+        phase: group?.name.split(" · ")[0] ?? null,
         phaseContext: null,
         lastPlayed: games.at(-1)?.date ?? null,
       },

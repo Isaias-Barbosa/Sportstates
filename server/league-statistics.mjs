@@ -1,4 +1,5 @@
 const ESPN = "https://sports.core.api.espn.com/v2/sports";
+import { cbfLowerDivisionStatisticsConfig } from "./cbf-lower-divisions.mjs";
 const HOUR = 60 * 60_000;
 const LIMIT = 10;
 
@@ -89,6 +90,8 @@ const verified = new Map([
 ]);
 
 export function leagueStatisticsConfig(sport, league) {
+  if (sport === "soccer" && cbfLowerDivisionStatisticsConfig(league))
+    return cbfLowerDivisionStatisticsConfig(league);
   const config = verified.get(`${sport}/${league}`);
   if (!config) return null;
   const [season, phase, scope] = config;

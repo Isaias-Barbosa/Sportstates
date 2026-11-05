@@ -171,6 +171,7 @@ export type MatchHighlights = {
   away: MatchIncident[];
 };
 export type Detail = {
+  warnings?: string[];
   leaders?: { name: string; team: string; goals: number }[];
   ratingSourceUrl?: string;
   highlights?: MatchHighlights;
@@ -344,6 +345,9 @@ export type KnockoutRound = {
   fixtures: KnockoutFixture[];
 };
 export type Standings = {
+  sourceUrl?: string;
+  attribution?: string;
+  licenseUrl?: string;
   provider?: "fef";
   rounds?: KnockoutRound[];
   season?: { year: number; name: string } | null;
@@ -354,6 +358,7 @@ export type Standings = {
   name: string;
   groups: {
     name: string;
+    phaseId?: string;
     rows: {
       id: string;
       name: string;

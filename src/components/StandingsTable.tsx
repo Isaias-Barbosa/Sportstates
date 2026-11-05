@@ -34,6 +34,8 @@ const columns: Record<string, [string, string[]][]> = {
     ["GP", ["pointsFor", "goalsFor"]],
     ["GC", ["pointsAgainst", "goalsAgainst"]],
     ["SG", ["pointDifferential", "goalDifference"]],
+    ["CA", ["yellowCards"]],
+    ["CV", ["redCards"]],
   ],
   basketball: [
     ["J", ["gamesPlayed"]],
@@ -99,6 +101,7 @@ export default function StandingsTable({
   season?: number;
 }) {
   const [view, setView] = useState<"table" | "knockout" | null>(null);
+  const [phase, setPhase] = useState("");
   const { data: clubs } = useApi<{ teams: ClubProfile[] }>(
     "/api/teams",
     300000,
@@ -124,6 +127,16 @@ export default function StandingsTable({
   const showKnockout =
     !!data.rounds?.length && (view === "knockout" || !data.groups.length);
   const selected = columns[sport] || [];
+  const phases = [
+    ...new Map(
+      data.groups
+        .filter((group) => group.phaseId)
+        .map((group) => [group.phaseId!, group.name.split(" · ")[0]]),
+    ).entries(),
+  ];
+  const activePhase = phases.some(([id]) => id === phase)
+    ? phase
+    : phases.at(-1)?.[0];
   return (
     <div className="standings-result">
       {error && (
@@ -160,6 +173,21 @@ export default function StandingsTable({
           </button>
         </div>
       )}
+      {!showKnockout && phases.length > 1 && (
+        <label className="league-ranking-meta">
+          Fase da competição
+          <select
+            value={activePhase}
+            onChange={(event) => setPhase(event.target.value)}
+          >
+            {phases.map(([id, name]) => (
+              <option key={id} value={id}>
+                {name}
+              </option>
+            ))}
+          </select>
+        </label>
+      )}
       {showKnockout && (
         <KnockoutRounds
           key={`${sport}/${league}/${data.season?.year}`}
@@ -179,7 +207,7 @@ export default function StandingsTable({
         </p>
       )}
       {!showKnockout &&
-        data.groups.map((group, i) => {
+        data.groups.filter(group => !group.phaseId || group.phaseId === activePhase).map((group, i) => {
           const visibleColumns = selected.filter(([, keys]) =>
             group.rows.some((row) =>
               keys.some((key) => row.stats[key] !== undefined),
@@ -295,9 +323,10 @@ export default function StandingsTable({
         })}
       <p className="standings-note">
         {!showKnockout && sport === "soccer"
-          ? "P: pontos · J: jogos · V: vitórias · E: empates · D: derrotas · GP/GC: gols pró/contra · SG: saldo de gols. "
+          ? "P: pontos · J: jogos · V: vitórias · E: empates · D: derrotas · GP/GC: gols pró/contra · SG: saldo de gols · CA/CV: cartões amarelos/vermelhos. "
           : ""}
         {data.source} · Ordem e critérios conforme a fonte.
+        {data.attribution && data.sourceUrl && <>{' '}<a href={data.sourceUrl} target="_blank" rel="noopener noreferrer">{data.attribution}</a>{data.licenseUrl && <>{' · '}<a href={data.licenseUrl} target="_blank" rel="noopener noreferrer">Licença</a></>}</>}
       </p>
       {match && (
         <Link className="standings-link" to="/classificacoes">

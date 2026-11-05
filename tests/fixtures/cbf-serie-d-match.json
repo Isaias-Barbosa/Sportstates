@@ -1,0 +1,601 @@
+{
+  "id_jogo": "833738",
+  "num_jogo": "18",
+  "ano": "2026",
+  "etapa": "1ª Fase",
+  "rodada": "1",
+  "mandante": {
+    "id": "21894",
+    "nome": "Iape",
+    "gols": "2",
+    "panaltis": "0",
+    "atletas": [
+      {
+        "id": "686771",
+        "numero_camisa": "1",
+        "reserva": "false",
+        "goleiro": "true",
+        "entrou_jogando": "true",
+        "nome": "01 - Claudyson Kennedy de Aguiar Pinheiro",
+        "apelido": "01 - KENNEDY"
+      },
+      {
+        "id": "610701",
+        "numero_camisa": "2",
+        "reserva": "true",
+        "goleiro": "false",
+        "entrou_jogando": "false",
+        "nome": "02 - Jadiel Ademar da Silva",
+        "apelido": "02 - JADIEL"
+      },
+      {
+        "id": "550732",
+        "numero_camisa": "3",
+        "reserva": "false",
+        "goleiro": "false",
+        "entrou_jogando": "true",
+        "nome": "03 - Gustavo Costa Cutrim",
+        "apelido": "03 - Gustavo"
+      },
+      {
+        "id": "414698",
+        "numero_camisa": "4",
+        "reserva": "false",
+        "goleiro": "false",
+        "entrou_jogando": "true",
+        "nome": "04 - Nalberth Mamede Coelho",
+        "apelido": "04 - Dedé"
+      },
+      {
+        "id": "832199",
+        "numero_camisa": "5",
+        "reserva": "false",
+        "goleiro": "false",
+        "entrou_jogando": "true",
+        "nome": "05 - Deydson Adryan Barbosa dos Santos",
+        "apelido": "05 - DEYDSON"
+      },
+      {
+        "id": "320929",
+        "numero_camisa": "6",
+        "reserva": "false",
+        "goleiro": "false",
+        "entrou_jogando": "true",
+        "nome": "06 - Michael Heberth Alves de Oliveira",
+        "apelido": "06 - Michael"
+      },
+      {
+        "id": "667296",
+        "numero_camisa": "7",
+        "reserva": "false",
+        "goleiro": "false",
+        "entrou_jogando": "true",
+        "nome": "07 - Richarles Ferreira Baldez",
+        "apelido": "07 - Richarles"
+      },
+      {
+        "id": "392714",
+        "numero_camisa": "8",
+        "reserva": "false",
+        "goleiro": "false",
+        "entrou_jogando": "true",
+        "nome": "08 - Luis Eduardo Vieira Barbosa",
+        "apelido": "08 - Dudu"
+      },
+      {
+        "id": "500479",
+        "numero_camisa": "9",
+        "reserva": "false",
+        "goleiro": "false",
+        "entrou_jogando": "true",
+        "nome": "09 - Vinicius Henrique da Costa Almeida",
+        "apelido": "09 - Almeida"
+      },
+      {
+        "id": "184656",
+        "numero_camisa": "10",
+        "reserva": "false",
+        "goleiro": "false",
+        "entrou_jogando": "true",
+        "nome": "10 - Eloir Silva Moreira",
+        "apelido": "10 - Eloir"
+      },
+      {
+        "id": "423055",
+        "numero_camisa": "11",
+        "reserva": "false",
+        "goleiro": "false",
+        "entrou_jogando": "true",
+        "nome": "11 - Ronald Makalysten Melo Costa",
+        "apelido": "11 - Ronald"
+      },
+      {
+        "id": "466554",
+        "numero_camisa": "12",
+        "reserva": "true",
+        "goleiro": "true",
+        "entrou_jogando": "false",
+        "nome": "12 - Antonio Kennedy Sousa de Almeida",
+        "apelido": "12 - Kennedy"
+      },
+      {
+        "id": "767170",
+        "numero_camisa": "13",
+        "reserva": "true",
+        "goleiro": "false",
+        "entrou_jogando": "false",
+        "nome": "13 - Emerson Renan Azevedo de Aguiar",
+        "apelido": "13 - Emerson"
+      },
+      {
+        "id": "371695",
+        "numero_camisa": "14",
+        "reserva": "true",
+        "goleiro": "false",
+        "entrou_jogando": "false",
+        "nome": "14 - Yan Rodrigo Alves Mafra Linhares",
+        "apelido": "14 - Yan"
+      },
+      {
+        "id": "304279",
+        "numero_camisa": "15",
+        "reserva": "true",
+        "goleiro": "false",
+        "entrou_jogando": "false",
+        "nome": "15 - Marcos Vinicius dos Santos Silva",
+        "apelido": "15 - Marcos Vinicius"
+      },
+      {
+        "id": "434647",
+        "numero_camisa": "16",
+        "reserva": "true",
+        "goleiro": "false",
+        "entrou_jogando": "false",
+        "nome": "16 - Brenno Carlos de Araujo Brandão",
+        "apelido": "16 - Brenno"
+      },
+      {
+        "id": "745395",
+        "numero_camisa": "17",
+        "reserva": "true",
+        "goleiro": "false",
+        "entrou_jogando": "false",
+        "nome": "17 - Italo Rodrigo Silva Santos",
+        "apelido": "17 - ITALO"
+      },
+      {
+        "id": "686566",
+        "numero_camisa": "18",
+        "reserva": "true",
+        "goleiro": "false",
+        "entrou_jogando": "false",
+        "nome": "18 - Kerllon Raimundo Ferreira Maciel",
+        "apelido": "18 - KERLLON"
+      },
+      {
+        "id": "557892",
+        "numero_camisa": "19",
+        "reserva": "true",
+        "goleiro": "false",
+        "entrou_jogando": "false",
+        "nome": "19 - Mikeias Araujo Pacheco de Lima",
+        "apelido": "19 - Mikeias"
+      },
+      {
+        "id": "538940",
+        "numero_camisa": "20",
+        "reserva": "true",
+        "goleiro": "false",
+        "entrou_jogando": "false",
+        "nome": "20 - Paulo Victor Silva Monroe",
+        "apelido": "20 - Paulo Victor"
+      },
+      {
+        "id": "789699",
+        "numero_camisa": "21",
+        "reserva": "true",
+        "goleiro": "false",
+        "entrou_jogando": "false",
+        "nome": "21 - Kaio Henrique Borges Camara",
+        "apelido": "21 - Kaio Camara"
+      },
+      {
+        "id": "463843",
+        "numero_camisa": "22",
+        "reserva": "false",
+        "goleiro": "false",
+        "entrou_jogando": "true",
+        "nome": "22 - Matheus Rubens Sousa Mendonca",
+        "apelido": "22 - Matheus Sousa"
+      },
+      {
+        "id": "865525",
+        "numero_camisa": "23",
+        "reserva": "true",
+        "goleiro": "false",
+        "entrou_jogando": "false",
+        "nome": "23 - Lawanderson Kawan Ribeiro de Assunção",
+        "apelido": "23 - Esquerdinha"
+      }
+    ],
+    "alteracoes": [
+      {
+        "codigo_jogador_saiu": "184656",
+        "codigo_jogador_entrou": "304279",
+        "tempo_jogo": "30:00",
+        "tempo_subs": "TN2",
+        "tempo_acrescimo": "30:00"
+      },
+      {
+        "codigo_jogador_saiu": "423055",
+        "codigo_jogador_entrou": "538940",
+        "tempo_jogo": "45:00",
+        "tempo_subs": "INT",
+        "tempo_acrescimo": "00:00"
+      },
+      {
+        "codigo_jogador_saiu": "463843",
+        "codigo_jogador_entrou": "789699",
+        "tempo_jogo": "16:00",
+        "tempo_subs": "TN2",
+        "tempo_acrescimo": "16:00"
+      },
+      {
+        "codigo_jogador_saiu": "667296",
+        "codigo_jogador_entrou": "557892",
+        "tempo_jogo": "24:00",
+        "tempo_subs": "TN2",
+        "tempo_acrescimo": "24:00"
+      },
+      {
+        "codigo_jogador_saiu": "832199",
+        "codigo_jogador_entrou": "610701",
+        "tempo_jogo": "45:00",
+        "tempo_subs": "INT",
+        "tempo_acrescimo": "00:00"
+      }
+    ]
+  },
+  "visitante": {
+    "id": "35330",
+    "nome": "Maracana",
+    "gols": "2",
+    "panaltis": "0",
+    "atletas": [
+      {
+        "id": "442127",
+        "numero_camisa": "2",
+        "reserva": "false",
+        "goleiro": "false",
+        "entrou_jogando": "true",
+        "nome": "02 - Vinicius Oliveira de Matos",
+        "apelido": "02 - Vinicius"
+      },
+      {
+        "id": "568893",
+        "numero_camisa": "3",
+        "reserva": "true",
+        "goleiro": "false",
+        "entrou_jogando": "false",
+        "nome": "03 - Pedro Henrique Oliveira da Dalto",
+        "apelido": "03 - Pedro"
+      },
+      {
+        "id": "707685",
+        "numero_camisa": "4",
+        "reserva": "false",
+        "goleiro": "false",
+        "entrou_jogando": "true",
+        "nome": "04 - Geilson de Souza Alves",
+        "apelido": "04 - Geilson"
+      },
+      {
+        "id": "345029",
+        "numero_camisa": "5",
+        "reserva": "false",
+        "goleiro": "false",
+        "entrou_jogando": "true",
+        "nome": "05 - Jeferson Daniel Prill Levkovisz",
+        "apelido": "05 - Jeferson Prill"
+      },
+      {
+        "id": "773383",
+        "numero_camisa": "7",
+        "reserva": "true",
+        "goleiro": "false",
+        "entrou_jogando": "false",
+        "nome": "07 - Luan Lucas Ramos da Silva",
+        "apelido": "07 - LUAN LUCAS"
+      },
+      {
+        "id": "374717",
+        "numero_camisa": "8",
+        "reserva": "true",
+        "goleiro": "false",
+        "entrou_jogando": "false",
+        "nome": "08 - Jose Wilker Nascimento de Sousa",
+        "apelido": "08 - Wilker"
+      },
+      {
+        "id": "350446",
+        "numero_camisa": "9",
+        "reserva": "true",
+        "goleiro": "false",
+        "entrou_jogando": "false",
+        "nome": "09 - Mateus da Silva Ramos",
+        "apelido": "09 - Mateusao"
+      },
+      {
+        "id": "377375",
+        "numero_camisa": "10",
+        "reserva": "true",
+        "goleiro": "false",
+        "entrou_jogando": "false",
+        "nome": "10 - Jose Anastacio Silva Filho",
+        "apelido": "10 - PATUTA"
+      },
+      {
+        "id": "371590",
+        "numero_camisa": "11",
+        "reserva": "false",
+        "goleiro": "false",
+        "entrou_jogando": "true",
+        "nome": "11 - Anildson Luis da Silva Soares",
+        "apelido": "11 - Luis Soares"
+      },
+      {
+        "id": "426518",
+        "numero_camisa": "12",
+        "reserva": "false",
+        "goleiro": "true",
+        "entrou_jogando": "true",
+        "nome": "12 - Redson Travassos da Cunha",
+        "apelido": "12 - Redson"
+      },
+      {
+        "id": "465842",
+        "numero_camisa": "13",
+        "reserva": "false",
+        "goleiro": "false",
+        "entrou_jogando": "true",
+        "nome": "13 - Guilherme Barbosa",
+        "apelido": "13 - Guilherme"
+      },
+      {
+        "id": "346228",
+        "numero_camisa": "15",
+        "reserva": "false",
+        "goleiro": "false",
+        "entrou_jogando": "true",
+        "nome": "15 - Lincoln de Oliveira Santos",
+        "apelido": "15 - Lincoln"
+      },
+      {
+        "id": "437739",
+        "numero_camisa": "16",
+        "reserva": "false",
+        "goleiro": "false",
+        "entrou_jogando": "true",
+        "nome": "16 - Rodrigo Teixeira Sobreira Ribeiro",
+        "apelido": "16 - DIGÃO"
+      },
+      {
+        "id": "457316",
+        "numero_camisa": "18",
+        "reserva": "true",
+        "goleiro": "false",
+        "entrou_jogando": "false",
+        "nome": "18 - Alison Vicente da Silva",
+        "apelido": "18 - Alison Araçoiaba"
+      },
+      {
+        "id": "636795",
+        "numero_camisa": "19",
+        "reserva": "true",
+        "goleiro": "false",
+        "entrou_jogando": "false",
+        "nome": "19 - Elivelton Semeao da Silva",
+        "apelido": "19 - Elivelton"
+      },
+      {
+        "id": "513298",
+        "numero_camisa": "22",
+        "reserva": "false",
+        "goleiro": "false",
+        "entrou_jogando": "true",
+        "nome": "22 - Marcos Vinicius Ferreira Pereira",
+        "apelido": "22 - Vinicius"
+      },
+      {
+        "id": "544024",
+        "numero_camisa": "26",
+        "reserva": "false",
+        "goleiro": "false",
+        "entrou_jogando": "true",
+        "nome": "26 - Antonio Robert Souza de Araujo",
+        "apelido": "26 - A. Robert"
+      },
+      {
+        "id": "410277",
+        "numero_camisa": "27",
+        "reserva": "true",
+        "goleiro": "false",
+        "entrou_jogando": "false",
+        "nome": "27 - Joao Jose de Andrade Filho",
+        "apelido": "27 - Biel Potiguar"
+      },
+      {
+        "id": "367962",
+        "numero_camisa": "28",
+        "reserva": "false",
+        "goleiro": "false",
+        "entrou_jogando": "true",
+        "nome": "28 - Ivanaldo Silva de Moraes",
+        "apelido": "28 - Testinha"
+      },
+      {
+        "id": "551950",
+        "numero_camisa": "32",
+        "reserva": "true",
+        "goleiro": "true",
+        "entrou_jogando": "false",
+        "nome": "32 - Diego dos Santos Soares",
+        "apelido": "32 - Diego Santos"
+      }
+    ],
+    "alteracoes": [
+      {
+        "codigo_jogador_saiu": "345029",
+        "codigo_jogador_entrou": "374717",
+        "tempo_jogo": "17:00",
+        "tempo_subs": "TN2",
+        "tempo_acrescimo": "17:00"
+      },
+      {
+        "codigo_jogador_saiu": "367962",
+        "codigo_jogador_entrou": "377375",
+        "tempo_jogo": "28:00",
+        "tempo_subs": "TN2",
+        "tempo_acrescimo": "28:00"
+      },
+      {
+        "codigo_jogador_saiu": "371590",
+        "codigo_jogador_entrou": "350446",
+        "tempo_jogo": "28:00",
+        "tempo_subs": "TN2",
+        "tempo_acrescimo": "28:00"
+      },
+      {
+        "codigo_jogador_saiu": "513298",
+        "codigo_jogador_entrou": "457316",
+        "tempo_jogo": "17:00",
+        "tempo_subs": "TN2",
+        "tempo_acrescimo": "17:00"
+      },
+      {
+        "codigo_jogador_saiu": "544024",
+        "codigo_jogador_entrou": "773383",
+        "tempo_jogo": "34:00",
+        "tempo_subs": "TN2",
+        "tempo_acrescimo": "34:00"
+      }
+    ]
+  },
+  "local": "Nhozinho Santos - Sao Luis - MA",
+  "campeonato": {
+    "nome": "Campeonato Brasileiro",
+    "id": "1260635",
+    "nome_categoria": "Série D",
+    "ano": "2026"
+  },
+  "data": " 04/04/2026",
+  "hora": "15:30",
+  "qtd_alteracoes_jogo": 0,
+  "registros": [
+    {
+      "id": "85951",
+      "tipo": "GOL",
+      "resultado": "NR",
+      "clube": "Maracana - CE",
+      "clube_id": "35330",
+      "atleta_nome": "Marcos Vinicius Ferreira Pereira",
+      "atleta_apelido": "Vinicius",
+      "atleta_camisa": "22",
+      "atleta_id": "513298",
+      "tempo_jogo": "1",
+      "minutos": "02:00"
+    },
+    {
+      "id": "85948",
+      "tipo": "GOL",
+      "resultado": "NR",
+      "clube": "Iape - MA",
+      "clube_id": "21894",
+      "atleta_nome": "Matheus Rubens Sousa Mendonca",
+      "atleta_apelido": "Matheus Sousa",
+      "atleta_camisa": "22",
+      "atleta_id": "463843",
+      "tempo_jogo": "1",
+      "minutos": "42:00"
+    },
+    {
+      "id": "85953",
+      "tipo": "GOL",
+      "resultado": "NR",
+      "clube": "Maracana - CE",
+      "clube_id": "35330",
+      "atleta_nome": "Anildson Luis da Silva Soares",
+      "atleta_apelido": "Luis Soares",
+      "atleta_camisa": "11",
+      "atleta_id": "371590",
+      "tempo_jogo": "1",
+      "minutos": "45:00"
+    },
+    {
+      "id": "85950",
+      "tipo": "GOL",
+      "resultado": "NR",
+      "clube": "Iape - MA",
+      "clube_id": "21894",
+      "atleta_nome": "Gustavo Costa Cutrim",
+      "atleta_apelido": "Gustavo",
+      "atleta_camisa": "3",
+      "atleta_id": "550732",
+      "tempo_jogo": "2",
+      "minutos": "32:00"
+    },
+    {
+      "id": "421460",
+      "tipo": "PENALIDADE",
+      "resultado": "AMARELO",
+      "clube": "Maracana - CE",
+      "clube_id": "35330",
+      "atleta_nome": "Marcos Vinicius Ferreira Pereira",
+      "atleta_apelido": "Vinicius",
+      "atleta_camisa": "22",
+      "atleta_id": "513298",
+      "tempo_jogo": "TN1",
+      "minutos": "3:00"
+    },
+    {
+      "id": "421457",
+      "tipo": "PENALIDADE",
+      "resultado": "AMARELO",
+      "clube": "Iape - MA",
+      "clube_id": "21894",
+      "atleta_nome": "Gustavo Costa Cutrim",
+      "atleta_apelido": "Gustavo",
+      "atleta_camisa": "3",
+      "atleta_id": "550732",
+      "tempo_jogo": "TN1",
+      "minutos": "37:00"
+    },
+    {
+      "id": "421462",
+      "tipo": "PENALIDADE",
+      "resultado": "AMARELO",
+      "clube": "Maracana - CE",
+      "clube_id": "35330",
+      "atleta_nome": "Lincoln de Oliveira Santos",
+      "atleta_apelido": "Lincoln",
+      "atleta_camisa": "15",
+      "atleta_id": "346228",
+      "tempo_jogo": "TN2",
+      "minutos": "44:00"
+    }
+  ],
+  "documentos": [
+    {
+      "url": "https://conteudo.cbf.com.br/sumulas/2026/54218se.pdf",
+      "title": "Súmula"
+    },
+    {
+      "url": "https://conteudo.cbf.com.br/sumulas/2026/54218b.pdf",
+      "title": "Boletim Financeiro"
+    },
+    {
+      "url": "https://conteudo.cbf.com.br/sumulas/2026/54218rdj.pdf",
+      "title": "Relatório de Jogo"
+    }
+  ]
+}
