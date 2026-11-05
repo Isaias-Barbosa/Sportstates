@@ -1,4 +1,5 @@
 import { neon } from "@neondatabase/serverless";
+import { cbfRegisteredPlayer } from "./cbf-player-register.mjs";
 import profileReferences from "../data/player-profile-references.json" with { type: "json" };
 import { dayInBrazil } from "./data.mjs";
 
@@ -302,9 +303,10 @@ export async function readBrazilPlayer(id) {
       WHERE players @> ${filter}::jsonb ORDER BY kickoff DESC`,
     sql`SELECT details FROM sport_brazil_player_profiles WHERE id=${id}`,
   ]);
-  const player = (rosters[0] ?? matches[0])?.players.find(
-    (entry) => entry.id === id,
-  );
+  const registered = cbfRegisteredPlayer(id);
+  const player =
+    (rosters[0] ?? matches[0])?.players.find((entry) => entry.id === id) ??
+    registered;
   if (!player) return null;
   const details = profiles[0]?.details ?? {};
   const savedImage = rosters
@@ -333,6 +335,8 @@ export async function readBrazilPlayer(id) {
     {
       id,
       name: player.name,
+      fullName: registered?.fullName,
+      registrations: registered?.registrations ?? [],
       image: details.portrait?.url ?? player.image ?? savedImage ?? null,
       portrait: details.portrait ?? null,
       position: player.position,
