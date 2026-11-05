@@ -55,6 +55,7 @@ import {
 import { matchMedia } from "./match-media.mjs";
 import { fetchHeadToHead } from "./head-to-head.mjs";
 import { enrichBroadcasts } from "./broadcast-schedule.mjs";
+import { applyCbfBroadcasts } from "./cbf-broadcasts.mjs";
 import {
   SPORTS,
   BRAZIL_STATE_LEAGUES,
@@ -1177,7 +1178,7 @@ export async function route(url) {
       },
       300000,
     );
-    let matches = result.value.matches;
+    let matches = applyCbfBroadcasts(result.value.matches);
     let roundsUnavailable = false;
     if (config.sport === "soccer" && config.league === "bra.1") {
       const year = Number(month.slice(0, 4));

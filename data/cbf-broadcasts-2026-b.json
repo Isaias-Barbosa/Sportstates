@@ -1,0 +1,125 @@
+{
+  "league": "bra.2",
+  "season": 2026,
+  "round": 36,
+  "indexUrl": "https://www.cbf.com.br/api/cbf/jogos/campeonato/1260612/rodada/36/fase",
+  "matches": [
+    {
+      "id": "833268",
+      "reference": 357,
+      "home": "Criciúma",
+      "away": "Ponte Preta",
+      "kickoff": "2026-10-30T19:30:00-03:00",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-b/2026/a-x-b/833268",
+      "channels": [
+        "ESPN / Disney+"
+      ]
+    },
+    {
+      "id": "833262",
+      "reference": 351,
+      "home": "Botafogo",
+      "away": "Sport Recife",
+      "kickoff": "2026-10-31T16:00:00-03:00",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-b/2026/a-x-b/833262",
+      "channels": [
+        "ESPN / Disney+"
+      ]
+    },
+    {
+      "id": "833271",
+      "reference": 360,
+      "home": "Vila Nova",
+      "away": "Juventude",
+      "kickoff": "2026-10-31T17:30:00-03:00",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-b/2026/a-x-b/833271",
+      "channels": [
+        "ESPN / Disney+",
+        "GOAT",
+        "Rede TV"
+      ]
+    },
+    {
+      "id": "833269",
+      "reference": 358,
+      "home": "Náutico",
+      "away": "Avaí",
+      "kickoff": "2026-10-31T19:30:00-03:00",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-b/2026/a-x-b/833269",
+      "channels": [
+        "GE TV",
+        "Premiere"
+      ]
+    },
+    {
+      "id": "833265",
+      "reference": 354,
+      "home": "Londrina SAF",
+      "away": "América",
+      "kickoff": "2026-11-01T16:00:00-03:00",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-b/2026/a-x-b/833265",
+      "channels": [
+        "ESPN / Disney+"
+      ]
+    },
+    {
+      "id": "833263",
+      "reference": 352,
+      "home": "Gremio Novorizontino - Saf",
+      "away": "Operário",
+      "kickoff": "2026-11-01T18:30:00-03:00",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-b/2026/a-x-b/833263",
+      "channels": [
+        "ESPN / Disney+"
+      ]
+    },
+    {
+      "id": "833270",
+      "reference": 359,
+      "home": "Cuiabá",
+      "away": "São Bernardo SAF",
+      "kickoff": "2026-11-01T18:30:00-03:00",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-b/2026/a-x-b/833270",
+      "channels": [
+        "ESPN / Disney+"
+      ]
+    },
+    {
+      "id": "833266",
+      "reference": 355,
+      "home": "Fortaleza SAF",
+      "away": "Atlético Goianiense Saf",
+      "kickoff": "2026-11-02T16:00:00-03:00",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-b/2026/a-x-b/833266",
+      "channels": [
+        "ESPN / Disney+"
+      ]
+    },
+    {
+      "id": "833264",
+      "reference": 353,
+      "home": "Athletic SAF",
+      "away": "Ceará",
+      "kickoff": "2026-11-02T18:00:00-03:00",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-b/2026/a-x-b/833264",
+      "channels": [
+        "ESPN / Disney+",
+        "SportyNet",
+        "X Sports"
+      ]
+    },
+    {
+      "id": "833267",
+      "reference": 356,
+      "home": "Goiás",
+      "away": "CRB",
+      "kickoff": "2026-11-02T20:30:00-03:00",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-b/2026/a-x-b/833267",
+      "channels": [
+        "ESPN / Disney+",
+        "SportyNet",
+        "X Sports"
+      ]
+    }
+  ]
+}

@@ -1,10 +1,34 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { parseCazeSchedule, applyCazeSchedule } from '../server/broadcast-schedule.mjs';
+import { applyCbfBroadcasts } from '../server/cbf-broadcasts.mjs';
 import { getWatchOptions, internationalChannels, BRAZIL_CHANNEL_GUIDES, safeWatchUrl } from '../server/watch.mjs';
 const video = ({title='AO VIVO: SEVILLA X OSASUNA | LALIGA',channel='UCZiYbVptd3PVPf4f6eR6UaQ',date='2026-10-26T19:20:00Z',description='Jogo ao vivo e com imagens'}={}) => `kind:"youtube#video",id:"Q1ccB92YYFA",snippet:$R[1]={channelId:${JSON.stringify(channel)},title:${JSON.stringify(title)},description:${JSON.stringify(description)}},liveStreamingDetails:{scheduledStartTime:${JSON.stringify(date)}}`;
 const match = { sport:'soccer', league:'esp.1', state:'scheduled', home:{name:'Sevilla FC'}, away:{name:'Osasuna'}, date:'2026-10-26T20:00:00Z' };
 match.watch = getWatchOptions(match);
+test('verified Brazilian broadcast supplements channels for the exact fixture', () => {
+ const fixture = { ...match, league: 'bra.1', date: '2026-11-04T22:30:00Z',
+   home: { name: 'Athletico-PR' }, away: { name: 'Vasco da Gama' } };
+ fixture.watch = getWatchOptions(fixture);
+ const [result] = applyCbfBroadcasts([fixture]);
+ assert.equal(result.watch.confirmedForMatch, true);
+ assert.deepEqual(result.watch.links.map(link => link.id), ['premiere', 'record', 'cazetv']);
+ assert.deepEqual(applyCbfBroadcasts([result]), [result]);
+ const otherRound = { ...fixture, date: '2026-05-10T23:30:00Z' };
+ const wrongLeague = { ...fixture, league: 'bra.2' };
+ const swapped = { ...fixture, home: fixture.away, away: fixture.home };
+ assert.deepEqual(applyCbfBroadcasts([otherRound, wrongLeague, swapped]), [otherRound, wrongLeague, swapped]);
+});
+test('CBF supplements Série B while preserving an existing direct stream', () => {
+ const fixture = { ...match, league: 'bra.2', date: '2026-10-31T20:30:00Z',
+   home: { name: 'Vila Nova' }, away: { name: 'Juventude' } };
+ const direct = { id: 'goat', url: 'https://www.youtube.com/watch?v=Q1ccB92YYFA' };
+ fixture.watch = { ...getWatchOptions(fixture), confirmedForMatch: true, links: [direct] };
+ const [result] = applyCbfBroadcasts([fixture]);
+ assert.equal(result.watch.links[0], direct);
+ assert.deepEqual(result.watch.links.map(link => link.id), ['goat', 'disney', 'redetv']);
+ assert.match(result.watch.links[2].sourceUrl, /serie-b\/2026\/.*\/833271$/);
+});
 test('Caze parser only accepts the verified channel, live match, images and timestamp', () => {
  assert.equal(parseCazeSchedule(video()).length,1);
  for(const fields of [{channel:'fake'},{title:'REPRISE: SEVILLA X OSASUNA'},{title:'AO VIVO: LOGO APÓS O JOGO | GERAL CAZÉTV'},{description:'Narração sem imagens'},{date:'bad'}]) assert.deepEqual(parseCazeSchedule(video(fields)),[]);
