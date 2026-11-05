@@ -26,7 +26,7 @@ import {
   Star,
   Tv,
 } from "lucide-react";
-import type { Match, Scores, CompetitionCatalog } from "../types";
+import type { Match, Scores, CompetitionCatalog, FeaturedSelection } from "../types";
 import { useApi, useFavorites, today, time, dateLabel } from "../hooks";
 import { sports, keyOf } from "../catalog";
 import {
@@ -40,6 +40,7 @@ import {
 import HomeFavoriteGames from "../components/HomeFavoriteGames";
 import MatchBroadcasts from "../components/MatchBroadcasts";
 import SportAgenda, { sportAgendas } from "../components/SportAgenda";
+import HomeShowcase from '../components/HomeShowcase';
 
 export default function Dashboard({
   favoritesOnly = false,
@@ -82,7 +83,7 @@ function ScoresDashboard({
   const [search, setSearch] = useState("");
   const { ids, toggle } = useFavorites();
   const { data, error, loading, refresh, pending } = useScores(date, sport);
-  const { data: selection } = useApi<{ key: string | null }>(
+  const { data: selection } = useApi<FeaturedSelection>(
     "/api/featured?date=" + encodeURIComponent(date),
     30000,
   );
@@ -230,7 +231,9 @@ function ScoresDashboard({
           : "Próximo confronto";
   return (
     <div className={`home-viva${favoritesOnly ? " home-favorites" : ""}`}>
-      <section className="hv-hero" aria-labelledby="hv-title">
+      {!favoritesOnly && selection?.date === date && selection.key && selection.showcase ? (
+        <HomeShowcase key={date+selection.key+selection.showcase.videoUrl} matchKey={selection.key} showcase={selection.showcase} />
+      ) : <section className="hv-hero" aria-labelledby="hv-title">
         <img
           className="hv-hero-image"
           src="/brand/stadium-viva.webp"
@@ -279,7 +282,7 @@ function ScoresDashboard({
             Na arquibancada.<span>Na palma da mão.</span>
           </p>
         </div>
-      </section>
+      </section>}
       <div className="hv-energy-strip" aria-hidden="true">
         <span>O jogo acontece aqui</span>
         <i>✦</i>

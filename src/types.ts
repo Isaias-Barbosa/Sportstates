@@ -8,6 +8,15 @@ export type Team = {
   penalties?: string | null;
   winner: boolean;
 };
+export type FeaturedShowcase = {
+  videoUrl: string;
+  kind: 'replay' | 'sport';
+  title: string;
+  matchName: string;
+  leagueName: string;
+  kickoff: string;
+};
+export type FeaturedSelection = {date: string; key: string | null; configured?: boolean; showcase?: FeaturedShowcase};
 export type Match = {
   liveUnverified?: boolean;
   setScores?: {

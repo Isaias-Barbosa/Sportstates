@@ -1,0 +1,11 @@
+# Vitrine com vídeo na home
+
+No admin, abra **Jogos do dia**, escolha a data e edite a partida. Marque **Jogo do Dia** e depois **Usar vídeo no banner da home**. Escolha replay/melhores momentos ou vídeo de apresentação do esporte, informe um link direto HTTPS de arquivo `.mp4`/`.webm` e, opcionalmente, uma chamada de até 88 caracteres. O formulário permite reproduzir uma prévia antes de salvar. Links de páginas do YouTube e outros players não são arquivos diretos e não funcionam neste campo.
+
+Há uma vitrine por data, vinculada à mesma partida do Jogo do Dia. O servidor confere se a partida pertence à data e usa os nomes, competição e horário retornados pelo placar, ignorando esses campos se enviados pelo cliente. O banner inteiro abre `/partida/{sport}/{league}/{id}`; o único controle independente é reproduzir/pausar. A vitrine usa o armazenamento privado de destaques já existente no Vercel Blob. Não exige migration nem variável nova. Cadastros antigos sem vídeo continuam funcionando.
+
+O vídeo é identificado como replay ou vídeo do esporte, sem rótulo de transmissão ao vivo. Reproduz em loop, sem som e inline no celular. Pausa ao sair da área visível ou ocultar a página. Não inicia automaticamente com redução de movimento ou economia de dados; a pessoa pode pedir a reprodução. Se o vídeo falhar, a imagem padrão e o link para a partida permanecem disponíveis. O banner promocional aparece também no celular; o banner genérico mantém seu comportamento anterior.
+
+O arquivo é carregado diretamente pelo navegador a partir do endereço informado, sem proxy de mídia no servidor. O host precisa permitir a reprodução pública e suportar o formato no navegador. O formulário valida o formato do endereço, mas não garante disponibilidade, compatibilidade ou permanência do arquivo remoto. Desativar a vitrine remove o vídeo e preserva o destaque; remover o destaque remove os dois. Editar uma partida diferente sem selecioná-la preserva a vitrine atual.
+
+Validação local: testes de autenticação e rejeição de URLs inválidas; vinculação dos nomes ao jogo verificado; gravação/leitura/remoção com adaptador de armazenamento isolado; fluxo no navegador com mídia WebM gerada para o teste e API simulada, em desktop e celular; reprodução sem som, pausa, destino do clique, redução de movimento e arquivo inexistente. Nenhum vídeo real foi publicado pelo teste.
