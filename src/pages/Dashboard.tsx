@@ -231,7 +231,7 @@ function ScoresDashboard({
           : "Próximo confronto";
   return (
     <div className={`home-viva${favoritesOnly ? " home-favorites" : ""}`}>
-      {!favoritesOnly && selection?.date === date && selectedMatch && selection.showcase ? (
+      {!favoritesOnly && selection?.date === date && selection.key && selectedMatch && selection.showcase ? (
         <HomeShowcase key={date+selection.key+selection.showcase.videoUrl} matchKey={selection.key} showcase={selection.showcase} />
       ) : <section className="hv-hero" aria-labelledby="hv-title">
         <img

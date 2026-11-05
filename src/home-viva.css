@@ -1676,6 +1676,6 @@ details.hv-league:not([open]) > summary {
 .home-agenda-freshness { margin: 8px 0; }
 .home-viva .home-spotlight { margin-bottom: 20px; }
 @media (max-width: 700px) {
-  .home-viva:not(.home-favorites) .hv-hero, .home-viva:not(.home-favorites) .hv-energy-strip { display: none; }
+  .home-viva:not(.home-favorites) .hv-energy-strip { display: none; }
   .home-viva .hv-main { padding-top: 14px; }
 }
