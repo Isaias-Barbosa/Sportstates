@@ -16,7 +16,8 @@ import {
   Notice,
   matchLabel,
 } from "../components/shared";
-import type { Match, Scores } from "../types";
+import type { Match, Scores, FeaturedSelection } from "../types";
+import AdminShowcaseFields, {type ShowcaseDraft} from '../components/AdminShowcaseFields';
 
 type ManualBroadcast = {
   match_key: string;
@@ -68,6 +69,7 @@ export default function AdminGames() {
   const [sport, setSport] = useState("all");
   const [selected, setSelected] = useState<Match | null>(null);
   const [checked, setChecked] = useState(false);
+  const [showcase,setShowcase]=useState<ShowcaseDraft>({enabled:false,videoUrl:'',kind:'replay',title:''});
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
@@ -89,10 +91,7 @@ export default function AdminGames() {
     error: scoreError,
     loading,
   } = useApi<Scores>("/api/scores?date=" + encodeURIComponent(date));
-  const { data: feature, refresh } = useApi<{
-    key: string | null;
-    configured: boolean;
-  }>("/api/featured?date=" + encodeURIComponent(date), 0);
+  const { data: feature, refresh } = useApi<FeaturedSelection>("/api/featured?date=" + encodeURIComponent(date), 0);
   useEffect(() => {
     if (section !== "broadcasts" || !secret) return;
     const controller = new AbortController();
@@ -156,6 +155,7 @@ export default function AdminGames() {
     setError("");
     try {
       const key = keyOf(selected);
+      if(checked&&showcase.enabled&&!showcase.videoUrl.trim())throw new Error('Informe o link do vídeo ou desative a vitrine com vídeo.');
       const r = await fetch("/api/admin/featured", {
         method: "PUT",
         headers: {
@@ -169,6 +169,8 @@ export default function AdminGames() {
             : feature?.key === key
               ? null
               : feature?.key || null,
+          showcase:checked?(showcase.enabled?{videoUrl:showcase.videoUrl,kind:showcase.kind,title:showcase.title}:null)
+            : feature?.key===key?null:feature?.showcase??null,
         }),
       });
       const j = await r.json();
@@ -176,7 +178,7 @@ export default function AdminGames() {
       setSelected(null);
       setNotice(
         j.warning ||
-          (checked ? "Jogo do Dia atualizado." : "Destaque removido."),
+          (checked ? (showcase.enabled?'Vitrine com vídeo atualizada.':'Jogo do Dia atualizado.') : "Destaque removido."),
       );
       refresh();
     } catch (e) {
@@ -490,6 +492,7 @@ export default function AdminGames() {
                       <small>
                         {m.leagueName}
                         {feature?.key === keyOf(m) && " · Jogo do Dia"}
+                        {feature?.key === keyOf(m) && feature.showcase && ' · Vitrine com vídeo'}
                       </small>
                     </span>
                     <Crest team={m.away} />
@@ -510,6 +513,8 @@ export default function AdminGames() {
                       else {
                         setSelected(m);
                         setChecked(feature?.key === keyOf(m));
+                        const current=feature?.key===keyOf(m)?feature.showcase:undefined;
+                        setShowcase({enabled:!!current,videoUrl:current?.videoUrl||'',kind:current?.kind||'replay',title:current?.title||''});
                       }
                     }}
                   >
@@ -537,7 +542,7 @@ export default function AdminGames() {
               }}
             >
               <div
-                className="admin-modal"
+                className="admin-modal admin-feature-modal"
                 role="dialog"
                 aria-modal="true"
                 aria-labelledby="edit-title"
@@ -575,6 +580,7 @@ export default function AdminGames() {
                     </small>
                   </span>
                 </label>
+                {checked&&<AdminShowcaseFields value={showcase} onChange={setShowcase} disabled={saving}/>}
                 {checked && feature?.key && feature.key !== keyOf(selected) && (
                   <p>Esta escolha substituirá o destaque atual dessa data.</p>
                 )}

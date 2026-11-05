@@ -51,6 +51,7 @@ import {
   saveFeatured,
   validKey,
   authorized,
+  validateShowcase, showcaseForMatch,
 } from "./featured.mjs";
 import { matchMedia } from "./match-media.mjs";
 import { fetchHeadToHead } from "./head-to-head.mjs";
@@ -2310,25 +2311,31 @@ export async function handler(req, res) {
         res.statusCode = 400;
         return res.end(JSON.stringify({ error: "Data ou partida inválida." }));
       }
+      let showcase;
+      try { showcase=validateShowcase(payload.showcase); }
+      catch(error){res.statusCode=400;return res.end(JSON.stringify({error:error.message}));}
+      if(showcase && key===null){res.statusCode=400;return res.end(JSON.stringify({error:'Escolha a partida da vitrine antes de salvar o vídeo.'}));}
       if (key !== null) {
         const results = await scoreboard(date);
+        const match=results.matches.find((m) => `${m.sport}/${m.league}/${m.id}`===key);
         if (
-          !results.matches.some((m) => `${m.sport}/${m.league}/${m.id}` === key)
+          !match
         ) {
           res.statusCode = 400;
           return res.end(
             JSON.stringify({ error: "A partida não consta nesta data." }),
           );
         }
+        if(showcase)showcase=showcaseForMatch(showcase,match);
       }
-      await saveFeatured(date, key);
+      await saveFeatured(date, key, showcase);
       const warning = await recordAdminActivitySafely(
         "featured_saved",
         key ? "Jogo do Dia atualizado." : "Destaque do dia removido.",
         key,
       );
       res.statusCode = 200;
-      return res.end(JSON.stringify({ date, key, warning }));
+      return res.end(JSON.stringify({ date, key, showcase, warning }));
     } catch (error) {
       res.statusCode = 502;
       return res.end(
