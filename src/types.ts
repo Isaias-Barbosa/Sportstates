@@ -12,6 +12,8 @@ export type FeaturedShowcase = {
   videoUrl: string;
   kind: 'replay' | 'sport';
   title: string;
+  fontSize?: 'small'|'medium'|'large';
+  characterLimit?: number;
   matchName: string;
   leagueName: string;
   kickoff: string;

@@ -7,6 +7,43 @@ import {
   showcaseForMatch,
 } from "../server/featured.mjs";
 import { handler } from "../server/api.mjs";
+import {
+  countShowcaseCharacters,
+  trimShowcaseCharacters,
+} from "../src/showcase-text.mjs";
+
+test("headline preferences validate bounded sizes and preserve legacy defaults", () => {
+  assert.equal(validateShowcase(draft).fontSize, "large");
+  assert.equal(validateShowcase(draft).characterLimit, 88);
+  assert.deepEqual(
+    validateShowcase({ ...draft, fontSize: "small", characterLimit: 40 })
+      .fontSize,
+    "small",
+  );
+  assert.throws(() => validateShowcase({ ...draft, fontSize: "giant" }));
+  assert.throws(() => validateShowcase({ ...draft, characterLimit: 200 }));
+  assert.throws(() =>
+    validateShowcase({ ...draft, characterLimit: 40, title: "x".repeat(41) }),
+  );
+});
+
+test("emoji and composed characters count once and trimming never splits them", () => {
+  const family = "👨‍👩‍👧‍👦";
+  assert.equal(countShowcaseCharacters("🔥" + family + "a\u0301"), 3);
+  assert.equal(trimShowcaseCharacters("🔥" + family + "abc", 2), "🔥" + family);
+  assert.equal(
+    validateShowcase({ ...draft, characterLimit: 40, title: family.repeat(40) })
+      .title,
+    family.repeat(40),
+  );
+  assert.throws(() =>
+    validateShowcase({
+      ...draft,
+      characterLimit: 40,
+      title: family.repeat(41),
+    }),
+  );
+});
 
 const date = "2026-11-05",
   key = "soccer/bra.1/401841306";
@@ -72,7 +109,7 @@ test("private highlight storage round-trips showcase, preserves old documents an
     statusCode: 200,
     stream: new Blob([content]).stream(),
   });
-  const showcase = showcaseForMatch(draft, match);
+  const showcase = showcaseForMatch({...draft,fontSize:'small',characterLimit:40}, match);
   await saveFeatured(date, key, showcase, { write, configured: true });
   const stored = await readFeatured(date, { read, configured: true });
   assert.deepEqual(stored.showcase, showcase);
