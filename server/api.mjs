@@ -56,7 +56,7 @@ import { matchMedia } from "./match-media.mjs";
 import { fetchHeadToHead } from "./head-to-head.mjs";
 import { enrichBroadcasts } from "./broadcast-schedule.mjs";
 import { applyCbfBroadcasts } from "./cbf-broadcasts.mjs";
-import { playerCompetitions, playerLeagues, playerSeason, validPlayerId, readBrazilTeamPlayers, readBrazilPlayer,
+import { enrichPlayerProfile, playerCompetitions, playerLeagues, playerSeason, validPlayerId, readBrazilTeamPlayers, readBrazilPlayer,
   syncBrazilPlayerDay } from "./brazil-players.mjs";
 import {
   SPORTS,
@@ -607,8 +607,10 @@ export async function route(url) {
             redirect: "error",
             signal: AbortSignal.timeout(5000),
           });
-          if (response.ok || response.status === 404)
-            return [response.status, await response.json()];
+          if (response.ok || response.status === 404) {
+            const body = await response.json();
+            return [response.status, response.ok && isPlayer ? enrichPlayerProfile(body, id) : body];
+          }
         } catch {
           // The preview remains unavailable if the public endpoint is offline.
         }

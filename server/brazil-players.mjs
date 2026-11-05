@@ -275,6 +275,23 @@ export async function readBrazilTeamPlayers(league, team, season) {
   };
 }
 
+export function enrichPlayerProfile(player, id) {
+  const reference = profileReferences[id];
+  if (!reference) return player;
+  const portrait = player.portrait ?? reference.portrait ?? null;
+  return {
+    ...player,
+    portrait,
+    image: portrait?.url ?? player.image ?? null,
+    previousClubs: player.previousClubs?.length
+      ? player.previousClubs
+      : (reference.previousClubs ?? []),
+    awards: player.awards?.length ? player.awards : (reference.awards ?? []),
+    teamHonours: player.teamHonours ?? reference.teamHonours ?? [],
+    transfers: player.transfers ?? reference.transfers ?? [],
+  };
+}
+
 export async function readBrazilPlayer(id) {
   const sql = store();
   const filter = JSON.stringify([{ id }]);
@@ -289,9 +306,7 @@ export async function readBrazilPlayer(id) {
     (entry) => entry.id === id,
   );
   if (!player) return null;
-  const reference = profileReferences[id] ?? {};
   const details = profiles[0]?.details ?? {};
-  const portrait = details.portrait ?? reference.portrait ?? null;
   const savedImage = rosters
     .find((row) => row.players.some((entry) => entry.id === id && entry.image))
     ?.players.find((entry) => entry.id === id && entry.image)?.image;
@@ -314,39 +329,40 @@ export async function readBrazilPlayer(id) {
       });
     competitions.get(key).rows.push(entry);
   }
-  return {
+  return enrichPlayerProfile(
+    {
+      id,
+      name: player.name,
+      image: details.portrait?.url ?? player.image ?? savedImage ?? null,
+      portrait: details.portrait ?? null,
+      position: player.position,
+      memberships: rosters
+        .filter((row) => row.season === playerSeason(row.league))
+        .map((row) => ({
+          id: row.team,
+          name: row.name,
+          competition: playerLeagues[row.league],
+          season: row.season,
+          seasonLabel: seasonLabel(row.league, row.season),
+        })),
+      clubs: [...clubs.values()].slice(0, 8),
+      previousClubs: details.previousClubs ?? [],
+      awards: details.awards ?? [],
+      teamHonours: details.teamHonours,
+      transfers: details.transfers,
+      marketValue: details.marketValue ?? null,
+      competitions: [...competitions.values()].map(
+        ({ league, season, rows }) => ({
+          league,
+          name: playerCompetitions[league],
+          season,
+          seasonLabel: seasonLabel(league, season),
+          stats: total(rows),
+        }),
+      ),
+    },
     id,
-    name: player.name,
-    image: portrait?.url ?? player.image ?? savedImage ?? null,
-    portrait,
-    position: player.position,
-    memberships: rosters
-      .filter((row) => row.season === playerSeason(row.league))
-      .map((row) => ({
-        id: row.team,
-        name: row.name,
-        competition: playerLeagues[row.league],
-        season: row.season,
-        seasonLabel: seasonLabel(row.league, row.season),
-      })),
-    clubs: [...clubs.values()].slice(0, 8),
-    previousClubs: details.previousClubs?.length
-      ? details.previousClubs
-      : (reference.previousClubs ?? []),
-    awards: details.awards?.length ? details.awards : (reference.awards ?? []),
-    teamHonours: details.teamHonours ?? reference.teamHonours ?? [],
-    transfers: details.transfers ?? reference.transfers ?? [],
-    marketValue: details.marketValue ?? null,
-    competitions: [...competitions.values()].map(
-      ({ league, season, rows }) => ({
-        league,
-        name: playerCompetitions[league],
-        season,
-        seasonLabel: seasonLabel(league, season),
-        stats: total(rows),
-      }),
-    ),
-  };
+  );
 }
 
 export async function saveBrazilPlayerProfile(
