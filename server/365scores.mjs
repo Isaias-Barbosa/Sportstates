@@ -10,6 +10,7 @@ const BASE_PARAMS = {
 };
 
 export const SOCCER_365_COMPETITIONS = Object.freeze({
+  "kor.1": 618,
   "bra.3": 5518,
   "bra.4": 5519,
   "bra.camp.baiano": 5059,
@@ -58,9 +59,14 @@ function url(path, params) {
   return `${API}/${path}/?${search}`;
 }
 
-export function competitionGamesUrl(league) {
+export function competitionGamesUrl(league, date = new Date().toISOString().slice(0, 10), endDate = date) {
   const competitionId = SOCCER_365_COMPETITIONS[league];
   if (!competitionId) throw new Error("Competição 365Scores não configurada.");
+  if (league === "kor.1") {
+    if (![date, endDate].every(value => /^20\d{2}-\d{2}-\d{2}$/.test(value) && new Date(value).toISOString().slice(0, 10) === value)) throw new Error("Data inválida.");
+    const day = date.split("-").reverse().join("/");
+    return url("games", { competitions: String(competitionId), startDate: day, endDate: endDate.split("-").reverse().join("/"), userCountryId: "21", limit: "1000" });
+  }
   return url("games/results", {
     competitions: String(competitionId),
     userCountryId: "-1",
@@ -138,7 +144,7 @@ export function normalize365Game(game, league, leagueName, now = Date.now()) {
       /\b(final|fim|ended|finished|encerrad[oa]s?)\b/i.test(statusText));
   const live =
     !notPlayed && !finished &&
-    (/\b(live|ao vivo|intervalo|1st half|2nd half|extra time|penalties)\b/i.test(
+    ((league === "nbb" && statusGroup === 3) || /\b(live|ao vivo|intervalo|1st half|2nd half|extra time|penalties)\b/i.test(
       statusText,
     ) ||
       (Number(game.gameTime) > 0 &&
@@ -171,7 +177,7 @@ export function normalize365Game(game, league, leagueName, now = Date.now()) {
   });
   const match = {
     id,
-    sport: "soccer",
+    sport: league === "nbb" ? "basketball" : "soccer",
     league,
     leagueName,
     round: Number(game.roundNum) > 0 ? String(game.roundNum) : undefined,
@@ -187,7 +193,7 @@ export function normalize365Game(game, league, leagueName, now = Date.now()) {
     status: conflictingCopaParana ? "Status aguardando confirmação oficial"
       : postponed ? "Adiado" : cancelled ? "Cancelado" : game.gameTimeDisplay || statusText,
     clock: game.gameTimeDisplay || "",
-    period: 0,
+    period: league === "nbb" ? Number(statusText.match(/^Q([1-4])$/i)?.[1] || 0) : 0,
     seasonType: null,
     seasonPhase: game.stageName || game.competitionDisplayName || "",
     soccerPhase: null,
@@ -206,8 +212,21 @@ export function normalize365Game(game, league, leagueName, now = Date.now()) {
   };
 }
 
-export async function fetch365CompetitionGames(league, loadJson) {
-  const raw = await loadJson(competitionGamesUrl(league));
+export async function fetch365CompetitionGames(league, loadJson, date) {
+  if (league === "kor.1" && /^20\d{2}-(0[1-9]|1[0-2])$/.test(date || "")) {
+    // The public feed can truncate global results despite the competition filter.
+    // At most five weekly requests, no unbounded paging, and never claim completeness.
+    const last = new Date(Date.UTC(Number(date.slice(0, 4)), Number(date.slice(5)), 0)).getUTCDate();
+    const games = new Map();
+    for (let day = 1; day <= last; day += 7) {
+      const iso = n => `${date}-${String(n).padStart(2, "0")}`;
+      const raw = await loadJson(competitionGamesUrl(league, iso(day), iso(Math.min(day + 6, last))));
+      if (!Array.isArray(raw?.games)) throw new Error("Calendário coreano inválido.");
+      for (const game of raw.games) if (Number(game.competitionId) === 618 && String(game.startTime).startsWith(date)) games.set(String(game.id), game);
+    }
+    return { games: [...games.values()], partial: true };
+  }
+  const raw = await loadJson(competitionGamesUrl(league, date));
   const expectedId = SOCCER_365_COMPETITIONS[league];
   if (!Array.isArray(raw?.games))
     throw new Error("Resposta de jogos do 365Scores inválida.");
@@ -215,7 +234,7 @@ export async function fetch365CompetitionGames(league, loadJson) {
     games: raw.games.filter(
       (game) => Number(game.competitionId) === expectedId,
     ),
-    partial: raw.games.length >= 1000,
+    partial: league === "kor.1" || raw.games.length >= 1000,
   };
 }
 
@@ -362,6 +381,8 @@ export function normalize365GameDetail(raw, match) {
 
 export function normalize365Summary(raw, league, leagueName) {
   const game = raw?.game;
+  if (league === "kor.1" && (Number(game?.competitionId) !== 618 || Number(game?.sportId) !== 1))
+    throw new Error("Partida não pertence à K League 1.");
   const home = game?.homeCompetitor || game?.home;
   const away = game?.awayCompetitor || game?.away;
   const match = normalize365Game(game, league, leagueName);
@@ -402,6 +423,7 @@ export function normalize365Summary(raw, league, leagueName) {
                       : "pre",
               },
               displayClock: match.clock,
+              period: match.period,
             },
             venue: { fullName: game.venue?.name || "" },
           },
@@ -409,7 +431,7 @@ export function normalize365Summary(raw, league, leagueName) {
       },
       gameInfo: { venue: { fullName: game.venue?.name || "" } },
     },
-    "soccer",
+    match.sport,
     league,
     leagueName,
   );
@@ -417,6 +439,16 @@ export function normalize365Summary(raw, league, leagueName) {
     ...summary,
     match: normalize365GameDetail(raw, match),
     source: "365Scores · feed público não oficial",
+  };
+}
+
+export function normalizeNbb365Summary(raw, id) {
+  const game = raw?.game;
+  if (String(game?.id) !== String(id) || Number(game?.sportId) !== 2 || Number(game?.competitionId) !== 5787)
+    throw new Error("Partida NBB não encontrada nesta fonte.");
+  return {
+    ...normalize365Summary(raw, "nbb", "Novo Basquete Brasil"),
+    warnings: ["Estatísticas detalhadas e lances ainda não estão disponíveis nesta integração do NBB."],
   };
 }
 

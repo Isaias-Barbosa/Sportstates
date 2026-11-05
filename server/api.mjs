@@ -6,7 +6,7 @@ import { findGeRoundsForDate, geRoundLoader } from "./ge-date-index.mjs";
 import { normalizeGeSerieAFixtures } from "./ge-fixtures.mjs";
 import { sameGeTeam } from "./ge-rounds.mjs";
 import { resolveSources } from "./source-manager.mjs";
-import { nbb365Url, normalizeNbb365Standings, normalizeNbb365Games } from "./365scores.mjs";
+import { nbb365Url, normalizeNbb365Standings, normalizeNbb365Games, normalizeNbb365Summary } from "./365scores.mjs";
 import { loadLnbHtml, parseLnbGames, parseLnbStandings } from "./lnb.mjs";
 import { listAdminUsers, userListOptions } from "./admin-users.mjs";
 import {
@@ -172,11 +172,19 @@ function cachedGeRound(year, round) {
   }, 60 * 60_000);
 }
 
-function cached365Games(league) {
+function cached365Games(league, date) {
+  if (league === "kor.1") return resolveSources({
+    key: `korea:games:${date}`, cached,
+    providers: [{ name: "365Scores", ttl: date?.length === 7 ? 300000 : 30000,
+      load: async () => [await fetch365CompetitionGames(league, json, date)] }],
+  }).then(result => {
+    if (!result.matches.length) throw new Error("Calendário coreano temporariamente indisponível.");
+    return { value: result.matches[0], at: result.at, stale: result.stale };
+  });
   return cached(
     `365scores:games:${league}`,
     CACHE_TTL.standings,
-    () => fetch365CompetitionGames(league, json),
+    () => fetch365CompetitionGames(league, json, date),
     300000,
   );
 }
@@ -288,12 +296,12 @@ export async function scoreboard(date, sport = "all") {
         try {
           const today = dayInBrazil(new Date());
           const result =
-            date === today
+            date === today && league !== "kor.1"
               ? await cached365Daily()
-              : await cached365Games(league);
+              : await cached365Games(league, date);
           const expectedId = SOCCER_365_COMPETITIONS[league];
           const games =
-            date === today
+            date === today && league !== "kor.1"
               ? result.value.filter(
                   (game) => Number(game.competitionId) === expectedId,
                 )
@@ -302,13 +310,13 @@ export async function scoreboard(date, sport = "all") {
             .map((game) => normalize365Game(game, league, name))
             .filter((match) => match && dayInBrazil(match.date) === date);
           const broadcasts = await enrich365Broadcasts(matches, games);
-          if (matches.length) return {
+          if (matches.length || league === "kor.1") return {
             matches: broadcasts.matches.map((match) => ({
               ...match,
               liveUnverified: match.state === "live" && result.stale,
             })),
             failed:
-              broadcasts.failed || (date !== today && result.value.partial),
+              broadcasts.failed || ((date !== today || league === "kor.1") && result.value.partial),
             stale: result.stale,
             sport: s.id,
             league,
@@ -318,6 +326,7 @@ export async function scoreboard(date, sport = "all") {
           };
         } catch (error) {
           console.error(`Falha ao consultar 365Scores para ${name}:`, error);
+          if (league === "kor.1") return { matches: [], failed: true, stale: false, sport: s.id, league, name, provider: "365Scores", at: Date.now() };
           // The ESPN branch below remains available after an upstream failure.
         }
       }
@@ -1067,7 +1076,9 @@ export async function route(url) {
         `league-games:365scores:${config.league}:${month}`,
         (body) => leagueGamesTtl(body, month, dayInBrazil(new Date())),
         async () => {
-          const feed = await fetch365CompetitionGames(config.league, json);
+          const feed = config.league === "kor.1"
+            ? (await cached365Games(config.league, month)).value
+            : await fetch365CompetitionGames(config.league, json);
           const matches = feed.games
             .map((game) => normalize365Game(game, config.league, config.name))
             .filter(
@@ -1086,7 +1097,7 @@ export async function route(url) {
       } catch (error) {
         result = null;
       }
-      if (result?.value.matches.length) return [
+      if (result && (result.value.matches.length || config.league === "kor.1")) return [
         200,
         {
           ...config,
@@ -1097,6 +1108,7 @@ export async function route(url) {
           source: "365Scores · feed público não oficial",
         },
       ];
+      if (config.league === "kor.1") return [503, { error: "Calendário da K League 1 temporariamente indisponível." }];
       // 365Scores may omit archived fixtures. Fall through to ESPN for a
       // second independent source rather than returning an empty calendar.
     }
@@ -1339,6 +1351,21 @@ export async function route(url) {
     const id = q.get("id");
     if (!config || !/^\d{1,15}$/.test(id || ""))
       return [400, { error: "Partida ou competição inválida." }];
+    if (config.sport === "basketball" && config.league === "nbb") {
+      const result = await resolveSources({
+        key: `match:nbb:${id}`, cached,
+        providers: [{ name: "365Scores", ttl: 30000, load: async () => {
+          const detailUrl = new URL(gameDetailUrl(id));
+          detailUrl.searchParams.set("sports", "2");
+          return [normalizeNbb365Summary(await json(detailUrl.href), id)];
+        } }],
+      });
+      const detail = result.matches[0];
+      if (!detail) return [503, { error: "Não foi possível consultar esta partida do NBB. Tente novamente em alguns minutos." }];
+      if (url.pathname === "/api/media") return [200, { highlights: [], replays: [], related: [], searchLinks: [], partial: true, message: "Vídeos não disponíveis nesta fonte do NBB.", source: detail.source }];
+      const manual = await enrichManualBroadcasts([detail.match]);
+      return [200, { ...detail, match: manual.matches[0], stale: result.stale, fetchedAt: new Date(result.at).toISOString(), warnings: [...detail.warnings, ...result.warnings, ...(manual.warning ? [manual.warning] : [])] }];
+    }
     if (config.sport === "soccer" && isCbfLowerDivision(config.league)) {
       const detail = cbfLowerDivisionDetail(config.league, id);
       if (!detail) return [404, { error: "Partida não encontrada." }];
@@ -2087,6 +2114,7 @@ export async function handler(req, res) {
         }
         try {
           const espnSport = sport === "football" ? "football" : sport;
+          if (id === "kor.1") throw new Error("Competição sem feed ESPN.");
           const upstream = await fetch(`https://site.api.espn.com/apis/site/v2/sports/${encodeURIComponent(espnSport)}/${encodeURIComponent(id)}/scoreboard?limit=1`, { signal: AbortSignal.timeout(3500) });
           if (upstream.ok) {
             const data = await upstream.json();
