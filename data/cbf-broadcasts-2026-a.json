@@ -1,0 +1,125 @@
+{
+  "league": "bra.1",
+  "season": 2026,
+  "round": 34,
+  "indexUrl": "https://www.cbf.com.br/api/cbf/jogos/campeonato/1260611/rodada/34/fase",
+  "matches": [
+    {
+      "id": "832225",
+      "reference": 335,
+      "home": "Red Bull Bragantino",
+      "away": "Santos FC",
+      "kickoff": "2026-11-02T20:00:00-03:00",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-a/2026/a-x-b/832225",
+      "channels": [
+        "Premiere",
+        "Sportv"
+      ]
+    },
+    {
+      "id": "832230",
+      "reference": 340,
+      "home": "Chapecoense",
+      "away": "Mirassol",
+      "kickoff": "2026-11-03T19:30:00-03:00",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-a/2026/a-x-b/832230",
+      "channels": [
+        "Premiere"
+      ]
+    },
+    {
+      "id": "832227",
+      "reference": 337,
+      "home": "Internacional",
+      "away": "Coritiba SAF",
+      "kickoff": "2026-11-03T21:30:00-03:00",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-a/2026/a-x-b/832227",
+      "channels": [
+        "Premiere"
+      ]
+    },
+    {
+      "id": "832228",
+      "reference": 338,
+      "home": "Athletico Paranaense",
+      "away": "Vasco da Gama Saf",
+      "kickoff": "2026-11-04T19:30:00-03:00",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-a/2026/a-x-b/832228",
+      "channels": [
+        "Premiere",
+        "Record",
+        "YouTube / Cazé TV"
+      ]
+    },
+    {
+      "id": "832221",
+      "reference": 331,
+      "home": "Flamengo",
+      "away": "Grêmio",
+      "kickoff": "2026-11-04T19:30:00-03:00",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-a/2026/a-x-b/832221",
+      "channels": [
+        "Premiere"
+      ]
+    },
+    {
+      "id": "832222",
+      "reference": 332,
+      "home": "Botafogo",
+      "away": "Atlético Mineiro",
+      "kickoff": "2026-11-04T21:30:00-03:00",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-a/2026/a-x-b/832222",
+      "channels": [
+        "Globo",
+        "Premiere"
+      ]
+    },
+    {
+      "id": "832223",
+      "reference": 333,
+      "home": "São Paulo",
+      "away": "Corinthians",
+      "kickoff": "2026-11-04T21:30:00-03:00",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-a/2026/a-x-b/832223",
+      "channels": [
+        "GE TV",
+        "Globo",
+        "Premiere"
+      ]
+    },
+    {
+      "id": "832224",
+      "reference": 334,
+      "home": "Palmeiras",
+      "away": "Remo",
+      "kickoff": "2026-11-05T19:30:00-03:00",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-a/2026/a-x-b/832224",
+      "channels": [
+        "Premiere"
+      ]
+    },
+    {
+      "id": "832226",
+      "reference": 336,
+      "home": "Cruzeiro",
+      "away": "Bahia",
+      "kickoff": "2026-11-05T21:30:00-03:00",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-a/2026/a-x-b/832226",
+      "channels": [
+        "Amazon Prime"
+      ]
+    },
+    {
+      "id": "832229",
+      "reference": 339,
+      "home": "Vitória",
+      "away": "Fluminense",
+      "kickoff": "2026-11-06T20:00:00-03:00",
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/campeonato-brasileiro/serie-a/2026/a-x-b/832229",
+      "channels": [
+        "Premiere",
+        "Sportv"
+      ]
+    }
+  ]
+}

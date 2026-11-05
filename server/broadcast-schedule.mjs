@@ -1,6 +1,7 @@
 import { enrichGoatBroadcasts } from "./goat-broadcasts.mjs";
 import { enrichGeBroadcasts } from './ge-broadcasts.mjs';
 import { createCache } from './cache.mjs';
+import { applyCbfBroadcasts } from './cbf-broadcasts.mjs';
 const cached = createCache();
 export const CAZE_AGENDA = 'https://www.agendacazetv.com.br/';
 // Verified detail references survive removal from the rotating homepage.
@@ -41,7 +42,7 @@ export function applyCazeSchedule(matches, schedule) {
   });
 }
 export async function enrichBroadcasts(matches) {
-  if (!matches.some(m => m.sport === 'soccer' && m.state !== 'finished')) return matches;
+  if (!matches.some(m => m.sport === 'soccer' && m.state !== 'finished')) return applyCbfBroadcasts(matches);
   const details = VERIFIED_DETAILS.filter(ref => matches.some(m => m.id === ref.eventId && m.sport === ref.sport && m.league === ref.league && m.date.slice(0, 10) === ref.date && m.state !== 'finished'));
   const urls = [CAZE_AGENDA, ...details.map(ref => `${CAZE_AGENDA}watch/${ref.videoId}`)];
   const gePromise = enrichGeBroadcasts(matches);
@@ -58,5 +59,5 @@ export async function enrichBroadcasts(matches) {
   const schedule = [...new Map(events.map(e => [e.id, e])).values()];
   const [ge, goat] = await Promise.all([gePromise, goatPromise]);
   const merged = ge.map((m,i) => goat[i].watch?.confirmedForMatch ? {...m,watch:{...m.watch,...goat[i].watch,links:[...new Map([...(m.watch?.confirmedForMatch?m.watch.links:[]),...goat[i].watch.links].map(l=>[l.id,l])).values()]}} : m);
-  return applyCazeSchedule(merged, schedule);
+  return applyCbfBroadcasts(applyCazeSchedule(merged, schedule));
 }

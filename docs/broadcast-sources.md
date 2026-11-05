@@ -1,5 +1,11 @@
 # Transmissões: tênis, WTT e copas locais
 
+## Brasileirão Série A e Série B
+
+O "Onde assistir" cruza os JSONs da CBF com os jogos pelo campeonato, mandante, visitante e horário de início. Os dados da CBF complementam os links por partida que já vieram de outras fontes. O site lê os arquivos locais, sem consultas adicionais à CBF durante a navegação.
+
+Para atualizar os arquivos, rode `python scripts/collect-cbf-broadcasts.py bra.1 34` ou `python scripts/collect-cbf-broadcasts.py bra.2 36`, trocando o número pela rodada desejada. Revise o JSON antes de substituir o arquivo correspondente em `data/`. Cada arquivo contém uma rodada por série. Uma alteração de horário exige nova coleta para que o vínculo volte a ser confirmado.
+
 Revisão em 29/10/2026. Apenas links de destinos oficiais; nenhuma URL de reprodução privada, IPTV ou tentativa de contornar restrições regionais.
 
 - Tênis masculino: ESPN/Disney+ Premium conforme ESPN Brasil; programação oficial ATP. O canal ESPN 1–6 não é deduzido pelo esporte. Tennis TV só aparece quando o nome do torneio identifica ATP 250/500/1000, Masters 1000 ou ATP Finals; não aparece para Slams, Challenger, Davis ou Laver Cup.
