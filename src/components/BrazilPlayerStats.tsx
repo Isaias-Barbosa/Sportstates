@@ -43,6 +43,7 @@ export default function BrazilPlayerStats({
   const query = new URLSearchParams({ id: team, league });
   const { data, loading, error, refresh } = useApi<{
     season: number;
+    seasonLabel?: string;
     competition: string;
     importedMatches: number;
     players: RankedPlayer[];
@@ -72,8 +73,8 @@ export default function BrazilPlayerStats({
         <div>
           <h2>Estatísticas do elenco</h2>
           <p>
-            {data.competition} · {data.season} · {data.importedMatches} partidas
-            importadas
+            {data.competition} · {data.seasonLabel ?? data.season} ·{" "}
+            {data.importedMatches} partidas importadas
           </p>
         </div>
         <label>

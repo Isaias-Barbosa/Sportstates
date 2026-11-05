@@ -1,6 +1,12 @@
-# Jogadores do Brasileirão
+# Estatísticas de jogadores
 
 A aba Estatísticas e a página do atleta consultam o Neon. A ESPN entra na importação de elencos e partidas, fora da navegação. O identificador ESPN conecta elenco, súmula e perfil.
+
+## Premier League, LaLiga e Bundesliga
+
+As ligas `eng.1`, `esp.1` e `ger.1` usam as mesmas tabelas e comandos. Uma temporada como 2026/27 é armazenada com o ano inicial 2026. A Bundesliga tem 18 clubes, enquanto as outras duas têm 20.
+
+Depois de publicar, importe os elencos e as partidas encerradas a partir do início da temporada. Crie um agendamento por liga usando `/api/player-stats/sync?league=eng.1`, `esp.1` ou `ger.1` com o mesmo cabeçalho de autenticação descrito abaixo.
 
 ## Carga inicial
 
