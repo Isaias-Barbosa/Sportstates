@@ -1,4 +1,5 @@
 import register from "../data/cbf-player-register-2026.json" with { type: "json" };
+import reviewedMatches from "../data/cbf-reviewed-player-matches-2026.json" with { type: "json" };
 
 const teamNames = {
   62328: "Porto-BA",
@@ -23,6 +24,13 @@ for (const group of register) {
 
 export const validPublicPlayerId = (id) =>
   typeof id === "string" && /^(?:cbf-)?\d{1,12}$/.test(id);
+
+const identities = new Map(
+  reviewedMatches.flatMap((match) =>
+    match.players.map((player) => ["cbf-" + player.cbfId, player.id]),
+  ),
+);
+export const resolveCbfPlayerId = (id) => identities.get(id) ?? id;
 
 export function cbfRegisteredPlayer(id) {
   const player = players.get(id);

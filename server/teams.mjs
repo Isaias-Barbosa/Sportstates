@@ -1,4 +1,5 @@
 import { saudiProfileReferences } from "./saudi-profiles.mjs";
+import { cbfLowerDivisionClub, cbfLowerDivisionClubs, cbfLowerDivisionTeamDetails } from "./cbf-lower-divisions.mjs";
 import { volleyTeamDetails } from "./volleyball.mjs";
 import { volleyballProfileReferences } from "./volleyball-profiles.mjs";
 import { nhlProfileReferences } from "./nhl-profiles.mjs";
@@ -49,7 +50,10 @@ export function validateHonours(honours) {
 }
 export async function listTeams() {
   const sql = getSql();
-  return sql`SELECT id, name, logo, description, city, stadium, stadium_image, website, sport, league, colors, honours FROM sport_teams WHERE id <> 'basketball-nbb-129095' ORDER BY name`;
+  const rows = await sql`SELECT id, name, logo, description, city, stadium, stadium_image, website, sport, league, colors, honours FROM sport_teams WHERE id <> 'basketball-nbb-129095' ORDER BY name`;
+  if (process.env.VERCEL_ENV !== "preview") return rows;
+  return [...new Map([...cbfLowerDivisionClubs(), ...rows].map(team => [team.id, team])).values()]
+    .sort((a, b) => a.name.localeCompare(b.name, "pt-BR"));
 }
 export async function deleteTeam(id) {
   if (typeof id !== "string" || !validId(id)) {
@@ -148,8 +152,10 @@ export function normalizeTeamSchedule(
   ];
 }
 export async function teamDetails(id) {
-  const team = await getTeam(id);
+  const team = await getTeam(id) ?? cbfLowerDivisionClub(id);
   if (!team) return null;
+  const lowerDivision = cbfLowerDivisionTeamDetails(id, team);
+  if (lowerDivision) return lowerDivision;
   if (team.id.startsWith("fef-"))
     return {
       team,

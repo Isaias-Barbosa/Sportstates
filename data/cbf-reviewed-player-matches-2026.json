@@ -1,0 +1,1372 @@
+[
+  {
+    "league": "bra.copa_do_brazil",
+    "season": 2026,
+    "event": "401858701",
+    "cbfMatchId": "832713",
+    "kickoff": "2026-02-18T16:00:00-03:00",
+    "teams": {
+      "131673": "Porta BA",
+      "131680": "Serra Branca"
+    },
+    "score": {
+      "131673": 2,
+      "131680": 1
+    },
+    "review": {
+      "method": "Comparação de página, súmula e adendo",
+      "date": "2026-11-05",
+      "documents": [
+        {
+          "title": "Súmula",
+          "url": "https://conteudo.cbf.com.br/sumulas/2026/42412se.pdf",
+          "sha256": "d01898504345ed4f41b774e0457c4ac4888c1e0b38291052f785d56de89efb3a"
+        },
+        {
+          "title": "Adendo do Jogo",
+          "url": "https://conteudo.cbf.com.br/sumulas/2026/42412ad.pdf",
+          "sha256": "63a73293e1879917ad2fa06ef9cc856e1b69886bfee695b01c4760f2e60e8dfb"
+        }
+      ],
+      "notes": [
+        "Súmula registra duas expulsões diretas. O total de dois vermelhos foi mantido.",
+        "Adendo corrige o autor do gol para Breno Eduardo Liborge."
+      ],
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/copa-do-brasil/profissional/2026/a-x-b/832713",
+      "sourceSha256": "6cd952052d72a344f7a8bb4db3d16beb641a203ccf5788f901cdbee9915b5b6b"
+    },
+    "players": [
+      {
+        "id": "cbf-365738",
+        "cbfId": "365738",
+        "name": "Matheus Fernandes de Brito Cabral",
+        "position": "",
+        "image": null,
+        "team": "131673",
+        "stats": {
+          "games": 1,
+          "goals": 0,
+          "assists": null,
+          "yellows": 0,
+          "reds": 0
+        },
+        "source": {
+          "provider": "CBF",
+          "matchId": "832713",
+          "url": "https://www.cbf.com.br/futebol-brasileiro/jogos/copa-do-brasil/profissional/2026/a-x-b/832713"
+        }
+      },
+      {
+        "id": "cbf-441331",
+        "cbfId": "441331",
+        "name": "Gabriel Saulo da Silva Chaves",
+        "position": "",
+        "image": null,
+        "team": "131673",
+        "stats": {
+          "games": 1,
+          "goals": 0,
+          "assists": null,
+          "yellows": 0,
+          "reds": 0
+        },
+        "source": {
+          "provider": "CBF",
+          "matchId": "832713",
+          "url": "https://www.cbf.com.br/futebol-brasileiro/jogos/copa-do-brasil/profissional/2026/a-x-b/832713"
+        }
+      },
+      {
+        "id": "3097101",
+        "cbfId": "392264",
+        "name": "Anderson Bandeira Silva",
+        "position": "",
+        "image": null,
+        "team": "131673",
+        "stats": {
+          "games": 1,
+          "goals": 0,
+          "assists": null,
+          "yellows": 0,
+          "reds": 0
+        },
+        "source": {
+          "provider": "CBF",
+          "matchId": "832713",
+          "url": "https://www.cbf.com.br/futebol-brasileiro/jogos/copa-do-brasil/profissional/2026/a-x-b/832713"
+        }
+      },
+      {
+        "id": "cbf-386089",
+        "cbfId": "386089",
+        "name": "Everton Santana Dias",
+        "position": "",
+        "image": null,
+        "team": "131673",
+        "stats": {
+          "games": 1,
+          "goals": 0,
+          "assists": null,
+          "yellows": 0,
+          "reds": 1
+        },
+        "source": {
+          "provider": "CBF",
+          "matchId": "832713",
+          "url": "https://www.cbf.com.br/futebol-brasileiro/jogos/copa-do-brasil/profissional/2026/a-x-b/832713"
+        }
+      },
+      {
+        "id": "cbf-546696",
+        "cbfId": "546696",
+        "name": "Ygor Eduardo Meyer Guimaraes Sampaio",
+        "position": "",
+        "image": null,
+        "team": "131673",
+        "stats": {
+          "games": 1,
+          "goals": 0,
+          "assists": null,
+          "yellows": 1,
+          "reds": 0
+        },
+        "source": {
+          "provider": "CBF",
+          "matchId": "832713",
+          "url": "https://www.cbf.com.br/futebol-brasileiro/jogos/copa-do-brasil/profissional/2026/a-x-b/832713"
+        }
+      },
+      {
+        "id": "3097138",
+        "cbfId": "786114",
+        "name": "Arthur Carvalho Fracalossi",
+        "position": "",
+        "image": null,
+        "team": "131673",
+        "stats": {
+          "games": 0,
+          "goals": 0,
+          "assists": null,
+          "yellows": 1,
+          "reds": 0
+        },
+        "source": {
+          "provider": "CBF",
+          "matchId": "832713",
+          "url": "https://www.cbf.com.br/futebol-brasileiro/jogos/copa-do-brasil/profissional/2026/a-x-b/832713"
+        }
+      },
+      {
+        "id": "3096970",
+        "cbfId": "540341",
+        "name": "Bruno Ferreira Santos",
+        "position": "",
+        "image": null,
+        "team": "131673",
+        "stats": {
+          "games": 1,
+          "goals": 0,
+          "assists": null,
+          "yellows": 0,
+          "reds": 0
+        },
+        "source": {
+          "provider": "CBF",
+          "matchId": "832713",
+          "url": "https://www.cbf.com.br/futebol-brasileiro/jogos/copa-do-brasil/profissional/2026/a-x-b/832713"
+        }
+      },
+      {
+        "id": "cbf-763363",
+        "cbfId": "763363",
+        "name": "Pedro Lima Dias",
+        "position": "",
+        "image": null,
+        "team": "131673",
+        "stats": {
+          "games": 1,
+          "goals": 0,
+          "assists": null,
+          "yellows": 1,
+          "reds": 0
+        },
+        "source": {
+          "provider": "CBF",
+          "matchId": "832713",
+          "url": "https://www.cbf.com.br/futebol-brasileiro/jogos/copa-do-brasil/profissional/2026/a-x-b/832713"
+        }
+      },
+      {
+        "id": "cbf-671056",
+        "cbfId": "671056",
+        "name": "Cleiton Santana Santos",
+        "position": "",
+        "image": null,
+        "team": "131673",
+        "stats": {
+          "games": 1,
+          "goals": 0,
+          "assists": null,
+          "yellows": 0,
+          "reds": 0
+        },
+        "source": {
+          "provider": "CBF",
+          "matchId": "832713",
+          "url": "https://www.cbf.com.br/futebol-brasileiro/jogos/copa-do-brasil/profissional/2026/a-x-b/832713"
+        }
+      },
+      {
+        "id": "cbf-427770",
+        "cbfId": "427770",
+        "name": "Luan Rodrigues Azambuja",
+        "position": "",
+        "image": null,
+        "team": "131673",
+        "stats": {
+          "games": 1,
+          "goals": 0,
+          "assists": null,
+          "yellows": 0,
+          "reds": 0
+        },
+        "source": {
+          "provider": "CBF",
+          "matchId": "832713",
+          "url": "https://www.cbf.com.br/futebol-brasileiro/jogos/copa-do-brasil/profissional/2026/a-x-b/832713"
+        }
+      },
+      {
+        "id": "cbf-518717",
+        "cbfId": "518717",
+        "name": "Italo Barbosa de Andrade",
+        "position": "",
+        "image": null,
+        "team": "131673",
+        "stats": {
+          "games": 1,
+          "goals": 0,
+          "assists": null,
+          "yellows": 0,
+          "reds": 0
+        },
+        "source": {
+          "provider": "CBF",
+          "matchId": "832713",
+          "url": "https://www.cbf.com.br/futebol-brasileiro/jogos/copa-do-brasil/profissional/2026/a-x-b/832713"
+        }
+      },
+      {
+        "id": "cbf-161139",
+        "cbfId": "161139",
+        "name": "Thiago Passos Santos",
+        "position": "",
+        "image": null,
+        "team": "131673",
+        "stats": {
+          "games": 0,
+          "goals": 0,
+          "assists": null,
+          "yellows": 1,
+          "reds": 0
+        },
+        "source": {
+          "provider": "CBF",
+          "matchId": "832713",
+          "url": "https://www.cbf.com.br/futebol-brasileiro/jogos/copa-do-brasil/profissional/2026/a-x-b/832713"
+        }
+      },
+      {
+        "id": "cbf-346133",
+        "cbfId": "346133",
+        "name": "Breno Cezar Valerio Gonzaga",
+        "position": "",
+        "image": null,
+        "team": "131673",
+        "stats": {
+          "games": 1,
+          "goals": 0,
+          "assists": null,
+          "yellows": 0,
+          "reds": 0
+        },
+        "source": {
+          "provider": "CBF",
+          "matchId": "832713",
+          "url": "https://www.cbf.com.br/futebol-brasileiro/jogos/copa-do-brasil/profissional/2026/a-x-b/832713"
+        }
+      },
+      {
+        "id": "3097118",
+        "cbfId": "523035",
+        "name": "Caio Santos D´ajuda",
+        "position": "",
+        "image": null,
+        "team": "131673",
+        "stats": {
+          "games": 1,
+          "goals": 0,
+          "assists": null,
+          "yellows": 0,
+          "reds": 1
+        },
+        "source": {
+          "provider": "CBF",
+          "matchId": "832713",
+          "url": "https://www.cbf.com.br/futebol-brasileiro/jogos/copa-do-brasil/profissional/2026/a-x-b/832713"
+        }
+      },
+      {
+        "id": "cbf-651627",
+        "cbfId": "651627",
+        "name": "Breno Eduardo Liborge",
+        "position": "",
+        "image": null,
+        "team": "131673",
+        "stats": {
+          "games": 1,
+          "goals": 1,
+          "assists": null,
+          "yellows": 0,
+          "reds": 0
+        },
+        "source": {
+          "provider": "CBF",
+          "matchId": "832713",
+          "url": "https://www.cbf.com.br/futebol-brasileiro/jogos/copa-do-brasil/profissional/2026/a-x-b/832713"
+        }
+      },
+      {
+        "id": "cbf-582000",
+        "cbfId": "582000",
+        "name": "Adriano Brandão Valcácer de Lima",
+        "position": "",
+        "image": null,
+        "team": "131673",
+        "stats": {
+          "games": 1,
+          "goals": 0,
+          "assists": null,
+          "yellows": 0,
+          "reds": 0
+        },
+        "source": {
+          "provider": "CBF",
+          "matchId": "832713",
+          "url": "https://www.cbf.com.br/futebol-brasileiro/jogos/copa-do-brasil/profissional/2026/a-x-b/832713"
+        }
+      },
+      {
+        "id": "cbf-508082",
+        "cbfId": "508082",
+        "name": "Cesar Velez da Silva",
+        "position": "",
+        "image": null,
+        "team": "131673",
+        "stats": {
+          "games": 1,
+          "goals": 1,
+          "assists": null,
+          "yellows": 1,
+          "reds": 0
+        },
+        "source": {
+          "provider": "CBF",
+          "matchId": "832713",
+          "url": "https://www.cbf.com.br/futebol-brasileiro/jogos/copa-do-brasil/profissional/2026/a-x-b/832713"
+        }
+      },
+      {
+        "id": "cbf-756251",
+        "cbfId": "756251",
+        "name": "Kauan de Jesus Santos",
+        "position": "",
+        "image": null,
+        "team": "131673",
+        "stats": {
+          "games": 1,
+          "goals": 0,
+          "assists": null,
+          "yellows": 0,
+          "reds": 0
+        },
+        "source": {
+          "provider": "CBF",
+          "matchId": "832713",
+          "url": "https://www.cbf.com.br/futebol-brasileiro/jogos/copa-do-brasil/profissional/2026/a-x-b/832713"
+        }
+      },
+      {
+        "id": "cbf-170161",
+        "cbfId": "170161",
+        "name": "Bruno de Carlo Fuso",
+        "position": "",
+        "image": null,
+        "team": "131680",
+        "stats": {
+          "games": 1,
+          "goals": 0,
+          "assists": null,
+          "yellows": 0,
+          "reds": 0
+        },
+        "source": {
+          "provider": "CBF",
+          "matchId": "832713",
+          "url": "https://www.cbf.com.br/futebol-brasileiro/jogos/copa-do-brasil/profissional/2026/a-x-b/832713"
+        }
+      },
+      {
+        "id": "cbf-454987",
+        "cbfId": "454987",
+        "name": "Jose Igor Nunes Lima",
+        "position": "",
+        "image": null,
+        "team": "131680",
+        "stats": {
+          "games": 1,
+          "goals": 1,
+          "assists": null,
+          "yellows": 0,
+          "reds": 0
+        },
+        "source": {
+          "provider": "CBF",
+          "matchId": "832713",
+          "url": "https://www.cbf.com.br/futebol-brasileiro/jogos/copa-do-brasil/profissional/2026/a-x-b/832713"
+        }
+      },
+      {
+        "id": "cbf-375673",
+        "cbfId": "375673",
+        "name": "Julio Andre Avelino do Nascimento",
+        "position": "",
+        "image": null,
+        "team": "131680",
+        "stats": {
+          "games": 1,
+          "goals": 0,
+          "assists": null,
+          "yellows": 0,
+          "reds": 0
+        },
+        "source": {
+          "provider": "CBF",
+          "matchId": "832713",
+          "url": "https://www.cbf.com.br/futebol-brasileiro/jogos/copa-do-brasil/profissional/2026/a-x-b/832713"
+        }
+      },
+      {
+        "id": "cbf-170272",
+        "cbfId": "170272",
+        "name": "Victor Ferraz Macedo",
+        "position": "",
+        "image": null,
+        "team": "131680",
+        "stats": {
+          "games": 1,
+          "goals": 0,
+          "assists": null,
+          "yellows": 0,
+          "reds": 0
+        },
+        "source": {
+          "provider": "CBF",
+          "matchId": "832713",
+          "url": "https://www.cbf.com.br/futebol-brasileiro/jogos/copa-do-brasil/profissional/2026/a-x-b/832713"
+        }
+      },
+      {
+        "id": "cbf-356238",
+        "cbfId": "356238",
+        "name": "Jose Elenilton de Freitas Junior",
+        "position": "",
+        "image": null,
+        "team": "131680",
+        "stats": {
+          "games": 1,
+          "goals": 0,
+          "assists": null,
+          "yellows": 0,
+          "reds": 0
+        },
+        "source": {
+          "provider": "CBF",
+          "matchId": "832713",
+          "url": "https://www.cbf.com.br/futebol-brasileiro/jogos/copa-do-brasil/profissional/2026/a-x-b/832713"
+        }
+      },
+      {
+        "id": "cbf-598977",
+        "cbfId": "598977",
+        "name": "Venicio Santos Lima",
+        "position": "",
+        "image": null,
+        "team": "131680",
+        "stats": {
+          "games": 1,
+          "goals": 0,
+          "assists": null,
+          "yellows": 0,
+          "reds": 0
+        },
+        "source": {
+          "provider": "CBF",
+          "matchId": "832713",
+          "url": "https://www.cbf.com.br/futebol-brasileiro/jogos/copa-do-brasil/profissional/2026/a-x-b/832713"
+        }
+      },
+      {
+        "id": "cbf-582101",
+        "cbfId": "582101",
+        "name": "Gustavo Silva Souza",
+        "position": "",
+        "image": null,
+        "team": "131680",
+        "stats": {
+          "games": 1,
+          "goals": 0,
+          "assists": null,
+          "yellows": 0,
+          "reds": 0
+        },
+        "source": {
+          "provider": "CBF",
+          "matchId": "832713",
+          "url": "https://www.cbf.com.br/futebol-brasileiro/jogos/copa-do-brasil/profissional/2026/a-x-b/832713"
+        }
+      },
+      {
+        "id": "cbf-169747",
+        "cbfId": "169747",
+        "name": "Marcelo Aparecido Toscano",
+        "position": "",
+        "image": null,
+        "team": "131680",
+        "stats": {
+          "games": 1,
+          "goals": 0,
+          "assists": null,
+          "yellows": 0,
+          "reds": 0
+        },
+        "source": {
+          "provider": "CBF",
+          "matchId": "832713",
+          "url": "https://www.cbf.com.br/futebol-brasileiro/jogos/copa-do-brasil/profissional/2026/a-x-b/832713"
+        }
+      },
+      {
+        "id": "cbf-540814",
+        "cbfId": "540814",
+        "name": "Ian Augusto de Almeida Ribeiro",
+        "position": "",
+        "image": null,
+        "team": "131680",
+        "stats": {
+          "games": 1,
+          "goals": 0,
+          "assists": null,
+          "yellows": 0,
+          "reds": 0
+        },
+        "source": {
+          "provider": "CBF",
+          "matchId": "832713",
+          "url": "https://www.cbf.com.br/futebol-brasileiro/jogos/copa-do-brasil/profissional/2026/a-x-b/832713"
+        }
+      },
+      {
+        "id": "cbf-367493",
+        "cbfId": "367493",
+        "name": "Luiz Fernando Xavier Silveira Bispo",
+        "position": "",
+        "image": null,
+        "team": "131680",
+        "stats": {
+          "games": 1,
+          "goals": 0,
+          "assists": null,
+          "yellows": 0,
+          "reds": 0
+        },
+        "source": {
+          "provider": "CBF",
+          "matchId": "832713",
+          "url": "https://www.cbf.com.br/futebol-brasileiro/jogos/copa-do-brasil/profissional/2026/a-x-b/832713"
+        }
+      },
+      {
+        "id": "cbf-378939",
+        "cbfId": "378939",
+        "name": "Wender Jadson Silva dos Santos",
+        "position": "",
+        "image": null,
+        "team": "131680",
+        "stats": {
+          "games": 1,
+          "goals": 0,
+          "assists": null,
+          "yellows": 0,
+          "reds": 0
+        },
+        "source": {
+          "provider": "CBF",
+          "matchId": "832713",
+          "url": "https://www.cbf.com.br/futebol-brasileiro/jogos/copa-do-brasil/profissional/2026/a-x-b/832713"
+        }
+      },
+      {
+        "id": "cbf-430304",
+        "cbfId": "430304",
+        "name": "Wesllen Jose Sousa Martins",
+        "position": "",
+        "image": null,
+        "team": "131680",
+        "stats": {
+          "games": 1,
+          "goals": 0,
+          "assists": null,
+          "yellows": 0,
+          "reds": 0
+        },
+        "source": {
+          "provider": "CBF",
+          "matchId": "832713",
+          "url": "https://www.cbf.com.br/futebol-brasileiro/jogos/copa-do-brasil/profissional/2026/a-x-b/832713"
+        }
+      },
+      {
+        "id": "cbf-404823",
+        "cbfId": "404823",
+        "name": "Jefferson Victor Machado Ambrosio",
+        "position": "",
+        "image": null,
+        "team": "131680",
+        "stats": {
+          "games": 1,
+          "goals": 0,
+          "assists": null,
+          "yellows": 1,
+          "reds": 0
+        },
+        "source": {
+          "provider": "CBF",
+          "matchId": "832713",
+          "url": "https://www.cbf.com.br/futebol-brasileiro/jogos/copa-do-brasil/profissional/2026/a-x-b/832713"
+        }
+      },
+      {
+        "id": "3096935",
+        "cbfId": "695462",
+        "name": "Pedro Vitor Barbosa dos Santos",
+        "position": "",
+        "image": null,
+        "team": "131680",
+        "stats": {
+          "games": 1,
+          "goals": 0,
+          "assists": null,
+          "yellows": 0,
+          "reds": 0
+        },
+        "source": {
+          "provider": "CBF",
+          "matchId": "832713",
+          "url": "https://www.cbf.com.br/futebol-brasileiro/jogos/copa-do-brasil/profissional/2026/a-x-b/832713"
+        }
+      },
+      {
+        "id": "cbf-370739",
+        "cbfId": "370739",
+        "name": "David Lustosa de Oliveira",
+        "position": "",
+        "image": null,
+        "team": "131680",
+        "stats": {
+          "games": 1,
+          "goals": 0,
+          "assists": null,
+          "yellows": 0,
+          "reds": 0
+        },
+        "source": {
+          "provider": "CBF",
+          "matchId": "832713",
+          "url": "https://www.cbf.com.br/futebol-brasileiro/jogos/copa-do-brasil/profissional/2026/a-x-b/832713"
+        }
+      },
+      {
+        "id": "296535",
+        "cbfId": "529193",
+        "name": "Bruno de Oliveira Martins",
+        "position": "",
+        "image": null,
+        "team": "131680",
+        "stats": {
+          "games": 1,
+          "goals": 0,
+          "assists": null,
+          "yellows": 0,
+          "reds": 0
+        },
+        "source": {
+          "provider": "CBF",
+          "matchId": "832713",
+          "url": "https://www.cbf.com.br/futebol-brasileiro/jogos/copa-do-brasil/profissional/2026/a-x-b/832713"
+        }
+      }
+    ]
+  },
+  {
+    "league": "bra.copa_do_brazil",
+    "season": 2026,
+    "event": "401858703",
+    "cbfMatchId": "832714",
+    "kickoff": "2026-02-18T16:30:00-03:00",
+    "teams": {
+      "131672": "Clube Laguna",
+      "131681": "Maguary PE"
+    },
+    "score": {
+      "131672": 0,
+      "131681": 1
+    },
+    "review": {
+      "method": "Comparação de página, súmula e adendo",
+      "date": "2026-11-05",
+      "documents": [
+        {
+          "title": "Súmula",
+          "url": "https://conteudo.cbf.com.br/sumulas/2026/42413se.pdf",
+          "sha256": "6ed5bb4fe5cd88a9a6cf39f3387a535682ab9bf262be1a2baf01a0f3af46d7f6"
+        }
+      ],
+      "notes": [],
+      "sourceUrl": "https://www.cbf.com.br/futebol-brasileiro/jogos/copa-do-brasil/profissional/2026/a-x-b/832714",
+      "sourceSha256": "197cc57f8796b96e6dcea80b9b1d583569f7101184602f1cdc64af06cbae5489"
+    },
+    "players": [
+      {
+        "id": "cbf-463940",
+        "cbfId": "463940",
+        "name": "Eduardo de Sousa Ribeiro",
+        "position": "",
+        "image": null,
+        "team": "131681",
+        "stats": {
+          "games": 1,
+          "goals": 0,
+          "assists": null,
+          "yellows": 0,
+          "reds": 0
+        },
+        "source": {
+          "provider": "CBF",
+          "matchId": "832714",
+          "url": "https://www.cbf.com.br/futebol-brasileiro/jogos/copa-do-brasil/profissional/2026/a-x-b/832714"
+        }
+      },
+      {
+        "id": "3094016",
+        "cbfId": "412439",
+        "name": "Mauricio Pinto",
+        "position": "",
+        "image": null,
+        "team": "131681",
+        "stats": {
+          "games": 1,
+          "goals": 0,
+          "assists": null,
+          "yellows": 0,
+          "reds": 0
+        },
+        "source": {
+          "provider": "CBF",
+          "matchId": "832714",
+          "url": "https://www.cbf.com.br/futebol-brasileiro/jogos/copa-do-brasil/profissional/2026/a-x-b/832714"
+        }
+      },
+      {
+        "id": "3094051",
+        "cbfId": "586412",
+        "name": "Eduardo da Silva Guedes",
+        "position": "",
+        "image": null,
+        "team": "131681",
+        "stats": {
+          "games": 1,
+          "goals": 0,
+          "assists": null,
+          "yellows": 0,
+          "reds": 0
+        },
+        "source": {
+          "provider": "CBF",
+          "matchId": "832714",
+          "url": "https://www.cbf.com.br/futebol-brasileiro/jogos/copa-do-brasil/profissional/2026/a-x-b/832714"
+        }
+      },
+      {
+        "id": "cbf-562362",
+        "cbfId": "562362",
+        "name": "Jalysson Gabriell de Melo Bispo",
+        "position": "",
+        "image": null,
+        "team": "131681",
+        "stats": {
+          "games": 1,
+          "goals": 0,
+          "assists": null,
+          "yellows": 0,
+          "reds": 0
+        },
+        "source": {
+          "provider": "CBF",
+          "matchId": "832714",
+          "url": "https://www.cbf.com.br/futebol-brasileiro/jogos/copa-do-brasil/profissional/2026/a-x-b/832714"
+        }
+      },
+      {
+        "id": "cbf-595323",
+        "cbfId": "595323",
+        "name": "Carlos Gabriel Goncalves Cardoso",
+        "position": "",
+        "image": null,
+        "team": "131681",
+        "stats": {
+          "games": 1,
+          "goals": 0,
+          "assists": null,
+          "yellows": 0,
+          "reds": 0
+        },
+        "source": {
+          "provider": "CBF",
+          "matchId": "832714",
+          "url": "https://www.cbf.com.br/futebol-brasileiro/jogos/copa-do-brasil/profissional/2026/a-x-b/832714"
+        }
+      },
+      {
+        "id": "cbf-577268",
+        "cbfId": "577268",
+        "name": "Bruno Vinicius Simão Elesbão",
+        "position": "",
+        "image": null,
+        "team": "131681",
+        "stats": {
+          "games": 1,
+          "goals": 0,
+          "assists": null,
+          "yellows": 1,
+          "reds": 0
+        },
+        "source": {
+          "provider": "CBF",
+          "matchId": "832714",
+          "url": "https://www.cbf.com.br/futebol-brasileiro/jogos/copa-do-brasil/profissional/2026/a-x-b/832714"
+        }
+      },
+      {
+        "id": "cbf-555397",
+        "cbfId": "555397",
+        "name": "Helber Italo dos Santos",
+        "position": "",
+        "image": null,
+        "team": "131681",
+        "stats": {
+          "games": 1,
+          "goals": 0,
+          "assists": null,
+          "yellows": 0,
+          "reds": 0
+        },
+        "source": {
+          "provider": "CBF",
+          "matchId": "832714",
+          "url": "https://www.cbf.com.br/futebol-brasileiro/jogos/copa-do-brasil/profissional/2026/a-x-b/832714"
+        }
+      },
+      {
+        "id": "cbf-633319",
+        "cbfId": "633319",
+        "name": "Julio Cesar de Souza Silva",
+        "position": "",
+        "image": null,
+        "team": "131681",
+        "stats": {
+          "games": 1,
+          "goals": 1,
+          "assists": null,
+          "yellows": 0,
+          "reds": 0
+        },
+        "source": {
+          "provider": "CBF",
+          "matchId": "832714",
+          "url": "https://www.cbf.com.br/futebol-brasileiro/jogos/copa-do-brasil/profissional/2026/a-x-b/832714"
+        }
+      },
+      {
+        "id": "cbf-894368",
+        "cbfId": "894368",
+        "name": "Matias Nicolas Verdun Alonso",
+        "position": "",
+        "image": null,
+        "team": "131681",
+        "stats": {
+          "games": 1,
+          "goals": 0,
+          "assists": null,
+          "yellows": 0,
+          "reds": 0
+        },
+        "source": {
+          "provider": "CBF",
+          "matchId": "832714",
+          "url": "https://www.cbf.com.br/futebol-brasileiro/jogos/copa-do-brasil/profissional/2026/a-x-b/832714"
+        }
+      },
+      {
+        "id": "347917",
+        "cbfId": "597155",
+        "name": "Bruno D Lucas Nascimento Lopes",
+        "position": "",
+        "image": null,
+        "team": "131681",
+        "stats": {
+          "games": 1,
+          "goals": 0,
+          "assists": null,
+          "yellows": 0,
+          "reds": 0
+        },
+        "source": {
+          "provider": "CBF",
+          "matchId": "832714",
+          "url": "https://www.cbf.com.br/futebol-brasileiro/jogos/copa-do-brasil/profissional/2026/a-x-b/832714"
+        }
+      },
+      {
+        "id": "387254",
+        "cbfId": "647668",
+        "name": "Rychelmy Rocha Santos Silva",
+        "position": "",
+        "image": null,
+        "team": "131681",
+        "stats": {
+          "games": 1,
+          "goals": 0,
+          "assists": null,
+          "yellows": 0,
+          "reds": 0
+        },
+        "source": {
+          "provider": "CBF",
+          "matchId": "832714",
+          "url": "https://www.cbf.com.br/futebol-brasileiro/jogos/copa-do-brasil/profissional/2026/a-x-b/832714"
+        }
+      },
+      {
+        "id": "cbf-682691",
+        "cbfId": "682691",
+        "name": "Francisco das Chagas Araujo Filho",
+        "position": "",
+        "image": null,
+        "team": "131681",
+        "stats": {
+          "games": 1,
+          "goals": 0,
+          "assists": null,
+          "yellows": 1,
+          "reds": 0
+        },
+        "source": {
+          "provider": "CBF",
+          "matchId": "832714",
+          "url": "https://www.cbf.com.br/futebol-brasileiro/jogos/copa-do-brasil/profissional/2026/a-x-b/832714"
+        }
+      },
+      {
+        "id": "cbf-434112",
+        "cbfId": "434112",
+        "name": "Iago Felipe Pereira",
+        "position": "",
+        "image": null,
+        "team": "131681",
+        "stats": {
+          "games": 1,
+          "goals": 0,
+          "assists": null,
+          "yellows": 0,
+          "reds": 0
+        },
+        "source": {
+          "provider": "CBF",
+          "matchId": "832714",
+          "url": "https://www.cbf.com.br/futebol-brasileiro/jogos/copa-do-brasil/profissional/2026/a-x-b/832714"
+        }
+      },
+      {
+        "id": "cbf-608577",
+        "cbfId": "608577",
+        "name": "Marcos Andre de Menezes Diniz",
+        "position": "",
+        "image": null,
+        "team": "131681",
+        "stats": {
+          "games": 1,
+          "goals": 0,
+          "assists": null,
+          "yellows": 0,
+          "reds": 0
+        },
+        "source": {
+          "provider": "CBF",
+          "matchId": "832714",
+          "url": "https://www.cbf.com.br/futebol-brasileiro/jogos/copa-do-brasil/profissional/2026/a-x-b/832714"
+        }
+      },
+      {
+        "id": "cbf-703808",
+        "cbfId": "703808",
+        "name": "Vinicius Mendonça Santa Rosa",
+        "position": "",
+        "image": null,
+        "team": "131681",
+        "stats": {
+          "games": 1,
+          "goals": 0,
+          "assists": null,
+          "yellows": 0,
+          "reds": 0
+        },
+        "source": {
+          "provider": "CBF",
+          "matchId": "832714",
+          "url": "https://www.cbf.com.br/futebol-brasileiro/jogos/copa-do-brasil/profissional/2026/a-x-b/832714"
+        }
+      },
+      {
+        "id": "cbf-184704",
+        "cbfId": "184704",
+        "name": "Adalberto dos Santos Rodrigues",
+        "position": "",
+        "image": null,
+        "team": "131672",
+        "stats": {
+          "games": 1,
+          "goals": 0,
+          "assists": null,
+          "yellows": 1,
+          "reds": 0
+        },
+        "source": {
+          "provider": "CBF",
+          "matchId": "832714",
+          "url": "https://www.cbf.com.br/futebol-brasileiro/jogos/copa-do-brasil/profissional/2026/a-x-b/832714"
+        }
+      },
+      {
+        "id": "cbf-677480",
+        "cbfId": "677480",
+        "name": "Mateus Pereira Rodrigues",
+        "position": "",
+        "image": null,
+        "team": "131672",
+        "stats": {
+          "games": 1,
+          "goals": 0,
+          "assists": null,
+          "yellows": 0,
+          "reds": 0
+        },
+        "source": {
+          "provider": "CBF",
+          "matchId": "832714",
+          "url": "https://www.cbf.com.br/futebol-brasileiro/jogos/copa-do-brasil/profissional/2026/a-x-b/832714"
+        }
+      },
+      {
+        "id": "cbf-533165",
+        "cbfId": "533165",
+        "name": "Jonathan Rafael Batista Floriano",
+        "position": "",
+        "image": null,
+        "team": "131672",
+        "stats": {
+          "games": 1,
+          "goals": 0,
+          "assists": null,
+          "yellows": 0,
+          "reds": 0
+        },
+        "source": {
+          "provider": "CBF",
+          "matchId": "832714",
+          "url": "https://www.cbf.com.br/futebol-brasileiro/jogos/copa-do-brasil/profissional/2026/a-x-b/832714"
+        }
+      },
+      {
+        "id": "cbf-188475",
+        "cbfId": "188475",
+        "name": "Everton Luiz Guimaraes Bilher",
+        "position": "",
+        "image": null,
+        "team": "131672",
+        "stats": {
+          "games": 1,
+          "goals": 0,
+          "assists": null,
+          "yellows": 1,
+          "reds": 0
+        },
+        "source": {
+          "provider": "CBF",
+          "matchId": "832714",
+          "url": "https://www.cbf.com.br/futebol-brasileiro/jogos/copa-do-brasil/profissional/2026/a-x-b/832714"
+        }
+      },
+      {
+        "id": "cbf-407969",
+        "cbfId": "407969",
+        "name": "Euller da Silva Rodrigues",
+        "position": "",
+        "image": null,
+        "team": "131672",
+        "stats": {
+          "games": 1,
+          "goals": 0,
+          "assists": null,
+          "yellows": 0,
+          "reds": 0
+        },
+        "source": {
+          "provider": "CBF",
+          "matchId": "832714",
+          "url": "https://www.cbf.com.br/futebol-brasileiro/jogos/copa-do-brasil/profissional/2026/a-x-b/832714"
+        }
+      },
+      {
+        "id": "cbf-565699",
+        "cbfId": "565699",
+        "name": "Gustavo Ferreira da Trindade",
+        "position": "",
+        "image": null,
+        "team": "131672",
+        "stats": {
+          "games": 1,
+          "goals": 0,
+          "assists": null,
+          "yellows": 0,
+          "reds": 0
+        },
+        "source": {
+          "provider": "CBF",
+          "matchId": "832714",
+          "url": "https://www.cbf.com.br/futebol-brasileiro/jogos/copa-do-brasil/profissional/2026/a-x-b/832714"
+        }
+      },
+      {
+        "id": "cbf-544372",
+        "cbfId": "544372",
+        "name": "Dã Moroni Bravo de Souza",
+        "position": "",
+        "image": null,
+        "team": "131672",
+        "stats": {
+          "games": 1,
+          "goals": 0,
+          "assists": null,
+          "yellows": 0,
+          "reds": 0
+        },
+        "source": {
+          "provider": "CBF",
+          "matchId": "832714",
+          "url": "https://www.cbf.com.br/futebol-brasileiro/jogos/copa-do-brasil/profissional/2026/a-x-b/832714"
+        }
+      },
+      {
+        "id": "cbf-605617",
+        "cbfId": "605617",
+        "name": "Victor Mateus da Silva Santos",
+        "position": "",
+        "image": null,
+        "team": "131672",
+        "stats": {
+          "games": 1,
+          "goals": 0,
+          "assists": null,
+          "yellows": 0,
+          "reds": 0
+        },
+        "source": {
+          "provider": "CBF",
+          "matchId": "832714",
+          "url": "https://www.cbf.com.br/futebol-brasileiro/jogos/copa-do-brasil/profissional/2026/a-x-b/832714"
+        }
+      },
+      {
+        "id": "3096429",
+        "cbfId": "753173",
+        "name": "Kaiky Silva Alcantara de Souza",
+        "position": "",
+        "image": null,
+        "team": "131672",
+        "stats": {
+          "games": 1,
+          "goals": 0,
+          "assists": null,
+          "yellows": 1,
+          "reds": 0
+        },
+        "source": {
+          "provider": "CBF",
+          "matchId": "832714",
+          "url": "https://www.cbf.com.br/futebol-brasileiro/jogos/copa-do-brasil/profissional/2026/a-x-b/832714"
+        }
+      },
+      {
+        "id": "cbf-313930",
+        "cbfId": "313930",
+        "name": "Marcos Erivelton Araújo de Farias",
+        "position": "",
+        "image": null,
+        "team": "131672",
+        "stats": {
+          "games": 1,
+          "goals": 0,
+          "assists": null,
+          "yellows": 0,
+          "reds": 0
+        },
+        "source": {
+          "provider": "CBF",
+          "matchId": "832714",
+          "url": "https://www.cbf.com.br/futebol-brasileiro/jogos/copa-do-brasil/profissional/2026/a-x-b/832714"
+        }
+      },
+      {
+        "id": "cbf-303465",
+        "cbfId": "303465",
+        "name": "Guilherme de Souza",
+        "position": "",
+        "image": null,
+        "team": "131672",
+        "stats": {
+          "games": 1,
+          "goals": 0,
+          "assists": null,
+          "yellows": 0,
+          "reds": 0
+        },
+        "source": {
+          "provider": "CBF",
+          "matchId": "832714",
+          "url": "https://www.cbf.com.br/futebol-brasileiro/jogos/copa-do-brasil/profissional/2026/a-x-b/832714"
+        }
+      },
+      {
+        "id": "cbf-767644",
+        "cbfId": "767644",
+        "name": "Joao Carlos Andrade Dantas",
+        "position": "",
+        "image": null,
+        "team": "131672",
+        "stats": {
+          "games": 1,
+          "goals": 0,
+          "assists": null,
+          "yellows": 0,
+          "reds": 0
+        },
+        "source": {
+          "provider": "CBF",
+          "matchId": "832714",
+          "url": "https://www.cbf.com.br/futebol-brasileiro/jogos/copa-do-brasil/profissional/2026/a-x-b/832714"
+        }
+      },
+      {
+        "id": "cbf-884270",
+        "cbfId": "884270",
+        "name": "Ignacio Enrique Moran Maldonado",
+        "position": "",
+        "image": null,
+        "team": "131672",
+        "stats": {
+          "games": 1,
+          "goals": 0,
+          "assists": null,
+          "yellows": 1,
+          "reds": 0
+        },
+        "source": {
+          "provider": "CBF",
+          "matchId": "832714",
+          "url": "https://www.cbf.com.br/futebol-brasileiro/jogos/copa-do-brasil/profissional/2026/a-x-b/832714"
+        }
+      },
+      {
+        "id": "cbf-682160",
+        "cbfId": "682160",
+        "name": "Breno Ferreira Aguiar",
+        "position": "",
+        "image": null,
+        "team": "131672",
+        "stats": {
+          "games": 1,
+          "goals": 0,
+          "assists": null,
+          "yellows": 0,
+          "reds": 0
+        },
+        "source": {
+          "provider": "CBF",
+          "matchId": "832714",
+          "url": "https://www.cbf.com.br/futebol-brasileiro/jogos/copa-do-brasil/profissional/2026/a-x-b/832714"
+        }
+      },
+      {
+        "id": "cbf-567113",
+        "cbfId": "567113",
+        "name": "Alexandre Chagas Pereira dos Santos",
+        "position": "",
+        "image": null,
+        "team": "131672",
+        "stats": {
+          "games": 1,
+          "goals": 0,
+          "assists": null,
+          "yellows": 0,
+          "reds": 0
+        },
+        "source": {
+          "provider": "CBF",
+          "matchId": "832714",
+          "url": "https://www.cbf.com.br/futebol-brasileiro/jogos/copa-do-brasil/profissional/2026/a-x-b/832714"
+        }
+      },
+      {
+        "id": "cbf-544544",
+        "cbfId": "544544",
+        "name": "Ifeanyi Valentine Onwudiwe",
+        "position": "",
+        "image": null,
+        "team": "131672",
+        "stats": {
+          "games": 1,
+          "goals": 0,
+          "assists": null,
+          "yellows": 0,
+          "reds": 0
+        },
+        "source": {
+          "provider": "CBF",
+          "matchId": "832714",
+          "url": "https://www.cbf.com.br/futebol-brasileiro/jogos/copa-do-brasil/profissional/2026/a-x-b/832714"
+        }
+      }
+    ]
+  }
+]
