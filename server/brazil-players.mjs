@@ -1,10 +1,25 @@
 import { neon } from "@neondatabase/serverless";
 import { dayInBrazil } from "./data.mjs";
 
-export const brazilPlayerLeagues = {
+export const playerLeagues = {
   "bra.1": "Brasileirão Série A",
   "bra.2": "Brasileirão Série B",
+  "eng.1": "Premier League",
+  "esp.1": "LaLiga",
+  "ger.1": "Bundesliga",
 };
+const europeanLeagues = new Set(["eng.1", "esp.1", "ger.1"]);
+
+export function playerSeason(league, date = new Date()) {
+  const [year, month] = dayInBrazil(date).split("-").map(Number);
+  return europeanLeagues.has(league) && month < 7 ? year - 1 : year;
+}
+
+function seasonLabel(league, season) {
+  return europeanLeagues.has(league)
+    ? `${season}/${String(season + 1).slice(-2)}`
+    : String(season);
+}
 export const validPlayerId = (id) =>
   typeof id === "string" && /^\d{1,12}$/.test(id);
 const ESPN = "https://site.api.espn.com/apis/site/v2/sports/soccer";
@@ -97,7 +112,7 @@ export function parseBrazilPlayerMatch(raw, league, event) {
 
 export async function registerBrazilSquads(league) {
   const sql = store();
-  const season = Number(dayInBrazil(new Date()).slice(0, 4));
+  const season = playerSeason(league);
   const raw = await espn(
     league,
     `standings?season=${season}`,
@@ -106,7 +121,11 @@ export async function registerBrazilSquads(league) {
   const teams = (raw.children ?? [])
     .flatMap((group) => group.standings?.entries ?? [])
     .map((entry) => entry.team);
-  if (teams.length !== 20 || new Set(teams.map((team) => team?.id)).size !== 20)
+  const expectedClubs = league === "ger.1" ? 18 : 20;
+  if (
+    teams.length !== expectedClubs ||
+    new Set(teams.map((team) => team?.id)).size !== expectedClubs
+  )
     throw new Error("Lista de clubes incompleta.");
   const rows = [];
   for (const team of teams) {
@@ -234,7 +253,8 @@ export async function readBrazilTeamPlayers(league, team, season) {
   );
   return {
     season,
-    competition: brazilPlayerLeagues[league],
+    seasonLabel: seasonLabel(league, season),
+    competition: playerLeagues[league],
     importedMatches: matches.length,
     players: [...players.values()].map(({ player, rows }) => ({
       id: player.id,
@@ -287,12 +307,13 @@ export async function readBrazilPlayer(id) {
     image: player.image,
     position: player.position,
     memberships: rosters
-      .filter((row) => row.season === rosters[0].season)
+      .filter((row) => row.season === playerSeason(row.league))
       .map((row) => ({
         id: row.team,
         name: row.name,
-        competition: brazilPlayerLeagues[row.league],
+        competition: playerLeagues[row.league],
         season: row.season,
+        seasonLabel: seasonLabel(row.league, row.season),
       })),
     clubs: [...clubs.values()].slice(0, 8),
     previousClubs: details.previousClubs ?? [],
@@ -301,8 +322,9 @@ export async function readBrazilPlayer(id) {
     competitions: [...competitions.values()].map(
       ({ league, season, rows }) => ({
         league,
-        name: brazilPlayerLeagues[league],
+        name: playerLeagues[league],
         season,
+        seasonLabel: seasonLabel(league, season),
         stats: total(rows),
       }),
     ),

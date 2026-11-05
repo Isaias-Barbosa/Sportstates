@@ -56,7 +56,7 @@ import { matchMedia } from "./match-media.mjs";
 import { fetchHeadToHead } from "./head-to-head.mjs";
 import { enrichBroadcasts } from "./broadcast-schedule.mjs";
 import { applyCbfBroadcasts } from "./cbf-broadcasts.mjs";
-import { brazilPlayerLeagues, validPlayerId, readBrazilTeamPlayers, readBrazilPlayer,
+import { playerLeagues, playerSeason, validPlayerId, readBrazilTeamPlayers, readBrazilPlayer,
   syncBrazilPlayerDay } from "./brazil-players.mjs";
 import {
   SPORTS,
@@ -588,14 +588,14 @@ export async function route(url) {
     if (!validPlayerId(id)) return [400, { error: "Identificador inválido." }];
     const isPlayer = url.pathname === "/api/player";
     const league = q.get("league");
-    if (!isPlayer && !Object.hasOwn(brazilPlayerLeagues, league))
+    if (!isPlayer && !Object.hasOwn(playerLeagues, league))
       return [400, { error: "Competição inválida." }];
     try {
       if (isPlayer) {
         const player = await readBrazilPlayer(id);
         return player ? [200, player] : [404, { error: "Jogador ainda não cadastrado." }];
       }
-      const season = Number(dayInBrazil(new Date()).slice(0, 4));
+      const season = playerSeason(league);
       return [200, await readBrazilTeamPlayers(league, id, season)];
     } catch (error) {
       if (process.env.VERCEL_ENV === "preview" && error.code === "42P01") {
@@ -1441,7 +1441,7 @@ export async function handler(req, res) {
       return reply(503, { error: "Sincronização desativada no ambiente de preview." });
     if (req.method !== "GET") return reply(405, { error: "Use GET." });
     const league = requestUrl.searchParams.get("league");
-    if (!Object.hasOwn(brazilPlayerLeagues, league)) return reply(400, { error: "Competição inválida." });
+    if (!Object.hasOwn(playerLeagues, league)) return reply(400, { error: "Competição inválida." });
     const now = Date.now();
     const days = [dayInBrazil(new Date(now)), dayInBrazil(new Date(now - 86_400_000))];
     try {

@@ -23,6 +23,7 @@ type Competition = {
   league: string;
   name: string;
   season: number;
+  seasonLabel?: string;
   stats: PlayerTotals;
 };
 type Player = {
@@ -35,6 +36,7 @@ type Player = {
     name: string;
     competition: string;
     season: number;
+    seasonLabel?: string;
   }[];
   clubs: { id: string; name: string }[];
   previousClubs: { name: string; source: string }[];
@@ -99,7 +101,7 @@ function CompetitionStats({ data }: { data: Player }) {
             >
               {data.competitions.map((item) => (
                 <option key={competitionKey(item)} value={competitionKey(item)}>
-                  {item.name} · {item.season}
+                  {item.name} · {item.seasonLabel ?? item.season}
                 </option>
               ))}
             </select>
@@ -109,7 +111,7 @@ function CompetitionStats({ data }: { data: Player }) {
       {competition ? (
         <>
           <p className="player-competition-name">
-            {competition.name} · {competition.season}
+            {competition.name} · {competition.seasonLabel ?? competition.season}
           </p>
           <dl className="player-profile-metrics">
             {playerMetrics.map(([key, label]) => (
@@ -178,7 +180,7 @@ export default function PlayerPage() {
                         {club.name} <ArrowRight size={14} aria-hidden="true" />
                       </Link>
                       <span>
-                        {club.competition} · {club.season}
+                        {club.competition} · {club.seasonLabel ?? club.season}
                       </span>
                     </li>
                   ))}
