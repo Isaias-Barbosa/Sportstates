@@ -12,6 +12,7 @@ export default function WhereToWatch({
 }) {
   if (match.state === "finished") return null;
   const watch = match.watch;
+  const partnersConfirmed = !!watch?.competitionPartnersConfirmed && watch.brazilStatus !== 'unavailable';
   return (
     <details
       className={"where-to-watch " + (compact ? "watch-compact" : "")}
@@ -25,7 +26,7 @@ export default function WhereToWatch({
         </span>
         <div>
           <strong className="watch-title">Onde assistir</strong>
-          <span>Links oficiais · {watch?.regionLabel || "Brasil"}</span>
+          <span>{partnersConfirmed?'Parceiros confirmados':'Links oficiais'} · {watch?.regionLabel || "Brasil"}</span>
         </div>
         <span className="watch-live-badge">
           <i className="live-dot" />
@@ -38,7 +39,7 @@ export default function WhereToWatch({
           {watch?.message ||
             "Ainda não temos uma opção oficial verificada para esta competição no Brasil."}
         </p>
-        {!watch?.confirmedForMatch && (
+        {!watch?.confirmedForMatch && !partnersConfirmed && (
           <p className="broadcast-availability" role="status">
             {watch?.brazilStatus === "unavailable"
               ? "Este jogo não está sendo televisionado para o Brasil, conforme a programação consultada."

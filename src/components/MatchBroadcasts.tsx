@@ -15,6 +15,7 @@ export default function MatchBroadcasts({ match }: { match: Match }) {
   if (match.state === "finished") return null;
   const watch = match.watch;
   const confirmed = !!watch?.confirmedForMatch;
+  const partnersConfirmed = !!watch?.competitionPartnersConfirmed && watch.brazilStatus !== 'unavailable';
   const links = watch?.links || [];
   const manuallyListed = links.some((link) => link.id === "admin-manual");
   return (
@@ -28,7 +29,7 @@ export default function MatchBroadcasts({ match }: { match: Match }) {
           ? "Transmissão informada pela administração"
           : confirmed
             ? "Canais desta partida · Brasil"
-            : "Guia da competição · confirmar jogo"}
+            : partnersConfirmed ? 'Parceiros confirmados · Brasil' : "Guia da competição · confirmar jogo"}
       </span>
       <div className="broadcast-chips">
         {links.map((link) => (
@@ -41,7 +42,7 @@ export default function MatchBroadcasts({ match }: { match: Match }) {
             title={
               confirmed
                 ? link.note
-                : `Opção da competição; transmissão deste jogo ainda não confirmada. ${link.note}`
+                : partnersConfirmed ? `Parceiro da competição no Brasil. Consulte a programação deste jogo. ${link.note}` : `Opção da competição; transmissão deste jogo ainda não confirmada. ${link.note}`
             }
           >
             <ChannelLogo
