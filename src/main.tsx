@@ -37,6 +37,7 @@ const AdminGames = lazy(() => import("./pages/AdminGames"));
 const StandingsPage = lazy(() => import("./pages/StandingsPage"));
 const TeamsPage = lazy(() => import("./pages/TeamsPage"));
 const TeamPage = lazy(() => import("./pages/TeamPage"));
+const PlayerPage = lazy(() => import("./pages/PlayerPage"));
 const F1TeamPage = lazy(() => import("./pages/F1Pages"));
 const NewsPage = lazy(() => import("./pages/NewsPage"));
 import "./news.css";
@@ -292,6 +293,7 @@ function App() {
                   <Route path="/times" element={<TeamsPage />} />
                   <Route path="/times/f1/:id" element={<F1TeamPage />} />
                   <Route path="/times/:id" element={<TeamPage />} />
+                  <Route path="/jogadores/:id" element={<PlayerPage />} />
                   <Route path="/admin/jogos" element={<AdminGames />} />
                   <Route path="/sobre" element={<About />} />
                   <Route

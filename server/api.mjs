@@ -56,6 +56,8 @@ import { matchMedia } from "./match-media.mjs";
 import { fetchHeadToHead } from "./head-to-head.mjs";
 import { enrichBroadcasts } from "./broadcast-schedule.mjs";
 import { applyCbfBroadcasts } from "./cbf-broadcasts.mjs";
+import { brazilPlayerLeagues, validPlayerId, readBrazilTeamPlayers, readBrazilPlayer,
+  syncBrazilPlayerDay } from "./brazil-players.mjs";
 import {
   SPORTS,
   BRAZIL_STATE_LEAGUES,
@@ -580,6 +582,18 @@ export async function route(url) {
       300000,
     );
     return [200, { ...result.value, stale: result.stale }];
+  }
+  if (url.pathname === "/api/team-player-stats" || url.pathname === "/api/player") {
+    const id = q.get("id");
+    if (!validPlayerId(id)) return [400, { error: "Identificador inválido." }];
+    if (url.pathname === "/api/player") {
+      const player = await readBrazilPlayer(id);
+      return player ? [200, player] : [404, { error: "Jogador ainda não cadastrado." }];
+    }
+    const league = q.get("league");
+    if (!Object.hasOwn(brazilPlayerLeagues, league)) return [400, { error: "Competição inválida." }];
+    const season = Number(dayInBrazil(new Date()).slice(0, 4));
+    return [200, await readBrazilTeamPlayers(league, id, season)];
   }
   if (url.pathname === "/api/team") {
     const id = q.get("id");
@@ -1394,6 +1408,30 @@ export async function handler(req, res) {
   )
     requestUrl.pathname = "/api/" + requestUrl.searchParams.get("path");
 
+  if (requestUrl.pathname === "/api/player-stats/sync") {
+    res.setHeader("Cache-Control", "private, no-store");
+    const reply = (status, body) => {
+      res.statusCode = status;
+      return res.end(JSON.stringify(body));
+    };
+    if (!pushCronAuthorized(req.headers?.authorization))
+      return reply(401, { error: "Acesso restrito ao sincronizador." });
+    if (process.env.VERCEL_ENV === "preview")
+      return reply(503, { error: "Sincronização desativada no ambiente de preview." });
+    if (req.method !== "GET") return reply(405, { error: "Use GET." });
+    const league = requestUrl.searchParams.get("league");
+    if (!Object.hasOwn(brazilPlayerLeagues, league)) return reply(400, { error: "Competição inválida." });
+    const now = Date.now();
+    const days = [dayInBrazil(new Date(now)), dayInBrazil(new Date(now - 86_400_000))];
+    try {
+      const results = [];
+      const offset = Math.floor(now / 60_000);
+      for (const date of days) results.push({ date, ...await syncBrazilPlayerDay(league, date, { limit: 2, offset }) });
+      return reply(200, { league, results });
+    } catch {
+      return reply(503, { error: "Sincronização indisponível." });
+    }
+  }
   if (requestUrl.pathname === "/api/admin/announcements") {
     res.setHeader("Cache-Control", "private, no-store");
     res.setHeader("Vercel-CDN-Cache-Control", "no-store");

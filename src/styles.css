@@ -2888,3 +2888,34 @@ body.club-page-active { background:var(--club-page-bg, var(--canvas)); backgroun
 }
 .notification-invite p { margin: 8px 0 12px; font-size: 14px; }
 .admin-broadcast-modal textarea, .admin-broadcast-modal select { width: 100%; }
+.player-stats, .player-profile {
+  padding: clamp(1rem, 3vw, 2rem);
+}
+.player-stats-heading, .player-profile-hero {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+}
+.player-stats-heading { justify-content: space-between; }
+.player-stats-heading :is(h2, p), .player-profile-hero :is(h1, p) { margin: .25rem 0; }
+.player-stats-heading select { padding: .4rem; }
+.player-stats-scroll { overflow-x: auto; margin-block: 1rem; }
+.player-stats-table { width: 100%; min-width: 40rem; border-collapse: collapse; }
+.player-stats-table :is(th, td) {
+  text-align: right;
+  padding: .7rem;
+  border-bottom: 1px solid var(--border);
+}
+.player-stats-table :is(th, td):first-child { text-align: left; }
+.player-stats-table small { display: block; margin-top: .2rem; }
+.player-stats-caption { font-size: .875rem; }
+.player-profile-hero img { border-radius: 50%; object-fit: cover; }
+.player-profile-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+.player-profile-metrics { display: flex; flex-wrap: wrap; gap: .75rem 1.25rem; }
+.player-profile-metrics dd { margin: .25rem 0 0; font-weight: 700; }
