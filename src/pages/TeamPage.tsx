@@ -7,6 +7,7 @@ import { Link, useParams } from "react-router-dom";
 import { useApi, time, dateLabel } from "../hooks";
 import { Crest, Empty, Loading, Notice } from "../components/shared";
 import Lineups from "../components/Lineups";
+import BrazilPlayerStats from "../components/BrazilPlayerStats";
 import type { ClubDetails, TeamLeader, CompetitionCatalog } from "../types";
 // Matches the introductory paragraph length requested for club profiles.
 const DESCRIPTION_LIMIT = 749;
@@ -61,6 +62,8 @@ export default function TeamPage() {
       </Notice>
     );
   const { team } = data;
+  const playerStatsLeague = team.sport === "soccer" &&
+    (team.league === "bra.1" || team.league === "bra.2") ? team.league : null;
   const leagueName =
     catalog?.sports
       .find((s) => s.id === team.sport)
@@ -143,6 +146,7 @@ export default function TeamPage() {
           {[
             ["about", "Sobre"],
             ["players", "Elenco"],
+            ...(playerStatsLeague ? [["stats", "Estatísticas"]] : []),
             ["games", "Jogos"],
             ["competitions", "Competições"],
             ...(["football", "volleyball"].includes(team.sport)
@@ -167,6 +171,7 @@ export default function TeamPage() {
             </button>
           ))}
         </div>
+        {tab === "stats" && playerStatsLeague && <BrazilPlayerStats key={team.id} team={team.id} league={playerStatsLeague} />}
         {tab === "about" && (
           <div className="club-about">
             <section className="club-info-card">
