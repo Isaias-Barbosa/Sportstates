@@ -296,6 +296,7 @@ export type MatchMedia = {
 
 export type LeagueStatisticsConfig = {
   season: number;
+  seasonLabel?: string;
   phase: number;
   scope: string;
   source: string;

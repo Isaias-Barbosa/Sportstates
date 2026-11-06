@@ -43,6 +43,7 @@ function RankingList({ url }: { url: string }) {
             "Alguns atletas do ranking estão temporariamente indisponíveis."}
         </Notice>
       )}
+      {!data.partial && data.message && <p className="standings-note">{data.message}</p>}
       {data.leaders.length ? (
         <table className="league-ranking">
           <thead>
@@ -117,7 +118,7 @@ export default function LeagueStatistics({
         <span className="league-panel-copy">
           <span className="league-panel-title">Estatísticas</span>
           <span className="league-panel-subtitle">
-            Rankings de atletas · Edição {config.season}
+            Rankings de atletas · Edição {config.seasonLabel || config.season}
           </span>
         </span>
         <ChevronDown

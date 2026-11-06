@@ -1,5 +1,6 @@
 const ESPN = "https://sports.core.api.espn.com/v2/sports";
 import { cbfLowerDivisionStatisticsConfig } from "./cbf-lower-divisions.mjs";
+import {asianStatisticsConfig,asianLeagueRanking} from './asian-statistics.mjs';
 const HOUR = 60 * 60_000;
 const LIMIT = 10;
 
@@ -90,6 +91,7 @@ const verified = new Map([
 ]);
 
 export function leagueStatisticsConfig(sport, league) {
+  if(sport==='soccer'&&asianStatisticsConfig(league))return asianStatisticsConfig(league);
   if (sport === "soccer" && cbfLowerDivisionStatisticsConfig(league))
     return cbfLowerDivisionStatisticsConfig(league);
   const config = verified.get(`${sport}/${league}`);
@@ -116,6 +118,7 @@ export async function leagueRanking({
   cached,
   loadJson,
 }) {
+  if(sport==='soccer'&&asianStatisticsConfig(league))return asianLeagueRanking({league,metric,cached,loadJson});
   const seasonPath = `/v2/sports/${sport}/leagues/${league}/seasons/${config.season}`;
   const leadersUrl = `${ESPN}/${sport}/leagues/${league}/seasons/${config.season}/types/${config.phase}/leaders`;
   const ranking = await cached(
