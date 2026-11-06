@@ -2,6 +2,7 @@ import { getWatchOptions } from "./watch.mjs";
 import { createHash } from "node:crypto";
 import { createCache } from "./cache.mjs";
 import { dayInBrazil, validDate } from "./data.mjs";
+import {resolveSources} from './source-manager.mjs';
 const cached = createCache();
 const BASE = "https://mobileappapi.worldtabletennis.com/api/cms/";
 export const TABLE_COMPETITIONS = [
@@ -202,19 +203,23 @@ export function normalizeTableMatch(unit, card, event, meta = {}) {
     )
   )
     return null;
-  const status = String(
-    card?.resultStatus || unit.ScheduleStatus || "",
-  ).toUpperCase();
+  const cardStatus=String(card?.resultStatus||'').toUpperCase();
+  const unitStatus=String(unit.ScheduleStatus||'').toUpperCase();
+  const isFinal=value=>/^(OFFICIAL|UNOFFICIAL|FINISHED|FINAL)$/.test(value);
+  const isLive=value=>/^(LIVE|RUNNING|IN PROGRESS|IN_PROGRESS|INTERMEDIATE)$/.test(value);
+  const status = isFinal(cardStatus)||isFinal(unitStatus) ? 'OFFICIAL'
+    : isLive(cardStatus)||isLive(unitStatus) ? 'LIVE' : cardStatus||unitStatus;
   const finished = /^(OFFICIAL|UNOFFICIAL|FINISHED|FINAL)$/.test(status),
     live = /^(LIVE|RUNNING|IN PROGRESS|IN_PROGRESS|INTERMEDIATE)$/.test(status);
   const state = finished ? "finished" : live ? "live" : "scheduled";
+  const cardIsPlaceholder=/^(STARTLIST|SCHEDULED)$/.test(cardStatus)&&live;
   const overall = String(
-    card?.overallScores ?? card?.resultOverallScores ?? "",
+    cardIsPlaceholder ? '' : card?.overallScores ?? card?.resultOverallScores ?? "",
   ).trim().split(/\s*[-–:]\s*/);
   const declaredHome = overall.length === 2 ? number(overall[0]) : null;
   const declaredAway = overall.length === 2 ? number(overall[1]) : null;
   const rawGames = String(
-    card?.gameScores || card?.resultsGameScores || "",
+    cardIsPlaceholder ? '' : card?.gameScores || card?.resultsGameScores || "",
   ).split(",");
   const games = rawGames
     .map((v, i) => {
@@ -277,6 +282,7 @@ export function normalizeTableMatch(unit, card, event, meta = {}) {
     home: teams[0],
     away: teams[1],
     state,
+    ...(live && card?._sportstatesLiveStale ? {liveUnverified:true} : {}),
     statusName: finished
       ? "STATUS_FINAL"
       : live
@@ -318,9 +324,43 @@ export function mergeTableCards(cards, official) {
   }
   return byCode;
 }
+const TABLE_LIVE_ROOT='https://wtt-web-frontdoor-cthahjeqhbh6aqe3.a01.azurefd.net/';
+export function validateTableLiveCard(card,unit,event){
+  if(!card||String(card.eventId)!==String(event.id)||canonical(card.documentCode)!==canonical(unit.Code))throw new Error('Placar de outra partida WTT.');
+  const expected=(unit.StartList?.Start||[]).map(s=>String(s.Competitor?.Code)).sort();
+  const actual=(card.competitiors||[]).map(s=>String(s.competitiorId)).sort();
+  if(expected.length!==2||actual.length!==2||expected.some((id,i)=>id!==actual[i]))throw new Error('Atletas WTT não correspondem à agenda.');
+  if(!/^(STARTLIST|SCHEDULED|LIVE|RUNNING|IN PROGRESS|IN_PROGRESS|INTERMEDIATE|OFFICIAL|UNOFFICIAL|FINISHED|FINAL)$/i.test(card.resultStatus||''))throw new Error('Status WTT não reconhecido.');
+  return card;
+}
+async function liveCard(unit,event){
+  if(!/^\d{1,5}$/.test(String(event.id))||!/^TTEMSINGLES[A-Z0-9-]{5,35}$/.test(unit.Code||''))throw new Error('Identidade WTT inválida.');
+  const result=await resolveSources({key:`wtt-live-card:v1:${event.id}:${canonical(unit.Code)}`,cached,providers:[{name:'WTT JSON oficial',ttl:15000,staleFor:30000,load:async()=>{
+    const url=TABLE_LIVE_ROOT+`matchdata/${event.id}/${unit.Code.padEnd(42,'-')}.json?q=`+encodeURIComponent(new Date(Math.floor(Date.now()/5000)*5000).toISOString());
+    const response=await fetch(url,{headers:{Accept:'application/json'},signal:AbortSignal.timeout(6000),redirect:'error',cache:'no-store'});
+    if(!response.ok)throw new Error('JSON WTT indisponível.');
+    return [validateTableLiveCard(await response.json(),unit,event)];
+  }}]});
+  return result.matches[0] ? {...result.matches[0],_sportstatesLiveStale:result.stale} : null;
+}
+export async function refreshTableCards(byCode,units,event,meta,{now=Date.now(),loadCard=liveCard}={}){
+  const candidates=units.map(unit=>({unit,match:normalizeTableMatch(unit,byCode.get(canonical(unit.Code)),event,meta)}))
+    .filter(({match})=>match&&Date.parse(match.date)>=now-18*3600000&&Date.parse(match.date)<=now+15*60000&&(match.state!=='finished'||match.home.score===null||match.away.score===null))
+    .sort((a,b)=>Number(b.match.state==='live')-Number(a.match.state==='live')||Math.abs(Date.parse(a.match.date)-now)-Math.abs(Date.parse(b.match.date)-now)).slice(0,8);
+  // At most eight cards per event, with only two requests in flight.
+  for(let i=0;i<candidates.length;i+=2)await Promise.all(candidates.slice(i,i+2).map(async({unit})=>{
+    try{
+      const fresh=validateTableLiveCard(await loadCard(unit,event),unit,event);
+      const old=byCode.get(canonical(unit.Code));
+      if(/^(LIVE|RUNNING|INTERMEDIATE|IN_PROGRESS|IN PROGRESS)$/i.test(old?.resultStatus||'')&&/^(STARTLIST|SCHEDULED)$/i.test(fresh.resultStatus))return;
+      byCode.set(canonical(unit.Code),fresh);
+    }catch{ /* Keep the original source; never invent a live score on failure. */ }
+  }));
+  return byCode;
+}
 async function eventMatches(event) {
   return cached(
-    `table-tennis:event:official-watch-v3:${event.id}`,
+    `table-tennis:event:official-live-v4:${event.id}`,
     (matches) =>
       matches.some((m) => m.state === "live")
         ? 15000
@@ -365,6 +405,7 @@ async function eventMatches(event) {
         cards.push(...batch.filter(Boolean));
       }
       const byCode = mergeTableCards(cards, official);
+      await refreshTableCards(byCode,units,event,metadata.value?.[0]);
       return units
         .map((u) =>
           normalizeTableMatch(
@@ -406,7 +447,7 @@ export async function tableMatches(range, league) {
           : m.date.slice(0, 10) === range,
       ),
     at: parts.length ? Math.min(...parts.map((r) => r.at)) : calendar.at,
-    stale: calendar.stale || parts.some((r) => r.stale),
+    stale: calendar.stale || parts.some((r) => r.stale || r.value.some(m=>m.liveUnverified)),
   };
 }
 export async function tableDetail(id, league) {
@@ -436,7 +477,7 @@ export async function tableDetail(id, league) {
       away: [],
     },
     fetchedAt: new Date(r.at).toISOString(),
-    stale: r.stale,
+    stale: r.stale || !!match.liveUnverified,
     source: "World Table Tennis · fonte oficial",
   };
 }

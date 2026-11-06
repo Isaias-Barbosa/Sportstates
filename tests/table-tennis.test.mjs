@@ -9,6 +9,8 @@ import {
   normalizeTableMatch,
   normalizeTableRankings,
   TABLE_COMPETITIONS,
+  refreshTableCards,
+  validateTableLiveCard,
 } from "../server/table-tennis.mjs";
 import { leagueFor } from "../server/catalog.mjs";
 const event = {
@@ -358,4 +360,56 @@ test("unfinished WTT sets never generate a fabricated final score", () => {
   }, event);
   assert.equal(match.home.score, null);
   assert.equal(match.away.score, null);
+});
+
+test('WTT static official card replaces a stale start list and corrects UTC start time', async()=>{
+  const stale={...card,eventId:event.id,resultStatus:'STARTLIST',overallScores:'0-0',gameScores:'0-0,0-0,0-0',currentGameNumber:0,matchDateTime:null};
+  const official={...card,eventId:event.id};
+  const byCode=mergeTableCards([stale],[]);let calls=0;
+  await refreshTableCards(byCode,[unit],event,{countryCode:'FRA'},{now:Date.parse('2026-10-29T14:00:00Z'),loadCard:async()=>{calls++;return official;}});
+  const match=normalizeTableMatch(unit,[...byCode.values()][0],event);
+  assert.equal(calls,1);assert.equal(match.state,'finished');assert.equal(match.away.score,'3');
+  assert.equal(match.date,'2026-10-29T13:20:00.000Z');assert.equal(match.setScores.length,3);
+});
+
+test('WTT live schedule overrides stale STARTLIST without inventing placeholder zero scores',()=>{
+  const match=normalizeTableMatch({...unit,ScheduleStatus:'Running'},{...card,resultStatus:'STARTLIST',overallScores:'0-0',gameScores:'0-0,0-0',currentGameNumber:0},event);
+  assert.equal(match.state,'live');assert.equal(match.home.score,null);assert.equal(match.away.score,null);assert.deepEqual(match.setScores,[]);
+});
+
+test('WTT rejects a static card from a different event, match or player pair',()=>{
+  const fresh={...card,eventId:event.id};assert.equal(validateTableLiveCard(fresh,unit,event),fresh);
+  for(const patch of [{eventId:'9999'},{documentCode:'TTEMSINGLES-----------R32-999900--'},{competitiors:[{competitiorId:'999'},{competitiorId:'115641'}]},{resultStatus:'unknown'}])
+    assert.throws(()=>validateTableLiveCard({...fresh,...patch},unit,event));
+});
+
+test('WTT complementary failure keeps the original card and does not infer live from elapsed time',async()=>{
+  const stale={...card,eventId:event.id,resultStatus:'STARTLIST',overallScores:'0-0',gameScores:'',currentGameNumber:0};
+  const byCode=mergeTableCards([stale],[]);
+  await refreshTableCards(byCode,[unit],event,{countryCode:'FRA'},{now:Date.parse('2026-10-29T14:00:00Z'),loadCard:async()=>{throw Error('Indisponível');}});
+  const match=normalizeTableMatch(unit,[...byCode.values()][0],event);
+  assert.equal(match.state,'scheduled');assert.equal(match.home.score,null);
+});
+
+test('WTT refresh is bounded to eight recent cards with two requests in flight',async()=>{
+  const units=Array.from({length:12},(_,i)=>({...unit,Code:'TTEMSINGLES-----------R32-'+String(i+1).padStart(4,'0')+'00--'}));
+  const stale=units.map(u=>({...card,documentCode:u.Code.padEnd(42,'-'),resultStatus:'STARTLIST',currentGameNumber:0}));
+  let calls=0,active=0,maximum=0;
+  await refreshTableCards(mergeTableCards(stale,[]),units,event,{countryCode:'FRA'},{now:Date.parse('2026-10-29T14:00:00Z'),loadCard:async u=>{
+    calls++;active++;maximum=Math.max(maximum,active);await new Promise(resolve=>setTimeout(resolve,5));active--;
+    return {...card,eventId:event.id,documentCode:u.Code.padEnd(42,'-')};
+  }});
+  assert.equal(calls,8);assert.ok(maximum<=2);
+});
+
+test('WTT finalized matches and distant future cards do not trigger complementary queries',async()=>{
+  let calls=0;
+  await refreshTableCards(mergeTableCards([card],[]),[unit],event,{countryCode:'FRA'},{now:Date.parse('2026-10-29T14:00:00Z'),loadCard:async()=>{calls++;return null;}});
+  await refreshTableCards(new Map(),[{...unit,StartDate:'2026-11-20T12:00:00'}],event,{countryCode:'FRA'},{now:Date.parse('2026-10-29T14:00:00Z'),loadCard:async()=>{calls++;return null;}});
+  assert.equal(calls,0);
+});
+
+test('WTT stale live JSON is explicitly marked as unverified',()=>{
+  const result=normalizeTableMatch(unit,{...card,resultStatus:'LIVE',_sportstatesLiveStale:true,currentGameNumber:2,overallScores:'1-0',gameScores:'11-8,3-2'},event);
+  assert.equal(result.state,'live');assert.equal(result.liveUnverified,true);
 });
