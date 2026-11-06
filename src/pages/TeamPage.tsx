@@ -141,6 +141,7 @@ export default function TeamPage() {
         </p>
       )}
       {data.stale && <Notice>Exibindo dados em cache.</Notice>}
+      {!!data.warnings?.length && <Notice>{data.warnings.join(' ')}</Notice>}
       <div className="detail-content">
         <div className="tabs detail-tabs">
           {[

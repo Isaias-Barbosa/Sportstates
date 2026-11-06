@@ -116,6 +116,7 @@ export const SPORTS = [
       ["concacaf.champions", "Copa dos Campeões da Concacaf"],
       ["ksa.1", "Liga Saudita"],
       ["jpn.1", "Campeonato Japonês · J1 League"],
+      ["jpn.league_cup", "Levain Cup · Copa da Liga Japonesa"],
       ["kor.1", "K League 1"],
       ["ksa.kings.cup", "Copa do Rei Saudita"],
       ["afc.champions", "Liga dos Campeões da Ásia"],
@@ -258,7 +259,7 @@ export const SOCCER_REGIONS = [
     name: "Arábia Saudita",
     competitions: ["ksa.1", "ksa.kings.cup"],
   },
-  { id: "japao", name: "Japão", competitions: ["jpn.1"] },
+  { id: "japao", name: "Japão", competitions: ["jpn.1", "jpn.league_cup"] },
   { id: "coreia", name: "Coreia do Sul", competitions: ["kor.1"] },
 ];
 export const SOCCER_INTERNATIONAL_GROUPS = [

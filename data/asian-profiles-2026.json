@@ -1,0 +1,904 @@
+{
+  "revision": "asian-clubs-2026-v1",
+  "reviewedAt": "2026-11-05",
+  "clubs": [
+    {
+      "id": "7107",
+      "providerId": "7107",
+      "provider": "espn",
+      "name": "Avispa Fukuoka",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/7107.png",
+      "sport": "soccer",
+      "league": "jpn.1",
+      "description": "Clube participante da J1 League. Cadastro baseado no catálogo da temporada consultado em 05/11/2026.",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "colors": [
+        "#000000"
+      ],
+      "honours": [],
+      "sources": [
+        {
+          "name": "ESPN · catálogo J1 League",
+          "url": "https://www.espn.com.br/futebol/time/_/id/7107"
+        },
+        {
+          "name": "365Scores · identidade na J1 League",
+          "url": "https://www.365scores.com/en-us/football/league/j1-league-147/standings"
+        }
+      ],
+      "alternateProviderIds": {
+        "365scores": "2168"
+      }
+    },
+    {
+      "id": "7109",
+      "providerId": "7109",
+      "provider": "espn",
+      "name": "Cerezo Osaka",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/7109.png",
+      "sport": "soccer",
+      "league": "jpn.1",
+      "description": "Clube participante da J1 League. Cadastro baseado no catálogo da temporada consultado em 05/11/2026.",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "colors": [
+        "#FFC0CB",
+        "#FFFFFF"
+      ],
+      "honours": [],
+      "sources": [
+        {
+          "name": "ESPN · catálogo J1 League",
+          "url": "https://www.espn.com.br/futebol/time/_/id/7109"
+        },
+        {
+          "name": "365Scores · identidade na J1 League",
+          "url": "https://www.365scores.com/en-us/football/league/j1-league-147/standings"
+        }
+      ],
+      "alternateProviderIds": {
+        "365scores": "2161"
+      }
+    },
+    {
+      "id": "3384",
+      "providerId": "3384",
+      "provider": "espn",
+      "name": "FC Tokyo",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/3384.png",
+      "sport": "soccer",
+      "league": "jpn.1",
+      "description": "Clube participante da J1 League. Cadastro baseado no catálogo da temporada consultado em 05/11/2026.",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "colors": [
+        "#000000"
+      ],
+      "honours": [],
+      "sources": [
+        {
+          "name": "ESPN · catálogo J1 League",
+          "url": "https://www.espn.com.br/futebol/time/_/id/3384"
+        },
+        {
+          "name": "365Scores · identidade na J1 League",
+          "url": "https://www.365scores.com/en-us/football/league/j1-league-147/standings"
+        }
+      ],
+      "alternateProviderIds": {
+        "365scores": "2144"
+      }
+    },
+    {
+      "id": "22522",
+      "providerId": "22522",
+      "provider": "espn",
+      "name": "Fagiano Okayama",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/22522.png",
+      "sport": "soccer",
+      "league": "jpn.1",
+      "description": "Clube participante da J1 League. Cadastro baseado no catálogo da temporada consultado em 05/11/2026.",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "colors": [
+        "#000000",
+        "#C60000"
+      ],
+      "honours": [],
+      "sources": [
+        {
+          "name": "ESPN · catálogo J1 League",
+          "url": "https://www.espn.com.br/futebol/time/_/id/22522"
+        },
+        {
+          "name": "365Scores · identidade na J1 League",
+          "url": "https://www.365scores.com/en-us/football/league/j1-league-147/standings"
+        }
+      ],
+      "alternateProviderIds": {
+        "365scores": "2176"
+      }
+    },
+    {
+      "id": "7102",
+      "providerId": "7102",
+      "provider": "espn",
+      "name": "Gamba Osaka",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/7102.png",
+      "sport": "soccer",
+      "league": "jpn.1",
+      "description": "Clube participante da J1 League. Cadastro baseado no catálogo da temporada consultado em 05/11/2026.",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "colors": [
+        "#0105bc",
+        "#ffffff"
+      ],
+      "honours": [],
+      "sources": [
+        {
+          "name": "ESPN · catálogo J1 League",
+          "url": "https://www.espn.com.br/futebol/time/_/id/7102"
+        },
+        {
+          "name": "365Scores · identidade na J1 League",
+          "url": "https://www.365scores.com/en-us/football/league/j1-league-147/standings"
+        }
+      ],
+      "alternateProviderIds": {
+        "365scores": "2150"
+      }
+    },
+    {
+      "id": "7111",
+      "providerId": "7111",
+      "provider": "espn",
+      "name": "JEF United Ichihara-Chiba",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/7111.png",
+      "sport": "soccer",
+      "league": "jpn.1",
+      "description": "Clube participante da J1 League. Cadastro baseado no catálogo da temporada consultado em 05/11/2026.",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "colors": [
+        "#000000",
+        "#C60000"
+      ],
+      "honours": [],
+      "sources": [
+        {
+          "name": "ESPN · catálogo J1 League",
+          "url": "https://www.espn.com.br/futebol/time/_/id/7111"
+        },
+        {
+          "name": "365Scores · identidade na J1 League",
+          "url": "https://www.365scores.com/en-us/football/league/j1-league-147/standings"
+        }
+      ],
+      "alternateProviderIds": {
+        "365scores": "2158"
+      }
+    },
+    {
+      "id": "7115",
+      "providerId": "7115",
+      "provider": "espn",
+      "name": "Kashima Antlers",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/7115.png",
+      "sport": "soccer",
+      "league": "jpn.1",
+      "description": "Clube participante da J1 League. Cadastro baseado no catálogo da temporada consultado em 05/11/2026.",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "colors": [
+        "#EF0107",
+        "#060040"
+      ],
+      "honours": [],
+      "sources": [
+        {
+          "name": "ESPN · catálogo J1 League",
+          "url": "https://www.espn.com.br/futebol/time/_/id/7115"
+        },
+        {
+          "name": "365Scores · identidade na J1 League",
+          "url": "https://www.365scores.com/en-us/football/league/j1-league-147/standings"
+        }
+      ],
+      "alternateProviderIds": {
+        "365scores": "2146"
+      }
+    },
+    {
+      "id": "7476",
+      "providerId": "7476",
+      "provider": "espn",
+      "name": "Kashiwa Reysol",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/7476.png",
+      "sport": "soccer",
+      "league": "jpn.1",
+      "description": "Clube participante da J1 League. Cadastro baseado no catálogo da temporada consultado em 05/11/2026.",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "colors": [
+        "#000000"
+      ],
+      "honours": [],
+      "sources": [
+        {
+          "name": "ESPN · catálogo J1 League",
+          "url": "https://www.espn.com.br/futebol/time/_/id/7476"
+        },
+        {
+          "name": "365Scores · identidade na J1 League",
+          "url": "https://www.365scores.com/en-us/football/league/j1-league-147/standings"
+        }
+      ],
+      "alternateProviderIds": {
+        "365scores": "2145"
+      }
+    },
+    {
+      "id": "7112",
+      "providerId": "7112",
+      "provider": "espn",
+      "name": "Kawasaki Frontale",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/7112.png",
+      "sport": "soccer",
+      "league": "jpn.1",
+      "description": "Clube participante da J1 League. Cadastro baseado no catálogo da temporada consultado em 05/11/2026.",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "colors": [
+        "#b0d5fc",
+        "#a8a003"
+      ],
+      "honours": [],
+      "sources": [
+        {
+          "name": "ESPN · catálogo J1 League",
+          "url": "https://www.espn.com.br/futebol/time/_/id/7112"
+        },
+        {
+          "name": "365Scores · identidade na J1 League",
+          "url": "https://www.365scores.com/en-us/football/league/j1-league-147/standings"
+        }
+      ],
+      "alternateProviderIds": {
+        "365scores": "2143"
+      }
+    },
+    {
+      "id": "21361",
+      "providerId": "21361",
+      "provider": "espn",
+      "name": "Kyoto Sanga",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/21361.png",
+      "sport": "soccer",
+      "league": "jpn.1",
+      "description": "Clube participante da J1 League. Cadastro baseado no catálogo da temporada consultado em 05/11/2026.",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "colors": [
+        "#000000",
+        "#C60000"
+      ],
+      "honours": [],
+      "sources": [
+        {
+          "name": "ESPN · catálogo J1 League",
+          "url": "https://www.espn.com.br/futebol/time/_/id/21361"
+        },
+        {
+          "name": "365Scores · identidade na J1 League",
+          "url": "https://www.365scores.com/en-us/football/league/j1-league-147/standings"
+        }
+      ],
+      "alternateProviderIds": {
+        "365scores": "2154"
+      }
+    },
+    {
+      "id": "22167",
+      "providerId": "22167",
+      "provider": "espn",
+      "name": "Machida Zelvia",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/22167.png",
+      "sport": "soccer",
+      "league": "jpn.1",
+      "description": "Clube participante da J1 League. Cadastro baseado no catálogo da temporada consultado em 05/11/2026.",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "colors": [
+        "#000000",
+        "#fafafc"
+      ],
+      "honours": [],
+      "sources": [
+        {
+          "name": "ESPN · catálogo J1 League",
+          "url": "https://www.espn.com.br/futebol/time/_/id/22167"
+        },
+        {
+          "name": "365Scores · identidade na J1 League",
+          "url": "https://www.365scores.com/en-us/football/league/j1-league-147/standings"
+        }
+      ],
+      "alternateProviderIds": {
+        "365scores": "9133"
+      }
+    },
+    {
+      "id": "131701",
+      "providerId": "131701",
+      "provider": "espn",
+      "name": "Mito Hollyhock",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/131701.png",
+      "sport": "soccer",
+      "league": "jpn.1",
+      "description": "Clube participante da J1 League. Cadastro baseado no catálogo da temporada consultado em 05/11/2026.",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "colors": [
+        "#000000",
+        "#C60000"
+      ],
+      "honours": [],
+      "sources": [
+        {
+          "name": "ESPN · catálogo J1 League",
+          "url": "https://www.espn.com.br/futebol/time/_/id/131701"
+        },
+        {
+          "name": "365Scores · identidade na J1 League",
+          "url": "https://www.365scores.com/en-us/football/league/j1-league-147/standings"
+        }
+      ],
+      "alternateProviderIds": {
+        "365scores": "2173"
+      }
+    },
+    {
+      "id": "7108",
+      "providerId": "7108",
+      "provider": "espn",
+      "name": "Nagoya Grampus",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/7108.png",
+      "sport": "soccer",
+      "league": "jpn.1",
+      "description": "Clube participante da J1 League. Cadastro baseado no catálogo da temporada consultado em 05/11/2026.",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "colors": [
+        "#000000",
+        "#C60000"
+      ],
+      "honours": [],
+      "sources": [
+        {
+          "name": "ESPN · catálogo J1 League",
+          "url": "https://www.espn.com.br/futebol/time/_/id/7108"
+        },
+        {
+          "name": "365Scores · identidade na J1 League",
+          "url": "https://www.365scores.com/en-us/football/league/j1-league-147/standings"
+        }
+      ],
+      "alternateProviderIds": {
+        "365scores": "2142"
+      }
+    },
+    {
+      "id": "7114",
+      "providerId": "7114",
+      "provider": "espn",
+      "name": "Sanfrecce Hiroshima",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/7114.png",
+      "sport": "soccer",
+      "league": "jpn.1",
+      "description": "Clube participante da J1 League. Cadastro baseado no catálogo da temporada consultado em 05/11/2026.",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "colors": [
+        "#69519F",
+        "#F9BED4"
+      ],
+      "honours": [],
+      "sources": [
+        {
+          "name": "ESPN · catálogo J1 League",
+          "url": "https://www.espn.com.br/futebol/time/_/id/7114"
+        },
+        {
+          "name": "365Scores · identidade na J1 League",
+          "url": "https://www.365scores.com/en-us/football/league/j1-league-147/standings"
+        }
+      ],
+      "alternateProviderIds": {
+        "365scores": "2159"
+      }
+    },
+    {
+      "id": "7104",
+      "providerId": "7104",
+      "provider": "espn",
+      "name": "Shimizu S-Pulse",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/7104.png",
+      "sport": "soccer",
+      "league": "jpn.1",
+      "description": "Clube participante da J1 League. Cadastro baseado no catálogo da temporada consultado em 05/11/2026.",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "colors": [
+        "#ed561d",
+        "#eebe21"
+      ],
+      "honours": [],
+      "sources": [
+        {
+          "name": "ESPN · catálogo J1 League",
+          "url": "https://www.espn.com.br/futebol/time/_/id/7104"
+        },
+        {
+          "name": "365Scores · identidade na J1 League",
+          "url": "https://www.365scores.com/en-us/football/league/j1-league-147/standings"
+        }
+      ],
+      "alternateProviderIds": {
+        "365scores": "2156"
+      }
+    },
+    {
+      "id": "3393",
+      "providerId": "3393",
+      "provider": "espn",
+      "name": "Tokyo Verdy 1969",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/3393.png",
+      "sport": "soccer",
+      "league": "jpn.1",
+      "description": "Clube participante da J1 League. Cadastro baseado no catálogo da temporada consultado em 05/11/2026.",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "colors": [
+        "#000000"
+      ],
+      "honours": [],
+      "sources": [
+        {
+          "name": "ESPN · catálogo J1 League",
+          "url": "https://www.espn.com.br/futebol/time/_/id/3393"
+        },
+        {
+          "name": "365Scores · identidade na J1 League",
+          "url": "https://www.365scores.com/en-us/football/league/j1-league-147/standings"
+        }
+      ],
+      "alternateProviderIds": {
+        "365scores": "2153"
+      }
+    },
+    {
+      "id": "3385",
+      "providerId": "3385",
+      "provider": "espn",
+      "name": "Urawa Red Diamonds",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/3385.png",
+      "sport": "soccer",
+      "league": "jpn.1",
+      "description": "Clube participante da J1 League. Cadastro baseado no catálogo da temporada consultado em 05/11/2026.",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "colors": [
+        "#e5370b",
+        "#000000"
+      ],
+      "honours": [],
+      "sources": [
+        {
+          "name": "ESPN · catálogo J1 League",
+          "url": "https://www.espn.com.br/futebol/time/_/id/3385"
+        },
+        {
+          "name": "365Scores · identidade na J1 League",
+          "url": "https://www.365scores.com/en-us/football/league/j1-league-147/standings"
+        }
+      ],
+      "alternateProviderIds": {
+        "365scores": "2141"
+      }
+    },
+    {
+      "id": "19001",
+      "providerId": "19001",
+      "provider": "espn",
+      "name": "V-Varen Nagasaki",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/19001.png",
+      "sport": "soccer",
+      "league": "jpn.1",
+      "description": "Clube participante da J1 League. Cadastro baseado no catálogo da temporada consultado em 05/11/2026.",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "colors": [
+        "#000000",
+        "#C60000"
+      ],
+      "honours": [],
+      "sources": [
+        {
+          "name": "ESPN · catálogo J1 League",
+          "url": "https://www.espn.com.br/futebol/time/_/id/19001"
+        },
+        {
+          "name": "365Scores · identidade na J1 League",
+          "url": "https://www.365scores.com/en-us/football/league/j1-league-147/standings"
+        }
+      ],
+      "alternateProviderIds": {
+        "365scores": "10304"
+      }
+    },
+    {
+      "id": "7477",
+      "providerId": "7477",
+      "provider": "espn",
+      "name": "Vissel Kobe",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/7477.png",
+      "sport": "soccer",
+      "league": "jpn.1",
+      "description": "Clube participante da J1 League. Cadastro baseado no catálogo da temporada consultado em 05/11/2026.",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "colors": [
+        "#000000"
+      ],
+      "honours": [],
+      "sources": [
+        {
+          "name": "ESPN · catálogo J1 League",
+          "url": "https://www.espn.com.br/futebol/time/_/id/7477"
+        },
+        {
+          "name": "365Scores · identidade na J1 League",
+          "url": "https://www.365scores.com/en-us/football/league/j1-league-147/standings"
+        }
+      ],
+      "alternateProviderIds": {
+        "365scores": "2151"
+      }
+    },
+    {
+      "id": "7116",
+      "providerId": "7116",
+      "provider": "espn",
+      "name": "Yokohama F. Marinos",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/7116.png",
+      "sport": "soccer",
+      "league": "jpn.1",
+      "description": "Clube participante da J1 League. Cadastro baseado no catálogo da temporada consultado em 05/11/2026.",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "colors": [
+        "#000000"
+      ],
+      "honours": [],
+      "sources": [
+        {
+          "name": "ESPN · catálogo J1 League",
+          "url": "https://www.espn.com.br/futebol/time/_/id/7116"
+        },
+        {
+          "name": "365Scores · identidade na J1 League",
+          "url": "https://www.365scores.com/en-us/football/league/j1-league-147/standings"
+        }
+      ],
+      "alternateProviderIds": {
+        "365scores": "2147"
+      }
+    },
+    {
+      "id": "365-kor-9820",
+      "providerId": "9820",
+      "provider": "365scores",
+      "name": "FC Seoul",
+      "logo": "https://imagecache.365scores.com/image/upload/f_png,w_80,h_80,c_limit,q_auto:eco,dpr_2/competitors/9820",
+      "sport": "soccer",
+      "league": "kor.1",
+      "description": "Clube participante da K League 1. Cadastro baseado na classificação consultada em 05/11/2026.",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "name": "365Scores · K League 1",
+          "url": "https://www.365scores.com/en-us/football/league/k-league-1-618/standings"
+        }
+      ]
+    },
+    {
+      "id": "365-kor-8967",
+      "providerId": "8967",
+      "provider": "365scores",
+      "name": "Ulsan HD",
+      "logo": "https://imagecache.365scores.com/image/upload/f_png,w_80,h_80,c_limit,q_auto:eco,dpr_2/competitors/8967",
+      "sport": "soccer",
+      "league": "kor.1",
+      "description": "Clube participante da K League 1. Cadastro baseado na classificação consultada em 05/11/2026.",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "name": "365Scores · K League 1",
+          "url": "https://www.365scores.com/en-us/football/league/k-league-1-618/standings"
+        }
+      ]
+    },
+    {
+      "id": "365-kor-9816",
+      "providerId": "9816",
+      "provider": "365scores",
+      "name": "Daejeon Hana Citizen",
+      "logo": "https://imagecache.365scores.com/image/upload/f_png,w_80,h_80,c_limit,q_auto:eco,dpr_2/competitors/9816",
+      "sport": "soccer",
+      "league": "kor.1",
+      "description": "Clube participante da K League 1. Cadastro baseado na classificação consultada em 05/11/2026.",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "name": "365Scores · K League 1",
+          "url": "https://www.365scores.com/en-us/football/league/k-league-1-618/standings"
+        }
+      ]
+    },
+    {
+      "id": "365-kor-9819",
+      "providerId": "9819",
+      "provider": "365scores",
+      "name": "Incheon United",
+      "logo": "https://imagecache.365scores.com/image/upload/f_png,w_80,h_80,c_limit,q_auto:eco,dpr_2/competitors/9819",
+      "sport": "soccer",
+      "league": "kor.1",
+      "description": "Clube participante da K League 1. Cadastro baseado na classificação consultada em 05/11/2026.",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "name": "365Scores · K League 1",
+          "url": "https://www.365scores.com/en-us/football/league/k-league-1-618/standings"
+        }
+      ]
+    },
+    {
+      "id": "365-kor-8592",
+      "providerId": "8592",
+      "provider": "365scores",
+      "name": "Jeonbuk Hyundai Motors",
+      "logo": "https://imagecache.365scores.com/image/upload/f_png,w_80,h_80,c_limit,q_auto:eco,dpr_2/competitors/8592",
+      "sport": "soccer",
+      "league": "kor.1",
+      "description": "Clube participante da K League 1. Cadastro baseado na classificação consultada em 05/11/2026.",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "name": "365Scores · K League 1",
+          "url": "https://www.365scores.com/en-us/football/league/k-league-1-618/standings"
+        }
+      ]
+    },
+    {
+      "id": "365-kor-9825",
+      "providerId": "9825",
+      "provider": "365scores",
+      "name": "Gangwon FC",
+      "logo": "https://imagecache.365scores.com/image/upload/f_png,w_80,h_80,c_limit,q_auto:eco,dpr_2/competitors/9825",
+      "sport": "soccer",
+      "league": "kor.1",
+      "description": "Clube participante da K League 1. Cadastro baseado na classificação consultada em 05/11/2026.",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "name": "365Scores · K League 1",
+          "url": "https://www.365scores.com/en-us/football/league/k-league-1-618/standings"
+        }
+      ]
+    },
+    {
+      "id": "365-kor-9817",
+      "providerId": "9817",
+      "provider": "365scores",
+      "name": "Jeju SK",
+      "logo": "https://imagecache.365scores.com/image/upload/f_png,w_80,h_80,c_limit,q_auto:eco,dpr_2/competitors/9817",
+      "sport": "soccer",
+      "league": "kor.1",
+      "description": "Clube participante da K League 1. Cadastro baseado na classificação consultada em 05/11/2026.",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "name": "365Scores · K League 1",
+          "url": "https://www.365scores.com/en-us/football/league/k-league-1-618/standings"
+        }
+      ]
+    },
+    {
+      "id": "365-kor-11471",
+      "providerId": "11471",
+      "provider": "365scores",
+      "name": "FC Anyang",
+      "logo": "https://imagecache.365scores.com/image/upload/f_png,w_80,h_80,c_limit,q_auto:eco,dpr_2/competitors/11471",
+      "sport": "soccer",
+      "league": "kor.1",
+      "description": "Clube participante da K League 1. Cadastro baseado na classificação consultada em 05/11/2026.",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "name": "365Scores · K League 1",
+          "url": "https://www.365scores.com/en-us/football/league/k-league-1-618/standings"
+        }
+      ]
+    },
+    {
+      "id": "365-kor-9822",
+      "providerId": "9822",
+      "provider": "365scores",
+      "name": "Pohang Steelers",
+      "logo": "https://imagecache.365scores.com/image/upload/f_png,w_80,h_80,c_limit,q_auto:eco,dpr_2/competitors/9822",
+      "sport": "soccer",
+      "league": "kor.1",
+      "description": "Clube participante da K League 1. Cadastro baseado na classificação consultada em 05/11/2026.",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "name": "365Scores · K League 1",
+          "url": "https://www.365scores.com/en-us/football/league/k-league-1-618/standings"
+        }
+      ]
+    },
+    {
+      "id": "365-kor-9823",
+      "providerId": "9823",
+      "provider": "365scores",
+      "name": "Gimcheon Sangmu FC",
+      "logo": "https://imagecache.365scores.com/image/upload/f_png,w_80,h_80,c_limit,q_auto:eco,dpr_2/competitors/9823",
+      "sport": "soccer",
+      "league": "kor.1",
+      "description": "Clube participante da K League 1. Cadastro baseado na classificação consultada em 05/11/2026.",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "name": "365Scores · K League 1",
+          "url": "https://www.365scores.com/en-us/football/league/k-league-1-618/standings"
+        }
+      ]
+    },
+    {
+      "id": "365-kor-11361",
+      "providerId": "11361",
+      "provider": "365scores",
+      "name": "Bucheon FC 1995",
+      "logo": "https://imagecache.365scores.com/image/upload/f_png,w_80,h_80,c_limit,q_auto:eco,dpr_2/competitors/11361",
+      "sport": "soccer",
+      "league": "kor.1",
+      "description": "Clube participante da K League 1. Cadastro baseado na classificação consultada em 05/11/2026.",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "name": "365Scores · K League 1",
+          "url": "https://www.365scores.com/en-us/football/league/k-league-1-618/standings"
+        }
+      ]
+    },
+    {
+      "id": "365-kor-9826",
+      "providerId": "9826",
+      "provider": "365scores",
+      "name": "Gwangju FC",
+      "logo": "https://imagecache.365scores.com/image/upload/f_png,w_80,h_80,c_limit,q_auto:eco,dpr_2/competitors/9826",
+      "sport": "soccer",
+      "league": "kor.1",
+      "description": "Clube participante da K League 1. Cadastro baseado na classificação consultada em 05/11/2026.",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "name": "365Scores · K League 1",
+          "url": "https://www.365scores.com/en-us/football/league/k-league-1-618/standings"
+        }
+      ]
+    }
+  ]
+}

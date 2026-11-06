@@ -1,5 +1,13 @@
 import { getWatchOptions } from "./watch.mjs";
 import { normalizeSummary } from "./data.mjs";
+import { teamProfileId } from "./team-identity.mjs";
+import asianManifest from '../data/asian-profiles-2026.json' with {type:'json'};
+function soccerTeamId(league, id) {
+  if(league==='kor.1')return teamProfileId(String(id),'soccer',league);
+  if(league==='jpn.league_cup')return asianManifest.clubs.find(c=>c.league==='jpn.1'&&c.alternateProviderIds?.['365scores']===String(id))?.id || `365-jpn-${id}`;
+  return String(id);
+}
+export const DATED_365_LEAGUES = new Set(['kor.1', 'jpn.league_cup']);
 
 const API = "https://webws.365scores.com/web";
 const BASE_PARAMS = {
@@ -11,6 +19,7 @@ const BASE_PARAMS = {
 
 export const SOCCER_365_COMPETITIONS = Object.freeze({
   "kor.1": 618,
+  "jpn.league_cup": 619,
   "bra.3": 5518,
   "bra.4": 5519,
   "bra.camp.baiano": 5059,
@@ -62,7 +71,7 @@ function url(path, params) {
 export function competitionGamesUrl(league, date = new Date().toISOString().slice(0, 10), endDate = date) {
   const competitionId = SOCCER_365_COMPETITIONS[league];
   if (!competitionId) throw new Error("Competição 365Scores não configurada.");
-  if (league === "kor.1") {
+  if (DATED_365_LEAGUES.has(league)) {
     if (![date, endDate].every(value => /^20\d{2}-\d{2}-\d{2}$/.test(value) && new Date(value).toISOString().slice(0, 10) === value)) throw new Error("Data inválida.");
     const day = date.split("-").reverse().join("/");
     return url("games", { competitions: String(competitionId), startDate: day, endDate: endDate.split("-").reverse().join("/"), userCountryId: "21", limit: "1000" });
@@ -162,7 +171,7 @@ export function normalize365Game(game, league, leagueName, now = Date.now()) {
   const alternateAthleticoSquad = league === "bra.copa_parana" &&
     new Date(date).getUTCFullYear() === 2026;
   const toTeam = (competitor) => ({
-    id: String(competitor.id),
+    id: soccerTeamId(league, competitor.id),
     name: alternateAthleticoSquad && String(competitor.id) === "1210"
       ? "Athletico-PR (Sub-20)"
       : String(competitor.name || "A definir"),
@@ -213,7 +222,7 @@ export function normalize365Game(game, league, leagueName, now = Date.now()) {
 }
 
 export async function fetch365CompetitionGames(league, loadJson, date) {
-  if (league === "kor.1" && /^20\d{2}-(0[1-9]|1[0-2])$/.test(date || "")) {
+  if (DATED_365_LEAGUES.has(league) && /^20\d{2}-(0[1-9]|1[0-2])$/.test(date || "")) {
     // The public feed can truncate global results despite the competition filter.
     // At most five weekly requests, no unbounded paging, and never claim completeness.
     const last = new Date(Date.UTC(Number(date.slice(0, 4)), Number(date.slice(5)), 0)).getUTCDate();
@@ -222,7 +231,7 @@ export async function fetch365CompetitionGames(league, loadJson, date) {
       const iso = n => `${date}-${String(n).padStart(2, "0")}`;
       const raw = await loadJson(competitionGamesUrl(league, iso(day), iso(Math.min(day + 6, last))));
       if (!Array.isArray(raw?.games)) throw new Error("Calendário coreano inválido.");
-      for (const game of raw.games) if (Number(game.competitionId) === 618 && String(game.startTime).startsWith(date)) games.set(String(game.id), game);
+      for (const game of raw.games) if (Number(game.competitionId) === SOCCER_365_COMPETITIONS[league] && String(game.startTime).startsWith(date)) games.set(String(game.id), game);
     }
     return { games: [...games.values()], partial: true };
   }
@@ -234,7 +243,7 @@ export async function fetch365CompetitionGames(league, loadJson, date) {
     games: raw.games.filter(
       (game) => Number(game.competitionId) === expectedId,
     ),
-    partial: league === "kor.1" || raw.games.length >= 1000,
+    partial: DATED_365_LEAGUES.has(league) || raw.games.length >= 1000,
   };
 }
 
@@ -255,7 +264,7 @@ export function normalize365Standings(raw, league, leagueName, year) {
       const competitor = row.competitor || {};
       if (!competitor.id) return null;
       return {
-        id: String(competitor.id),
+        id: soccerTeamId(league, competitor.id),
         name: String(competitor.name || "Equipe"),
         logo: `https://imagecache.365scores.com/image/upload/f_png,w_80,h_80,c_limit,q_auto:eco,dpr_2/competitors/${competitor.id}`,
         rank: numberText(row.position),
@@ -381,8 +390,8 @@ export function normalize365GameDetail(raw, match) {
 
 export function normalize365Summary(raw, league, leagueName) {
   const game = raw?.game;
-  if (league === "kor.1" && (Number(game?.competitionId) !== 618 || Number(game?.sportId) !== 1))
-    throw new Error("Partida não pertence à K League 1.");
+  if (DATED_365_LEAGUES.has(league) && (Number(game?.competitionId) !== SOCCER_365_COMPETITIONS[league] || Number(game?.sportId) !== 1))
+    throw new Error("Partida não pertence à competição selecionada.");
   const home = game?.homeCompetitor || game?.home;
   const away = game?.awayCompetitor || game?.away;
   const match = normalize365Game(game, league, leagueName);
