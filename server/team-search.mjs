@@ -74,6 +74,8 @@ export function normalizeTeamSearch(raw, { sport, league, query }) {
 }
 export async function fetchTeamCatalog(sport, league) {
   if (!leagueFor(sport, league)) throw new Error("Liga inválida.");
+  if (sport === "soccer" && league === "kor.1")
+    throw new Error("A ESPN não disponibiliza o catálogo desta competição.");
   const r = await fetch(
     `${BASE}/${sport}/${league}/teams?limit=1000&lang=pt&region=br`,
     {

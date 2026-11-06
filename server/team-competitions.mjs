@@ -349,6 +349,7 @@ export async function fetchTeamCompetitions(
   if (!team || !validProfileId(team.id) || !leagueFor(team.sport, team.league))
     throw new Error("Time ou liga inválida.");
   const profileId = String(team.id);
+  if(team.league === 'kor.1') return {teamId:profileId,competitions:[],partial:true,fetchedAt:new Date().toISOString(),source:'365Scores',warnings:['Histórico de competições do clube ainda não integrado. Consulte a classificação da K League 1.']};
   team = { ...team, id: providerTeamId(team.id) };
   const scheduleLeague = team.sport === "soccer" ? "all" : team.league;
   const scheduleUrl = `${BASE}/apis/site/v2/sports/${team.sport}/${scheduleLeague}/teams/${team.id}/schedule?lang=pt&region=br`;

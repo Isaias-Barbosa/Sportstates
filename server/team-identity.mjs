@@ -1,21 +1,27 @@
 // ESPN IDs are scoped to a sport/league, while the existing database uses a
 // single primary key. Keep soccer URLs intact and namespace IDs for the other supported sports.
 export const validProfileId = (id) =>
-  /^(?:\d{1,12}|cbf-\d{1,12}|fef-[a-z0-9-]{1,120}|(?:basketball-(?:nba|wnba|nbb)|football-nfl|baseball-mlb|hockey-nhl|volleyball-superliga-men)-\d{1,12})$/.test(
+  /^(?:\d{1,12}|365-kor-\d{1,12}|cbf-\d{1,12}|fef-[a-z0-9-]{1,120}|(?:basketball-(?:nba|wnba|nbb)|football-nfl|baseball-mlb|hockey-nhl|volleyball-superliga-men)-\d{1,12})$/.test(
     String(id || ""),
   );
 export function providerTeamId(id) {
   return String(id || "").replace(
-    /^(?:basketball-(?:nba|wnba|nbb)|football-nfl|baseball-mlb|hockey-nhl|volleyball-superliga-men)-/,
+    /^(?:365-kor|basketball-(?:nba|wnba|nbb)|football-nfl|baseball-mlb|hockey-nhl|volleyball-superliga-men)-/,
     "",
   );
 }
 export function teamProfileId(id, sport, league) {
+  if (String(id).startsWith('365-kor-') && (sport !== 'soccer' || league !== 'kor.1'))
+    throw new Error('O ID pertence a outra competição ou fonte.');
   if (sport === "soccer" && ["bra.3", "bra.4"].includes(league) && /^cbf-\d{1,12}$/.test(id))
     return id;
   const raw = providerTeamId(id);
   if (!/^\d{1,12}$/.test(raw))
     throw new Error("Confira os campos: ID do time inválido.");
+  if (sport === 'soccer' && league === 'kor.1') {
+    if(!/^(?:365-kor-)?\d{1,12}$/.test(String(id)))throw new Error('O ID pertence a outra fonte ou esporte.');
+    return `365-kor-${raw}`;
+  }
   const scoped =
     (sport === "basketball" && ["nba", "wnba", "nbb"].includes(league)) ||
     (sport === "football" && league === "nfl") ||

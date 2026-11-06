@@ -1,4 +1,5 @@
 import { saudiProfileReferences } from "./saudi-profiles.mjs";
+import {asianProfiles, asianClub, asianProfileReferences, koreanTeamDetails} from './asian-profiles.mjs';
 import { cbfLowerDivisionClub, cbfLowerDivisionClubs, cbfLowerDivisionTeamDetails } from "./cbf-lower-divisions.mjs";
 import { volleyTeamDetails } from "./volleyball.mjs";
 import { volleyballProfileReferences } from "./volleyball-profiles.mjs";
@@ -49,10 +50,10 @@ export function validateHonours(honours) {
   return honours.map((h) => h.trim());
 }
 export async function listTeams() {
+  if (!process.env.DATABASE_URL) return asianProfiles.clubs;
   const sql = getSql();
   const rows = await sql`SELECT id, name, logo, description, city, stadium, stadium_image, website, sport, league, colors, honours FROM sport_teams WHERE id <> 'basketball-nbb-129095' ORDER BY name`;
-  if (process.env.VERCEL_ENV !== "preview") return rows;
-  return [...new Map([...cbfLowerDivisionClubs(), ...rows].map(team => [team.id, team])).values()]
+  return [...new Map([...asianProfiles.clubs, ...(process.env.VERCEL_ENV === 'preview' ? cbfLowerDivisionClubs() : []), ...rows].map(team => [team.id, team])).values()]
     .sort((a, b) => a.name.localeCompare(b.name, "pt-BR"));
 }
 export async function deleteTeam(id) {
@@ -65,10 +66,11 @@ export async function deleteTeam(id) {
 }
 export async function getTeam(id) {
   if (!validId(id)) return null;
+  if (!process.env.DATABASE_URL && asianClub(id)) return asianClub(id);
   const sql = getSql();
   const rows =
     await sql`SELECT id, name, logo, description, city, stadium, stadium_image, website, sport, league, colors, honours FROM sport_teams WHERE id=${id}`;
-  return rows[0] || null;
+  return rows[0] || asianClub(id);
 }
 export async function saveTeam(p) {
   if (["tennis", "table-tennis"].includes(p.sport))
@@ -154,6 +156,7 @@ export function normalizeTeamSchedule(
 export async function teamDetails(id) {
   const team = await getTeam(id) ?? cbfLowerDivisionClub(id);
   if (!team) return null;
+  if (team.league === 'kor.1') return koreanTeamDetails(team);
   const lowerDivision = cbfLowerDivisionTeamDetails(id, team);
   if (lowerDivision) return lowerDivision;
   if (team.id.startsWith("fef-"))
@@ -336,6 +339,7 @@ export async function teamDetails(id) {
                     ...americasClubProfileReferences(team.id, team.league),
                     ...mlsProfileReferences(team.id, team.league),
                     ...saudiProfileReferences(team.id, team.league),
+                    ...asianProfileReferences(team.id),
                   ],
     athletes,
     leaders,

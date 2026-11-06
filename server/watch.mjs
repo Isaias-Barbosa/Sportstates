@@ -3,6 +3,7 @@
  * Never infer Brazilian rights from the ESPN feed's US broadcast strings.
  */
 export const WATCH_REVIEWED_AT = "2026-11-01";
+import {broadcastConsultations} from './broadcast-consultations.mjs';
 const disney = {
   id: "disney",
   name: "Disney+ · ESPN",
@@ -285,6 +286,14 @@ for (const league of ['eng.fa','eng.league_cup'])
  WATCH_DIRECTORY['soccer/'+league] = [{...disney,sourceUrl:'https://brazil.espnpressroom.com/press-releases/2026/01/final-da-supercopa-da-espanha-e-wild-card-da-nfl-marcam-a-semana-da-espn-e-do-disney/'}];
 const goat = {id:'goat',name:'Canal GOAT · YouTube',badge:'GOAT',url:'https://www.youtube.com/@canalgoatbr/streams',access:'free',kind:'platform',sourceUrl:'https://www.spl.com.sa/en/news/where-to-watch',note:'Parceiro da Liga Saudita no Brasil. Confira o jogo na agenda oficial do GOAT; nem todas as partidas estão confirmadas.'};
 WATCH_DIRECTORY['soccer/ksa.1'] = [goat,guide('goatguide','Programação oficial GOAT','https://canalgoat.com.br/transmissoes/')];
+const xsportsGuide = { ...guide('xsports', 'Xsports · programação', 'https://www.xsports.com.br/', 'Confira o confronto e a data na programação oficial. Há jogos selecionados e reprises; o guia não confirma este jogo.'), badge: 'X', access: 'free' };
+const japanGoat = {...goat,sourceUrl:'https://canalgoat.com.br/',note:'Consulte a agenda do GOAT para os jogos selecionados do futebol japonês. A presença no guia não confirma este confronto.'};
+WATCH_DIRECTORY['soccer/jpn.1'] = [japanGoat,xsportsGuide,guide('jleague-guide','J.League · onde assistir','https://www.jleague.jp/en/j1/where-to-watch/','Confira a edição, a região Brasil e a partida anunciada pelo organizador.')];
+WATCH_DIRECTORY['soccer/jpn.league_cup'] = [japanGoat,guide('goatguide','Canal GOAT · programação','https://canalgoat.com.br/programacao/','Confira a transmissão anunciada para esta edição da Levain Cup.')];
+const nbbYoutube = { ...guide('nbbyt', 'NBB CAIXA · YouTube', 'https://www.youtube.com/user/NBBoficial', 'Canal oficial indicado pela LNB. Confira a transmissão anunciada para esta partida.'), badge: 'NBB', access: 'free', sourceUrl: 'https://lnb.com.br/' };
+WATCH_DIRECTORY['basketball/nbb'] = [xsportsGuide, nbbYoutube];
+for (const league of ['ger.1', 'bra.2'])
+  WATCH_DIRECTORY['soccer/' + league] = [...(WATCH_DIRECTORY['soccer/' + league] || []), xsportsGuide];
 // Tennis TV excludes Grand Slams and other tours. A tournament must be explicit.
 export function competitionWatchLinks(match) {
  if(match.sport==='soccer'&&Object.hasOwn(UEFA_GUIDES,match.league)&&!isUefa2026(match))return [UEFA_GUIDES[match.league]];
@@ -312,6 +321,7 @@ export function competitionWatchLinks(match) {
 }
 
 const HOSTS = new Set([
+  'www.jleague.jp','www.jleague.co','www.livesoccertv.com',
   'pt.uefa.com','www.cnnbrasil.com.br','www.itatiaia.com.br','www.band.com.br',
   "www.atptour.com", "www.tennistv.com", "www.worldtabletennis.com", "canalgoat.com.br",
   "www.xsports.com.br", "www.espn.com.br", "www.espn.com", "www.youtube.com", "ge.globo.com", "globoplay.globo.com", "www.band.uol.com.br", "www.sbt.com.br", "record.r7.com", "tntsports.com.br", "qazsporttv.kz", "www.peacocktv.com", "www.cbssports.com",
@@ -338,7 +348,7 @@ export function safeWatchUrl(value) {
       !u.username &&
       !u.password &&
       !u.port &&
-      (u.hostname !== "www.youtube.com" || /^\/@(?:CazeTV|canalgoatbr|espnbrasil|tntsportsbr|wttglobal)(?:\/streams)?\/?$/i.test(u.pathname) || (u.pathname === "/watch" && /^[\w-]{11}$/.test(u.searchParams.get("v") || "") && [...u.searchParams.keys()].every(k => k === "v")))
+      (u.hostname !== "www.youtube.com" || u.pathname === '/user/NBBoficial' || /^\/@(?:CazeTV|canalgoatbr|espnbrasil|tntsportsbr|wttglobal)(?:\/streams)?\/?$/i.test(u.pathname) || (u.pathname === "/watch" && /^[\w-]{11}$/.test(u.searchParams.get("v") || "") && [...u.searchParams.keys()].every(k => k === "v")))
     );
   } catch {
     return false;
@@ -363,6 +373,8 @@ export const BRAZIL_CHANNEL_GUIDES = [
   { id: 'tnt', name: 'TNT Sports', url: 'https://tntsports.com.br/', badge: 'TNT' },
 ].map(l => ({ access: 'subscription', ...l, country: 'BR', kind: 'guide', note: 'Consulte a programação oficial. A presença neste guia não confirma a transmissão deste jogo.', sourceUrl: l.url }));
 const CHANNELS = [
+  { pattern: /^(?:Youtube\s+NBB|NBB\s*(?:CAIXA)?\s*[·-]?\s*YouTube)$/i, ...nbbYoutube, note: 'Canal indicado pela fonte desta partida no Brasil. Confira o jogo no canal oficial do NBB.' },
+  { pattern: /^(?:Youtube\s+)?X\s*Sports$/i, ...xsportsGuide, name: 'Xsports', note: 'Transmissão indicada pela fonte desta partida no Brasil. Confira o horário na programação oficial da Xsports.' },
   {pattern:/^CNN(?:\s*(?:Brasil|Esportes))?$/i,...BRAZIL_CHANNEL_GUIDES.find(link=>link.id==='cnnesportes'),name:'CNN Esportes'},
   {pattern:/^(?:R[aá]dio\s+)?Itatiaia(?:\s+Esportes?)?$/i,...BRAZIL_CHANNEL_GUIDES.find(link=>link.id==='itatiaia'),name:'Itatiaia'},
   {pattern:/^Band\s*Sports$/i,...bandSportsGuide},
@@ -412,7 +424,7 @@ export function getWatchOptions(match, competition = {}) {
   if (match.state === "finished") return null;
   const channels = matchChannels(competition);
   const international = internationalChannels(competition);
-  const common = { international, brazilStatus: channels.length ? 'listed' : 'unknown', brazilGuides: BRAZIL_CHANNEL_GUIDES };
+  const common = { international, brazilStatus: channels.length ? 'listed' : 'unknown', brazilGuides: BRAZIL_CHANNEL_GUIDES, consultationLinks: broadcastConsultations(match) };
   const matchBroadcasts =
     MATCH_BROADCASTS[`${match.sport}/${match.league}/${match.id}`] || [];
   if (matchBroadcasts.length)

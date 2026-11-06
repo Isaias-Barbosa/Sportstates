@@ -204,10 +204,14 @@ test("daily soccer scoreboard includes Brazilian games from the 365Scores feed",
   const original = globalThis.fetch;
   const today = dayInBrazil(new Date());
   let dailyRequests = 0;
+  let koreanRequests = 0;
+  let levainRequests = 0;
   globalThis.fetch = async (input) => {
     const url = new URL(input);
     if (url.hostname === "webws.365scores.com") {
-      dailyRequests++;
+      if (url.searchParams.get("competitions") === "618") koreanRequests++;
+      else if (url.searchParams.get("competitions") === "619") levainRequests++;
+      else dailyRequests++;
       return {
         ok: true,
         json: async () => ({
@@ -233,6 +237,8 @@ test("daily soccer scoreboard includes Brazilian games from the 365Scores feed",
       "365Scores",
     );
     assert.equal(dailyRequests, 1);
+    assert.equal(koreanRequests, 1);
+    assert.equal(levainRequests, 1);
   } finally {
     globalThis.fetch = original;
   }

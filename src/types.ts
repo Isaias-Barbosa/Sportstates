@@ -258,6 +258,7 @@ export type InternationalBroadcast = {
   url: string | null;
 };
 export type WatchOptions = {
+  consultationLinks?: {id:string;name:string;url:string;note:string}[];
   international?: InternationalBroadcast[];
   brazilStatus?: "listed" | "unknown" | "unavailable";
   brazilGuides?: WatchLink[];
@@ -434,6 +435,7 @@ export type TeamCompetitionsData = {
   source: string;
 };
 export type ClubDetails = {
+  warnings?: string[];
   stadiumImageCredit?: {
     page: string;
     author: string;

@@ -118,6 +118,17 @@ export default function WhereToWatch({
             ))}
           </div>
         )}
+        {!compact && !!watch?.consultationLinks?.length && (
+          <details className="watch-sources">
+            <summary>Consultar outra fonte de programação</summary>
+            {watch.consultationLinks.map(link => (
+              <p key={link.id}>
+                <a href={link.url} target="_blank" rel="noopener noreferrer">{link.name} ↗</a>
+                <br />{link.note}
+              </p>
+            ))}
+          </details>
+        )}
         {!compact && !!watch?.brazilGuides?.length && (
           <details className="brazil-channel-directory">
             <summary>Consultar outros canais brasileiros e YouTube</summary>
