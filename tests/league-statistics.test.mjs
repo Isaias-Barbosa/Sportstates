@@ -70,3 +70,23 @@ test("rankings only query verified league/metric pairs and share provider result
     provider + "/athletes/257754",
   ]);
 });
+
+test('Russian standings expose goals, assists and disciplinary rankings for 2026/27', async t => {
+  const {leagueStatisticsConfig} = await import('../server/league-statistics.mjs');
+  const config = leagueStatisticsConfig('soccer','rus.1');
+  assert.equal(config.season,2026);
+  assert.equal(config.phase,1);
+  assert.deepEqual(config.metrics.map(m=>m.id),['goals','assists','yellowCards','redCards']);
+  const base='https://sports.core.api.espn.com/v2/sports/soccer/leagues/rus.1/seasons/2026';
+  t.mock.method(globalThis,'fetch',async input=>{
+    const url=String(input);
+    if(url===base+'/types/1/leaders') return Response.json({categories:config.metrics.map(m=>({name:m.id,leaders:[{value:3,athlete:{$ref:base+'/athletes/12345'}}]}))});
+    if(url===base+'/athletes/12345')return Response.json({id:'12345',displayName:'Jogador da liga russa'});
+    assert.fail('Unexpected provider request: '+url);
+  });
+  for(const metric of config.metrics){
+    const [status,body]=await route(new URL(root+'?sport=soccer&league=rus.1&metric='+metric.id));
+    assert.equal(status,200);
+    assert.equal(body.leaders[0].value,3);
+  }
+});

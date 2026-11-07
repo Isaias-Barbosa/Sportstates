@@ -65,6 +65,7 @@ const soccerTypeOne = new Set([
   "ger.dfb_pokal",
   "fra.1",
   "por.1",
+  "rus.1",
   "usa.1",
   "usa.open",
   "concacaf.leagues.cup",
