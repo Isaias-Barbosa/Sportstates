@@ -321,7 +321,6 @@ export const SOCCER_TOURNAMENT_FORMATS = {
 };
 
 export const SOCCER_DOMESTIC_TOURNAMENTS = Object.freeze([
-  "rus.cup",
   "bra.copa_do_nordeste",
   "bra.copa_verde",
   "bra.copa_paulista",

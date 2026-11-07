@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {SPORTS, SOCCER_REGIONS, SOCCER_TEAM_LEAGUES} from '../server/catalog.mjs';
+import {SPORTS, SOCCER_REGIONS, SOCCER_TEAM_LEAGUES, SOCCER_DOMESTIC_TOURNAMENTS} from '../server/catalog.mjs';
 import {KNOCKOUT_LEAGUES} from '../server/tournaments.mjs';
 import {fetch365CompetitionGames, competitionGamesUrl} from '../server/365scores.mjs';
 import {getWatchOptions, matchChannels} from '../server/watch.mjs';
@@ -10,6 +10,7 @@ test('Russia exposes league and cup, with cup knockout support',()=>{
  assert.deepEqual(SOCCER_REGIONS.find(r=>r.id==='russia').competitions,['rus.1','rus.cup']);
  assert.ok(SOCCER_TEAM_LEAGUES.has('rus.1'));
  assert.ok(KNOCKOUT_LEAGUES.has('rus.cup'));
+ assert.ok(!SOCCER_DOMESTIC_TOURNAMENTS.includes('rus.cup'), 'Cup must stay visible even when the current month has no completed fixtures');
  assert.ok(!KNOCKOUT_LEAGUES.has('rus.1'));
 });
 test('Russian Cup uses dated provider 91 and rejects unrelated global games',async()=>{
