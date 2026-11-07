@@ -5,6 +5,7 @@ import {
 } from "./ecuador-cups.mjs";
 import {
   SOCCER_365_COMPETITIONS,
+  DATED_365_LEAGUES,
   fetch365CompetitionGames,
   normalize365Game,
 } from "./365scores.mjs";
@@ -17,7 +18,7 @@ export async function startedDomesticTournaments(year, now, loadJson) {
         const started = ECUADOR_CUPS[league]
           ? await ecuadorCupHasStarted(league, loadJson, now)
           : SOCCER_365_COMPETITIONS[league]
-            ? await fetch365CompetitionGames(league, loadJson).then(
+            ? await fetch365CompetitionGames(league, loadJson, DATED_365_LEAGUES.has(league) ? `${year}-${String(now.getUTCMonth() + 1).padStart(2, "0")}` : undefined).then(
                 ({ games }) => {
                   const name = leagueFor("soccer", league)?.name || league;
                   return games.some((game) => {

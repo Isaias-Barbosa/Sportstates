@@ -1,6 +1,7 @@
 import { BRAZIL_STATE_LEAGUES } from "./catalog.mjs";
 // Only configured football cups with knockout stages; never infer cup rules from IDs.
 export const KNOCKOUT_LEAGUES = new Set([
+  "rus.cup",
   "jpn.league_cup",
   ...BRAZIL_STATE_LEAGUES,
   "bra.copa_do_brazil",
