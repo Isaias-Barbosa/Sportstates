@@ -1,3 +1,4 @@
+import {russianProfiles, russianClub} from './russian-profiles.mjs';
 import { saudiProfileReferences } from "./saudi-profiles.mjs";
 import {asianProfiles, asianClub, asianProfileReferences, koreanTeamDetails} from './asian-profiles.mjs';
 import { cbfLowerDivisionClub, cbfLowerDivisionClubs, cbfLowerDivisionTeamDetails } from "./cbf-lower-divisions.mjs";
@@ -50,10 +51,10 @@ export function validateHonours(honours) {
   return honours.map((h) => h.trim());
 }
 export async function listTeams() {
-  if (!process.env.DATABASE_URL) return asianProfiles.clubs;
+  if (!process.env.DATABASE_URL) return [...asianProfiles.clubs, ...russianProfiles.clubs];
   const sql = getSql();
   const rows = await sql`SELECT id, name, logo, description, city, stadium, stadium_image, website, sport, league, colors, honours FROM sport_teams WHERE id <> 'basketball-nbb-129095' ORDER BY name`;
-  return [...new Map([...asianProfiles.clubs, ...(process.env.VERCEL_ENV === 'preview' ? cbfLowerDivisionClubs() : []), ...rows].map(team => [team.id, team])).values()]
+  return [...new Map([...asianProfiles.clubs, ...russianProfiles.clubs, ...(process.env.VERCEL_ENV === 'preview' ? cbfLowerDivisionClubs() : []), ...rows].map(team => [team.id, team])).values()]
     .sort((a, b) => a.name.localeCompare(b.name, "pt-BR"));
 }
 export async function deleteTeam(id) {
@@ -66,11 +67,11 @@ export async function deleteTeam(id) {
 }
 export async function getTeam(id) {
   if (!validId(id)) return null;
-  if (!process.env.DATABASE_URL && asianClub(id)) return asianClub(id);
+  if (!process.env.DATABASE_URL && (russianClub(id) || asianClub(id))) return russianClub(id) || asianClub(id);
   const sql = getSql();
   const rows =
     await sql`SELECT id, name, logo, description, city, stadium, stadium_image, website, sport, league, colors, honours FROM sport_teams WHERE id=${id}`;
-  return rows[0] || asianClub(id);
+  return rows[0] || russianClub(id) || asianClub(id);
 }
 export async function saveTeam(p) {
   if (["tennis", "table-tennis"].includes(p.sport))

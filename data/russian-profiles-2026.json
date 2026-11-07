@@ -1,0 +1,282 @@
+{
+  "revision": "russian-premier-liga-2026-27-v1",
+  "season": "2026/27",
+  "reviewedAt": "2026-11-07",
+  "sources": [
+    "https://site.api.espn.com/apis/site/v2/sports/soccer/rus.1/teams?limit=100"
+  ],
+  "clubs": [
+    {
+      "id": "2991",
+      "name": "Akhmat Grozny",
+      "sport": "soccer",
+      "league": "rus.1",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/2991.png",
+      "colors": [
+        "#499e55",
+        "#000000"
+      ],
+      "description": "Akhmat Grozny é um clube participante da Premier Liga Russa 2026/27.",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "honours": []
+    },
+    {
+      "id": "22271",
+      "name": "Akron Tolyatti",
+      "sport": "soccer",
+      "league": "rus.1",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/22271.png",
+      "colors": [
+        "#000000",
+        "#C60000"
+      ],
+      "description": "Akron Tolyatti é um clube participante da Premier Liga Russa 2026/27.",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "honours": []
+    },
+    {
+      "id": "1963",
+      "name": "CSKA Moscow",
+      "sport": "soccer",
+      "league": "rus.1",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/1963.png",
+      "colors": [
+        "#811438",
+        "#000000"
+      ],
+      "description": "CSKA Moscow é um clube participante da Premier Liga Russa 2026/27.",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "honours": []
+    },
+    {
+      "id": "596",
+      "name": "Dinamo Moscow",
+      "sport": "soccer",
+      "league": "rus.1",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/596.png",
+      "colors": [
+        "#004bdb",
+        "#eaeaea"
+      ],
+      "description": "Dinamo Moscow é um clube participante da Premier Liga Russa 2026/27.",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "honours": []
+    },
+    {
+      "id": "22300",
+      "name": "Dynamo Makhachkala",
+      "sport": "soccer",
+      "league": "rus.1",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/22300.png",
+      "colors": [
+        "#000000",
+        "#C60000"
+      ],
+      "description": "Dynamo Makhachkala é um clube participante da Premier Liga Russa 2026/27.",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "honours": []
+    },
+    {
+      "id": "21949",
+      "name": "FC Baltika Kaliningrad",
+      "sport": "soccer",
+      "league": "rus.1",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/21949.png",
+      "colors": [
+        "#000000",
+        "#C60000"
+      ],
+      "description": "FC Baltika Kaliningrad é um clube participante da Premier Liga Russa 2026/27.",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "honours": []
+    },
+    {
+      "id": "21539",
+      "name": "Fakel Voronezh",
+      "sport": "soccer",
+      "league": "rus.1",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/21539.png",
+      "colors": [
+        "#214ed3",
+        "#FFFFFF"
+      ],
+      "description": "Fakel Voronezh é um clube participante da Premier Liga Russa 2026/27.",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "honours": []
+    },
+    {
+      "id": "18285",
+      "name": "Gazovik Orenburg",
+      "sport": "soccer",
+      "league": "rus.1",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/18285.png",
+      "colors": [
+        "#000000",
+        "#C60000"
+      ],
+      "description": "Gazovik Orenburg é um clube participante da Premier Liga Russa 2026/27.",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "honours": []
+    },
+    {
+      "id": "11336",
+      "name": "Krasnodar",
+      "sport": "soccer",
+      "league": "rus.1",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/11336.png",
+      "colors": [
+        "#03501b",
+        "#eaeaea"
+      ],
+      "description": "Krasnodar é um clube participante da Premier Liga Russa 2026/27.",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "honours": []
+    },
+    {
+      "id": "3850",
+      "name": "Krylia Sovetov",
+      "sport": "soccer",
+      "league": "rus.1",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/3850.png",
+      "colors": [
+        "#6c7ad3",
+        "#a6110a"
+      ],
+      "description": "Krylia Sovetov é um clube participante da Premier Liga Russa 2026/27.",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "honours": []
+    },
+    {
+      "id": "442",
+      "name": "Lokomotiv Moscow",
+      "sport": "soccer",
+      "league": "rus.1",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/442.png",
+      "colors": [
+        "#03501b",
+        "#ffffff"
+      ],
+      "description": "Lokomotiv Moscow é um clube participante da Premier Liga Russa 2026/27.",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "honours": []
+    },
+    {
+      "id": "21927",
+      "name": "Rodina Moscow",
+      "sport": "soccer",
+      "league": "rus.1",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/21927.png",
+      "colors": [
+        "#000000",
+        "#C60000"
+      ],
+      "description": "Rodina Moscow é um clube participante da Premier Liga Russa 2026/27.",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "honours": []
+    },
+    {
+      "id": "3852",
+      "name": "Rostov",
+      "sport": "soccer",
+      "league": "rus.1",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/3852.png",
+      "colors": [
+        "#000054",
+        "#ffff00"
+      ],
+      "description": "Rostov é um clube participante da Premier Liga Russa 2026/27.",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "honours": []
+    },
+    {
+      "id": "3851",
+      "name": "Rubin Kazan",
+      "sport": "soccer",
+      "league": "rus.1",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/3851.png",
+      "colors": [
+        "#8E003B",
+        "#378464"
+      ],
+      "description": "Rubin Kazan é um clube participante da Premier Liga Russa 2026/27.",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "honours": []
+    },
+    {
+      "id": "1941",
+      "name": "Spartak Moscow",
+      "sport": "soccer",
+      "league": "rus.1",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/1941.png",
+      "colors": [
+        "#DB170C",
+        "#ffffff"
+      ],
+      "description": "Spartak Moscow é um clube participante da Premier Liga Russa 2026/27.",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "honours": []
+    },
+    {
+      "id": "2533",
+      "name": "Zenit St Petersburg",
+      "sport": "soccer",
+      "league": "rus.1",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/2533.png",
+      "colors": [
+        "#0098dc",
+        "#FFFFFF"
+      ],
+      "description": "Zenit St Petersburg é um clube participante da Premier Liga Russa 2026/27.",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "honours": []
+    }
+  ]
+}
