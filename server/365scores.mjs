@@ -7,7 +7,7 @@ function soccerTeamId(league, id) {
   if(league==='jpn.league_cup')return asianManifest.clubs.find(c=>c.league==='jpn.1'&&c.alternateProviderIds?.['365scores']===String(id))?.id || `365-jpn-${id}`;
   return String(id);
 }
-export const DATED_365_LEAGUES = new Set(['kor.1', 'jpn.league_cup']);
+export const DATED_365_LEAGUES = new Set(['kor.1', 'jpn.league_cup', 'rus.cup']);
 
 const API = "https://webws.365scores.com/web";
 const BASE_PARAMS = {
@@ -18,6 +18,7 @@ const BASE_PARAMS = {
 };
 
 export const SOCCER_365_COMPETITIONS = Object.freeze({
+  "rus.cup": 91,
   "kor.1": 618,
   "jpn.league_cup": 619,
   "bra.3": 5518,
@@ -230,7 +231,7 @@ export async function fetch365CompetitionGames(league, loadJson, date) {
     for (let day = 1; day <= last; day += 7) {
       const iso = n => `${date}-${String(n).padStart(2, "0")}`;
       const raw = await loadJson(competitionGamesUrl(league, iso(day), iso(Math.min(day + 6, last))));
-      if (!Array.isArray(raw?.games)) throw new Error("Calendário coreano inválido.");
+      if (!Array.isArray(raw?.games)) throw new Error("Calendário da competição inválido.");
       for (const game of raw.games) if (Number(game.competitionId) === SOCCER_365_COMPETITIONS[league] && String(game.startTime).startsWith(date)) games.set(String(game.id), game);
     }
     return { games: [...games.values()], partial: true };

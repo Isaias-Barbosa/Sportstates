@@ -295,6 +295,17 @@ WATCH_DIRECTORY['basketball/nbb'] = [xsportsGuide, nbbYoutube];
 for (const league of ['ger.1', 'bra.2'])
   WATCH_DIRECTORY['soccer/' + league] = [...(WATCH_DIRECTORY['soccer/' + league] || []), xsportsGuide];
 // Tennis TV excludes Grand Slams and other tours. A tournament must be explicit.
+// Competition guides are not evidence that an individual fixture is broadcast.
+WATCH_DIRECTORY['soccer/rus.1'] = [
+  {...guide('canal-gol-brasil', 'Canal GOl Brasil · YouTube', 'https://www.youtube.com/@canalgolbrasil/streams', 'Confira o confronto na agenda do Canal GOl Brasil. Jogos selecionados; este guia não confirma a transmissão da partida.'), badge: 'GOL', access: 'free', sourceUrl: 'https://www.canalgolbr.com.br/transmissoes'},
+  {...bandSportsGuide, note: 'Campeonato Russo: consulte o confronto na grade do BandSports. Este guia não confirma a transmissão desta partida.'},
+  guide('rpl-guide', 'Premier Liga · programação oficial', 'https://premierliga.ru/broadcasts/', 'Confira a temporada, o território Brasil e a programação da partida.'),
+];
+WATCH_DIRECTORY['soccer/rus.cup'] = [
+  guide('rfs-cup-guide', 'Copa da Rússia · organizador', 'https://www.rfs.ru/cup/', 'Consulte a edição e a programação oficial. Os direitos da Premier Liga não confirmam os canais da Copa da Rússia.'),
+  {...guide('uol-russian-cup', 'UOL Esporte · programação', 'https://www.uol.com.br/esporte/', 'A federação russa anunciou acordo da Copa da Rússia para a América do Sul. Confira temporada, disponibilidade no Brasil e anúncio deste confronto.'), sourceUrl: 'https://www.rfs.ru/cup/news/224872'},
+];
+
 export function competitionWatchLinks(match) {
  if(match.sport==='soccer'&&Object.hasOwn(UEFA_GUIDES,match.league)&&!isUefa2026(match))return [UEFA_GUIDES[match.league]];
  const links = [...(WATCH_DIRECTORY[match.sport+'/'+match.league] || [])];
@@ -321,6 +332,7 @@ export function competitionWatchLinks(match) {
 }
 
 const HOSTS = new Set([
+  'premierliga.ru', 'www.rfs.ru', 'www.uol.com.br',
   'www.jleague.jp','www.jleague.co','www.livesoccertv.com',
   'pt.uefa.com','www.cnnbrasil.com.br','www.itatiaia.com.br','www.band.com.br',
   "www.atptour.com", "www.tennistv.com", "www.worldtabletennis.com", "canalgoat.com.br",
@@ -348,7 +360,7 @@ export function safeWatchUrl(value) {
       !u.username &&
       !u.password &&
       !u.port &&
-      (u.hostname !== "www.youtube.com" || u.pathname === '/user/NBBoficial' || /^\/@(?:CazeTV|canalgoatbr|espnbrasil|tntsportsbr|wttglobal)(?:\/streams)?\/?$/i.test(u.pathname) || (u.pathname === "/watch" && /^[\w-]{11}$/.test(u.searchParams.get("v") || "") && [...u.searchParams.keys()].every(k => k === "v")))
+      (u.hostname !== "www.youtube.com" || u.pathname === '/user/NBBoficial' || /^\/@(?:CazeTV|canalgolbrasil|canalgoatbr|espnbrasil|tntsportsbr|wttglobal)(?:\/streams)?\/?$/i.test(u.pathname) || (u.pathname === "/watch" && /^[\w-]{11}$/.test(u.searchParams.get("v") || "") && [...u.searchParams.keys()].every(k => k === "v")))
     );
   } catch {
     return false;
@@ -373,6 +385,7 @@ export const BRAZIL_CHANNEL_GUIDES = [
   { id: 'tnt', name: 'TNT Sports', url: 'https://tntsports.com.br/', badge: 'TNT' },
 ].map(l => ({ access: 'subscription', ...l, country: 'BR', kind: 'guide', note: 'Consulte a programação oficial. A presença neste guia não confirma a transmissão deste jogo.', sourceUrl: l.url }));
 const CHANNELS = [
+  {pattern: /^(?:YouTube\s*[-·:]?\s*)?Canal\s*Gol(?:\s*Brasil|\s*BR)?(?:\s*[-·:]?\s*YouTube)?$/i, ...WATCH_DIRECTORY['soccer/rus.1'][0]},
   { pattern: /^(?:Youtube\s+NBB|NBB\s*(?:CAIXA)?\s*[·-]?\s*YouTube)$/i, ...nbbYoutube, note: 'Canal indicado pela fonte desta partida no Brasil. Confira o jogo no canal oficial do NBB.' },
   { pattern: /^(?:Youtube\s+)?X\s*Sports$/i, ...xsportsGuide, name: 'Xsports', note: 'Transmissão indicada pela fonte desta partida no Brasil. Confira o horário na programação oficial da Xsports.' },
   {pattern:/^CNN(?:\s*(?:Brasil|Esportes))?$/i,...BRAZIL_CHANNEL_GUIDES.find(link=>link.id==='cnnesportes'),name:'CNN Esportes'},
