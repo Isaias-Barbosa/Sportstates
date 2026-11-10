@@ -1679,3 +1679,68 @@ details.hv-league:not([open]) > summary {
   .home-viva:not(.home-favorites) .hv-energy-strip { display: none; }
   .home-viva .hv-main { padding-top: 14px; }
 }
+
+/* Home editorial: vibrant blocks, with Sportstates' blue and lime. */
+.home-viva:not(.home-favorites) {
+  --hv-coral: #a3321c;
+}
+:root[data-theme="dark"] .home-viva:not(.home-favorites) {
+  --hv-coral: #ff936e;
+}
+.home-viva:not(.home-favorites) .hv-hero:not(.hv-showcase) {
+  border-bottom: 4px solid var(--hv-lime);
+}
+.home-viva:not(.home-favorites) .hv-hero-copy > p:not(.hv-eyebrow) {
+  font-size: 15px;
+  max-width: 40ch;
+}
+.home-viva:not(.home-favorites) .hv-primary {
+  min-height: 44px;
+  border-radius: 4px;
+  font-size: 13px;
+}
+.home-viva:not(.home-favorites) .hv-main {
+  padding-top: clamp(28px, 4vw, 52px);
+}
+.home-viva:not(.home-favorites) :is(.hv-section-head, .hv-games-heading) h2 {
+  font-size: clamp(23px, 2.7vw, 36px);
+  letter-spacing: -0.04em;
+  text-wrap: balance;
+}
+.home-viva:not(.home-favorites) :is(.hv-section-head, .hv-sports-heading) .hv-eyebrow {
+  font-size: 11px;
+}
+.home-viva:not(.home-favorites) .hv-feature {
+  border-radius: 8px;
+  background: linear-gradient(125deg, var(--green-glow), transparent 65%), var(--panel);
+}
+.home-viva:not(.home-favorites) .hv-feature-score {
+  font-variant-numeric: tabular-nums;
+}
+.home-viva:not(.home-favorites) .hv-sport-filters :is(button, a) {
+  border-radius: 6px;
+  min-height: 52px;
+}
+.home-viva:not(.home-favorites) .hv-sport-filters :is(button, a) strong {
+  font-size: 12px;
+}
+.home-viva:not(.home-favorites) .hv-text-link {
+  min-height: 44px;
+  font-size: 12px;
+}
+.home-viva:not(.home-favorites) :is(a, button, input, select):focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 2px;
+}
+.home-viva:not(.home-favorites) .hv-hero :is(a, button):focus-visible {
+  outline-color: var(--hv-lime);
+}
+@media (prefers-reduced-motion: reduce) {
+  .home-viva *,
+  .home-viva *::before,
+  .home-viva *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
