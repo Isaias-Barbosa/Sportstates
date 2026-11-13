@@ -1,3 +1,4 @@
+import { getProviderSettings, runtimeProviderSettings, saveProviderSettings, validateProviderSettings } from "./provider-settings.mjs";
 import { pushConfig, pushCronAuthorized, validatePushDevice, savePushDevice, removePushDevice, testPushDevice, runPushMonitor } from "./web-push.mjs";
 import { publishAnnouncement, validateAnnouncement } from "./web-push.mjs";
 import { f1Calendar, f1Result, f1Standings } from "./f1.mjs";
@@ -392,7 +393,8 @@ export async function scoreboard(date, sport = "all") {
       let geRecovered = false;
       const hasEspnData = good.length > 0;
       if (s.id === "soccer" && league === "bra.1" &&
-          parts.some((part) => part.status === "rejected")) {
+          parts.some((part) => part.status === "rejected") &&
+          (await runtimeProviderSettings()).geFallback) {
         const year = Number(date.slice(0, 4));
         const existing = good.flatMap((result) => result.value)
           .filter((match) => dayInBrazil(match.date) === date);
@@ -902,7 +904,10 @@ export async function route(url) {
         },
       ];
     }
-    if (config.sport === "basketball" && config.league === "nbb") {
+    const nbbSources = config.sport === "basketball" && config.league === "nbb"
+      ? await runtimeProviderSettings()
+      : null;
+    if (nbbSources?.nbb365) {
       try {
         const result = await cached(
           "standings:365:nbb:v1", CACHE_TTL.standings,
@@ -916,7 +921,7 @@ export async function route(url) {
         console.warn("365Scores NBB classificação indisponível:", error.message);
       }
     }
-    if (config.sport === "basketball" && config.league === "nbb") {
+    if (nbbSources?.nbbLnb) {
       try {
         const result = await cached(
           "standings:lnb:nbb:2026-27:v3", CACHE_TTL.standings,
@@ -1113,7 +1118,10 @@ export async function route(url) {
       // 365Scores may omit archived fixtures. Fall through to ESPN for a
       // second independent source rather than returning an empty calendar.
     }
-    if (config.sport === "basketball" && config.league === "nbb") {
+    const nbbSources = config.sport === "basketball" && config.league === "nbb"
+      ? await runtimeProviderSettings()
+      : null;
+    if (nbbSources?.nbb365) {
       try {
         const result = await cached(
           `league-games:365:nbb:v1:${month}`,
@@ -1142,7 +1150,7 @@ export async function route(url) {
         console.warn("365Scores NBB jogos indisponíveis:", error.message);
       }
     }
-    if (config.sport === "basketball" && config.league === "nbb") {
+    if (nbbSources?.nbbLnb) {
       try {
         const result = await cached(
           `league-games:lnb:nbb:2026-27:v3:${month}`,
@@ -1162,7 +1170,7 @@ export async function route(url) {
     if (config.sport === "basketball" && config.league === "nbb") {
       return [200, { ...config, month, matches: [], partial: true,
         warnings: ["As fontes de partidas da NBB estão temporariamente indisponíveis."],
-        source: "365Scores · LNB · ESPN", fetchedAt: new Date().toISOString() }];
+        source: [nbbSources?.nbb365 && "365Scores", nbbSources?.nbbLnb && "LNB"].filter(Boolean).join(" · "), fetchedAt: new Date().toISOString() }];
     }
     if (["volleyball", "tennis", "table-tennis"].includes(config.sport)) {
       const r =
@@ -1754,6 +1762,50 @@ export async function handler(req, res) {
       );
     }
   }
+  if (["/api/admin/session", "/api/admin/providers"].includes(requestUrl.pathname)) {
+    res.setHeader("Cache-Control", "private, no-store");
+    res.setHeader("Vercel-CDN-Cache-Control", "no-store");
+    res.setHeader("Vary", "Authorization");
+    const session = requestUrl.pathname === "/api/admin/session";
+    if (!(await adminAuthorized(req.headers?.authorization, { allowRecovery: !session }))) {
+      res.statusCode = req.headers?.authorization ? 403 : 401;
+      return res.end(JSON.stringify({ error: "Acesso administrativo necessário." }));
+    }
+    if (req.method !== "GET" && (session || req.method !== "PUT")) {
+      res.statusCode = 405;
+      res.setHeader("Allow", session ? "GET" : "GET, PUT");
+      return res.end(JSON.stringify({ error: "Método não permitido." }));
+    }
+    if (session) return res.end(JSON.stringify({ authorized: true }));
+    let settings;
+    if (req.method === "PUT") {
+      if (!process.env.DATABASE_URL) {
+        res.statusCode = 503;
+        return res.end(JSON.stringify({ error: "Configure o Neon para salvar as opções." }));
+      }
+      try {
+        settings = validateProviderSettings(await requestJson(req));
+      } catch (error) {
+        res.statusCode = 400;
+        return res.end(JSON.stringify({ error: error.message }));
+      }
+    }
+    try {
+      if (!settings)
+        return res.end(JSON.stringify({
+          settings: await getProviderSettings({ fresh: true }),
+          writable: Boolean(process.env.DATABASE_URL),
+        }));
+      await saveProviderSettings(settings);
+      const warning = await recordAdminActivitySafely("providers",
+        `Fontes atualizadas. ge: ${settings.geFallback ? "ativo" : "inativo"}, NBB 365Scores: ${settings.nbb365 ? "ativo" : "inativo"}, NBB LNB: ${settings.nbbLnb ? "ativa" : "inativa"}.`);
+      return res.end(JSON.stringify({ settings, writable: true, warning }));
+    } catch (error) {
+      console.error("Falha ao acessar configuração das fontes:", error);
+      res.statusCode = 503;
+      return res.end(JSON.stringify({ error: "Não foi possível acessar a configuração das fontes." }));
+    }
+  }
   if (
     requestUrl.pathname === "/api/admin/overview" ||
     requestUrl.pathname === "/api/admin/broadcasts" ||
@@ -1809,15 +1861,20 @@ export async function handler(req, res) {
         );
       }
       try {
-        const [users, activity] = await Promise.all([
+        const [users, activity, teams, leagues] = await Promise.allSettled([
           listAdminUsers({ q: "", page: 1, status: "all", limit: 1 }),
           listAdminActivity(15),
+          listTeams(),
+          leagueList(),
         ]);
         res.statusCode = 200;
         return res.end(
           JSON.stringify({
-            users: users.total,
-            activity,
+            users: users.status === "fulfilled" ? users.value.total : null,
+            activity: activity.status === "fulfilled" ? activity.value : [],
+            teams: teams.status === "fulfilled" ? teams.value.length : null,
+            leagues: leagues.status === "fulfilled" ? leagues.value.length : null,
+            partial: [users, activity, teams, leagues].some((result) => result.status === "rejected"),
           }),
         );
       } catch (error) {
