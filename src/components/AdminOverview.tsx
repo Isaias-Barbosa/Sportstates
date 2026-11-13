@@ -20,7 +20,10 @@ type ActivityEntry = {
   created_at: string;
 };
 type Overview = {
-  users: number;
+  users: number | null;
+  teams: number | null;
+  leagues: number | null;
+  partial: boolean;
   activity: ActivityEntry[];
 };
 
@@ -53,11 +56,17 @@ export default function AdminOverview({
   scores,
   scoresLoading,
   scoresError,
+  refreshScores,
+  date,
+  setDate,
 }: {
   secret: string;
   scores: Scores | undefined;
   scoresLoading: boolean;
   scoresError?: string;
+  refreshScores: () => void;
+  date: string;
+  setDate: (date: string) => void;
 }) {
   const [data, setData] = useState<Overview | null>(null);
   const [error, setError] = useState("");
@@ -107,11 +116,13 @@ export default function AdminOverview({
         <button
           className="broadcast-chip"
           disabled={loading}
-          onClick={() => setReload((value) => value + 1)}
+          onClick={() => { setReload((value) => value + 1); refreshScores(); }}
         >
           <RefreshCw size={15} /> Atualizar
         </button>
       </div>
+      <label>Data dos jogos <input type="date" value={date} onChange={(event) => { if (event.target.value) setDate(event.target.value); }} /></label>
+      {data?.partial && <Notice>Alguns indicadores administrativos estão temporariamente indisponíveis.</Notice>}
       {error && <Notice error>{error}</Notice>}
       <div className="admin-overview-metrics" aria-live="polite">
         <article>
@@ -155,6 +166,10 @@ export default function AdminOverview({
             Contas cadastradas
           </span>
         </article>
+        <article><CheckCircle2 size={19} /><span><strong>{scoresLoading ? "—" : (scores?.matches.filter((match) => match.state === "finished").length ?? "—")}</strong>Encerrados</span></article>
+        <article><Users size={19} /><span><strong>{data?.teams ?? "—"}</strong>Times no catálogo</span></article>
+        <article><Activity size={19} /><span><strong>{data?.leagues ?? "—"}</strong>Ligas no catálogo</span></article>
+        <article><AlertTriangle size={19} /><span><strong>{scoresLoading ? "—" : (scores?.sources?.filter((source) => source.state !== "ok").length ?? "—")}</strong>Competições com ressalvas</span></article>
       </div>
       <div className="admin-overview-panels">
         <section

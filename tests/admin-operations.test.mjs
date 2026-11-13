@@ -266,3 +266,37 @@ test("CBF review requires confirmation and exports a normalized importer entry",
     { sha256: "a".repeat(63) },
   ]) assert.throws(() => validateCbfReview({ ...source, ...invalid }), /Confira/);
 });
+
+test("admin session and provider settings reject unauthorized requests", async () => {
+  const previous = process.env.ADMIN_ACCESS_KEY;
+  const recovery = "0123456789abcdef0123456789abcdef";
+  process.env.ADMIN_ACCESS_KEY = recovery;
+  async function call(url, authorization, method = "GET") {
+    const response = {
+      statusCode: 200,
+      headers: {},
+      setHeader(name, value) { this.headers[name] = value; },
+      end(value) { this.body = JSON.parse(value); },
+    };
+    await handler({ method, url, headers: { authorization }, body: {} }, response);
+    assert.equal(response.headers["Cache-Control"], "private, no-store");
+    return response;
+  }
+  try {
+    assert.equal((await call("/api/admin/session")).statusCode, 401);
+    assert.equal((await call("/api/admin/session", "Bearer invalid")).statusCode, 403);
+    assert.equal((await call("/api/admin/session", "Bearer " + recovery)).statusCode, 403);
+    assert.equal((await call("/api/admin/providers", "Bearer invalid", "PUT")).statusCode, 403);
+  } finally {
+    if (previous === undefined) delete process.env.ADMIN_ACCESS_KEY;
+    else process.env.ADMIN_ACCESS_KEY = previous;
+  }
+});
+
+test("provider settings reject invalid fields and preserve one NBB source", async () => {
+  const { validateProviderSettings, providerDefaults } = await import("../server/provider-settings.mjs");
+  assert.deepEqual(validateProviderSettings(providerDefaults), providerDefaults);
+  assert.throws(() => validateProviderSettings({ ...providerDefaults, nbb365: false, nbbLnb: false }));
+  assert.throws(() => validateProviderSettings({ ...providerDefaults, geFallback: "true" }));
+  assert.throws(() => validateProviderSettings({ ...providerDefaults, endpoint: "https://example.com" }));
+});

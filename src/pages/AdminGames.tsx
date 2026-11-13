@@ -4,7 +4,8 @@ import AdminUsers from "../components/AdminUsers";
 import AdminCbfReviews from "../components/AdminCbfReviews";
 import AdminTeams from "../components/AdminTeams";
 import AdminLeagues from "../components/AdminLeagues";
-import AdminNeonLogin from "../components/AdminNeonLogin";
+import AdminProviders from "../components/AdminProviders";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import AdminOverview from "../components/AdminOverview";
 import { CalendarDays, Check, Pencil, X } from "lucide-react";
 import { useApi, today, time, notifyCacheCleared } from "../hooks";
@@ -28,7 +29,9 @@ type ManualBroadcast = {
   reviewed_on: string;
 };
 
-export default function AdminGames() {
+export default function AdminGames({ secret }: { secret: string }) {
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
   const [clearingCache, setClearingCache] = useState(false);
   const [cacheMessage, setCacheMessage] = useState("");
   const [cacheError, setCacheError] = useState(false);
@@ -61,11 +64,11 @@ export default function AdminGames() {
       setClearingCache(false);
     }
   }
-  const [secret, setSecret] = useState("");
-  const [section, setSection] = useState<
+  const [activeSection, setSection] = useState<
     "overview" | "games" | "broadcasts" | "teams" | "leagues" | "users" | "cbf" | "announcements"
   >("overview");
-  const [draftSecret, setDraftSecret] = useState("");
+  const onProvidersPage = pathname.replace(/\/$/, "") === "/admin/apis";
+  const section = onProvidersPage ? "providers" : activeSection;
   const [date, setDate] = useState(today());
   const [sport, setSport] = useState("all");
   const [selected, setSelected] = useState<Match | null>(null);
@@ -91,6 +94,7 @@ export default function AdminGames() {
     data,
     error: scoreError,
     loading,
+    refresh: refreshScores,
   } = useApi<Scores>("/api/scores?date=" + encodeURIComponent(date));
   const { data: feature, refresh } = useApi<FeaturedSelection>("/api/featured?date=" + encodeURIComponent(date), 0);
   useEffect(() => {
@@ -134,22 +138,6 @@ export default function AdminGames() {
     document.addEventListener("keydown", escape);
     return () => document.removeEventListener("keydown", escape);
   }, [selected, saving]);
-  async function login(e: React.FormEvent) {
-    e.preventDefault();
-    setError("");
-    try {
-      const r = await fetch("/api/admin/featured", {
-        headers: { Authorization: `Bearer ${draftSecret}` },
-        cache: "no-store",
-      });
-      const j = await r.json();
-      if (!r.ok) throw new Error(j.error);
-      setSecret(draftSecret);
-      setDraftSecret("");
-    } catch (e) {
-      setError(e instanceof Error ? e.message : "Não foi possível acessar.");
-    }
-  }
   async function save() {
     if (!selected) return;
     setSaving(true);
@@ -275,32 +263,6 @@ export default function AdminGames() {
       setSavingBroadcast(false);
     }
   }
-  if (!secret)
-    return (
-      <section className="admin-login">
-        <div className="eyebrow">ÁREA ADMINISTRATIVA</div>
-        <h1>Entrar no painel</h1>
-        <p>Entre com a conta administradora do Neon.</p>
-        <AdminNeonLogin onLogin={setSecret} />
-        <details>
-          <summary>Usar chave administrativa</summary>
-          <form onSubmit={login}>
-            <label>
-              Chave de acesso
-              <input
-                type="password"
-                autoComplete="current-password"
-                value={draftSecret}
-                onChange={(e) => setDraftSecret(e.target.value)}
-                required
-              />
-            </label>
-            <button className="admin-primary">Acessar painel</button>
-          </form>
-          {error && <Notice error>{error}</Notice>}
-        </details>
-      </section>
-    );
   const matches = data?.matches || [];
   const available = sports.filter((s) => matches.some((m) => m.sport === s.id));
   const manualKeys = new Set(
@@ -326,10 +288,7 @@ export default function AdminGames() {
         </div>
         <button
           className="quiet-button"
-          onClick={() => {
-            setSecret("");
-            setNotice("");
-          }}
+          onClick={() => navigate("/")}
         >
           Sair do painel
         </button>
@@ -354,46 +313,52 @@ export default function AdminGames() {
       <div className="tabs detail-tabs">
         <button
           className={section === "overview" ? "active" : ""}
-          onClick={() => setSection("overview")}
+          onClick={() => { setSection("overview"); if (onProvidersPage) navigate("/admin"); }}
         >
           Visão geral
         </button>
         <button
           className={section === "games" ? "active" : ""}
-          onClick={() => setSection("games")}
+          onClick={() => { setSection("games"); if (onProvidersPage) navigate("/admin"); }}
         >
           Jogos do dia
         </button>
         <button
           className={section === "broadcasts" ? "active" : ""}
-          onClick={() => setSection("broadcasts")}
+          onClick={() => { setSection("broadcasts"); if (onProvidersPage) navigate("/admin"); }}
         >
           Transmissões
         </button>
         <button
           className={section === "teams" ? "active" : ""}
-          onClick={() => setSection("teams")}
+          onClick={() => { setSection("teams"); if (onProvidersPage) navigate("/admin"); }}
         >
           Times
         </button>
-        <button className={section === "leagues" ? "active" : ""} onClick={() => setSection("leagues")}>Ligas</button>
+        <button className={section === "leagues" ? "active" : ""} onClick={() => { setSection("leagues"); if (onProvidersPage) navigate("/admin"); }}>Ligas</button>
         <button
           className={section === "users" ? "active" : ""}
-          onClick={() => setSection("users")}
+          onClick={() => { setSection("users"); if (onProvidersPage) navigate("/admin"); }}
         >
           Usuários
         </button>
-        <button className={section === "cbf" ? "active" : ""} onClick={() => setSection("cbf")}>
+        <button className={section === "cbf" ? "active" : ""} onClick={() => { setSection("cbf"); if (onProvidersPage) navigate("/admin"); }}>
           Revisões CBF
         </button>
-        <button className={section === "announcements" ? "active" : ""} onClick={() => setSection("announcements")}>Notificações</button>
+        <Link className={section === "providers" ? "active" : ""} to="/admin/apis" aria-current={section === "providers" ? "page" : undefined}>APIs e fontes</Link>
+        <button className={section === "announcements" ? "active" : ""} onClick={() => { setSection("announcements"); if (onProvidersPage) navigate("/admin"); }}>Notificações</button>
       </div>
-      {section === "overview" ? (
+      {section === "providers" ? (
+        <AdminProviders secret={secret} scores={data} />
+      ) : section === "overview" ? (
         <AdminOverview
           secret={secret}
           scores={data}
           scoresLoading={loading}
           scoresError={scoreError}
+          refreshScores={refreshScores}
+          setDate={setDate}
+          date={date}
         />
       ) : section === "announcements" ? (
         <AdminAnnouncements secret={secret} date={date} setDate={setDate} matches={data?.date === date ? data.matches : []} loading={loading} error={scoreError} />

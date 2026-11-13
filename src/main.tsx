@@ -33,7 +33,7 @@ const DailySummaryPage = lazy(() => import("./pages/DailySummaryPage"));
 const FavoritesPage = lazy(() => import("./pages/FavoritesPage"));
 const MatchPage = lazy(() => import("./pages/MatchPage"));
 const About = lazy(() => import("./pages/About"));
-const AdminGames = lazy(() => import("./pages/AdminGames"));
+const AdminAccess = lazy(() => import("./pages/AdminAccess"));
 const StandingsPage = lazy(() => import("./pages/StandingsPage"));
 const TeamsPage = lazy(() => import("./pages/TeamsPage"));
 const TeamPage = lazy(() => import("./pages/TeamPage"));
@@ -188,10 +188,6 @@ function App() {
               </NavLink>
               <div className="nav-label">ESPORTES</div>
               <SportsNavigation />
-              <NavLink to="/admin/jogos">
-                <Settings size={18} />
-                Administração
-              </NavLink>
               <NavLink to="/sobre">
                 <Globe2 size={18} />
                 Fontes e cobertura
@@ -294,7 +290,7 @@ function App() {
                   <Route path="/times/f1/:id" element={<F1TeamPage />} />
                   <Route path="/times/:id" element={<TeamPage />} />
                   <Route path="/jogadores/:id" element={<PlayerPage />} />
-                  <Route path="/admin/jogos" element={<AdminGames />} />
+                  <Route path="/admin/*" element={<AdminAccess />} />
                   <Route path="/sobre" element={<About />} />
                   <Route
                     path="*"
