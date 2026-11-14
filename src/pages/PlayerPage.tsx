@@ -12,7 +12,7 @@ import {
   Wallet,
 } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
-import { Empty, Loading, Notice } from "../components/shared";
+import { Crest, Empty, Loading, Notice } from "../components/shared";
 import {
   marketLabel,
   playerMetrics,
@@ -26,12 +26,14 @@ type Competition = {
   name: string;
   season: number;
   seasonLabel?: string;
-  stats: PlayerTotals;
+  stats: PlayerTotals & { saves?: number };
+  team?: string;
+  source?: string;
 };
 type Player = {
   nationality?: string;
   flag?: string;
-  currentClub?: string;
+  currentClub?: { id: string; name: string; logo: string | null; url: string } | null;
   profileAsOf?: string;
   name: string;
   fullName?: string;
@@ -173,7 +175,7 @@ function CompetitionStats({ data }: { data: Player }) {
       {competition ? (
         <>
           <p className="player-competition-name">
-            {competition.name} · {competition.seasonLabel ?? competition.season}
+            {competition.team && `${competition.team} · `}{competition.name} · {competition.seasonLabel ?? competition.season}
           </p>
           <dl className="player-profile-metrics">
             {playerMetrics.map(([key, label]) => (
@@ -182,9 +184,14 @@ function CompetitionStats({ data }: { data: Player }) {
                 <dd>{competition.stats[key] ?? "—"}</dd>
               </div>
             ))}
+            {data.position === "Goleiro" && competition.stats.saves != null && (
+              <div><dt>Defesas</dt><dd>{competition.stats.saves}</dd></div>
+            )}
           </dl>
           <p className="player-card-note">
-            Totais das partidas importadas. O traço indica dado indisponível.
+            {competition.source ? (
+              <a href={competition.source} target="_blank" rel="noreferrer">Estatísticas da seleção na ESPN</a>
+            ) : "Totais das partidas importadas."} O traço indica dado indisponível.
           </p>
         </>
       ) : (
@@ -238,7 +245,13 @@ export default function PlayerPage() {
                   {data.nationality}
                 </p>
               )}
-              {data.profileAsOf && <p className="player-position">Clube informado pela ESPN: {data.currentClub || "indisponível"} · {new Date(data.profileAsOf + "T12:00:00Z").toLocaleDateString("pt-BR")}</p>}
+              {data.currentClub && (
+                <a className="player-current-club" href={data.currentClub.url} target="_blank" rel="noreferrer">
+                  <Crest key={data.currentClub.id} team={{ id: data.currentClub.id, name: data.currentClub.name, short: data.currentClub.name, logo: data.currentClub.logo, score: null, winner: false }} />
+                  <span><strong>{data.currentClub.name}</strong><small>Clube informado pela ESPN{data.profileAsOf ? ` · ${new Date(data.profileAsOf + "T12:00:00Z").toLocaleDateString("pt-BR")}` : ""}</small></span>
+                  <ExternalLink size={15} aria-hidden="true" />
+                </a>
+              )}
               {data.fullName && data.fullName !== data.name && (
                 <p className="player-position">{data.fullName}</p>
               )}
@@ -408,7 +421,7 @@ export default function PlayerPage() {
               aria-labelledby="player-awards-title"
             >
               <h2 id="player-awards-title">
-                <Medal aria-hidden="true" /> Prêmios individuais
+                <Medal aria-hidden="true" /> {id.startsWith("espn-") ? "Prêmios individuais pela seleção" : "Prêmios individuais"}
               </h2>
               {data.awards.length ? (
                 <ul className="player-profile-links">
@@ -422,7 +435,7 @@ export default function PlayerPage() {
                   ))}
                 </ul>
               ) : (
-                <p className="player-card-note">Sem prêmios cadastrados.</p>
+                <p className="player-card-note">Nenhum prêmio confirmado nas fontes consultadas.</p>
               )}
             </section>
             <section

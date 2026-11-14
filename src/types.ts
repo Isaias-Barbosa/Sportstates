@@ -401,6 +401,7 @@ export type ClubProfile = {
   honours: string[];
 };
 export type TeamCompetition = {
+  href?: string;
   id: string;
   sport: string;
   name: string;
@@ -456,6 +457,7 @@ export type ClubDetails = {
     image: string | null;
   }[];
   leaders: {
+    league?: string;
     season: number;
     goals: TeamLeader | null;
     assists: TeamLeader | null;

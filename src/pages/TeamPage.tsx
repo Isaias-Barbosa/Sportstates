@@ -68,6 +68,8 @@ export default function TeamPage() {
     catalog?.sports
       .find((s) => s.id === team.sport)
       ?.leagues.find((l) => l.id === team.league)?.name || "Liga não informada";
+  const highlightsLeague = catalog?.sports.find(s => s.id === team.sport)
+    ?.leagues.find(l => l.id === data.leaders?.league)?.name ?? leagueName;
   const safeColors = (team.colors || [])
     .filter((c) => /^#[0-9a-f]{6}$/i.test(c))
     .slice(0, 5);
@@ -262,9 +264,9 @@ export default function TeamPage() {
               <>
                 <div className="leaders-heading">
                   <div>
-                    <h2>Destaques do time</h2>
+                    <h2>{team.nationalCompetitions?.length ? "Destaques da seleção" : "Destaques do time"}</h2>
                     <p className="standings-note">
-                      {leagueName}
+                      {highlightsLeague}
                       {data.leaders?.season
                         ? ` · ${data.leaders.season}`
                         : ""}{" "}
@@ -316,7 +318,7 @@ export default function TeamPage() {
         )}
         {tab === "games" && (
           <>
-            <h2>Próximos jogos</h2>
+            <h2>{team.nationalCompetitions?.length ? "Jogos de hoje e próximos" : "Próximos jogos"}</h2>
             <p className="standings-note">
               Próximos jogos disponíveis na fonte; a cobertura pode variar.
             </p>
@@ -386,6 +388,10 @@ export default function TeamPage() {
 }
 
 const supported = new Set([
+  "soccer/fifa.world",
+  "soccer/fifa.friendly",
+  "soccer/uefa.nations",
+  "soccer/concacaf.nations.league",
   "soccer/bra.1",
   "soccer/bra.2",
   "soccer/bra.copa_do_brazil",
@@ -453,6 +459,11 @@ export function GameList({
             <span className="team-game-meta">
               {dateLabel(day)} · {time(m.date)} · {m.leagueName}
             </span>
+            {m.watch?.confirmedForMatch && m.watch.links.length > 0 && (
+              <span className="team-game-meta">
+                Onde assistir · {m.watch.links.map(link => link.name).join(" · ")}
+              </span>
+            )}
           </>
         );
         return supported.has(`${m.sport}/${m.league}`) ? (

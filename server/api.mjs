@@ -1,4 +1,4 @@
-import { isNationalCompetition, nationalEvents, nationalMonthlyGames, nationalPlayer, nationalSnapshotAt, nationalStandings } from "./national-football.mjs";
+import { isNationalCompetition, nationalEvents, nationalMatchDetail, nationalMonthlyGames, nationalPlayer, nationalSnapshotAt, nationalStandings, nationalTeamCompetitions } from "./national-football.mjs";
 import { getProviderSettings, runtimeProviderSettings, saveProviderSettings, validateProviderSettings } from "./provider-settings.mjs";
 import { pushConfig, pushCronAuthorized, validatePushDevice, savePushDevice, removePushDevice, testPushDevice, runPushMonitor } from "./web-push.mjs";
 import { publishAnnouncement, validateAnnouncement } from "./web-push.mjs";
@@ -435,6 +435,14 @@ export async function scoreboard(date, sport = "all") {
           console.warn("GE fallback indisponível:", error.message);
         }
       }
+      if (!good.length && s.id === "soccer" && isNationalCompetition(league) && date.startsWith("2026-")) {
+        const matches = nationalMonthlyGames(league, date.slice(0, 7))
+          .filter(match => dayInBrazil(match.date) === date);
+        return {
+          matches, failed: true, stale: true, sport: s.id, league, name,
+          provider: "ESPN · cadastro local", at: Date.parse(nationalSnapshotAt),
+        };
+      }
       return {
         matches: good
           .flatMap((r) =>
@@ -558,9 +566,7 @@ export async function route(url) {
     const team = await getTeam(id);
     if (!team) return [404, { error: "Time não encontrado." }];
     if (team.nationalCompetitions?.length) return [200, {
-      competitions: team.nationalCompetitions.map(id => ({
-        ...leagueFor("soccer", id), id, logo: null, kind: "cup",
-      })),
+      teamId: id, competitions: nationalTeamCompetitions(team), partial: false,
       source: "ESPN · cadastro local", fetchedAt: nationalSnapshotAt, stale: false,
     }];
     if (team.sport === "volleyball") {
@@ -1494,7 +1500,12 @@ export async function route(url) {
           config.name,
         ),
       300000,
-    );
+    ).catch(error => {
+      if (config.sport !== "soccer" || !isNationalCompetition(config.league)) throw error;
+      const detail = nationalMatchDetail(config.league, id);
+      if (!detail) throw error;
+      return { value: detail, stale: true, at: Date.parse(nationalSnapshotAt), fromSnapshot: true };
+    });
     if (url.pathname === "/api/media")
       return [
         200,
@@ -1523,7 +1534,7 @@ export async function route(url) {
           : {}),
         stale: result.stale,
         fetchedAt: new Date(result.at).toISOString(),
-        source: "ESPN · feed público não oficial",
+        source: result.fromSnapshot ? "ESPN · cadastro local" : "ESPN · feed público não oficial",
       },
     ];
   }

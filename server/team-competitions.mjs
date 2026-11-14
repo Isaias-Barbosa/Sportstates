@@ -70,6 +70,12 @@ async function loadJSON(url) {
 export function teamCompetitionPhase(event, league = event?.league?.slug) {
   const c = event?.competitions?.[0] || {};
   // Match status such as STATUS_FINAL means full time, never a tournament final.
+  if (event && league === "fifa.friendly")
+    return { name: "Amistosos internacionais", knockout: false };
+  if (event?.season?.slug === "gold-cup-play-in-prelims")
+    return { name: "Repescagem para a Copa Ouro", knockout: true };
+  if (event?.season?.slug === "3rd-place-match")
+    return { name: "Disputa de terceiro lugar", knockout: true };
   const labels = [
     event?.seasonType?.name,
     event?.seasonType?.abbreviation,
@@ -80,7 +86,7 @@ export function teamCompetitionPhase(event, league = event?.league?.slug) {
     const v = fold(raw).trim();
     if (/group|grupo/.test(v))
       return { name: "Fase de grupos", knockout: false };
-    if (/league phase|league stage|fase de liga/.test(v))
+    if (/league[- ]phase|league[- ]stage|fase de liga/.test(v))
       return { name: "Fase de liga", knockout: false };
     if (/regular season|temporada regular/.test(v))
       return { name: "Temporada regular", knockout: false };
@@ -129,6 +135,8 @@ function outcome(event, events, id, phase, league) {
   const otherPens = score(other.score?.shootoutScore ?? other.shootoutScore);
   if (ownPens !== null && otherPens !== null && ownPens !== otherPens)
     return ownPens > otherPens ? "won" : "lost";
+  if (league === "fifa.world" && typeof self.winner === "boolean")
+    return self.winner ? "won" : "lost";
   if (TITLE_DECIDERS.get(league) === "single") {
     const a = score(self.score?.value),
       b = score(other.score?.value);
