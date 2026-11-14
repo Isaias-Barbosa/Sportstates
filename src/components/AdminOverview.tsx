@@ -47,7 +47,7 @@ function sourceStatusLabel(source: DataSourceStatus) {
     case "partial":
       return "Parcial";
     case "unavailable":
-      return "Indisponível";
+      return "Falhou nesta consulta";
   }
 }
 
@@ -182,7 +182,7 @@ export default function AdminOverview({
             ) : (
               <CheckCircle2 size={18} />
             )}
-            <h3 id="source-health-title">Saúde dos placares</h3>
+            <h3 id="source-health-title">Cobertura das fontes</h3>
           </div>
           {scoresLoading ? (
             <p>Consultando fontes…</p>

@@ -869,20 +869,6 @@ main {
   text-decoration: underline;
   color: inherit;
 }
-.coverage-warning {
-  color: var(--text);
-  font-size: 11px;
-  padding: 12px;
-  background: var(--surface);
-  border-radius: 8px;
-  margin-bottom: 14px;
-}
-.coverage-warning p {
-  margin-top: 8px;
-}
-.coverage-warning summary {
-  cursor: pointer;
-}
 .empty {
   text-align: center;
   padding: 50px 25px;

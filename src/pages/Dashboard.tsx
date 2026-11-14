@@ -664,41 +664,6 @@ function ScoresDashboard({
                 indisponível.
               </Notice>
             )}
-            {coverageIssues.length > 0 && (
-              <details className="coverage-warning">
-                <summary>
-                  Cobertura das fontes · {coverageIssues.length} com aviso
-                </summary>
-                {coverageIssues.map((source) => (
-                  <p
-                    key={
-                      source.sport + "/" + (source.league ?? source.competition)
-                    }
-                  >
-                    <strong>{source.competition}</strong> · {source.provider} ·{" "}
-                    {source.state === "unavailable"
-                      ? "Fonte indisponível"
-                      : source.state === "stale"
-                        ? "Dados em cache"
-                        : "Cobertura parcial"}
-                    {source.fetchedAt
-                      ? " · " + time(source.fetchedAt) + " BRT"
-                      : ""}
-                  </p>
-                ))}
-              </details>
-            )}
-            {!coverageIssues.length && !!data?.warnings.length && (
-              <details className="coverage-warning">
-                <summary>
-                  Cobertura parcial: {data.warnings.length} competições com
-                  avisos
-                </summary>
-                {data.warnings.map((w) => (
-                  <p key={w}>{w}</p>
-                ))}
-              </details>
-            )}
             {!!pending.length && (
               <p className="scores-loading-progress" role="status">
                 Carregando esportes:{" "}
