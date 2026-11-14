@@ -1,3 +1,5 @@
+import { useApi } from "./hooks";
+import type { Appearance } from "./appearance";
 import AccountProvider, { AccountButton } from "./account/AccountProvider";
 import NotificationsProvider, {
   NotificationSettingsButton,
@@ -41,8 +43,18 @@ const PlayerPage = lazy(() => import("./pages/PlayerPage"));
 const F1TeamPage = lazy(() => import("./pages/F1Pages"));
 const NewsPage = lazy(() => import("./pages/NewsPage"));
 import "./news.css";
+import "./admin-studio.css";
 const TennisAthletesPage = lazy(() => import("./pages/TennisAthletesPage"));
 function App() {
+  const { data: appearance } = useApi<Appearance>("/api/appearance", 0);
+  useEffect(() => {
+    const root = document.documentElement;
+    for (const mode of ["light", "dark"] as const) {
+      const value = appearance?.[mode];
+      if (value && /^#[a-f0-9]{6}$/i.test(value)) root.style.setProperty("--custom-canvas-" + mode, value);
+      else root.style.removeProperty("--custom-canvas-" + mode);
+    }
+  }, [appearance]);
   const [theme, setTheme] = useState<"light" | "dark">(() => {
     try {
       return localStorage.getItem("sportstates:theme") === "light"
@@ -275,12 +287,12 @@ function App() {
             <main>
               <Suspense fallback={<Loading />}>
                 <Routes>
-                  <Route path="/" element={<Dashboard />} />
+                  <Route path="/" element={<Dashboard leagueOrder={appearance?.home} />} />
                   <Route path="/favoritos" element={<FavoritesPage />} />
                   <Route path="/conta" element={<AccountPage />} />
                   <Route path="/resumo-diario" element={<DailySummaryPage />} />
                   <Route path="/atletas" element={<TennisAthletesPage />} />
-                  <Route path="/classificacoes" element={<StandingsPage />} />
+                  <Route path="/classificacoes" element={<StandingsPage leagueOrder={appearance?.standings} />} />
                   <Route
                     path="/partida/:sport/:league/:id"
                     element={<MatchPage />}

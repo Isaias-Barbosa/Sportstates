@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type FormEvent } from "react";
 import {
   ArrowLeft,
   ArrowRight,
@@ -203,6 +203,31 @@ function CompetitionStats({ data }: { data: Player }) {
   );
 }
 
+function PlayerSearch() {
+  const [query, setQuery] = useState("");
+  const [state, setState] = useState<{ busy?: boolean; players?: { id: string; name: string; team?: string }[]; error?: string }>({});
+  async function search(event: FormEvent) {
+    event.preventDefault();
+    setState({ busy: true });
+    try {
+      const response = await fetch("/api/player-search?q=" + encodeURIComponent(query));
+      const body = await response.json();
+      if (!response.ok) throw Error(body.error);
+      setState({ players: body.players });
+    } catch (error) { setState({ error: (error as Error).message || "Busca indisponível." }); }
+  }
+  return <section className="player-search">
+    <form className="studio-inline" onSubmit={search}>
+      <input aria-label="Buscar jogador pelo nome ou código ESPN" placeholder="Nome ou código ESPN" minLength={3} maxLength={80} required value={query} onChange={e => setQuery(e.target.value)} />
+      <button disabled={state.busy}>{state.busy ? "Buscando…" : "Buscar jogador"}</button>
+    </form>
+    {state.error && <Notice error>{state.error}</Notice>}
+    {state.players && (state.players.length ? <ul className="studio-results">{state.players.map(player =>
+      <li key={player.id}><Link to={`/jogadores/espn-${player.id}`} onClick={() => setState({})}>{player.name} · {player.team || "Futebol"} · ESPN {player.id}</Link></li>)}</ul>
+    : <p>Nenhum jogador encontrado.</p>)}
+  </section>;
+}
+
 export default function PlayerPage() {
   const { id = "" } = useParams();
   const { data, loading, error, refresh } = useApi<Player>(
@@ -220,6 +245,7 @@ export default function PlayerPage() {
         <ArrowLeft size={16} aria-hidden="true" />{" "}
         {team ? `Voltar para ${team.name}` : "Todos os times"}
       </Link>
+      <PlayerSearch />
       {loading ? (
         <Loading />
       ) : !data || error ? (

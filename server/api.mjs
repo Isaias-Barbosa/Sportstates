@@ -1,3 +1,4 @@
+import { defaultAppearance, studioSetting, saveStudioSetting, validateAppearance, validateSources, readCustomSource, validatePlayerEdit, withPlayerEdit, searchEspnPlayers, espnPlayer, sourceRequest } from "./admin-studio.mjs";
 import { isNationalCompetition, nationalEvents, nationalMatchDetail, nationalMonthlyGames, nationalPlayer, nationalSnapshotAt, nationalStandings, nationalTeamCompetitions } from "./national-football.mjs";
 import { getProviderSettings, runtimeProviderSettings, saveProviderSettings, validateProviderSettings } from "./provider-settings.mjs";
 import { pushConfig, pushCronAuthorized, validatePushDevice, savePushDevice, removePushDevice, testPushDevice, runPushMonitor } from "./web-push.mjs";
@@ -538,6 +539,27 @@ export async function scoreboard(date, sport = "all") {
 // ─── Route handler ────────────────────────────────────────────────────────────
 export async function route(url) {
   const q = url.searchParams;
+  if (url.pathname === "/api/appearance")
+    return [200, await studioSetting("appearance", defaultAppearance).catch(() => defaultAppearance)];
+  if (url.pathname === "/api/player-search") {
+    if ((q.get("q") || "").trim().length < 3 || (q.get("q") || "").length > 80)
+      return [400, { error: "Informe um nome ou código de 3 a 80 caracteres." }];
+    try { return [200, { players: await searchEspnPlayers(q.get("q")) }]; }
+    catch { return [503, { error: "Busca ESPN temporariamente indisponível." }]; }
+  }
+  if (url.pathname === "/api/custom-content") {
+    const target = q.get("target");
+    const league = q.get("league");
+    if (!["home", "standings"].includes(target)) return [400, { error: "Destino inválido." }];
+    const configs = await studioSetting("sources", []).catch(() => []);
+    const selected = configs.filter(c => c.enabled && c.target === target && (target === "home" || c.league === league));
+    const results = await Promise.allSettled(selected.map(config => readCustomSource(config)));
+    return [200, { sections: selected.flatMap((config, i) => {
+      const result = results[i];
+      return result.status === "fulfilled" ? [{ id: config.id, name: config.name, ...result.value }] : [];
+    }), partial: results.some(result => result.status === "rejected"),
+    stale: results.some(result => result.status === "fulfilled" && result.value.stale) }];
+  }
   if (url.pathname === "/api/featured") {
     const date = q.get("date") || dayInBrazil(new Date());
     if (!validDate(date)) return [400, { error: "Data inválida." }];
@@ -630,7 +652,7 @@ export async function route(url) {
     const id = q.get("id");
     const isPlayer = url.pathname === "/api/player";
     if (isPlayer && /^espn-\d{1,12}$/.test(id || "")) {
-      const player = nationalPlayer(id);
+      const player = await withPlayerEdit(nationalPlayer(id), id);
       return player ? [200, player] : [404, { error: "Jogador ainda não cadastrado." }];
     }
     if (!(isPlayer ? validPublicPlayerId(id) : validPlayerId(id)))
@@ -640,7 +662,7 @@ export async function route(url) {
       return [400, { error: "Competição inválida." }];
     try {
       if (isPlayer) {
-        const player = await readBrazilPlayer(id);
+        const player = await withPlayerEdit(await readBrazilPlayer(id), id);
         return player ? [200, player] : [404, { error: "Jogador ainda não cadastrado." }];
       }
       const season = playerSeason(league);
@@ -648,7 +670,7 @@ export async function route(url) {
     } catch (error) {
       if (process.env.VERCEL_ENV === "preview" && error.code === "42P01") {
         const registered = isPlayer ? cbfRegisteredPlayer(id) : null;
-        if (registered) return [200, registered];
+        if (registered) return [200, await withPlayerEdit(registered, id)];
         const production = new URL(url.pathname, "https://sportstates.vercel.app");
         production.searchParams.set("id", id);
         if (!isPlayer) production.searchParams.set("league", league);
@@ -659,11 +681,15 @@ export async function route(url) {
           });
           if (response.ok || response.status === 404) {
             const body = await response.json();
-            return [response.status, response.ok && isPlayer ? enrichPlayerProfile(body, id) : body];
+            return [response.status, response.ok && isPlayer ? await withPlayerEdit(enrichPlayerProfile(body, id), id) : body];
           }
         } catch {
           // The preview remains unavailable if the public endpoint is offline.
         }
+      }
+      if (isPlayer) {
+        const registered = await withPlayerEdit(cbfRegisteredPlayer(id), id);
+        if (registered) return [200, registered];
       }
       return [503, { error: "Estatísticas de jogadores temporariamente indisponíveis." }];
     }
@@ -1811,6 +1837,71 @@ export async function handler(req, res) {
         }),
       );
     }
+  }
+  const studioRoutes = {
+    "/api/admin/appearance": "appearance",
+    "/api/admin/custom-sources": "sources",
+    "/api/admin/player-editor": "player",
+  };
+  const studio = Object.hasOwn(studioRoutes, requestUrl.pathname) ? studioRoutes[requestUrl.pathname] : null;
+  if (studio) {
+    res.setHeader("Cache-Control", "private, no-store");
+    res.setHeader("Vercel-CDN-Cache-Control", "no-store");
+    res.setHeader("Vary", "Authorization");
+    const reply = (status, body) => {
+      res.statusCode = status;
+      return res.end(JSON.stringify(body));
+    };
+    if (!(await adminAuthorized(req.headers?.authorization)))
+      return reply(req.headers?.authorization ? 403 : 401, { error: "Acesso administrativo necessário." });
+    const writable = Boolean(process.env.DATABASE_URL);
+    const params = requestUrl.searchParams;
+    const playerId = params.get("id");
+    if (req.method === "GET") {
+      try {
+        if (studio === "player") {
+          if (params.has("q")) return reply(200, { players: await searchEspnPlayers(params.get("q")) });
+          if (!/^(?:espn-|cbf-)?\d{1,12}$/.test(playerId || "")) return reply(400, { error: "Identificador do jogador inválido." });
+          const publicUrl = new URL("/api/player", requestUrl);
+          publicUrl.searchParams.set("id", playerId);
+          const [status, player] = await route(publicUrl);
+          if (status !== 200) return reply(status, player);
+          return reply(200, { player, writable });
+        }
+        const fallback = studio === "appearance" ? defaultAppearance : [];
+        return reply(200, { settings: await studioSetting(studio, fallback, true), writable });
+      } catch { return reply(503, { error: "Não foi possível consultar os dados." }); }
+    }
+    const testing = req.method === "POST" && studio === "sources";
+    if (!testing && req.method !== "PUT") return reply(405, { error: "Método não permitido." });
+    if (!writable && !testing) return reply(503, { error: "Configure o Neon para salvar." });
+    let key = studio, settings;
+    try {
+      const input = await requestJson(req, 40_000);
+      if (studio === "appearance") settings = validateAppearance(input);
+      if (studio === "sources") {
+        settings = validateSources(input);
+        if (testing) {
+          if (settings.length !== 1) throw Error("Selecione uma fonte para testar.");
+          return reply(200, await readCustomSource(settings[0], true));
+        }
+        settings.filter(config => config.enabled).forEach(sourceRequest);
+      }
+      if (studio === "player") {
+        settings = validatePlayerEdit(input);
+        if (settings.espnId) settings.espnProfile = await espnPlayer(settings.espnId);
+        if (input.id.startsWith("espn-") && settings.espnId !== input.id.slice(5))
+          throw Error("O código de um perfil ESPN deve corresponder ao identificador do perfil.");
+        key = "player:" + input.id;
+      }
+    } catch (error) {
+      return reply(400, { error: testing ? "Falha no teste. Confira origem autorizada, credencial, URL e caminhos JSON." : error.message });
+    }
+    try {
+      await saveStudioSetting(key, settings);
+      await recordAdminActivitySafely("configuration", studio === "player" ? "Perfil de jogador atualizado." : studio === "appearance" ? "Exibição do portal atualizada." : "Fontes personalizadas atualizadas.");
+      return reply(200, { settings, writable });
+    } catch { return reply(503, { error: "Não foi possível gravar as configurações no Neon." }); }
   }
   if (["/api/admin/session", "/api/admin/providers"].includes(requestUrl.pathname)) {
     res.setHeader("Cache-Control", "private, no-store");

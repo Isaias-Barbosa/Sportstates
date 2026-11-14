@@ -1,3 +1,4 @@
+import { AdminCustomSources } from "./AdminStudio";
 import { useEffect, useState } from "react";
 import type { Scores } from "../types";
 import { Notice } from "./shared";
@@ -198,6 +199,11 @@ export default function AdminProviders({
           )}
         </form>
       )}
+      <div className="admin-overview-panels">
+        <article className="admin-overview-panel"><h3>Esportes e contingência</h3><p>Brasileirão Série A: ESPN → ge em falha. NBB: 365Scores → LNB para calendário e classificação. Competições com dados oficiais cadastrados também usam os arquivos locais da CBF.</p></article>
+        <article className="admin-overview-panel"><h3>Cache e validação</h3><p>Placares ao vivo têm cache mais curto. Fontes complementares usam cache por endpoint e preservam a última resposta válida por até uma hora após o vencimento. O painel conta competições consultadas, e a telemetria de requisições externas fica a cargo do provedor.</p></article>
+      </div>
+      <AdminCustomSources secret={secret} />
       <h3>Fontes observadas nos placares</h3>
       {scores?.sources?.length ? (
         <ul>

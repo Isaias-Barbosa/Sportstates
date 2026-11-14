@@ -51,6 +51,9 @@ export function responseTtl(url, body, now = Date.now()) {
     return 0;
   let ttl = 30000;
   switch (url.pathname) {
+    case "/api/appearance":
+    case "/api/custom-content":
+    case "/api/player":
     case "/api/featured":
     case "/api/admin-auth-config":
       return 0;
