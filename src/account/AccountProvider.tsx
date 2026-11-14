@@ -150,7 +150,11 @@ export default function AccountProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     void refresh();
     const wake = () => {
-      if (!document.hidden) void refresh();
+      // Native controls (e.g. the color picker) and tab changes can emit focus
+      // while editing. Admin requests validate their credentials independently.
+      const path = window.location.pathname;
+      if (!document.hidden && path !== "/admin" && !path.startsWith("/admin/"))
+        void refresh();
     };
     window.addEventListener("focus", wake);
     return () => {

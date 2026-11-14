@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 import { useAccount } from "../account/AccountProvider";
 import { accountToken } from "../account/client";
-import { Loading, Notice } from "../components/shared";
+import { Notice } from "../components/shared";
 import AdminGames from "./AdminGames";
 
 export default function AdminAccess() {
@@ -44,9 +44,9 @@ export default function AdminAccess() {
     return () => controller.abort();
   }, [id, attempt]);
 
-  if (loading && !id) return <Loading />;
+  if (loading && !id) return <p role="status" className="muted">Verificando acesso ao Admin…</p>;
   if (!id) return <Navigate to="/conta" replace />;
-  if (access?.id !== id) return <Loading />;
+  if (access?.id !== id) return <p role="status" className="muted">Verificando acesso ao Admin…</p>;
   if (access.error)
     return (
       <Notice error>
@@ -62,5 +62,5 @@ export default function AdminAccess() {
       </Notice>
     );
   if (!access.token) return <Navigate to="/" replace />;
-  return <AdminGames key={id} secret={access.token} />;
+  return <AdminGames key={id} secret={access.token} accountId={id} />;
 }

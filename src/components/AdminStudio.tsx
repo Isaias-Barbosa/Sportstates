@@ -12,7 +12,7 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useApi, notifyCacheCleared } from "../hooks";
-import type { Appearance } from "../appearance";
+import { readAppearanceDraft, type Appearance } from "../appearance";
 import type { CompetitionCatalog } from "../types";
 import { Notice } from "./shared";
 
@@ -79,6 +79,7 @@ function useSettings<T>(secret: string, endpoint: string) {
       controller.signal,
     )
       .then((result) => {
+        if (controller.signal.aborted) return;
         setSettings(result.settings);
         setWritable(result.writable);
       })
@@ -101,8 +102,10 @@ function useSettings<T>(secret: string, endpoint: string) {
       setSettings(result.settings);
       notifyCacheCleared();
       setMessage("Configurações salvas.");
+      return true;
     } catch (cause) {
       setError((cause as Error).message);
+      return false;
     } finally {
       setBusy(false);
     }
@@ -191,10 +194,21 @@ function LeagueOrder({
   );
 }
 
-export function AdminAppearance({ secret }: { secret: string }) {
+export function AdminAppearance({ secret, accountId }: { secret: string; accountId: string }) {
   const state = useSettings<Appearance>(secret, "appearance");
   const options = useLeagueOptions();
-  const draft = state.settings;
+  const draftKey = "sportstates:admin:appearance:" + accountId;
+  const [localDraft, setLocalDraft] = useState(() => readAppearanceDraft(draftKey));
+  const draft = state.settings && (localDraft ?? state.settings);
+  function changeAppearance(value: Appearance | undefined) {
+    setLocalDraft(value);
+    try {
+      if (value) sessionStorage.setItem(draftKey, JSON.stringify(value));
+      else sessionStorage.removeItem(draftKey);
+    } catch {
+      // If storage is blocked, the draft is still available while mounted.
+    }
+  }
   return (
     <section className="admin-overview studio-section">
       <h2>Customizações</h2>
@@ -208,9 +222,20 @@ export function AdminAppearance({ secret }: { secret: string }) {
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            void state.save(draft);
+            if (state.busy || !state.writable) return;
+            void state.save(draft).then(saved => {
+              if (saved) changeAppearance(undefined);
+            });
           }}
         >
+          {localDraft && (
+            <div className="studio-inline studio-appearance-draft">
+              <span role="status">Alterações ainda não publicadas.</span>
+              <button type="button" disabled={state.busy} onClick={() => changeAppearance(undefined)}>
+                Descartar rascunho
+              </button>
+            </div>
+          )}
           <fieldset disabled={state.busy || !state.writable}>
             <legend>Aparência do portal</legend>
             <div className="studio-fields">
@@ -228,14 +253,14 @@ export function AdminAppearance({ secret }: { secret: string }) {
                       aria-label={label}
                       value={draft[mode] || fallback}
                       onChange={(e) =>
-                        state.setSettings({ ...draft, [mode]: e.target.value })
+                        changeAppearance({ ...draft, [mode]: e.target.value })
                       }
                     />
                     <code>{draft[mode] || "Padrão"}</code>
                     <button
                       type="button"
                       onClick={() =>
-                        state.setSettings({ ...draft, [mode]: "" })
+                        changeAppearance({ ...draft, [mode]: "" })
                       }
                     >
                       Restaurar
@@ -249,14 +274,14 @@ export function AdminAppearance({ secret }: { secret: string }) {
                 title="Ordem na home"
                 options={options}
                 order={draft.home}
-                change={(home) => state.setSettings({ ...draft, home })}
+                change={(home) => changeAppearance({ ...draft, home })}
               />
               <LeagueOrder
                 title="Ordem nas classificações"
                 options={options}
                 order={draft.standings}
                 change={(standings) =>
-                  state.setSettings({ ...draft, standings })
+                  changeAppearance({ ...draft, standings })
                 }
               />
             </div>
