@@ -1,3 +1,4 @@
+import { adminFetch } from "../account/client";
 import AdminLeagueSources from "./AdminLeagueSources";
 import { useEffect, useState } from "react";
 import { Notice } from "./shared";
@@ -18,7 +19,7 @@ export default function AdminLeagues({ secret }: { secret: string }) {
   async function load() {
     setBusy(true);
     try {
-      const response = await fetch("/api/admin/leagues", {headers:{Authorization:`Bearer ${secret}`},cache:"no-store"});
+      const response = await adminFetch("/api/admin/leagues", {headers:{Authorization:`Bearer ${secret}`},cache:"no-store"});
       const result = await response.json();
       if (!response.ok) throw new Error(result.error || "Falha ao consultar ligas.");
       setLeagues(result.leagues);
@@ -46,7 +47,7 @@ export default function AdminLeagues({ secret }: { secret: string }) {
     if (!form) return;
     setSaving(true); setMessage("");
     try {
-      const response = await fetch("/api/admin/leagues", {
+      const response = await adminFetch("/api/admin/leagues", {
         method:"PUT", headers:{"Content-Type":"application/json",Authorization:`Bearer ${secret}`},
         body:JSON.stringify(form),
       });
@@ -61,7 +62,7 @@ export default function AdminLeagues({ secret }: { secret: string }) {
     setSaving(true); setMessage("");
     try {
       const query = new URLSearchParams({sport:league.sport,id:league.id});
-      const response = await fetch(`/api/admin/leagues?${query}`, {method:"DELETE",headers:{Authorization:`Bearer ${secret}`}});
+      const response = await adminFetch(`/api/admin/leagues?${query}`, {method:"DELETE",headers:{Authorization:`Bearer ${secret}`}});
       const result = await response.json();
       if (!response.ok) throw new Error(result.error || "Erro ao excluir liga.");
       setMessage("Liga excluída."); notifyCacheCleared(); await load();

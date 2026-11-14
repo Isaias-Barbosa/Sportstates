@@ -13,14 +13,17 @@ export default function AdminAccess() {
     error?: boolean;
   }>();
   const id = user?.id;
+  const [attempt, setAttempt] = useState(0);
 
   useEffect(() => {
-    setAccess(undefined);
-    if (loading || !id) return;
+    if (!id) {
+      setAccess(undefined);
+      return;
+    }
     const controller = new AbortController();
     void (async () => {
       try {
-        const token = await accountToken();
+        const token = await accountToken(true);
         if (!token) {
           if (!controller.signal.aborted) setAccess({ id });
           return;
@@ -39,18 +42,25 @@ export default function AdminAccess() {
       }
     })();
     return () => controller.abort();
-  }, [loading, id]);
+  }, [id, attempt]);
 
-  if (loading) return <Loading />;
+  if (loading && !id) return <Loading />;
   if (!id) return <Navigate to="/conta" replace />;
   if (access?.id !== id) return <Loading />;
   if (access.error)
     return (
       <Notice error>
-        Não foi possível verificar o acesso. Recarregue a página para tentar
-        novamente.
+        Não foi possível verificar o acesso.{" "}
+        <button
+          onClick={() => {
+            setAccess(undefined);
+            setAttempt((value) => value + 1);
+          }}
+        >
+          Tentar novamente
+        </button>
       </Notice>
     );
   if (!access.token) return <Navigate to="/" replace />;
-  return <AdminGames secret={access.token} />;
+  return <AdminGames key={id} secret={access.token} />;
 }

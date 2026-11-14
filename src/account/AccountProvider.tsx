@@ -110,7 +110,7 @@ export default function AccountProvider({ children }: { children: ReactNode }) {
     setLoading(true);
     setError("");
     try {
-      const token = await accountToken();
+      const token = await accountToken(true);
       if (run !== generation.current) return false;
       if (!token) {
         identity.current = null;
@@ -124,6 +124,14 @@ export default function AccountProvider({ children }: { children: ReactNode }) {
         headers: { Authorization: "Bearer " + token },
       });
       const d = await r.json();
+      if (run !== generation.current) return false;
+      if (r.status === 401 || r.status === 403) {
+        identity.current = null;
+        setUser(null);
+        setPreferences(empty());
+        setTeams([]);
+        return false;
+      }
       if (!r.ok) throw Error(d.error || "Não foi possível carregar a conta.");
       if (run !== generation.current) return false;
       identity.current = d.user.id;
@@ -132,13 +140,8 @@ export default function AccountProvider({ children }: { children: ReactNode }) {
       setTeams(d.teams);
       return true;
     } catch (e) {
-      if (run === generation.current) {
-        identity.current = null;
-        setUser(null);
-        setPreferences(empty());
-        setTeams([]);
+      if (run === generation.current)
         setError(e instanceof Error ? e.message : "Falha ao carregar a conta.");
-      }
       return false;
     } finally {
       if (run === generation.current) setLoading(false);

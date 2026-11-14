@@ -19,3 +19,10 @@ test('signed-out and failed sessions cannot reuse a JWT', async()=>{
  assert.equal(await sessionToken({getSession:async()=>({data:null}),token:async()=>{throw Error('unexpected')}}),null);
  assert.equal(await sessionToken({getSession:async()=>({error:{message:'expired'},data:{user:{},session:{token:jwt}}})}),null);
 });
+
+test('account refresh can distinguish a temporary session error from sign-out', async () => {
+ const auth = {getSession:async()=>({error:{status:503}})};
+ await assert.rejects(sessionToken(auth, true), /consultar a sessão/);
+ auth.getSession=async()=>({error:{status:401}});
+ assert.equal(await sessionToken(auth, true),null);
+});

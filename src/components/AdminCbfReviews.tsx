@@ -1,3 +1,4 @@
+import { adminFetch } from "../account/client";
 import { useState, type FormEvent } from "react";
 import { Notice } from "./shared";
 
@@ -28,7 +29,7 @@ export default function AdminCbfReviews({ secret }: { secret: string }) {
     setMessage("");
     setReviews([]);
     try {
-      const response = await fetch(
+      const response = await adminFetch(
         save
           ? "/api/admin/cbf-reviews"
           : "/api/admin/cbf-reviews?reference=" + encodeURIComponent(reference),

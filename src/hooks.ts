@@ -10,7 +10,7 @@ export function notifyCacheCleared() {
     /* Private browsing may restrict storage. */
   }
 }
-export function useApi<T>(url: string, interval = 60000) {
+export function useApi<T>(url: string | null, interval = 60000) {
   const [state, setState] = useState<{
     data?: T;
     error?: string;
@@ -19,6 +19,11 @@ export function useApi<T>(url: string, interval = 60000) {
   const [revision, setRevision] = useState(0);
   const refresh = useCallback(() => setRevision((r) => r + 1), []);
   useEffect(() => {
+    if (!url) {
+      setState({ loading: false });
+      return;
+    }
+    const endpoint = url;
     let active = true;
     let controller: AbortController | undefined;
     let inFlight = false;
@@ -31,13 +36,13 @@ export function useApi<T>(url: string, interval = 60000) {
       inFlight = true;
       controller = new AbortController();
       try {
-        const res = await fetch(url, { signal: controller.signal, ...(url.startsWith("/api/featured?") ? { cache: "no-store" as const } : {}) });
+        const res = await fetch(endpoint, { signal: controller.signal, ...(endpoint.startsWith("/api/featured?") ? { cache: "no-store" as const } : {}) });
         const body = await res.json();
         if (!res.ok) throw new Error(body.error || "Falha na consulta.");
         if (active) {
           setState({ data: body, loading: false });
           lastLoaded = Date.now();
-          delay = pollDelay(url, body, interval);
+          delay = pollDelay(endpoint, body, interval);
         }
       } catch (e) {
         if (active && !(e instanceof DOMException && e.name === "AbortError"))

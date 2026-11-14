@@ -1,3 +1,4 @@
+import { adminFetch } from "../account/client";
 import { AdminAppearance, AdminPlayers } from "../components/AdminStudio";
 import AdminAnnouncements from "../components/AdminAnnouncements";
 import { useEffect, useRef, useState } from "react";
@@ -62,7 +63,7 @@ export default function AdminGames({ secret }: { secret: string }) {
     setCacheMessage("");
     setCacheError(false);
     try {
-      const response = await fetch("/api/admin/cache", {
+      const response = await adminFetch("/api/admin/cache", {
         method: "POST",
         headers: { Authorization: `Bearer ${secret}` },
       });
@@ -87,6 +88,7 @@ export default function AdminGames({ secret }: { secret: string }) {
   }
   const page = pathname.split("/")[2] || "";
   const section = navigation.flatMap(group => [...group.items]).find(item => item[1] === page)?.[0] || "overview";
+  const needsScores = ["overview", "providers", "games", "broadcasts", "announcements"].includes(section);
   const [date, setDate] = useState(today());
   const [sport, setSport] = useState("all");
   const [selected, setSelected] = useState<Match | null>(null);
@@ -113,15 +115,15 @@ export default function AdminGames({ secret }: { secret: string }) {
     error: scoreError,
     loading,
     refresh: refreshScores,
-  } = useApi<Scores>("/api/scores?date=" + encodeURIComponent(date));
-  const { data: feature, refresh } = useApi<FeaturedSelection>("/api/featured?date=" + encodeURIComponent(date), 0);
+  } = useApi<Scores>(needsScores ? "/api/scores?date=" + encodeURIComponent(date) : null);
+  const { data: feature, refresh } = useApi<FeaturedSelection>(section === "games" ? "/api/featured?date=" + encodeURIComponent(date) : null, 0);
   useEffect(() => {
     if (section !== "broadcasts" || !secret) return;
     const controller = new AbortController();
     setManualBroadcasts([]);
     setManualBroadcastsError("");
     const params = new URLSearchParams({ date });
-    void fetch("/api/admin/broadcasts?" + params, {
+    void adminFetch("/api/admin/broadcasts?" + params, {
       headers: { Authorization: `Bearer ${secret}` },
       cache: "no-store",
       signal: controller.signal,
@@ -164,7 +166,7 @@ export default function AdminGames({ secret }: { secret: string }) {
       const key = keyOf(selected);
       if(checked&&showcase.enabled&&!showcase.videoUrl.trim())throw new Error('Informe o link do vídeo ou desative a vitrine com vídeo.');
       if(checked&&showcase.enabled&&countShowcaseCharacters(showcase.title)>showcase.characterLimit)throw new Error(`Reduza a chamada para até ${showcase.characterLimit} caracteres ou escolha um limite maior.`);
-      const r = await fetch("/api/admin/featured", {
+      const r = await adminFetch("/api/admin/featured", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -216,7 +218,7 @@ export default function AdminGames({ secret }: { secret: string }) {
     setSavingBroadcast(true);
     setBroadcastError("");
     try {
-      const response = await fetch("/api/admin/broadcasts", {
+      const response = await adminFetch("/api/admin/broadcasts", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -254,7 +256,7 @@ export default function AdminGames({ secret }: { secret: string }) {
     setSavingBroadcast(true);
     setBroadcastError("");
     try {
-      const response = await fetch("/api/admin/broadcasts", {
+      const response = await adminFetch("/api/admin/broadcasts", {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -311,6 +313,7 @@ export default function AdminGames({ secret }: { secret: string }) {
           Sair do painel
         </button>
       </div>
+      {section === "overview" && (
       <div className="admin-toolbar">
         <div>
           <strong>Cache de dados</strong>
@@ -327,6 +330,7 @@ export default function AdminGames({ secret }: { secret: string }) {
           {clearingCache ? "Limpando…" : "Limpar cache"}
         </button>
       </div>
+      )}
       {cacheMessage && <Notice error={cacheError}>{cacheMessage}</Notice>}
       <div className="admin-workspace">
         <nav className="studio-sidebar" aria-label="Menu administrativo">

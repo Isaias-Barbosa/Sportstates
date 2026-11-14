@@ -1,3 +1,4 @@
+import { adminFetch } from "../account/client";
 import { useEffect, useRef, useState } from "react";
 import {
   Eye,
@@ -48,7 +49,7 @@ export default function AdminUsers({ secret }: { secret: string }) {
     setError("");
     setData(null);
     const params = new URLSearchParams({ q, status, page: String(page) });
-    void fetch("/api/admin/users?" + params, {
+    void adminFetch("/api/admin/users?" + params, {
       headers: { Authorization: `Bearer ${secret}` },
       cache: "no-store",
       signal: controller.signal,

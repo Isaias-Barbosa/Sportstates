@@ -1,3 +1,4 @@
+import { adminFetch } from "../account/client";
 import { useEffect, useState } from "react";
 import { ArrowDown, ArrowUp } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -34,7 +35,7 @@ export default function AdminLeagueSources({
   const key = league ? league.sport + "/" + league.id : "";
   useEffect(() => {
     const controller = new AbortController();
-    fetch("/api/admin/league-providers", {
+    adminFetch("/api/admin/league-providers", {
       signal: controller.signal,
       cache: "no-store",
       headers: { Authorization: "Bearer " + secret },
@@ -63,7 +64,7 @@ export default function AdminLeagueSources({
     setError("");
     setMessage("");
     try {
-      const response = await fetch("/api/admin/league-providers", {
+      const response = await adminFetch("/api/admin/league-providers", {
         method: test ? "POST" : "PUT",
         headers: {
           Authorization: "Bearer " + secret,
