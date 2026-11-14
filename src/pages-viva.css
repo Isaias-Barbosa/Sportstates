@@ -783,6 +783,12 @@ summary:focus-visible {
   gap: 12px;
   min-width: 0;
 }
+.league-game-broadcast {
+  grid-column: 1 / -1;
+  color: var(--muted);
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
 .league-game-status {
   display: flex;
   align-items: center;

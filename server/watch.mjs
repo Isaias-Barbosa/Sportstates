@@ -4,6 +4,7 @@
  */
 export const WATCH_REVIEWED_AT = "2026-11-01";
 import {broadcastConsultations} from './broadcast-consultations.mjs';
+import { NATIONAL_BROADCASTS, NATIONAL_BROADCASTS_REVIEWED_AT } from './national-broadcasts.mjs';
 const disney = {
   id: "disney",
   name: "Disney+ · ESPN",
@@ -360,7 +361,7 @@ export function safeWatchUrl(value) {
       !u.username &&
       !u.password &&
       !u.port &&
-      (u.hostname !== "www.youtube.com" || u.pathname === '/user/NBBoficial' || /^\/@(?:CazeTV|canalgolbrasil|canalgoatbr|espnbrasil|tntsportsbr|wttglobal)(?:\/streams)?\/?$/i.test(u.pathname) || (u.pathname === "/watch" && /^[\w-]{11}$/.test(u.searchParams.get("v") || "") && [...u.searchParams.keys()].every(k => k === "v")))
+      (u.hostname !== "www.youtube.com" || u.pathname === '/user/NBBoficial' || /^\/@(?:CazeTV|canalgolbrasil|canalgoatbr|concacaf|espnbrasil|tntsportsbr|wttglobal)(?:\/streams)?\/?$/i.test(u.pathname) || (u.pathname === "/watch" && /^[\w-]{11}$/.test(u.searchParams.get("v") || "") && [...u.searchParams.keys()].every(k => k === "v")))
     );
   } catch {
     return false;
@@ -392,8 +393,11 @@ const CHANNELS = [
   {pattern:/^(?:R[aá]dio\s+)?Itatiaia(?:\s+Esportes?)?$/i,...BRAZIL_CHANNEL_GUIDES.find(link=>link.id==='itatiaia'),name:'Itatiaia'},
   {pattern:/^Band\s*Sports$/i,...bandSportsGuide},
   {pattern: /^GOAT$/i, ...goat},
+  { pattern: /^Concacaf YouTube$/i, id: 'concacaf-yt', name: 'Concacaf · YouTube',
+    url: 'https://www.youtube.com/@concacaf/streams', access: 'free', badge: 'CONCACAF' },
   ...[1,2,3].map(n => ({pattern:new RegExp(`^sportv\\s*${n === 1 ? '1?' : n}$`,'i'),id:`sportv${n}`,name:n===1?'sportv':`sportv ${n}`,badge:`S${n}`,url:'https://globoplay.globo.com/',access:'subscription'})),
   { pattern: /^globoplay$/i, id: 'globoplay', name: 'Globoplay', url: 'https://globoplay.globo.com/', badge: 'Gplay', access: 'check' },
+  { pattern: /^ESPN Brasil \(YouTube\)$/i, ...BRAZIL_CHANNEL_GUIDES.find(link => link.id === 'espnyt') },
   { pattern: /^Globo$/i, id: 'globo', name: 'TV Globo', url: 'https://globoplay.globo.com/', badge: 'G', access: 'check' },
   { pattern: /^Ge\s*TV$/i, id: 'getv', name: 'ge tv', url: 'https://globoplay.globo.com/categorias/esportes/', badge: 'ge', access: 'free' },
 
@@ -452,6 +456,23 @@ export function getWatchOptions(match, competition = {}) {
       message:
         "Transmissão confirmada na página oficial Disney+ Brasil desta partida.",
     };
+  const national = match.sport === "soccer" && NATIONAL_BROADCASTS[`${match.league}/${match.id}`];
+  if (national && Date.parse(match.date) === Date.parse(national[0])) {
+    const [, names, sourceUrl] = national;
+    const verified = matchChannels({ broadcasts: [{ country: "BR", names }] }).map(link => ({
+      ...link,
+      name: link.id === "disney" ? "Disney+ Premium" : link.name,
+      country: "BR",
+      sourceUrl,
+      note: "Programação publicada para este confronto no Brasil. Confira o horário, a disponibilidade regional e o plano exigido.",
+    }));
+    const links = [...new Map([...channels, ...verified].map(link => [link.id, link])).values()];
+    return {
+      ...common, country: "BR", regionLabel: "Brasil", scope: "match",
+      brazilStatus: "listed", confirmedForMatch: true, reviewedAt: NATIONAL_BROADCASTS_REVIEWED_AT, links,
+      message: "Transmissão anunciada para esta partida no Brasil. A programação pode mudar.",
+    };
+  }
   if (channels.length) return {
     ...common, country: "BR", regionLabel: "Brasil", scope: "match", confirmedForMatch: true,
     reviewedAt: isUefa2026(match) ? EUROPA_REVIEWED_AT : WATCH_REVIEWED_AT, links: channels,

@@ -258,6 +258,11 @@ export default function LeagueOverview({
                           </span>
                         </span>
                       </span>
+                      {m.watch?.confirmedForMatch && !!m.watch.links.length && (
+                        <small className="league-game-broadcast">
+                          Onde assistir no Brasil · {m.watch.links.map((link) => link.name).join(" · ")}
+                        </small>
+                      )}
                       <span className="league-game-cta">
                         {m.state === "finished"
                           ? "Saiba como foi"

@@ -176,3 +176,22 @@ test("channel numbers require explicit Brazilian geography and exact known names
   assert.equal(watch.confirmedForMatch, true);
   assert.equal(watch.scope, "match");
 });
+
+test("national TV listings match the saved ESPN fixture and expire on a changed kickoff", async () => {
+  const { NATIONAL_BROADCASTS } = await import("../server/national-broadcasts.mjs");
+  const { nationalMonthlyGames } = await import("../server/national-football.mjs");
+  const leagues = new Map();
+  for (const [key, [date, names, source]] of Object.entries(NATIONAL_BROADCASTS)) {
+    const [league, id] = key.split("/");
+    if (!leagues.has(league)) leagues.set(league, nationalMonthlyGames(league, "2026-11"));
+    const fixture = leagues.get(league).find((game) => game.id === id);
+    assert.ok(fixture, key);
+    assert.equal(Date.parse(fixture.date), Date.parse(date), key);
+    assert.equal(fixture.watch.confirmedForMatch, true, key);
+    const links = fixture.watch.links.filter((link) => link.sourceUrl === source);
+    assert.equal(links.length, names.length, key);
+    assert.ok(links.every((link) => link.country === "BR" && safeWatchUrl(link.url)), key);
+    assert.equal(getWatchOptions({ ...fixture, date: "2027-11-14T10:15Z" }).confirmedForMatch, false, key);
+    assert.equal(getWatchOptions({ ...fixture, state: "finished" }), null, key);
+  }
+});
