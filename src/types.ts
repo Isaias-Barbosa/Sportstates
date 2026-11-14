@@ -386,6 +386,7 @@ export type Standings = {
   source: string;
 };
 export type ClubProfile = {
+  nationalCompetitions?: string[];
   id: string;
   name: string;
   logo: string;
@@ -447,6 +448,7 @@ export type ClubDetails = {
   team: ClubProfile;
   athletes: {
     id: string;
+    profileId?: string;
     name: string;
     number: string;
     group?: string;

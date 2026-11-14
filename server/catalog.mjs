@@ -1,3 +1,4 @@
+import { nationalCompetitions } from "./national-competitions.mjs";
 import { TABLE_COMPETITIONS } from "./table-tennis.mjs";
 export const BRAZIL_STATE_LEAGUES = new Set([
   "bra.camp.carioca",
@@ -110,6 +111,7 @@ export const SPORTS = [
       ["fra.1", "Ligue 1"],
       ["fra.coupe_de_france", "Copa da França"],
       ["por.1", "Liga Portugal"],
+      ...Object.entries(nationalCompetitions),
       ["rus.1", "Premier Liga Russa"],
       ["rus.cup", "Copa da Rússia"],
       ["usa.1", "MLS"],
@@ -266,6 +268,7 @@ export const SOCCER_REGIONS = [
   { id: "coreia", name: "Coreia do Sul", competitions: ["kor.1"] },
 ];
 export const SOCCER_INTERNATIONAL_GROUPS = [
+  { id: "selecoes", name: "Seleções", competitions: Object.keys(nationalCompetitions) },
   {
     id: "americas",
     name: "Ligas Intercontinentais",

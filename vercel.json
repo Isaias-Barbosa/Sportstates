@@ -44,6 +44,7 @@
     }
   ],
   "functions": {
+    "api/index.mjs": { "includeFiles": "data/national-football-2026.json.gz" },
     "api/share.mjs": {
       "includeFiles": "dist/index.html",
       "maxDuration": 30

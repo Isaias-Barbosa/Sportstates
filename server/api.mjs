@@ -1,3 +1,4 @@
+import { isNationalCompetition, nationalEvents, nationalMonthlyGames, nationalPlayer, nationalSnapshotAt, nationalStandings } from "./national-football.mjs";
 import { getProviderSettings, runtimeProviderSettings, saveProviderSettings, validateProviderSettings } from "./provider-settings.mjs";
 import { pushConfig, pushCronAuthorized, validatePushDevice, savePushDevice, removePushDevice, testPushDevice, runPushMonitor } from "./web-push.mjs";
 import { publishAnnouncement, validateAnnouncement } from "./web-push.mjs";
@@ -86,7 +87,7 @@ import {
 } from "./team-search.mjs";
 import { authBaseUrl, adminAuthorized } from "./admin-auth.mjs";
 import { normalizeStandings } from "./standings.mjs";
-import { KNOCKOUT_LEAGUES, fetchTournament } from "./tournaments.mjs";
+import { KNOCKOUT_LEAGUES, fetchTournament, normalizeTournament } from "./tournaments.mjs";
 import {
   SOCCER_365_COMPETITIONS,
   DATED_365_LEAGUES,
@@ -289,6 +290,11 @@ export async function scoreboard(date, sport = "all") {
   const dates = [date, next.toISOString().slice(0, 10)];
   const jobs = selectedSports.flatMap((s) =>
     s.leagues.map(async ([league, name]) => {
+      if (s.id === "soccer" && league === "fifa.world" && date.startsWith("2026-")) return {
+        matches: nationalMonthlyGames(league, date.slice(0, 7)).filter(match => dayInBrazil(match.date) === date),
+        failed: false, stale: false, sport: s.id, league, name,
+        provider: "ESPN · cadastro local", at: Date.parse(nationalSnapshotAt),
+      };
       if (s.id === "soccer" && isCbfLowerDivision(league)) return {
         matches: cbfLowerDivisionGames(league, { date }), failed: !date.startsWith("2026-"),
         stale: false, sport: s.id, league, name, provider: "CBF · temporada 2026",
@@ -551,6 +557,12 @@ export async function route(url) {
     if (lowerDivision) return [200, lowerDivision];
     const team = await getTeam(id);
     if (!team) return [404, { error: "Time não encontrado." }];
+    if (team.nationalCompetitions?.length) return [200, {
+      competitions: team.nationalCompetitions.map(id => ({
+        ...leagueFor("soccer", id), id, logo: null, kind: "cup",
+      })),
+      source: "ESPN · cadastro local", fetchedAt: nationalSnapshotAt, stale: false,
+    }];
     if (team.sport === "volleyball") {
       const table = await volleyStandings();
       const row = table.groups[0].rows.find(
@@ -611,6 +623,10 @@ export async function route(url) {
   if (url.pathname === "/api/team-player-stats" || url.pathname === "/api/player") {
     const id = q.get("id");
     const isPlayer = url.pathname === "/api/player";
+    if (isPlayer && /^espn-\d{1,12}$/.test(id || "")) {
+      const player = nationalPlayer(id);
+      return player ? [200, player] : [404, { error: "Jogador ainda não cadastrado." }];
+    }
     if (!(isPlayer ? validPublicPlayerId(id) : validPlayerId(id)))
       return [400, { error: "Identificador inválido." }];
     const league = q.get("league");
@@ -976,6 +992,8 @@ export async function route(url) {
       ];
     }
 
+    if (config.sport === "soccer" && config.league === "fifa.friendly")
+      return [200, { ...config, groups: [], rounds: [], source: "Amistosos sem tabela de pontos", warnings: [] }];
     const stateCompetition =
       config.sport === "soccer" && BRAZIL_STATE_LEAGUES.has(config.league);
     const seasonParam = q.get("season");
@@ -988,6 +1006,8 @@ export async function route(url) {
       return [400, { error: "Temporada inválida." }];
     const requestedYear = seasonParam
       ? Number(seasonParam)
+      : config.sport === "soccer" && isNationalCompetition(config.league)
+        ? 2026
       : stateCompetition
         ? Number(dayInBrazil(new Date()).slice(0, 4))
         : undefined;
@@ -995,7 +1015,9 @@ export async function route(url) {
     const hasKnockout =
       config.sport === "soccer" && KNOCKOUT_LEAGUES.has(config.league);
     const [table, tournament] = await Promise.allSettled([
-      cached(
+      config.league === "fifa.world" && requestedYear === 2026
+        ? Promise.resolve({ value: nationalStandings(config.league), at: Date.parse(nationalSnapshotAt) })
+        : cached(
         `standings:${config.sport}:${config.league}:${requestedYear || "current"}`,
         CACHE_TTL.standings,
         async () => {
@@ -1008,7 +1030,11 @@ export async function route(url) {
         },
         300000,
       ),
-      hasKnockout
+      config.league === "fifa.world" && (!requestedYear || requestedYear === 2026)
+        ? Promise.resolve({ at: Date.parse(nationalSnapshotAt), value: normalizeTournament(
+            { season: { year: 2026, displayName: "Copa do Mundo 2026" } }, nationalEvents(config.league),
+          ) })
+        : hasKnockout
         ? cached(
             `tournament:${config.league}:${requestedYear || "current"}`,
             CACHE_TTL.standings,
@@ -1017,7 +1043,10 @@ export async function route(url) {
           )
         : Promise.resolve(null),
     ]);
-    const tableData = table.status === "fulfilled" ? table.value : null;
+    const snapshotGroups = requestedYear === 2026 && isNationalCompetition(config.league)
+      ? nationalStandings(config.league) : [];
+    const tableData = table.status === "fulfilled" ? table.value
+      : snapshotGroups.length ? { value: snapshotGroups, stale: true, at: Date.parse(nationalSnapshotAt) } : null;
     const cupData = tournament.status === "fulfilled" ? tournament.value : null;
     if (!tableData && !cupData)
       throw new Error(
@@ -1212,6 +1241,12 @@ export async function route(url) {
         },
       ];
     }
+    if (config.sport === "soccer" && isNationalCompetition(config.league) &&
+        month.startsWith("2026-") &&
+        (config.league === "fifa.world" || month < dayInBrazil(new Date()).slice(0, 7))) {
+      return [200, { ...config, month, matches: nationalMonthlyGames(config.league, month),
+        fetchedAt: nationalSnapshotAt, stale: false, partial: false, source: "ESPN · cadastro local" }];
+    }
     const first = `${month}-01`;
     const next = new Date(`${first}T12:00:00Z`);
     next.setUTCMonth(next.getUTCMonth() + 1);
@@ -1262,7 +1297,11 @@ export async function route(url) {
         };
       },
       300000,
-    );
+    ).catch(error => {
+      if (!month.startsWith("2026-") || !isNationalCompetition(config.league)) throw error;
+      const matches = nationalMonthlyGames(config.league, month);
+      return { value: { matches, partial: true }, stale: true, at: Date.parse(nationalSnapshotAt) };
+    });
     let matches = applyCbfBroadcasts(result.value.matches);
     let roundsUnavailable = false;
     if (config.sport === "soccer" && config.league === "bra.1") {
