@@ -44,8 +44,8 @@ export default function LeagueOverview({
   season?: number;
   statistics?: LeagueStatisticsConfig;
 }) {
-  const [month, setMonth] = useState(today().slice(0, 7));
-  const [filter, setFilter] = useState<"next" | "previous">("next");
+  const [month, setMonth] = useState(league === "fifa.world" ? "2026-07" : today().slice(0, 7));
+  const [filter, setFilter] = useState<"next" | "previous">(league === "fifa.world" ? "previous" : "next");
   const { data, loading, error, refresh } = useApi<Games>(
     `/api/league-games?sport=${encodeURIComponent(sport)}&league=${encodeURIComponent(league)}&month=${month}`,
     60000,
@@ -81,7 +81,7 @@ export default function LeagueOverview({
   }
   return (
     <div className="league-overview">
-      <details className="league-table-panel league-disclosure" open>
+      {league !== "fifa.friendly" && <details className="league-table-panel league-disclosure" open>
         <summary className="league-panel-heading league-panel-toggle">
           <span className="league-panel-icon">
             <Trophy size={20} aria-hidden="true" />
@@ -99,7 +99,7 @@ export default function LeagueOverview({
           />
         </summary>
         <StandingsTable sport={sport} league={league} season={season} />
-      </details>
+      </details>}
       <details className="league-games-panel league-disclosure" open>
         <summary className="league-panel-heading league-panel-toggle">
           <span className="league-panel-icon">

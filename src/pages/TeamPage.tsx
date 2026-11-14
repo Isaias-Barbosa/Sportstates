@@ -298,7 +298,7 @@ export default function TeamPage() {
                   <div className="roster-player" key={p.id}>
                     <span className="roster-number">{p.number || "—"}</span>
                     <div>
-                      <strong>{p.name}</strong>
+                      <strong>{p.profileId ? <Link to={`/jogadores/${p.profileId}`}>{p.name}</Link> : p.name}</strong>
                       <small>
                         {p.position || "Posição não informada"}
                         {p.group ? ` · ${p.group}` : ""}

@@ -153,7 +153,7 @@ function OtherStandingsPage() {
                       ))}
                   </select>
                   <small>
-                    {g.id === "americas"
+                    {g.id === "selecoes" ? "Copa do Mundo, amistosos e Nations League." : g.id === "americas"
                       ? "Competições entre clubes das Américas."
                       : "Competições entre clubes da Europa e da Ásia."}
                   </small>
@@ -194,7 +194,7 @@ function OtherStandingsPage() {
                   </small>
                 )}
                 <small className="standings-league-action">
-                  {l.hasKnockout
+                  {l.id === "fifa.friendly" ? "Ver jogos →" : l.hasKnockout
                     ? "Ver fases e classificação →"
                     : "Ver classificação →"}
                 </small>

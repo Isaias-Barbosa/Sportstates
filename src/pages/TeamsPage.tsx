@@ -59,21 +59,21 @@ function OtherTeamsPage() {
     (l) =>
       l.teamLeague ||
       league === l.id ||
-      sportTeams.some((t) => t.league === l.id),
+      sportTeams.some((t) => t.league === l.id || t.nationalCompetitions?.includes(l.id)),
   );
   const unassigned = sportTeams.filter(
     (t) => !selected?.leagues.some((l) => l.id === t.league),
   );
   const groups = leagues
     .filter((l) => league === "all" || league === l.id)
-    .map((l) => ({ ...l, teams: sportTeams.filter((t) => t.league === l.id) }));
+    .map((l) => ({ ...l, teams: sportTeams.filter((t) => t.league === l.id || t.nationalCompetitions?.includes(l.id)) }));
   const visibleUnassigned = league === "all" || league === "unassigned";
   const visibleTeams =
     league === "unassigned"
       ? unassigned
       : league === "all"
         ? sportTeams
-        : sportTeams.filter((t) => t.league === league);
+        : sportTeams.filter((t) => t.league === league || t.nationalCompetitions?.includes(league));
   const individual = ["tennis", "table-tennis"].includes(sport);
   const athletes = sport === "table-tennis" ? tableTennis : tennis;
   return (
@@ -178,7 +178,7 @@ function OtherTeamsPage() {
                     <strong>{l.name}</strong>
                     <small>
                       {teamCount(
-                        sportTeams.filter((t) => t.league === l.id).length,
+                        sportTeams.filter((t) => t.league === l.id || t.nationalCompetitions?.includes(l.id)).length,
                       )}
                     </small>
                   </button>

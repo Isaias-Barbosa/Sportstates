@@ -29,6 +29,10 @@ type Competition = {
   stats: PlayerTotals;
 };
 type Player = {
+  nationality?: string;
+  flag?: string;
+  currentClub?: string;
+  profileAsOf?: string;
   name: string;
   fullName?: string;
   registrations?: {
@@ -228,6 +232,13 @@ export default function PlayerPage() {
             <div className="player-identity">
               <p className="eyebrow">Perfil do jogador</p>
               <h1>{data.name}</h1>
+              {data.nationality && (
+                <p className="player-position">
+                  {data.flag && <img src={data.flag} alt="" width={26} height={18} style={{ objectFit: "contain", verticalAlign: "middle", marginInlineEnd: 8 }} />}
+                  {data.nationality}
+                </p>
+              )}
+              {data.profileAsOf && <p className="player-position">Clube informado pela ESPN: {data.currentClub || "indisponível"} · {new Date(data.profileAsOf + "T12:00:00Z").toLocaleDateString("pt-BR")}</p>}
               {data.fullName && data.fullName !== data.name && (
                 <p className="player-position">{data.fullName}</p>
               )}
