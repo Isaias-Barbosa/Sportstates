@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { BarChart3, Trophy } from "lucide-react";
 import { useApi } from "../hooks";
 import { Empty, Notice } from "./shared";
@@ -49,7 +50,7 @@ function CompetitionCard({ competition: c }: { competition: TeamCompetition }) {
             {c.kind === "league" ? "Liga" : "Copa / torneio"}
             {c.season ? ` · ${c.season}` : ""}
           </span>
-          <h3>{c.name}</h3>
+          <h3>{c.href ? <Link to={c.href}>{c.name}</Link> : c.name}</h3>
         </div>
       </div>
       <div className="club-competition-standing">
@@ -88,6 +89,7 @@ function CompetitionCard({ competition: c }: { competition: TeamCompetition }) {
             <strong className="club-competition-phase">
               {c.phase || "Fase não informada"}
             </strong>
+            {c.group && <p>{c.group}</p>}
             {c.phaseContext === "last" && c.lastPlayed && (
               <p>
                 Último jogo em{" "}

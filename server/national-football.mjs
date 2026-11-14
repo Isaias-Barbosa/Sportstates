@@ -1,7 +1,9 @@
 import { gunzipSync } from "node:zlib";
 import { readFileSync } from "node:fs";
-import { dayInBrazil, normalizeEvent } from "./data.mjs";
+import { dayInBrazil, normalizeEvent, normalizeSummary } from "./data.mjs";
 
+import { normalizeTeamCompetition } from "./team-competitions.mjs";
+import { nationalAwards } from "./national-awards.mjs";
 import { normalizeStandings } from "./standings.mjs";
 import { nationalCompetitions } from "./national-competitions.mjs";
 const data = JSON.parse(
@@ -72,6 +74,34 @@ export const nationalTeams = Object.values(data.nations).map((n) => ({
 }));
 const teamIndex = new Map(nationalTeams.map((team) => [team.id, team]));
 
+export function nationalTeamCompetitions(team, now = Date.now()) {
+  return team.nationalCompetitions.map(league => {
+    const table = nationalStandings(league);
+    const group = table.find(item => item.rows.some(row => row.id === team.id));
+    const events = teamEvents(team.id, league);
+    const competition = normalizeTeamCompetition(team, { league, year: 2026, events }, null, null, now);
+    return {
+      ...competition,
+      season: league.includes("nations") ? "2026/27" : "2026",
+      group: group?.name.replace(/^Group /, "Grupo ") ?? null,
+      phase: competition.phase ?? (league === "fifa.friendly" ? "Amistosos internacionais" : null),
+      href: `/classificacoes?sport=soccer&scope=selecoes&league=${league}`,
+    };
+  });
+}
+
+function teamEvents(id, league) {
+  return nationalEvents(league).filter(event =>
+    event.competitions[0].competitors.some(item => item.team.id === id));
+}
+
+export function nationalMatchDetail(league, id) {
+  const event = nationalEvents(league).find(event => event.id === id);
+  if (!event) return null;
+  const detail = normalizeSummary({ header: event }, "soccer", league, nationalCompetitions[league]);
+  return { ...detail, warnings: [...(detail.warnings || []), "Exibindo o jogo salvo no calendário. Lances e escalações detalhadas dependem da fonte."] };
+}
+
 export function nationalPlayer(id) {
   if (!String(id).startsWith("espn-")) return null;
   const player = data.players[id.slice(5)];
@@ -84,18 +114,32 @@ export function nationalPlayer(id) {
     flag: player.flag,
     image: null,
     marketValue: null,
-    currentClub: club || null,
+    currentClub: club ? {
+      id: player.clubId,
+      name: club.name ?? club,
+      logo: club.logo || null,
+      url: "https://www.espn.com.br/futebol/time/_/id/" + player.clubId,
+    } : null,
     profileAsOf: data.asOf,
     memberships: player.selections.map(([team, league]) => ({
       id: team,
       name: teamIndex.get(team).name,
       competition: nationalCompetitions[league],
       season: 2026,
+      seasonLabel: league.includes("nations") ? "2026/27" : "2026",
     })),
     clubs: [],
     previousClubs: [],
-    awards: [],
-    competitions: [],
+    awards: nationalAwards[id.slice(5)] || [],
+    competitions: player.selections.filter(([, , stats]) => stats).map(([team, league, stats]) => ({
+      league,
+      name: nationalCompetitions[league],
+      team: teamIndex.get(team).name,
+      season: 2026,
+      seasonLabel: league.includes("nations") ? "2026/27" : "2026",
+      stats,
+      source: `https://www.espn.com/soccer/team/stats/_/id/${team}/league/${league.toUpperCase()}/season/2026`,
+    })),
   };
 }
 
@@ -129,24 +173,37 @@ export function nationalTeamDetails(id, override) {
   }
   const matches = team.nationalCompetitions
     .flatMap((league) =>
-      nationalEvents(league)
-        .filter((event) =>
-          event.competitions[0].competitors.some((t) => t.team.id === id),
-        )
+      teamEvents(id, league)
         .map((event) =>
           normalizeEvent(event, "soccer", league, nationalCompetitions[league]),
         ),
     )
     .filter(Boolean)
     .sort((a, b) => a.date.localeCompare(b.date));
+  const leaders = team.nationalCompetitions.map(league => {
+    const players = (data.rosters[id]?.[league] || []).map(([pid]) => ({
+      id: "espn-" + pid,
+      name: data.players[pid].name,
+      image: null,
+      stats: data.players[pid].selections.find(([team, competition]) => team === id && competition === league)?.[2],
+    }));
+    const leader = metric => {
+      const value = Math.max(0, ...players.map(player => player.stats?.[metric] ?? 0));
+      return value > 0 ? { value, players: players.filter(player => player.stats?.[metric] === value)
+        .map(({ id, name, image }) => ({ id, name, image })) } : null;
+    };
+    return { league, goals: leader("goals"), assists: leader("assists") };
+  });
+  const highlights = leaders.find(item => item.goals || item.assists);
+  const today = dayInBrazil(new Date());
   return {
     team,
     athletes: [...athletes.values()],
-    leaders: null,
+    leaders: highlights ? { ...highlights, season: 2026 } : null,
     lineup: null,
     articles: [],
     upcoming: matches
-      .filter((m) => m.state !== "finished" && Date.parse(m.date) >= Date.now())
+      .filter((m) => m.state === "live" || (m.state === "scheduled" && dayInBrazil(m.date) >= today))
       .slice(0, 10),
     recent: matches
       .filter((m) => m.state === "finished")

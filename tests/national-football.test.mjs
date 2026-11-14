@@ -28,3 +28,40 @@ test("both Nations Leagues have squads and friendlies have a 2026 calendar", () 
   }
   assert.ok(nationalEvents("fifa.friendly").some(event => event.date >= "2026-11-01"));
 });
+
+test("selection profiles expose confirmed phases and links to competitions", async () => {
+  const [status, profile] = await route(new URL("https://app.test/api/team-competitions?id=164"));
+  assert.equal(status, 200);
+  const worldCup = profile.competitions.find(c => c.id === "fifa.world");
+  const nationsLeague = profile.competitions.find(c => c.id === "uefa.nations");
+  assert.equal(worldCup.phase, "Final");
+  assert.equal(worldCup.status, "champion");
+  assert.equal(nationsLeague.phase, "Fase de liga");
+  assert.match(nationsLeague.href, /league=uefa.nations$/);
+});
+
+test("a saved national fixture opens with its confirmed broadcasts when ESPN summary fails", async (t) => {
+  t.mock.method(globalThis, "fetch", async () => { throw new Error("offline"); });
+  const [status, detail] = await route(new URL("https://app.test/api/match?sport=soccer&league=fifa.friendly&id=401916337"));
+  assert.equal(status, 200);
+  assert.equal(detail.match.id, "401916337");
+  assert.equal(detail.match.watch.confirmedForMatch, true);
+  assert.ok(detail.match.watch.links.some(link => link.id === "globo"));
+  assert.equal(detail.stale, true);
+  assert.match(detail.source, /cadastro local/);
+});
+
+test("Alisson shows the Liverpool crest, Brazil tournament stats and verified award", async () => {
+  const [status, player] = await route(new URL("https://app.test/api/player?id=espn-196876"));
+  assert.equal(status, 200);
+  assert.equal(player.currentClub.name, "Liverpool");
+  assert.match(player.currentClub.logo, /\/364\.png$/);
+  assert.match(player.currentClub.url, /\/364$/);
+  const worldCup = player.competitions.find(item => item.league === "fifa.world");
+  assert.equal(worldCup.stats.games, 5);
+  assert.equal(worldCup.stats.saves, 14);
+  assert.ok(player.awards.some(award => award.name === "Luva de Ouro · Copa América 2019"));
+  const { leaders } = nationalTeamDetails("205");
+  assert.equal(leaders.league, "fifa.world");
+  assert.ok(leaders.goals.players.some(player => player.id === "espn-252107"));
+});

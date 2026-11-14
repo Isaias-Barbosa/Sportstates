@@ -2926,6 +2926,21 @@ body.club-page-active { background:var(--club-page-bg, var(--canvas)); backgroun
 .player-portrait-frame { flex: none; margin: 0; width: clamp(4.5rem, 14vw, 8rem); }
 .player-portrait-credit { color: var(--muted); font-size: .75rem; margin-top: .35rem; overflow-wrap: anywhere; }
 .player-portrait-credit a { text-decoration: underline; }
+.player-current-club {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  max-width: 100%;
+  margin: 6px 0;
+}
+.player-current-club small {
+  display: block;
+  color: var(--muted);
+  margin-top: 3px;
+}
+.player-current-club .crest {
+  flex-shrink: 0;
+}
 .player-identity { min-width: 0; }
 .player-identity h1 { margin: .3rem 0; font-size: clamp(1.75rem, 5vw, 3.5rem); line-height: 1.06; overflow-wrap: anywhere; }
 .player-position, .player-card-note { color: var(--muted); }

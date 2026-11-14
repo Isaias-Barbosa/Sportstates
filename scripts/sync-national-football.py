@@ -1,6 +1,7 @@
 """Refresh the checked-in national football snapshots from ESPN."""
 import concurrent.futures
 import gzip
+import hashlib
 import json
 from pathlib import Path
 import re
@@ -17,7 +18,6 @@ CACHE.mkdir(exist_ok=True)
 POOL = concurrent.futures.ThreadPoolExecutor(max_workers=18)
 
 def fetch(url):
-    import hashlib
     path = CACHE / (hashlib.sha256(url.encode()).hexdigest() + ".json")
     if path.exists() and time.time() - path.stat().st_mtime < 3600:
         return json.loads(path.read_text())
@@ -39,7 +39,7 @@ def compact(event):
     match = fields(event, "id date name shortName season week status")
     match["competitions"] = []
     for competition in event["competitions"]:
-        c = fields(competition, "id date status venue notes broadcasts geoBroadcasts timeValid neutralSite")
+        c = fields(competition, "id date status venue notes broadcasts geoBroadcasts timeValid neutralSite series leg")
         c["competitors"] = [
             {**fields(t, "id homeAway score winner shootoutScore"), "team": fields(t["team"], "id name displayName shortDisplayName abbreviation logo")}
             for t in competition["competitors"]
@@ -61,15 +61,20 @@ def main():
         for id, team in teams.items():
             nation = nations.setdefault(id, {**fields(team, "id displayName shortDisplayName abbreviation logo"), "competitions": []})
             nation["competitions"].append(league)
-            if league != "fifa.friendly":
-                jobs.append((league, id))
+            jobs.append((league, id))
         print(league,len(events),len(teams),flush=True)
     if len(matches["fifa.world"]) != 104 or sum("fifa.world" in t["competitions"] for t in nations.values()) != 48:
         raise RuntimeError("Copa 2026 incompleta")
     def roster(job):
         league,id = job
         data=fetch(f"{SITE}{league}/teams/{id}/roster?season={YEAR}")
-        return league,id,[a for a in data.get("athletes", []) if a.get("id") and a.get("displayName")]
+        if data.get("season", {}).get("year") != YEAR or str(data.get("team", {}).get("id")) != id:
+            return league, id, []
+        return league, id, [a for a in data.get("athletes", []) if a.get("id") and a.get("displayName")]
+    metrics = {
+        "appearances": "games", "totalGoals": "goals", "goalAssists": "assists",
+        "yellowCards": "yellows", "redCards": "reds", "saves": "saves"
+    }
     players, rosters, club_ids = {}, {}, set()
     for league,id,athletes in POOL.map(roster,jobs):
         rosters.setdefault(id,{})[league]=[]
@@ -80,13 +85,24 @@ def main():
             if club: club_ids.add(club)
             player=players.setdefault(pid,{"id":pid,"name":a["displayName"],"selections":[]})
             player.update({"nationality":a.get("citizenship") or player.get("nationality"),"flag":a.get("flag",{}).get("href") or player.get("flag"),"clubId":club or player.get("clubId"),"position":a.get("position",{}).get("abbreviation") or player.get("position")})
-            player["selections"].append([id,league])
+            stats = {
+                metrics[item["name"]]: int(item["value"])
+                for category in a.get("statistics", {}).get("splits", {}).get("categories", [])
+                for item in category.get("stats", [])
+                if item.get("name") in metrics and isinstance(item.get("value"), (int, float))
+                and item["value"] >= 0 and item["value"] % 1 == 0
+            }
+            player["selections"].append([id, league, stats] if stats else [id, league])
             rosters[id][league].append([pid,a.get("jersey")])
     print("players",len(players),"clubs",len(club_ids),"empty rosters",[(i,k) for i,v in rosters.items() for k,a in v.items() if not a],flush=True)
     def club(id):
         d=fetch(CORE+"teams/"+id)
-        return id,d.get("displayName")
-    clubs={id:name for id,name in POOL.map(club,sorted(club_ids)) if name}
+        if d.get("isNational") or not d.get("displayName"):
+            return id, None
+        logo = next((entry["href"] for entry in d.get("logos", [])
+                     if entry.get("href", "").startswith("https://a.espncdn.com/")), None)
+        return id, {"name": d["displayName"], "logo": logo}
+    clubs = {id: record for id, record in POOL.map(club, sorted(club_ids)) if record}
     tables = {}
     for league in LEAGUES[:-1]:
         raw = fetch("https://site.api.espn.com/apis/v2/sports/soccer/" + league + f"/standings?season={YEAR}&lang=pt&region=br")
@@ -100,11 +116,13 @@ def main():
         if raw.get("season", {}).get("year") != YEAR:
             raise RuntimeError(f"Classificação indisponível: {league}")
         tables[league] = compact_table(raw)
-    if any(not entries for roster in rosters.values() for entries in roster.values()):
+    if any(not entries for roster in rosters.values() for league, entries in roster.items() if league != "fifa.friendly"):
         raise RuntimeError("Elenco indisponível; cadastro anterior preservado.")
     data={"tables":tables,"asOf":datetime.now(timezone.utc).date().isoformat(),"nations":nations,"rosters":rosters,"players":players,"clubs":clubs,"matches":matches}
     target=Path(__file__).resolve().parents[1]/"data/national-football-2026.json.gz"
-    target.write_bytes(gzip.compress(json.dumps(data, ensure_ascii=False, separators=(",", ":")).encode(), mtime=0))
+    temporary = target.with_suffix(".tmp")
+    temporary.write_bytes(gzip.compress(json.dumps(data, ensure_ascii=False, separators=(",", ":")).encode(), mtime=0))
+    temporary.replace(target)
     print("saved",target,len(clubs),flush=True)
 
 if __name__ == "__main__":
