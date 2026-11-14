@@ -51,7 +51,7 @@ const navigation = [
   ] },
 ] as const;
 
-export default function AdminGames({ secret }: { secret: string }) {
+export default function AdminGames({ secret, accountId }: { secret: string; accountId: string }) {
   const navigate = useNavigate();
   const { pathname, search } = useLocation();
   const [clearingCache, setClearingCache] = useState(false);
@@ -345,7 +345,7 @@ export default function AdminGames({ secret }: { secret: string }) {
       {section === "providers" ? (
         <AdminProviders secret={secret} scores={data} />
       ) : section === "appearance" ? (
-        <AdminAppearance secret={secret} />
+        <AdminAppearance secret={secret} accountId={accountId} />
       ) : section === "players" ? (
         <AdminPlayers key={search} secret={secret} initialId={new URLSearchParams(search).get("id") || ""} />
       ) : section === "overview" ? (

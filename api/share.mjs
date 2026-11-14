@@ -62,8 +62,9 @@ export default async function handler(req, res) {
 
     const html = injectMetadata(await template, m);
     res.setHeader("Content-Type", "text/html; charset=utf-8");
-    res.setHeader("Cache-Control", "no-cache");
-    res.setHeader("Vercel-CDN-Cache-Control", cdnTtl);
+    const adminPage = original.pathname === "/admin" || original.pathname.startsWith("/admin/");
+    res.setHeader("Cache-Control", adminPage ? "private, no-store" : "no-cache");
+    res.setHeader("Vercel-CDN-Cache-Control", adminPage ? "no-store" : cdnTtl);
     res.setHeader("X-Content-Type-Options", "nosniff");
     res.end(req.method === "HEAD" ? undefined : html);
   } catch (error) {
