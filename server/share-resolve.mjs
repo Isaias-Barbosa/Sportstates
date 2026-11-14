@@ -18,6 +18,10 @@ export async function resolveShare(page) {
         if(sport==="table-tennis") return (await (await import("./table-tennis.mjs")).tableDetail(id,league)).match;
         if(sport==="tennis") return (await (await import("./tennis.mjs")).tennisDetail(id)).match;
         if(sport==="volleyball") return (await (await import("./volleyball.mjs")).volleyDetail(id)).match;
+        if (/^(af|fd)-/.test(id)) {
+          const [{ externalMatch }, { leagueFor }] = await Promise.all([import("./league-providers.mjs"), import("./catalog.mjs")]);
+          return (await externalMatch(leagueFor(sport, league), id))?.match ?? null;
+        }
         const response=await fetch("https://site.api.espn.com/apis/site/v2/sports/"+sport+"/"+league+"/summary?event="+id+"&lang=pt&region=br",{cache:"no-store",signal:AbortSignal.timeout(4500),headers:{Accept:"application/json"}});
         if(!response.ok) return null;
         const { normalizeSummary }=await import("./data.mjs");

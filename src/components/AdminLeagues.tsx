@@ -1,13 +1,15 @@
+import AdminLeagueSources from "./AdminLeagueSources";
 import { useEffect, useState } from "react";
 import { Notice } from "./shared";
 import { notifyCacheCleared } from "../hooks";
 
-type League = { sport: string; id: string; name: string; logo: string; logo_url?: string; native: boolean; has_upload?: boolean };
+type League = { sport: string; id: string; name: string; logo: string; logo_url?: string; native: boolean; has_upload?: boolean; sources?: { games: string[]; standings: string[] }; externalStandings?: boolean };
 type Form = { sport: string; id: string; name: string; logo_url: string; upload?: { mime: string; base64: string } };
 const blank: Form = { sport: "soccer", id: "", name: "", logo_url: "" };
 const sports = [{id:"soccer",name:"Futebol"},{id:"basketball",name:"Basquete"},{id:"football",name:"Futebol americano"},{id:"baseball",name:"Beisebol"},{id:"hockey",name:"Hóquei"},{id:"volleyball",name:"Vôlei"},{id:"tennis",name:"Tênis"},{id:"table-tennis",name:"Tênis de mesa"}];
 export default function AdminLeagues({ secret }: { secret: string }) {
   const [leagues, setLeagues] = useState<League[]>([]);
+  const [sourceLeague, setSourceLeague] = useState<League | null>(null);
   const [form, setForm] = useState<Form | null>(null);
   const [search, setSearch] = useState("");
   const [message, setMessage] = useState("");
@@ -20,6 +22,7 @@ export default function AdminLeagues({ secret }: { secret: string }) {
       const result = await response.json();
       if (!response.ok) throw new Error(result.error || "Falha ao consultar ligas.");
       setLeagues(result.leagues);
+      if (result.sourcesUnavailable) setMessage("Prioridades personalizadas temporariamente indisponíveis. Mostrando as fontes padrão.");
     } catch (error) {
       setMessage(error instanceof Error ? error.message : "Erro ao consultar ligas.");
     } finally { setBusy(false); }
@@ -72,18 +75,27 @@ export default function AdminLeagues({ secret }: { secret: string }) {
     <label>Pesquisar liga <input type="search" value={search} onChange={(event)=>setSearch(event.target.value)} placeholder="ID, nome ou esporte" /></label>
     {busy && <p>Carregando ligas…</p>}
     <div className="admin-teams-table-scroll"><table className="admin-teams-table">
-      <thead><tr><th>ID</th><th>Logo</th><th>Nome da liga</th><th>Esporte</th><th>Opções</th></tr></thead>
+      <thead><tr><th>ID</th><th>Logo</th><th>Nome da liga</th><th>Esporte</th><th>Fontes de dados</th><th>Opções</th></tr></thead>
       <tbody>{filtered.map((league)=><tr key={league.sport+league.id}>
         <td><code>{league.id}</code></td>
         <td>{league.logo ? <img className="admin-league-logo" src={league.logo} alt="" loading="lazy" /> : "🏆"}</td>
         <td>{league.name}{league.native && <small> · Catálogo</small>}</td>
         <td>{sports.find((s)=>s.id===league.sport)?.name || league.sport}</td>
+        <td><small>Jogos · {league.sources?.games.join(" → ") || "Sem integração"}</small><br />
+            <small>Classificação · {league.sources?.standings.join(" → ") || "Sem integração"}</small></td>
         <td><div className="admin-team-actions">
+          {league.native && league.sport === "soccer" && <button className="quiet-button" onClick={() => setSourceLeague(league)}>Fontes</button>}
           <button className="quiet-button" onClick={()=>setForm({sport:league.sport,id:league.id,name:league.name,logo_url:league.logo_url || ""})}>Editar</button>
           <button className="admin-team-delete" disabled={league.native || saving} title={league.native?"Liga nativa: edite a personalização":undefined} onClick={()=>void remove(league)}>Excluir</button>
         </div></td>
       </tr>)}</tbody>
     </table></div>
+    {sourceLeague && <div className="admin-modal-backdrop">
+      <div className="admin-modal" role="dialog" aria-modal="true" aria-label="Fontes da liga">
+        <div className="modal-head"><strong>Fontes da liga</strong><button type="button" className="icon-button" autoFocus onClick={() => { setSourceLeague(null); void load(); }} aria-label="Fechar">×</button></div>
+        <AdminLeagueSources secret={secret} league={{ ...sourceLeague, standings: sourceLeague.externalStandings }} />
+      </div>
+    </div>}
     {form && <div className="admin-modal-backdrop" onClick={(event)=>{if(event.target===event.currentTarget&&!saving)setForm(null);}}>
       <form className="admin-modal" role="dialog" aria-modal="true" aria-labelledby="league-title" onSubmit={save}>
         <div className="modal-head"><h2 id="league-title">{leagues.some((l)=>l.id===form.id&&l.sport===form.sport)?"Editar liga":"Nova liga"}</h2>

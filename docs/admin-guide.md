@@ -32,3 +32,18 @@ Crie um adaptador em `server/` que valide a resposta externa e converta IDs, dat
 Em `/admin/jogadores`, procure pelo nome ou ID ESPN. Para editar um perfil público já existente, carregue o identificador usado em `/jogadores/<id>`. Descreva clubes anteriores e premiações com uma referência HTTPS para cada registro. O código ESPN serve para completar campos disponíveis de identificação, nacionalidade, posição e clube. O histórico e as premiações podem ser preenchidos manualmente.
 
 Em `/admin/customizacoes`, defina o fundo nos temas claro e escuro e ordene as competições. A home prioriza ligas que têm jogos no filtro atual. Classificações aplica a prioridade dentro do esporte e grupo selecionados. Use Restaurar para voltar à cor original e remova uma liga da lista para devolver sua posição à ordem padrão.
+
+## Prioridade por liga
+
+Em **Admin → Ligas → Fontes**, escolha a competição, o ano inicial da temporada e os provedores na ordem de consulta. Em **APIs e fontes**, confira se as chaves dos adaptadores estão configuradas.
+
+| Provedor | Variável na Vercel | Como descobrir o código |
+| --- | --- | --- |
+| [API-Football](https://www.api-football.com/documentation-v3) | `API_FOOTBALL_KEY` | Consulte `GET /leagues` com o cabeçalho `x-apisports-key` e copie `league.id`. |
+| [football-data.org](https://docs.football-data.org/general/v4/competition.html) | `FOOTBALL_DATA_KEY` | Consulte `GET /v4/competitions` com `X-Auth-Token` e copie o código da competição, como `PL`. |
+
+Em Vercel → Settings → Environment Variables, adicione as chaves ao ambiente usado e faça um novo deploy. Escolha Jogos ou Classificação para cada fonte e use **Testar cobertura** antes de salvar. Reavalie o ano na troca de temporada. Para restaurar a ordem padrão, remova os provedores e salve. Os resultados passam a alimentar a Home, o calendário e a tabela conforme a configuração. Copas com chave eliminatória mantêm o fluxo atual da classificação. Estatísticas de partida podem aparecer no detalhe do API-Football quando o plano e a partida cobrem o recurso. Rankings de jogadores usam os adaptadores existentes.
+
+Quando a fonte prioritária falha, o portal tenta manter a última resposta válida por até uma hora depois do vencimento do cache. Se ela não estiver disponível, tenta a próxima fonte e, por fim, o fluxo original da liga. O calendário é consultado por mês para compartilhar respostas entre a Home e a página da liga. A tabela fica em cache por dez minutos.
+
+API-Football, football-data.org e [Sportmonks](https://www.sportmonks.com/football-api/coverage/) são provedores com documentação própria. [Sportradar](https://developer.sportradar.com/getting-started/docs/get-started) e [Opta](https://www.statsperform.com/opta/) oferecem feeds comerciais multiesportivos, incluindo dados obtidos em parcerias oficiais conforme a competição e o contrato. Valide cobertura, limites e direitos de publicação antes de escolher um plano. Cada formato adicional exige um adaptador antes de entrar na prioridade do portal.

@@ -118,17 +118,18 @@ export function validateSources(input) {
 }
 
 let tableReady;
-async function database() {
+export async function studioDatabase() {
   const sql = neon(process.env.DATABASE_URL);
   tableReady ??= sql`CREATE TABLE IF NOT EXISTS sport_admin_studio (
     key text PRIMARY KEY, settings jsonb NOT NULL
-  )`;
+  )`.catch(error => { tableReady = undefined; throw error; });
+  await tableReady;
   return sql;
 }
 export async function studioSetting(key, fallback, fresh = false) {
   if (!process.env.DATABASE_URL) return fallback;
   const read = async () => {
-    const sql = await database();
+    const sql = await studioDatabase();
     const [row] =
       await sql`SELECT settings FROM sport_admin_studio WHERE key = ${key}`;
     return row?.settings ?? fallback;
@@ -138,12 +139,14 @@ export async function studioSetting(key, fallback, fresh = false) {
     : (await cached("setting:" + key, 30_000, read, 300_000)).value;
 }
 export async function saveStudioSetting(key, settings) {
-  const sql = await database();
+  const sql = await studioDatabase();
   await sql`INSERT INTO sport_admin_studio (key, settings) VALUES (${key}, ${JSON.stringify(settings)}::jsonb)
     ON CONFLICT (key) DO UPDATE SET settings = EXCLUDED.settings`;
   cached.clear();
   return settings;
 }
+
+export function clearStudioSettingsCache() { cached.clear(); }
 
 function field(object, path) {
   return path

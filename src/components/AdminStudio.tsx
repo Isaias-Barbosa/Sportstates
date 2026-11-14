@@ -65,6 +65,7 @@ function useSettings<T>(secret: string, endpoint: string) {
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
+  const [reload, setReload] = useState(0);
   useEffect(() => {
     const controller = new AbortController();
     adminRequest<{ settings: T; writable: boolean }>(
@@ -82,7 +83,7 @@ function useSettings<T>(secret: string, endpoint: string) {
         if (!controller.signal.aborted) setError(cause.message);
       });
     return () => controller.abort();
-  }, [secret, endpoint]);
+  }, [secret, endpoint, reload]);
   async function save(body: unknown) {
     setBusy(true);
     setMessage("");
@@ -103,7 +104,7 @@ function useSettings<T>(secret: string, endpoint: string) {
       setBusy(false);
     }
   }
-  return { settings, setSettings, writable, busy, message, error, save };
+  return { settings, setSettings, writable, busy, message, error, save, retry: () => { setError(""); setReload(value => value + 1); } };
 }
 
 function useLeagueOptions() {
@@ -198,7 +199,7 @@ export function AdminAppearance({ secret }: { secret: string }) {
         Escolha o fundo de cada tema e quais competições ganham prioridade. As
         demais seguem a ordem padrão.
       </p>
-      {state.error && <Notice error>{state.error}</Notice>}
+      {state.error && <Notice error>{state.error} {!draft && <button type="button" onClick={state.retry}>Tentar novamente</button>}</Notice>}
       {state.message && <Notice>{state.message}</Notice>}
       {draft && (
         <form

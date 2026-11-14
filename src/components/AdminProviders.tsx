@@ -1,3 +1,4 @@
+import AdminLeagueSources from "./AdminLeagueSources";
 import { AdminCustomSources } from "./AdminStudio";
 import { useEffect, useState } from "react";
 import type { Scores } from "../types";
@@ -203,6 +204,9 @@ export default function AdminProviders({
         <article className="admin-overview-panel"><h3>Esportes e contingência</h3><p>Brasileirão Série A: ESPN → ge em falha. NBB: 365Scores → LNB para calendário e classificação. Competições com dados oficiais cadastrados também usam os arquivos locais da CBF.</p></article>
         <article className="admin-overview-panel"><h3>Cache e validação</h3><p>Placares ao vivo têm cache mais curto. Fontes complementares usam cache por endpoint e preservam a última resposta válida por até uma hora após o vencimento. O painel conta competições consultadas, e a telemetria de requisições externas fica a cargo do provedor.</p></article>
       </div>
+      <AdminLeagueSources secret={secret} />
+      <h3>Outros provedores documentados</h3>
+      <p><a href="https://developer.sportradar.com/getting-started/docs/get-started">Sportradar</a> (multiesporte), <a href="https://www.statsperform.com/opta/">Opta</a> (multiesporte) e <a href="https://docs.sportmonks.com/v3/welcome/what-can-you-do-with-sportmonks-data">Sportmonks</a> (futebol) exigem adaptadores específicos para alimentar as tabelas principais. Consulte a cobertura e as condições de publicação do contrato.</p>
       <AdminCustomSources secret={secret} />
       <h3>Fontes observadas nos placares</h3>
       {scores?.sources?.length ? (

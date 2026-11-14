@@ -131,7 +131,7 @@ export function validatePushDevice(body, now = Date.now()) {
     if (
       extra.length ||
       !leagueFor(sport, league) ||
-      !/^\d{1,15}$/.test(id || "") ||
+      !/^(?:af-|fd-)?\d{1,15}$/.test(id || "") ||
       !Number.isFinite(date)
     )
       throw new Error("Partida inválida.");
@@ -389,7 +389,7 @@ export function validateAnnouncement(input) {
     if (
       extra.length ||
       !leagueFor(sport, league) ||
-      !/^\d{1,15}$/.test(match || "")
+      !/^(?:af-|fd-)?\d{1,15}$/.test(match || "")
     )
       throw new Error("Partida inválida no informe.");
   }

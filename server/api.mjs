@@ -1,3 +1,4 @@
+import { providers, defaultLeagueSources, listLeagueRoutes, validateLeagueRoutes, saveLeagueRoutes, preferredLeagueData, externalMatch, checkLeagueProvider } from "./league-providers.mjs";
 import { defaultAppearance, studioSetting, saveStudioSetting, validateAppearance, validateSources, readCustomSource, validatePlayerEdit, withPlayerEdit, searchEspnPlayers, espnPlayer, sourceRequest } from "./admin-studio.mjs";
 import { isNationalCompetition, nationalEvents, nationalMatchDetail, nationalMonthlyGames, nationalPlayer, nationalSnapshotAt, nationalStandings, nationalTeamCompetitions } from "./national-football.mjs";
 import { getProviderSettings, runtimeProviderSettings, saveProviderSettings, validateProviderSettings } from "./provider-settings.mjs";
@@ -289,8 +290,17 @@ export async function scoreboard(date, sport = "all") {
   const next = new Date(`${date}T12:00:00Z`);
   next.setUTCDate(next.getUTCDate() + 1);
   const dates = [date, next.toISOString().slice(0, 10)];
+  const leaguePriorities = selectedSports.some(item => item.id === "soccer")
+    ? await studioSetting("league-providers", {}).catch(() => ({})) : {};
   const jobs = selectedSports.flatMap((s) =>
     s.leagues.map(async ([league, name]) => {
+      if (leaguePriorities[s.id + "/" + league]?.entries?.some(entry => entry.games)) {
+        const priority = await preferredLeagueData({ sport: s.id, league, name }, "games", date.slice(0, 7), leaguePriorities);
+        const matches = priority?.data.filter(event => dayInBrazil(event.date) === date)
+          .map(event => normalizeEvent(event, s.id, league, name));
+        if (matches?.length) return { matches, failed: Boolean(priority.warnings.length), stale: priority.stale,
+          sport: s.id, league, name, provider: priority.source, at: Date.parse(priority.fetchedAt) };
+      }
       if (s.id === "soccer" && league === "fifa.world" && date.startsWith("2026-")) return {
         matches: nationalMonthlyGames(league, date.slice(0, 7)).filter(match => dayInBrazil(match.date) === date),
         failed: false, stale: false, sport: s.id, league, name,
@@ -849,6 +859,11 @@ export async function route(url) {
   if (url.pathname === "/api/standings") {
     const config = leagueFor(q.get("sport"), q.get("league"));
     if (!config) return [400, { error: "Competição inválida." }];
+    const requestedProviderSeason = q.get("season");
+    if (requestedProviderSeason === null || /^\d{4}$/.test(requestedProviderSeason) && Number(requestedProviderSeason) >= 2000 && Number(requestedProviderSeason) <= 2100) {
+      const priority = await preferredLeagueData(config, "standings", requestedProviderSeason);
+      if (priority) return [200, { ...config, source: priority.source, stale: priority.stale, fetchedAt: priority.fetchedAt, warnings: priority.warnings, groups: priority.data, rounds: [] }];
+    }
     if (config.sport === "soccer" && isCbfLowerDivision(config.league))
       return q.has('season') && q.get('season') !== '2026'
         ? [400,{error:'Classificação da CBF disponível apenas para 2026.'}]
@@ -1127,6 +1142,13 @@ export async function route(url) {
     const month = q.get("month") || dayInBrazil(new Date()).slice(0, 7);
     if (!config || !/^(20\d{2})-(0[1-9]|1[0-2])$/.test(month))
       return [400, { error: "Competição ou mês inválido. Use AAAA-MM." }];
+    const priority = await preferredLeagueData(config, "games", month);
+    if (priority) {
+      const matches = priority.data.map(event => normalizeEvent(event, config.sport, config.league, config.name));
+      const { matches: enriched } = await enrichManualBroadcasts(applyCbfBroadcasts(matches));
+      return [200, { ...config, month, matches: enriched, source: priority.source, stale: priority.stale,
+        partial: Boolean(priority.warnings.length), fetchedAt: priority.fetchedAt, warnings: priority.warnings }];
+    }
     if (config.sport === "soccer" && isCbfLowerDivision(config.league)) {
       if (!month.startsWith("2026-")) return [503, { error: "A cobertura da CBF disponível é da temporada 2026." }];
       return [200, { ...config, month, matches: cbfLowerDivisionGames(config.league, { month }),
@@ -1429,6 +1451,16 @@ export async function route(url) {
   if (["/api/match", "/api/media"].includes(url.pathname)) {
     const config = leagueFor(q.get("sport"), q.get("league"));
     const id = q.get("id");
+    if (config && /^(af|fd)-\d{1,15}$/.test(id || "")) {
+      try {
+        const detail = await externalMatch(config, id);
+        if (!detail) return [404, { error: "Partida fora da cobertura configurada." }];
+        if (url.pathname === "/api/media")
+          return [200, { highlights: [], replays: [], related: [], searchLinks: [], partial: false, source: detail.source }];
+        const { matches } = await enrichManualBroadcasts([detail.match]);
+        return [200, { ...detail, match: matches[0] }];
+      } catch { return [503, { error: "Fonte da partida temporariamente indisponível." }]; }
+    }
     if (!config || !/^\d{1,15}$/.test(id || ""))
       return [400, { error: "Partida ou competição inválida." }];
     if (config.sport === "basketball" && config.league === "nbb") {
@@ -1838,6 +1870,36 @@ export async function handler(req, res) {
       );
     }
   }
+  if (requestUrl.pathname === "/api/admin/league-providers") {
+    res.setHeader("Cache-Control", "private, no-store");
+    res.setHeader("Vercel-CDN-Cache-Control", "no-store");
+    const reply = (status, value) => { res.statusCode = status; return res.end(JSON.stringify(value)); };
+    if (!(await adminAuthorized(req.headers?.authorization)))
+      return reply(req.headers?.authorization ? 403 : 401, { error: "Acesso administrativo necessário." });
+    try {
+      if (req.method === "GET") {
+        const settings = await listLeagueRoutes();
+        const catalog = Object.entries(providers).map(([id, { name, env, docs }]) => ({ id, name, env, docs, configured: Boolean(process.env[env]) }));
+        return reply(200, { settings, catalog, writable: Boolean(process.env.DATABASE_URL) });
+      }
+      if (req.method !== "PUT" && req.method !== "POST") return reply(405, { error: "Método não permitido." });
+      if (req.method === "PUT" && !process.env.DATABASE_URL) return reply(503, { error: "Configure o Neon para salvar." });
+      let input;
+      try {
+        input = validateLeagueRoutes(await requestJson(req));
+        if (req.method === "POST") return reply(200, await checkLeagueProvider(input));
+      } catch (error) {
+        return reply(400, { error: error.message });
+      }
+      await saveLeagueRoutes(input);
+      await recordAdminActivitySafely("configuration", "Prioridade de fontes atualizada para " + input.key + ".");
+      try { await clearAllCaches(); } catch {}
+      return reply(200, { settings: await listLeagueRoutes() });
+    } catch (error) {
+      console.error("Falha na configuração de fontes por liga:", error.code ?? error.name);
+      return reply(503, { error: "Não foi possível acessar a configuração de fontes no Neon." });
+    }
+  }
   const studioRoutes = {
     "/api/admin/appearance": "appearance",
     "/api/admin/custom-sources": "sources",
@@ -1870,7 +1932,10 @@ export async function handler(req, res) {
         }
         const fallback = studio === "appearance" ? defaultAppearance : [];
         return reply(200, { settings: await studioSetting(studio, fallback, true), writable });
-      } catch { return reply(503, { error: "Não foi possível consultar os dados." }); }
+      } catch (error) {
+        console.error("Falha ao consultar administração:", studio, error.code ?? error.name);
+        return reply(503, { error: adminDatabaseErrorMessage(error) });
+      }
     }
     const testing = req.method === "POST" && studio === "sources";
     if (!testing && req.method !== "PUT") return reply(405, { error: "Método não permitido." });
@@ -2348,7 +2413,19 @@ export async function handler(req, res) {
     }
     try {
       if (req.method === "GET") {
-        return res.end(JSON.stringify({ leagues: await leagueList() }));
+        const leagues = await leagueList();
+        const settings = await listLeagueRoutes().catch(() => null);
+        const flags = await runtimeProviderSettings();
+        return res.end(JSON.stringify({ leagues: leagues.map(league => {
+          const defaults = defaultLeagueSources(league.sport, league.id);
+          if (league.id === "nbb") {
+            defaults.games = defaults.games.filter(source => source === "365Scores" ? flags.nbb365 : flags.nbbLnb);
+            defaults.standings = defaults.games;
+          }
+          const active = settings?.[league.sport + "/" + league.id]?.entries ?? [];
+          return { ...league, externalStandings: !KNOCKOUT_LEAGUES.has(league.id) && league.id !== "fifa.friendly", sources: Object.fromEntries(["games", "standings"].map(type => [type,
+            [...active.filter(entry => entry[type] && process.env[providers[entry.id]?.env]).map(entry => providers[entry.id].name), ...defaults[type]]])) };
+        }), sourcesUnavailable: settings === null }));
       }
       if (req.method === "DELETE") {
         const sport = requestUrl.searchParams.get("sport");

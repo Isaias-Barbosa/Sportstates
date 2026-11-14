@@ -38,7 +38,7 @@ export function validatePreferenceAction(value) {
       if (
         extra.length ||
         !leagueFor(sport, league) ||
-        !/^\d{1,15}$/.test(id || "")
+        !/^(?:af-|fd-)?\d{1,15}$/.test(id || "")
       )
         throw Error("Partida inválida.");
     }

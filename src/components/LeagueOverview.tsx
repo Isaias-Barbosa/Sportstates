@@ -17,6 +17,7 @@ import LeagueStatistics from "./LeagueStatistics";
 type Games = {
   matches: Match[];
   month: string;
+  source?: string;
   stale: boolean;
   partial: boolean;
   roundsUnavailable?: boolean;
@@ -278,7 +279,7 @@ export default function LeagueOverview({
           </div>
         )}
         <p className="league-games-note">
-          ESPN · Atualização automática a cada minuto com a aba visível.
+          {data?.source ? `${data.source} · ` : ""}Atualização automática a cada minuto com a aba visível.
         </p>
       </details>
       {statistics ? (

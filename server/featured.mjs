@@ -146,6 +146,6 @@ export function validKey(key) {
   return (
     parts.length === 3 &&
     !!leagueFor(parts[0], parts[1]) &&
-    /^\d{1,15}$/.test(parts[2])
+    /^(?:af-|fd-)?\d{1,15}$/.test(parts[2])
   );
 }

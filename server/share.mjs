@@ -18,7 +18,7 @@ export const VALID_ROUTES = [
   /^\/resumo-diario\/?$/,
   /^\/atletas\/?$/,
   /^\/classificacoes\/?$/,
-  /^\/partida\/[a-z-]+\/[a-z0-9._-]+\/\d{1,15}\/?$/,
+  /^\/partida\/[a-z-]+\/[a-z0-9._-]+\/(?:af-|fd-)?\d{1,15}\/?$/,
   /^\/noticias\/?$/,
   /^\/times\/?$/,
   /^\/times\/[a-zA-Z0-9_-]{1,100}\/?$/,
@@ -49,7 +49,7 @@ export async function metadata(raw, providers = {}) {
   const sport = SPORTS.find(s => s.id === u.searchParams.get("sport"));
   const league = leagueFor(u.searchParams.get("sport"), u.searchParams.get("league"));
   const m = { title: "Sportstates · O jogo acontece aqui", heading: "O JOGO ACONTECE AQUI.", label: "SEU ESPORTE. SEU MOMENTO.", description: "Da primeira bola ao último segundo. Acompanhe placares, jogos do dia, times e classificações em um só lugar.", url: u.href, kind: "home" };
-  const game = u.pathname.match(/^\/partida\/([a-z-]+)\/([a-z0-9._-]+)\/(\d{1,15})\/?$/);
+  const game = u.pathname.match(/^\/partida\/([a-z-]+)\/([a-z0-9._-]+)\/((?:af-|fd-)?\d{1,15})\/?$/);
   const team = u.pathname.match(/^\/times\/([a-zA-Z0-9_-]{1,100})\/?$/);
   if (game && leagueFor(game[1], game[2])) {
     const config = leagueFor(game[1], game[2]);
