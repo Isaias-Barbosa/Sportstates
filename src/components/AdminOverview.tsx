@@ -1,3 +1,4 @@
+import { adminFetch } from "../account/client";
 import { useEffect, useState } from "react";
 import {
   Activity,
@@ -87,7 +88,7 @@ export default function AdminOverview({
     const controller = new AbortController();
     setLoading(true);
     setError("");
-    void fetch("/api/admin/overview", {
+    void adminFetch("/api/admin/overview", {
       headers: { Authorization: `Bearer ${secret}` },
       cache: "no-store",
       signal: controller.signal,

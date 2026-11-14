@@ -1,8 +1,11 @@
+import { adminFetch } from "../account/client";
 import { useEffect, useState, type FormEvent } from "react";
 import {
   ArrowDown,
   ArrowUp,
   ExternalLink,
+  Fingerprint,
+  UserRound,
   Plus,
   Search,
   Trash2,
@@ -43,7 +46,7 @@ async function adminRequest<T>(
   body?: unknown,
   signal?: AbortSignal,
 ): Promise<T> {
-  const response = await fetch("/api/admin/" + path, {
+  const response = await adminFetch("/api/admin/" + path, {
     method,
     signal,
     cache: "no-store",
@@ -607,6 +610,13 @@ export function AdminPlayers({
 }) {
   const [query, setQuery] = useState("");
   const [id, setId] = useState(initialId);
+  const [profileId, setProfileId] = useState(initialId);
+  const [profileRevision, setProfileRevision] = useState(0);
+  function openProfile(next: string) {
+    setId(next);
+    setProfileId(next);
+    setProfileRevision(value => value + 1);
+  }
   const [results, setResults] = useState<Athlete[]>([]);
   const [player, setPlayer] = useState<PublicPlayer>();
   const [draft, setDraft] = useState({
@@ -622,7 +632,7 @@ export function AdminPlayers({
   });
   async function search(e: FormEvent) {
     e.preventDefault();
-    setState({ ...state, busy: true, error: "", message: "" });
+    setState(previous => ({ ...previous, busy: true, error: "", message: "" }));
     setResults([]);
     try {
       const { players } = await adminRequest<{ players: Athlete[] }>(
@@ -630,12 +640,9 @@ export function AdminPlayers({
         "player-editor?q=" + encodeURIComponent(query),
       );
       setResults(players);
-      setState({
-        ...state,
-        message: players.length ? "" : "Nenhum jogador encontrado.",
-      });
+      setState(previous => ({ ...previous, busy: false, message: players.length ? "" : "Nenhum jogador encontrado." }));
     } catch (cause) {
-      setState({ ...state, error: (cause as Error).message });
+      setState(previous => ({ ...previous, busy: false, error: (cause as Error).message }));
     }
   }
   useEffect(() => {
@@ -670,87 +677,84 @@ export function AdminPlayers({
           });
       });
     return () => controller.abort();
-  }, [secret, id]);
+  }, [secret, id, profileRevision]);
   async function save(e: FormEvent) {
     e.preventDefault();
-    setState({ ...state, busy: true, error: "", message: "" });
+    setState(previous => ({ ...previous, busy: true, error: "", message: "" }));
     try {
       await adminRequest(secret, "player-editor", "PUT", { id, ...draft });
       notifyCacheCleared();
-      setState({ ...state, message: "Perfil atualizado." });
+      setState(previous => ({ ...previous, busy: false, message: "Perfil atualizado." }));
     } catch (cause) {
-      setState({ ...state, error: (cause as Error).message });
+      setState(previous => ({ ...previous, busy: false, error: (cause as Error).message }));
     }
   }
   return (
-    <section className="admin-overview studio-section">
-      <h2>Jogadores</h2>
-      <p>
-        Busque pelo nome ou código ESPN. Para editar um perfil existente do
-        Sportstates, use o identificador que aparece depois de{" "}
-        <code>/jogadores/</code>.
-      </p>
-      <form className="studio-inline" onSubmit={search}>
-        <input
-          aria-label="Nome ou código ESPN"
-          placeholder="Ex.: Alisson ou 196876"
-          minLength={3}
-          maxLength={80}
-          required
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-        />
-        <button disabled={state.busy}>
-          <Search size={16} /> Buscar na ESPN
-        </button>
-      </form>
-      {!!results.length && (
-        <ul className="studio-results">
-          {results.map((item) => (
-            <li key={item.id}>
-              <span>
-                {item.name} · {item.team || "Futebol"} · {item.id}
-              </span>
-              <button
-                type="button"
-                disabled={state.busy}
-                onClick={() => setId("espn-" + item.id)}
-              >
-                Abrir perfil
-              </button>
-              {player && !id.startsWith("espn-") && (
-                <button
-                  type="button"
-                  onClick={() => setDraft({ ...draft, espnId: item.id })}
-                >
-                  Usar código neste perfil
-                </button>
-              )}
-            </li>
-          ))}
-        </ul>
-      )}
-      <form
-        className="studio-inline"
-        onSubmit={(e) => {
-          e.preventDefault();
-          setId(String(new FormData(e.currentTarget).get("playerId")).trim());
-        }}
-      >
-        <input
-          name="playerId"
-          aria-label="ID do perfil no Sportstates"
-          placeholder="Ex.: espn-196876 ou cbf-123"
-          required
-          defaultValue={initialId}
-          pattern="(espn-|cbf-)?[0-9]{1,12}"
-        />
-        <button disabled={state.busy}>Carregar perfil</button>
-      </form>
+    <section className="admin-overview studio-players" aria-labelledby="studio-players-title">
+      <header className="studio-players-heading">
+        <div className="studio-player-icon"><UserRound size={24} aria-hidden="true" /></div>
+        <div>
+          <h2 id="studio-players-title">Jogadores</h2>
+          <p>Encontre um atleta e edite seu histórico de clubes e premiações.</p>
+        </div>
+      </header>
+      <div className="studio-player-tools">
+        <form className="studio-player-tool" onSubmit={search}>
+          <h3><Search size={18} aria-hidden="true" /> Busca na ESPN</h3>
+          <label htmlFor="studio-player-query">Nome ou código ESPN</label>
+          <div className="studio-player-input">
+            <input id="studio-player-query" type="search" placeholder="Ex.: Suzuki ou 196876"
+              minLength={3} maxLength={80} required value={query}
+              onChange={e => setQuery(e.target.value)} />
+            <button className="admin-primary" disabled={state.busy}>Buscar</button>
+          </div>
+        </form>
+        <form className="studio-player-tool" onSubmit={event => {
+          event.preventDefault();
+          openProfile(profileId.trim());
+        }}>
+          <h3><Fingerprint size={18} aria-hidden="true" /> Abrir cadastro</h3>
+          <label htmlFor="studio-player-id">ID do perfil no Sportstates</label>
+          <div className="studio-player-input">
+            <input id="studio-player-id" placeholder="Ex.: espn-196876"
+              required value={profileId} onChange={event => setProfileId(event.target.value)}
+              pattern="(espn-|cbf-)?[0-9]{1,12}" />
+            <button className="studio-player-secondary" disabled={state.busy}>Abrir</button>
+          </div>
+          <small>Use o código após <code>/jogadores/</code> no endereço do perfil.</small>
+        </form>
+      </div>
       {state.error && <Notice error>{state.error}</Notice>}
-      {state.message && <Notice>{state.message}</Notice>}
+      <div role="status">
+        {state.busy ? <p className="studio-player-feedback">Consultando dados…</p> :
+          state.message && <Notice>{state.message}</Notice>}
+      </div>
+      {!!results.length && (
+        <section className="studio-player-matches" aria-labelledby="player-results-title">
+          <h3 id="player-results-title">Resultados <span>{results.length}</span></h3>
+          <ul>
+            {results.map((item) => (
+              <li key={item.id}>
+                <div className="studio-player-icon"><UserRound size={17} aria-hidden="true" /></div>
+                <div>
+                  <strong>{item.name}</strong>
+                  <small>{item.team || "Futebol"} · ESPN {item.id}</small>
+                </div>
+                <div className="studio-player-actions">
+                  {player && !id.startsWith("espn-") && (
+                    <button type="button" className="studio-player-secondary" disabled={state.busy}
+                      onClick={() => setDraft({ ...draft, espnId: item.id })}>Usar código</button>
+                  )}
+                  <button type="button" className="studio-player-secondary" disabled={state.busy}
+                    onClick={() => openProfile("espn-" + item.id)}>Abrir perfil</button>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
       {player && (
-        <form onSubmit={save}>
+        <form className="studio-player-editor" onSubmit={save}>
           <h3>
             {player.name}{" "}
             <Link

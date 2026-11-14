@@ -1,3 +1,4 @@
+import { adminFetch } from "../account/client";
 import AdminLeagueSources from "./AdminLeagueSources";
 import { AdminCustomSources } from "./AdminStudio";
 import { useEffect, useState } from "react";
@@ -79,7 +80,7 @@ export default function AdminProviders({
     signal?: AbortSignal,
     settings?: Settings,
   ): Promise<ProviderResponse> {
-    const response = await fetch("/api/admin/providers", {
+    const response = await adminFetch("/api/admin/providers", {
       method: settings ? "PUT" : "GET",
       cache: "no-store",
       signal,

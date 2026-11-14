@@ -1,3 +1,4 @@
+import { adminFetch } from "../account/client";
 import { useState, type FormEvent } from "react";
 import { Link } from "react-router-dom";
 import { keyOf } from "../catalog";
@@ -48,7 +49,7 @@ export default function AdminAnnouncements({
     setMessage("");
     setFailed(false);
     try {
-      const response = await fetch("/api/admin/announcements", {
+      const response = await adminFetch("/api/admin/announcements", {
         method: "POST",
         headers: {
           Authorization: "Bearer " + secret,

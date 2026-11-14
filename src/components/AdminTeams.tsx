@@ -1,3 +1,4 @@
+import { adminFetch } from "../account/client";
 import { useEffect, useState } from "react";
 import { Notice } from "./shared";
 import TeamLookup from "./TeamLookup";
@@ -31,7 +32,7 @@ export default function AdminTeams({ secret }: { secret: string }) {
   );
   async function load() {
     try {
-      const r = await fetch("/api/admin/teams", {
+      const r = await adminFetch("/api/admin/teams", {
         headers: { Authorization: `Bearer ${secret}` },
         cache: "no-store",
       });
@@ -55,7 +56,7 @@ export default function AdminTeams({ secret }: { secret: string }) {
         ...form,
         honours: form.honours.map((h) => h.trim()).filter(Boolean),
       };
-      const r = await fetch("/api/admin/teams", {
+      const r = await adminFetch("/api/admin/teams", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -83,7 +84,7 @@ export default function AdminTeams({ secret }: { secret: string }) {
     setDeletingId(team.id);
     setMessage("");
     try {
-      const response = await fetch(
+      const response = await adminFetch(
         `/api/admin/teams?id=${encodeURIComponent(team.id)}`,
         { method: "DELETE", headers: { Authorization: `Bearer ${secret}` }, cache: "no-store" },
       );

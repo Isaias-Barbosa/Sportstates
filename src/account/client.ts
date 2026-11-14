@@ -15,7 +15,7 @@ export function accountClient() {
     });
   return clientPromise;
 }
-export async function sessionToken(auth: Awaited<ReturnType<typeof accountClient>>) {
+export async function sessionToken(auth: Awaited<ReturnType<typeof accountClient>>, reportTransientError = false) {
   let token: string | null = null;
   const session = await auth.getSession({
     fetchOptions: {
@@ -24,6 +24,8 @@ export async function sessionToken(auth: Awaited<ReturnType<typeof accountClient
       },
     },
   });
+  if (reportTransientError && session.error && ![401, 403].includes(session.error.status))
+    throw Error("Não foi possível consultar a sessão.");
   if (session.error || !session.data?.user) return null;
   // Cached Neon sessions carry the JWT in session.token without a response header.
   const cached = session.data.session?.token;
@@ -32,11 +34,13 @@ export async function sessionToken(auth: Awaited<ReturnType<typeof accountClient
   if (compact(token)) return token;
   if (compact(cached)) return cached;
   const result = await auth.token();
+  if (reportTransientError && result.error && ![401, 403].includes(result.error.status))
+    throw Error("Não foi possível renovar a sessão.");
   return !result.error && compact(result.data?.token) ? result.data.token : null;
 }
 
-export async function accountToken() {
-  return sessionToken(await accountClient());
+export async function accountToken(reportTransientError = false) {
+  return sessionToken(await accountClient(), reportTransientError);
 }
 
 export type LancePermissions = {
@@ -79,3 +83,15 @@ export async function getLancePermissions(
   return response.json();
 }
 
+
+// Retry a rejected credential without changing the mounted editor or replaying
+// writes that reached an authenticated handler.
+export async function adminFetch(path: string, init: RequestInit) {
+  const response = await fetch(path, init);
+  if (![401, 403].includes(response.status) || init.signal?.aborted) return response;
+  const headers = new Headers(init.headers);
+  const token = await accountToken().catch(() => null);
+  if (!token || init.signal?.aborted || headers.get("Authorization") === `Bearer ${token}`) return response;
+  headers.set("Authorization", `Bearer ${token}`);
+  return fetch(path, { ...init, headers });
+}
