@@ -1,0 +1,34 @@
+# Administração do Sportstates
+
+Entre com a conta administrativa e acesse `/admin`. Configure `DATABASE_URL`, `ADMIN_EMAIL` e `NEON_AUTH_BASE_URL` no ambiente da aplicação. O Neon precisa permitir a criação da tabela `sport_admin_studio` no primeiro uso. Evite compartilhar as credenciais do ambiente.
+
+## Dados e fontes
+
+A página `/admin/apis` mostra funções das fontes atuais e o resultado da consulta de placares. Os números da Visão geral contam jogos e competições observados, sem representar requisições faturadas pelos serviços externos.
+
+- **ESPN** alimenta placares, classificações e detalhes nas competições compatíveis. Veja `server/api.mjs`, `server/catalog.mjs` e `server/data.mjs`.
+- **ge** entra na contingência da Série A quando habilitado e também publica a agenda de transmissões. Veja `server/ge-rounds.mjs` e `server/ge-broadcasts.mjs`.
+- **365Scores e LNB** atendem ao NBB na ordem configurada pelo código. O 365Scores também atende competições complementares. Veja `server/365scores.mjs` e `server/lnb.mjs`.
+- **CBF** complementa calendários, transmissões e dados de competições brasileiras. Veja `server/cbf-broadcasts.mjs` e `server/cbf-lower-divisions.mjs`.
+
+### Publicar dados de uma API sem editar código
+
+1. No painel Vercel, abra Settings → Environment Variables. Em `SPORTSTATES_SOURCE_ORIGINS`, cadastre apenas origens HTTPS de provedores confiáveis, sem caminho, separadas por vírgula. Exemplo `https://api.exemplo.com,https://dados.exemplo.org`. Em desenvolvimento, configure as mesmas variáveis no ambiente local. Faça um novo deploy após alterar o ambiente da Vercel.
+2. Para autenticação Bearer, crie `SPORTSTATES_SOURCE_EXEMPLO_TOKEN` com o segredo e `SPORTSTATES_SOURCE_EXEMPLO_ORIGIN` com a origem exata. Informe apenas `SPORTSTATES_SOURCE_EXEMPLO_TOKEN` no painel. URLs ficam no cadastro administrativo, por isso use parâmetros de consulta para filtros e mantenha segredos nas variáveis do servidor.
+3. Em APIs personalizadas, cadastre o URL completo, o nome da seção e o destino. Em Classificações, selecione a competição. A resposta deve ser JSON com uma lista. Para o exemplo abaixo, use `items` em Lista, `name` em Título, `stats.points` em Valor e `url` em Link do item.
+
+```json
+{"items":[{"name":"Equipe A","stats":{"points":42},"url":"https://exemplo.com/equipes/a"}]}
+```
+
+4. Teste a fonte e confira a amostra. Marque **Publicar** e salve. A seção mostra até 24 registros. Ela usa GET, com timeout de seis segundos, sem seguir redirecionamentos. O cache local por instância preserva a última resposta válida por até uma hora após o vencimento e espera um minuto entre falhas. Uma instância nova depende de uma consulta bem-sucedida.
+
+### Conectar um provedor aos placares ou às tabelas principais
+
+Crie um adaptador em `server/` que valide a resposta externa e converta IDs, datas, estados e nomes para o formato do portal. Use `server/365scores.mjs` e `server/data.mjs` como referência. Identifique a competição no catálogo, componha a fonte na rota correspondente de `server/api.mjs` e use `server/source-manager.mjs` e `server/cache.mjs` para a contingência. Para transmissões, use território Brasil e confirmação por partida. Valide com `npm test` e `npm run build`.
+
+## Jogadores e Customizações
+
+Em `/admin/jogadores`, procure pelo nome ou ID ESPN. Para editar um perfil público já existente, carregue o identificador usado em `/jogadores/<id>`. Descreva clubes anteriores e premiações com uma referência HTTPS para cada registro. O código ESPN serve para completar campos disponíveis de identificação, nacionalidade, posição e clube. O histórico e as premiações podem ser preenchidos manualmente.
+
+Em `/admin/customizacoes`, defina o fundo nos temas claro e escuro e ordene as competições. A home prioriza ligas que têm jogos no filtro atual. Classificações aplica a prioridade dentro do esporte e grupo selecionados. Use Restaurar para voltar à cor original e remova uma liga da lista para devolver sua posição à ordem padrão.

@@ -51,6 +51,16 @@ function sourceStatusLabel(source: DataSourceStatus) {
   }
 }
 
+function StatusChart({ title, rows }: { title: string; rows: [string, number][] }) {
+  const total = rows.reduce((sum, [, value]) => sum + value, 0);
+  return <section className="admin-overview-panel">
+    <h3>{title}</h3>
+    {total ? <ul className="admin-chart">{rows.map(([label, value]) => <li key={label}>
+      <span>{label}</span><meter aria-label={label} min={0} max={total} value={value} /><strong>{value}</strong>
+    </li>)}</ul> : <p>Sem registros na data selecionada.</p>}
+  </section>;
+}
+
 export default function AdminOverview({
   secret,
   scores,
@@ -171,6 +181,19 @@ export default function AdminOverview({
         <article><Activity size={19} /><span><strong>{data?.leagues ?? "—"}</strong>Ligas no catálogo</span></article>
         <article><AlertTriangle size={19} /><span><strong>{scoresLoading ? "—" : (scores?.sources?.filter((source) => source.state !== "ok").length ?? "—")}</strong>Competições com ressalvas</span></article>
       </div>
+      {!scoresLoading && scores && <div className="admin-overview-panels">
+        <StatusChart title="Agenda por situação" rows={[
+          ["Programados", scores.matches.filter(match => match.state === "scheduled").length],
+          ["Ao vivo", scores.matches.filter(match => match.state === "live").length],
+          ["Encerrados", scores.matches.filter(match => match.state === "finished").length],
+        ]} />
+        <StatusChart title="Consultas por situação" rows={[
+          ["Atualizadas", scores.sources?.filter(source => source.state === "ok").length ?? 0],
+          ["Em cache", scores.sources?.filter(source => source.state === "stale").length ?? 0],
+          ["Parciais", scores.sources?.filter(source => source.state === "partial").length ?? 0],
+          ["Falharam", scores.sources?.filter(source => source.state === "unavailable").length ?? 0],
+        ]} />
+      </div>}
       <div className="admin-overview-panels">
         <section
           className="admin-overview-panel"

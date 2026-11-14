@@ -1,3 +1,4 @@
+import { AdminAppearance, AdminPlayers } from "../components/AdminStudio";
 import AdminAnnouncements from "../components/AdminAnnouncements";
 import { useEffect, useRef, useState } from "react";
 import AdminUsers from "../components/AdminUsers";
@@ -5,9 +6,9 @@ import AdminCbfReviews from "../components/AdminCbfReviews";
 import AdminTeams from "../components/AdminTeams";
 import AdminLeagues from "../components/AdminLeagues";
 import AdminProviders from "../components/AdminProviders";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import AdminOverview from "../components/AdminOverview";
-import { CalendarDays, Check, Pencil, X } from "lucide-react";
+import { Activity, Bell, CalendarDays, Check, Database, LayoutDashboard, Pencil, Settings2, Shield, Trophy, Tv, UserRound, Users, X } from "lucide-react";
 import { useApi, today, time, notifyCacheCleared } from "../hooks";
 import { keyOf, sports } from "../catalog";
 import {
@@ -29,9 +30,29 @@ type ManualBroadcast = {
   reviewed_on: string;
 };
 
+const navigation = [
+  { label: "Operação", items: [
+    ["overview", "", "Visão geral", LayoutDashboard],
+    ["games", "jogos", "Jogos do dia", CalendarDays],
+    ["broadcasts", "transmissoes", "Transmissões", Tv],
+    ["cbf", "revisoes", "Revisões CBF", Activity],
+    ["announcements", "notificacoes", "Notificações", Bell],
+  ] },
+  { label: "Catálogo", items: [
+    ["teams", "times", "Times", Shield],
+    ["leagues", "ligas", "Ligas", Trophy],
+    ["players", "jogadores", "Jogadores", UserRound],
+  ] },
+  { label: "Configuração", items: [
+    ["providers", "apis", "APIs e fontes", Database],
+    ["appearance", "customizacoes", "Customizações", Settings2],
+    ["users", "usuarios", "Usuários", Users],
+  ] },
+] as const;
+
 export default function AdminGames({ secret }: { secret: string }) {
   const navigate = useNavigate();
-  const { pathname } = useLocation();
+  const { pathname, search } = useLocation();
   const [clearingCache, setClearingCache] = useState(false);
   const [cacheMessage, setCacheMessage] = useState("");
   const [cacheError, setCacheError] = useState(false);
@@ -64,11 +85,8 @@ export default function AdminGames({ secret }: { secret: string }) {
       setClearingCache(false);
     }
   }
-  const [activeSection, setSection] = useState<
-    "overview" | "games" | "broadcasts" | "teams" | "leagues" | "users" | "cbf" | "announcements"
-  >("overview");
-  const onProvidersPage = pathname.replace(/\/$/, "") === "/admin/apis";
-  const section = onProvidersPage ? "providers" : activeSection;
+  const page = pathname.split("/")[2] || "";
+  const section = navigation.flatMap(group => [...group.items]).find(item => item[1] === page)?.[0] || "overview";
   const [date, setDate] = useState(today());
   const [sport, setSport] = useState("all");
   const [selected, setSelected] = useState<Match | null>(null);
@@ -310,46 +328,22 @@ export default function AdminGames({ secret }: { secret: string }) {
         </button>
       </div>
       {cacheMessage && <Notice error={cacheError}>{cacheMessage}</Notice>}
-      <div className="tabs detail-tabs">
-        <button
-          className={section === "overview" ? "active" : ""}
-          onClick={() => { setSection("overview"); if (onProvidersPage) navigate("/admin"); }}
-        >
-          Visão geral
-        </button>
-        <button
-          className={section === "games" ? "active" : ""}
-          onClick={() => { setSection("games"); if (onProvidersPage) navigate("/admin"); }}
-        >
-          Jogos do dia
-        </button>
-        <button
-          className={section === "broadcasts" ? "active" : ""}
-          onClick={() => { setSection("broadcasts"); if (onProvidersPage) navigate("/admin"); }}
-        >
-          Transmissões
-        </button>
-        <button
-          className={section === "teams" ? "active" : ""}
-          onClick={() => { setSection("teams"); if (onProvidersPage) navigate("/admin"); }}
-        >
-          Times
-        </button>
-        <button className={section === "leagues" ? "active" : ""} onClick={() => { setSection("leagues"); if (onProvidersPage) navigate("/admin"); }}>Ligas</button>
-        <button
-          className={section === "users" ? "active" : ""}
-          onClick={() => { setSection("users"); if (onProvidersPage) navigate("/admin"); }}
-        >
-          Usuários
-        </button>
-        <button className={section === "cbf" ? "active" : ""} onClick={() => { setSection("cbf"); if (onProvidersPage) navigate("/admin"); }}>
-          Revisões CBF
-        </button>
-        <Link className={section === "providers" ? "active" : ""} to="/admin/apis" aria-current={section === "providers" ? "page" : undefined}>APIs e fontes</Link>
-        <button className={section === "announcements" ? "active" : ""} onClick={() => { setSection("announcements"); if (onProvidersPage) navigate("/admin"); }}>Notificações</button>
-      </div>
+      <div className="admin-workspace">
+        <nav className="studio-sidebar" aria-label="Menu administrativo">
+          {navigation.map(group => <div key={group.label}>
+            <h2>{group.label}</h2>
+            {group.items.map(([key, path, label, Icon]) => <NavLink key={key} end to={path ? `/admin/${path}` : "/admin"}>
+              <Icon size={17} aria-hidden="true" /> {label}
+            </NavLink>)}
+          </div>)}
+        </nav>
+        <div className="studio-main">
       {section === "providers" ? (
         <AdminProviders secret={secret} scores={data} />
+      ) : section === "appearance" ? (
+        <AdminAppearance secret={secret} />
+      ) : section === "players" ? (
+        <AdminPlayers key={search} secret={secret} initialId={new URLSearchParams(search).get("id") || ""} />
       ) : section === "overview" ? (
         <AdminOverview
           secret={secret}
@@ -692,6 +686,8 @@ export default function AdminGames({ secret }: { secret: string }) {
           )}
         </>
       )}
+        </div>
+      </div>
     </>
   );
 }

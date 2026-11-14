@@ -1,3 +1,5 @@
+import CustomContent from "../components/CustomContent";
+import { prioritize } from "../appearance";
 import { useAccount } from "../account/AccountProvider";
 import {
   preferredMatch,
@@ -44,8 +46,10 @@ import HomeShowcase from '../components/HomeShowcase';
 
 export default function Dashboard({
   favoritesOnly = false,
+  leagueOrder,
 }: {
   favoritesOnly?: boolean;
+  leagueOrder?: string[];
 }) {
   const [params] = useSearchParams();
   const sport = params.get("sport");
@@ -55,14 +59,16 @@ export default function Dashboard({
   return agenda && !favoritesOnly ? (
     <SportAgenda sport={agenda.id} />
   ) : (
-    <ScoresDashboard favoritesOnly={favoritesOnly} />
+    <ScoresDashboard favoritesOnly={favoritesOnly} leagueOrder={leagueOrder} />
   );
 }
 
 function ScoresDashboard({
   favoritesOnly = false,
+  leagueOrder,
 }: {
   favoritesOnly?: boolean;
+  leagueOrder?: string[];
 }) {
   const {
     user,
@@ -204,7 +210,7 @@ function ScoresDashboard({
     coverageIssues.length > 0 ||
     (!coverage.length &&
       !!(data?.stale || data?.partial || data?.warnings.length));
-  const groups = [...new Set(visible.map((m) => `${m.sport}/${m.league}`))];
+  const groups = prioritize([...new Set(visible.map((m) => `${m.sport}/${m.league}`))], leagueOrder, id => id);
   function set(key: string, value: string) {
     const next = new URLSearchParams(params);
     if (key === "sport") next.delete("league");
@@ -283,6 +289,7 @@ function ScoresDashboard({
           </p>
         </div>
       </section>}
+      <CustomContent target="home" />
       <div className="hv-energy-strip" aria-hidden="true">
         <span>O jogo acontece aqui</span>
         <i>✦</i>

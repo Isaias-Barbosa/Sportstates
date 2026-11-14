@@ -1,3 +1,5 @@
+import CustomContent from "../components/CustomContent";
+import { prioritize } from "../appearance";
 import { F1SportCard, F1StandingsPage } from "./F1Pages";
 import { useSearchParams } from "react-router-dom";
 import { standingsSelection } from "../league-navigation";
@@ -8,20 +10,29 @@ import { Empty, Loading, Notice } from "../components/shared";
 import LeagueOverview from "../components/LeagueOverview";
 import StandingsTable from "../components/StandingsTable";
 
-export default function StandingsPage() {
+export default function StandingsPage({ leagueOrder }: { leagueOrder?: string[] }) {
   const [params] = useSearchParams();
-  return params.get("sport") === "f1" ? <F1StandingsPage /> : <OtherStandingsPage />;
+  return params.get("sport") === "f1" ? <F1StandingsPage /> : <OtherStandingsPage leagueOrder={leagueOrder} />;
 }
 
-function OtherStandingsPage() {
+function OtherStandingsPage({ leagueOrder }: { leagueOrder?: string[] }) {
   const { data, loading, error, refresh } = useApi<CompetitionCatalog>(
     "/api/competitions",
     0,
   );
   const [params, setParams] = useSearchParams();
+  const catalog = data ? { ...data, sports: data.sports.map(item => ({
+    ...item, leagues: prioritize(item.leagues, leagueOrder, league => item.id + "/" + league.id),
+  })), soccerRegions: data.soccerRegions?.map(region => ({
+    ...region,
+    competitions: prioritize(region.competitions, leagueOrder, id => "soccer/" + id),
+    stateCompetitions: prioritize(region.stateCompetitions ?? [], leagueOrder, id => "soccer/" + id),
+  })), soccerInternationalGroups: data.soccerInternationalGroups?.map(group => ({
+    ...group, competitions: prioritize(group.competitions, leagueOrder, id => "soccer/" + id),
+  })) } : undefined;
   const { sport, league, selected, scope, region, group } = standingsSelection(
     params,
-    data,
+    catalog,
   );
   function setLeague(id: string) {
     const next = new URLSearchParams(params);
@@ -36,7 +47,7 @@ function OtherStandingsPage() {
 
   const stateIds =
     sport === "soccer" && scope === "local" && region === "brasil"
-      ? data?.soccerRegions?.find((r) => r.id === "brasil")
+      ? catalog?.soccerRegions?.find((r) => r.id === "brasil")
           ?.stateCompetitions || []
       : [];
   const isState = stateIds.includes(league);
@@ -45,7 +56,7 @@ function OtherStandingsPage() {
   const selectedName = selectedCompetition?.name || "Classificação";
 
   function changeSport(id: string) {
-    const first = data?.sports.find((s) => s.id === id)?.leagues[0]?.id || "";
+    const first = catalog?.sports.find((s) => s.id === id)?.leagues[0]?.id || "";
     setParams({ sport: id, league: first });
   }
   return (
@@ -87,6 +98,7 @@ function OtherStandingsPage() {
             ))}
             <F1SportCard />
           </div>
+          {league && <CustomContent target="standings" league={sport + "/" + league} />}
           {sport === "soccer" && (
             <div className="standings-filters">
               <div className="standings-region-picker">
@@ -95,7 +107,7 @@ function OtherStandingsPage() {
                   className="standings-region-nav"
                   aria-label="Ligas e regiões"
                 >
-                  {data.soccerRegions?.map((r) => {
+                  {catalog?.soccerRegions?.map((r) => {
                     const competitionCount =
                       r.competitions.length +
                       (r.stateCompetitions?.length || 0);
@@ -126,7 +138,7 @@ function OtherStandingsPage() {
                   })}
                 </div>
               </div>
-              {data.soccerInternationalGroups?.map((g) => (
+              {catalog?.soccerInternationalGroups?.map((g) => (
                 <div className="standings-filter" key={g.id}>
                   <label htmlFor={`standings-${g.id}`}>{g.name}</label>
                   <select
