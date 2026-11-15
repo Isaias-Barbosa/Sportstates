@@ -150,18 +150,18 @@ export default function AdminLeagueSources({
             <summary>Como configurar a prioridade por liga</summary>
             <ol>
               <li>
-                Crie uma chave no provedor. Na Vercel, adicione a variável
+                <strong>Cadastre a chave.</strong> Crie uma chave no provedor. Na Vercel, adicione a variável
                 mostrada acima em Settings → Environment Variables e faça um
                 novo deploy.
               </li>
               <li>
-                No API-Football, consulte <code>/leagues</code> e copie{" "}
+                <strong>Identifique a competição.</strong> No API-Football, consulte <code>/leagues</code> e copie{" "}
                 <code>league.id</code>. No football-data.org, consulte{" "}
                 <code>/v4/competitions</code> e copie o código, como{" "}
                 <code>PL</code>.
               </li>
               <li>
-                Abra <Link to="/admin/ligas">Ligas</Link> → Fontes. Informe o
+                <strong>Teste a cobertura.</strong> Abra <Link to="/admin/ligas">Ligas</Link> → Fontes. Informe o
                 ano inicial da temporada e o código do provedor. Escolha Jogos,
                 Classificação ou ambos, teste a cobertura e salve.
               </li>

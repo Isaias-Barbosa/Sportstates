@@ -1,11 +1,17 @@
 import { useEffect, useState } from "react";
-import { Navigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { useAccount } from "../account/AccountProvider";
 import { accountToken } from "../account/client";
 import { Notice } from "../components/shared";
 import AdminGames from "./AdminGames";
 
-export default function AdminAccess() {
+export default function AdminAccess({
+  theme,
+  toggleTheme,
+}: {
+  theme: "dark" | "light";
+  toggleTheme: () => void;
+}) {
   const { user, loading } = useAccount();
   const [access, setAccess] = useState<{
     id: string;
@@ -44,23 +50,40 @@ export default function AdminAccess() {
     return () => controller.abort();
   }, [id, attempt]);
 
-  if (loading && !id) return <p role="status" className="muted">Verificando acesso ao Admin…</p>;
+  const pending = (
+    <div className="studio-access">
+      <p role="status">Verificando acesso ao painel…</p>
+      <Link to="/">Voltar ao portal</Link>
+    </div>
+  );
+  if (loading && !id) return pending;
   if (!id) return <Navigate to="/conta" replace />;
-  if (access?.id !== id) return <p role="status" className="muted">Verificando acesso ao Admin…</p>;
+  if (access?.id !== id) return pending;
   if (access.error)
     return (
-      <Notice error>
-        Não foi possível verificar o acesso.{" "}
-        <button
-          onClick={() => {
-            setAccess(undefined);
-            setAttempt((value) => value + 1);
-          }}
-        >
-          Tentar novamente
-        </button>
-      </Notice>
+      <div className="studio-access">
+        <Notice error>
+          Não foi possível verificar o acesso.{" "}
+          <button
+            onClick={() => {
+              setAccess(undefined);
+              setAttempt((value) => value + 1);
+            }}
+          >
+            Tentar novamente
+          </button>
+        </Notice>
+        <Link to="/">Voltar ao portal</Link>
+      </div>
     );
   if (!access.token) return <Navigate to="/" replace />;
-  return <AdminGames key={id} secret={access.token} accountId={id} />;
+  return (
+    <AdminGames
+      key={id}
+      secret={access.token}
+      accountId={id}
+      theme={theme}
+      toggleTheme={toggleTheme}
+    />
+  );
 }

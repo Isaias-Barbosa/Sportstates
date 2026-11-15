@@ -113,8 +113,8 @@ export default function AdminTeams({ secret }: { secret: string }) {
     <>
       <div className="admin-toolbar">
         <div>
-          <h2>Times cadastrados</h2>
-          <p>Edite o perfil público de cada clube.</p>
+          <h2>Catálogo de times</h2>
+          <p>Cadastre clubes e seleções ou atualize seus perfis públicos.</p>
         </div>
         <button
           className="admin-primary"
@@ -140,6 +140,44 @@ export default function AdminTeams({ secret }: { secret: string }) {
               ? "Editar perfil"
               : "Novo time"}
           </h3>
+          <fieldset className="studio-form-group">
+            <legend>Esporte e competição</legend>
+            <div className="studio-fields">
+          <label>
+            Esporte
+            <select
+              required
+              value={form.sport}
+              onChange={(e) => {
+                const sport = e.target.value;
+                const first =
+                  sports.find((s) => s.id === sport)?.leagues[0]?.id || "";
+                setForm({ ...form, sport, league: first });
+              }}
+            >
+              {sports.map((s) => (
+                <option value={s.id} key={s.id}>
+                  {s.name}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label>
+            Liga
+            <select
+              required
+              value={form.league || ""}
+              onChange={(e) => setForm({ ...form, league: e.target.value })}
+            >
+              <option value="">Selecione a liga</option>
+              {leagues.map((l) => (
+                <option key={l.id} value={l.id}>
+                  {l.name}
+                </option>
+              ))}
+            </select>
+          </label>
+            </div>
           <TeamLookup
             sport={form.sport}
             league={form.league}
@@ -182,44 +220,27 @@ export default function AdminTeams({ secret }: { secret: string }) {
               );
             }}
           />
-          <label>
-            Esporte
-            <select
-              required
-              value={form.sport}
-              onChange={(e) => {
-                const sport = e.target.value;
-                const first =
-                  sports.find((s) => s.id === sport)?.leagues[0]?.id || "";
-                setForm({ ...form, sport, league: first });
-              }}
-            >
-              {sports.map((s) => (
-                <option value={s.id} key={s.id}>
-                  {s.name}
-                </option>
-              ))}
-            </select>
-          </label>
-          <label>
-            Liga
-            <select
-              required
-              value={form.league || ""}
-              onChange={(e) => setForm({ ...form, league: e.target.value })}
-            >
-              <option value="">Selecione a liga</option>
-              {leagues.map((l) => (
-                <option key={l.id} value={l.id}>
-                  {l.name}
-                </option>
-              ))}
-            </select>
-          </label>
+          </fieldset>
+          <fieldset className="studio-form-group">
+            <legend>Identificação do time</legend>
+            <p>Informe o código e o nome usados para identificar este perfil.</p>
+            <div className="studio-fields">
+              <label>
+                Código do time
+                <input required value={form.id} readOnly={editingId !== null}
+                  onChange={e => setForm({...form, id: e.target.value})} />
+                <small>Use o ID da ESPN ou o código do perfil no Sportstates.</small>
+              </label>
+              <label>Nome no portal
+                <input required value={form.name} onChange={e => setForm({...form, name: e.target.value})} />
+              </label>
+            </div>
+          </fieldset>
+          <fieldset className="studio-form-group">
+            <legend>Perfil público (opcional)</legend>
+            <div className="studio-fields">
           {(
             [
-              ["id", "Identificador do time (ESPN ou código do perfil)"],
-              ["name", "Nome"],
               ["city", "Cidade"],
               ["stadium", form.sport === "basketball" ? "Arena" : "Estádio"],
               ["stadium_image", "URL da imagem do estádio (HTTPS)"],
@@ -231,12 +252,11 @@ export default function AdminTeams({ secret }: { secret: string }) {
               {label}
               <input
                 value={form[key] || ""}
-                required={key === "id" || key === "name"}
-                readOnly={key === "id" && teams.some((t) => t.id === form.id)}
                 onChange={(e) => setForm({ ...form, [key]: e.target.value })}
               />
             </label>
           ))}
+            </div>
           <label>
             Sobre o time
             <textarea
@@ -250,8 +270,7 @@ export default function AdminTeams({ secret }: { secret: string }) {
           <label>
             Títulos e competições conquistadas{" "}
             <small>
-              Uma competição por linha; você pode incluir todos os anos, por
-              exemplo: Campeonato Carioca - 2019, 2020 e 2021.
+              Informe uma competição por linha. Exemplo: Campeonato Carioca — 2019, 2020 e 2021.
             </small>
             <textarea
               maxLength={20000}
@@ -261,7 +280,8 @@ export default function AdminTeams({ secret }: { secret: string }) {
               }
             />
           </label>
-          <fieldset className="club-colors">
+          </fieldset>
+          <fieldset className="club-colors studio-form-group">
             <legend>Cores em destaque</legend>
             <small>Escolha até cinco cores para o perfil.</small>
             <div>
