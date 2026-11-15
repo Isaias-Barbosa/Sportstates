@@ -279,7 +279,13 @@ export function validatePlayerEdit(input) {
 export async function withPlayerEdit(player, id) {
   const edit = await studioSetting("player:" + id, null).catch(() => null);
   if (!edit && !player && !id.startsWith("espn-")) return null;
-  const espnId = edit?.espnId || (id.startsWith("espn-") ? id.slice(5) : "");
+  const espnId =
+    edit?.espnId ||
+    (id.startsWith("espn-")
+      ? id.slice(5)
+      : player?.id === id && /^\d{1,12}$/.test(id)
+        ? id
+        : "");
   if (!edit && player && !espnId) return player;
   const needsEnrichment =
     !player?.nationality || !player?.position || !player?.currentClub;
@@ -338,14 +344,16 @@ export async function espnPlayer(id) {
       "player:" + id,
       3600_000,
       async () => {
-        const athlete = await espnJson(clubHost + "athletes/" + id);
+        const athlete = await espnJson(
+          clubHost + "athletes/" + id + "?lang=pt&region=br",
+        );
         if (String(athlete.id) !== id || !athlete.displayName)
           throw Error("Atleta não encontrado na ESPN.");
         const clubId = athlete.defaultTeam?.$ref?.match(
           /\/teams\/(\d+)(?:\?|$)/,
         )?.[1];
         const team = clubId
-          ? await espnJson(clubHost + "teams/" + clubId).catch(() => null)
+          ? await espnJson(clubHost + "teams/" + clubId + "?lang=pt&region=br").catch(() => null)
           : null;
         const positions = {
           G: "Goleiro",

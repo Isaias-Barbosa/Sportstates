@@ -447,7 +447,7 @@ export default function PlayerPage() {
               aria-labelledby="player-awards-title"
             >
               <h2 id="player-awards-title">
-                <Medal aria-hidden="true" /> {id.startsWith("espn-") ? "Prêmios individuais pela seleção" : "Prêmios individuais"}
+                <Medal aria-hidden="true" /> {data.memberships.length || data.clubs.length ? "Prêmios individuais" : "Prêmios individuais pela seleção"}
               </h2>
               {data.awards.length ? (
                 <ul className="player-profile-links">

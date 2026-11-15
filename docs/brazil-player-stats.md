@@ -1,6 +1,14 @@
 # Estatísticas de jogadores
 
-A aba Estatísticas e a página do atleta consultam o Neon. A ESPN entra na importação de elencos e partidas, fora da navegação. O identificador ESPN conecta elenco, súmula e perfil.
+A aba Estatísticas e a página do atleta consultam o Neon. A ESPN fornece os elencos, as partidas e a identidade complementar do atleta; os dois primeiros são importados para o banco e a identidade só preenche campos ainda vazios. O identificador ESPN conecta elenco, súmula e perfil.
+
+## Páginas e vínculos
+
+A página pública fica em `/jogadores/<id-espn>`. Nos elencos da Série A e B, o link só aparece quando o atleta está no elenco gravado em `sport_brazil_rosters`; assim não há link para um perfil inexistente. O vínculo é montado por `brazilSquadPlayerIds` em `server/brazil-players.mjs` e devolvido como `profileId` em `/api/team`.
+
+Nome, posição, imagem e estádio do atleta vêm do elenco importado. Nacionalidade, clube atual, bandeira e posição em português são complementados ao vivo pelo endpoint de atletas da ESPN e aparecem somente quando o campo ainda está vazio. As estatísticas por competição usam exclusivamente as partidas gravadas no Neon.
+
+Os dados revisados de CBF e ge continuam limitados ao que tem identidade, URL e vínculo verificáveis. O cadastro CBF atual cobre apenas quatro clubes da Copa do Brasil de 2026; ele não substitui o elenco da Série A/B.
 
 ## Premier League, LaLiga e Bundesliga
 
