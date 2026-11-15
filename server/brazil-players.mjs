@@ -233,6 +233,14 @@ function total(rows) {
   );
 }
 
+export async function brazilSquadPlayerIds(league, team, season) {
+  const sql = store();
+  const rows = await sql`SELECT season,players FROM sport_brazil_rosters
+    WHERE league=${league} AND team=${team} ORDER BY season DESC`;
+  const squad = rows.find((row) => row.season === season) ?? rows[0];
+  return new Set((squad?.players ?? []).map((player) => player.id));
+}
+
 export async function readBrazilTeamPlayers(league, team, season) {
   const sql = store();
   const [rosters, matches] = await Promise.all([
@@ -310,6 +318,22 @@ export async function readBrazilPlayer(id) {
     registered;
   if (!player) return null;
   const details = profiles[0]?.details ?? {};
+  const latestByLeague = new Map();
+  for (const row of rosters)
+    latestByLeague.set(
+      row.league,
+      Math.max(latestByLeague.get(row.league) ?? 0, row.season),
+    );
+  const currentRows = rosters.filter(
+    (row) => row.season === playerSeason(row.league),
+  );
+  // Na virada da temporada o elenco do ano anterior continua sendo o vínculo
+  // mais recente disponível até a nova carga ser publicada.
+  const membershipRows = currentRows.length
+    ? currentRows
+    : rosters.filter(
+        (row) => row.season === latestByLeague.get(row.league),
+      );
   const savedImage = rosters
     .find((row) => row.players.some((entry) => entry.id === id && entry.image))
     ?.players.find((entry) => entry.id === id && entry.image)?.image;
@@ -341,9 +365,7 @@ export async function readBrazilPlayer(id) {
       image: details.portrait?.url ?? player.image ?? savedImage ?? null,
       portrait: details.portrait ?? null,
       position: player.position,
-      memberships: rosters
-        .filter((row) => row.season === playerSeason(row.league))
-        .map((row) => ({
+      memberships: membershipRows.map((row) => ({
           id: row.team,
           name: row.name,
           competition: playerLeagues[row.league],

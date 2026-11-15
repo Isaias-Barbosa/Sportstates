@@ -662,7 +662,10 @@ export async function route(url) {
     const id = q.get("id");
     const isPlayer = url.pathname === "/api/player";
     if (isPlayer && /^espn-\d{1,12}$/.test(id || "")) {
-      const player = await withPlayerEdit(nationalPlayer(id), id);
+      // Um atleta da Série A/B tem perfil completo no elenco gravado; a busca
+      // pública não deve exibir um perfil genérico quando o clube está cadastrado.
+      const clubProfile = await readBrazilPlayer(id.slice(5)).catch(() => null);
+      const player = await withPlayerEdit(clubProfile ?? nationalPlayer(id), id);
       return player ? [200, player] : [404, { error: "Jogador ainda não cadastrado." }];
     }
     if (!(isPlayer ? validPublicPlayerId(id) : validPlayerId(id)))
@@ -708,7 +711,7 @@ export async function route(url) {
     const id = q.get("id");
     if (!validProfileId(id)) return [400, { error: "Time inválido." }];
     const result = await cached(
-      `${id.startsWith("volleyball-") ? "team:volleyball-roles-v2" : "team:cbf-profiles-v2"}:${id}`,
+      `${id.startsWith("volleyball-") ? "team:volleyball-roles-v2" : "team:cbf-profiles-v3"}:${id}`,
       teamTtl,
       () => teamDetails(id),
       300000,
