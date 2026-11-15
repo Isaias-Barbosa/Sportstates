@@ -142,16 +142,14 @@ export default function AdminProviders({
   );
 
   return (
-    <section className="admin-overview" aria-labelledby="admin-providers-title">
-      <div className="admin-section-heading">
-        <div>
-          <h2 id="admin-providers-title">APIs e fontes</h2>
-          <p>
-            Consulte as integrações e escolha quais fontes usar nos fluxos
-            configuráveis.
-          </p>
-        </div>
-      </div>
+    <section className="admin-overview studio-providers" aria-label="Gerenciamento de fontes">
+      <nav className="studio-shortcuts" aria-label="Seções de APIs e fontes">
+        <a href="#fontes-ativas">Fontes ativas</a>
+        <a href="#fontes-por-liga">Prioridade por liga</a>
+        <a href="#apis-personalizadas">APIs personalizadas</a>
+        <a href="#fontes-observadas">Cobertura dos placares</a>
+      </nav>
+      <h2 id="fontes-ativas">Fontes ativas</h2>
       {error && <Notice error>{error}</Notice>}
       {message && <Notice>{message}</Notice>}
       {!draft &&
@@ -205,11 +203,11 @@ export default function AdminProviders({
         <article className="admin-overview-panel"><h3>Esportes e contingência</h3><p>Brasileirão Série A: ESPN → ge em falha. NBB: 365Scores → LNB para calendário e classificação. Competições com dados oficiais cadastrados também usam os arquivos locais da CBF.</p></article>
         <article className="admin-overview-panel"><h3>Cache e validação</h3><p>Placares ao vivo têm cache mais curto. Fontes complementares usam cache por endpoint e preservam a última resposta válida por até uma hora após o vencimento. O painel conta competições consultadas, e a telemetria de requisições externas fica a cargo do provedor.</p></article>
       </div>
-      <AdminLeagueSources secret={secret} />
+      <div id="fontes-por-liga"><AdminLeagueSources secret={secret} /></div>
       <h3>Outros provedores documentados</h3>
       <p><a href="https://developer.sportradar.com/getting-started/docs/get-started">Sportradar</a> (multiesporte), <a href="https://www.statsperform.com/opta/">Opta</a> (multiesporte) e <a href="https://docs.sportmonks.com/v3/welcome/what-can-you-do-with-sportmonks-data">Sportmonks</a> (futebol) exigem adaptadores específicos para alimentar as tabelas principais. Consulte a cobertura e as condições de publicação do contrato.</p>
-      <AdminCustomSources secret={secret} />
-      <h3>Fontes observadas nos placares</h3>
+      <div id="apis-personalizadas"><AdminCustomSources secret={secret} /></div>
+      <h3 id="fontes-observadas">Fontes observadas nos placares</h3>
       {scores?.sources?.length ? (
         <ul>
           {[...new Set(scores.sources.map((source) => source.provider))].map(

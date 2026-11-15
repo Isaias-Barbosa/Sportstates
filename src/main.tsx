@@ -46,15 +46,6 @@ import "./news.css";
 import "./admin-studio.css";
 const TennisAthletesPage = lazy(() => import("./pages/TennisAthletesPage"));
 function App() {
-  const { data: appearance } = useApi<Appearance>("/api/appearance", 0);
-  useEffect(() => {
-    const root = document.documentElement;
-    for (const mode of ["light", "dark"] as const) {
-      const value = appearance?.[mode];
-      if (value && /^#[a-f0-9]{6}$/i.test(value)) root.style.setProperty("--custom-canvas-" + mode, value);
-      else root.style.removeProperty("--custom-canvas-" + mode);
-    }
-  }, [appearance]);
   const [theme, setTheme] = useState<"light" | "dark">(() => {
     try {
       return localStorage.getItem("sportstates:theme") === "light"
@@ -72,6 +63,36 @@ function App() {
       /* Storage is optional. */
     }
   }, [theme]);
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route
+          path="/admin/*"
+          element={
+            <Suspense fallback={<div className="studio-access"><p role="status">Carregando o painel…</p></div>}>
+              <AdminAccess theme={theme} toggleTheme={() => setTheme(theme === "dark" ? "light" : "dark")} />
+            </Suspense>
+          }
+        />
+        <Route path="*" element={<PublicSite theme={theme} setTheme={setTheme} />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
+
+function PublicSite({ theme, setTheme }: {
+  theme: "light" | "dark";
+  setTheme: React.Dispatch<React.SetStateAction<"light" | "dark">>;
+}) {
+  const { data: appearance } = useApi<Appearance>("/api/appearance", 0);
+  useEffect(() => {
+    const root = document.documentElement;
+    for (const mode of ["light", "dark"] as const) {
+      const value = appearance?.[mode];
+      if (value && /^#[a-f0-9]{6}$/i.test(value)) root.style.setProperty("--custom-canvas-" + mode, value);
+      else root.style.removeProperty("--custom-canvas-" + mode);
+    }
+  }, [appearance]);
   const [menu, setMenu] = useState(false);
   const [teamSearchOpen, setTeamSearchOpen] = useState(false);
   const searchButton = useRef<HTMLButtonElement>(null);
@@ -119,7 +140,6 @@ function App() {
     };
   }, [menu]);
   return (
-    <BrowserRouter>
       <NotificationsProvider>
         <div className="app">
           <aside
@@ -302,7 +322,6 @@ function App() {
                   <Route path="/times/f1/:id" element={<F1TeamPage />} />
                   <Route path="/times/:id" element={<TeamPage />} />
                   <Route path="/jogadores/:id" element={<PlayerPage />} />
-                  <Route path="/admin/*" element={<AdminAccess />} />
                   <Route path="/sobre" element={<About />} />
                   <Route
                     path="*"
@@ -336,7 +355,6 @@ function App() {
           )}
         </div>
       </NotificationsProvider>
-    </BrowserRouter>
   );
 }
 createRoot(document.getElementById("root")!).render(

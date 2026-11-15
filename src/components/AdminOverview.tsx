@@ -10,6 +10,7 @@ import {
   RefreshCw,
   Users,
 } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Notice } from "./shared";
 import type { DataSourceStatus, Scores } from "../types";
 
@@ -117,12 +118,11 @@ export default function AdminOverview({
   }, [secret, reload]);
 
   return (
-    <section className="admin-overview" aria-labelledby="admin-overview-title">
+    <section className="admin-overview" aria-label="Indicadores da operação">
       <div className="admin-section-heading">
         <div>
-          <span className="profile-eyebrow">OPERAÇÃO DO SPORTSTATES</span>
-          <h2 id="admin-overview-title">Visão geral</h2>
-          <p>Resumo dos placares, contas e atividade administrativa.</p>
+          <h2>Agenda e cobertura</h2>
+          <label className="studio-date">Data dos jogos <input type="date" value={date} onChange={(event) => { if (event.target.value) setDate(event.target.value); }} /></label>
         </div>
         <button
           className="broadcast-chip"
@@ -132,7 +132,11 @@ export default function AdminOverview({
           <RefreshCw size={15} /> Atualizar
         </button>
       </div>
-      <label>Data dos jogos <input type="date" value={date} onChange={(event) => { if (event.target.value) setDate(event.target.value); }} /></label>
+      <nav className="studio-shortcuts" aria-label="Atalhos operacionais">
+        <Link to="/admin/jogos"><CalendarDays size={17} aria-hidden="true" /> Jogos do dia</Link>
+        <Link to="/admin/transmissoes"><Radio size={17} aria-hidden="true" /> Transmissões</Link>
+        <Link to="/admin/apis"><Activity size={17} aria-hidden="true" /> Monitorar fontes</Link>
+      </nav>
       {data?.partial && <Notice>Alguns indicadores administrativos estão temporariamente indisponíveis.</Notice>}
       {error && <Notice error>{error}</Notice>}
       <div className="admin-overview-metrics" aria-live="polite">

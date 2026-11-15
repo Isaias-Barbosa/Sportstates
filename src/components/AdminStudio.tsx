@@ -361,25 +361,25 @@ export function AdminCustomSources({ secret }: { secret: string }) {
         <summary>Como configurar uma API</summary>
         <ol>
           <li>
-            Em Vercel → Settings → Environment Variables, adicione sua origem
+            <strong>Autorize a origem.</strong> Em Vercel → Settings → Environment Variables, adicione sua origem
             exata em <code>SPORTSTATES_SOURCE_ORIGINS</code>. Separe várias
             origens com vírgula e faça um novo deploy.
           </li>
           <li>
-            Se a API usar Bearer, crie uma variável como{" "}
+            <strong>Configure a autenticação, se necessário.</strong> Se a API usar Bearer, crie uma variável como{" "}
             <code>SPORTSTATES_SOURCE_EXEMPLO_TOKEN</code> e vincule-a à origem
             exata usando <code>SPORTSTATES_SOURCE_EXEMPLO_ORIGIN</code>. Informe
             aqui apenas o nome da variável do token. Use uma variável de
             servidor, sem prefixo <code>VITE_</code>.
           </li>
           <li>
-            Para <code>{'{"items":[{"title":"Líder","value":42}]}'}</code>,
+            <strong>Mapeie os campos da resposta.</strong> Para <code>{'{"items":[{"title":"Líder","value":42}]}'}</code>,
             informe <code>items</code> em Lista, <code>title</code> em Título e{" "}
             <code>value</code> em Valor. Deixe Lista em branco se a resposta já
             for um array.
           </li>
           <li>
-            Selecione a página e, em Classificações, a competição. Teste o
+            <strong>Defina onde publicar.</strong> Selecione a página e, em Classificações, a competição. Teste o
             mapeamento, marque Publicar e salve.
           </li>
         </ol>

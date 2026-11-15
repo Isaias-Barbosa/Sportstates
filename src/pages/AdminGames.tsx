@@ -7,9 +7,10 @@ import AdminCbfReviews from "../components/AdminCbfReviews";
 import AdminTeams from "../components/AdminTeams";
 import AdminLeagues from "../components/AdminLeagues";
 import AdminProviders from "../components/AdminProviders";
-import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
+import AdminGuide from "../components/AdminGuide";
 import AdminOverview from "../components/AdminOverview";
-import { Activity, Bell, CalendarDays, Check, Database, LayoutDashboard, Pencil, Settings2, Shield, Trophy, Tv, UserRound, Users, X } from "lucide-react";
+import { Activity, ArrowUpRight, Bell, BookOpen, CalendarDays, Check, Database, LayoutDashboard, Moon, Pencil, Settings2, Shield, Sun, Trophy, Tv, UserRound, Users, X } from "lucide-react";
 import { useApi, today, time, notifyCacheCleared } from "../hooks";
 import { keyOf, sports } from "../catalog";
 import {
@@ -48,12 +49,19 @@ const navigation = [
     ["providers", "apis", "APIs e fontes", Database],
     ["appearance", "customizacoes", "Customizações", Settings2],
     ["users", "usuarios", "Usuários", Users],
+    ["guide", "guia", "Guia do Admin", BookOpen],
   ] },
 ] as const;
 
-export default function AdminGames({ secret, accountId }: { secret: string; accountId: string }) {
+export default function AdminGames({ secret, accountId, theme, toggleTheme }: {
+  secret: string;
+  accountId: string;
+  theme: "dark" | "light";
+  toggleTheme: () => void;
+}) {
   const navigate = useNavigate();
   const { pathname, search } = useLocation();
+  useEffect(() => window.scrollTo(0, 0), [pathname]);
   const [clearingCache, setClearingCache] = useState(false);
   const [cacheMessage, setCacheMessage] = useState("");
   const [cacheError, setCacheError] = useState(false);
@@ -87,7 +95,8 @@ export default function AdminGames({ secret, accountId }: { secret: string; acco
     }
   }
   const page = pathname.split("/")[2] || "";
-  const section = navigation.flatMap(group => [...group.items]).find(item => item[1] === page)?.[0] || "overview";
+  const activeGroup = navigation.find(group => group.items.some(item => item[1] === page)) ?? navigation[0];
+  const [section, activePath, title] = activeGroup.items.find(item => item[1] === page) ?? navigation[0].items[0];
   const needsScores = ["overview", "providers", "games", "broadcasts", "announcements"].includes(section);
   const [date, setDate] = useState(today());
   const [sport, setSport] = useState("all");
@@ -297,43 +306,13 @@ export default function AdminGames({ secret, accountId }: { secret: string; acco
     !!broadcastEditing?.watch?.confirmedForMatch &&
     !broadcastEditing.watch.links.some((link) => link.id === "admin-manual");
   return (
-    <>
-      <div className="page-title">
-        <div>
-          <div className="eyebrow">ÁREA ADMINISTRATIVA</div>
-          <h1>
-            Painel administrativo<span className="green">.</span>
-          </h1>
-          <p>Gerencie jogos, times, ligas e usuários do Sportstates.</p>
-        </div>
-        <button
-          className="quiet-button"
-          onClick={() => navigate("/")}
-        >
-          Sair do painel
-        </button>
-      </div>
-      {section === "overview" && (
-      <div className="admin-toolbar">
-        <div>
-          <strong>Cache de dados</strong>
-          <p>
-            Limpe para consultar novamente as fontes. Os cadastros são
-            preservados.
-          </p>
-        </div>
-        <button
-          className="quiet-button"
-          onClick={clearCache}
-          disabled={clearingCache}
-        >
-          {clearingCache ? "Limpando…" : "Limpar cache"}
-        </button>
-      </div>
-      )}
-      {cacheMessage && <Notice error={cacheError}>{cacheMessage}</Notice>}
-      <div className="admin-workspace">
-        <nav className="studio-sidebar" aria-label="Menu administrativo">
+    <div className="admin-workspace">
+      <aside className="studio-sidebar">
+        <Link className="studio-brand" to="/admin" aria-label="Sportstates Admin, visão geral">
+          <span><Activity size={23} aria-hidden="true" /></span>
+          <div>Sportstates<small>Gestão esportiva</small></div>
+        </Link>
+        <nav aria-label="Menu administrativo">
           {navigation.map(group => <div key={group.label}>
             <h2>{group.label}</h2>
             {group.items.map(([key, path, label, Icon]) => <NavLink key={key} end to={path ? `/admin/${path}` : "/admin"}>
@@ -341,8 +320,39 @@ export default function AdminGames({ secret, accountId }: { secret: string; acco
             </NavLink>)}
           </div>)}
         </nav>
-        <div className="studio-main">
-      {section === "providers" ? (
+      </aside>
+      <div className="studio-content">
+        <header className="studio-header">
+          <span><Shield size={15} aria-hidden="true" /> Administração</span>
+          <div>
+            <button type="button" className="studio-header-action" onClick={toggleTheme}
+              aria-label={theme === "dark" ? "Ativar tema claro" : "Ativar tema escuro"}>
+              {theme === "dark" ? <Sun size={17} /> : <Moon size={17} />}
+            </button>
+            <Link className="studio-header-action" to="/">Ver portal <ArrowUpRight size={15} aria-hidden="true" /></Link>
+          </div>
+        </header>
+        <main className="studio-main" id="admin-content">
+          <label className="studio-mobile-nav">
+            Seção do Admin
+            <select value={activePath} onChange={event => {
+              navigate(event.target.value ? `/admin/${event.target.value}` : "/admin");
+            }}>
+              {navigation.map(group => <optgroup key={group.label} label={group.label}>
+                {group.items.map(([key, path, label]) => <option key={key} value={path}>{label}</option>)}
+              </optgroup>)}
+            </select>
+          </label>
+          <div className="studio-page-heading">
+            <div>
+              <span>{activeGroup.label}</span>
+              <h1>{title}</h1>
+            </div>
+            {section !== "guide" && <Link to="/admin/guia"><BookOpen size={16} aria-hidden="true" /> Guia do Admin</Link>}
+          </div>
+      {section === "guide" ? (
+        <AdminGuide />
+      ) : section === "providers" ? (
         <AdminProviders secret={secret} scores={data} />
       ) : section === "appearance" ? (
         <AdminAppearance secret={secret} accountId={accountId} />
@@ -690,8 +700,22 @@ export default function AdminGames({ secret, accountId }: { secret: string; acco
           )}
         </>
       )}
-        </div>
+          {section === "overview" && (
+            <section className="admin-overview-panel studio-cache">
+              <div className="admin-toolbar">
+                <div>
+                  <h2>Cache de dados</h2>
+                  <p>Limpe para consultar novamente as fontes. Os cadastros são preservados.</p>
+                </div>
+                <button className="quiet-button" onClick={clearCache} disabled={clearingCache}>
+                  {clearingCache ? "Limpando…" : "Limpar cache"}
+                </button>
+              </div>
+              {cacheMessage && <Notice error={cacheError}>{cacheMessage}</Notice>}
+            </section>
+          )}
+        </main>
       </div>
-    </>
+    </div>
   );
 }
