@@ -1,9 +1,44 @@
-import { useEffect, useState } from "react";
+import {
+  Component,
+  type ErrorInfo,
+  type ReactNode,
+  useEffect,
+  useState,
+} from "react";
 import { Link, Navigate } from "react-router-dom";
 import { useAccount } from "../account/AccountProvider";
 import { accountToken } from "../account/client";
 import { Notice } from "../components/shared";
 import AdminGames from "./AdminGames";
+
+class AdminErrorBoundary extends Component<
+  { children: ReactNode },
+  { hasError: boolean; error?: Error }
+> {
+  state = { hasError: false, error: undefined };
+  static getDerivedStateFromError(error: Error) {
+    return { hasError: true, error };
+  }
+  componentDidCatch(error: Error, errorInfo: ErrorInfo) {
+    console.error("Erro no painel administrativo:", error, errorInfo);
+  }
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div className="studio-access">
+          <Notice error>
+            Não foi possível exibir esta seção do painel.{" "}
+            <button onClick={() => window.location.reload()}>
+              Recarregar painel
+            </button>
+          </Notice>
+          <Link to="/">Voltar ao portal</Link>
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
 
 export default function AdminAccess({
   theme,
@@ -78,12 +113,14 @@ export default function AdminAccess({
     );
   if (!access.token) return <Navigate to="/" replace />;
   return (
-    <AdminGames
-      key={id}
-      secret={access.token}
-      accountId={id}
-      theme={theme}
-      toggleTheme={toggleTheme}
-    />
+    <AdminErrorBoundary>
+      <AdminGames
+        key={id}
+        secret={access.token}
+        accountId={id}
+        theme={theme}
+        toggleTheme={toggleTheme}
+      />
+    </AdminErrorBoundary>
   );
 }

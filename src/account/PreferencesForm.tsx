@@ -16,7 +16,9 @@ export function NotificationPreferencesForm({
   const [draft, setDraft] = useState(value),
     [message, setMessage] = useState("");
   const valueKey = JSON.stringify(value);
-  useEffect(() => setDraft(value), [valueKey]);
+  useEffect(() => {
+    setDraft(value);
+  }, [valueKey]);
   function update<K extends keyof NotificationPreferences>(
     key: K,
     v: NotificationPreferences[K],
@@ -142,9 +144,13 @@ export default function PreferencesForm() {
   } = useApi<CompetitionCatalog>("/api/competitions", 0);
   const [leagues, setLeagues] = useState(preferences.leagues || []);
   const leaguesKey = (preferences.leagues || []).join("|");
-  useEffect(() => setLeagues(preferences.leagues || []), [leaguesKey]);
+  useEffect(() => {
+    setLeagues(preferences.leagues || []);
+  }, [leaguesKey]);
   const sportsKey = preferences.sports.join("|");
-  useEffect(() => setSelected(preferences.sports), [sportsKey]);
+  useEffect(() => {
+    setSelected(preferences.sports);
+  }, [sportsKey]);
   return (
     <div className="account-preferences" id="personalizar">
       <section className="account-card">

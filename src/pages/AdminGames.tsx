@@ -10,7 +10,26 @@ import AdminProviders from "../components/AdminProviders";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import AdminGuide from "../components/AdminGuide";
 import AdminOverview from "../components/AdminOverview";
-import { Activity, ArrowUpRight, Bell, BookOpen, CalendarDays, Check, Database, LayoutDashboard, Moon, Pencil, Settings2, Shield, Sun, Trophy, Tv, UserRound, Users, X } from "lucide-react";
+import {
+  Activity,
+  ArrowUpRight,
+  Bell,
+  BookOpen,
+  CalendarDays,
+  Check,
+  Database,
+  LayoutDashboard,
+  Moon,
+  Pencil,
+  Settings2,
+  Shield,
+  Sun,
+  Trophy,
+  Tv,
+  UserRound,
+  Users,
+  X,
+} from "lucide-react";
 import { useApi, today, time, notifyCacheCleared } from "../hooks";
 import { keyOf, sports } from "../catalog";
 import {
@@ -21,8 +40,10 @@ import {
   matchLabel,
 } from "../components/shared";
 import type { Match, Scores, FeaturedSelection } from "../types";
-import AdminShowcaseFields, {type ShowcaseDraft} from '../components/AdminShowcaseFields';
-import {countShowcaseCharacters} from '../showcase-text.mjs';
+import AdminShowcaseFields, {
+  type ShowcaseDraft,
+} from "../components/AdminShowcaseFields";
+import { countShowcaseCharacters } from "../showcase-text.mjs";
 
 type ManualBroadcast = {
   match_key: string;
@@ -33,27 +54,41 @@ type ManualBroadcast = {
 };
 
 const navigation = [
-  { label: "Operação", items: [
-    ["overview", "", "Visão geral", LayoutDashboard],
-    ["games", "jogos", "Jogos do dia", CalendarDays],
-    ["broadcasts", "transmissoes", "Transmissões", Tv],
-    ["cbf", "revisoes", "Revisões CBF", Activity],
-    ["announcements", "notificacoes", "Notificações", Bell],
-  ] },
-  { label: "Catálogo", items: [
-    ["teams", "times", "Times", Shield],
-    ["leagues", "ligas", "Ligas", Trophy],
-    ["players", "jogadores", "Jogadores", UserRound],
-  ] },
-  { label: "Configuração", items: [
-    ["providers", "apis", "APIs e fontes", Database],
-    ["appearance", "customizacoes", "Customizações", Settings2],
-    ["users", "usuarios", "Usuários", Users],
-    ["guide", "guia", "Guia do Admin", BookOpen],
-  ] },
+  {
+    label: "Operação",
+    items: [
+      ["overview", "", "Visão geral", LayoutDashboard],
+      ["games", "jogos", "Jogos do dia", CalendarDays],
+      ["broadcasts", "transmissoes", "Transmissões", Tv],
+      ["cbf", "revisoes", "Revisões CBF", Activity],
+      ["announcements", "notificacoes", "Notificações", Bell],
+    ],
+  },
+  {
+    label: "Catálogo",
+    items: [
+      ["teams", "times", "Times", Shield],
+      ["leagues", "ligas", "Ligas", Trophy],
+      ["players", "jogadores", "Jogadores", UserRound],
+    ],
+  },
+  {
+    label: "Configuração",
+    items: [
+      ["providers", "apis", "APIs e fontes", Database],
+      ["appearance", "customizacoes", "Customizações", Settings2],
+      ["users", "usuarios", "Usuários", Users],
+      ["guide", "guia", "Guia do Admin", BookOpen],
+    ],
+  },
 ] as const;
 
-export default function AdminGames({ secret, accountId, theme, toggleTheme }: {
+export default function AdminGames({
+  secret,
+  accountId,
+  theme,
+  toggleTheme,
+}: {
   secret: string;
   accountId: string;
   theme: "dark" | "light";
@@ -61,7 +96,9 @@ export default function AdminGames({ secret, accountId, theme, toggleTheme }: {
 }) {
   const navigate = useNavigate();
   const { pathname, search } = useLocation();
-  useEffect(() => window.scrollTo(0, 0), [pathname]);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
   const [clearingCache, setClearingCache] = useState(false);
   const [cacheMessage, setCacheMessage] = useState("");
   const [cacheError, setCacheError] = useState(false);
@@ -95,14 +132,31 @@ export default function AdminGames({ secret, accountId, theme, toggleTheme }: {
     }
   }
   const page = pathname.split("/")[2] || "";
-  const activeGroup = navigation.find(group => group.items.some(item => item[1] === page)) ?? navigation[0];
-  const [section, activePath, title] = activeGroup.items.find(item => item[1] === page) ?? navigation[0].items[0];
-  const needsScores = ["overview", "providers", "games", "broadcasts", "announcements"].includes(section);
+  const activeGroup =
+    navigation.find((group) => group.items.some((item) => item[1] === page)) ??
+    navigation[0];
+  const [section, activePath, title] =
+    activeGroup.items.find((item) => item[1] === page) ??
+    navigation[0].items[0];
+  const needsScores = [
+    "overview",
+    "providers",
+    "games",
+    "broadcasts",
+    "announcements",
+  ].includes(section);
   const [date, setDate] = useState(today());
   const [sport, setSport] = useState("all");
   const [selected, setSelected] = useState<Match | null>(null);
   const [checked, setChecked] = useState(false);
-  const [showcase,setShowcase]=useState<ShowcaseDraft>({enabled:false,videoUrl:'',kind:'replay',title:'',fontSize:'medium',characterLimit:60});
+  const [showcase, setShowcase] = useState<ShowcaseDraft>({
+    enabled: false,
+    videoUrl: "",
+    kind: "replay",
+    title: "",
+    fontSize: "medium",
+    characterLimit: 60,
+  });
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
@@ -124,8 +178,15 @@ export default function AdminGames({ secret, accountId, theme, toggleTheme }: {
     error: scoreError,
     loading,
     refresh: refreshScores,
-  } = useApi<Scores>(needsScores ? "/api/scores?date=" + encodeURIComponent(date) : null);
-  const { data: feature, refresh } = useApi<FeaturedSelection>(section === "games" ? "/api/featured?date=" + encodeURIComponent(date) : null, 0);
+  } = useApi<Scores>(
+    needsScores ? "/api/scores?date=" + encodeURIComponent(date) : null,
+  );
+  const { data: feature, refresh } = useApi<FeaturedSelection>(
+    section === "games"
+      ? "/api/featured?date=" + encodeURIComponent(date)
+      : null,
+    0,
+  );
   useEffect(() => {
     if (section !== "broadcasts" || !secret) return;
     const controller = new AbortController();
@@ -173,8 +234,18 @@ export default function AdminGames({ secret, accountId, theme, toggleTheme }: {
     setError("");
     try {
       const key = keyOf(selected);
-      if(checked&&showcase.enabled&&!showcase.videoUrl.trim())throw new Error('Informe o link do vídeo ou desative a vitrine com vídeo.');
-      if(checked&&showcase.enabled&&countShowcaseCharacters(showcase.title)>showcase.characterLimit)throw new Error(`Reduza a chamada para até ${showcase.characterLimit} caracteres ou escolha um limite maior.`);
+      if (checked && showcase.enabled && !showcase.videoUrl.trim())
+        throw new Error(
+          "Informe o link do vídeo ou desative a vitrine com vídeo.",
+        );
+      if (
+        checked &&
+        showcase.enabled &&
+        countShowcaseCharacters(showcase.title) > showcase.characterLimit
+      )
+        throw new Error(
+          `Reduza a chamada para até ${showcase.characterLimit} caracteres ou escolha um limite maior.`,
+        );
       const r = await adminFetch("/api/admin/featured", {
         method: "PUT",
         headers: {
@@ -188,8 +259,19 @@ export default function AdminGames({ secret, accountId, theme, toggleTheme }: {
             : feature?.key === key
               ? null
               : feature?.key || null,
-          showcase:checked?(showcase.enabled?{videoUrl:showcase.videoUrl,kind:showcase.kind,title:showcase.title,fontSize:showcase.fontSize,characterLimit:showcase.characterLimit}:null)
-            : feature?.key===key?null:feature?.showcase??null,
+          showcase: checked
+            ? showcase.enabled
+              ? {
+                  videoUrl: showcase.videoUrl,
+                  kind: showcase.kind,
+                  title: showcase.title,
+                  fontSize: showcase.fontSize,
+                  characterLimit: showcase.characterLimit,
+                }
+              : null
+            : feature?.key === key
+              ? null
+              : (feature?.showcase ?? null),
         }),
       });
       const j = await r.json();
@@ -197,7 +279,11 @@ export default function AdminGames({ secret, accountId, theme, toggleTheme }: {
       setSelected(null);
       setNotice(
         j.warning ||
-          (checked ? (showcase.enabled?'Vitrine com vídeo atualizada.':'Jogo do Dia atualizado.') : "Destaque removido."),
+          (checked
+            ? showcase.enabled
+              ? "Vitrine com vídeo atualizada."
+              : "Jogo do Dia atualizado."
+            : "Destaque removido."),
       );
       refresh();
     } catch (e) {
@@ -308,39 +394,74 @@ export default function AdminGames({ secret, accountId, theme, toggleTheme }: {
   return (
     <div className="admin-workspace">
       <aside className="studio-sidebar">
-        <Link className="studio-brand" to="/admin" aria-label="Sportstates Admin, visão geral">
-          <span><Activity size={23} aria-hidden="true" /></span>
-          <div>Sportstates<small>Gestão esportiva</small></div>
+        <Link
+          className="studio-brand"
+          to="/admin"
+          aria-label="Sportstates Admin, visão geral"
+        >
+          <span>
+            <Activity size={23} aria-hidden="true" />
+          </span>
+          <div>
+            Sportstates<small>Gestão esportiva</small>
+          </div>
         </Link>
         <nav aria-label="Menu administrativo">
-          {navigation.map(group => <div key={group.label}>
-            <h2>{group.label}</h2>
-            {group.items.map(([key, path, label, Icon]) => <NavLink key={key} end to={path ? `/admin/${path}` : "/admin"}>
-              <Icon size={17} aria-hidden="true" /> {label}
-            </NavLink>)}
-          </div>)}
+          {navigation.map((group) => (
+            <div key={group.label}>
+              <h2>{group.label}</h2>
+              {group.items.map(([key, path, label, Icon]) => (
+                <NavLink key={key} end to={path ? `/admin/${path}` : "/admin"}>
+                  <Icon size={17} aria-hidden="true" /> {label}
+                </NavLink>
+              ))}
+            </div>
+          ))}
         </nav>
       </aside>
       <div className="studio-content">
         <header className="studio-header">
-          <span><Shield size={15} aria-hidden="true" /> Administração</span>
+          <span>
+            <Shield size={15} aria-hidden="true" /> Administração
+          </span>
           <div>
-            <button type="button" className="studio-header-action" onClick={toggleTheme}
-              aria-label={theme === "dark" ? "Ativar tema claro" : "Ativar tema escuro"}>
+            <button
+              type="button"
+              className="studio-header-action"
+              onClick={toggleTheme}
+              aria-label={
+                theme === "dark" ? "Ativar tema claro" : "Ativar tema escuro"
+              }
+            >
               {theme === "dark" ? <Sun size={17} /> : <Moon size={17} />}
             </button>
-            <Link className="studio-header-action" to="/">Ver portal <ArrowUpRight size={15} aria-hidden="true" /></Link>
+            <Link className="studio-header-action" to="/">
+              Ver portal <ArrowUpRight size={15} aria-hidden="true" />
+            </Link>
           </div>
         </header>
         <main className="studio-main" id="admin-content">
           <label className="studio-mobile-nav">
             Seção do Admin
-            <select value={activePath} onChange={event => {
-              navigate(event.target.value ? `/admin/${event.target.value}` : "/admin");
-            }}>
-              {navigation.map(group => <optgroup key={group.label} label={group.label}>
-                {group.items.map(([key, path, label]) => <option key={key} value={path}>{label}</option>)}
-              </optgroup>)}
+            <select
+              value={activePath}
+              onChange={(event) => {
+                navigate(
+                  event.target.value
+                    ? `/admin/${event.target.value}`
+                    : "/admin",
+                );
+              }}
+            >
+              {navigation.map((group) => (
+                <optgroup key={group.label} label={group.label}>
+                  {group.items.map(([key, path, label]) => (
+                    <option key={key} value={path}>
+                      {label}
+                    </option>
+                  ))}
+                </optgroup>
+              ))}
             </select>
           </label>
           <div className="studio-page-heading">
@@ -348,370 +469,435 @@ export default function AdminGames({ secret, accountId, theme, toggleTheme }: {
               <span>{activeGroup.label}</span>
               <h1>{title}</h1>
             </div>
-            {section !== "guide" && <Link to="/admin/guia"><BookOpen size={16} aria-hidden="true" /> Guia do Admin</Link>}
-          </div>
-      {section === "guide" ? (
-        <AdminGuide />
-      ) : section === "providers" ? (
-        <AdminProviders secret={secret} scores={data} />
-      ) : section === "appearance" ? (
-        <AdminAppearance secret={secret} accountId={accountId} />
-      ) : section === "players" ? (
-        <AdminPlayers key={search} secret={secret} initialId={new URLSearchParams(search).get("id") || ""} />
-      ) : section === "overview" ? (
-        <AdminOverview
-          secret={secret}
-          scores={data}
-          scoresLoading={loading}
-          scoresError={scoreError}
-          refreshScores={refreshScores}
-          setDate={setDate}
-          date={date}
-        />
-      ) : section === "announcements" ? (
-        <AdminAnnouncements secret={secret} date={date} setDate={setDate} matches={data?.date === date ? data.matches : []} loading={loading} error={scoreError} />
-      ) : section === "cbf" ? (
-        <AdminCbfReviews secret={secret} />
-      ) : section === "users" ? (
-        <AdminUsers secret={secret} />
-      ) : section === "teams" ? (
-        <AdminTeams secret={secret} />
-      ) : section === "leagues" ? (
-        <AdminLeagues secret={secret} />
-      ) : (
-        <>
-          <div className="admin-toolbar">
-            <label>
-              <CalendarDays size={18} />
-              <input
-                type="date"
-                aria-label="Data dos jogos"
-                value={date}
-                onChange={(e) => {
-                  if (e.target.value) {
-                    setDate(e.target.value);
-                    setNotice("");
-                  }
-                }}
-              />
-            </label>
-            <p>
-              {section === "broadcasts"
-                ? "Cadastre uma fonte manual ou complemente as opções já confirmadas para a partida."
-                : "Uma partida em destaque por data."}
-            </p>
-          </div>
-          {error && !selected && <Notice error>{error}</Notice>}
-          {notice && <Notice>{notice}</Notice>}
-          {feature?.configured === false && (
-            <Notice error>Armazenamento do destaque não configurado.</Notice>
-          )}
-          <div className="section-heading">
-            <h2>Escolha seu esporte</h2>
-          </div>
-          <div className="sport-cards">
-            <button
-              className={"sport-card " + (sport === "all" ? "selected" : "")}
-              onClick={() => setSport("all")}
-            >
-              <strong>Todos os esportes</strong>
-              <small>{matches.length} jogos</small>
-            </button>
-            {available.map((s) => (
-              <button
-                key={s.id}
-                className={"sport-card " + (sport === s.id ? "selected" : "")}
-                onClick={() => setSport(s.id)}
-              >
-                <span className="sport-icon">{s.icon}</span>
-                <strong>{s.name}</strong>
-                <small>
-                  {matches.filter((m) => m.sport === s.id).length} jogos
-                </small>
-              </button>
-            ))}
-          </div>
-          <div className="admin-list">
-            <div className="admin-table-head">
-              <span>Partida</span>
-              <span>Horário / situação</span>
-              <span>Opções</span>
-            </div>
-            {scoreError && <Notice error>{scoreError}</Notice>}
-            {section === "broadcasts" && manualBroadcastsError && (
-              <Notice error>{manualBroadcastsError}</Notice>
-            )}
-            {loading ? (
-              <Loading />
-            ) : !visible.length ? (
-              <Empty
-                title={
-                  section === "broadcasts"
-                    ? "Nenhuma transmissão pendente"
-                    : "Nenhum jogo encontrado"
-                }
-              >
-                {section === "broadcasts"
-                  ? "Não há partidas não encerradas nesta data."
-                  : "Selecione outra data ou esporte."}
-              </Empty>
-            ) : (
-              visible.map((m) => (
-                <div className="admin-game" key={keyOf(m)}>
-                  <div className="admin-game-name">
-                    <Crest team={m.home} />
-                    <span>
-                      <strong>
-                        {m.home.name} × {m.away.name}
-                      </strong>
-                      <small>
-                        {m.leagueName}
-                        {feature?.key === keyOf(m) && " · Jogo do Dia"}
-                        {feature?.key === keyOf(m) && feature.showcase && ' · Vitrine com vídeo'}
-                      </small>
-                    </span>
-                    <Crest team={m.away} />
-                  </div>
-                  <span>
-                    {m.state === "scheduled" ? time(m.date) : matchLabel(m)}
-                  </span>
-                  <button
-                    className="edit-game"
-                    aria-label={
-                      section === "broadcasts"
-                        ? `Informar transmissão de ${m.home.name} x ${m.away.name}`
-                        : `Editar ${m.home.name} x ${m.away.name}`
-                    }
-                    onClick={() => {
-                      setError("");
-                      if (section === "broadcasts") editBroadcast(m);
-                      else {
-                        setSelected(m);
-                        setChecked(feature?.key === keyOf(m));
-                        const current=feature?.key===keyOf(m)?feature.showcase:undefined;
-                        setShowcase({enabled:!!current,videoUrl:current?.videoUrl||'',kind:current?.kind||'replay',title:current?.title||'',fontSize:current?.fontSize||(current?'large':'medium'),characterLimit:current?.characterLimit||(current?88:60)});
-                      }
-                    }}
-                  >
-                    <Pencil size={17} />
-                    <span>
-                      {section === "broadcasts"
-                        ? manualKeys.has(keyOf(m)) ||
-                          m.watch?.links.some(
-                            (link) => link.id === "admin-manual",
-                          )
-                          ? "Editar fonte"
-                          : "Informar fonte"
-                        : "Editar"}
-                    </span>
-                  </button>
-                </div>
-              ))
+            {section !== "guide" && (
+              <Link to="/admin/guia">
+                <BookOpen size={16} aria-hidden="true" /> Guia do Admin
+              </Link>
             )}
           </div>
-          {selected && (
-            <div
-              className="admin-modal-backdrop"
-              onClick={(e) => {
-                if (e.target === e.currentTarget && !saving) setSelected(null);
-              }}
-            >
-              <div
-                className="admin-modal admin-feature-modal"
-                role="dialog"
-                aria-modal="true"
-                aria-labelledby="edit-title"
-              >
-                <div className="modal-head">
-                  <div>
-                    <span className="eyebrow">EDITAR PARTIDA</span>
-                    <h2 id="edit-title">
-                      {selected.home.name} × {selected.away.name}
-                    </h2>
-                  </div>
-                  <button
-                    ref={closeButton}
-                    className="icon-button"
-                    aria-label="Fechar"
-                    onClick={() => setSelected(null)}
-                    disabled={saving}
-                  >
-                    <X />
-                  </button>
-                </div>
-                <p>
-                  {selected.leagueName} · {time(selected.date)} · Brasília
-                </p>
-                <label className="admin-check">
-                  <input
-                    type="checkbox"
-                    checked={checked}
-                    onChange={(e) => setChecked(e.target.checked)}
-                  />
-                  <span>
-                    <strong>Jogo do Dia</strong>
-                    <small>
-                      Exibir no destaque da home em Todos os esportes.
-                    </small>
-                  </span>
-                </label>
-                {checked&&<AdminShowcaseFields value={showcase} onChange={setShowcase} disabled={saving}/>}
-                {checked && feature?.key && feature.key !== keyOf(selected) && (
-                  <p>Esta escolha substituirá o destaque atual dessa data.</p>
-                )}
-                {error && <Notice error>{error}</Notice>}
-                <div className="modal-actions">
-                  <button onClick={() => setSelected(null)} disabled={saving}>
-                    Cancelar
-                  </button>
-                  <button
-                    className="admin-primary"
-                    onClick={save}
-                    disabled={saving}
-                  >
-                    <Check size={16} />
-                    {saving ? "Salvando…" : "Salvar alteração"}
-                  </button>
-                </div>
-              </div>
-            </div>
-          )}
-          {broadcastEditing && (
-            <div
-              className="admin-modal-backdrop"
-              onClick={(event) => {
-                if (event.target === event.currentTarget && !savingBroadcast)
-                  setBroadcastEditing(null);
-              }}
-            >
-              <form
-                className="admin-modal admin-broadcast-modal"
-                role="dialog"
-                aria-modal="true"
-                aria-labelledby="broadcast-edit-title"
-                onSubmit={saveBroadcast}
-              >
-                <div className="modal-head">
-                  <div>
-                    <span className="eyebrow">TRANSMISSÃO DA PARTIDA</span>
-                    <h2 id="broadcast-edit-title">
-                      {broadcastEditing.home.name} ×{" "}
-                      {broadcastEditing.away.name}
-                    </h2>
-                  </div>
-                  <button
-                    type="button"
-                    className="icon-button"
-                    aria-label="Fechar"
-                    onClick={() => setBroadcastEditing(null)}
-                    disabled={savingBroadcast}
-                  >
-                    <X />
-                  </button>
-                </div>
-                <p>
-                  {broadcastEditing.leagueName} · {time(broadcastEditing.date)}
-                </p>
-                <p>
-                  Use o nome do canal ou plataforma e um link HTTPS oficial.
-                  A fonte manual fica vinculada somente a esta partida.
-                </p>
-                {broadcastConfirmedByApi && (
-                  <Notice>
-                    Já existe transmissão confirmada automaticamente. O link
-                    manual será adicionado como opção complementar, sem
-                    substituir os canais confirmados.
-                  </Notice>
-                )}
+          {section === "guide" ? (
+            <AdminGuide />
+          ) : section === "providers" ? (
+            <AdminProviders secret={secret} scores={data} />
+          ) : section === "appearance" ? (
+            <AdminAppearance secret={secret} accountId={accountId} />
+          ) : section === "players" ? (
+            <AdminPlayers
+              key={search}
+              secret={secret}
+              initialId={new URLSearchParams(search).get("id") || ""}
+            />
+          ) : section === "overview" ? (
+            <AdminOverview
+              secret={secret}
+              scores={data}
+              scoresLoading={loading}
+              scoresError={scoreError}
+              refreshScores={refreshScores}
+              setDate={setDate}
+              date={date}
+            />
+          ) : section === "announcements" ? (
+            <AdminAnnouncements
+              secret={secret}
+              date={date}
+              setDate={setDate}
+              matches={data?.date === date ? data.matches : []}
+              loading={loading}
+              error={scoreError}
+            />
+          ) : section === "cbf" ? (
+            <AdminCbfReviews secret={secret} />
+          ) : section === "users" ? (
+            <AdminUsers secret={secret} />
+          ) : section === "teams" ? (
+            <AdminTeams secret={secret} />
+          ) : section === "leagues" ? (
+            <AdminLeagues secret={secret} />
+          ) : (
+            <>
+              <div className="admin-toolbar">
                 <label>
-                  Canal ou plataforma
-                  <input
-                    value={broadcastChannel}
-                    onChange={(event) =>
-                      setBroadcastChannel(event.target.value)
-                    }
-                    maxLength={80}
-                    required
-                    placeholder="Ex.: ESPN, Prime Video, canal oficial"
-                  />
-                </label>
-                <label>
-                  Link oficial
-                  <input
-                    type="url"
-                    value={broadcastUrl}
-                    onChange={(event) => setBroadcastUrl(event.target.value)}
-                    maxLength={500}
-                    required
-                    placeholder="https://..."
-                  />
-                </label>
-                <label>
-                  Link da confirmação (opcional)
-                  <input
-                    type="url"
-                    value={broadcastReferenceUrl}
-                    onChange={(event) =>
-                      setBroadcastReferenceUrl(event.target.value)
-                    }
-                    maxLength={500}
-                    placeholder="https://fonte-oficial.com/programacao"
-                  />
-                </label>
-                <label>
-                  Data da revisão
+                  <CalendarDays size={18} />
                   <input
                     type="date"
-                    value={broadcastReviewedOn}
-                    onChange={(event) =>
-                      setBroadcastReviewedOn(event.target.value)
-                    }
-                    required
+                    aria-label="Data dos jogos"
+                    value={date}
+                    onChange={(e) => {
+                      if (e.target.value) {
+                        setDate(e.target.value);
+                        setNotice("");
+                      }
+                    }}
                   />
                 </label>
-                {broadcastError && <Notice error>{broadcastError}</Notice>}
-                <div className="modal-actions">
-                  {manualKeys.has(keyOf(broadcastEditing)) && (
-                    <button
-                      type="button"
-                      onClick={deleteBroadcast}
-                      disabled={savingBroadcast}
-                    >
-                      Remover
-                    </button>
-                  )}
+                <p>
+                  {section === "broadcasts"
+                    ? "Cadastre uma fonte manual ou complemente as opções já confirmadas para a partida."
+                    : "Uma partida em destaque por data."}
+                </p>
+              </div>
+              {error && !selected && <Notice error>{error}</Notice>}
+              {notice && <Notice>{notice}</Notice>}
+              {feature?.configured === false && (
+                <Notice error>
+                  Armazenamento do destaque não configurado.
+                </Notice>
+              )}
+              <div className="section-heading">
+                <h2>Escolha seu esporte</h2>
+              </div>
+              <div className="sport-cards">
+                <button
+                  className={
+                    "sport-card " + (sport === "all" ? "selected" : "")
+                  }
+                  onClick={() => setSport("all")}
+                >
+                  <strong>Todos os esportes</strong>
+                  <small>{matches.length} jogos</small>
+                </button>
+                {available.map((s) => (
                   <button
-                    type="button"
-                    onClick={() => setBroadcastEditing(null)}
-                    disabled={savingBroadcast}
+                    key={s.id}
+                    className={
+                      "sport-card " + (sport === s.id ? "selected" : "")
+                    }
+                    onClick={() => setSport(s.id)}
                   >
-                    Cancelar
+                    <span className="sport-icon">{s.icon}</span>
+                    <strong>{s.name}</strong>
+                    <small>
+                      {matches.filter((m) => m.sport === s.id).length} jogos
+                    </small>
                   </button>
-                  <button
-                    className="admin-primary"
-                    type="submit"
-                    disabled={savingBroadcast}
-                  >
-                    {savingBroadcast ? "Salvando…" : "Salvar fonte"}
-                  </button>
+                ))}
+              </div>
+              <div className="admin-list">
+                <div className="admin-table-head">
+                  <span>Partida</span>
+                  <span>Horário / situação</span>
+                  <span>Opções</span>
                 </div>
-              </form>
-            </div>
+                {scoreError && <Notice error>{scoreError}</Notice>}
+                {section === "broadcasts" && manualBroadcastsError && (
+                  <Notice error>{manualBroadcastsError}</Notice>
+                )}
+                {loading ? (
+                  <Loading />
+                ) : !visible.length ? (
+                  <Empty
+                    title={
+                      section === "broadcasts"
+                        ? "Nenhuma transmissão pendente"
+                        : "Nenhum jogo encontrado"
+                    }
+                  >
+                    {section === "broadcasts"
+                      ? "Não há partidas não encerradas nesta data."
+                      : "Selecione outra data ou esporte."}
+                  </Empty>
+                ) : (
+                  visible.map((m) => (
+                    <div className="admin-game" key={keyOf(m)}>
+                      <div className="admin-game-name">
+                        <Crest team={m.home} />
+                        <span>
+                          <strong>
+                            {m.home.name} × {m.away.name}
+                          </strong>
+                          <small>
+                            {m.leagueName}
+                            {feature?.key === keyOf(m) && " · Jogo do Dia"}
+                            {feature?.key === keyOf(m) &&
+                              feature.showcase &&
+                              " · Vitrine com vídeo"}
+                          </small>
+                        </span>
+                        <Crest team={m.away} />
+                      </div>
+                      <span>
+                        {m.state === "scheduled" ? time(m.date) : matchLabel(m)}
+                      </span>
+                      <button
+                        className="edit-game"
+                        aria-label={
+                          section === "broadcasts"
+                            ? `Informar transmissão de ${m.home.name} x ${m.away.name}`
+                            : `Editar ${m.home.name} x ${m.away.name}`
+                        }
+                        onClick={() => {
+                          setError("");
+                          if (section === "broadcasts") editBroadcast(m);
+                          else {
+                            setSelected(m);
+                            setChecked(feature?.key === keyOf(m));
+                            const current =
+                              feature?.key === keyOf(m)
+                                ? feature.showcase
+                                : undefined;
+                            setShowcase({
+                              enabled: !!current,
+                              videoUrl: current?.videoUrl || "",
+                              kind: current?.kind || "replay",
+                              title: current?.title || "",
+                              fontSize:
+                                current?.fontSize ||
+                                (current ? "large" : "medium"),
+                              characterLimit:
+                                current?.characterLimit || (current ? 88 : 60),
+                            });
+                          }
+                        }}
+                      >
+                        <Pencil size={17} />
+                        <span>
+                          {section === "broadcasts"
+                            ? manualKeys.has(keyOf(m)) ||
+                              m.watch?.links.some(
+                                (link) => link.id === "admin-manual",
+                              )
+                              ? "Editar fonte"
+                              : "Informar fonte"
+                            : "Editar"}
+                        </span>
+                      </button>
+                    </div>
+                  ))
+                )}
+              </div>
+              {selected && (
+                <div
+                  className="admin-modal-backdrop"
+                  onClick={(e) => {
+                    if (e.target === e.currentTarget && !saving)
+                      setSelected(null);
+                  }}
+                >
+                  <div
+                    className="admin-modal admin-feature-modal"
+                    role="dialog"
+                    aria-modal="true"
+                    aria-labelledby="edit-title"
+                  >
+                    <div className="modal-head">
+                      <div>
+                        <span className="eyebrow">EDITAR PARTIDA</span>
+                        <h2 id="edit-title">
+                          {selected.home.name} × {selected.away.name}
+                        </h2>
+                      </div>
+                      <button
+                        ref={closeButton}
+                        className="icon-button"
+                        aria-label="Fechar"
+                        onClick={() => setSelected(null)}
+                        disabled={saving}
+                      >
+                        <X />
+                      </button>
+                    </div>
+                    <p>
+                      {selected.leagueName} · {time(selected.date)} · Brasília
+                    </p>
+                    <label className="admin-check">
+                      <input
+                        type="checkbox"
+                        checked={checked}
+                        onChange={(e) => setChecked(e.target.checked)}
+                      />
+                      <span>
+                        <strong>Jogo do Dia</strong>
+                        <small>
+                          Exibir no destaque da home em Todos os esportes.
+                        </small>
+                      </span>
+                    </label>
+                    {checked && (
+                      <AdminShowcaseFields
+                        value={showcase}
+                        onChange={setShowcase}
+                        disabled={saving}
+                      />
+                    )}
+                    {checked &&
+                      feature?.key &&
+                      feature.key !== keyOf(selected) && (
+                        <p>
+                          Esta escolha substituirá o destaque atual dessa data.
+                        </p>
+                      )}
+                    {error && <Notice error>{error}</Notice>}
+                    <div className="modal-actions">
+                      <button
+                        onClick={() => setSelected(null)}
+                        disabled={saving}
+                      >
+                        Cancelar
+                      </button>
+                      <button
+                        className="admin-primary"
+                        onClick={save}
+                        disabled={saving}
+                      >
+                        <Check size={16} />
+                        {saving ? "Salvando…" : "Salvar alteração"}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              )}
+              {broadcastEditing && (
+                <div
+                  className="admin-modal-backdrop"
+                  onClick={(event) => {
+                    if (
+                      event.target === event.currentTarget &&
+                      !savingBroadcast
+                    )
+                      setBroadcastEditing(null);
+                  }}
+                >
+                  <form
+                    className="admin-modal admin-broadcast-modal"
+                    role="dialog"
+                    aria-modal="true"
+                    aria-labelledby="broadcast-edit-title"
+                    onSubmit={saveBroadcast}
+                  >
+                    <div className="modal-head">
+                      <div>
+                        <span className="eyebrow">TRANSMISSÃO DA PARTIDA</span>
+                        <h2 id="broadcast-edit-title">
+                          {broadcastEditing.home.name} ×{" "}
+                          {broadcastEditing.away.name}
+                        </h2>
+                      </div>
+                      <button
+                        type="button"
+                        className="icon-button"
+                        aria-label="Fechar"
+                        onClick={() => setBroadcastEditing(null)}
+                        disabled={savingBroadcast}
+                      >
+                        <X />
+                      </button>
+                    </div>
+                    <p>
+                      {broadcastEditing.leagueName} ·{" "}
+                      {time(broadcastEditing.date)}
+                    </p>
+                    <p>
+                      Use o nome do canal ou plataforma e um link HTTPS oficial.
+                      A fonte manual fica vinculada somente a esta partida.
+                    </p>
+                    {broadcastConfirmedByApi && (
+                      <Notice>
+                        Já existe transmissão confirmada automaticamente. O link
+                        manual será adicionado como opção complementar, sem
+                        substituir os canais confirmados.
+                      </Notice>
+                    )}
+                    <label>
+                      Canal ou plataforma
+                      <input
+                        value={broadcastChannel}
+                        onChange={(event) =>
+                          setBroadcastChannel(event.target.value)
+                        }
+                        maxLength={80}
+                        required
+                        placeholder="Ex.: ESPN, Prime Video, canal oficial"
+                      />
+                    </label>
+                    <label>
+                      Link oficial
+                      <input
+                        type="url"
+                        value={broadcastUrl}
+                        onChange={(event) =>
+                          setBroadcastUrl(event.target.value)
+                        }
+                        maxLength={500}
+                        required
+                        placeholder="https://..."
+                      />
+                    </label>
+                    <label>
+                      Link da confirmação (opcional)
+                      <input
+                        type="url"
+                        value={broadcastReferenceUrl}
+                        onChange={(event) =>
+                          setBroadcastReferenceUrl(event.target.value)
+                        }
+                        maxLength={500}
+                        placeholder="https://fonte-oficial.com/programacao"
+                      />
+                    </label>
+                    <label>
+                      Data da revisão
+                      <input
+                        type="date"
+                        value={broadcastReviewedOn}
+                        onChange={(event) =>
+                          setBroadcastReviewedOn(event.target.value)
+                        }
+                        required
+                      />
+                    </label>
+                    {broadcastError && <Notice error>{broadcastError}</Notice>}
+                    <div className="modal-actions">
+                      {manualKeys.has(keyOf(broadcastEditing)) && (
+                        <button
+                          type="button"
+                          onClick={deleteBroadcast}
+                          disabled={savingBroadcast}
+                        >
+                          Remover
+                        </button>
+                      )}
+                      <button
+                        type="button"
+                        onClick={() => setBroadcastEditing(null)}
+                        disabled={savingBroadcast}
+                      >
+                        Cancelar
+                      </button>
+                      <button
+                        className="admin-primary"
+                        type="submit"
+                        disabled={savingBroadcast}
+                      >
+                        {savingBroadcast ? "Salvando…" : "Salvar fonte"}
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              )}
+            </>
           )}
-        </>
-      )}
           {section === "overview" && (
             <section className="admin-overview-panel studio-cache">
               <div className="admin-toolbar">
                 <div>
                   <h2>Cache de dados</h2>
-                  <p>Limpe para consultar novamente as fontes. Os cadastros são preservados.</p>
+                  <p>
+                    Limpe para consultar novamente as fontes. Os cadastros são
+                    preservados.
+                  </p>
                 </div>
-                <button className="quiet-button" onClick={clearCache} disabled={clearingCache}>
+                <button
+                  className="quiet-button"
+                  onClick={clearCache}
+                  disabled={clearingCache}
+                >
                   {clearingCache ? "Limpando…" : "Limpar cache"}
                 </button>
               </div>
-              {cacheMessage && <Notice error={cacheError}>{cacheMessage}</Notice>}
+              {cacheMessage && (
+                <Notice error={cacheError}>{cacheMessage}</Notice>
+              )}
             </section>
           )}
         </main>
