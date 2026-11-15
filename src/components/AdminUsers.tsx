@@ -83,8 +83,11 @@ export default function AdminUsers({ secret }: { secret: string }) {
   const [selected, setSelected] = useState<User | null>(null);
   const dialog = useRef<HTMLDialogElement>(null);
   useEffect(() => {
-    if (selected) dialog.current?.showModal();
-    else dialog.current?.close();
+    if (selected) {
+      dialog.current?.showModal();
+    } else {
+      dialog.current?.close();
+    }
   }, [selected]);
   const pages = Math.max(1, Math.ceil((data?.total || 0) / 25));
   return (
