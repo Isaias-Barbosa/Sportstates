@@ -2,6 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { handler, route } from "../server/api.mjs";
 import {
+  clearStudioSettingsCache,
   mapSourceItems,
   sourceRequest,
   validateAppearance,
@@ -93,10 +94,19 @@ test("studio endpoints require admin access and public settings have safe defaul
     );
     assert.equal(response.statusCode, 401);
   }
-  assert.deepEqual(
-    await route(new URL("https://example.test/api/appearance")),
-    [200, { light: "", dark: "", home: [], standings: [] }],
-  );
+  const databaseUrl = process.env.DATABASE_URL;
+  clearStudioSettingsCache();
+  try {
+    delete process.env.DATABASE_URL;
+    assert.deepEqual(
+      await route(new URL("https://example.test/api/appearance")),
+      [200, { light: "", dark: "", home: [], standings: [] }],
+    );
+  } finally {
+    clearStudioSettingsCache();
+    if (databaseUrl === undefined) delete process.env.DATABASE_URL;
+    else process.env.DATABASE_URL = databaseUrl;
+  }
 });
 
 test("player edits require valid references and live ESPN fills empty profile fields", async (t) => {
