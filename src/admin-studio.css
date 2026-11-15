@@ -107,10 +107,12 @@
   gap: 10px;
   padding: 9px 10px;
   margin-block: 3px;
+  color: #c7d8e3;
   border-inline-start: 3px solid transparent;
   border-radius: 7px;
 }
 .studio-sidebar nav a:hover {
+  color: #ecf5f9;
   background: #21384b;
 }
 .studio-sidebar nav a.active {
@@ -199,6 +201,7 @@
 }
 .studio-shortcuts {
   display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
   gap: 8px;
   margin-block: 16px;
