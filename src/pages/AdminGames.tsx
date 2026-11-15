@@ -99,38 +99,6 @@ export default function AdminGames({
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
-  const [clearingCache, setClearingCache] = useState(false);
-  const [cacheMessage, setCacheMessage] = useState("");
-  const [cacheError, setCacheError] = useState(false);
-  async function clearCache() {
-    if (clearingCache) return;
-    setClearingCache(true);
-    setCacheMessage("");
-    setCacheError(false);
-    try {
-      const response = await adminFetch("/api/admin/cache", {
-        method: "POST",
-        headers: { Authorization: `Bearer ${secret}` },
-      });
-      const body = await response.json();
-      if (!response.ok)
-        throw new Error(body.error || "Não foi possível limpar o cache.");
-      notifyCacheCleared();
-      setCacheMessage(
-        body.warning ||
-          "Cache limpo. Os dados serão atualizados nas próximas consultas.",
-      );
-    } catch (error) {
-      setCacheError(true);
-      setCacheMessage(
-        error instanceof Error
-          ? error.message
-          : "Não foi possível limpar o cache.",
-      );
-    } finally {
-      setClearingCache(false);
-    }
-  }
   const page = pathname.split("/")[2] || "";
   const activeGroup =
     navigation.find((group) => group.items.some((item) => item[1] === page)) ??
@@ -876,29 +844,6 @@ export default function AdminGames({
                 </div>
               )}
             </>
-          )}
-          {section === "overview" && (
-            <section className="admin-overview-panel studio-cache">
-              <div className="admin-toolbar">
-                <div>
-                  <h2>Cache de dados</h2>
-                  <p>
-                    Limpe para consultar novamente as fontes. Os cadastros são
-                    preservados.
-                  </p>
-                </div>
-                <button
-                  className="quiet-button"
-                  onClick={clearCache}
-                  disabled={clearingCache}
-                >
-                  {clearingCache ? "Limpando…" : "Limpar cache"}
-                </button>
-              </div>
-              {cacheMessage && (
-                <Notice error={cacheError}>{cacheMessage}</Notice>
-              )}
-            </section>
           )}
         </main>
       </div>

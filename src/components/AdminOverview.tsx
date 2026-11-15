@@ -1,9 +1,10 @@
 import { adminFetch } from "../account/client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import {
   Activity,
   AlertTriangle,
   ArrowUpRight,
+  Bell,
   CalendarDays,
   CheckCircle2,
   ChevronRight,
@@ -11,13 +12,18 @@ import {
   Database,
   Radio,
   RefreshCw,
+  Settings2,
   Shield,
+  Star,
+  Trash2,
   Trophy,
+  Tv,
   Users,
+  type LucideIcon,
 } from "lucide-react";
 import { Link } from "react-router-dom";
-import { Notice } from "./shared";
-import { time } from "../hooks";
+import { Crest, Notice } from "./shared";
+import { notifyCacheCleared, time } from "../hooks";
 import type { DataSourceStatus, Scores } from "../types";
 
 type ActivityEntry = {
@@ -61,6 +67,18 @@ const activityLabels: Record<string, string> = {
   league_saved: "Liga",
   providers: "Fontes",
   user: "Usuário",
+};
+
+const activityVisuals: Record<string, { icon: LucideIcon; tone: string }> = {
+  announcement: { icon: Bell, tone: "info" },
+  broadcast: { icon: Tv, tone: "live" },
+  cbf: { icon: Shield, tone: "warn" },
+  configuration: { icon: Settings2, tone: "neutral" },
+  featured: { icon: Star, tone: "warn" },
+  league_deleted: { icon: Trash2, tone: "bad" },
+  league_saved: { icon: Trophy, tone: "ok" },
+  providers: { icon: Database, tone: "info" },
+  user: { icon: Users, tone: "neutral" },
 };
 
 function friendlyDate(value: string) {
@@ -141,6 +159,48 @@ function metricValue(loading: boolean, value: number | null | undefined) {
   return value ?? "—";
 }
 
+function sharePercent(value: number, total: number) {
+  return total ? Math.round((value / total) * 100) : 0;
+}
+
+function Kpi({
+  label,
+  value,
+  note,
+  icon,
+  tone = "total",
+  share,
+  shareLabel,
+}: {
+  label: string;
+  value: ReactNode;
+  note: ReactNode;
+  icon: ReactNode;
+  tone?: "total" | "live" | "scheduled" | "finished";
+  share: number;
+  shareLabel: string;
+}) {
+  return (
+    <article className={`admin-kpi tone-${tone}`}>
+      <span className="admin-kpi-watermark" aria-hidden="true">
+        {icon}
+      </span>
+      <div className="admin-kpi-head">
+        <span>{label}</span>
+        <span className="admin-kpi-icon">{icon}</span>
+      </div>
+      <strong className="admin-kpi-value">{value}</strong>
+      <span className="admin-kpi-meter">
+        <span className="admin-kpi-meter-track" aria-hidden="true">
+          <span style={{ width: `${share}%` }} />
+        </span>
+        <em>{shareLabel}</em>
+      </span>
+      <small>{note}</small>
+    </article>
+  );
+}
+
 function AgendaDistribution({
   scheduled,
   live,
@@ -179,7 +239,7 @@ function AgendaDistribution({
       {total ? (
         <>
           <div
-            className="admin-distribution"
+            className={`admin-distribution ${live ? "has-live" : ""}`}
             role="img"
             aria-label={segments
               .map((segment) => `${segment.label}: ${segment.value}`)
@@ -319,6 +379,9 @@ export default function AdminOverview({
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
   const [reload, setReload] = useState(0);
+  const [clearingCache, setClearingCache] = useState(false);
+  const [cacheMessage, setCacheMessage] = useState("");
+  const [cacheError, setCacheError] = useState(false);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -390,6 +453,8 @@ export default function AdminOverview({
   const finishedPercent = matches.length
     ? Math.round((finished / matches.length) * 100)
     : null;
+  const liveShare = sharePercent(live, matches.length);
+  const scheduledShare = sharePercent(scheduled, matches.length);
 
   let heroTone = "ok";
   let heroLabel = "Operação estável";
@@ -410,7 +475,7 @@ export default function AdminOverview({
     ? "Consultando a agenda e a saúde das fontes…"
     : !scores
       ? "A agenda desta data ainda não está disponível."
-      : `${countLabel(matches.length, "partida", "partidas")} em ${countLabel(sportsCount, "esporte", "esportes")} · ${friendlyDate(date)}`;
+      : `${countLabel(matches.length, "partida", "partidas")} em ${countLabel(sportsCount, "esporte", "esportes")} no recorte selecionado.`;
   const sourceSummary = !sourceTotal
     ? "A consulta atual não retornou o status individual das fontes."
     : sourceIssues
@@ -420,6 +485,36 @@ export default function AdminOverview({
         : sourceTotal === 1
           ? "A única fonte monitorada respondeu sem ressalvas."
           : `Todas as ${sourceTotal} fontes monitoradas responderam sem ressalvas.`;
+
+  async function clearCache() {
+    if (clearingCache) return;
+    setClearingCache(true);
+    setCacheMessage("");
+    setCacheError(false);
+    try {
+      const response = await adminFetch("/api/admin/cache", {
+        method: "POST",
+        headers: { Authorization: `Bearer ${secret}` },
+      });
+      const body = await response.json();
+      if (!response.ok)
+        throw new Error(body.error || "Não foi possível limpar o cache.");
+      notifyCacheCleared();
+      setCacheMessage(
+        body.warning ||
+          "Cache limpo. Os dados serão atualizados nas próximas consultas.",
+      );
+    } catch (cause) {
+      setCacheError(true);
+      setCacheMessage(
+        cause instanceof Error
+          ? cause.message
+          : "Não foi possível limpar o cache.",
+      );
+    } finally {
+      setClearingCache(false);
+    }
+  }
 
   function refreshAll() {
     setReload((value) => value + 1);
@@ -440,6 +535,24 @@ export default function AdminOverview({
           </span>
           <h2>Agenda e cobertura</h2>
           <p>{heroSummary}</p>
+          <div className="admin-hero-meta">
+            <span>
+              <CalendarDays size={14} aria-hidden="true" />
+              {friendlyDate(date)}
+            </span>
+            <span>
+              <RefreshCw size={14} aria-hidden="true" />
+              {scores
+                ? `Consulta ${relativeTime(scores.fetchedAt)}`
+                : "Sem consulta recente"}
+            </span>
+            <span>
+              <Database size={14} aria-hidden="true" />
+              {sourceTotal
+                ? countLabel(sourceTotal, "fonte", "fontes")
+                : "Sem telemetria"}
+            </span>
+          </div>
         </div>
         <div className="admin-hero-actions">
           <label className="studio-date">
@@ -517,78 +630,65 @@ export default function AdminOverview({
       </nav>
 
       <div className="admin-kpis" aria-live="polite">
-        <article className="admin-kpi">
-          <div className="admin-kpi-head">
-            <span>Jogos na data</span>
-            <span className="admin-kpi-icon">
-              <CalendarDays size={18} aria-hidden="true" />
-            </span>
-          </div>
-          <strong className="admin-kpi-value">
-            {metricValue(scoresLoading, scores?.matches.length)}
-          </strong>
-          <small>
-            {scoresLoading
+        <Kpi
+          label="Jogos na data"
+          value={metricValue(scoresLoading, scores?.matches.length)}
+          note={
+            scoresLoading
               ? "Consultando a agenda…"
               : scheduled
                 ? `${countLabel(scheduled, "programado", "programados")} por começar`
-                : "Nenhum jogo pendente de início"}
-          </small>
-        </article>
-        <article className={`admin-kpi ${live ? "is-live" : ""}`}>
-          <div className="admin-kpi-head">
-            <span>Ao vivo</span>
-            <span className="admin-kpi-icon">
-              <Radio size={18} aria-hidden="true" />
-            </span>
-          </div>
-          <strong className="admin-kpi-value">
-            {metricValue(scoresLoading, live)}
-          </strong>
-          <small>
-            {scoresLoading
+                : "Nenhum jogo pendente de início"
+          }
+          icon={<CalendarDays size={18} aria-hidden="true" />}
+          share={matches.length ? 100 : 0}
+          shareLabel="agenda"
+        />
+        <Kpi
+          label="Ao vivo"
+          value={metricValue(scoresLoading, live)}
+          note={
+            scoresLoading
               ? "Verificando partidas…"
               : live
                 ? "Em andamento agora"
-                : "Nenhuma partida ao vivo"}
-          </small>
-        </article>
-        <article className="admin-kpi">
-          <div className="admin-kpi-head">
-            <span>Programados</span>
-            <span className="admin-kpi-icon">
-              <Clock3 size={18} aria-hidden="true" />
-            </span>
-          </div>
-          <strong className="admin-kpi-value">
-            {metricValue(scoresLoading, scheduled)}
-          </strong>
-          <small>
-            {scoresLoading
+                : "Nenhuma partida ao vivo"
+          }
+          icon={<Radio size={18} aria-hidden="true" />}
+          tone="live"
+          share={liveShare}
+          shareLabel={`${liveShare}%`}
+        />
+        <Kpi
+          label="Programados"
+          value={metricValue(scoresLoading, scheduled)}
+          note={
+            scoresLoading
               ? "Carregando horários…"
               : nextScheduled
                 ? `Próximo às ${time(nextScheduled.date)}`
-                : "Sem horário pendente"}
-          </small>
-        </article>
-        <article className="admin-kpi">
-          <div className="admin-kpi-head">
-            <span>Encerrados</span>
-            <span className="admin-kpi-icon">
-              <CheckCircle2 size={18} aria-hidden="true" />
-            </span>
-          </div>
-          <strong className="admin-kpi-value">
-            {metricValue(scoresLoading, finished)}
-          </strong>
-          <small>
-            {scoresLoading
+                : "Sem horário pendente"
+          }
+          icon={<Clock3 size={18} aria-hidden="true" />}
+          tone="scheduled"
+          share={scheduledShare}
+          shareLabel={`${scheduledShare}%`}
+        />
+        <Kpi
+          label="Encerrados"
+          value={metricValue(scoresLoading, finished)}
+          note={
+            scoresLoading
               ? "Consolidando resultados…"
               : finishedPercent === null
                 ? "Sem partidas no recorte"
-                : `${finishedPercent}% da agenda concluída`}
-          </small>
-        </article>
+                : `${finishedPercent}% da agenda concluída`
+          }
+          icon={<CheckCircle2 size={18} aria-hidden="true" />}
+          tone="finished"
+          share={finishedPercent ?? 0}
+          shareLabel={`${finishedPercent ?? 0}%`}
+        />
       </div>
 
       <div className="admin-overview-panels">
@@ -727,15 +827,29 @@ export default function AdminOverview({
                     <span
                       className={`admin-next-time ${match.state === "live" ? "tone-live" : ""}`}
                     >
-                      {match.state === "live"
-                        ? match.clock || "Ao vivo"
-                        : time(match.date)}
+                      {match.state === "live" ? (
+                        <>
+                          <span
+                            className="admin-next-live-dot"
+                            aria-hidden="true"
+                          />
+                          {match.clock || "Ao vivo"}
+                        </>
+                      ) : (
+                        time(match.date)
+                      )}
                     </span>
                     <span className="admin-next-match">
                       <span className="admin-next-teams">
-                        <strong>{match.home.name}</strong>
+                        <span className="admin-next-team">
+                          <Crest team={match.home} />
+                          <strong>{match.home.name}</strong>
+                        </span>
                         <em>×</em>
-                        <strong>{match.away.name}</strong>
+                        <span className="admin-next-team">
+                          <Crest team={match.away} />
+                          <strong>{match.away.name}</strong>
+                        </span>
                       </span>
                       <small>
                         {match.leagueName} ·{" "}
@@ -776,29 +890,39 @@ export default function AdminOverview({
             <p className="admin-panel-empty">Carregando histórico…</p>
           ) : data?.activity.length ? (
             <ol className="admin-timeline">
-              {data.activity.map((entry) => (
-                <li key={entry.id}>
-                  <span className="admin-timeline-dot" aria-hidden="true">
-                    <Activity size={13} />
-                  </span>
-                  <div>
-                    <strong>{entry.summary}</strong>
-                    <small>
-                      <span>
-                        {activityLabels[entry.action] ??
-                          entry.action.replace(/[_-]+/g, " ")}
-                      </span>{" "}
-                      ·{" "}
-                      <time
-                        dateTime={entry.created_at}
-                        title={localDate(entry.created_at)}
-                      >
-                        {relativeTime(entry.created_at)}
-                      </time>
-                    </small>
-                  </div>
-                </li>
-              ))}
+              {data.activity.map((entry) => {
+                const visual = activityVisuals[entry.action] ?? {
+                  icon: Activity,
+                  tone: "neutral",
+                };
+                const Icon = visual.icon;
+                return (
+                  <li key={entry.id}>
+                    <span
+                      className={`admin-timeline-dot tone-${visual.tone}`}
+                      aria-hidden="true"
+                    >
+                      <Icon size={13} />
+                    </span>
+                    <div>
+                      <strong>{entry.summary}</strong>
+                      <small>
+                        <span>
+                          {activityLabels[entry.action] ??
+                            entry.action.replace(/[_-]+/g, " ")}
+                        </span>{" "}
+                        ·{" "}
+                        <time
+                          dateTime={entry.created_at}
+                          title={localDate(entry.created_at)}
+                        >
+                          {relativeTime(entry.created_at)}
+                        </time>
+                      </small>
+                    </div>
+                  </li>
+                );
+              })}
             </ol>
           ) : error ? (
             <p className="admin-panel-empty">Histórico indisponível: {error}</p>
@@ -873,6 +997,40 @@ export default function AdminOverview({
           </nav>
         </section>
       </div>
+
+      <section className="admin-cache-panel" aria-label="Cache de dados">
+        <span className="admin-cache-icon" aria-hidden="true">
+          <Database size={22} />
+        </span>
+        <div className="admin-cache-copy">
+          <header>
+            <h3>Cache de dados</h3>
+            <span className="admin-cache-chip">
+              <Shield size={11} aria-hidden="true" />
+              Cadastros preservados
+            </span>
+          </header>
+          <p>
+            Force uma nova consulta às fontes. Times, ligas, usuários e demais
+            cadastros permanecem intactos.
+          </p>
+          {cacheMessage && <Notice error={cacheError}>{cacheMessage}</Notice>}
+        </div>
+        <div className="admin-cache-actions">
+          <Link to="/admin/apis" className="admin-cache-link">
+            Ver fontes <ArrowUpRight size={13} aria-hidden="true" />
+          </Link>
+          <button
+            type="button"
+            className="admin-cache-clear"
+            onClick={clearCache}
+            disabled={clearingCache}
+          >
+            <Trash2 size={15} aria-hidden="true" />
+            {clearingCache ? "Limpando…" : "Limpar cache"}
+          </button>
+        </div>
+      </section>
     </section>
   );
 }
