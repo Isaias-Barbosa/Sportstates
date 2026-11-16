@@ -81,6 +81,7 @@ import { startedDomesticTournaments } from "./domestic-tournaments.mjs";
 import { ECUADOR_CUPS, fetchEcuadorCupStandings } from "./ecuador-cups.mjs";
 import { listTeams, teamDetails, saveTeam, getTeam, deleteTeam } from "./teams.mjs";
 import { leagueList, leagueOverrides, saveLeague, removeLeague, leagueLogo } from "./admin-leagues.mjs";
+import { listOtherSports, saveOtherSport, removeOtherSport } from "./other-sports.mjs";
 import {
   fetchTeamCatalog,
   normalizeTeamSearch,
@@ -551,6 +552,21 @@ export async function route(url) {
   const q = url.searchParams;
   if (url.pathname === "/api/appearance")
     return [200, await studioSetting("appearance", defaultAppearance).catch(() => defaultAppearance)];
+  if (url.pathname === "/api/other-sports") {
+    try {
+      const result = await cached("other-sports:published", 5 * 60_000, () =>
+        listOtherSports({ publishedOnly: true }),
+      );
+      return [
+        200,
+        { sports: result.value, fetchedAt: new Date(result.at).toISOString() },
+      ];
+    } catch (error) {
+      if (error?.code === "OTHER_SPORTS_MIGRATION")
+        return [200, { sports: [], migrationPending: true }];
+      throw error;
+    }
+  }
   if (url.pathname === "/api/player-search") {
     if ((q.get("q") || "").trim().length < 3 || (q.get("q") || "").length > 80)
       return [400, { error: "Informe um nome ou código de 3 a 80 caracteres." }];
@@ -2463,6 +2479,105 @@ export async function handler(req, res) {
       const message = String(error?.message || "");
       res.statusCode = /relation "sport_leagues" does not exist/.test(message) ? 503 : 400;
       return res.end(JSON.stringify({error:res.statusCode===503?"Execute a migração scripts/setup-leagues.sql no Neon antes de cadastrar ligas.":message.slice(0,200)}));
+    }
+  }
+  if (requestUrl.pathname === "/api/admin/other-sports") {
+    res.setHeader("Cache-Control", "no-store");
+    res.setHeader("Vercel-CDN-Cache-Control", "no-store");
+    if (!(await adminAuthorized(req.headers?.authorization))) {
+      res.statusCode = 401;
+      return res.end(JSON.stringify({ error: "Acesso administrativo não autorizado." }));
+    }
+    try {
+      if (req.method === "GET") {
+        const sports = await listOtherSports();
+        return res.end(JSON.stringify({ sports }));
+      }
+      if (req.method === "DELETE") {
+        const id = requestUrl.searchParams.get("id");
+        if (!id) {
+          res.statusCode = 400;
+          return res.end(JSON.stringify({ error: "Informe o ID do esporte." }));
+        }
+        const removed = await removeOtherSport(id);
+        if (!removed) {
+          res.statusCode = 404;
+          return res.end(JSON.stringify({ error: "Esporte não encontrado." }));
+        }
+        const auditWarning = await recordAdminActivitySafely(
+          "other_sport_deleted",
+          `Outro esporte excluído: ${id}`,
+        );
+        let warning = "";
+        try {
+          await clearAllCaches();
+        } catch {
+          warning = "Esporte excluído, mas não foi possível limpar todo o cache.";
+        }
+        return res.end(JSON.stringify({ ok: true, deletedId: id, warning, auditWarning }));
+      }
+      if (req.method !== "PUT") {
+        res.statusCode = 405;
+        res.setHeader("Allow", "GET, PUT, DELETE");
+        return res.end(JSON.stringify({ error: "Método não permitido." }));
+      }
+      let body = req.body;
+      if (body == null) {
+        let raw = "";
+        for await (const chunk of req) {
+          raw += chunk;
+          if (raw.length > 32000) throw new Error("Dados muito grandes.");
+        }
+        body = raw;
+      }
+      if (typeof body === "string") {
+        if (body.length > 32000) throw new Error("Dados muito grandes.");
+        body = JSON.parse(body);
+      }
+      if (!body || typeof body !== "object" || Array.isArray(body))
+        throw new Error("Dados inválidos.");
+      const saved = await saveOtherSport(body);
+      const auditWarning = await recordAdminActivitySafely(
+        "other_sport_saved",
+        `Outro esporte ${saved.published ? "publicado" : "salvo como rascunho"}: ${String(saved.name).slice(0, 100)} (${saved.id})`,
+        saved.id,
+      );
+      let warning = "";
+      try {
+        await clearAllCaches();
+      } catch {
+        warning = "Esporte salvo, mas não foi possível limpar todo o cache.";
+      }
+      return res.end(JSON.stringify({ ok: true, sport: saved, warning, auditWarning }));
+    } catch (error) {
+      const message = String(error?.message || "");
+      const missing =
+        error?.code === "OTHER_SPORTS_MIGRATION" ||
+        /relation "sport_other_sports" does not exist/.test(message);
+      if (missing) {
+        res.statusCode = 503;
+        return res.end(
+          JSON.stringify({
+            error:
+              "Execute a migração scripts/setup-other-sports.sql no Neon antes de cadastrar outros esportes.",
+          }),
+        );
+      }
+      if (!process.env.DATABASE_URL || message === "Banco Neon não configurado.") {
+        res.statusCode = 503;
+        return res.end(JSON.stringify({ error: "Banco Neon não configurado." }));
+      }
+      if (error?.validation) {
+        res.statusCode = 400;
+        return res.end(JSON.stringify({ error: message }));
+      }
+      console.error("Falha nos outros esportes:", error.code ?? error.name);
+      res.statusCode = 502;
+      return res.end(
+        JSON.stringify({
+          error: "Não foi possível salvar ou consultar os outros esportes.",
+        }),
+      );
     }
   }
   if (requestUrl.pathname === "/api/admin/teams") {

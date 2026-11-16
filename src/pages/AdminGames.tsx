@@ -6,6 +6,7 @@ import AdminUsers from "../components/AdminUsers";
 import AdminCbfReviews from "../components/AdminCbfReviews";
 import AdminTeams from "../components/AdminTeams";
 import AdminLeagues from "../components/AdminLeagues";
+import AdminOtherSports from "../components/AdminOtherSports";
 import AdminProviders from "../components/AdminProviders";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import AdminGuide from "../components/AdminGuide";
@@ -19,6 +20,7 @@ import {
   Check,
   Database,
   LayoutDashboard,
+  Medal,
   Moon,
   Pencil,
   Settings2,
@@ -69,6 +71,7 @@ const navigation = [
     items: [
       ["teams", "times", "Times", Shield],
       ["leagues", "ligas", "Ligas", Trophy],
+      ["other-sports", "outros-esportes", "Outros esportes", Medal],
       ["players", "jogadores", "Jogadores", UserRound],
     ],
   },
@@ -482,6 +485,8 @@ export default function AdminGames({
             <AdminTeams secret={secret} />
           ) : section === "leagues" ? (
             <AdminLeagues secret={secret} />
+          ) : section === "other-sports" ? (
+            <AdminOtherSports secret={secret} />
           ) : (
             <>
               <div className="admin-toolbar">

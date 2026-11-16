@@ -1,0 +1,241 @@
+.other-sports-page {
+  display: grid;
+  gap: 22px;
+}
+
+.other-sports-intro {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  flex-wrap: wrap;
+  padding: 16px 18px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--panel);
+}
+
+.other-sports-intro p {
+  margin: 0;
+  max-width: 800px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.other-sports-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 18px;
+}
+
+.other-sport-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--panel);
+  transition:
+    transform 0.18s ease,
+    border-color 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.other-sport-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--green-border);
+  box-shadow: 0 18px 38px #0b122014;
+}
+
+.other-sport-media {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border);
+  background:
+    radial-gradient(circle at 18% 18%, var(--green-glow), transparent 55%),
+    linear-gradient(135deg, var(--surface), var(--panel));
+}
+
+.other-sport-media img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.other-sport-placeholder {
+  font-size: 58px;
+  line-height: 1;
+  filter: drop-shadow(0 12px 20px #0b12201f);
+}
+
+.other-sport-icon-badge {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--border);
+  border-radius: 11px;
+  background: var(--panel);
+  box-shadow: 0 8px 20px #0b122020;
+  font-size: 20px;
+}
+
+.other-sport-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 10px;
+  padding: 17px 18px 19px;
+}
+
+.other-sport-body h2 {
+  margin: 0;
+  font-family: "Manrope", sans-serif;
+  font-size: 18px;
+  letter-spacing: -0.2px;
+}
+
+.other-sport-body p {
+  display: -webkit-box;
+  flex: 1;
+  margin: 0;
+  overflow: hidden;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
+}
+
+.other-sport-body a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  width: fit-content;
+  margin-top: 4px;
+  color: var(--green);
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.other-sport-body a:hover {
+  text-decoration: underline;
+}
+
+.other-sports-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 160px;
+  border: 1px dashed var(--border);
+  border-radius: 14px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* Admin */
+.other-sports-form h3 {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin: 0;
+}
+
+.other-sports-form h3 code {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.other-sports-form label small {
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.other-sport-admin-name {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.other-sport-admin-name > span {
+  font-size: 23px;
+  line-height: 1;
+}
+
+.other-sport-admin-name > div {
+  display: grid;
+  gap: 2px;
+}
+
+.other-sport-admin-name small {
+  color: var(--muted);
+}
+
+.other-sport-admin-name code {
+  font-size: 11px;
+}
+
+.admin-teams-table td a {
+  color: var(--green);
+  font-weight: 600;
+}
+
+.other-sport-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 9px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.other-sport-status::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.other-sport-status.published {
+  color: #1c7d55;
+  background: #1c7d5514;
+}
+
+[data-theme="dark"] .other-sport-status.published {
+  color: #66d9a3;
+  background: #66d9a31a;
+}
+
+.other-sport-status.draft {
+  color: var(--muted);
+  background: var(--surface);
+}
+
+@media (max-width: 640px) {
+  .other-sports-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .other-sports-intro {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
