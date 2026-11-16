@@ -3,12 +3,16 @@ import { useEffect, useState, type FormEvent } from "react";
 import {
   ArrowDown,
   ArrowUp,
+  Download,
   ExternalLink,
-  Fingerprint,
-  UserRound,
+  Pencil,
   Plus,
+  RefreshCw,
   Search,
   Trash2,
+  UserRound,
+  Users,
+  X,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useApi, notifyCacheCleared } from "../hooks";
@@ -17,13 +21,6 @@ import type { CompetitionCatalog } from "../types";
 import { Notice } from "./shared";
 
 type Entry = { name: string; source: string };
-type Athlete = { id: string; name: string; team?: string };
-type PublicPlayer = {
-  name: string;
-  espnId?: string;
-  previousClubs: Entry[];
-  awards: Entry[];
-};
 type Source = {
   id: string;
   name: string;
@@ -626,6 +623,101 @@ function PlayerEntries({
   );
 }
 
+type CuratedPlayer = {
+  id: string;
+  espnId: string;
+  transfermarktId: string;
+  transfermarktUrl: string;
+  name: string;
+  fullName: string;
+  teamId: string;
+  teamName: string;
+  teamLogo: string;
+  position: string;
+  nationality: string;
+  flag: string;
+  photo: string;
+  jersey: string;
+  birthDate: string;
+  height: string;
+  weight: string;
+  league: string;
+  bio: string;
+  marketValue: { amount: number; currency: string; date: string; source: string } | null;
+  profileUrl: string;
+  source: string;
+  sourceUrl: string;
+  awards: Entry[];
+  previousClubs: Entry[];
+  transfers: { date: string; from: string; to: string; kind?: string }[];
+  updatedAt: string;
+};
+
+type PlayerDraft = {
+  id: string;
+  espnId: string;
+  transfermarktId: string;
+  name: string;
+  fullName: string;
+  teamId: string;
+  teamName: string;
+  position: string;
+  nationality: string;
+  photo: string;
+  jersey: string;
+  birthDate: string;
+  height: string;
+  weight: string;
+  league: string;
+  bio: string;
+  previousClubs: Entry[];
+  awards: Entry[];
+};
+
+function draftFromPlayer(player: CuratedPlayer): PlayerDraft {
+  return {
+    id: player.id,
+    espnId: player.espnId ?? "",
+    transfermarktId: player.transfermarktId ?? "",
+    name: player.name,
+    fullName: player.fullName ?? "",
+    teamId: player.teamId ?? "",
+    teamName: player.teamName ?? "",
+    position: player.position ?? "",
+    nationality: player.nationality ?? "",
+    photo: player.photo ?? "",
+    jersey: player.jersey ?? "",
+    birthDate: player.birthDate ?? "",
+    height: player.height ?? "",
+    weight: player.weight ?? "",
+    league: player.league ?? "",
+    bio: player.bio ?? "",
+    previousClubs: player.previousClubs ?? [],
+    awards: player.awards ?? [],
+  };
+}
+
+const emptyDraft = (): PlayerDraft => ({
+  id: "",
+  espnId: "",
+  transfermarktId: "",
+  name: "",
+  fullName: "",
+  teamId: "",
+  teamName: "",
+  position: "",
+  nationality: "",
+  photo: "",
+  jersey: "",
+  birthDate: "",
+  height: "",
+  weight: "",
+  league: "",
+  bio: "",
+  previousClubs: [],
+  awards: [],
+});
+
 export function AdminPlayers({
   secret,
   initialId,
@@ -633,174 +725,512 @@ export function AdminPlayers({
   secret: string;
   initialId: string;
 }) {
-  const [query, setQuery] = useState("");
-  const [id, setId] = useState(initialId);
-  const [profileId, setProfileId] = useState(initialId);
-  const [profileRevision, setProfileRevision] = useState(0);
-  function openProfile(next: string) {
-    setId(next);
-    setProfileId(next);
-    setProfileRevision(value => value + 1);
-  }
-  const [results, setResults] = useState<Athlete[]>([]);
-  const [player, setPlayer] = useState<PublicPlayer>();
-  const [draft, setDraft] = useState({
-    espnId: "",
-    previousClubs: [] as Entry[],
-    awards: [] as Entry[],
-  });
+  const [players, setPlayers] = useState<CuratedPlayer[]>([]);
+  const [teamFilter, setTeamFilter] = useState("");
+  const [search, setSearch] = useState("");
+  const [reload, setReload] = useState(0);
+  const [importForm, setImportForm] = useState({ espnId: "", transfermarkt: "" });
+  const [rosterForm, setRosterForm] = useState({ teamId: "", league: "" });
+  const [draft, setDraft] = useState<PlayerDraft | null>(null);
   const [state, setState] = useState({
     busy: false,
+    loading: true,
     message: "",
     error: "",
     writable: false,
   });
-  async function search(e: FormEvent) {
-    e.preventDefault();
-    setState(previous => ({ ...previous, busy: true, error: "", message: "" }));
-    setResults([]);
-    try {
-      const { players } = await adminRequest<{ players: Athlete[] }>(
-        secret,
-        "player-editor?q=" + encodeURIComponent(query),
-      );
-      setResults(players);
-      setState(previous => ({ ...previous, busy: false, message: players.length ? "" : "Nenhum jogador encontrado." }));
-    } catch (cause) {
-      setState(previous => ({ ...previous, busy: false, error: (cause as Error).message }));
-    }
-  }
+  const [deletingId, setDeletingId] = useState("");
+
   useEffect(() => {
-    if (!id) return;
     const controller = new AbortController();
-    setPlayer(undefined);
-    setState({ busy: true, message: "", error: "", writable: false });
-    adminRequest<{ player: PublicPlayer; writable: boolean }>(
+    setState((previous) => ({
+      ...previous,
+      loading: true,
+      error: "",
+    }));
+    adminRequest<{ players: CuratedPlayer[]; writable: boolean }>(
       secret,
-      "player-editor?id=" + encodeURIComponent(id),
+      "players",
       "GET",
       undefined,
       controller.signal,
     )
-      .then(({ player, writable }) => {
+      .then(({ players, writable }) => {
         if (controller.signal.aborted) return;
-        setPlayer(player);
-        setDraft({
-          espnId: player.espnId || "",
-          previousClubs: player.previousClubs ?? [],
-          awards: player.awards ?? [],
-        });
-        setState({ busy: false, message: "", error: "", writable });
+        setPlayers(players);
+        setState((previous) => ({
+          ...previous,
+          loading: false,
+          writable,
+        }));
       })
       .catch((cause) => {
         if (!controller.signal.aborted)
-          setState({
-            busy: false,
-            message: "",
+          setState((previous) => ({
+            ...previous,
+            loading: false,
             error: cause.message,
-            writable: false,
-          });
+          }));
       });
     return () => controller.abort();
-  }, [secret, id, profileRevision]);
-  async function save(e: FormEvent) {
-    e.preventDefault();
-    setState(previous => ({ ...previous, busy: true, error: "", message: "" }));
+  }, [secret, reload]);
+
+  useEffect(() => {
+    if (!initialId) return;
+    const player = players.find((item) => item.id === initialId);
+    if (player) setDraft(draftFromPlayer(player));
+  }, [initialId, players]);
+
+  const teams = [
+    ...new Set(players.map((player) => player.teamName).filter(Boolean)),
+  ].sort((a, b) => a.localeCompare(b, "pt-BR"));
+  const term = search.trim().toLocaleLowerCase("pt-BR");
+  const visible = players.filter((player) => {
+    if (teamFilter && player.teamName !== teamFilter) return false;
+    if (!term) return true;
+    return [player.name, player.fullName, player.teamName, player.nationality, player.position]
+      .filter(Boolean)
+      .some((value) => String(value).toLocaleLowerCase("pt-BR").includes(term));
+  });
+
+  async function run(
+    action: () => Promise<{ message: string }>,
+  ): Promise<void> {
+    setState((previous) => ({ ...previous, busy: true, error: "", message: "" }));
     try {
-      await adminRequest(secret, "player-editor", "PUT", { id, ...draft });
+      const result = await action();
       notifyCacheCleared();
-      setState(previous => ({ ...previous, busy: false, message: "Perfil atualizado." }));
+      setReload((value) => value + 1);
+      setState((previous) => ({ ...previous, busy: false, message: result.message }));
     } catch (cause) {
-      setState(previous => ({ ...previous, busy: false, error: (cause as Error).message }));
+      setState((previous) => ({
+        ...previous,
+        busy: false,
+        error: cause instanceof Error ? cause.message : "A operação não pôde ser concluída.",
+      }));
     }
   }
+
+  function importPlayer(e: FormEvent) {
+    e.preventDefault();
+    void run(async () => {
+      const result = await adminRequest<{ player: CuratedPlayer; warnings: string[] }>(
+        secret,
+        "players",
+        "POST",
+        {
+          espnId: importForm.espnId.trim(),
+          transfermarkt: importForm.transfermarkt.trim(),
+        },
+      );
+      setImportForm({ espnId: "", transfermarkt: "" });
+      return {
+        message:
+          [`${result.player.name} adicionado ao cadastro.`]
+            .concat(result.warnings ?? [])
+            .join(" "),
+      };
+    });
+  }
+
+  function importRoster(e: FormEvent) {
+    e.preventDefault();
+    void run(async () => {
+      const result = await adminRequest<{
+        team: string;
+        imported: number;
+        total: number;
+        warnings: string[];
+      }>(secret, "players", "POST", {
+        action: "roster",
+        teamId: rosterForm.teamId.trim(),
+        league: rosterForm.league.trim(),
+      });
+      setRosterForm({ teamId: "", league: "" });
+      return {
+        message:
+          `${result.imported} de ${result.total} jogadores de ${result.team} importados.`
+          + (result.warnings?.length ? " " + result.warnings.join(" ") : ""),
+      };
+    });
+  }
+
+  function saveDraft(e: FormEvent) {
+    e.preventDefault();
+    if (!draft) return;
+    void run(async () => {
+      const result = await adminRequest<{ player: CuratedPlayer }>(
+        secret,
+        "players",
+        "PUT",
+        draft,
+      );
+      setDraft(draftFromPlayer(result.player));
+      return { message: "Cadastro do jogador salvo." };
+    });
+  }
+
+  async function removePlayer(player: CuratedPlayer) {
+    if (
+      !window.confirm(
+        `Excluir o jogador "${player.name}" do cadastro? A página pública deixa de usar estes dados.`,
+      )
+    )
+      return;
+    setDeletingId(player.id);
+    await run(async () => {
+      await adminRequest(secret, "players?id=" + encodeURIComponent(player.id), "DELETE");
+      if (draft?.id === player.id) setDraft(null);
+      return { message: `${player.name} excluído do cadastro.` };
+    });
+    setDeletingId("");
+  }
+
   return (
     <section className="admin-overview studio-players" aria-labelledby="studio-players-title">
       <header className="studio-players-heading">
         <div className="studio-player-icon"><UserRound size={24} aria-hidden="true" /></div>
         <div>
           <h2 id="studio-players-title">Jogadores</h2>
-          <p>Encontre um atleta e edite seu histórico de clubes e premiações.</p>
+          <p>
+            Cadastro curado em ordem alfabética, com time atual, filtro por time e
+            importação de ESPN e Transfermarkt.
+          </p>
         </div>
+        <button
+          type="button"
+          className="studio-player-secondary"
+          disabled={state.busy || state.loading}
+          onClick={() => setReload((value) => value + 1)}
+        >
+          <RefreshCw size={15} aria-hidden="true" /> Atualizar
+        </button>
       </header>
+
       <div className="studio-player-tools">
-        <form className="studio-player-tool" onSubmit={search}>
-          <h3><Search size={18} aria-hidden="true" /> Busca na ESPN</h3>
-          <label htmlFor="studio-player-query">Nome ou código ESPN</label>
-          <div className="studio-player-input">
-            <input id="studio-player-query" type="search" placeholder="Ex.: Suzuki ou 196876"
-              minLength={3} maxLength={80} required value={query}
-              onChange={e => setQuery(e.target.value)} />
-            <button className="admin-primary" disabled={state.busy}>Buscar</button>
-          </div>
+        <form className="studio-player-tool" onSubmit={importPlayer}>
+          <h3><Download size={18} aria-hidden="true" /> Importar jogador</h3>
+          <label htmlFor="studio-import-espn">Código ESPN (opcional)</label>
+          <input
+            id="studio-import-espn"
+            inputMode="numeric"
+            pattern="[0-9]{1,12}"
+            placeholder="Ex.: 296395"
+            value={importForm.espnId}
+            onChange={(event) =>
+              setImportForm({ ...importForm, espnId: event.target.value })
+            }
+          />
+          <label htmlFor="studio-import-tm">ID ou link do Transfermarkt (opcional)</label>
+          <input
+            id="studio-import-tm"
+            placeholder="Ex.: 568177"
+            value={importForm.transfermarkt}
+            onChange={(event) =>
+              setImportForm({ ...importForm, transfermarkt: event.target.value })
+            }
+          />
+          <small>Preencha pelo menos um dos dois. A ESPN completa bio, estatísticas e histórico.</small>
+          <button className="admin-primary" disabled={state.busy || !state.writable}>
+            {state.busy ? "Importando…" : "Importar e cadastrar"}
+          </button>
         </form>
-        <form className="studio-player-tool" onSubmit={event => {
-          event.preventDefault();
-          openProfile(profileId.trim());
-        }}>
-          <h3><Fingerprint size={18} aria-hidden="true" /> Abrir cadastro</h3>
-          <label htmlFor="studio-player-id">ID do perfil no Sportstates</label>
-          <div className="studio-player-input">
-            <input id="studio-player-id" placeholder="Ex.: espn-196876"
-              required value={profileId} onChange={event => setProfileId(event.target.value)}
-              pattern="(espn-|cbf-)?[0-9]{1,12}" />
-            <button className="studio-player-secondary" disabled={state.busy}>Abrir</button>
-          </div>
-          <small>Use o código após <code>/jogadores/</code> no endereço do perfil.</small>
+
+        <form className="studio-player-tool" onSubmit={importRoster}>
+          <h3><Users size={18} aria-hidden="true" /> Importar elenco</h3>
+          <label htmlFor="studio-roster-team">ID do time na ESPN</label>
+          <input
+            id="studio-roster-team"
+            inputMode="numeric"
+            pattern="[0-9]{1,12}"
+            required
+            placeholder="Ex.: 363"
+            value={rosterForm.teamId}
+            onChange={(event) =>
+              setRosterForm({ ...rosterForm, teamId: event.target.value })
+            }
+          />
+          <label htmlFor="studio-roster-league">Liga da ESPN</label>
+          <input
+            id="studio-roster-league"
+            required
+            placeholder="Ex.: eng.1"
+            value={rosterForm.league}
+            onChange={(event) =>
+              setRosterForm({ ...rosterForm, league: event.target.value })
+            }
+          />
+          <small>Cadastra o elenco atual do clube sem apagar jogadores já existentes.</small>
+          <button className="admin-primary" disabled={state.busy || !state.writable}>
+            {state.busy ? "Importando…" : "Importar elenco"}
+          </button>
         </form>
+
+        <div className="studio-player-tool">
+          <h3><Plus size={18} aria-hidden="true" /> Cadastro manual</h3>
+          <p className="studio-player-feedback">
+            Crie um jogador sem fonte automática e complete os dados no formulário.
+          </p>
+          <button
+            type="button"
+            className="studio-player-secondary"
+            disabled={state.busy || !state.writable}
+            onClick={() => setDraft(emptyDraft())}
+          >
+            <Plus size={15} aria-hidden="true" /> Novo jogador
+          </button>
+        </div>
       </div>
+
       {state.error && <Notice error>{state.error}</Notice>}
-      <div role="status">
-        {state.busy ? <p className="studio-player-feedback">Consultando dados…</p> :
-          state.message && <Notice>{state.message}</Notice>}
-      </div>
-      {!!results.length && (
-        <section className="studio-player-matches" aria-labelledby="player-results-title">
-          <h3 id="player-results-title">Resultados <span>{results.length}</span></h3>
-          <ul>
-            {results.map((item) => (
-              <li key={item.id}>
-                <div className="studio-player-icon"><UserRound size={17} aria-hidden="true" /></div>
-                <div>
-                  <strong>{item.name}</strong>
-                  <small>{item.team || "Futebol"} · ESPN {item.id}</small>
-                </div>
-                <div className="studio-player-actions">
-                  {player && !id.startsWith("espn-") && (
-                    <button type="button" className="studio-player-secondary" disabled={state.busy}
-                      onClick={() => setDraft({ ...draft, espnId: item.id })}>Usar código</button>
-                  )}
-                  <button type="button" className="studio-player-secondary" disabled={state.busy}
-                    onClick={() => openProfile("espn-" + item.id)}>Abrir perfil</button>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </section>
+      {state.message && <Notice>{state.message}</Notice>}
+      {!state.writable && (
+        <Notice>Configure o Neon para gravar o cadastro de jogadores.</Notice>
       )}
-      {player && (
-        <form className="studio-player-editor" onSubmit={save}>
+
+      <div className="studio-player-filters">
+        <label>
+          <Search size={16} aria-hidden="true" />
+          <input
+            type="search"
+            placeholder="Buscar por nome, time ou nacionalidade"
+            value={search}
+            onChange={(event) => setSearch(event.target.value)}
+          />
+        </label>
+        <label>
+          Filtrar por time
+          <select value={teamFilter} onChange={(event) => setTeamFilter(event.target.value)}>
+            <option value="">Todos os times</option>
+            {teams.map((team) => (
+              <option key={team} value={team}>{team}</option>
+            ))}
+          </select>
+        </label>
+        <span>{visible.length} de {players.length} jogadores</span>
+      </div>
+
+      {state.loading ? (
+        <p className="studio-player-feedback">Carregando jogadores…</p>
+      ) : !visible.length ? (
+        <Notice>
+          {players.length
+            ? "Nenhum jogador corresponde ao filtro."
+            : "Nenhum jogador cadastrado. Importe da ESPN/Transfermarkt ou crie manualmente."}
+        </Notice>
+      ) : (
+        <div className="studio-player-table-wrap">
+          <table className="studio-player-table">
+            <thead>
+              <tr>
+                <th>Jogador</th>
+                <th>Time</th>
+                <th>Posição</th>
+                <th>Nacionalidade</th>
+                <th>Fonte</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              {visible.map((player) => (
+                <tr key={player.id}>
+                  <td>
+                    <div className="studio-player-name">
+                      {player.photo ? (
+                        <img src={player.photo} alt="" width="34" height="34" />
+                      ) : (
+                        <span className="studio-player-icon"><UserRound size={16} aria-hidden="true" /></span>
+                      )}
+                      <div>
+                        <strong>{player.name}</strong>
+                        <small>{player.id}</small>
+                      </div>
+                    </div>
+                  </td>
+                  <td>{player.teamName || "—"}</td>
+                  <td>{player.position || "—"}</td>
+                  <td>{player.nationality || "—"}</td>
+                  <td>{player.source || "manual"}</td>
+                  <td>
+                    <div className="studio-player-actions">
+                      <Link
+                        to={`/jogadores/${player.id}`}
+                        className="studio-player-secondary"
+                        aria-label={`Abrir página pública de ${player.name}`}
+                      >
+                        <ExternalLink size={15} />
+                      </Link>
+                      <button
+                        type="button"
+                        className="studio-player-secondary"
+                        disabled={state.busy}
+                        onClick={() => setDraft(draftFromPlayer(player))}
+                      >
+                        <Pencil size={15} aria-hidden="true" /> Editar
+                      </button>
+                      <button
+                        type="button"
+                        className="studio-player-secondary danger"
+                        disabled={state.busy || deletingId === player.id}
+                        onClick={() => void removePlayer(player)}
+                      >
+                        <Trash2 size={15} aria-hidden="true" />
+                        {deletingId === player.id ? "Excluindo…" : "Excluir"}
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+
+      {draft && (
+        <form className="studio-player-editor" onSubmit={saveDraft}>
           <h3>
-            {player.name}{" "}
-            <Link
-              to={`/jogadores/${id}`}
-              aria-label="Abrir página pública do jogador"
+            {draft.id ? draft.name : "Novo jogador"}
+            {draft.id && (
+              <Link to={`/jogadores/${draft.id}`} aria-label="Abrir página pública do jogador">
+                <ExternalLink size={16} />
+              </Link>
+            )}
+            <button
+              type="button"
+              className="studio-player-secondary"
+              onClick={() => setDraft(null)}
+              aria-label="Fechar formulário"
             >
-              <ExternalLink size={16} />
-            </Link>
+              <X size={16} />
+            </button>
           </h3>
-          {!state.writable && (
-            <Notice>Configure o Neon para gravar as alterações.</Notice>
-          )}
           <fieldset disabled={state.busy || !state.writable}>
+            <div className="studio-fields">
+              <label>
+                Nome
+                <input
+                  required
+                  maxLength={140}
+                  value={draft.name}
+                  onChange={(event) => setDraft({ ...draft, name: event.target.value })}
+                />
+              </label>
+              <label>
+                Nome completo
+                <input
+                  maxLength={180}
+                  value={draft.fullName}
+                  onChange={(event) => setDraft({ ...draft, fullName: event.target.value })}
+                />
+              </label>
+              <label>
+                Time atual
+                <input
+                  maxLength={140}
+                  value={draft.teamName}
+                  onChange={(event) => setDraft({ ...draft, teamName: event.target.value })}
+                />
+              </label>
+              <label>
+                ID ESPN do time
+                <input
+                  inputMode="numeric"
+                  pattern="[0-9]{1,12}"
+                  value={draft.teamId}
+                  onChange={(event) => setDraft({ ...draft, teamId: event.target.value })}
+                />
+              </label>
+              <label>
+                Posição
+                <input
+                  maxLength={80}
+                  value={draft.position}
+                  onChange={(event) => setDraft({ ...draft, position: event.target.value })}
+                />
+              </label>
+              <label>
+                Nacionalidade
+                <input
+                  maxLength={80}
+                  value={draft.nationality}
+                  onChange={(event) => setDraft({ ...draft, nationality: event.target.value })}
+                />
+              </label>
+              <label>
+                Liga
+                <input
+                  maxLength={40}
+                  placeholder="Ex.: eng.1"
+                  value={draft.league}
+                  onChange={(event) => setDraft({ ...draft, league: event.target.value })}
+                />
+              </label>
+              <label>
+                Foto (HTTPS)
+                <input
+                  type="url"
+                  value={draft.photo}
+                  onChange={(event) => setDraft({ ...draft, photo: event.target.value })}
+                />
+              </label>
+              <label>
+                Código ESPN
+                <input
+                  inputMode="numeric"
+                  pattern="[0-9]{1,12}"
+                  value={draft.espnId}
+                  onChange={(event) => setDraft({ ...draft, espnId: event.target.value })}
+                />
+              </label>
+              <label>
+                ID do Transfermarkt
+                <input
+                  inputMode="numeric"
+                  pattern="[0-9]{1,12}"
+                  value={draft.transfermarktId}
+                  onChange={(event) => setDraft({ ...draft, transfermarktId: event.target.value })}
+                />
+              </label>
+              <label>
+                Nascimento
+                <input
+                  type="date"
+                  value={draft.birthDate}
+                  onChange={(event) => setDraft({ ...draft, birthDate: event.target.value })}
+                />
+              </label>
+              <label>
+                Camisa
+                <input
+                  maxLength={4}
+                  value={draft.jersey}
+                  onChange={(event) => setDraft({ ...draft, jersey: event.target.value })}
+                />
+              </label>
+              <label>
+                Altura
+                <input
+                  maxLength={20}
+                  value={draft.height}
+                  onChange={(event) => setDraft({ ...draft, height: event.target.value })}
+                />
+              </label>
+              <label>
+                Peso
+                <input
+                  maxLength={20}
+                  value={draft.weight}
+                  onChange={(event) => setDraft({ ...draft, weight: event.target.value })}
+                />
+              </label>
+            </div>
             <label>
-              Código ESPN para completar dados vazios
-              <input
-                inputMode="numeric"
-                pattern="[0-9]{1,12}"
-                value={draft.espnId}
-                readOnly={id.startsWith("espn-")}
-                onChange={(e) => setDraft({ ...draft, espnId: e.target.value })}
+              Bio
+              <textarea
+                maxLength={4000}
+                rows={4}
+                value={draft.bio}
+                onChange={(event) => setDraft({ ...draft, bio: event.target.value })}
               />
             </label>
             <PlayerEntries
@@ -813,8 +1243,8 @@ export function AdminPlayers({
               rows={draft.awards}
               change={(awards) => setDraft({ ...draft, awards })}
             />
-            <button className="admin-primary">
-              {state.busy ? "Salvando…" : "Salvar perfil"}
+            <button className="admin-primary" disabled={state.busy}>
+              {state.busy ? "Salvando…" : "Salvar cadastro"}
             </button>
           </fieldset>
         </form>
