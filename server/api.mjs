@@ -256,6 +256,41 @@ async function requestJson(req, limit = 4096) {
   return body;
 }
 
+// O elenco de clube e o perfil de seleção são fontes complementares: o mesmo
+// atleta pode ter estatísticas das duas competições e prêmios só na seleção.
+function combinePlayerProfiles(clubProfile, nationalProfile) {
+  if (!clubProfile) return nationalProfile;
+  if (!nationalProfile) return clubProfile;
+  const unique = (current, extra, same) => {
+    const result = [...(current || [])];
+    for (const item of extra || [])
+      if (!result.some((existing) => same(existing, item))) result.push(item);
+    return result;
+  };
+  return {
+    ...clubProfile,
+    nationality: clubProfile.nationality ?? nationalProfile.nationality,
+    flag: clubProfile.flag ?? nationalProfile.flag,
+    currentClub: clubProfile.currentClub ?? nationalProfile.currentClub ?? null,
+    memberships: unique(
+      clubProfile.memberships,
+      nationalProfile.memberships,
+      (a, b) => a.id === b.id && a.season === b.season,
+    ),
+    competitions: unique(
+      clubProfile.competitions,
+      nationalProfile.competitions,
+      (a, b) =>
+        a.league === b.league && (a.season ?? null) === (b.season ?? null),
+    ),
+    awards: unique(
+      clubProfile.awards,
+      nationalProfile.awards,
+      (a, b) => a.name === b.name,
+    ),
+  };
+}
+
 export async function scoreboard(date, sport = "all") {
   if (sport !== "all" && !SPORTS.some((s) => s.id === sport))
     throw Error("Esporte inválido.");
@@ -678,10 +713,13 @@ export async function route(url) {
     const id = q.get("id");
     const isPlayer = url.pathname === "/api/player";
     if (isPlayer && /^espn-\d{1,12}$/.test(id || "")) {
-      // Um atleta da Série A/B tem perfil completo no elenco gravado; a busca
-      // pública não deve exibir um perfil genérico quando o clube está cadastrado.
+      // O elenco gravado completa o perfil do atleta, mas não pode esconder
+      // estatísticas e prêmios que só existem no perfil da seleção.
       const clubProfile = await readBrazilPlayer(id.slice(5)).catch(() => null);
-      const player = await withPlayerEdit(clubProfile ?? nationalPlayer(id), id);
+      const player = await withPlayerEdit(
+        combinePlayerProfiles(clubProfile, nationalPlayer(id)),
+        id,
+      );
       return player ? [200, player] : [404, { error: "Jogador ainda não cadastrado." }];
     }
     if (!(isPlayer ? validPublicPlayerId(id) : validPlayerId(id)))
