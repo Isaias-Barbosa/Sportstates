@@ -16,6 +16,7 @@ import {
   Moon,
   Globe2,
   LayoutGrid,
+  Medal,
   Menu,
   Radio,
   ListOrdered,
@@ -42,7 +43,9 @@ const TeamPage = lazy(() => import("./pages/TeamPage"));
 const PlayerPage = lazy(() => import("./pages/PlayerPage"));
 const F1TeamPage = lazy(() => import("./pages/F1Pages"));
 const NewsPage = lazy(() => import("./pages/NewsPage"));
+const OtherSportsPage = lazy(() => import("./pages/OtherSportsPage"));
 import "./news.css";
+import "./other-sports.css";
 import "./admin-studio.css";
 const TennisAthletesPage = lazy(() => import("./pages/TennisAthletesPage"));
 function App() {
@@ -202,6 +205,10 @@ function PublicSite({ theme, setTheme }: {
                 <Newspaper size={18} />
                 Notícias
               </NavLink>
+              <NavLink to="/outros-esportes">
+                <Medal size={18} />
+                Outros esportes
+              </NavLink>
               <NavLink to="/resumo-diario">
                 <Newspaper size={18} />
                 Resumo Diário
@@ -318,6 +325,7 @@ function PublicSite({ theme, setTheme }: {
                     element={<MatchPage />}
                   />
                   <Route path="/noticias" element={<NewsPage />} />
+                  <Route path="/outros-esportes" element={<OtherSportsPage />} />
                   <Route path="/times" element={<TeamsPage />} />
                   <Route path="/times/f1/:id" element={<F1TeamPage />} />
                   <Route path="/times/:id" element={<TeamPage />} />

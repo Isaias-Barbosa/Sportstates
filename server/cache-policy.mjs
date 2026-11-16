@@ -45,6 +45,7 @@ export function responseTtl(url, body, now = Date.now()) {
   if (
     body.stale ||
     body.partial ||
+    body.migrationPending ||
     body.warnings?.length ||
     body.configured === false
   )
@@ -62,6 +63,9 @@ export function responseTtl(url, body, now = Date.now()) {
       break;
     case "/api/competitions":
       ttl = HOUR;
+      break;
+    case "/api/other-sports":
+      ttl = 5 * MINUTE;
       break;
     case "/api/standings":
     case "/api/team-competitions":
