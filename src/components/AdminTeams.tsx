@@ -26,6 +26,11 @@ export default function AdminTeams({ secret }: { secret: string }) {
   const [saving, setSaving] = useState(false);
   const [deletingId, setDeletingId] = useState<string | null>(null);
   const [search, setSearch] = useState("");
+  const [rosterState, setRosterState] = useState({
+    busy: false,
+    message: "",
+    error: "",
+  });
   const { data: catalog, error: catalogError } = useApi<CompetitionCatalog>(
     "/api/competitions",
     0,
@@ -46,6 +51,9 @@ export default function AdminTeams({ secret }: { secret: string }) {
   useEffect(() => {
     void load();
   }, [secret]);
+  useEffect(() => {
+    setRosterState({ busy: false, message: "", error: "" });
+  }, [form?.id]);
   async function save(e: React.FormEvent) {
     e.preventDefault();
     if (!form) return;
@@ -97,6 +105,45 @@ export default function AdminTeams({ secret }: { secret: string }) {
       setMessage(error instanceof Error ? error.message : "Erro ao excluir time.");
     } finally {
       setDeletingId(null);
+    }
+  }
+  async function importSquad() {
+    if (!form || !/^\d{1,12}$/.test(form.id)) return;
+    setRosterState({ busy: true, message: "", error: "" });
+    try {
+      const response = await adminFetch("/api/admin/players", {
+        method: "POST",
+        cache: "no-store",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${secret}`,
+        },
+        body: JSON.stringify({
+          action: "roster",
+          teamId: form.id,
+          league: form.league,
+        }),
+      });
+      const result = await response.json();
+      if (!response.ok)
+        throw new Error(result.error || "Não foi possível importar o elenco.");
+      notifyCacheCleared();
+      setRosterState({
+        busy: false,
+        error: "",
+        message:
+          `${result.imported} de ${result.total} jogadores de ${result.team} importados para o cadastro. `
+          + (result.warnings?.length ? result.warnings.join(" ") : ""),
+      });
+    } catch (error) {
+      setRosterState({
+        busy: false,
+        message: "",
+        error:
+          error instanceof Error
+            ? error.message
+            : "Erro ao importar o elenco.",
+      });
     }
   }
   const filteredTeams = teams.filter((team) => {
@@ -330,6 +377,39 @@ export default function AdminTeams({ secret }: { secret: string }) {
               )}
             </div>
           </fieldset>
+          {form.sport === "soccer" && (
+            <fieldset className="studio-form-group">
+              <legend>Jogadores</legend>
+              <p>
+                Importe o elenco atual da ESPN para o cadastro de jogadores. O
+                código do time precisa ser o ID numérico da ESPN e a liga
+                precisa existir na fonte.
+              </p>
+              {rosterState.error && <Notice error>{rosterState.error}</Notice>}
+              {rosterState.message && <Notice>{rosterState.message}</Notice>}
+              <div>
+                <button
+                  type="button"
+                  className="quiet-button"
+                  disabled={
+                    rosterState.busy ||
+                    saving ||
+                    !/^\d{1,12}$/.test(form.id)
+                  }
+                  onClick={() => void importSquad()}
+                >
+                  {rosterState.busy
+                    ? "Importando elenco…"
+                    : "Importar elenco da ESPN"}
+                </button>
+                {!/^\d{1,12}$/.test(form.id) && (
+                  <small>
+                    Informe o ID numérico da ESPN no campo “Código do time”.
+                  </small>
+                )}
+              </div>
+            </fieldset>
+          )}
           <div className="modal-actions">
             <button type="button" onClick={() => setForm(null)}>
               Cancelar

@@ -68,6 +68,16 @@ import { cbfRegisteredPlayer, validPublicPlayerId } from "./cbf-player-register.
 import { enrichPlayerProfile, playerCompetitions, playerLeagues, playerSeason, validPlayerId, readBrazilTeamPlayers, readBrazilPlayer,
   syncBrazilPlayerDay } from "./brazil-players.mjs";
 import {
+  deleteCuratedPlayer,
+  importCuratedPlayer,
+  importEspnRoster,
+  listCuratedPlayers,
+  readCuratedPlayerProfile,
+  readCuratedPlayerRow,
+  saveCuratedPlayer,
+  validCuratedPlayerId,
+} from "./players.mjs";
+import {
   SPORTS,
   BRAZIL_STATE_LEAGUES,
   SOCCER_REGIONS,
@@ -289,6 +299,51 @@ function combinePlayerProfiles(clubProfile, nationalProfile) {
       (a, b) => a.name === b.name,
     ),
   };
+}
+
+// O cadastro curado no admin tem prioridade nos campos editoriais (foto,
+// biografia, valor de mercado, vínculos), mas nunca apaga as competições e
+// prêmios já reunidos pelos elencos importados.
+function mergeCuratedProfile(base, curated) {
+  if (!curated) return base;
+  if (!base) return curated;
+  const unique = (primary, extra, same) => {
+    const result = [...(primary || [])];
+    for (const item of extra || [])
+      if (!result.some((existing) => same(existing, item))) result.push(item);
+    return result;
+  };
+  const merged = { ...base, ...curated };
+  merged.competitions = unique(curated.competitions, base.competitions, (a, b) =>
+    a.league === b.league && (a.season ?? null) === (b.season ?? null),
+  );
+  merged.memberships = unique(curated.memberships, base.memberships, (a, b) =>
+    a.id === b.id && (a.season ?? null) === (b.season ?? null),
+  );
+  merged.awards = unique(curated.awards, base.awards, (a, b) => a.name === b.name);
+  merged.previousClubs = unique(
+    curated.previousClubs,
+    base.previousClubs,
+    (a, b) => a.name === b.name,
+  );
+  merged.transfers = unique(
+    curated.transfers,
+    base.transfers,
+    (a, b) => a.date === b.date && a.from === b.from && a.to === b.to,
+  );
+  merged.clubs = unique(curated.clubs, base.clubs, (a, b) => a.id === b.id);
+  if (!curated.image) merged.image = base.image ?? null;
+  if (!curated.currentClub) merged.currentClub = base.currentClub ?? null;
+  if (!curated.nationality) merged.nationality = base.nationality;
+  if (!curated.flag) merged.flag = base.flag;
+  if (!curated.position) merged.position = base.position;
+  if (!curated.fullName) merged.fullName = base.fullName;
+  if (!curated.bio) merged.bio = base.bio;
+  if (!curated.marketValue) merged.marketValue = base.marketValue ?? null;
+  if (!merged.teamHonours?.length) merged.teamHonours = base.teamHonours ?? [];
+  if (!merged.registrations?.length)
+    merged.registrations = base.registrations ?? [];
+  return merged;
 }
 
 export async function scoreboard(date, sport = "all") {
@@ -712,15 +767,26 @@ export async function route(url) {
   if (url.pathname === "/api/team-player-stats" || url.pathname === "/api/player") {
     const id = q.get("id");
     const isPlayer = url.pathname === "/api/player";
+    const curated =
+      isPlayer && validCuratedPlayerId(id)
+        ? await readCuratedPlayerProfile(id).catch(() => null)
+        : null;
     if (isPlayer && /^espn-\d{1,12}$/.test(id || "")) {
       // O elenco gravado completa o perfil do atleta, mas não pode esconder
       // estatísticas e prêmios que só existem no perfil da seleção.
       const clubProfile = await readBrazilPlayer(id.slice(5)).catch(() => null);
-      const player = await withPlayerEdit(
+      const profile = mergeCuratedProfile(
         combinePlayerProfiles(clubProfile, nationalPlayer(id)),
-        id,
+        curated,
       );
+      const player = await withPlayerEdit(profile, id);
       return player ? [200, player] : [404, { error: "Jogador ainda não cadastrado." }];
+    }
+    if (isPlayer && validCuratedPlayerId(id) && !curated)
+      return [404, { error: "Jogador ainda não cadastrado." }];
+    if (isPlayer && curated) {
+      const player = await withPlayerEdit(curated, id);
+      return [200, player];
     }
     if (!(isPlayer ? validPublicPlayerId(id) : validPlayerId(id)))
       return [400, { error: "Identificador inválido." }];
@@ -2616,6 +2682,102 @@ export async function handler(req, res) {
           error: "Não foi possível salvar ou consultar os outros esportes.",
         }),
       );
+    }
+  }
+  if (requestUrl.pathname === "/api/admin/players") {
+    res.setHeader("Cache-Control", "private, no-store");
+    res.setHeader("Vercel-CDN-Cache-Control", "no-store");
+    res.setHeader("Vary", "Authorization");
+    const reply = (status, body) => {
+      res.statusCode = status;
+      return res.end(JSON.stringify(body));
+    };
+    if (!(await adminAuthorized(req.headers?.authorization)))
+      return reply(req.headers?.authorization ? 403 : 401, {
+        error: "Acesso administrativo necessário.",
+      });
+    if (!process.env.DATABASE_URL)
+      return reply(503, {
+        error: "Configure o Neon para gerenciar o cadastro de jogadores.",
+      });
+    try {
+      if (req.method === "GET") {
+        const id = requestUrl.searchParams.get("id");
+        if (id) {
+          const player = await readCuratedPlayerRow(id);
+          if (!player)
+            return reply(404, { error: "Jogador ainda não cadastrado." });
+          return reply(200, { player, writable: true });
+        }
+        const players = await listCuratedPlayers({
+          team: requestUrl.searchParams.get("team") ?? "",
+          q: requestUrl.searchParams.get("q") ?? "",
+        });
+        const teams = [
+          ...new Set(players.map((player) => player.teamName).filter(Boolean)),
+        ].sort((a, b) => a.localeCompare(b, "pt-BR"));
+        return reply(200, { players, teams, writable: true });
+      }
+      if (req.method === "POST") {
+        const input = await requestJson(req, 20_000);
+        if (input.action === "roster") {
+          const result = await importEspnRoster(input.teamId, input.league);
+          await clearAllCaches();
+          await recordAdminActivitySafely(
+            "configuration",
+            `Elenco de ${result.team} importado (${result.imported} jogadores).`,
+          );
+          return reply(200, { ...result, writable: true });
+        }
+        const result = await importCuratedPlayer(input);
+        await clearAllCaches();
+        await recordAdminActivitySafely(
+          "configuration",
+          `Jogador ${result.player.name} importado para o cadastro.`,
+        );
+        return reply(200, { ...result, writable: true });
+      }
+      if (req.method === "DELETE") {
+        const removed = await deleteCuratedPlayer(
+          requestUrl.searchParams.get("id"),
+        );
+        if (!removed)
+          return reply(404, { error: "Jogador ainda não cadastrado." });
+        await clearAllCaches();
+        await recordAdminActivitySafely(
+          "configuration",
+          `Jogador ${removed.name} removido do cadastro.`,
+        );
+        return reply(200, { removed, writable: true });
+      }
+      if (req.method !== "PUT")
+        return reply(405, { error: "Use GET, POST, PUT ou DELETE." });
+      const saved = await saveCuratedPlayer(await requestJson(req, 20_000), {
+        replace: true,
+      });
+      await clearAllCaches();
+      await recordAdminActivitySafely(
+        "configuration",
+        `Cadastro de ${saved.name} atualizado.`,
+      );
+      return reply(200, { player: saved, writable: true });
+    } catch (error) {
+      if (error?.provider)
+        return reply(502, { error: error.message });
+      if (error?.code === "42P01")
+        return reply(503, {
+          error:
+            "Execute a migração scripts/setup-players.sql no Neon antes de cadastrar jogadores.",
+        });
+      if (error?.validation)
+        return reply(400, { error: error.message });
+      console.error("Falha no cadastro de jogadores:", error.code ?? error.name);
+      return reply(400, {
+        error:
+          error instanceof Error
+            ? error.message
+            : "Não foi possível salvar o cadastro do jogador.",
+      });
     }
   }
   if (requestUrl.pathname === "/api/admin/teams") {

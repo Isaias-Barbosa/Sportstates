@@ -527,6 +527,116 @@
 .studio-players [role="status"]:empty {
   display: none;
 }
+.studio-players-heading > button {
+  margin-left: auto;
+}
+.studio-player-tool > input,
+.studio-player-tool > textarea,
+.studio-player-editor textarea {
+  width: 100%;
+  min-width: 0;
+}
+.studio-player-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 12px;
+}
+.studio-player-filters label {
+  display: grid;
+  gap: 6px;
+  font-weight: 650;
+}
+.studio-player-filters label:first-child {
+  flex: 1 1 280px;
+}
+.studio-player-filters label:first-child {
+  position: relative;
+}
+.studio-player-filters label:first-child svg {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  color: var(--muted);
+  pointer-events: none;
+}
+.studio-player-filters label:first-child input {
+  padding-left: 34px;
+  width: 100%;
+}
+.studio-player-filters > span {
+  margin-left: auto;
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+.studio-player-table-wrap {
+  overflow-x: auto;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+}
+.studio-player-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 760px;
+}
+.studio-player-table th,
+.studio-player-table td {
+  padding: 12px 14px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+}
+.studio-player-table th {
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.studio-player-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+.studio-player-name {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.studio-player-name img {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--surface);
+}
+.studio-player-name small {
+  display: block;
+  color: var(--muted);
+  font-size: 0.72rem;
+}
+.studio-player-table .studio-player-actions {
+  margin-left: 0;
+  flex-wrap: nowrap;
+}
+.studio-player-secondary.danger {
+  color: #d9534f;
+}
+.studio-player-editor h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.studio-player-editor h3 > button {
+  margin-left: auto;
+}
+@media (max-width: 650px) {
+  .studio-player-filters > span {
+    margin-left: 0;
+  }
+  .studio-player-table .studio-player-actions {
+    flex-wrap: wrap;
+  }
+}
 
 .studio-appearance-draft {
   padding: 10px 12px;
