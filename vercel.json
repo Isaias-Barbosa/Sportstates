@@ -44,13 +44,7 @@
     }
   ],
   "functions": {
-    "api/index.mjs": {
-      "includeFiles": [
-        "data/national-football-2026.json.gz",
-        "data/volleyball-profiles-2026.json",
-        "data/volleyball-women-2026.json"
-      ]
-    },
+    "api/index.mjs": { "includeFiles": "data/*.json*" },
     "api/share.mjs": {
       "includeFiles": "dist/index.html",
       "maxDuration": 30
