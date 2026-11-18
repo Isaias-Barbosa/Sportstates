@@ -4,17 +4,17 @@ A aba Estatísticas e a página do atleta consultam o Neon. A ESPN fornece os el
 
 ## Páginas e vínculos
 
-A página pública fica em `/jogadores/<id-espn>`. Nos elencos da Série A e B, o link só aparece quando o atleta está no elenco gravado em `sport_brazil_rosters`; assim não há link para um perfil inexistente. O vínculo é montado por `brazilSquadPlayerIds` em `server/brazil-players.mjs` e devolvido como `profileId` em `/api/team`.
+A página pública fica em `/jogadores/<id-espn>` ou `/jogadores/<id-do-cadastro>` (quando há cadastro curado). O link aparece no Elenco e na aba Estatísticas: o vínculo do elenco é montado por `brazilSquadPlayerIds` em `server/brazil-players.mjs`, completado por `curatedPlayerIdsForTeam` em `server/players.mjs` (que prioriza o cadastro revisado) e devolvido como `profileId` em `/api/team`. Ele só aparece quando o atleta está no elenco gravado em `sport_brazil_rosters` ou no cadastro curado em `sport_players`.
 
 Nome, posição, imagem e estádio do atleta vêm do elenco importado. Nacionalidade, clube atual, bandeira e posição em português são complementados ao vivo pelo endpoint de atletas da ESPN e aparecem somente quando o campo ainda está vazio. As estatísticas por competição usam exclusivamente as partidas gravadas no Neon.
 
 Os dados revisados de CBF e ge continuam limitados ao que tem identidade, URL e vínculo verificáveis. O cadastro CBF atual cobre apenas quatro clubes da Copa do Brasil de 2026; ele não substitui o elenco da Série A/B.
 
-## Premier League, LaLiga e Bundesliga
+## Premier League, LaLiga, Bundesliga, Serie A, Liga Portugal e MLS
 
-As ligas `eng.1`, `esp.1` e `ger.1` usam as mesmas tabelas e comandos. Uma temporada como 2026/27 é armazenada com o ano inicial 2026. A Bundesliga tem 18 clubes, enquanto as outras duas têm 20.
+As ligas `eng.1`, `esp.1`, `ger.1`, `ita.1` e `por.1` usam as mesmas tabelas e comandos, com temporada europeia (2026/27 é armazenada com o ano inicial 2026). A Bundesliga e a Liga Portugal têm 18 clubes; Premier League, LaLiga e Serie A têm 20. A MLS (`usa.1`) segue o ano civil e tem 30 clubes.
 
-Depois de publicar, importe os elencos e as partidas encerradas a partir do início da temporada. Crie um agendamento por liga usando `/api/player-stats/sync?league=eng.1`, `esp.1` ou `ger.1` com o mesmo cabeçalho de autenticação descrito abaixo.
+Depois de publicar, importe os elencos e as partidas encerradas a partir do início da temporada. Crie um agendamento por liga usando `/api/player-stats/sync?league=eng.1`, `esp.1`, `ger.1`, `ita.1`, `por.1` ou `usa.1` com o mesmo cabeçalho de autenticação descrito abaixo.
 
 ## Carga inicial
 
@@ -29,6 +29,9 @@ Em um ambiente com `DATABASE_URL` apontando para o Neon escolhido, rode uma vez 
 ```powershell
 node --env-file-if-exists=.env.local scripts/sync-brazil-players.mjs rosters bra.1
 node --env-file-if-exists=.env.local scripts/sync-brazil-players.mjs rosters bra.2
+node --env-file-if-exists=.env.local scripts/sync-brazil-players.mjs rosters ita.1
+node --env-file-if-exists=.env.local scripts/sync-brazil-players.mjs rosters por.1
+node --env-file-if-exists=.env.local scripts/sync-brazil-players.mjs rosters usa.1
 ```
 
 Importe os jogos já disputados em janelas de até 31 dias. Este exemplo cobre um mês, então repita para os meses desejados e para a outra divisão:

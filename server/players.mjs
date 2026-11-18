@@ -259,6 +259,25 @@ export async function listCuratedPlayers({ team = "", q = "" } = {}) {
     );
 }
 
+// Liga o elenco da ESPN ao cadastro curado. A chave é o código ESPN do atleta
+// (o mesmo devolvido pelo elenco) e o valor é o ID público do cadastro, que
+// reúne os dados revisados e tem prioridade sobre o vínculo do elenco.
+export async function curatedPlayerIdsForTeam(teamId) {
+  const providerId = text(teamId, 20);
+  if (!/^\d{1,12}$/.test(providerId)) return new Map();
+  const sql = store();
+  const rows = await sql`SELECT id, espn_id, team_id FROM sport_players
+    WHERE espn_id ~ '^[0-9]{1,12}$' AND team_id <> ''`;
+  const ids = new Map();
+  for (const row of rows) {
+    if (!validCuratedPlayerId(row.id)) continue;
+    // Aceita tanto o ID numérico da ESPN quanto o perfil prefixado pela liga.
+    if (String(row.team_id).replace(/^.*-/, "") !== providerId) continue;
+    ids.set(String(row.espn_id), row.id);
+  }
+  return ids;
+}
+
 export async function deleteCuratedPlayer(id) {
   if (!validCuratedPlayerId(id))
     throw invalid("Identificador do jogador inválido.");

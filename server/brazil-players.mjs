@@ -9,6 +9,9 @@ export const playerLeagues = {
   "eng.1": "Premier League",
   "esp.1": "LaLiga",
   "ger.1": "Bundesliga",
+  "ita.1": "Serie A",
+  "por.1": "Liga Portugal",
+  "usa.1": "MLS",
 };
 export const playerCompetitions = {
   ...playerLeagues,
@@ -20,7 +23,25 @@ const completedMatch = (type) =>
   ["STATUS_FULL_TIME", "STATUS_FINAL_PEN", "STATUS_FINAL_AET"].includes(
     type.name,
   );
-const europeanLeagues = new Set(["eng.1", "esp.1", "ger.1"]);
+const europeanLeagues = new Set([
+  "eng.1",
+  "esp.1",
+  "ger.1",
+  "ita.1",
+  "por.1",
+]);
+// A MLS acompanha o ano civil; as demais ligas europeias viram a temporada
+// em julho. A Série A e B também usam o ano civil.
+const leagueClubs = {
+  "bra.1": 20,
+  "bra.2": 20,
+  "eng.1": 20,
+  "esp.1": 20,
+  "ger.1": 18,
+  "ita.1": 20,
+  "por.1": 18,
+  "usa.1": 30,
+};
 
 export function playerSeason(league, date = new Date()) {
   const [year, month] = dayInBrazil(date).split("-").map(Number);
@@ -132,7 +153,8 @@ export async function registerBrazilSquads(league) {
   const teams = (raw.children ?? [])
     .flatMap((group) => group.standings?.entries ?? [])
     .map((entry) => entry.team);
-  const expectedClubs = league === "ger.1" ? 18 : 20;
+  const expectedClubs = leagueClubs[league];
+  if (!expectedClubs) throw new Error("Liga sem quantidade de clubes definida.");
   if (
     teams.length !== expectedClubs ||
     new Set(teams.map((team) => team?.id)).size !== expectedClubs

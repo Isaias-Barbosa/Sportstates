@@ -859,13 +859,13 @@ export function AdminPlayers({
     e.preventDefault();
     if (!draft) return;
     void run(async () => {
-      const result = await adminRequest<{ player: CuratedPlayer }>(
+      await adminRequest<{ player: CuratedPlayer }>(
         secret,
         "players",
         "PUT",
         draft,
       );
-      setDraft(draftFromPlayer(result.player));
+      setDraft(null);
       return { message: "Cadastro do jogador salvo." };
     });
   }
@@ -1087,24 +1087,56 @@ export function AdminPlayers({
       )}
 
       {draft && (
-        <form className="studio-player-editor" onSubmit={saveDraft}>
-          <h3>
-            {draft.id ? draft.name : "Novo jogador"}
-            {draft.id && (
-              <Link to={`/jogadores/${draft.id}`} aria-label="Abrir página pública do jogador">
-                <ExternalLink size={16} />
-              </Link>
-            )}
-            <button
-              type="button"
-              className="studio-player-secondary"
-              onClick={() => setDraft(null)}
-              aria-label="Fechar formulário"
-            >
-              <X size={16} />
-            </button>
-          </h3>
-          <fieldset disabled={state.busy || !state.writable}>
+        <div
+          className="admin-modal-backdrop"
+          role="presentation"
+          onMouseDown={(event) => {
+            if (event.target === event.currentTarget) setDraft(null);
+          }}
+          onKeyDown={(event) => {
+            if (event.key === "Escape") setDraft(null);
+          }}
+        >
+          <form
+            className="admin-modal studio-player-editor studio-player-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="studio-player-editor-title"
+            onSubmit={saveDraft}
+          >
+            <div className="modal-head">
+              <div>
+                <strong id="studio-player-editor-title">
+                  {draft.id ? draft.name : "Novo jogador"}
+                </strong>
+                <small>
+                  {draft.id
+                    ? "Editar cadastro curado do atleta"
+                    : "Cadastro manual sem fonte automática"}
+                </small>
+              </div>
+              <div className="studio-player-modal-actions">
+                {draft.id && (
+                  <Link
+                    to={`/jogadores/${draft.id}`}
+                    className="studio-player-secondary"
+                    aria-label="Abrir página pública do jogador"
+                  >
+                    <ExternalLink size={16} />
+                  </Link>
+                )}
+                <button
+                  type="button"
+                  className="icon-button"
+                  autoFocus
+                  onClick={() => setDraft(null)}
+                  aria-label="Fechar formulário"
+                >
+                  <X size={18} />
+                </button>
+              </div>
+            </div>
+            <fieldset disabled={state.busy || !state.writable}>
             <div className="studio-fields">
               <label>
                 Nome
@@ -1243,11 +1275,21 @@ export function AdminPlayers({
               rows={draft.awards}
               change={(awards) => setDraft({ ...draft, awards })}
             />
-            <button className="admin-primary" disabled={state.busy}>
-              {state.busy ? "Salvando…" : "Salvar cadastro"}
-            </button>
-          </fieldset>
-        </form>
+            </fieldset>
+            <div className="modal-actions">
+              <button
+                type="button"
+                className="studio-player-secondary"
+                onClick={() => setDraft(null)}
+              >
+                Cancelar
+              </button>
+              <button className="admin-primary" disabled={state.busy}>
+                {state.busy ? "Salvando…" : "Salvar cadastro"}
+              </button>
+            </div>
+          </form>
+        </div>
       )}
     </section>
   );

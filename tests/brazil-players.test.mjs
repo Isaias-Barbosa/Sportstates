@@ -41,7 +41,9 @@ function fixture(league) {
 }
 
 test("imports played matches for each league and preserves missing fields", () => {
-  for (const league of ["bra.1", "bra.2", "eng.1", "esp.1", "ger.1"]) {
+  for (const league of [
+    "bra.1", "bra.2", "eng.1", "esp.1", "ger.1", "ita.1", "por.1", "usa.1",
+  ]) {
     const raw = fixture(league);
     raw.rosters[0].roster[0].stats = stats({ appearances: 1, totalGoals: 1 });
     raw.rosters[0].roster.push(player(190, { appearances: 0 }));
@@ -60,11 +62,12 @@ test("imports played matches for each league and preserves missing fields", () =
 });
 
 test("European player seasons cross the calendar year", () => {
-  for (const league of ["eng.1", "esp.1", "ger.1"]) {
+  for (const league of ["eng.1", "esp.1", "ger.1", "ita.1", "por.1"]) {
     assert.equal(playerSeason(league, "2027-01-01T12:00:00Z"), 2026);
     assert.equal(playerSeason(league, "2027-07-01T12:00:00Z"), 2027);
   }
   assert.equal(playerSeason("bra.1", "2027-01-01T12:00:00Z"), 2027);
+  assert.equal(playerSeason("usa.1", "2027-01-01T12:00:00Z"), 2027);
 });
 
 test("cup statistics accept completed extra time and shootouts, but exclude forfeits", () => {

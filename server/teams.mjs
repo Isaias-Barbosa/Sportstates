@@ -27,7 +27,12 @@ import { leagueProfileReferences } from "./league-profiles.mjs";
 import { americasClubProfileReferences } from "./americas-club-profiles.mjs";
 import { ecuadorCupClubProfileReferences } from "./ecuador-cup-club-profiles.mjs";
 import { premierLeagueReferences } from "./premier-league-profiles.mjs";
-import { brazilSquadPlayerIds, validPlayerId } from "./brazil-players.mjs";
+import {
+  brazilSquadPlayerIds,
+  playerLeagues,
+  validPlayerId,
+} from "./brazil-players.mjs";
+import { curatedPlayerIdsForTeam } from "./players.mjs";
 import { neon } from "@neondatabase/serverless";
 import { normalizeEvent, normalizeSummary } from "./data.mjs";
 import { leagueFor } from "./catalog.mjs";
@@ -219,14 +224,20 @@ export async function teamDetails(id) {
     roster.status === "fulfilled" ? roster.value.athletes || [] : [];
   const season =
     roster.status === "fulfilled" ? Number(roster.value.season?.year) : NaN;
-  // Os perfis públicos da Série A e B são montados a partir do elenco gravado
-  // no Neon. O vínculo só aparece quando o atleta realmente tem cadastro.
-  const profileIds =
-    ["bra.1", "bra.2"].includes(config.league) && validPlayerId(providerId)
-      ? await brazilSquadPlayerIds(config.league, providerId, season).catch(
-          () => new Set(),
-        )
-      : new Set();
+  // Todos os elencos importados vinculam o atleta à página do jogador. O
+  // cadastro curado (espn-*) tem prioridade porque reúne os dados revisados.
+  let profileIds = new Map();
+  if (Object.hasOwn(playerLeagues, config.league) && validPlayerId(providerId)) {
+    const [squad, curated] = await Promise.all([
+      brazilSquadPlayerIds(config.league, providerId, season).catch(
+        () => new Set(),
+      ),
+      curatedPlayerIdsForTeam(providerId).catch(() => new Map()),
+    ]);
+    profileIds = new Map([...squad].map((id) => [id, id]));
+    for (const [espnId, curatedId] of curated)
+      profileIds.set(espnId, curatedId);
+  }
   const athletes = rawRoster
     .flatMap((a) =>
       Array.isArray(a.items)
@@ -247,7 +258,11 @@ export async function teamDetails(id) {
       image: a.headshot?.href || null,
     }))
     .filter((a) => a.id)
-    .map((a) => (profileIds.has(a.id) ? { ...a, profileId: a.id } : a));
+    .map((a) =>
+      profileIds.has(a.id)
+        ? { ...a, profileId: profileIds.get(a.id) ?? a.id }
+        : a,
+    );
   let leaders = null;
   if (
     config.sport === "soccer" &&
