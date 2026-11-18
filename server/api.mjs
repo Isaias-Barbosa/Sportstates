@@ -85,6 +85,8 @@ import {
   SOCCER_TEAM_LEAGUES,
   SOCCER_TOURNAMENT_FORMATS,
   SOCCER_DOMESTIC_TOURNAMENTS,
+  WOMEN_LEAGUES,
+  leagueGender,
   leagueFor,
 } from "./catalog.mjs";
 import { startedDomesticTournaments } from "./domestic-tournaments.mjs";
@@ -420,7 +422,10 @@ export async function scoreboard(date, sport = "all") {
             .map((game) => normalize365Game(game, league, name))
             .filter((match) => match && dayInBrazil(match.date) === date);
           const broadcasts = await enrich365Broadcasts(matches, games);
-          if (matches.length || DATED_365_LEAGUES.has(league)) return {
+          // These women's competitions exist only on 365Scores; a fall-through
+          // to the ESPN branch would issue a request for a slug that cannot exist.
+          const only365 = WOMEN_LEAGUES.has(league);
+          if (matches.length || DATED_365_LEAGUES.has(league) || only365) return {
             matches: broadcasts.matches.map((match) => ({
               ...match,
               liveUnverified: match.state === "live" && result.stale,
@@ -892,6 +897,7 @@ export async function route(url) {
                 s.id === "soccer" ? SOCCER_TOURNAMENT_FORMATS[id] : undefined,
               tournamentStarted:
                 s.id === "soccer" && startedTournaments.has(id),
+              gender: leagueGender(s.id, id),
               provider: ECUADOR_CUPS[id] ? "fef" : undefined,
               tournamentSource: ECUADOR_CUPS[id]?.page,
               teamLeague:
@@ -904,6 +910,7 @@ export async function route(url) {
           competitions: region.competitions.filter(visible),
         })),
         soccerInternationalGroups: SOCCER_INTERNATIONAL_GROUPS,
+        womenLeagues: [...WOMEN_LEAGUES],
         warnings,
         stale: tournamentStatus.stale,
         fetchedAt: new Date(tournamentStatus.at).toISOString(),

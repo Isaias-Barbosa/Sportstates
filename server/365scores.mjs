@@ -58,6 +58,12 @@ export const SOCCER_365_COMPETITIONS = Object.freeze({
   "bra.copa_governo_sergipe": 8774,
   "bra.copa_sul_sudeste": 9022,
   "bra.copa_parana": 9117,
+  // Futebol feminino (a ESPN não publica estes slugs).
+  "bra.feminino": 6223,
+  "bra.feminino.paulista": 7762,
+  "bra.feminino.copa_rio": 8073,
+  "bra.feminino.copa_do_brazil": 8702,
+  "conmebol.libertadores_feminina": 6226,
 });
 
 export const SOCCER_365_PRIMARY_COMPETITIONS = new Set(

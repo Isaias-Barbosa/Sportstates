@@ -35,7 +35,8 @@ import {
 import { curatedPlayerIdsForTeam } from "./players.mjs";
 import { neon } from "@neondatabase/serverless";
 import { normalizeEvent, normalizeSummary } from "./data.mjs";
-import { leagueFor } from "./catalog.mjs";
+import { leagueFor, WOMEN_SOCCER_LEAGUES } from "./catalog.mjs";
+import { SOCCER_365_PRIMARY_COMPETITIONS } from "./365scores.mjs";
 import { parseTeamLeaders } from "./team-leaders.mjs";
 const ESPN_BASE = "https://site.api.espn.com/apis/site/v2/sports";
 const getSql = () => {
@@ -204,6 +205,24 @@ export async function teamDetails(id) {
       articles: [],
       coverage: { roster: false, schedule: false, news: false, next: false },
       source: "ESPN · feed público não oficial",
+    };
+  // 365Scores-backed women's competitions have no ESPN club slug. Do not issue
+  // requests to endpoints that cannot exist; the profile is the verified data.
+  if (
+    config.sport === "soccer" &&
+    WOMEN_SOCCER_LEAGUES.has(config.league) &&
+    SOCCER_365_PRIMARY_COMPETITIONS.has(config.league)
+  )
+    return {
+      team,
+      athletes: [],
+      leaders: null,
+      upcoming: [],
+      recent: [],
+      lineup: null,
+      articles: [],
+      coverage: { roster: false, schedule: false, news: false, next: false },
+      source: "365Scores · cadastro de clubes femininos",
     };
   const ESPN = `${ESPN_BASE}/${config.sport}/${config.league}`;
   const providerId = providerTeamId(team.id);

@@ -5,7 +5,11 @@ import { ChevronDown } from "lucide-react";
 import { sports as fallbackSports } from "../catalog";
 import { useApi } from "../hooks";
 import type { CompetitionCatalog } from "../types";
-import { leagueLinks } from "../league-navigation";
+import {
+  filterCatalogByGender,
+  genderOf,
+  leagueLinks,
+} from "../league-navigation";
 
 export default function SportsNavigation() {
   const { user, preferences } = useAccount();
@@ -23,12 +27,13 @@ export default function SportsNavigation() {
     "/api/competitions",
     0,
   );
-  const sports =
-    data?.sports || fallbackSports.map((s) => ({ ...s, leagues: [] }));
+  const gender = genderOf(params);
+  const sports = filterCatalogByGender(data, gender)?.sports ||
+    fallbackSports.map((s) => ({ ...s, leagues: [] }));
   function links(sport: string, league: string, name: string) {
     return (
       <div className="menu-league-links">
-        {leagueLinks(sport, league).map((link) => {
+        {leagueLinks(sport, league, gender).map((link) => {
           const active =
             pathname === link.to.split("?")[0] &&
             params.get("sport") === sport &&

@@ -311,6 +311,7 @@ export type CompetitionCatalog = {
     leagues: {
       id: string;
       name: string;
+      gender?: "men" | "women";
       hasKnockout?: boolean;
       teamLeague?: boolean;
       tournamentFormat?: string;
@@ -331,6 +332,7 @@ export type CompetitionCatalog = {
     name: string;
     competitions: string[];
   }[];
+  womenLeagues?: string[];
   warnings?: string[];
   stale?: boolean;
   fetchedAt?: string;
