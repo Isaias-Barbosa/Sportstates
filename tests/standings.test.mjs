@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import { normalizeStandings } from "../server/standings.mjs";
 import { route } from "../server/api.mjs";
 import { clearAllCaches } from "../server/cache.mjs";
+import { WOMEN_LEAGUES, leagueGender } from "../server/catalog.mjs";
 
 test("normalizes nested groups, provider order and zero statistics", () => {
   const groups = normalizeStandings({
@@ -234,6 +235,10 @@ test("regiões locais e torneios internacionais ficam separados, sem perder comp
     "bra.copa_governo_sergipe",
     "bra.copa_sul_sudeste",
     "bra.copa_parana",
+    "bra.feminino",
+    "bra.feminino.paulista",
+    "bra.feminino.copa_rio",
+    "bra.feminino.copa_do_brazil",
   ]);
   assert.deepEqual(argentina.competitions, [
     "arg.1",
@@ -271,7 +276,14 @@ test("regiões locais e torneios internacionais ficam separados, sem perder comp
     ].every((id) => brasil.stateCompetitions.includes(id)),
   );
   assert.ok(!brasil.competitions.includes("conmebol.libertadores"));
-  assert.deepEqual(england.competitions, ["eng.1", "eng.fa", "eng.league_cup"]);
+  assert.deepEqual(england.competitions, [
+    "eng.1",
+    "eng.fa",
+    "eng.league_cup",
+    "eng.w.1",
+    "eng.w.fa",
+    "eng.w.league_cup",
+  ]);
   const americas = catalog.soccerInternationalGroups.find(
     (g) => g.id === "americas",
   );
@@ -301,4 +313,9 @@ test("regiões locais e torneios internacionais ficam separados, sem perder comp
   assert.ok(leagues.find((l) => l.id === "usa.1").teamLeague);
   assert.ok(!leagues.find((l) => l.id === "uefa.champions").teamLeague);
   assert.ok(leagues.find((l) => l.id === "concacaf.champions").hasKnockout);
+  assert.deepEqual(catalog.womenLeagues, [...WOMEN_LEAGUES]);
+  for (const league of leagues)
+    assert.equal(league.gender, leagueGender("soccer", league.id), league.id);
+  assert.equal(leagues.find((l) => l.id === "bra.feminino").gender, "women");
+  assert.equal(leagues.find((l) => l.id === "bra.1").gender, "men");
 });

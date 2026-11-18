@@ -1,8 +1,13 @@
 import { F1SportCard, F1TeamsPage } from "./F1Pages";
 import { AthletesContent, type AthletesData } from "./TennisAthletesPage";
-import { leagueSelection } from "../league-navigation";
+import {
+  filterCatalogByGender,
+  genderOf,
+  leagueSelection,
+} from "../league-navigation";
 import { Link, useSearchParams } from "react-router-dom";
 import { useApi } from "../hooks";
+import { isWomenLeague } from "../catalog";
 import { Empty, Loading, Notice } from "../components/shared";
 import type { ClubProfile, CompetitionCatalog } from "../types";
 
@@ -38,7 +43,14 @@ function OtherTeamsPage() {
     3600000,
   );
   const [params, setParams] = useSearchParams();
-  const { sport, league: resolvedLeague } = leagueSelection(params, catalog);
+  const gender = genderOf(params);
+  const scopedCatalog = filterCatalogByGender(catalog, gender);
+  const { sport, league: resolvedLeague } = leagueSelection(
+    params,
+    scopedCatalog,
+    "soccer",
+    gender,
+  );
   const league =
     params.get("league") === "unassigned" ? "unassigned" : resolvedLeague;
   function setLeague(id: string) {
@@ -52,9 +64,11 @@ function OtherTeamsPage() {
     setParams({ sport: id });
   }
   const sportTeams = (data?.teams || []).filter(
-    (t) => (t.sport || "soccer") === sport,
+    (t) =>
+      (t.sport || "soccer") === sport &&
+      (isWomenLeague(t.league || "") ? "women" : "men") === gender,
   );
-  const selected = catalog?.sports.find((s) => s.id === sport);
+  const selected = scopedCatalog?.sports.find((s) => s.id === sport);
   const leagues = (selected?.leagues || []).filter(
     (l) =>
       l.teamLeague ||

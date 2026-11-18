@@ -1,0 +1,3107 @@
+{
+  "revision": "women-soccer-teams-20261118-v1",
+  "reviewedAt": "2026-11-18",
+  "note": "Futebol feminino: IDs e nomes obtidos das APIs p?blicas ESPN e 365Scores. Apenas campos verificados foram preenchidos; textos, cores e honrarias ficam vazios para edi??o posterior no painel.",
+  "expectedCounts": {
+    "bra.feminino": 18,
+    "bra.feminino.copa_rio": 2,
+    "bra.feminino.paulista": 2,
+    "conmebol.libertadores_feminina": 13,
+    "eng.w.1": 14,
+    "eng.w.league_cup": 12,
+    "esp.copa_de_la_reina": 32,
+    "esp.w.1": 16,
+    "fra.w.1": 12,
+    "uefa.wchampions": 10,
+    "usa.nwsl": 16
+  },
+  "clubs": [
+    {
+      "id": "26647",
+      "name": "América Mineiro (F)",
+      "sport": "soccer",
+      "league": "bra.feminino",
+      "gender": "women",
+      "provider": "365",
+      "logo": "https://imagecache.365scores.com/image/upload/f_png,w_80,h_80,c_limit,q_auto:eco,dpr_2/competitors/26647",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "365Scores",
+          "url": "https://webws.365scores.com/web/standings/?appTypeId=5&langId=31&sports=1&timezoneName=America%2FSao_Paulo&userCountryId=21&competitions=6223"
+        }
+      ]
+    },
+    {
+      "id": "69390",
+      "name": "Atlético-MG (F)",
+      "sport": "soccer",
+      "league": "bra.feminino",
+      "gender": "women",
+      "provider": "365",
+      "logo": "https://imagecache.365scores.com/image/upload/f_png,w_80,h_80,c_limit,q_auto:eco,dpr_2/competitors/69390",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "365Scores",
+          "url": "https://webws.365scores.com/web/standings/?appTypeId=5&langId=31&sports=1&timezoneName=America%2FSao_Paulo&userCountryId=21&competitions=6223"
+        }
+      ]
+    },
+    {
+      "id": "24134",
+      "name": "Bahia (F)",
+      "sport": "soccer",
+      "league": "bra.feminino",
+      "gender": "women",
+      "provider": "365",
+      "logo": "https://imagecache.365scores.com/image/upload/f_png,w_80,h_80,c_limit,q_auto:eco,dpr_2/competitors/24134",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "365Scores",
+          "url": "https://webws.365scores.com/web/standings/?appTypeId=5&langId=31&sports=1&timezoneName=America%2FSao_Paulo&userCountryId=21&competitions=6223"
+        }
+      ]
+    },
+    {
+      "id": "24137",
+      "name": "Botafogo (F)",
+      "sport": "soccer",
+      "league": "bra.feminino",
+      "gender": "women",
+      "provider": "365",
+      "logo": "https://imagecache.365scores.com/image/upload/f_png,w_80,h_80,c_limit,q_auto:eco,dpr_2/competitors/24137",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "365Scores",
+          "url": "https://webws.365scores.com/web/standings/?appTypeId=5&langId=31&sports=1&timezoneName=America%2FSao_Paulo&userCountryId=21&competitions=6223"
+        }
+      ]
+    },
+    {
+      "id": "47480",
+      "name": "Corinthians (F)",
+      "sport": "soccer",
+      "league": "bra.feminino",
+      "gender": "women",
+      "provider": "365",
+      "logo": "https://imagecache.365scores.com/image/upload/f_png,w_80,h_80,c_limit,q_auto:eco,dpr_2/competitors/47480",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "365Scores",
+          "url": "https://webws.365scores.com/web/standings/?appTypeId=5&langId=31&sports=1&timezoneName=America%2FSao_Paulo&userCountryId=21&competitions=6223"
+        }
+      ]
+    },
+    {
+      "id": "57565",
+      "name": "Cruzeiro (F)",
+      "sport": "soccer",
+      "league": "bra.feminino",
+      "gender": "women",
+      "provider": "365",
+      "logo": "https://imagecache.365scores.com/image/upload/f_png,w_80,h_80,c_limit,q_auto:eco,dpr_2/competitors/57565",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "365Scores",
+          "url": "https://webws.365scores.com/web/standings/?appTypeId=5&langId=31&sports=1&timezoneName=America%2FSao_Paulo&userCountryId=21&competitions=6223"
+        }
+      ]
+    },
+    {
+      "id": "24252",
+      "name": "Ferroviária-SP (F)",
+      "sport": "soccer",
+      "league": "bra.feminino",
+      "gender": "women",
+      "provider": "365",
+      "logo": "https://imagecache.365scores.com/image/upload/f_png,w_80,h_80,c_limit,q_auto:eco,dpr_2/competitors/24252",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "365Scores",
+          "url": "https://webws.365scores.com/web/standings/?appTypeId=5&langId=31&sports=1&timezoneName=America%2FSao_Paulo&userCountryId=21&competitions=6223"
+        }
+      ]
+    },
+    {
+      "id": "26648",
+      "name": "Flamengo (F)",
+      "sport": "soccer",
+      "league": "bra.feminino",
+      "gender": "women",
+      "provider": "365",
+      "logo": "https://imagecache.365scores.com/image/upload/f_png,w_80,h_80,c_limit,q_auto:eco,dpr_2/competitors/26648",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "365Scores",
+          "url": "https://webws.365scores.com/web/standings/?appTypeId=5&langId=31&sports=1&timezoneName=America%2FSao_Paulo&userCountryId=21&competitions=6223"
+        }
+      ]
+    },
+    {
+      "id": "78696",
+      "name": "Fluminense (F)",
+      "sport": "soccer",
+      "league": "bra.feminino",
+      "gender": "women",
+      "provider": "365",
+      "logo": "https://imagecache.365scores.com/image/upload/f_png,w_80,h_80,c_limit,q_auto:eco,dpr_2/competitors/78696",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "365Scores",
+          "url": "https://webws.365scores.com/web/standings/?appTypeId=5&langId=31&sports=1&timezoneName=America%2FSao_Paulo&userCountryId=21&competitions=6223"
+        }
+      ]
+    },
+    {
+      "id": "47482",
+      "name": "Grêmio (F)",
+      "sport": "soccer",
+      "league": "bra.feminino",
+      "gender": "women",
+      "provider": "365",
+      "logo": "https://imagecache.365scores.com/image/upload/f_png,w_80,h_80,c_limit,q_auto:eco,dpr_2/competitors/47482",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "365Scores",
+          "url": "https://webws.365scores.com/web/standings/?appTypeId=5&langId=31&sports=1&timezoneName=America%2FSao_Paulo&userCountryId=21&competitions=6223"
+        }
+      ]
+    },
+    {
+      "id": "56355",
+      "name": "Internacional (F)",
+      "sport": "soccer",
+      "league": "bra.feminino",
+      "gender": "women",
+      "provider": "365",
+      "logo": "https://imagecache.365scores.com/image/upload/f_png,w_80,h_80,c_limit,q_auto:eco,dpr_2/competitors/56355",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "365Scores",
+          "url": "https://webws.365scores.com/web/standings/?appTypeId=5&langId=31&sports=1&timezoneName=America%2FSao_Paulo&userCountryId=21&competitions=6223"
+        }
+      ]
+    },
+    {
+      "id": "87198",
+      "name": "Juventude (F)",
+      "sport": "soccer",
+      "league": "bra.feminino",
+      "gender": "women",
+      "provider": "365",
+      "logo": "https://imagecache.365scores.com/image/upload/f_png,w_80,h_80,c_limit,q_auto:eco,dpr_2/competitors/87198",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "365Scores",
+          "url": "https://webws.365scores.com/web/standings/?appTypeId=5&langId=31&sports=1&timezoneName=America%2FSao_Paulo&userCountryId=21&competitions=6223"
+        }
+      ]
+    },
+    {
+      "id": "93491",
+      "name": "Mixto (F)",
+      "sport": "soccer",
+      "league": "bra.feminino",
+      "gender": "women",
+      "provider": "365",
+      "logo": "https://imagecache.365scores.com/image/upload/f_png,w_80,h_80,c_limit,q_auto:eco,dpr_2/competitors/93491",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "365Scores",
+          "url": "https://webws.365scores.com/web/standings/?appTypeId=5&langId=31&sports=1&timezoneName=America%2FSao_Paulo&userCountryId=21&competitions=6223"
+        }
+      ]
+    },
+    {
+      "id": "57566",
+      "name": "Palmeiras (F)",
+      "sport": "soccer",
+      "league": "bra.feminino",
+      "gender": "women",
+      "provider": "365",
+      "logo": "https://imagecache.365scores.com/image/upload/f_png,w_80,h_80,c_limit,q_auto:eco,dpr_2/competitors/57566",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "365Scores",
+          "url": "https://webws.365scores.com/web/standings/?appTypeId=5&langId=31&sports=1&timezoneName=America%2FSao_Paulo&userCountryId=21&competitions=6223"
+        }
+      ]
+    },
+    {
+      "id": "68936",
+      "name": "RB Bragantino (F)",
+      "sport": "soccer",
+      "league": "bra.feminino",
+      "gender": "women",
+      "provider": "365",
+      "logo": "https://imagecache.365scores.com/image/upload/f_png,w_80,h_80,c_limit,q_auto:eco,dpr_2/competitors/68936",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "365Scores",
+          "url": "https://webws.365scores.com/web/standings/?appTypeId=5&langId=31&sports=1&timezoneName=America%2FSao_Paulo&userCountryId=21&competitions=6223"
+        }
+      ]
+    },
+    {
+      "id": "26649",
+      "name": "Santos-SP (F)",
+      "sport": "soccer",
+      "league": "bra.feminino",
+      "gender": "women",
+      "provider": "365",
+      "logo": "https://imagecache.365scores.com/image/upload/f_png,w_80,h_80,c_limit,q_auto:eco,dpr_2/competitors/26649",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "365Scores",
+          "url": "https://webws.365scores.com/web/standings/?appTypeId=5&langId=31&sports=1&timezoneName=America%2FSao_Paulo&userCountryId=21&competitions=6223"
+        }
+      ]
+    },
+    {
+      "id": "57567",
+      "name": "São Paulo (F)",
+      "sport": "soccer",
+      "league": "bra.feminino",
+      "gender": "women",
+      "provider": "365",
+      "logo": "https://imagecache.365scores.com/image/upload/f_png,w_80,h_80,c_limit,q_auto:eco,dpr_2/competitors/57567",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "365Scores",
+          "url": "https://webws.365scores.com/web/standings/?appTypeId=5&langId=31&sports=1&timezoneName=America%2FSao_Paulo&userCountryId=21&competitions=6223"
+        }
+      ]
+    },
+    {
+      "id": "24066",
+      "name": "Vitória (F)",
+      "sport": "soccer",
+      "league": "bra.feminino",
+      "gender": "women",
+      "provider": "365",
+      "logo": "https://imagecache.365scores.com/image/upload/f_png,w_80,h_80,c_limit,q_auto:eco,dpr_2/competitors/24066",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "365Scores",
+          "url": "https://webws.365scores.com/web/standings/?appTypeId=5&langId=31&sports=1&timezoneName=America%2FSao_Paulo&userCountryId=21&competitions=6223"
+        }
+      ]
+    },
+    {
+      "id": "93695",
+      "name": "Heips (F)",
+      "sport": "soccer",
+      "league": "bra.feminino.copa_rio",
+      "gender": "women",
+      "provider": "365",
+      "logo": "https://imagecache.365scores.com/image/upload/f_png,w_80,h_80,c_limit,q_auto:eco,dpr_2/competitors/93695",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "365Scores",
+          "url": "https://webws.365scores.com/web/standings/?appTypeId=5&langId=31&sports=1&timezoneName=America%2FSao_Paulo&userCountryId=21&competitions=8073"
+        }
+      ]
+    },
+    {
+      "id": "24070",
+      "name": "Vasco da Gama (F)",
+      "sport": "soccer",
+      "league": "bra.feminino.copa_rio",
+      "gender": "women",
+      "provider": "365",
+      "logo": "https://imagecache.365scores.com/image/upload/f_png,w_80,h_80,c_limit,q_auto:eco,dpr_2/competitors/24070",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "365Scores",
+          "url": "https://webws.365scores.com/web/standings/?appTypeId=5&langId=31&sports=1&timezoneName=America%2FSao_Paulo&userCountryId=21&competitions=8073"
+        }
+      ]
+    },
+    {
+      "id": "94961",
+      "name": "Mirassol (F)",
+      "sport": "soccer",
+      "league": "bra.feminino.paulista",
+      "gender": "women",
+      "provider": "365",
+      "logo": "https://imagecache.365scores.com/image/upload/f_png,w_80,h_80,c_limit,q_auto:eco,dpr_2/competitors/94961",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "365Scores",
+          "url": "https://webws.365scores.com/web/standings/?appTypeId=5&langId=31&sports=1&timezoneName=America%2FSao_Paulo&userCountryId=21&competitions=7762"
+        }
+      ]
+    },
+    {
+      "id": "68937",
+      "name": "Taubaté (F)",
+      "sport": "soccer",
+      "league": "bra.feminino.paulista",
+      "gender": "women",
+      "provider": "365",
+      "logo": "https://imagecache.365scores.com/image/upload/f_png,w_80,h_80,c_limit,q_auto:eco,dpr_2/competitors/68937",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "365Scores",
+          "url": "https://webws.365scores.com/web/standings/?appTypeId=5&langId=31&sports=1&timezoneName=America%2FSao_Paulo&userCountryId=21&competitions=7762"
+        }
+      ]
+    },
+    {
+      "id": "73101",
+      "name": "Belgrano (F)",
+      "sport": "soccer",
+      "league": "conmebol.libertadores_feminina",
+      "gender": "women",
+      "provider": "365",
+      "logo": "https://imagecache.365scores.com/image/upload/f_png,w_80,h_80,c_limit,q_auto:eco,dpr_2/competitors/73101",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "365Scores",
+          "url": "https://webws.365scores.com/web/standings/?appTypeId=5&langId=31&sports=1&timezoneName=America%2FSao_Paulo&userCountryId=21&competitions=6226"
+        }
+      ]
+    },
+    {
+      "id": "82497",
+      "name": "Bolivar (F)",
+      "sport": "soccer",
+      "league": "conmebol.libertadores_feminina",
+      "gender": "women",
+      "provider": "365",
+      "logo": "https://imagecache.365scores.com/image/upload/f_png,w_80,h_80,c_limit,q_auto:eco,dpr_2/competitors/82497",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "365Scores",
+          "url": "https://webws.365scores.com/web/standings/?appTypeId=5&langId=31&sports=1&timezoneName=America%2FSao_Paulo&userCountryId=21&competitions=6226"
+        }
+      ]
+    },
+    {
+      "id": "77387",
+      "name": "Caracas (F)",
+      "sport": "soccer",
+      "league": "conmebol.libertadores_feminina",
+      "gender": "women",
+      "provider": "365",
+      "logo": "https://imagecache.365scores.com/image/upload/f_png,w_80,h_80,c_limit,q_auto:eco,dpr_2/competitors/77387",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "365Scores",
+          "url": "https://webws.365scores.com/web/standings/?appTypeId=5&langId=31&sports=1&timezoneName=America%2FSao_Paulo&userCountryId=21&competitions=6226"
+        }
+      ]
+    },
+    {
+      "id": "28243",
+      "name": "Colo Colo (F)",
+      "sport": "soccer",
+      "league": "conmebol.libertadores_feminina",
+      "gender": "women",
+      "provider": "365",
+      "logo": "https://imagecache.365scores.com/image/upload/f_png,w_80,h_80,c_limit,q_auto:eco,dpr_2/competitors/28243",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "365Scores",
+          "url": "https://webws.365scores.com/web/standings/?appTypeId=5&langId=31&sports=1&timezoneName=America%2FSao_Paulo&userCountryId=21&competitions=6226"
+        }
+      ]
+    },
+    {
+      "id": "56751",
+      "name": "Deportivo Cali (F)",
+      "sport": "soccer",
+      "league": "conmebol.libertadores_feminina",
+      "gender": "women",
+      "provider": "365",
+      "logo": "https://imagecache.365scores.com/image/upload/f_png,w_80,h_80,c_limit,q_auto:eco,dpr_2/competitors/56751",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "365Scores",
+          "url": "https://webws.365scores.com/web/standings/?appTypeId=5&langId=31&sports=1&timezoneName=America%2FSao_Paulo&userCountryId=21&competitions=6226"
+        }
+      ]
+    },
+    {
+      "id": "68259",
+      "name": "Ind. Dragonas (F)",
+      "sport": "soccer",
+      "league": "conmebol.libertadores_feminina",
+      "gender": "women",
+      "provider": "365",
+      "logo": "https://imagecache.365scores.com/image/upload/f_png,w_80,h_80,c_limit,q_auto:eco,dpr_2/competitors/68259",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "365Scores",
+          "url": "https://webws.365scores.com/web/standings/?appTypeId=5&langId=31&sports=1&timezoneName=America%2FSao_Paulo&userCountryId=21&competitions=6226"
+        }
+      ]
+    },
+    {
+      "id": "51597",
+      "name": "Ind. Santa Fé (F)",
+      "sport": "soccer",
+      "league": "conmebol.libertadores_feminina",
+      "gender": "women",
+      "provider": "365",
+      "logo": "https://imagecache.365scores.com/image/upload/f_png,w_80,h_80,c_limit,q_auto:eco,dpr_2/competitors/51597",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "365Scores",
+          "url": "https://webws.365scores.com/web/standings/?appTypeId=5&langId=31&sports=1&timezoneName=America%2FSao_Paulo&userCountryId=21&competitions=6226"
+        }
+      ]
+    },
+    {
+      "id": "68262",
+      "name": "LDU (F)",
+      "sport": "soccer",
+      "league": "conmebol.libertadores_feminina",
+      "gender": "women",
+      "provider": "365",
+      "logo": "https://imagecache.365scores.com/image/upload/f_png,w_80,h_80,c_limit,q_auto:eco,dpr_2/competitors/68262",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "365Scores",
+          "url": "https://webws.365scores.com/web/standings/?appTypeId=5&langId=31&sports=1&timezoneName=America%2FSao_Paulo&userCountryId=21&competitions=6226"
+        }
+      ]
+    },
+    {
+      "id": "67961",
+      "name": "Libertad (F)",
+      "sport": "soccer",
+      "league": "conmebol.libertadores_feminina",
+      "gender": "women",
+      "provider": "365",
+      "logo": "https://imagecache.365scores.com/image/upload/f_png,w_80,h_80,c_limit,q_auto:eco,dpr_2/competitors/67961",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "365Scores",
+          "url": "https://webws.365scores.com/web/standings/?appTypeId=5&langId=31&sports=1&timezoneName=America%2FSao_Paulo&userCountryId=21&competitions=6226"
+        }
+      ]
+    },
+    {
+      "id": "46120",
+      "name": "Nacional (F)",
+      "sport": "soccer",
+      "league": "conmebol.libertadores_feminina",
+      "gender": "women",
+      "provider": "365",
+      "logo": "https://imagecache.365scores.com/image/upload/f_png,w_80,h_80,c_limit,q_auto:eco,dpr_2/competitors/46120",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "365Scores",
+          "url": "https://webws.365scores.com/web/standings/?appTypeId=5&langId=31&sports=1&timezoneName=America%2FSao_Paulo&userCountryId=21&competitions=6226"
+        }
+      ]
+    },
+    {
+      "id": "71723",
+      "name": "Olimpia (F)",
+      "sport": "soccer",
+      "league": "conmebol.libertadores_feminina",
+      "gender": "women",
+      "provider": "365",
+      "logo": "https://imagecache.365scores.com/image/upload/f_png,w_80,h_80,c_limit,q_auto:eco,dpr_2/competitors/71723",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "365Scores",
+          "url": "https://webws.365scores.com/web/standings/?appTypeId=5&langId=31&sports=1&timezoneName=America%2FSao_Paulo&userCountryId=21&competitions=6226"
+        }
+      ]
+    },
+    {
+      "id": "67483",
+      "name": "U. de Chile (F)",
+      "sport": "soccer",
+      "league": "conmebol.libertadores_feminina",
+      "gender": "women",
+      "provider": "365",
+      "logo": "https://imagecache.365scores.com/image/upload/f_png,w_80,h_80,c_limit,q_auto:eco,dpr_2/competitors/67483",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "365Scores",
+          "url": "https://webws.365scores.com/web/standings/?appTypeId=5&langId=31&sports=1&timezoneName=America%2FSao_Paulo&userCountryId=21&competitions=6226"
+        }
+      ]
+    },
+    {
+      "id": "28245",
+      "name": "Universitario (F)",
+      "sport": "soccer",
+      "league": "conmebol.libertadores_feminina",
+      "gender": "women",
+      "provider": "365",
+      "logo": "https://imagecache.365scores.com/image/upload/f_png,w_80,h_80,c_limit,q_auto:eco,dpr_2/competitors/28245",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "365Scores",
+          "url": "https://webws.365scores.com/web/standings/?appTypeId=5&langId=31&sports=1&timezoneName=America%2FSao_Paulo&userCountryId=21&competitions=6226"
+        }
+      ]
+    },
+    {
+      "id": "19973",
+      "name": "Arsenal",
+      "sport": "soccer",
+      "league": "eng.w.1",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/19973.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.w.1/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "20707",
+      "name": "Aston Villa",
+      "sport": "soccer",
+      "league": "eng.w.1",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/20707.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.w.1/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "19968",
+      "name": "Birmingham City",
+      "sport": "soccer",
+      "league": "eng.w.1",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/19968.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.w.1/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "19976",
+      "name": "Brighton & Hove Albion",
+      "sport": "soccer",
+      "league": "eng.w.1",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/19976.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.w.1/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "21035",
+      "name": "Charlton Athletic",
+      "sport": "soccer",
+      "league": "eng.w.1",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/21035.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.w.1/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "19970",
+      "name": "Chelsea",
+      "sport": "soccer",
+      "league": "eng.w.1",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/19970.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.w.1/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "21037",
+      "name": "Crystal Palace",
+      "sport": "soccer",
+      "league": "eng.w.1",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/21037.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.w.1/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "19972",
+      "name": "Everton",
+      "sport": "soccer",
+      "league": "eng.w.1",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/19972.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.w.1/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "19971",
+      "name": "Liverpool",
+      "sport": "soccer",
+      "league": "eng.w.1",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/19971.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.w.1/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "21053",
+      "name": "London City Lionesses",
+      "sport": "soccer",
+      "league": "eng.w.1",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/21053.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.w.1/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "19257",
+      "name": "Manchester City",
+      "sport": "soccer",
+      "league": "eng.w.1",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/19257.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.w.1/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "20061",
+      "name": "Manchester United",
+      "sport": "soccer",
+      "league": "eng.w.1",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/20061.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.w.1/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "20062",
+      "name": "Tottenham Hotspur",
+      "sport": "soccer",
+      "league": "eng.w.1",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/20062.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.w.1/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "19975",
+      "name": "West Ham United",
+      "sport": "soccer",
+      "league": "eng.w.1",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/19975.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.w.1/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "19974",
+      "name": "Bristol City",
+      "sport": "soccer",
+      "league": "eng.w.league_cup",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/19974.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.w.league_cup/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "21048",
+      "name": "Burnley",
+      "sport": "soccer",
+      "league": "eng.w.league_cup",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/21048.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.w.league_cup/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "21045",
+      "name": "Durham",
+      "sport": "soccer",
+      "league": "eng.w.league_cup",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/21045.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.w.league_cup/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "21068",
+      "name": "Ipswich Town",
+      "sport": "soccer",
+      "league": "eng.w.league_cup",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/21068.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.w.league_cup/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "21036",
+      "name": "Leicester City",
+      "sport": "soccer",
+      "league": "eng.w.league_cup",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/21036.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.w.league_cup/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "21076",
+      "name": "Newcastle United",
+      "sport": "soccer",
+      "league": "eng.w.league_cup",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/21076.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.w.league_cup/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "21070",
+      "name": "Nottingham Forest",
+      "sport": "soccer",
+      "league": "eng.w.league_cup",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/21070.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.w.league_cup/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "21038",
+      "name": "Sheffield United",
+      "sport": "soccer",
+      "league": "eng.w.league_cup",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/21038.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.w.league_cup/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "21039",
+      "name": "Southampton",
+      "sport": "soccer",
+      "league": "eng.w.league_cup",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/21039.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.w.league_cup/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "21060",
+      "name": "Sunderland",
+      "sport": "soccer",
+      "league": "eng.w.league_cup",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/21060.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.w.league_cup/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "21054",
+      "name": "Watford",
+      "sport": "soccer",
+      "league": "eng.w.league_cup",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/21054.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.w.league_cup/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "21042",
+      "name": "Wolverhampton",
+      "sport": "soccer",
+      "league": "eng.w.league_cup",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/21042.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.w.league_cup/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "21137",
+      "name": "Alhama",
+      "sport": "soccer",
+      "league": "esp.copa_de_la_reina",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/21137.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/esp.copa_de_la_reina/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "22017",
+      "name": "Balears",
+      "sport": "soccer",
+      "league": "esp.copa_de_la_reina",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/22017.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/esp.copa_de_la_reina/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "21658",
+      "name": "Bizkerre",
+      "sport": "soccer",
+      "league": "esp.copa_de_la_reina",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/21658.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/esp.copa_de_la_reina/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "133285",
+      "name": "Burgos CF",
+      "sport": "soccer",
+      "league": "esp.copa_de_la_reina",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/133285.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/esp.copa_de_la_reina/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "133286",
+      "name": "CD Argual",
+      "sport": "soccer",
+      "league": "esp.copa_de_la_reina",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/133286.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/esp.copa_de_la_reina/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "21139",
+      "name": "CD Femarguín",
+      "sport": "soccer",
+      "league": "esp.copa_de_la_reina",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/21139.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/esp.copa_de_la_reina/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "133287",
+      "name": "CD Samper",
+      "sport": "soccer",
+      "league": "esp.copa_de_la_reina",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/133287.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/esp.copa_de_la_reina/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "21656",
+      "name": "CE Europa",
+      "sport": "soccer",
+      "league": "esp.copa_de_la_reina",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/21656.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/esp.copa_de_la_reina/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "133288",
+      "name": "Celta Vigo",
+      "sport": "soccer",
+      "league": "esp.copa_de_la_reina",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/133288.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/esp.copa_de_la_reina/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "21143",
+      "name": "Córdoba",
+      "sport": "soccer",
+      "league": "esp.copa_de_la_reina",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/21143.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/esp.copa_de_la_reina/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "21156",
+      "name": "CP Cacereño",
+      "sport": "soccer",
+      "league": "esp.copa_de_la_reina",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/21156.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/esp.copa_de_la_reina/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "21134",
+      "name": "Elche",
+      "sport": "soccer",
+      "league": "esp.copa_de_la_reina",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/21134.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/esp.copa_de_la_reina/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "21147",
+      "name": "Fundación Albacete",
+      "sport": "soccer",
+      "league": "esp.copa_de_la_reina",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/21147.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/esp.copa_de_la_reina/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "22012",
+      "name": "Getafe",
+      "sport": "soccer",
+      "league": "esp.copa_de_la_reina",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/22012.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/esp.copa_de_la_reina/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "22346",
+      "name": "Guiniguada Apolinario",
+      "sport": "soccer",
+      "league": "esp.copa_de_la_reina",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/22346.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/esp.copa_de_la_reina/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "22016",
+      "name": "Huesca",
+      "sport": "soccer",
+      "league": "esp.copa_de_la_reina",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/22016.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/esp.copa_de_la_reina/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "21426",
+      "name": "Levante",
+      "sport": "soccer",
+      "league": "esp.copa_de_la_reina",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/21426.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/esp.copa_de_la_reina/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "21160",
+      "name": "Málaga",
+      "sport": "soccer",
+      "league": "esp.copa_de_la_reina",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/21160.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/esp.copa_de_la_reina/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "131383",
+      "name": "Olympia Las Rozas",
+      "sport": "soccer",
+      "league": "esp.copa_de_la_reina",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/131383.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/esp.copa_de_la_reina/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "21151",
+      "name": "Osasuna",
+      "sport": "soccer",
+      "league": "esp.copa_de_la_reina",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/21151.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/esp.copa_de_la_reina/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "21144",
+      "name": "Pozuelo",
+      "sport": "soccer",
+      "league": "esp.copa_de_la_reina",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/21144.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/esp.copa_de_la_reina/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "21152",
+      "name": "Racing",
+      "sport": "soccer",
+      "league": "esp.copa_de_la_reina",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/21152.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/esp.copa_de_la_reina/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "131385",
+      "name": "Real Avilés",
+      "sport": "soccer",
+      "league": "esp.copa_de_la_reina",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/131385.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/esp.copa_de_la_reina/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "21373",
+      "name": "Real Betis",
+      "sport": "soccer",
+      "league": "esp.copa_de_la_reina",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/21373.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/esp.copa_de_la_reina/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "21138",
+      "name": "Real Oviedo",
+      "sport": "soccer",
+      "league": "esp.copa_de_la_reina",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/21138.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/esp.copa_de_la_reina/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "21158",
+      "name": "Real Unión Tenerife",
+      "sport": "soccer",
+      "league": "esp.copa_de_la_reina",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/21158.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/esp.copa_de_la_reina/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "133289",
+      "name": "SE AEM",
+      "sport": "soccer",
+      "league": "esp.copa_de_la_reina",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/133289.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/esp.copa_de_la_reina/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "131386",
+      "name": "Sport Extremadura",
+      "sport": "soccer",
+      "league": "esp.copa_de_la_reina",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/131386.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/esp.copa_de_la_reina/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "21377",
+      "name": "Sporting de Huelva",
+      "sport": "soccer",
+      "league": "esp.copa_de_la_reina",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/21377.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/esp.copa_de_la_reina/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "21136",
+      "name": "Sporting Gijón",
+      "sport": "soccer",
+      "league": "esp.copa_de_la_reina",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/21136.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/esp.copa_de_la_reina/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "21371",
+      "name": "Villarreal",
+      "sport": "soccer",
+      "league": "esp.copa_de_la_reina",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/21371.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/esp.copa_de_la_reina/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "21163",
+      "name": "Zaragoza",
+      "sport": "soccer",
+      "league": "esp.copa_de_la_reina",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/21163.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/esp.copa_de_la_reina/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "21378",
+      "name": "Alavés",
+      "sport": "soccer",
+      "league": "esp.w.1",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/21378.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/esp.w.1/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "21372",
+      "name": "Athletic Club",
+      "sport": "soccer",
+      "league": "esp.w.1",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/21372.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/esp.w.1/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "20093",
+      "name": "Atlético Madrid",
+      "sport": "soccer",
+      "league": "esp.w.1",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/20093.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/esp.w.1/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "20091",
+      "name": "Barcelona",
+      "sport": "soccer",
+      "league": "esp.w.1",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/20091.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/esp.w.1/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "21145",
+      "name": "Deportivo",
+      "sport": "soccer",
+      "league": "esp.w.1",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/21145.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/esp.w.1/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "21175",
+      "name": "Dux Logroño",
+      "sport": "soccer",
+      "league": "esp.w.1",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/21175.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/esp.w.1/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "21376",
+      "name": "Eibar",
+      "sport": "soccer",
+      "league": "esp.w.1",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/21376.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/esp.w.1/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "21154",
+      "name": "Espanyol",
+      "sport": "soccer",
+      "league": "esp.w.1",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/21154.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/esp.w.1/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "21149",
+      "name": "FC Badalona",
+      "sport": "soccer",
+      "league": "esp.w.1",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/21149.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/esp.w.1/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "21140",
+      "name": "Granada",
+      "sport": "soccer",
+      "league": "esp.w.1",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/21140.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/esp.w.1/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "21425",
+      "name": "Madrid CFF",
+      "sport": "soccer",
+      "league": "esp.w.1",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/21425.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/esp.w.1/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "21128",
+      "name": "Real Madrid",
+      "sport": "soccer",
+      "league": "esp.w.1",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/21128.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/esp.w.1/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "21428",
+      "name": "Real Sociedad",
+      "sport": "soccer",
+      "league": "esp.w.1",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/21428.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/esp.w.1/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "21424",
+      "name": "Sevilla",
+      "sport": "soccer",
+      "league": "esp.w.1",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/21424.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/esp.w.1/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "131393",
+      "name": "Tenerife",
+      "sport": "soccer",
+      "league": "esp.w.1",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/131393.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/esp.w.1/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "21374",
+      "name": "Valencia",
+      "sport": "soccer",
+      "league": "esp.w.1",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/21374.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/esp.w.1/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "21637",
+      "name": "FC Fleury 91",
+      "sport": "soccer",
+      "league": "fra.w.1",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/21637.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/fra.w.1/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "21635",
+      "name": "Le Havre AC",
+      "sport": "soccer",
+      "league": "fra.w.1",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/21635.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/fra.w.1/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "131297",
+      "name": "Lens",
+      "sport": "soccer",
+      "league": "fra.w.1",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/131297.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/fra.w.1/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "131298",
+      "name": "Marseille",
+      "sport": "soccer",
+      "league": "fra.w.1",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/131298.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/fra.w.1/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "21638",
+      "name": "Montpellier",
+      "sport": "soccer",
+      "league": "fra.w.1",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/21638.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/fra.w.1/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "22328",
+      "name": "Nantes",
+      "sport": "soccer",
+      "league": "fra.w.1",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/22328.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/fra.w.1/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "19256",
+      "name": "OL Lyonnes",
+      "sport": "soccer",
+      "league": "fra.w.1",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/19256.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/fra.w.1/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "21640",
+      "name": "Paris FC",
+      "sport": "soccer",
+      "league": "fra.w.1",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/21640.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/fra.w.1/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "19258",
+      "name": "Paris Saint-Germain",
+      "sport": "soccer",
+      "league": "fra.w.1",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/19258.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/fra.w.1/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "131875",
+      "name": "Saint-Malo",
+      "sport": "soccer",
+      "league": "fra.w.1",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/131875.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/fra.w.1/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "22329",
+      "name": "Strasbourg",
+      "sport": "soccer",
+      "league": "fra.w.1",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/22329.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/fra.w.1/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "131876",
+      "name": "Toulouse",
+      "sport": "soccer",
+      "league": "fra.w.1",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/131876.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/fra.w.1/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "131643",
+      "name": "Austria Vienna",
+      "sport": "soccer",
+      "league": "uefa.wchampions",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/131643.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.wchampions/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "20103",
+      "name": "Bayern Munich",
+      "sport": "soccer",
+      "league": "uefa.wchampions",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/20103.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.wchampions/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "20830",
+      "name": "Benfica",
+      "sport": "soccer",
+      "league": "uefa.wchampions",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/20830.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.wchampions/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "21124",
+      "name": "BK Häcken",
+      "sport": "soccer",
+      "league": "uefa.wchampions",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/21124.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.wchampions/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "21127",
+      "name": "HB Køge",
+      "sport": "soccer",
+      "league": "uefa.wchampions",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/21127.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.wchampions/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "131635",
+      "name": "Internazionale",
+      "sport": "soccer",
+      "league": "uefa.wchampions",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/131635.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.wchampions/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "20092",
+      "name": "Juventus",
+      "sport": "soccer",
+      "league": "uefa.wchampions",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/20092.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.wchampions/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "131423",
+      "name": "OH Leuven",
+      "sport": "soccer",
+      "league": "uefa.wchampions",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/131423.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.wchampions/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "21685",
+      "name": "Roma",
+      "sport": "soccer",
+      "league": "uefa.wchampions",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/21685.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.wchampions/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "20835",
+      "name": "Servette",
+      "sport": "soccer",
+      "league": "uefa.wchampions",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/20835.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.wchampions/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "21422",
+      "name": "Angel City FC",
+      "sport": "soccer",
+      "league": "usa.nwsl",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/21422.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/usa.nwsl/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "22187",
+      "name": "Bay FC",
+      "sport": "soccer",
+      "league": "usa.nwsl",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/22187.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/usa.nwsl/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "131562",
+      "name": "Boston Legacy FC",
+      "sport": "soccer",
+      "league": "usa.nwsl",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/131562.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/usa.nwsl/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "15360",
+      "name": "Chicago Stars FC",
+      "sport": "soccer",
+      "league": "usa.nwsl",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/15360.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/usa.nwsl/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "131563",
+      "name": "Denver Summit FC",
+      "sport": "soccer",
+      "league": "usa.nwsl",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/131563.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/usa.nwsl/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "15364",
+      "name": "Gotham FC",
+      "sport": "soccer",
+      "league": "usa.nwsl",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/15364.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/usa.nwsl/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "17346",
+      "name": "Houston Dash",
+      "sport": "soccer",
+      "league": "usa.nwsl",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/17346.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/usa.nwsl/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "20907",
+      "name": "Kansas City Current",
+      "sport": "soccer",
+      "league": "usa.nwsl",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/20907.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/usa.nwsl/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "15366",
+      "name": "North Carolina Courage",
+      "sport": "soccer",
+      "league": "usa.nwsl",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/15366.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/usa.nwsl/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "18206",
+      "name": "Orlando Pride",
+      "sport": "soccer",
+      "league": "usa.nwsl",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/18206.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/usa.nwsl/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "15362",
+      "name": "Portland Thorns FC",
+      "sport": "soccer",
+      "league": "usa.nwsl",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/15362.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/usa.nwsl/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "20905",
+      "name": "Racing Louisville FC",
+      "sport": "soccer",
+      "league": "usa.nwsl",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/20905.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/usa.nwsl/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "21423",
+      "name": "San Diego Wave FC",
+      "sport": "soccer",
+      "league": "usa.nwsl",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/21423.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/usa.nwsl/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "15363",
+      "name": "Seattle Reign FC",
+      "sport": "soccer",
+      "league": "usa.nwsl",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/15363.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/usa.nwsl/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "19141",
+      "name": "Utah Royals",
+      "sport": "soccer",
+      "league": "usa.nwsl",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/19141.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/usa.nwsl/teams?limit=200"
+        }
+      ]
+    },
+    {
+      "id": "15365",
+      "name": "Washington Spirit",
+      "sport": "soccer",
+      "league": "usa.nwsl",
+      "gender": "women",
+      "provider": "espn",
+      "logo": "https://a.espncdn.com/i/teamlogos/soccer/500/15365.png",
+      "description": "",
+      "city": "",
+      "stadium": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "sources": [
+        {
+          "label": "ESPN",
+          "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/usa.nwsl/teams?limit=200"
+        }
+      ]
+    }
+  ]
+}

@@ -127,6 +127,21 @@ export const SPORTS = [
       ["uefa.champions", "Champions League"],
       ["uefa.europa", "Europa League"],
       ["uefa.europa.conf", "Conference League"],
+      // Futebol feminino. IDs ESPN funcionam diretamente; os IDs bra.feminino*
+      // são servidos pelo adaptador 365Scores (a ESPN não tem estes slugs).
+      ["bra.feminino", "Brasileirão Feminino"],
+      ["bra.feminino.paulista", "Paulista Feminino"],
+      ["bra.feminino.copa_rio", "Copa Rio Feminina"],
+      ["bra.feminino.copa_do_brazil", "Copa do Brasil Feminina"],
+      ["eng.w.1", "Women's Super League"],
+      ["eng.w.fa", "Women's FA Cup"],
+      ["eng.w.league_cup", "Women's League Cup"],
+      ["esp.w.1", "Liga F"],
+      ["esp.copa_de_la_reina", "Copa de la Reina"],
+      ["fra.w.1", "Division 1 Féminine"],
+      ["usa.nwsl", "NWSL"],
+      ["conmebol.libertadores_feminina", "Libertadores Feminina"],
+      ["uefa.wchampions", "Women's Champions League"],
     ],
   },
   {
@@ -173,6 +188,27 @@ export function leagueFor(sport, league) {
   return l ? { sport: s.id, league: l[0], name: l[1] } : null;
 }
 
+// Single source of truth for the gender selectors. These IDs are unique across
+// sports, so a Set is sufficient; WNBA is the only pre-existing women's league.
+export const WOMEN_SOCCER_LEAGUES = new Set([
+  "bra.feminino",
+  "bra.feminino.paulista",
+  "bra.feminino.copa_rio",
+  "bra.feminino.copa_do_brazil",
+  "eng.w.1",
+  "eng.w.fa",
+  "eng.w.league_cup",
+  "esp.w.1",
+  "esp.copa_de_la_reina",
+  "fra.w.1",
+  "usa.nwsl",
+  "conmebol.libertadores_feminina",
+  "uefa.wchampions",
+]);
+export const WOMEN_LEAGUES = new Set([...WOMEN_SOCCER_LEAGUES, "wnba"]);
+export const leagueGender = (sport, league) =>
+  WOMEN_LEAGUES.has(league) ? "women" : "men";
+
 // Local and cross-border competitions have separate navigation groups.
 export const SOCCER_REGIONS = [
   {
@@ -196,6 +232,10 @@ export const SOCCER_REGIONS = [
       "bra.copa_governo_sergipe",
       "bra.copa_sul_sudeste",
       "bra.copa_parana",
+      "bra.feminino",
+      "bra.feminino.paulista",
+      "bra.feminino.copa_rio",
+      "bra.feminino.copa_do_brazil",
     ],
     stateCompetitions: [...BRAZIL_STATE_LEAGUES],
   },
@@ -234,12 +274,19 @@ export const SOCCER_REGIONS = [
   {
     id: "inglaterra",
     name: "Inglaterra",
-    competitions: ["eng.1", "eng.fa", "eng.league_cup"],
+    competitions: [
+      "eng.1",
+      "eng.fa",
+      "eng.league_cup",
+      "eng.w.1",
+      "eng.w.fa",
+      "eng.w.league_cup",
+    ],
   },
   {
     id: "espanha",
     name: "Espanha",
-    competitions: ["esp.1", "esp.copa_del_rey"],
+    competitions: ["esp.1", "esp.copa_del_rey", "esp.w.1", "esp.copa_de_la_reina"],
   },
   { id: "italia", name: "Itália", competitions: ["ita.1", "ita.coppa_italia"] },
   { id: "portugal", name: "Portugal", competitions: ["por.1"] },
@@ -252,12 +299,12 @@ export const SOCCER_REGIONS = [
   {
     id: "franca",
     name: "França",
-    competitions: ["fra.1", "fra.coupe_de_france"],
+    competitions: ["fra.1", "fra.coupe_de_france", "fra.w.1"],
   },
   {
     id: "eua",
     name: "Estados Unidos e Canadá",
-    competitions: ["usa.1", "usa.open"],
+    competitions: ["usa.1", "usa.open", "usa.nwsl"],
   },
   {
     id: "arabia",
@@ -277,6 +324,7 @@ export const SOCCER_INTERNATIONAL_GROUPS = [
       "conmebol.sudamericana",
       "concacaf.champions",
       "concacaf.leagues.cup",
+      "conmebol.libertadores_feminina",
     ],
   },
   {
@@ -287,6 +335,7 @@ export const SOCCER_INTERNATIONAL_GROUPS = [
       "uefa.europa",
       "uefa.europa.conf",
       "afc.champions",
+      "uefa.wchampions",
     ],
   },
 ];
@@ -312,6 +361,7 @@ export const SOCCER_TEAM_LEAGUES = new Set([
   "ksa.1",
   "jpn.1",
   "kor.1",
+  ...WOMEN_SOCCER_LEAGUES,
 ]);
 
 export const SOCCER_TOURNAMENT_FORMATS = {

@@ -159,6 +159,45 @@ main:not(:has(.home-viva)) .sport-card:hover:not(.selected) {
   background: var(--surface);
   border-color: var(--green-border);
 }
+.gender-selector {
+  margin: 18px 0 22px;
+}
+.gender-selector h2 {
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: -0.3px;
+  margin: 0 0 10px;
+}
+.gender-selector-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.gender-option {
+  appearance: none;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  color: inherit;
+  border-radius: 999px;
+  padding: 9px 18px;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background 0.18s,
+    border-color 0.18s,
+    color 0.18s;
+}
+.gender-option:hover {
+  border-color: var(--green-border);
+  background: var(--surface);
+}
+.gender-option[aria-pressed="true"] {
+  background: var(--selection-bg);
+  color: var(--selection-text);
+  border-color: var(--selection-bg);
+}
 .standings-filters {
   padding: 22px;
   border: 1px solid var(--border);

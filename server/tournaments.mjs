@@ -49,6 +49,14 @@ export const KNOCKOUT_LEAGUES = new Set([
   "uefa.champions",
   "uefa.europa",
   "uefa.europa.conf",
+  // Futebol feminino (copas e torneios com fases eliminatórias).
+  "eng.w.fa",
+  "eng.w.league_cup",
+  "esp.copa_de_la_reina",
+  "bra.feminino.copa_rio",
+  "bra.feminino.copa_do_brazil",
+  "conmebol.libertadores_feminina",
+  "uefa.wchampions",
 ]);
 const key = (value) =>
   String(value || "")

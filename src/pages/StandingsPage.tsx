@@ -2,7 +2,12 @@ import CustomContent from "../components/CustomContent";
 import { prioritize } from "../appearance";
 import { F1SportCard, F1StandingsPage } from "./F1Pages";
 import { useSearchParams } from "react-router-dom";
-import { standingsSelection } from "../league-navigation";
+import {
+  filterCatalogByGender,
+  genderOf,
+  standingsSelection,
+  type Gender,
+} from "../league-navigation";
 import { ChevronDown, Trophy } from "lucide-react";
 import { useApi, today } from "../hooks";
 import type { CompetitionCatalog } from "../types";
@@ -21,7 +26,8 @@ function OtherStandingsPage({ leagueOrder }: { leagueOrder?: string[] }) {
     0,
   );
   const [params, setParams] = useSearchParams();
-  const catalog = data ? { ...data, sports: data.sports.map(item => ({
+  const gender = genderOf(params);
+  const prioritized = data ? { ...data, sports: data.sports.map(item => ({
     ...item, leagues: prioritize(item.leagues, leagueOrder, league => item.id + "/" + league.id),
   })), soccerRegions: data.soccerRegions?.map(region => ({
     ...region,
@@ -30,10 +36,20 @@ function OtherStandingsPage({ leagueOrder }: { leagueOrder?: string[] }) {
   })), soccerInternationalGroups: data.soccerInternationalGroups?.map(group => ({
     ...group, competitions: prioritize(group.competitions, leagueOrder, id => "soccer/" + id),
   })) } : undefined;
+  const catalog = filterCatalogByGender(prioritized, gender);
   const { sport, league, selected, scope, region, group } = standingsSelection(
     params,
     catalog,
+    gender,
   );
+  const baseParams = () => {
+    const next = new URLSearchParams();
+    if (gender === "women") next.set("gender", "women");
+    return next;
+  };
+  function setGender(nextGender: Gender) {
+    setParams(nextGender === "women" ? { gender: "women" } : {});
+  }
   function setLeague(id: string) {
     const next = new URLSearchParams(params);
     next.set("sport", sport);
@@ -57,7 +73,10 @@ function OtherStandingsPage({ leagueOrder }: { leagueOrder?: string[] }) {
 
   function changeSport(id: string) {
     const first = catalog?.sports.find((s) => s.id === id)?.leagues[0]?.id || "";
-    setParams({ sport: id, league: first });
+    const next = baseParams();
+    next.set("sport", id);
+    next.set("league", first);
+    setParams(next);
   }
   return (
     <>
@@ -78,9 +97,30 @@ function OtherStandingsPage({ leagueOrder }: { leagueOrder?: string[] }) {
       )}
       {data && (
         <>
+          <div className="gender-selector" role="group" aria-labelledby="gender-selector-title">
+            <h2 id="gender-selector-title">Escolha o gênero de esporte</h2>
+            <div className="gender-selector-options">
+              <button
+                type="button"
+                className="gender-option"
+                aria-pressed={gender === "men"}
+                onClick={() => setGender("men")}
+              >
+                Times Masculinos
+              </button>
+              <button
+                type="button"
+                className="gender-option"
+                aria-pressed={gender === "women"}
+                onClick={() => setGender("women")}
+              >
+                Times Femininos
+              </button>
+            </div>
+          </div>
           <h2>Escolha seu esporte</h2>
           <div className="sport-cards standings-sports">
-            {data.sports.map((s) => (
+            {catalog?.sports.map((s) => (
               <button
                 type="button"
                 key={s.id}
@@ -117,14 +157,14 @@ function OtherStandingsPage({ leagueOrder }: { leagueOrder?: string[] }) {
                         key={r.id}
                         className={`standings-region-option ${scope === "local" && region === r.id ? "selected" : ""}`}
                         aria-pressed={scope === "local" && region === r.id}
-                        onClick={() =>
-                          setParams({
-                            sport: "soccer",
-                            region: r.id,
-                            scope: "local",
-                            league: r.competitions[0] || "",
-                          })
-                        }
+                        onClick={() => {
+                          const next = baseParams();
+                          next.set("sport", "soccer");
+                          next.set("region", r.id);
+                          next.set("scope", "local");
+                          next.set("league", r.competitions[0] || "");
+                          setParams(next);
+                        }}
                       >
                         <strong>{r.name}</strong>
                         <small>
@@ -145,11 +185,11 @@ function OtherStandingsPage({ leagueOrder }: { leagueOrder?: string[] }) {
                     id={`standings-${g.id}`}
                     value={scope === g.id ? league : ""}
                     onChange={(e) => {
-                      setParams({
-                        sport: "soccer",
-                        scope: g.id,
-                        league: e.target.value,
-                      });
+                      const next = baseParams();
+                      next.set("sport", "soccer");
+                      next.set("scope", g.id);
+                      next.set("league", e.target.value);
+                      setParams(next);
                     }}
                   >
                     <option value="" disabled>

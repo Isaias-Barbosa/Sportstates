@@ -30,7 +30,12 @@ import {
 } from "lucide-react";
 import type { Match, Scores, CompetitionCatalog, FeaturedSelection } from "../types";
 import { useApi, useFavorites, today, time, dateLabel } from "../hooks";
-import { sports, keyOf } from "../catalog";
+import { sports, keyOf, isWomenLeague } from "../catalog";
+import {
+  filterCatalogByGender,
+  genderOf,
+  type Gender,
+} from "../league-navigation";
 import {
   Crest,
   Notice,
@@ -83,8 +88,12 @@ function ScoresDashboard({
   const date = params.get("date") || today();
   const sport = params.get("sport") || "all";
   const status = params.get("status") || "all";
+  const gender = genderOf(params);
+  const inGender = (league: string) =>
+    (isWomenLeague(league) ? "women" : "men") === gender;
   const { data: catalog } = useApi<CompetitionCatalog>("/api/competitions", 0);
-  const selectedSport = catalog?.sports.find((s) => s.id === sport);
+  const genderCatalog = filterCatalogByGender(catalog, gender);
+  const selectedSport = genderCatalog?.sports.find((s) => s.id === sport);
   const requestedLeague = params.get("league") || "all";
   const [search, setSearch] = useState("");
   const { ids, toggle } = useFavorites();
@@ -95,9 +104,11 @@ function ScoresDashboard({
   );
   const matches =
     data?.date === date
-      ? data.matches.map((m) =>
-          error && isLiveMatch(m) ? { ...m, liveUnverified: true } : m,
-        )
+      ? data.matches
+          .filter((m) => inGender(m.league))
+          .map((m) =>
+            error && isLiveMatch(m) ? { ...m, liveUnverified: true } : m,
+          )
       : [];
   const dayLeagueIds = new Set(
     matches.filter((m) => m.sport === sport).map((m) => m.league),
@@ -182,7 +193,9 @@ function ScoresDashboard({
     .filter((m) => keyOf(m) !== (featured && keyOf(featured)))
     .slice(0, 2);
   const available = sports.filter(
-    (s) => matches.some((m) => m.sport === s.id) || s.id === sport,
+    (s) =>
+      matches.some((m) => m.sport === s.id) ||
+      genderCatalog?.sports.some((item) => item.id === s.id),
   );
   const normalizedSearch = search
     .normalize("NFD")
@@ -201,6 +214,7 @@ function ScoresDashboard({
   const coverage =
     data?.sources?.filter(
       (source) =>
+        inGender(source.league || "") &&
         (sport === "all" || source.sport === sport) &&
         (league === "all" || source.league === league),
     ) ?? [];
@@ -216,6 +230,14 @@ function ScoresDashboard({
     if (key === "sport") next.delete("league");
     if (value === "all") next.delete(key);
     else next.set(key, value);
+    setParams(next);
+  }
+  function setGender(nextGender: Gender) {
+    const next = new URLSearchParams(params);
+    if (nextGender === "women") next.set("gender", "women");
+    else next.delete("gender");
+    next.delete("sport");
+    next.delete("league");
     setParams(next);
   }
   function moveDate(delta: number) {
@@ -460,6 +482,27 @@ function ScoresDashboard({
           />
         )}
         {accountError && <Notice error>{accountError}</Notice>}
+        <div className="gender-selector" role="group" aria-labelledby="home-gender-title">
+          <h2 id="home-gender-title">Escolha o gênero de esporte</h2>
+          <div className="gender-selector-options">
+            <button
+              type="button"
+              className="gender-option"
+              aria-pressed={gender === "men"}
+              onClick={() => setGender("men")}
+            >
+              Times Masculinos
+            </button>
+            <button
+              type="button"
+              className="gender-option"
+              aria-pressed={gender === "women"}
+              onClick={() => setGender("women")}
+            >
+              Times Femininos
+            </button>
+          </div>
+        </div>
         <section className="hv-sports" aria-labelledby="hv-sports-title">
           <div className="hv-sports-heading">
             <h2 id="hv-sports-title">Qual é o seu jogo?</h2>
