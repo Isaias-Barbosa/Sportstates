@@ -7,17 +7,26 @@ export const volleyballProfiles = JSON.parse(
     "utf8",
   ),
 );
-export const volleyballWomenProfiles = JSON.parse(
-  readFileSync(
-    new URL("../data/volleyball-women-2026.json", import.meta.url),
-    "utf8",
-  ),
-);
+// The literal path stays visible to Vercel's tracer, but degrade gracefully if
+// an older deployment still lacks the women's catalog: never take down every
+// API route because one optional catalog is missing.
+export const volleyballWomenProfiles = (() => {
+  try {
+    return JSON.parse(
+      readFileSync(
+        new URL("../data/volleyball-women-2026.json", import.meta.url),
+        "utf8",
+      ),
+    );
+  } catch {
+    return { clubs: [] };
+  }
+})();
 const { clubs } = volleyballProfiles;
 if (clubs.length !== 12 || new Set(clubs.map((c) => c.id)).size !== 12)
   throw new Error("Catálogo da Superliga Masculina incompleto.");
 const women = volleyballWomenProfiles.clubs;
-if (women.length !== 12 || new Set(women.map((c) => c.id)).size !== 12)
+if (women.length && (women.length !== 12 || new Set(women.map((c) => c.id)).size !== 12))
   throw new Error("Catálogo da Superliga Feminina incompleto.");
 const validate = (c, league) => {
   if (
