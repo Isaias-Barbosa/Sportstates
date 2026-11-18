@@ -8,6 +8,19 @@ function soccerTeamId(league, id) {
   return String(id);
 }
 export const DATED_365_LEAGUES = new Set(['kor.1', 'jpn.league_cup', 'rus.cup']);
+// These women's competitions have no ESPN slug and the 365Scores
+// `games/results` route ignores `competitions`, returning an unrelated 70-game
+// page. Only the dated `games` route exposes their fixtures; filter by
+// competitionId locally (see fetch365CompetitionGames).
+export const WOMEN_365_MONTHLY_LEAGUES = new Set([
+  'bra.feminino',
+  'bra.feminino.paulista',
+  'bra.feminino.copa_rio',
+  'bra.feminino.copa_do_brazil',
+  'conmebol.libertadores_feminina',
+]);
+export const MONTHLY_365_LEAGUES = new Set([...DATED_365_LEAGUES, ...WOMEN_365_MONTHLY_LEAGUES]);
+export const usesMonthly365Feed = (league) => MONTHLY_365_LEAGUES.has(league);
 
 const API = "https://webws.365scores.com/web";
 const BASE_PARAMS = {
@@ -78,7 +91,7 @@ function url(path, params) {
 export function competitionGamesUrl(league, date = new Date().toISOString().slice(0, 10), endDate = date) {
   const competitionId = SOCCER_365_COMPETITIONS[league];
   if (!competitionId) throw new Error("Competição 365Scores não configurada.");
-  if (DATED_365_LEAGUES.has(league)) {
+  if (usesMonthly365Feed(league)) {
     if (![date, endDate].every(value => /^20\d{2}-\d{2}-\d{2}$/.test(value) && new Date(value).toISOString().slice(0, 10) === value)) throw new Error("Data inválida.");
     const day = date.split("-").reverse().join("/");
     return url("games", { competitions: String(competitionId), startDate: day, endDate: endDate.split("-").reverse().join("/"), userCountryId: "21", limit: "1000" });
@@ -229,17 +242,29 @@ export function normalize365Game(game, league, leagueName, now = Date.now()) {
 }
 
 export async function fetch365CompetitionGames(league, loadJson, date) {
-  if (DATED_365_LEAGUES.has(league) && /^20\d{2}-(0[1-9]|1[0-2])$/.test(date || "")) {
+  if (usesMonthly365Feed(league) && /^20\d{2}-(0[1-9]|1[0-2])$/.test(date || "")) {
     // The public feed can truncate global results despite the competition filter.
-    // At most five weekly requests, no unbounded paging, and never claim completeness.
+    // At most five weekly requests in parallel, no unbounded paging, and never
+    // claim completeness. One slow week must not discard the rest of the month.
     const last = new Date(Date.UTC(Number(date.slice(0, 4)), Number(date.slice(5)), 0)).getUTCDate();
     const games = new Map();
-    for (let day = 1; day <= last; day += 7) {
+    let failures = 0;
+    const chunks = [];
+    for (let day = 1; day <= last; day += 7) chunks.push([day, Math.min(day + 6, last)]);
+    const responses = await Promise.allSettled(chunks.map(([from, to]) => {
       const iso = n => `${date}-${String(n).padStart(2, "0")}`;
-      const raw = await loadJson(competitionGamesUrl(league, iso(day), iso(Math.min(day + 6, last))));
-      if (!Array.isArray(raw?.games)) throw new Error("Calendário da competição inválido.");
-      for (const game of raw.games) if (Number(game.competitionId) === SOCCER_365_COMPETITIONS[league] && String(game.startTime).startsWith(date)) games.set(String(game.id), game);
+      return loadJson(competitionGamesUrl(league, iso(from), iso(to)));
+    }));
+    for (const response of responses) {
+      if (response.status !== "fulfilled" || !Array.isArray(response.value?.games)) {
+        failures += 1;
+        continue;
+      }
+      for (const game of response.value.games)
+        if (Number(game.competitionId) === SOCCER_365_COMPETITIONS[league] && String(game.startTime).startsWith(date))
+          games.set(String(game.id), game);
     }
+    if (failures === responses.length) throw new Error("Calendário da competição temporariamente indisponível.");
     return { games: [...games.values()], partial: true };
   }
   const raw = await loadJson(competitionGamesUrl(league, date));
@@ -250,7 +275,7 @@ export async function fetch365CompetitionGames(league, loadJson, date) {
     games: raw.games.filter(
       (game) => Number(game.competitionId) === expectedId,
     ),
-    partial: DATED_365_LEAGUES.has(league) || raw.games.length >= 1000,
+    partial: usesMonthly365Feed(league) || raw.games.length >= 1000,
   };
 }
 
@@ -397,7 +422,7 @@ export function normalize365GameDetail(raw, match) {
 
 export function normalize365Summary(raw, league, leagueName) {
   const game = raw?.game;
-  if (DATED_365_LEAGUES.has(league) && (Number(game?.competitionId) !== SOCCER_365_COMPETITIONS[league] || Number(game?.sportId) !== 1))
+  if (usesMonthly365Feed(league) && (Number(game?.competitionId) !== SOCCER_365_COMPETITIONS[league] || Number(game?.sportId) !== 1))
     throw new Error("Partida não pertence à competição selecionada.");
   const home = game?.homeCompetitor || game?.home;
   const away = game?.awayCompetitor || game?.away;

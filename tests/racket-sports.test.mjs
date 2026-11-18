@@ -6,10 +6,15 @@ import {
   normalizeVolley,
   parseCbvStandings,
   volleyDetailRow,
+  CBV_WOMEN_URL,
+  volleyLeague,
 } from "../server/volleyball.mjs";
 import { flightObjects } from "../server/public-flight.mjs";
 import { leagueFor } from "../server/catalog.mjs";
-import { volleyballProfiles } from "../server/volleyball-profiles.mjs";
+import {
+  volleyballProfiles,
+  volleyballWomenProfiles,
+} from "../server/volleyball-profiles.mjs";
 import { teamProfileId, providerTeamId } from "../server/team-identity.mjs";
 const competitor = (id, name, values, win) => ({
   id,
@@ -224,20 +229,63 @@ test("CBV standings preserve official points and order rather than recalculating
   assert.equal(rows[0].name, "A");
   assert.equal(rows[1].stats.points, "2");
 });
-test("catalog registers only masculine ATP/Superliga and 12 volleyball teams use isolated IDs", () => {
+test("catalog registers men's and women's Superliga and 24 volleyball teams use isolated IDs", () => {
   assert.ok(leagueFor("tennis", "atp"));
   assert.equal(leagueFor("tennis", "wta"), null);
   assert.ok(leagueFor("volleyball", "superliga-men"));
-  assert.equal(leagueFor("volleyball", "superliga-women"), null);
+  assert.ok(leagueFor("volleyball", "superliga-women"));
   assert.equal(volleyballProfiles.clubs.length, 12);
+  assert.equal(volleyballWomenProfiles.clubs.length, 12);
   for (const c of volleyballProfiles.clubs) {
     assert.equal(teamProfileId(c.cbvId, "volleyball", "superliga-men"), c.id);
     assert.equal(providerTeamId(c.id), c.cbvId);
     assert.ok(c.logo && c.website && c.stadium);
   }
+  for (const c of volleyballWomenProfiles.clubs) {
+    assert.equal(teamProfileId(c.cbvId, "volleyball", "superliga-women"), c.id);
+    assert.equal(providerTeamId(c.id), c.cbvId);
+    assert.ok(c.logo && c.name);
+  }
   assert.throws(() =>
     teamProfileId("volleyball-superliga-men-11", "soccer", "bra.1"),
   );
+  assert.throws(() =>
+    teamProfileId("volleyball-superliga-women-11", "volleyball", "superliga-men"),
+  );
+});
+
+test("women's Superliga uses the official CBV page and keeps gender, league and source explicit", () => {
+  assert.equal(CBV_WOMEN_URL, "https://cbv.com.br/volei-de-quadra/superliga-a-feminina");
+  assert.equal(volleyLeague("superliga-women").name, "Superliga Feminina");
+  const match = normalizeVolley(
+    { ...row, ChampionshipMatch_ID: 9988776 },
+    "superliga-women",
+  );
+  assert.equal(match.league, "superliga-women");
+  assert.equal(match.leagueName, "Superliga Feminina");
+  assert.throws(() => parseCbvMatches(flight({ gender: "masculino", matches: [row] }), "superliga-women"));
+  const table = parseCbvStandings(
+    flight({
+      championshipId: 6981,
+      gender: "feminino",
+      teams: [
+        {
+          teamId: 2253032,
+          teamName: "SESC RJ FLAMENGO",
+          position: 1,
+          points: 18,
+          wins: 6,
+          losses: 0,
+          matches: 6,
+          setsWon: 18,
+          setsLost: 0,
+        },
+      ],
+    }),
+    "superliga-women",
+  );
+  assert.equal(table[0].name, "SESC RJ FLAMENGO");
+  assert.equal(table[0].stats.points, "18");
 });
 
 test("new match and standings API routes use their providers without sending CBV IDs to ESPN summary", async () => {

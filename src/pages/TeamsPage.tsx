@@ -4,6 +4,7 @@ import {
   filterCatalogByGender,
   genderOf,
   leagueSelection,
+  type Gender,
 } from "../league-navigation";
 import { Link, useSearchParams } from "react-router-dom";
 import { useApi } from "../hooks";
@@ -53,6 +54,14 @@ function OtherTeamsPage() {
   );
   const league =
     params.get("league") === "unassigned" ? "unassigned" : resolvedLeague;
+  const baseParams = () => {
+    const next = new URLSearchParams();
+    if (gender === "women") next.set("gender", "women");
+    return next;
+  };
+  function setGender(nextGender: Gender) {
+    setParams(nextGender === "women" ? { gender: "women" } : {});
+  }
   function setLeague(id: string) {
     const next = new URLSearchParams(params);
     next.set("sport", sport);
@@ -61,7 +70,9 @@ function OtherTeamsPage() {
     setParams(next);
   }
   function setSport(id: string) {
-    setParams({ sport: id });
+    const next = baseParams();
+    next.set("sport", id);
+    setParams(next);
   }
   const sportTeams = (data?.teams || []).filter(
     (t) =>
@@ -117,9 +128,30 @@ function OtherTeamsPage() {
         </Notice>
       ) : (
         <>
+          <div className="gender-selector" role="group" aria-labelledby="teams-gender-title">
+            <h2 id="teams-gender-title">Escolha o gênero de esporte</h2>
+            <div className="gender-selector-options">
+              <button
+                type="button"
+                className="gender-option"
+                aria-pressed={gender === "men"}
+                onClick={() => setGender("men")}
+              >
+                Times Masculinos
+              </button>
+              <button
+                type="button"
+                className="gender-option"
+                aria-pressed={gender === "women"}
+                onClick={() => setGender("women")}
+              >
+                Times Femininos
+              </button>
+            </div>
+          </div>
           <h2>Escolha seu esporte</h2>
           <div className="sport-cards standings-sports">
-            {catalog?.sports.map((s) => (
+            {scopedCatalog?.sports.map((s) => (
               <button
                 type="button"
                 key={s.id}
@@ -140,7 +172,10 @@ function OtherTeamsPage() {
                       )
                     : teamCount(
                         (data?.teams || []).filter(
-                          (t) => (t.sport || "soccer") === s.id,
+                          (t) =>
+                            (t.sport || "soccer") === s.id &&
+                            (isWomenLeague(t.league || "") ? "women" : "men") ===
+                              gender,
                         ).length,
                       )}
                 </small>

@@ -1,12 +1,12 @@
 // ESPN IDs are scoped to a sport/league, while the existing database uses a
 // single primary key. Keep soccer URLs intact and namespace IDs for the other supported sports.
 export const validProfileId = (id) =>
-  /^(?:\d{1,12}|365-kor-\d{1,12}|cbf-\d{1,12}|fef-[a-z0-9-]{1,120}|(?:basketball-(?:nba|wnba|nbb)|football-nfl|baseball-mlb|hockey-nhl|volleyball-superliga-men)-\d{1,12})$/.test(
+  /^(?:\d{1,12}|365-kor-\d{1,12}|cbf-\d{1,12}|fef-[a-z0-9-]{1,120}|(?:basketball-(?:nba|wnba|nbb)|football-nfl|baseball-mlb|hockey-nhl|volleyball-superliga-(?:men|women))-\d{1,12})$/.test(
     String(id || ""),
   );
 export function providerTeamId(id) {
   return String(id || "").replace(
-    /^(?:365-kor|basketball-(?:nba|wnba|nbb)|football-nfl|baseball-mlb|hockey-nhl|volleyball-superliga-men)-/,
+    /^(?:365-kor|basketball-(?:nba|wnba|nbb)|football-nfl|baseball-mlb|hockey-nhl|volleyball-superliga-(?:men|women))-/,
     "",
   );
 }
@@ -27,9 +27,9 @@ export function teamProfileId(id, sport, league) {
     (sport === "football" && league === "nfl") ||
     (sport === "baseball" && league === "mlb") ||
     (sport === "hockey" && league === "nhl") ||
-    (sport === "volleyball" && league === "superliga-men");
+    (sport === "volleyball" && ["superliga-men", "superliga-women"].includes(league));
   const prefix = String(id).match(
-    /^(basketball-(?:nba|wnba|nbb)|football-nfl|baseball-mlb|hockey-nhl|volleyball-superliga-men)-/,
+    /^(basketball-(?:nba|wnba|nbb)|football-nfl|baseball-mlb|hockey-nhl|volleyball-superliga-(?:men|women))-/,
   );
   if (scoped) {
     if (prefix && prefix[1] !== `${sport}-${league}`)
