@@ -6,6 +6,9 @@ import {
   normalize365Game,
   normalize365Knockout,
   normalize365Standings,
+  SOCCER_365_COMPETITIONS,
+  WOMEN_365_MONTHLY_LEAGUES,
+  usesMonthly365Feed,
 } from "../server/365scores.mjs";
 import { dayInBrazil } from "../server/data.mjs";
 import { route, scoreboard } from "../server/api.mjs";
@@ -44,6 +47,43 @@ test("365Scores builds a Brazil-safe competition results URL", () => {
   assert.equal(url.searchParams.get("userCountryId"), "-1");
   assert.equal(url.searchParams.get("langId"), "31");
   assert.throws(() => competitionGamesUrl("bra.invalid"));
+});
+
+test("women's 365Scores competitions use the dated feed because results ignore the competition filter", () => {
+  const url = new URL(competitionGamesUrl("bra.feminino", "2026-03-01", "2026-03-07"));
+  assert.equal(url.pathname, "/web/games/");
+  assert.equal(url.searchParams.get("competitions"), "6223");
+  assert.equal(url.searchParams.get("startDate"), "01/03/2026");
+  assert.equal(url.searchParams.get("userCountryId"), "21");
+  assert.equal(usesMonthly365Feed("bra.feminino.copa_rio"), true);
+  assert.equal(usesMonthly365Feed("bra.camp.pernambucano"), false);
+  assert.deepEqual([...WOMEN_365_MONTHLY_LEAGUES].sort(), [
+    "bra.feminino",
+    "bra.feminino.copa_do_brazil",
+    "bra.feminino.copa_rio",
+    "bra.feminino.paulista",
+    "conmebol.libertadores_feminina",
+  ]);
+});
+
+test("monthly women's feed filters unrelated competitions, deduplicates and survives one failed week", async () => {
+  let calls = 0;
+  const fixture = game({
+    competitionId: 6223,
+    startTime: "2026-03-14T16:00:00-03:00",
+  });
+  const result = await fetch365CompetitionGames(
+    "bra.feminino",
+    async () => {
+      calls += 1;
+      if (calls === 2) throw Error("partial outage");
+      return { games: [fixture, game({ id: 999, competitionId: 7775 })] };
+    },
+    "2026-03",
+  );
+  assert.equal(calls, 5);
+  assert.deepEqual(result.games.map((item) => item.id), [4868431]);
+  assert.equal(result.partial, true);
 });
 
 test("365Scores normalizes games and only confirms mapped Brazilian networks", () => {
@@ -210,10 +250,15 @@ test("daily soccer scoreboard includes Brazilian games from the 365Scores feed",
   globalThis.fetch = async (input) => {
     const url = new URL(input);
     if (url.hostname === "webws.365scores.com") {
-      if (url.searchParams.get("competitions") === "618") koreanRequests++;
-      else if (url.searchParams.get("competitions") === "619") levainRequests++;
-      else if (url.searchParams.get("competitions") === "91") russianCupRequests++;
-      else dailyRequests++;
+      const competition = url.searchParams.get("competitions");
+      if (competition === "618") koreanRequests++;
+      else if (competition === "619") levainRequests++;
+      else if (competition === "91") russianCupRequests++;
+      else if (
+        competition === null ||
+        competition === String(SOCCER_365_COMPETITIONS[league])
+      )
+        dailyRequests++;
       return {
         ok: true,
         json: async () => ({

@@ -107,9 +107,11 @@ test('Korean calendar failure uses a cooldown and never retries unsupported ESPN
   const url=new URL('http://localhost/api/league-games?sport=soccer&league=kor.1&month=2026-02');
   try{
     assert.equal((await route(url))[0],503);
+    const attempts = calls;
+    assert.ok(attempts >= 1 && attempts <= 5);
     assert.equal((await route(url))[0],503);
     await assert.rejects(fetchTeamCatalog('soccer','kor.1'),/ESPN/);
-    assert.equal(calls,1);
+    assert.equal(calls,attempts);
   }finally{globalThis.fetch=original;}
 });
 

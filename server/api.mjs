@@ -32,7 +32,7 @@ import {
 import { buildDailySummary, summarySports } from "./daily-summary.mjs";
 import { tennisInsights } from "./tennis-insights.mjs";
 import { tableMatches, tableDetail, tableRankings } from "./table-tennis.mjs";
-import { volleyballProfiles } from "./volleyball-profiles.mjs";
+import { volleyballProfiles, volleyballWomenProfiles } from "./volleyball-profiles.mjs";
 import {
   tennisMatches,
   tennisDetail,
@@ -45,6 +45,7 @@ import {
   normalizeVolley,
   volleyDetail,
   volleyStandings,
+  volleyLeague,
 } from "./volleyball.mjs";
 import { enrichPlayerRatings } from "./player-ratings.mjs";
 import { validProfileId } from "./team-identity.mjs";
@@ -86,6 +87,7 @@ import {
   SOCCER_TOURNAMENT_FORMATS,
   SOCCER_DOMESTIC_TOURNAMENTS,
   WOMEN_LEAGUES,
+  WOMEN_SOCCER_LEAGUES,
   leagueGender,
   leagueFor,
 } from "./catalog.mjs";
@@ -105,7 +107,7 @@ import { normalizeStandings } from "./standings.mjs";
 import { KNOCKOUT_LEAGUES, fetchTournament, normalizeTournament } from "./tournaments.mjs";
 import {
   SOCCER_365_COMPETITIONS,
-  DATED_365_LEAGUES,
+  usesMonthly365Feed,
   SOCCER_365_PRIMARY_COMPETITIONS,
   competitionStandingsUrl,
   fetch365CompetitionGames,
@@ -191,7 +193,7 @@ function cachedGeRound(year, round) {
 }
 
 function cached365Games(league, date) {
-  if (DATED_365_LEAGUES.has(league)) return resolveSources({
+  if (usesMonthly365Feed(league)) return resolveSources({
     key: `dated:games:${league}:${date || dayInBrazil(new Date()).slice(0, 7)}`, cached,
     providers: [{ name: "365Scores", ttl: date?.length === 7 ? 300000 : 30000,
       load: async () => [await fetch365CompetitionGames(league, json, date || dayInBrazil(new Date()).slice(0, 7))] }],
@@ -408,12 +410,12 @@ export async function scoreboard(date, sport = "all") {
         try {
           const today = dayInBrazil(new Date());
           const result =
-            date === today && !DATED_365_LEAGUES.has(league)
+            date === today && !usesMonthly365Feed(league)
               ? await cached365Daily()
               : await cached365Games(league, date);
           const expectedId = SOCCER_365_COMPETITIONS[league];
           const games =
-            date === today && !DATED_365_LEAGUES.has(league)
+            date === today && !usesMonthly365Feed(league)
               ? result.value.filter(
                   (game) => Number(game.competitionId) === expectedId,
                 )
@@ -425,13 +427,13 @@ export async function scoreboard(date, sport = "all") {
           // These women's competitions exist only on 365Scores; a fall-through
           // to the ESPN branch would issue a request for a slug that cannot exist.
           const only365 = WOMEN_LEAGUES.has(league);
-          if (matches.length || DATED_365_LEAGUES.has(league) || only365) return {
+          if (matches.length || usesMonthly365Feed(league) || only365) return {
             matches: broadcasts.matches.map((match) => ({
               ...match,
               liveUnverified: match.state === "live" && result.stale,
             })),
             failed:
-              broadcasts.failed || ((date !== today || DATED_365_LEAGUES.has(league)) && result.value.partial),
+              broadcasts.failed || ((date !== today || usesMonthly365Feed(league)) && result.value.partial),
             stale: result.stale,
             sport: s.id,
             league,
@@ -441,7 +443,7 @@ export async function scoreboard(date, sport = "all") {
           };
         } catch (error) {
           console.error(`Falha ao consultar 365Scores para ${name}:`, error);
-          if (DATED_365_LEAGUES.has(league)) return { matches: [], failed: true, stale: false, sport: s.id, league, name, provider: "365Scores", at: Date.now() };
+          if (usesMonthly365Feed(league)) return { matches: [], failed: true, stale: false, sport: s.id, league, name, provider: "365Scores", at: Date.now() };
           // The ESPN branch below remains available after an upstream failure.
         }
       }
@@ -479,9 +481,9 @@ export async function scoreboard(date, sport = "all") {
             : s.id === "tennis"
               ? tennisMatches(d)
               : s.id === "volleyball"
-                ? cbvSchedule().then((r) => ({
+                ? cbvSchedule(league).then((r) => ({
                     ...r,
-                    value: r.value.map(normalizeVolley),
+                    value: r.value.map((m) => normalizeVolley(m, league)),
                   }))
                 : cached(
                     `scores:fresh-v2:${s.id}/${league}/${d}`,
@@ -712,10 +714,66 @@ export async function route(url) {
       teamId: id, competitions: nationalTeamCompetitions(team), partial: false,
       source: "ESPN · cadastro local", fetchedAt: nationalSnapshotAt, stale: false,
     }];
+    if (
+      team.sport === "soccer" &&
+      WOMEN_SOCCER_LEAGUES.has(team.league) &&
+      SOCCER_365_PRIMARY_COMPETITIONS.has(team.league)
+    ) {
+      const year = Number(dayInBrazil(new Date()).slice(0, 4));
+      const config = leagueFor(team.sport, team.league);
+      const result = await cached(
+        `standings:365scores:${team.league}:${year}`,
+        CACHE_TTL.standings,
+        async () =>
+          normalize365Standings(
+            await json(competitionStandingsUrl(team.league)),
+            team.league,
+            config?.name || team.league,
+            year,
+          ),
+        300000,
+      );
+      const row = result.value.groups
+        .flatMap((group) => group.rows)
+        .find((item) => item.id === team.id);
+      return [
+        200,
+        {
+          teamId: id,
+          competitions: row
+            ? [
+                {
+                  id: team.league,
+                  sport: "soccer",
+                  name: config?.name || team.league,
+                  logo: row.logo,
+                  kind: "league",
+                  season: String(year),
+                  year,
+                  active: true,
+                  status: "active",
+                  rank: Number(row.rank) || null,
+                  group: null,
+                  points: row.stats.points,
+                  played: row.stats.gamesPlayed,
+                  phase: "Classificação da competição",
+                  phaseContext: null,
+                  lastPlayed: null,
+                },
+              ]
+            : [],
+          partial: !row,
+          fetchedAt: new Date(result.at).toISOString(),
+          source: result.value.source,
+          stale: result.stale,
+        },
+      ];
+    }
     if (team.sport === "volleyball") {
-      const table = await volleyStandings();
+      const league = team.league === "superliga-women" ? "superliga-women" : "superliga-men";
+      const table = await volleyStandings(league);
       const row = table.groups[0].rows.find(
-        (r) => r.id === team.id.replace("volleyball-superliga-men-", ""),
+        (r) => r.id === team.id.replace(`volleyball-${league}-`, ""),
       );
       return [
         200,
@@ -724,9 +782,9 @@ export async function route(url) {
           competitions: row
             ? [
                 {
-                  id: "superliga-men",
+                  id: league,
                   sport: "volleyball",
-                  name: "Superliga Masculina",
+                  name: volleyLeague(league).name,
                   logo: null,
                   kind: "league",
                   season: "Temporada atual",
@@ -1130,7 +1188,7 @@ export async function route(url) {
     }
     if (ECUADOR_CUPS[config.league])
       return [200, await fetchEcuadorCupStandings(config.league, json)];
-    if (config.sport === "volleyball") return [200, await volleyStandings()];
+    if (config.sport === "volleyball") return [200, await volleyStandings(config.league)];
     if (["tennis", "table-tennis"].includes(config.sport)) {
       const data =
         config.sport === "table-tennis"
@@ -1295,7 +1353,7 @@ export async function route(url) {
         `league-games:365scores:${config.league}:${month}`,
         (body) => leagueGamesTtl(body, month, dayInBrazil(new Date())),
         async () => {
-          const feed = DATED_365_LEAGUES.has(config.league)
+          const feed = usesMonthly365Feed(config.league)
             ? (await cached365Games(config.league, month)).value
             : await fetch365CompetitionGames(config.league, json);
           const matches = feed.games
@@ -1316,7 +1374,7 @@ export async function route(url) {
       } catch (error) {
         result = null;
       }
-      if (result && (result.value.matches.length || DATED_365_LEAGUES.has(config.league))) return [
+      if (result && (result.value.matches.length || usesMonthly365Feed(config.league))) return [
         200,
         {
           ...config,
@@ -1325,9 +1383,12 @@ export async function route(url) {
           stale: result.stale,
           fetchedAt: new Date(result.at).toISOString(),
           source: "365Scores · feed público não oficial",
+          warnings: result.value.matches.length
+            ? []
+            : [`Nenhuma partida publicada pela 365Scores para ${config.name} em ${month}.`],
         },
       ];
-      if (DATED_365_LEAGUES.has(config.league)) return [503, { error: "Calendário da competição temporariamente indisponível." }];
+      if (usesMonthly365Feed(config.league)) return [503, { error: "Calendário da competição temporariamente indisponível." }];
       // 365Scores may omit archived fixtures. Fall through to ESPN for a
       // second independent source rather than returning an empty calendar.
     }
@@ -1390,9 +1451,9 @@ export async function route(url) {
         config.sport === "table-tennis"
           ? await tableMatches(month, config.league)
           : config.sport === "volleyball"
-            ? await cbvSchedule().then((r) => ({
+            ? await cbvSchedule(config.league).then((r) => ({
                 ...r,
-                value: r.value.map(normalizeVolley),
+                value: r.value.map((m) => normalizeVolley(m, config.league)),
               }))
             : await cached(
                 `tennis:month:v1:${month}`,
@@ -1420,7 +1481,7 @@ export async function route(url) {
             config.sport === "table-tennis"
               ? "World Table Tennis · fonte oficial"
               : config.sport === "volleyball"
-                ? "CBV · Superliga Masculina"
+                ? volleyLeague(config.league).source
                 : "ESPN · ATP masculino",
         },
       ];
@@ -1639,7 +1700,7 @@ export async function route(url) {
           ? await tableDetail(id, config.league)
           : config.sport === "tennis"
             ? await tennisDetail(id)
-            : await volleyDetail(id);
+            : await volleyDetail(id, config.league);
       const manual = await enrichManualBroadcasts([detail.match]);
       return [200, { ...detail, match: manual.matches[0] }];
     }
@@ -2437,7 +2498,12 @@ export async function handler(req, res) {
           .normalize("NFD")
           .replace(/\p{Diacritic}/gu, "")
           .toLowerCase();
-      const teams = volleyballProfiles.clubs
+      const catalog = league === "superliga-women"
+        ? volleyballWomenProfiles.clubs
+        : league === "superliga-men"
+          ? volleyballProfiles.clubs
+          : [...volleyballProfiles.clubs, ...volleyballWomenProfiles.clubs];
+      const teams = catalog
         .filter((t) => text(t.name + " " + t.city).includes(text(q)))
         .map((t) => ({ ...t, source: "CBV" }));
       res.statusCode = 200;
@@ -2508,7 +2574,7 @@ export async function handler(req, res) {
         }
         try {
           const espnSport = sport === "football" ? "football" : sport;
-          if (DATED_365_LEAGUES.has(id)) throw new Error("Competição sem feed ESPN.");
+          if (usesMonthly365Feed(id)) throw new Error("Competição sem feed ESPN.");
           const upstream = await fetch(`https://site.api.espn.com/apis/site/v2/sports/${encodeURIComponent(espnSport)}/${encodeURIComponent(id)}/scoreboard?limit=1`, { signal: AbortSignal.timeout(3500) });
           if (upstream.ok) {
             const data = await upstream.json();

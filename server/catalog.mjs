@@ -176,9 +176,12 @@ export const SPORTS = [
   },
   {
     id: "volleyball",
-    name: "Vôlei masculino",
+    name: "Vôlei",
     icon: "🏐",
-    leagues: [["superliga-men", "Superliga Masculina"]],
+    leagues: [
+      ["superliga-men", "Superliga Masculina"],
+      ["superliga-women", "Superliga Feminina"],
+    ],
   },
   { id: "judo", name: "Judô", icon: "🥋", leagues: [] },
 ];
@@ -205,7 +208,7 @@ export const WOMEN_SOCCER_LEAGUES = new Set([
   "conmebol.libertadores_feminina",
   "uefa.wchampions",
 ]);
-export const WOMEN_LEAGUES = new Set([...WOMEN_SOCCER_LEAGUES, "wnba"]);
+export const WOMEN_LEAGUES = new Set([...WOMEN_SOCCER_LEAGUES, "wnba", "superliga-women"]);
 export const leagueGender = (sport, league) =>
   WOMEN_LEAGUES.has(league) ? "women" : "men";
 

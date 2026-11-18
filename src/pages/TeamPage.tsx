@@ -9,6 +9,7 @@ import { Crest, Empty, Loading, Notice } from "../components/shared";
 import Lineups from "../components/Lineups";
 import BrazilPlayerStats from "../components/BrazilPlayerStats";
 import type { ClubDetails, TeamLeader, CompetitionCatalog } from "../types";
+import { isWomenLeague } from "../catalog";
 // Matches the introductory paragraph length requested for club profiles.
 const DESCRIPTION_LIMIT = 749;
 function descriptionPreview(description: string) {
@@ -111,7 +112,9 @@ export default function TeamPage() {
                     : team.sport === "hockey"
                       ? "Equipe de hóquei no gelo"
                       : team.sport === "volleyball"
-                        ? "Equipe de vôlei masculino"
+                        ? isWomenLeague(team.league || "")
+                          ? "Equipe de vôlei feminino"
+                          : "Equipe de vôlei masculino"
                         : "Clube de futebol")}
           </p>
           {team.description && <p>{descriptionPreview(team.description)}</p>}

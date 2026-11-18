@@ -4,7 +4,10 @@ import { saudiProfileReferences } from "./saudi-profiles.mjs";
 import {asianProfiles, asianClub, asianProfileReferences, koreanTeamDetails} from './asian-profiles.mjs';
 import { cbfLowerDivisionClub, cbfLowerDivisionClubs, cbfLowerDivisionTeamDetails } from "./cbf-lower-divisions.mjs";
 import { volleyTeamDetails } from "./volleyball.mjs";
-import { volleyballProfileReferences } from "./volleyball-profiles.mjs";
+import {
+  volleyballProfileReferences,
+  volleyballWomenProfiles,
+} from "./volleyball-profiles.mjs";
 import { nhlProfileReferences } from "./nhl-profiles.mjs";
 import { mlbProfileReferences } from "./mlb-profiles.mjs";
 import {
@@ -34,9 +37,13 @@ import {
 } from "./brazil-players.mjs";
 import { curatedPlayerIdsForTeam } from "./players.mjs";
 import { neon } from "@neondatabase/serverless";
-import { normalizeEvent, normalizeSummary } from "./data.mjs";
+import { dayInBrazil, normalizeEvent, normalizeSummary } from "./data.mjs";
 import { leagueFor, WOMEN_SOCCER_LEAGUES } from "./catalog.mjs";
-import { SOCCER_365_PRIMARY_COMPETITIONS } from "./365scores.mjs";
+import {
+  SOCCER_365_PRIMARY_COMPETITIONS,
+  fetch365CompetitionGames,
+  normalize365Game,
+} from "./365scores.mjs";
 import { parseTeamLeaders } from "./team-leaders.mjs";
 const ESPN_BASE = "https://site.api.espn.com/apis/site/v2/sports";
 const getSql = () => {
@@ -59,10 +66,10 @@ export function validateHonours(honours) {
   return honours.map((h) => h.trim());
 }
 export async function listTeams() {
-  if (!process.env.DATABASE_URL) return [...asianProfiles.clubs, ...russianProfiles.clubs, ...nationalTeams];
+  if (!process.env.DATABASE_URL) return [...asianProfiles.clubs, ...russianProfiles.clubs, ...nationalTeams, ...volleyballWomenProfiles.clubs];
   const sql = getSql();
   const rows = await sql`SELECT id, name, logo, description, city, stadium, stadium_image, website, sport, league, colors, honours FROM sport_teams WHERE id <> 'basketball-nbb-129095' ORDER BY name`;
-  return [...new Map([...asianProfiles.clubs, ...russianProfiles.clubs, ...nationalTeams, ...(process.env.VERCEL_ENV === 'preview' ? cbfLowerDivisionClubs() : []), ...rows.map(team => {
+  return [...new Map([...asianProfiles.clubs, ...russianProfiles.clubs, ...nationalTeams, ...volleyballWomenProfiles.clubs, ...(process.env.VERCEL_ENV === 'preview' ? cbfLowerDivisionClubs() : []), ...rows.map(team => {
     const national = nationalTeams.find(item => item.id === team.id);
     return national ? { ...national, ...team, nationalCompetitions: national.nationalCompetitions } : team;
   })].map(team => [team.id, team])).values()]
@@ -84,7 +91,7 @@ export async function getTeam(id) {
   const sql = getSql();
   const rows =
     await sql`SELECT id, name, logo, description, city, stadium, stadium_image, website, sport, league, colors, honours FROM sport_teams WHERE id=${id}`;
-  return national ? { ...national, ...rows[0], nationalCompetitions: national.nationalCompetitions } : rows[0] || russianClub(id) || asianClub(id);
+  return national ? { ...national, ...rows[0], nationalCompetitions: national.nationalCompetitions } : rows[0] || russianClub(id) || asianClub(id) || volleyballWomenProfiles.clubs.find((club) => club.id === id) || null;
 }
 export async function saveTeam(p) {
   if (["tennis", "table-tennis"].includes(p.sport))
@@ -207,23 +214,44 @@ export async function teamDetails(id) {
       source: "ESPN · feed público não oficial",
     };
   // 365Scores-backed women's competitions have no ESPN club slug. Do not issue
-  // requests to endpoints that cannot exist; the profile is the verified data.
+  // requests to endpoints that cannot exist; use the verified 365Scores feed
+  // for this month's fixtures and results instead.
   if (
     config.sport === "soccer" &&
     WOMEN_SOCCER_LEAGUES.has(config.league) &&
     SOCCER_365_PRIMARY_COMPETITIONS.has(config.league)
-  )
+  ) {
+    const month = dayInBrazil(new Date()).slice(0, 7);
+    const games = await fetch365CompetitionGames(config.league, getJSON, month)
+      .then((feed) =>
+        feed.games.map((game) => normalize365Game(game, config.league, config.name)).filter(Boolean),
+      )
+      .catch(() => []);
+    const mine = games.filter(
+      (match) => match.home.id === team.id || match.away.id === team.id,
+    );
     return {
       team,
       athletes: [],
       leaders: null,
-      upcoming: [],
-      recent: [],
+      upcoming: mine
+        .filter(
+          (match) =>
+            match.state === "live" ||
+            (match.state === "scheduled" && Date.parse(match.date) >= Date.now()),
+        )
+        .sort((a, b) => a.date.localeCompare(b.date))
+        .slice(0, 8),
+      recent: mine
+        .filter((match) => match.state === "finished")
+        .sort((a, b) => b.date.localeCompare(a.date))
+        .slice(0, 8),
       lineup: null,
       articles: [],
-      coverage: { roster: false, schedule: false, news: false, next: false },
-      source: "365Scores · cadastro de clubes femininos",
+      coverage: { roster: false, schedule: games.length > 0, news: false, next: false },
+      source: "365Scores · jogos e cadastro de clubes femininos",
     };
+  }
   const ESPN = `${ESPN_BASE}/${config.sport}/${config.league}`;
   const providerId = providerTeamId(team.id);
   const [roster, schedule, news, next, fixtures] = await Promise.allSettled(

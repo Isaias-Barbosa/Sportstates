@@ -4,6 +4,25 @@ import { getWatchOptions } from "./watch.mjs";
 const cached = createCache();
 export const CBV_URL =
   "https://cbv.com.br/volei-de-quadra/superliga-a-masculina";
+export const CBV_WOMEN_URL =
+  "https://cbv.com.br/volei-de-quadra/superliga-a-feminina";
+export const VOLLEY_LEAGUES = Object.freeze({
+  "superliga-men": {
+    name: "Superliga Masculina",
+    gender: "masculino",
+    url: CBV_URL,
+    source: "CBV · Superliga Masculina",
+    standingsSource: "CBV · classificação oficial masculina",
+  },
+  "superliga-women": {
+    name: "Superliga Feminina",
+    gender: "feminino",
+    url: CBV_WOMEN_URL,
+    source: "CBV · Superliga Feminina",
+    standingsSource: "CBV · classificação oficial feminina",
+  },
+});
+export const volleyLeague = (league) => VOLLEY_LEAGUES[league] || VOLLEY_LEAGUES["superliga-men"];
 const image = (v) => {
   try {
     const u = new URL(v);
@@ -17,10 +36,11 @@ const image = (v) => {
     return null;
   }
 };
-export function parseCbvMatches(html) {
+export function parseCbvMatches(html, league = "superliga-men") {
   const objects = flightObjects(html);
-  if (!objects.some((o) => o.gender === "masculino"))
-    throw Error("Programação masculina não confirmada.");
+  const { gender, name } = volleyLeague(league);
+  if (!objects.some((o) => o.gender === gender))
+    throw Error(`Programação de ${name} não confirmada.`);
   const selected = new Map();
   const teamData = new Map(
     objects
@@ -112,7 +132,8 @@ export function parseCbvMatches(html) {
     };
   });
 }
-export function normalizeVolley(m) {
+export function normalizeVolley(m, league = "superliga-men") {
+  const meta = volleyLeague(league);
   const finished = m.isFinished,
     live = !finished && m.isLive && !m.postponed;
   const home = {
@@ -141,8 +162,8 @@ export function normalizeVolley(m) {
   const match = {
     id: String(m.ChampionshipMatch_ID),
     sport: "volleyball",
-    league: "superliga-men",
-    leagueName: "Superliga Masculina",
+    league,
+    leagueName: meta.name,
     date: new Date(m.MatchDateTime).toISOString(),
     name: `${home.name} x ${away.name}`,
     home,
@@ -179,24 +200,26 @@ export function normalizeVolley(m) {
   }
   return { ...match, watch };
 }
-export async function cbvSchedule() {
+export async function cbvSchedule(league = "superliga-men") {
+  const meta = volleyLeague(league);
   return cached(
-    "cbv:superliga-men:v1",
+    `cbv:${league}:v1`,
     (rows) => (rows.some((m) => m.isLive && !m.isFinished) ? 15000 : 60000),
     async () => {
-      const r = await fetch(CBV_URL, { signal: AbortSignal.timeout(10000) });
+      const r = await fetch(meta.url, { signal: AbortSignal.timeout(10000) });
       if (!r.ok) throw Error("CBV indisponível.");
-      const rows = parseCbvMatches(await r.text());
-      if (!rows.length) throw Error("Programação masculina indisponível.");
+      const rows = parseCbvMatches(await r.text(), league);
+      if (!rows.length) throw Error(`Programação de ${meta.name} indisponível.`);
       return rows;
     },
     30000,
   );
 }
-export function parseCbvStandings(html) {
+export function parseCbvStandings(html, league = "superliga-men") {
   const objects = flightObjects(html);
-  if (!objects.some((o) => o.gender === "masculino"))
-    throw Error("Classificação masculina não confirmada.");
+  const { gender, name } = volleyLeague(league);
+  if (!objects.some((o) => o.gender === gender))
+    throw Error(`Classificação de ${name} não confirmada.`);
   const data = objects.find(
     (o) =>
       o.championshipId &&
@@ -204,7 +227,7 @@ export function parseCbvStandings(html) {
       o.teams.length &&
       o.teams[0].position,
   );
-  if (!data) throw Error("Classificação masculina indisponível.");
+  if (!data) throw Error(`Classificação de ${name} indisponível.`);
   return data.teams
     .map((t) => ({
       id: String(t.teamId),
@@ -224,28 +247,29 @@ export function parseCbvStandings(html) {
     }))
     .sort((a, b) => Number(a.rank) - Number(b.rank));
 }
-export async function volleyStandings() {
+export async function volleyStandings(league = "superliga-men") {
+  const meta = volleyLeague(league);
   const r = await cached(
-    "cbv:standings-men:v1",
+    `cbv:standings:${league}:v1`,
     300000,
     async () => {
-      const response = await fetch(`${CBV_URL}/classificacao`, {
+      const response = await fetch(`${meta.url}/classificacao`, {
         signal: AbortSignal.timeout(10000),
       });
       if (!response.ok) throw Error("CBV indisponível.");
-      return parseCbvStandings(await response.text());
+      return parseCbvStandings(await response.text(), league);
     },
     300000,
   );
   return {
     sport: "volleyball",
-    league: "superliga-men",
-    name: "Superliga Masculina",
-    groups: [{ name: "Superliga Masculina", rows: r.value }],
+    league,
+    name: meta.name,
+    groups: [{ name: meta.name, rows: r.value }],
     rounds: [],
     fetchedAt: new Date(r.at).toISOString(),
     stale: r.stale,
-    source: "CBV · classificação oficial masculina",
+    source: meta.standingsSource,
   };
 }
 const positions = {
@@ -266,8 +290,8 @@ export function volleyRoster(team) {
       image: null,
     }));
 }
-export function volleyDetailRow(row) {
-  const match = normalizeVolley(row);
+export function volleyDetailRow(row, league = "superliga-men") {
+  const match = normalizeVolley(row, league);
   const lineups = [
     ["HomeTeamData", "home", match.home],
     ["GuestTeamData", "away", match.away],
@@ -306,24 +330,27 @@ export function volleyDetailRow(row) {
     },
   };
 }
-export async function volleyDetail(id) {
-  const r = await cbvSchedule();
+export async function volleyDetail(id, league = "superliga-men") {
+  const meta = volleyLeague(league);
+  const r = await cbvSchedule(league);
   const m = r.value.find((m) => String(m.ChampionshipMatch_ID) === id);
-  if (!m) throw Error("Partida masculina não encontrada.");
+  if (!m) throw Error(`Partida de ${meta.name} não encontrada.`);
   return {
-    ...volleyDetailRow(m),
-    source: "CBV · Superliga Masculina",
+    ...volleyDetailRow(m, league),
+    source: meta.source,
     fetchedAt: new Date(r.at).toISOString(),
     stale: r.stale,
   };
 }
 export async function volleyTeamDetails(team) {
-  const r = await cbvSchedule();
-  const id = team.id.replace("volleyball-superliga-men-", "");
+  const league = team.league === "superliga-women" ? "superliga-women" : "superliga-men";
+  const meta = volleyLeague(league);
+  const r = await cbvSchedule(league);
+  const id = team.id.replace(`volleyball-${league}-`, "");
   const rows = r.value.filter(
     (m) => String(m.HomeTeam_ID) === id || String(m.GuestTeam_ID) === id,
   );
-  const matches = rows.map(normalizeVolley);
+  const matches = rows.map((m) => normalizeVolley(m, league));
   const row = rows.find((m) =>
     [m.HomeTeamData?.id, m.GuestTeamData?.id].map(String).includes(id),
   );
@@ -349,6 +376,6 @@ export async function volleyTeamDetails(team) {
     lineup: null,
     articles: [],
     coverage: { roster: !!rawTeam, schedule: true, news: false, next: true },
-    source: "CBV · Superliga Masculina",
+    source: meta.source,
   };
 }

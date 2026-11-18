@@ -1,32 +1,34 @@
 import { readFileSync } from "node:fs";
 import { teamProfileId } from "./team-identity.mjs";
-export const volleyballProfiles = JSON.parse(
-  readFileSync(
-    new URL("../data/volleyball-profiles-2026.json", import.meta.url),
-    "utf8",
-  ),
-);
+const read = (file) =>
+  JSON.parse(readFileSync(new URL(file, import.meta.url), "utf8"));
+export const volleyballProfiles = read("../data/volleyball-profiles-2026.json");
+export const volleyballWomenProfiles = read("../data/volleyball-women-2026.json");
 const { clubs } = volleyballProfiles;
 if (clubs.length !== 12 || new Set(clubs.map((c) => c.id)).size !== 12)
   throw new Error("Catálogo da Superliga Masculina incompleto.");
-for (const c of clubs) {
+const women = volleyballWomenProfiles.clubs;
+if (women.length !== 12 || new Set(women.map((c) => c.id)).size !== 12)
+  throw new Error("Catálogo da Superliga Feminina incompleto.");
+const validate = (c, league) => {
   if (
     c.sport !== "volleyball" ||
-    c.league !== "superliga-men" ||
+    c.league !== league ||
     c.id !== teamProfileId(c.cbvId, c.sport, c.league) ||
     !c.name ||
-    !c.city ||
-    !c.stadium ||
     !c.logo ||
-    !c.website ||
+    (league === "superliga-men" && (!c.city || !c.stadium || !c.website)) ||
     c.description.length > 2000 ||
     c.colors.some((v) => !/^#[0-9a-f]{6}$/i.test(v))
   )
-    throw new Error("Perfil de Superliga Masculina inválido.");
-  for (const url of [c.logo, c.website, ...c.references.map((r) => r.url)])
+    throw new Error(`Perfil de ${league} inválido.`);
+  for (const url of [c.logo, c.website, ...c.references.map((r) => r.url)].filter(Boolean))
     if (new URL(url).protocol !== "https:")
-      throw new Error("Fonte de Superliga Masculina inválida.");
-}
+      throw new Error(`Fonte de ${league} inválida.`);
+};
+for (const c of clubs) validate(c, "superliga-men");
+for (const c of women) validate(c, "superliga-women");
+export const allVolleyballProfiles = [...clubs, ...women];
 export function volleyballProfileReferences(id) {
-  return clubs.find((c) => c.id === id)?.references || [];
+  return allVolleyballProfiles.find((c) => c.id === id)?.references || [];
 }

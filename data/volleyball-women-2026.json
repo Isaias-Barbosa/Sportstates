@@ -1,0 +1,273 @@
+{
+  "revision": "volleyball-superliga-women-2026-v1",
+  "reviewedAt": "2026-11-18",
+  "clubs": [
+    {
+      "id": "volleyball-superliga-women-2253032",
+      "name": "SESC RJ FLAMENGO",
+      "sport": "volleyball",
+      "league": "superliga-women",
+      "logo": "https://assets.volleystation.com/website/teams/2253032/badge.png",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "description": "SESC RJ FLAMENGO é uma equipe da Superliga Feminina de vôlei do Brasil.",
+      "references": [
+        {
+          "label": "CBV - classificação oficial feminina",
+          "url": "https://cbv.com.br/volei-de-quadra/superliga-a-feminina/classificacao"
+        }
+      ],
+      "cbvId": "2253032"
+    },
+    {
+      "id": "volleyball-superliga-women-2253028",
+      "name": "GERDAU MINAS",
+      "sport": "volleyball",
+      "league": "superliga-women",
+      "logo": "https://assets.volleystation.com/website/teams/2253028/badge.png",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "colors": [
+        "#1c449c",
+        "#043c74"
+      ],
+      "honours": [],
+      "description": "GERDAU MINAS é uma equipe da Superliga Feminina de vôlei do Brasil.",
+      "references": [
+        {
+          "label": "CBV - classificação oficial feminina",
+          "url": "https://cbv.com.br/volei-de-quadra/superliga-a-feminina/classificacao"
+        }
+      ],
+      "cbvId": "2253028"
+    },
+    {
+      "id": "volleyball-superliga-women-2253037",
+      "name": "SESI VOLEI BAURU",
+      "sport": "volleyball",
+      "league": "superliga-women",
+      "logo": "https://assets.volleystation.com/website/teams/2253037/badge.png",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "description": "SESI VOLEI BAURU é uma equipe da Superliga Feminina de vôlei do Brasil.",
+      "references": [
+        {
+          "label": "CBV - classificação oficial feminina",
+          "url": "https://cbv.com.br/volei-de-quadra/superliga-a-feminina/classificacao"
+        }
+      ],
+      "cbvId": "2253037"
+    },
+    {
+      "id": "volleyball-superliga-women-2253036",
+      "name": "DENTIL PRAIA CLUBE",
+      "sport": "volleyball",
+      "league": "superliga-women",
+      "logo": "https://assets.volleystation.com/website/teams/2253036/badge.png",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "description": "DENTIL PRAIA CLUBE é uma equipe da Superliga Feminina de vôlei do Brasil.",
+      "references": [
+        {
+          "label": "CBV - classificação oficial feminina",
+          "url": "https://cbv.com.br/volei-de-quadra/superliga-a-feminina/classificacao"
+        }
+      ],
+      "cbvId": "2253036"
+    },
+    {
+      "id": "volleyball-superliga-women-2253029",
+      "name": "OSASCO SÃO CRISTÓVÃO SAÚDE",
+      "sport": "volleyball",
+      "league": "superliga-women",
+      "logo": "https://assets.volleystation.com/website/teams/2253029/badge.png",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "colors": [
+        "#e61d23",
+        "#04ac9c"
+      ],
+      "honours": [],
+      "description": "OSASCO SÃO CRISTÓVÃO SAÚDE é uma equipe da Superliga Feminina de vôlei do Brasil.",
+      "references": [
+        {
+          "label": "CBV - classificação oficial feminina",
+          "url": "https://cbv.com.br/volei-de-quadra/superliga-a-feminina/classificacao"
+        }
+      ],
+      "cbvId": "2253029"
+    },
+    {
+      "id": "volleyball-superliga-women-2253030",
+      "name": "BRUSQUE VÔLEI",
+      "sport": "volleyball",
+      "league": "superliga-women",
+      "logo": "https://assets.volleystation.com/website/teams/2253030/badge.png",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "description": "BRUSQUE VÔLEI é uma equipe da Superliga Feminina de vôlei do Brasil.",
+      "references": [
+        {
+          "label": "CBV - classificação oficial feminina",
+          "url": "https://cbv.com.br/volei-de-quadra/superliga-a-feminina/classificacao"
+        }
+      ],
+      "cbvId": "2253030"
+    },
+    {
+      "id": "volleyball-superliga-women-2253034",
+      "name": "E.C. PINHEIROS",
+      "sport": "volleyball",
+      "league": "superliga-women",
+      "logo": "https://assets.volleystation.com/website/teams/2253034/badge.png",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "colors": [
+        "#053c94",
+        "#053484"
+      ],
+      "honours": [],
+      "description": "E.C. PINHEIROS é uma equipe da Superliga Feminina de vôlei do Brasil.",
+      "references": [
+        {
+          "label": "CBV - classificação oficial feminina",
+          "url": "https://cbv.com.br/volei-de-quadra/superliga-a-feminina/classificacao"
+        }
+      ],
+      "cbvId": "2253034"
+    },
+    {
+      "id": "volleyball-superliga-women-2253031",
+      "name": "FLUMINENSE F.C.",
+      "sport": "volleyball",
+      "league": "superliga-women",
+      "logo": "https://assets.volleystation.com/website/teams/2253031/badge.png",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "description": "FLUMINENSE F.C. é uma equipe da Superliga Feminina de vôlei do Brasil.",
+      "references": [
+        {
+          "label": "CBV - classificação oficial feminina",
+          "url": "https://cbv.com.br/volei-de-quadra/superliga-a-feminina/classificacao"
+        }
+      ],
+      "cbvId": "2253031"
+    },
+    {
+      "id": "volleyball-superliga-women-2253035",
+      "name": "BATAVO MACKENZIE",
+      "sport": "volleyball",
+      "league": "superliga-women",
+      "logo": "https://assets.volleystation.com/website/teams/2253035/badge.png",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "description": "BATAVO MACKENZIE é uma equipe da Superliga Feminina de vôlei do Brasil.",
+      "references": [
+        {
+          "label": "CBV - classificação oficial feminina",
+          "url": "https://cbv.com.br/volei-de-quadra/superliga-a-feminina/classificacao"
+        }
+      ],
+      "cbvId": "2253035"
+    },
+    {
+      "id": "volleyball-superliga-women-2253033",
+      "name": "SANCOR SEGUROS VOLEI",
+      "sport": "volleyball",
+      "league": "superliga-women",
+      "logo": "https://assets.volleystation.com/website/teams/2253033/badge.png",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "colors": [],
+      "honours": [],
+      "description": "SANCOR SEGUROS VOLEI é uma equipe da Superliga Feminina de vôlei do Brasil.",
+      "references": [
+        {
+          "label": "CBV - classificação oficial feminina",
+          "url": "https://cbv.com.br/volei-de-quadra/superliga-a-feminina/classificacao"
+        }
+      ],
+      "cbvId": "2253033"
+    },
+    {
+      "id": "volleyball-superliga-women-2253026",
+      "name": "PAULISTANO  BARUERI",
+      "sport": "volleyball",
+      "league": "superliga-women",
+      "logo": "https://assets.volleystation.com/website/teams/2253026/badge.png",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "colors": [
+        "#eb4c2c",
+        "#1c8245"
+      ],
+      "honours": [],
+      "description": "PAULISTANO  BARUERI é uma equipe da Superliga Feminina de vôlei do Brasil.",
+      "references": [
+        {
+          "label": "CBV - classificação oficial feminina",
+          "url": "https://cbv.com.br/volei-de-quadra/superliga-a-feminina/classificacao"
+        }
+      ],
+      "cbvId": "2253026"
+    },
+    {
+      "id": "volleyball-superliga-women-2253027",
+      "name": "BRASÍLIA VÔLEI / BRB",
+      "sport": "volleyball",
+      "league": "superliga-women",
+      "logo": "https://assets.volleystation.com/website/teams/2253027/badge.png",
+      "city": "",
+      "stadium": "",
+      "stadium_image": "",
+      "website": "",
+      "colors": [
+        "#f0e626",
+        "#0c6c3c"
+      ],
+      "honours": [],
+      "description": "BRASÍLIA VÔLEI / BRB é uma equipe da Superliga Feminina de vôlei do Brasil.",
+      "references": [
+        {
+          "label": "CBV - classificação oficial feminina",
+          "url": "https://cbv.com.br/volei-de-quadra/superliga-a-feminina/classificacao"
+        }
+      ],
+      "cbvId": "2253027"
+    }
+  ]
+}
