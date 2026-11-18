@@ -1,9 +1,18 @@
 import { readFileSync } from "node:fs";
 import { teamProfileId } from "./team-identity.mjs";
-const read = (file) =>
-  JSON.parse(readFileSync(new URL(file, import.meta.url), "utf8"));
-export const volleyballProfiles = read("../data/volleyball-profiles-2026.json");
-export const volleyballWomenProfiles = read("../data/volleyball-women-2026.json");
+// Vercel's file tracer only detects literal paths inside new URL(...).
+export const volleyballProfiles = JSON.parse(
+  readFileSync(
+    new URL("../data/volleyball-profiles-2026.json", import.meta.url),
+    "utf8",
+  ),
+);
+export const volleyballWomenProfiles = JSON.parse(
+  readFileSync(
+    new URL("../data/volleyball-women-2026.json", import.meta.url),
+    "utf8",
+  ),
+);
 const { clubs } = volleyballProfiles;
 if (clubs.length !== 12 || new Set(clubs.map((c) => c.id)).size !== 12)
   throw new Error("Catálogo da Superliga Masculina incompleto.");
