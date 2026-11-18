@@ -63,7 +63,7 @@ export default function TeamPage() {
     );
   const { team } = data;
   const playerStatsLeague = team.sport === "soccer" && team.league &&
-    ["bra.1", "bra.2", "eng.1", "esp.1", "ger.1"].includes(team.league) ? team.league : null;
+    ["bra.1", "bra.2", "eng.1", "esp.1", "ger.1", "ita.1", "por.1", "usa.1"].includes(team.league) ? team.league : null;
   const leagueName =
     catalog?.sports
       .find((s) => s.id === team.sport)
