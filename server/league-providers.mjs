@@ -104,7 +104,10 @@ export function defaultLeagueSources(sport, league) {
   if (sport === "volleyball") return { games: ["CBV"], standings: ["CBV"] };
   if (sport === "table-tennis")
     return { games: ["WTT"], standings: ["ITTF / WTT"] };
-  if (sport === "tennis") return { games: ["ESPN · ATP"], standings: ["ATP"] };
+  if (sport === "tennis")
+    return league === "wta"
+      ? { games: ["ESPN · WTA"], standings: ["WTA"] }
+      : { games: ["ESPN · ATP"], standings: ["ATP"] };
   if (sport === "soccer" && SOCCER_365_PRIMARY_COMPETITIONS.has(league))
     return {
       games: [

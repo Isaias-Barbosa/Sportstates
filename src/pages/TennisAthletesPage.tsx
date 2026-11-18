@@ -28,12 +28,14 @@ export default function TennisAthletesPage() {
 }
 export function AthletesContent({
   table,
+  women = false,
   data,
   loading,
   error,
   refresh,
 }: {
   table: boolean;
+  women?: boolean;
   data?: AthletesData;
   loading: boolean;
   error?: string;
@@ -54,10 +56,25 @@ export function AthletesContent({
       <div className="athletes-section-title">
         <div>
           <div className="eyebrow">
-            {table ? "🏓 TÊNIS DE MESA MASCULINO" : "🎾 TÊNIS MASCULINO"}
+            {table
+              ? women
+                ? "🏓 TÊNIS DE MESA FEMININO"
+                : "🏓 TÊNIS DE MESA MASCULINO"
+              : women
+                ? "🎾 TÊNIS FEMININO"
+                : "🎾 TÊNIS MASCULINO"}
           </div>
-          <h2>{table ? "Atletas da ITTF / WTT" : "Atletas da ATP"}</h2>
-          <p>Ranking de simples masculino, pontos e países dos jogadores.</p>
+          <h2>
+            {table
+              ? "Atletas da ITTF / WTT"
+              : women
+                ? "Atletas da WTA"
+                : "Atletas da ATP"}
+          </h2>
+          <p>
+            Ranking de simples {women ? "feminino" : "masculino"}, pontos e
+            países dos jogadores.
+          </p>
         </div>
       </div>
       <label className="athlete-search">

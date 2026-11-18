@@ -38,13 +38,17 @@ function OtherTeamsPage() {
     loading: catalogLoading,
     refresh: refreshCatalog,
   } = useApi<CompetitionCatalog>("/api/competitions", 0);
-  const tennis = useApi<AthletesData>("/api/tennis-athletes", 3600000);
-  const tableTennis = useApi<AthletesData>(
-    "/api/table-tennis-athletes",
-    3600000,
-  );
   const [params, setParams] = useSearchParams();
   const gender = genderOf(params);
+  const athleteQuery = gender === "women" ? "?gender=women" : "";
+  const tennis = useApi<AthletesData>(
+    `/api/tennis-athletes${athleteQuery}`,
+    3600000,
+  );
+  const tableTennis = useApi<AthletesData>(
+    `/api/table-tennis-athletes${athleteQuery}`,
+    3600000,
+  );
   const scopedCatalog = filterCatalogByGender(catalog, gender);
   const { sport, league: resolvedLeague } = leagueSelection(
     params,
@@ -185,8 +189,9 @@ function OtherTeamsPage() {
           </div>
           {individual ? (
             <AthletesContent
-              key={sport}
+              key={sport + gender}
               table={sport === "table-tennis"}
+              women={gender === "women"}
               data={athletes.data}
               loading={athletes.loading}
               error={athletes.error}

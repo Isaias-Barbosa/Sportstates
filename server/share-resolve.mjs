@@ -16,7 +16,12 @@ export async function resolveShare(page) {
     match: (sport,league,id) => safe(async () => {
       const result=await cached("share:match:v1:"+sport+":"+league+":"+id,15000,async()=>{
         if(sport==="table-tennis") return (await (await import("./table-tennis.mjs")).tableDetail(id,league)).match;
-        if(sport==="tennis") return (await (await import("./tennis.mjs")).tennisDetail(id)).match;
+        if(sport==="tennis") {
+          const tennis = await import("./tennis.mjs");
+          return (league === "wta" || /^9\d{8,}$/.test(id)
+            ? await tennis.wtaDetail(id)
+            : await tennis.tennisDetail(id)).match;
+        }
         if(sport==="volleyball") return (await (await import("./volleyball.mjs")).volleyDetail(id)).match;
         if (/^(af|fd)-/.test(id)) {
           const [{ externalMatch }, { leagueFor }] = await Promise.all([import("./league-providers.mjs"), import("./catalog.mjs")]);

@@ -157,6 +157,30 @@ test("scoreboard and summary normalize identical watch options", () => {
   assert.ok(a.watch.links.some((l) => l.id === "disney"));
 });
 
+test("verified women's competitions expose official guides without claiming individual matches", () => {
+  const uwcl = getWatchOptions({
+    state: "scheduled", sport: "soccer", league: "uefa.wchampions", id: "1",
+  });
+  assert.ok(uwcl.links.some((link) => link.id === "disney"));
+  assert.ok(uwcl.links.some((link) => link.id === "uwcl-uefa-guide"));
+  assert.equal(uwcl.confirmedForMatch, false);
+  assert.ok(WATCH_DIRECTORY["tennis/wta"].length);
+  assert.ok(WATCH_DIRECTORY["table-tennis/champions-women"].length);
+  assert.equal(getWatchOptions({
+    state: "scheduled", sport: "soccer", league: "eng.w.1", id: "1",
+  }).links.some((link) => link.id === "disney"), false);
+});
+
+test("365Scores broadcaster names are trimmed before Brazilian channel matching", () => {
+  const channels = matchChannels({
+    broadcasts: [{ country: "BR", names: [" SporTV", " TV Brasil", "Nsports"] }],
+  });
+  const ids = channels.map((channel) => channel.id);
+  assert.ok(ids.includes("sportv1"));
+  assert.ok(ids.includes("tvbrasil"));
+  assert.ok(ids.includes("nsports"));
+});
+
 test("channel numbers require explicit Brazilian geography and exact known names", () => {
   assert.deepEqual(
     matchChannels({

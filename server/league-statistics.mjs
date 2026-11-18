@@ -1,6 +1,7 @@
 const ESPN = "https://sports.core.api.espn.com/v2/sports";
 import { cbfLowerDivisionStatisticsConfig } from "./cbf-lower-divisions.mjs";
 import {asianStatisticsConfig,asianLeagueRanking} from './asian-statistics.mjs';
+import { cbfWomenScorers } from "./cbf-women.mjs";
 const HOUR = 60 * 60_000;
 const LIMIT = 10;
 
@@ -91,7 +92,16 @@ const verified = new Map([
   ["hockey/nhl", [2026, 2, "Temporada regular"]],
 ]);
 
+const cbfWomenConfig = {
+  season: 2026,
+  phase: 1,
+  scope: "Artilharia · Brasileirão Feminino A1 2026",
+  source: "CBF",
+  metrics: [{ id: "goals", label: "Gols", decimals: 0 }],
+};
+
 export function leagueStatisticsConfig(sport, league) {
+  if (sport === "soccer" && league === "bra.feminino") return cbfWomenConfig;
   if(sport==='soccer'&&asianStatisticsConfig(league))return asianStatisticsConfig(league);
   if (sport === "soccer" && cbfLowerDivisionStatisticsConfig(league))
     return cbfLowerDivisionStatisticsConfig(league);
@@ -119,6 +129,25 @@ export async function leagueRanking({
   cached,
   loadJson,
 }) {
+  if (sport === "soccer" && league === "bra.feminino") {
+    const ranking = await cbfWomenScorers();
+    return {
+      season: config.season,
+      phase: config.phase,
+      scope: config.scope,
+      source: config.source,
+      metric,
+      stale: ranking.stale,
+      partial: ranking.partial,
+      leaders: ranking.value.map((player) => ({
+        id: player.id,
+        name: player.name,
+        value: player.value,
+        teamName: player.teamName,
+        sourceUrl: player.sourceUrl,
+      })),
+    };
+  }
   if(sport==='soccer'&&asianStatisticsConfig(league))return asianLeagueRanking({league,metric,cached,loadJson});
   const seasonPath = `/v2/sports/${sport}/leagues/${league}/seasons/${config.season}`;
   const leadersUrl = `${ESPN}/${sport}/leagues/${league}/seasons/${config.season}/types/${config.phase}/leaders`;

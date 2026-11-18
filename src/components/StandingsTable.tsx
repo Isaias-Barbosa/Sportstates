@@ -196,7 +196,7 @@ export default function StandingsTable({
           season={data.season?.name}
           sport={sport}
           league={league}
-          linkMatches={data.provider !== "fef"}
+          linkMatches={data.provider !== "fef" && data.provider !== "cbf"}
         />
       )}
       {!showKnockout && match && match.state === "live" && (

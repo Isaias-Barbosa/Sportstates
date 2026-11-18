@@ -132,6 +132,21 @@ test("365Scores normalizes alternate home and away competitor fields", () => {
   assert.equal(normalized.state, "finished");
 });
 
+test("365Scores trims Brazilian broadcaster names before channel matching", () => {
+  const match = normalize365Game(
+    game({
+      statusGroup: 1,
+      statusText: "Agendado",
+      tvNetworks: [{ countryId: 21, name: " SporTV" }, { countryId: 21, name: " TV Brasil" }],
+    }),
+    league,
+    "Pernambucano",
+  );
+  const names = (match.watch?.links || []).map((link) => link.name);
+  assert.ok(names.includes("sportv"));
+  assert.ok(names.includes("TV Brasil"));
+});
+
 test("365Scores standings preserve groups and expose soccer table statistics", () => {
   const data = normalize365Standings(
     {

@@ -5,8 +5,8 @@ export const sports = [
   { id: "football", name: "Futebol americano", icon: "🏈" },
   { id: "baseball", name: "Beisebol", icon: "⚾" },
   { id: "hockey", name: "Hóquei", icon: "🏒" },
-  { id: "tennis", name: "Tênis masculino", icon: "🎾" },
-  { id: "table-tennis", name: "Tênis de mesa masculino", icon: "🏓" },
+  { id: "tennis", name: "Tênis", icon: "🎾" },
+  { id: "table-tennis", name: "Tênis de mesa", icon: "🏓" },
   { id: "volleyball", name: "Vôlei", icon: "🏐" },
 ];
 // Keep in sync with WOMEN_LEAGUES in server/catalog.mjs. Used to filter the
@@ -27,6 +27,15 @@ export const womenLeagueIds = new Set([
   "uefa.wchampions",
   "wnba",
   "superliga-women",
+  "wta",
+  "grand-smash-women",
+  "champions-women",
+  "star-contender-women",
+  "contender-women",
+  "feeder-women",
+  "finals-women",
+  "world-championships-women",
+  "world-cup-women",
 ]);
 export const isWomenLeague = (league: string) => womenLeagueIds.has(league);
 export const keyOf = (m: Match) => `${m.sport}/${m.league}/${m.id}`;

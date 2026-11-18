@@ -2,7 +2,30 @@ import { getWatchOptions } from "./watch.mjs";
 import { createCache } from "./cache.mjs";
 import { normalizeEvent, validDate } from "./data.mjs";
 const cached = createCache();
-const BASE = "https://site.api.espn.com/apis/site/v2/sports/tennis/atp";
+const TOURS = {
+  atp: {
+    slug: "atp",
+    league: "atp",
+    grouping: "mens-singles",
+    rankingType: "atp",
+    label: "ATP · Simples masculino",
+    detailSource: "ESPN · ATP masculino",
+    rankingSource: "ESPN · ranking ATP de simples masculino",
+    sourceUrl: "https://www.espn.com/tennis/scoreboard",
+  },
+  wta: {
+    slug: "wta",
+    league: "wta",
+    grouping: "womens-singles",
+    rankingType: "wta",
+    label: "WTA · Simples feminino",
+    detailSource: "ESPN · WTA feminino",
+    rankingSource: "ESPN · ranking WTA de simples feminino",
+    sourceUrl: "https://www.espn.com/tennis/scoreboard",
+  },
+};
+const BASE = (tour) =>
+  `https://site.api.espn.com/apis/site/v2/sports/tennis/${TOURS[tour].slug}`;
 export async function tennisJSON(url) {
   const r = await fetch(url, {
     cache: "no-store",
@@ -31,10 +54,11 @@ const games = (c) =>
     winner: s.winner === true,
     tiebreak: s.tiebreak ?? s.tieBreakScore ?? null,
   }));
-export function normalizeTennis(raw) {
+export function normalizeTennis(raw, tour = "atp") {
+  const config = TOURS[tour] || TOURS.atp;
   return (raw.events || []).flatMap((event) =>
     (event.groupings || [])
-      .filter((g) => g.grouping?.slug === "mens-singles")
+      .filter((g) => g.grouping?.slug === config.grouping)
       .flatMap((g) =>
         (g.competitions || []).flatMap((c) => {
           if (
@@ -45,14 +69,16 @@ export function normalizeTennis(raw) {
             return [];
           const match = normalizeEvent(
             {
-              id: c.date.slice(0, 10).replaceAll("-", "") + c.id,
+              id:
+                (tour === "wta" ? "9" : "") +
+                c.date.slice(0, 10).replaceAll("-", "") + c.id,
               date: c.date,
               name: event.name,
               competitions: [c],
             },
             "tennis",
-            "atp",
-            "ATP · Simples masculino",
+            config.league,
+            config.label,
           );
           if (!match) return [];
           const sides = [
@@ -94,35 +120,39 @@ export function normalizeTennis(raw) {
               venue: [c.venue?.fullName, c.venue?.court]
                 .filter(Boolean)
                 .join(" · "),
-              sourceUrl: "https://www.espn.com/tennis/scoreboard",
               sourceEventId: String(c.id),
               sourceTournamentId: String(event.id),
-              sourceUrl: `https://www.espn.com/tennis/scoreboard/tournament/_/eventId/${encodeURIComponent(event.id)}/competitionType/1`,
+              sourceUrl:
+                tour === "wta"
+                  ? "https://www.espn.com/tennis/scoreboard"
+                  : `https://www.espn.com/tennis/scoreboard/tournament/_/eventId/${encodeURIComponent(event.id)}/competitionType/1`,
             },
           ];
         }),
       ),
   );
 }
-export async function tennisMatches(date) {
+export async function tennisMatches(date, tour = "atp") {
   const r = await cached(
-    `tennis:date:watch-v3:${date}`,
+    `tennis:${tour}:date:watch-v3:${date}`,
     (matches) => (matches.some((m) => m.state === "live") ? 15000 : 60000),
     async () =>
       normalizeTennis(
         await tennisJSON(
-          `${BASE}/scoreboard?dates=${date.replaceAll("-", "")}&lang=pt&region=br`,
+          `${BASE(tour)}/scoreboard?dates=${date.replaceAll("-", "")}&lang=pt&region=br`,
         ),
+        tour,
       ),
     30000,
   );
   return r;
 }
-export async function tennisDetail(id) {
-  if (!/^\d{9,15}$/.test(id)) throw Error("Partida de tênis inválida.");
-  const day = `${id.slice(0, 4)}-${id.slice(4, 6)}-${id.slice(6, 8)}`;
+export async function tennisDetail(id, tour = "atp") {
+  if (!/^\d{9,16}$/.test(id)) throw Error("Partida de tênis inválida.");
+  const raw = tour === "wta" ? id.replace(/^9/, "") : id;
+  const day = `${raw.slice(0, 4)}-${raw.slice(4, 6)}-${raw.slice(6, 8)}`;
   if (!validDate(day)) throw Error("Data da partida inválida.");
-  const r = await tennisMatches(day);
+  const r = await tennisMatches(day, tour);
   const match = r.value.find((m) => m.id === id);
   if (!match) throw Error("Partida de tênis não encontrada.");
   return {
@@ -143,15 +173,16 @@ export async function tennisDetail(id) {
       home: [],
       away: [],
     },
-    source: "ESPN · ATP masculino",
+    source: TOURS[tour].detailSource,
     fetchedAt: new Date(r.at).toISOString(),
     stale: r.stale,
   };
 }
-export function normalizeAtpRankings(raw) {
-  const ranking = (raw.rankings || []).find((r) => r.type === "atp");
+export function normalizeAtpRankings(raw, tour = "atp") {
+  const config = TOURS[tour] || TOURS.atp;
+  const ranking = (raw.rankings || []).find((r) => r.type === config.rankingType);
   if (!ranking || !Array.isArray(ranking.ranks))
-    throw Error("Ranking ATP indisponível.");
+    throw Error(`Ranking ${config.league.toUpperCase()} indisponível.`);
   return {
     updatedAt: ranking.update,
     players: ranking.ranks
@@ -178,13 +209,15 @@ export function normalizeAtpRankings(raw) {
       .sort((a, b) => a.rank - b.rank),
   };
 }
-export async function atpRankings() {
+export async function tourRankings(tour = "atp") {
+  const config = TOURS[tour] || TOURS.atp;
   const r = await cached(
-    "tennis:ranking:v1",
+    `tennis:${tour}:ranking:v1`,
     3600000,
     async () =>
       normalizeAtpRankings(
-        await tennisJSON(`${BASE}/rankings?lang=pt&region=br`),
+        await tennisJSON(`${BASE(tour)}/rankings?lang=pt&region=br`),
+        tour,
       ),
     86400000,
   );
@@ -192,9 +225,13 @@ export async function atpRankings() {
     ...r.value,
     fetchedAt: new Date(r.at).toISOString(),
     stale: r.stale,
-    source: "ESPN · ranking ATP de simples masculino",
+    source: config.rankingSource,
   };
 }
+export const atpRankings = () => tourRankings("atp");
+export const wtaRankings = () => tourRankings("wta");
+export const wtaMatches = (date) => tennisMatches(date, "wta");
+export const wtaDetail = (id) => tennisDetail(id, "wta");
 
 export function tennisRound(value) {
   const labels = {

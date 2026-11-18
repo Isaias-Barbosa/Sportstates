@@ -231,7 +231,8 @@ test("CBV standings preserve official points and order rather than recalculating
 });
 test("catalog registers men's and women's Superliga and 24 volleyball teams use isolated IDs", () => {
   assert.ok(leagueFor("tennis", "atp"));
-  assert.equal(leagueFor("tennis", "wta"), null);
+  assert.equal(leagueFor("tennis", "wta")?.league, "wta");
+  assert.equal(leagueFor("table-tennis", "champions-women")?.league, "champions-women");
   assert.ok(leagueFor("volleyball", "superliga-men"));
   assert.ok(leagueFor("volleyball", "superliga-women"));
   assert.equal(volleyballProfiles.clubs.length, 12);
@@ -330,6 +331,49 @@ test("new match and standings API routes use their providers without sending CBV
     await clearAllCaches({ shared: false });
   }
 });
+test("WTA tournaments flatten into women singles fixtures with gendered IDs and labels", () => {
+  const wtaRaw = {
+    events: [
+      {
+        ...tennis.events[0],
+        name: "WTA Test",
+        groupings: [
+          { grouping: { slug: "womens-singles" }, competitions: [c] },
+          { grouping: { slug: "mens-singles" }, competitions: [{ ...c, id: "7" }] },
+        ],
+      },
+    ],
+  };
+  const matches = normalizeTennis(wtaRaw, "wta");
+  assert.equal(matches.length, 1);
+  assert.equal(matches[0].league, "wta");
+  assert.equal(matches[0].leagueName, "WTA · Simples feminino");
+  assert.equal(matches[0].id, "920261029185187");
+  assert.equal(matches[0].home.name, "Atleta A");
+  assert.equal(matches[0].sourceUrl, "https://www.espn.com/tennis/scoreboard");
+});
+
+test("WTA rankings use the women's ESPN ranking type", () => {
+  const raw = {
+    rankings: [
+      {
+        type: "atp",
+        update: "2026-11-01T00:00:00Z",
+        ranks: [{ current: 1, points: 1, athlete: { id: "1", displayName: "Homem" } }],
+      },
+      {
+        type: "wta",
+        update: "2026-11-12T08:00:00Z",
+        ranks: [{ current: 1, points: 8099, athlete: { id: "3126", displayName: "Elena Rybakina" } }],
+      },
+    ],
+  };
+  const result = normalizeAtpRankings(raw, "wta");
+  assert.equal(result.players[0].name, "Elena Rybakina");
+  assert.equal(result.players[0].points, 8099);
+  assert.equal(result.updatedAt, "2026-11-12T08:00:00Z");
+});
+
 test("combined daily scoreboard exposes both new sports, deduplicates fixtures and excludes other dates and female groups", async () => {
   const { scoreboard } = await import("../server/api.mjs");
   const { clearAllCaches } = await import("../server/cache.mjs");
