@@ -31,12 +31,20 @@ import {
 } from "./user-preferences.mjs";
 import { buildDailySummary, summarySports } from "./daily-summary.mjs";
 import { tennisInsights } from "./tennis-insights.mjs";
-import { tableMatches, tableDetail, tableRankings } from "./table-tennis.mjs";
+import {
+  tableMatches,
+  tableDetail,
+  tableRankings,
+  isWomenTableLeague,
+} from "./table-tennis.mjs";
 import { volleyballProfiles, volleyballWomenProfiles } from "./volleyball-profiles.mjs";
 import {
   tennisMatches,
   tennisDetail,
   atpRankings,
+  wtaMatches,
+  wtaDetail,
+  wtaRankings,
   tennisJSON,
   normalizeTennis,
 } from "./tennis.mjs";
@@ -123,6 +131,7 @@ import {
   enrichBrazilSerieARounds,
   fetchGeBrazilSeasonRounds,
 } from "./ge-rounds.mjs";
+import { cbfWomenRounds } from "./cbf-women.mjs";
 import {
   dayInBrazil,
   validDate,
@@ -479,7 +488,7 @@ export async function scoreboard(date, sport = "all") {
           s.id === "table-tennis"
             ? tableMatches(d, league)
             : s.id === "tennis"
-              ? tennisMatches(d)
+              ? league === "wta" ? wtaMatches(d) : tennisMatches(d)
               : s.id === "volleyball"
                 ? cbvSchedule(league).then((r) => ({
                     ...r,
@@ -568,7 +577,7 @@ export async function scoreboard(date, sport = "all") {
         name,
         provider:
           s.id === "tennis"
-            ? "ATP"
+            ? league === "wta" ? "WTA" : "ATP"
             : s.id === "table-tennis"
               ? "ITTF / WTT"
               : s.id === "volleyball"
@@ -977,15 +986,16 @@ export async function route(url) {
   }
   if (url.pathname === "/api/tennis-insights") {
     const id = q.get("id");
-    if (!/^\d{9,15}$/.test(id || ""))
+    const women = q.get("gender") === "women" || /^9\d{8,}$/.test(id || "");
+    if (!(women ? /^9\d{8,15}$/ : /^\d{9,15}$/).test(id || ""))
       return [400, { error: "Partida de tênis inválida." }];
-    const detail = await tennisDetail(id);
+    const detail = women ? await wtaDetail(id) : await tennisDetail(id);
     return [200, await tennisInsights(detail.match)];
   }
   if (url.pathname === "/api/table-tennis-athletes")
-    return [200, await tableRankings()];
+    return [200, await tableRankings(q.get("gender") === "women")];
   if (url.pathname === "/api/tennis-athletes")
-    return [200, await atpRankings()];
+    return [200, q.get("gender") === "women" ? await wtaRankings() : await atpRankings()];
   if (url.pathname === "/api/f1-standings") {
     const season = Number(dayInBrazil(new Date()).slice(0, 4));
     const hour = 60 * 60_000;
@@ -1138,20 +1148,38 @@ export async function route(url) {
         );
       if (cupData?.partial)
         warnings.push("A fonte retornou uma lista parcial de partidas.");
+      let rounds = cupData?.rounds || [];
+      let currentRound = cupData?.currentRound || null;
+      let season = cupData?.season || tableData?.season || null;
+      let source = "365Scores · feed público não oficial";
+      if (config.league === "bra.feminino") {
+        try {
+          const cbf = await cbfWomenRounds();
+          if (cbf.value.rounds.length) {
+            rounds = cbf.value.rounds;
+            currentRound = cbf.value.currentRound;
+            season = cbf.value.season;
+            source = "365Scores · classificação; CBF · quatro fases oficiais";
+          }
+        } catch {
+          warnings.push("Não foi possível atualizar as fases oficiais da CBF.");
+        }
+      }
       return [
         200,
         {
           ...config,
+          provider: config.league === "bra.feminino" && rounds.length ? "cbf" : config.provider,
           groups: tableData?.groups || [],
-          rounds: cupData?.rounds || [],
-          season: cupData?.season || tableData?.season || null,
-          currentRound: cupData?.currentRound || null,
+          rounds,
+          season,
+          currentRound,
+          source,
           warnings,
           fetchedAt: new Date(
             Math.min(...fetched.map((result) => result.value.at)),
           ).toISOString(),
           stale: fetched.some((result) => result.value.stale),
-          source: "365Scores · feed público não oficial",
         },
       ];
     }
@@ -1190,10 +1218,14 @@ export async function route(url) {
       return [200, await fetchEcuadorCupStandings(config.league, json)];
     if (config.sport === "volleyball") return [200, await volleyStandings(config.league)];
     if (["tennis", "table-tennis"].includes(config.sport)) {
+      const women =
+        config.league === "wta" || isWomenTableLeague(config.league);
       const data =
         config.sport === "table-tennis"
-          ? await tableRankings()
-          : await atpRankings();
+          ? await tableRankings(women)
+          : women
+            ? await wtaRankings()
+            : await atpRankings();
       return [
         200,
         {
@@ -1202,8 +1234,10 @@ export async function route(url) {
             {
               name:
                 config.sport === "table-tennis"
-                  ? "Ranking mundial ITTF · Simples masculino"
-                  : "Ranking ATP · Simples masculino",
+                  ? `Ranking mundial ITTF · Simples ${women ? "feminino" : "masculino"}`
+                  : women
+                    ? "Ranking WTA · Simples feminino"
+                    : "Ranking ATP · Simples masculino",
               rows: data.players.map((p) => ({
                 id: p.id,
                 name: p.name,
@@ -1456,13 +1490,14 @@ export async function route(url) {
                 value: r.value.map((m) => normalizeVolley(m, config.league)),
               }))
             : await cached(
-                `tennis:month:v1:${month}`,
+                `tennis:${config.league === "wta" ? "wta" : "atp"}:month:v1:${month}`,
                 60000,
                 async () =>
                   normalizeTennis(
                     await tennisJSON(
-                      `https://site.api.espn.com/apis/site/v2/sports/tennis/atp/scoreboard?dates=${month.replaceAll("-", "")}&lang=pt&region=br`,
+                      `https://site.api.espn.com/apis/site/v2/sports/tennis/${config.league === "wta" ? "wta" : "atp"}/scoreboard?dates=${month.replaceAll("-", "")}&lang=pt&region=br`,
                     ),
+                    config.league === "wta" ? "wta" : "atp",
                   ),
                 300000,
               );
@@ -1479,10 +1514,12 @@ export async function route(url) {
           fetchedAt: new Date(r.at).toISOString(),
           source:
             config.sport === "table-tennis"
-              ? "World Table Tennis · fonte oficial"
+              ? `World Table Tennis · fonte oficial${isWomenTableLeague(config.league) ? " · feminino" : ""}`
               : config.sport === "volleyball"
                 ? volleyLeague(config.league).source
-                : "ESPN · ATP masculino",
+                : config.league === "wta"
+                  ? "ESPN · WTA feminino"
+                  : "ESPN · ATP masculino",
         },
       ];
     }
@@ -1652,7 +1689,9 @@ export async function route(url) {
         return [200, { ...detail, match: matches[0] }];
       } catch { return [503, { error: "Fonte da partida temporariamente indisponível." }]; }
     }
-    if (!config || !/^\d{1,15}$/.test(id || ""))
+    if (!config || !/^\d{1,16}$/.test(id || ""))
+      return [400, { error: "Partida ou competição inválida." }];
+    if (config.sport === "tennis" && config.league === "wta" && !/^9\d{8,15}$/.test(id))
       return [400, { error: "Partida ou competição inválida." }];
     if (config.sport === "basketball" && config.league === "nbb") {
       const result = await resolveSources({
@@ -1678,7 +1717,7 @@ export async function route(url) {
     }
     if (["tennis", "volleyball", "table-tennis"].includes(config.sport)) {
       if (url.pathname === "/api/media" && config.sport === "tennis") {
-        const detail = await tennisDetail(id);
+        const detail = config.league === "wta" ? await wtaDetail(id) : await tennisDetail(id);
         return [200, await matchMedia(detail.match, [])];
       }
       if (url.pathname === "/api/media")
@@ -1699,7 +1738,7 @@ export async function route(url) {
         config.sport === "table-tennis"
           ? await tableDetail(id, config.league)
           : config.sport === "tennis"
-            ? await tennisDetail(id)
+            ? config.league === "wta" ? await wtaDetail(id) : await tennisDetail(id)
             : await volleyDetail(id, config.league);
       const manual = await enrichManualBroadcasts([detail.match]);
       return [200, { ...detail, match: manual.matches[0] }];

@@ -81,7 +81,7 @@ export default function KnockoutRounds({
           {season && <p>{season}</p>}
         </div>
         <span>
-          {linkMatches ? "Horário de Brasília" : "Datas oficiais da FEF"}
+          {linkMatches ? "Horário de Brasília" : "Datas oficiais da fonte"}
         </span>
       </div>
       <label className="knockout-phase-select">

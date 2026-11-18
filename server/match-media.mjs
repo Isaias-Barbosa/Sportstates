@@ -410,12 +410,13 @@ async function tennisEspnMedia(match) {
   const results = await Promise.allSettled(
     [match.home, match.away].map((p) =>
       cached(
-        "tennis:espn-clips:v1:" + p.id,
+        `tennis:${match.league === "wta" ? "wta" : "atp"}:espn-clips:v1:` + p.id,
         600000,
         async () => {
           if (!/^\d{1,12}$/.test(p.id)) return [];
           const r = await fetch(
-            "https://site.web.api.espn.com/apis/common/v3/sports/tennis/atp/athletes/" +
+            "https://site.web.api.espn.com/apis/common/v3/sports/tennis/" +
+              (match.league === "wta" ? "wta" : "atp") + "/athletes/" +
               p.id +
               "/overview?lang=pt&region=br",
             { signal: AbortSignal.timeout(5000) },

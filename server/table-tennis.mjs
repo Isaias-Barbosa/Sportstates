@@ -15,6 +15,12 @@ export const TABLE_COMPETITIONS = [
   ["world-championships", "Mundial ITTF"],
   ["world-cup", "Copa do Mundo ITTF"],
 ];
+export const TABLE_COMPETITIONS_WOMEN = TABLE_COMPETITIONS.map(([id, name]) => [
+  `${id}-women`,
+  `${name} · Feminino`,
+]);
+export const isWomenTableLeague = (league) => /-women$/.test(String(league || ""));
+export const baseTableLeague = (league) => String(league || "").replace(/-women$/, "");
 export function tableLeague(name = "") {
   if (
     /youth|junior|para\b|masters|veteran|team|alzheimer|parkinson|test/i.test(
@@ -174,10 +180,13 @@ export function tableStartDate(unit, card, meta) {
 }
 const number = (v) => (/^\d+$/.test(String(v ?? "")) ? String(v) : null);
 export function normalizeTableMatch(unit, card, event, meta = {}) {
+  const women = isWomenTableLeague(event?.league);
   if (
-    !/^TTEMSINGLES/.test(unit.Code || "") ||
+    !(women ? /^TTEWSINGLES/.test(unit.Code || "") : /^TTEMSINGLES/.test(unit.Code || "")) ||
     unit.EventCategory !== "SEN" ||
-    !/^(?:Men'?s?|Men)\s+Singles$/i.test(unit.SubEvent || "") ||
+    !(women
+      ? /^Women'?s?\s+Singles$/i.test(unit.SubEvent || "")
+      : /^(?:Men'?s?|Men)\s+Singles$/i.test(unit.SubEvent || "")) ||
     /U\d{2}/.test(unit.Code)
   )
     return null;
@@ -276,7 +285,9 @@ export function normalizeTableMatch(unit, card, event, meta = {}) {
     sport: "table-tennis",
     league: event.league,
     leagueName:
-      TABLE_COMPETITIONS.find(([id]) => id === event.league)?.[1] || event.name,
+      [...TABLE_COMPETITIONS, ...TABLE_COMPETITIONS_WOMEN].find(
+        ([id]) => id === event.league,
+      )?.[1] || event.name,
     date,
     name: `${teams[0].name} x ${teams[1].name}`,
     home: teams[0],
@@ -299,7 +310,7 @@ export function normalizeTableMatch(unit, card, event, meta = {}) {
       meta.venueName ||
       "",
     broadcast: "",
-    watch: getWatchOptions({sport: "table-tennis", league: event.league, state}),
+    watch: getWatchOptions({ sport: "table-tennis", league: event.league, state }),
     setScores: games,
     tournament: event.name,
     round: rounds[unit.Round] || (unit.Draw === "QUAL" ? "Qualificatório" : ""),
@@ -334,7 +345,7 @@ export function validateTableLiveCard(card,unit,event){
   return card;
 }
 async function liveCard(unit,event){
-  if(!/^\d{1,5}$/.test(String(event.id))||!/^TTEMSINGLES[A-Z0-9-]{5,35}$/.test(unit.Code||''))throw new Error('Identidade WTT inválida.');
+  if(!/^\d{1,5}$/.test(String(event.id))||!/^TTE[MW]SINGLES[A-Z0-9-]{5,35}$/.test(unit.Code||''))throw new Error('Identidade WTT inválida.');
   const result=await resolveSources({key:`wtt-live-card:v1:${event.id}:${canonical(unit.Code)}`,cached,providers:[{name:'WTT JSON oficial',ttl:15000,staleFor:30000,load:async()=>{
     const url=TABLE_LIVE_ROOT+`matchdata/${event.id}/${unit.Code.padEnd(42,'-')}.json?q=`+encodeURIComponent(new Date(Math.floor(Date.now()/5000)*5000).toISOString());
     const response=await fetch(url,{headers:{Accept:'application/json'},signal:AbortSignal.timeout(6000),redirect:'error',cache:'no-store'});
@@ -360,7 +371,7 @@ export async function refreshTableCards(byCode,units,event,meta,{now=Date.now(),
 }
 async function eventMatches(event) {
   return cached(
-    `table-tennis:event:official-live-v4:${event.id}`,
+    `table-tennis:event:${isWomenTableLeague(event.league) ? "women" : "men"}:official-live-v4:${event.id}`,
     (matches) =>
       matches.some((m) => m.state === "live")
         ? 15000
@@ -387,7 +398,12 @@ async function eventMatches(event) {
             .flatMap((b) => b.Competition?.Unit || [])
             .filter(
               (u) =>
-                /^TTEMSINGLES/.test(u.Code || "") && u.EventCategory === "SEN",
+                (isWomenTableLeague(event.league)
+                  ? /^TTEWSINGLES/.test(u.Code || "")
+                  : /^TTEMSINGLES/.test(u.Code || "")) &&
+                  u.EventCategory === "SEN" && (isWomenTableLeague(event.league)
+                    ? /^Women'?s?\s+Singles$/i.test(u.SubEvent || "")
+                    : /^(?:Men'?s?|Men)\s+Singles$/i.test(u.SubEvent || "")),
             )
             .map((u) => [canonical(u.Code), u]),
         ).values(),
@@ -427,6 +443,8 @@ export async function tableMatches(range, league) {
   )
     throw Error("Data WTT inválida.");
   const calendar = await tableCalendar();
+  const women = isWomenTableLeague(league);
+  const wanted = baseTableLeague(league);
   const first = range.length === 7 ? range + "-01" : range;
   const end =
     range.length === 7
@@ -435,8 +453,12 @@ export async function tableMatches(range, league) {
           .toISOString()
           .slice(0, 10);
   const events = calendar.value
-    .filter((e) => e.league === league && e.start <= end && e.end >= first)
-    .slice(0, 24);
+    .filter(
+      (e) =>
+        e.league === wanted && e.start <= end && e.end >= first,
+    )
+    .slice(0, 24)
+    .map((e) => (women ? { ...e, league: `${e.league}-women` } : e));
   const parts = await Promise.all(events.map(eventMatches));
   return {
     value: parts
@@ -454,10 +476,15 @@ export async function tableDetail(id, league) {
   if (!/^\d{15}$/.test(id)) throw Error("Partida de tênis de mesa inválida.");
   const calendar = await tableCalendar(),
     event = calendar.value.find(
-      (e) => Number(e.id) === Number(id.slice(0, 5)) && e.league === league,
+      (e) =>
+        Number(e.id) === Number(id.slice(0, 5)) &&
+        e.league === baseTableLeague(league),
     );
   if (!event) throw Error("Evento WTT não encontrado.");
-  const r = await eventMatches(event),
+  const detailEvent = isWomenTableLeague(league)
+    ? { ...event, league }
+    : event;
+  const r = await eventMatches(detailEvent),
     match = r.value.find((m) => m.id === id);
   if (!match)
     throw Error("Partida WTT não encontrada ou horário ainda não publicado.");
@@ -478,16 +505,16 @@ export async function tableDetail(id, league) {
     },
     fetchedAt: new Date(r.at).toISOString(),
     stale: r.stale || !!match.liveUnverified,
-    source: "World Table Tennis · fonte oficial",
+    source: `World Table Tennis · fonte oficial${isWomenTableLeague(league) ? " · feminino" : ""}`,
   };
 }
-export function normalizeTableRankings(raw) {
+export function normalizeTableRankings(raw, women = false) {
   // The documented endpoint returns a JSON-encoded string under application/json.
   if (typeof raw === "string") raw = JSON.parse(raw);
   if (!Array.isArray(raw?.Result)) throw Error("Ranking WTT inválido.");
   return {
     players: raw.Result.filter(
-      (p) => p.CategoryCode === "SEN" && p.SubEventCode === "MS",
+      (p) => p.CategoryCode === "SEN" && p.SubEventCode === (women ? "WS" : "MS"),
     )
       .map((p) => ({
         id: String(p.IttfId),
@@ -503,18 +530,19 @@ export function normalizeTableRankings(raw) {
       .filter((p) => p.id && p.name && p.rank > 0 && Number.isFinite(p.points))
       .sort((a, b) => a.rank - b.rank),
     updatedAt: raw.Result[0]?.PublishDate || "",
-    source: "ITTF / World Table Tennis · ranking mundial masculino",
+    source: `ITTF / World Table Tennis · ranking mundial ${women ? "feminino" : "masculino"}`,
   };
 }
-export async function tableRankings() {
+export async function tableRankings(women = false) {
   const r = await cached(
-    "table-tennis:rankings:v1",
+    `table-tennis:rankings:${women ? "women" : "men"}:v1`,
     3600000,
     async () =>
       normalizeTableRankings(
         await json(
-          "GetRankingIndividuals?TopN=100&SubEventCode=MS&CategoryCode=SEN",
+          `GetRankingIndividuals?TopN=100&SubEventCode=${women ? "WS" : "MS"}&CategoryCode=SEN`,
         ),
+        women,
       ),
     86400000,
   );

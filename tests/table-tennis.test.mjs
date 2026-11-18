@@ -9,6 +9,7 @@ import {
   normalizeTableMatch,
   normalizeTableRankings,
   TABLE_COMPETITIONS,
+  TABLE_COMPETITIONS_WOMEN,
   refreshTableCards,
   validateTableLiveCard,
 } from "../server/table-tennis.mjs";
@@ -412,4 +413,54 @@ test('WTT finalized matches and distant future cards do not trigger complementar
 test('WTT stale live JSON is explicitly marked as unverified',()=>{
   const result=normalizeTableMatch(unit,{...card,resultStatus:'LIVE',_sportstatesLiveStale:true,currentGameNumber:2,overallScores:'1-0',gameScores:'11-8,3-2'},event);
   assert.equal(result.state,'live');assert.equal(result.liveUnverified,true);
+});
+
+test('women senior singles use the official TTEWSINGLES codes and stay isolated from men', () => {
+  const womenEvent = { ...event, league: "champions-women" };
+  const womenUnit = {
+    ...unit,
+    Code: "TTEWSINGLES-----------FNL-000100--",
+    SubEvent: "Women's Singles",
+    StartList: {
+      Start: [
+        { StartOrder: 1, Competitor: { Code: "121411", Description: { TeamName: "WANG Manyu" } } },
+        { StartOrder: 2, Competitor: { Code: "121412", Description: { TeamName: "HIRANO Miu" } } },
+      ],
+    },
+  };
+  const womenCard = {
+    ...card,
+    documentCode: womenUnit.Code.padEnd(42, "-"),
+    overallScores: "4-0",
+    gameScores: "11-2,11-7,13-11,11-5,0-0,0-0,0-0",
+    competitiors: [],
+  };
+  const match = normalizeTableMatch(womenUnit, womenCard, womenEvent);
+  assert.equal(match.league, "champions-women");
+  assert.equal(match.leagueName, "WTT Champions · Feminino");
+  assert.equal(match.home.name, "WANG Manyu");
+  assert.equal(match.away.name, "HIRANO Miu");
+  assert.equal(match.away.score, "0");
+  assert.equal(match.home.winner, true);
+  assert.equal(normalizeTableMatch(womenUnit, womenCard, event), null);
+  assert.equal(normalizeTableMatch(unit, card, womenEvent), null);
+});
+
+test('WTT women rankings use SubEventCode WS', () => {
+  assert.equal(TABLE_COMPETITIONS_WOMEN.length, 8);
+  for (const [id] of TABLE_COMPETITIONS_WOMEN)
+    assert.equal(leagueFor("table-tennis", id).league, id);
+  const result = normalizeTableRankings(
+    {
+      Result: [
+        { IttfId: "121411", PlayerName: "WANG Manyu", SubEventCode: "WS", CategoryCode: "SEN", CurrentRank: "1", PreviousRank: "2", RankingPointsYTD: "9265", CountryName: "CHN", PublishDate: "11/16/2026 00:00:00" },
+        { IttfId: "1", PlayerName: "Homem", SubEventCode: "MS", CategoryCode: "SEN", CurrentRank: "1", PreviousRank: "1", RankingPointsYTD: "1" },
+      ],
+    },
+    true,
+  );
+  assert.equal(result.players.length, 1);
+  assert.equal(result.players[0].name, "WANG Manyu");
+  assert.equal(result.players[0].points, 9265);
+  assert.match(result.source, /feminino/);
 });

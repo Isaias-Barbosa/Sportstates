@@ -1,5 +1,5 @@
 import { nationalCompetitions } from "./national-competitions.mjs";
-import { TABLE_COMPETITIONS } from "./table-tennis.mjs";
+import { TABLE_COMPETITIONS, TABLE_COMPETITIONS_WOMEN } from "./table-tennis.mjs";
 export const BRAZIL_STATE_LEAGUES = new Set([
   "bra.camp.carioca",
   "bra.camp.paulista",
@@ -164,15 +164,18 @@ export const SPORTS = [
   { id: "hockey", name: "Hóquei", icon: "🏒", leagues: [["nhl", "NHL"]] },
   {
     id: "tennis",
-    name: "Tênis masculino",
+    name: "Tênis",
     icon: "🎾",
-    leagues: [["atp", "ATP · Simples masculino"]],
+    leagues: [
+      ["atp", "ATP · Simples masculino"],
+      ["wta", "WTA · Simples feminino"],
+    ],
   },
   {
     id: "table-tennis",
-    name: "Tênis de mesa masculino",
+    name: "Tênis de mesa",
     icon: "🏓",
-    leagues: TABLE_COMPETITIONS,
+    leagues: [...TABLE_COMPETITIONS, ...TABLE_COMPETITIONS_WOMEN],
   },
   {
     id: "volleyball",
@@ -208,7 +211,13 @@ export const WOMEN_SOCCER_LEAGUES = new Set([
   "conmebol.libertadores_feminina",
   "uefa.wchampions",
 ]);
-export const WOMEN_LEAGUES = new Set([...WOMEN_SOCCER_LEAGUES, "wnba", "superliga-women"]);
+export const WOMEN_LEAGUES = new Set([
+  ...WOMEN_SOCCER_LEAGUES,
+  "wnba",
+  "superliga-women",
+  "wta",
+  ...TABLE_COMPETITIONS_WOMEN.map(([id]) => id),
+]);
 export const leagueGender = (sport, league) =>
   WOMEN_LEAGUES.has(league) ? "women" : "men";
 

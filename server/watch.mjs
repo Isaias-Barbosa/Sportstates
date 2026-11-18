@@ -272,6 +272,32 @@ WATCH_DIRECTORY['tennis/atp'] = [
   { ...disney, sourceUrl: tennisSource, note: 'Tênis masculino na ESPN/Disney+ Premium. Confira o torneio, a quadra e o plano; o canal ESPN específico depende da programação.' },
   guide('atpguide', 'Programação oficial ATP', 'https://www.atptour.com/en/tournaments/tv-schedule'),
 ];
+const wtaSource = 'https://espnpressroom.com/press-release/uefa-womens-cl-global/';
+WATCH_DIRECTORY['tennis/wta'] = [
+  { ...disney, sourceUrl: wtaSource, note: 'Tênis feminino na ESPN/Disney+. Confira o torneio, a quadra e o plano; a presença no catálogo não confirma a transmissão desta partida.' },
+  { ...espnFootballGuide, id: 'wta-espn-guide', note: 'Confira a programação da ESPN Brasil e o torneio de tênis feminino antes de considerar esta partida confirmada.' },
+];
+const uwclSource = 'https://brazil.espnpressroom.com/press-releases/2026/09/chegou-a-hora-espn-e-disney-exibem-uefa-champions-league-feminina/';
+WATCH_DIRECTORY['soccer/uefa.wchampions'] = [
+  { ...disney, sourceUrl: uwclSource, note: 'A UEFA Women’s Champions League é transmitida pela ESPN no Disney+ no Brasil. Confira a rodada, o jogo e o plano antes de considerar esta partida confirmada.' },
+  { ...espnFootballGuide, id: 'uwcl-espn-guide', sourceUrl: uwclSource, note: 'Jogos selecionados também podem ir à TV linear ESPN. Consulte a programação deste confronto.' },
+  guide('uwcl-uefa-guide', 'UEFA · guia oficial', 'https://pt.uefa.com/womenschampionsleague/', 'Confira a edição e os parceiros de transmissão no guia oficial da UEFA.'),
+];
+const brazilWomenSource = 'https://www.cbf.com.br/futebol-brasileiro/noticias/campeonato-brasileiro/serie-a/cbf-e-n-sports-celebram-acordo-para-transmissao-do-brasileirao-feminino-a-1';
+WATCH_DIRECTORY['soccer/bra.feminino'] = [
+  guide('ge-feminino', 'ge · Brasileirão Feminino', 'https://ge.globo.com/futebol/futebol-feminino/brasileiro-feminino/', 'A CBF anuncia transmissão por Globo, SporTV, TV Brasil, N Sports, GE TV e CBF TV. Confira o confronto na programação; este guia não confirma o canal desta partida.'),
+  { ...guide('globoplay-feminino', 'Globoplay · programação', 'https://globoplay.globo.com/'), sourceUrl: brazilWomenSource },
+];
+WATCH_DIRECTORY['soccer/bra.feminino.copa_do_brazil'] = [
+  { ...guide('ge-copa-feminina', 'ge · Copa do Brasil Feminina', 'https://ge.globo.com/futebol/futebol-feminino/copa-do-brasil-feminina/', 'A CBF anunciou Globo, SporTV, GE TV e N Sports a partir da terceira fase. Confira a rodada e o confronto; fases anteriores podem não ter transmissão confirmada.'), sourceUrl: 'https://www.cbf.com.br/futebol-brasileiro/noticias/copa-verde/a/cbf-fecha-acordo-com-globo-e-n-sports-para-transmissao-da-copa-do-brasil-feminina' },
+];
+WATCH_DIRECTORY['soccer/conmebol.libertadores_feminina'] = [
+  guide('ge-libertadores-feminina', 'ge · Libertadores Feminina', 'https://ge.globo.com/futebol/futebol-feminino/libertadores-feminina/', 'Canais confirmados em matérias de partidas incluem SporTV, N Sports, Cazé TV, Xsports e UOL. Confira o confronto específico antes de considerar a transmissão confirmada.'),
+];
+WATCH_DIRECTORY['soccer/usa.nwsl'] = [
+  { ...disney, note: 'NWSL na ESPN/Disney+ no Brasil. Confira a partida, o plano e a programação.' },
+  { ...guide('goat-nwsl', 'Canal GOAT · programação', 'https://www.youtube.com/@canalgoatbr/streams', 'Canal GOAT e XSports também constam como opções no Brasil. Confira a programação da rodada.'), badge: 'GOAT', access: 'free' },
+];
 const cazeWtt = {
   id: 'cazetv', name: 'CazéTV · YouTube', badge: 'CAZÉ',
   url: 'https://www.youtube.com/@CazeTV/streams', access: 'free', kind: 'platform',
@@ -282,6 +308,12 @@ for (const league of ['grand-smash','champions','star-contender','contender','wo
   WATCH_DIRECTORY['table-tennis/'+league] = [cazeWtt, guide('wttguide','Guia oficial WTT','https://www.worldtabletennis.com/livevideo','Confira as emissoras e possíveis restrições territoriais deste evento.')];
 for (const league of ['feeder','finals'])
   WATCH_DIRECTORY['table-tennis/'+league] = [guide('wttguide','Guia oficial WTT','https://www.worldtabletennis.com/livevideo','Confira a cobertura deste evento e as restrições no Brasil.'),guide('wttglobal','WTT · YouTube oficial','https://www.youtube.com/@wttglobal/streams','Consulte as mesas disponíveis. Alguns eventos podem ter bloqueio territorial no Brasil.')];
+for (const [league, links] of Object.entries({...WATCH_DIRECTORY}))
+  if (league.startsWith('table-tennis/'))
+    WATCH_DIRECTORY[league+'-women'] = links.map(link => ({
+      ...link,
+      note: `${link.note} Cobertura feminina: confirme a sessão e a mesa no guia oficial.`,
+    }));
 WATCH_DIRECTORY['soccer/esp.copa_del_rey'] = [{...disney, sourceUrl:'https://brazil.espnpressroom.com/press-releases/2026/02/espn-e-disney-transmitem-semifinal-da-copa-do-rei-entre-barcelona-e-atletico-de-madrid/'}];
 for (const league of ['eng.fa','eng.league_cup'])
  WATCH_DIRECTORY['soccer/'+league] = [{...disney,sourceUrl:'https://brazil.espnpressroom.com/press-releases/2026/01/final-da-supercopa-da-espanha-e-wild-card-da-nfl-marcam-a-semana-da-espn-e-do-disney/'}];
@@ -340,6 +372,7 @@ const HOSTS = new Set([
   "www.xsports.com.br", "www.espn.com.br", "www.espn.com", "www.youtube.com", "ge.globo.com", "globoplay.globo.com", "www.band.uol.com.br", "www.sbt.com.br", "record.r7.com", "tntsports.com.br", "qazsporttv.kz", "www.peacocktv.com", "www.cbssports.com",
   "www.disneyplus.com",
   "www.primevideo.com",
+  "www.tvbrasil.com.br", "www.nsports.com.br", "www.cbf.com.br", "pluto.tv",
   "premiere.globo.com",
   "www.hbomax.com",
   "www.nba.com",
@@ -400,6 +433,12 @@ const CHANNELS = [
   { pattern: /^ESPN Brasil \(YouTube\)$/i, ...BRAZIL_CHANNEL_GUIDES.find(link => link.id === 'espnyt') },
   { pattern: /^Globo$/i, id: 'globo', name: 'TV Globo', url: 'https://globoplay.globo.com/', badge: 'G', access: 'check' },
   { pattern: /^Ge\s*TV$/i, id: 'getv', name: 'ge tv', url: 'https://globoplay.globo.com/categorias/esportes/', badge: 'ge', access: 'free' },
+  { pattern: /^TV\s*Brasil$/i, id: 'tvbrasil', name: 'TV Brasil', url: 'https://www.tvbrasil.com.br/', badge: 'TVB', access: 'check' },
+  { pattern: /^(?:Youtube\s*)?N\s*Sports(?:\s*TV)?$/i, id: 'nsports', name: 'N Sports', url: 'https://www.nsports.com.br/', badge: 'NS', access: 'check' },
+  { pattern: /^Youtube\s+CBF\s*TV$/i, id: 'cbftv', name: 'CBF TV', url: 'https://www.cbf.com.br/', badge: 'CBF', access: 'free' },
+  { pattern: /^Youtube\s+Lance!$/i, id: 'lance', name: 'Lance!', url: 'https://www.uol.com.br/lance/', badge: 'L!', access: 'check' },
+  { pattern: /^Record\s*News$/i, id: 'recordnews', name: 'Record News', url: 'https://record.r7.com/', badge: 'RN', access: 'check' },
+  { pattern: /^Pluto\s*TV$/i, id: 'plutotv', name: 'Pluto TV', url: 'https://pluto.tv/br/', badge: 'pluto', access: 'free' },
 
   ...BRAZIL_CHANNEL_GUIDES.filter(l => !/^espn\d?$/.test(l.id)).map(l => ({ ...l, pattern: new RegExp(`^${l.name.split(' · ')[0].replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}$`, 'i') })),
   { pattern: /^ESPN(?:\s*1)?(?:\s*Brasil)?$/i, id: "espn", name: "ESPN", url: "https://www.espn.com.br/watch/", badge: "ESPN" },
@@ -412,7 +451,7 @@ export function matchChannels(competition = {}) {
   // Only explicit Brazilian geography is eligible. A Portuguese request is not proof.
   const entries = [...(competition.geoBroadcasts || []), ...(competition.broadcasts || [])];
   const names = entries.filter(b => String(b.region || b.geo?.country || b.country || "").toLowerCase() === "br")
-    .flatMap(b => [b.media?.shortName, b.media?.name, ...(b.names || [])].filter(Boolean));
+    .flatMap(b => [b.media?.shortName, b.media?.name, ...(b.names || [])].filter(Boolean).map(name => String(name).trim()));
   return [...new Map(names.flatMap(name => {
     const channel = CHANNELS.find(c => c.pattern.test(name));
     if (!channel) return [];

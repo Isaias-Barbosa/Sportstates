@@ -235,7 +235,7 @@ export function normalize365Game(game, league, leagueName, now = Date.now()) {
     watch: getWatchOptions(match, {
       broadcasts: networks.map((network) => ({
         country: "BR",
-        names: [network.name],
+        names: [String(network.name || "").trim()].filter(Boolean),
       })),
     }),
   };
